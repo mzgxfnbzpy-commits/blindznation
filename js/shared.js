@@ -18,7 +18,7 @@ function _injectHead(isHome) {
   // Theme color (mobile browser chrome)
   if (!document.querySelector('meta[name="theme-color"]')) {
     const m = document.createElement('meta');
-    m.name = 'theme-color'; m.content = '#1A1A2E'; /* BZ primary — update when colors confirmed */
+    m.name = 'theme-color'; m.content = '#1C1510';
     document.head.appendChild(m);
   }
 
@@ -44,7 +44,7 @@ function _injectHead(isHome) {
       "description": "Custom window treatments — roller shades, cellular shades, roman shades, drapery, and plantation shutters. Fabrication and installation serving Philadelphia and surrounding area.",
       "url": "https://blindznation.com",
       "telephone": "+16097421720",
-      "email": "blindznation@gmail.com",
+      "email": "justin@blindznation.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Huntingdon Valley",
@@ -174,7 +174,7 @@ function renderFooter(isHome) {
         <div class="footer-tagline">Serving Philadelphia, South Jersey, Salt Lake City &amp; surrounding areas. Out-of-state available — product ships nationwide.</div>
         <a href="tel:6097421720" style="display:block;font-size:15px;font-weight:600;color:var(--gold);text-decoration:none;margin-bottom:2px">(609) 742-1720</a>
         <div style="font-size:11px;color:var(--text-faint);margin-bottom:6px">Justin Healy &mdash; call or text 24/7</div>
-        <a href="mailto:blindznation@gmail.com" style="font-size:12px;color:var(--text-muted);text-decoration:none">blindznation@gmail.com</a>
+        <a href="mailto:justin@blindznation.com" style="font-size:12px;color:var(--text-muted);text-decoration:none">justin@blindznation.com</a>
       </div>
       <div class="footer-col">
         <h4>Shades</h4>
@@ -350,7 +350,7 @@ function pbGoCheckout() {
       if (item.specs) s += ' — ' + item.specs;
       return s;
     }).join('\n');
-    window.location.href = 'mailto:blindznation@gmail.com' +
+    window.location.href = 'mailto:justin@blindznation.com' +
       '?subject=' + encodeURIComponent('Order Inquiry') +
       '&body=' + encodeURIComponent('Hi, I\'d like to place an order for:\n\n' + lines + '\n\nPlease contact me to complete my purchase.');
     return;
@@ -757,7 +757,7 @@ function pbSubmitCheckout() {
     'Estimated total: $' + (order.total ? Number(order.total).toFixed(0) : '—') + '\n\n' +
     'Notes: ' + (notes || 'None') + '\n\n' +
     'NOTE: Card NOT yet charged — awaiting order review and approval.';
-  window.location.href = 'mailto:blindznation@gmail.com' +
+  window.location.href = 'mailto:justin@blindznation.com' +
     '?subject=' + encodeURIComponent('Order Request — ' + fname + ' ' + lname) +
     '&body=' + encodeURIComponent(body);
   document.querySelector('.pb-chk-submit').style.display = 'none';
@@ -941,7 +941,7 @@ function _initInstallationAddons() {
         '<div style="font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">We\'ll follow up with installation pricing</div>' +
         '<div style="font-size:13px;color:var(--cream);margin-bottom:6px">Philadelphia, South Jersey, Salt Lake City &amp; surrounding areas. Out-of-state installation available at reasonable rates.</div>' +
         '<a href="tel:6097421720" style="display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:var(--espresso);font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;text-decoration:none;margin-bottom:6px">&#128222; (609) 742-1720</a>' +
-        '<div style="font-size:12px;color:var(--text-dark);margin-top:4px">Or email: <a href="mailto:blindznation@gmail.com" style="color:var(--gold);text-decoration:none">blindznation@gmail.com</a></div>' +
+        '<div style="font-size:12px;color:var(--text-dark);margin-top:4px">Or email: <a href="mailto:justin@blindznation.com" style="color:var(--gold);text-decoration:none">justin@blindznation.com</a></div>' +
       '</div>';
     btn.before(wrap);
     btn.setAttribute('data-install-id', id);
@@ -990,7 +990,7 @@ function _initFileUploads() {
         'onchange="pbShowFileNames(this,\'' + id + '-names\')">' +
       '<div id="' + id + '-names" style="font-size:11px;color:#555;margin-top:6px;line-height:1.8"></div>' +
       '<div style="font-size:11px;color:#aaa;margin-top:5px;line-height:1.5">Window photos, room photos, measurements, inspiration — anything that helps. ' +
-        'After submitting, email files directly to <a href="mailto:blindznation@gmail.com" style="color:inherit">blindznation@gmail.com</a> if needed.</div>';
+        'After submitting, email files directly to <a href="mailto:justin@blindznation.com" style="color:inherit">justin@blindznation.com</a> if needed.</div>';
     btn.before(wrap);
     btn.setAttribute('data-fu-id', id);
   });
@@ -1109,7 +1109,7 @@ function _initContactPanel() {
       '<div class="pb-cp-note" id="pb-cp-hint">Tell us what you need &mdash; we\'ll measure, advise, and quote at no charge.</div>' +
       '<a href="tel:6097421720" class="pb-cp-phone-btn">&#128222; (609) 742-1720</a>' +
       '<div class="pb-cp-sub">Justin Healy &mdash; call or text 24/7</div>' +
-      '<a href="mailto:blindznation@gmail.com" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#f5f5f3;border:1.5px solid #e8e8e4;color:#1C1510;text-decoration:none;font-size:14px;font-weight:600;padding:12px;border-radius:9px;margin-bottom:16px;transition:background .15s" onmouseover="this.style.background=\'#ebe8e4\'" onmouseout="this.style.background=\'#f5f5f3\'">&#9993;&#65039; blindznation@gmail.com</a>' +
+      '<a href="mailto:justin@blindznation.com" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#f5f5f3;border:1.5px solid #e8e8e4;color:#1C1510;text-decoration:none;font-size:14px;font-weight:600;padding:12px;border-radius:9px;margin-bottom:16px;transition:background .15s" onmouseover="this.style.background=\'#ebe8e4\'" onmouseout="this.style.background=\'#f5f5f3\'">&#9993;&#65039; justin@blindznation.com</a>' +
       '<div class="pb-cp-or">or send a message</div>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">' +
         '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Name *</label>' +
@@ -1173,13 +1173,13 @@ function pbSubmitContact() {
   var filesEl = document.getElementById('pb-cp-files');
   var fileNames = filesEl && filesEl.files.length ?
     '\n\nFiles to send: '+Array.from(filesEl.files).map(function(f){return f.name;}).join(', ')+
-    '\n(Please email these to blindznation@gmail.com)' : '';
+    '\n(Please email these to justin@blindznation.com)' : '';
   var w = (document.getElementById('pb-cp-width')  || {}).value || '';
   var h = (document.getElementById('pb-cp-height') || {}).value || '';
   var dims = (w || h) ? '\nApprox. size: '+(w?w+'"W ':'')+' '+(h?h+'"H':'') : '';
   var body  = 'CONSULTATION REQUEST\n\nName: '+name+'\nPhone: '+phone+
     '\n\nInterested in: '+(prod||'—')+dims+'\n\nNotes:\n'+(notes||'None')+fileNames;
-  window.location.href='mailto:blindznation@gmail.com?subject='+
+  window.location.href='mailto:justin@blindznation.com?subject='+
     encodeURIComponent('Free Consultation — '+name)+'&body='+encodeURIComponent(body);
   document.getElementById('pb-cp-sent').style.display='block';
 }
@@ -1355,5 +1355,6 @@ function _initChatbot() {
 function reqMoreInfo(product) {
   var subj = product ? 'Request for more information: ' + product : 'Request for more information';
   var body = 'Hi, I would like to request more information about ' + (product || 'your products') + '.\n\nName:\nPhone:\nBest time to call:';
-  window.location.href = 'mailto:blindznation@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+  window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
 }
+

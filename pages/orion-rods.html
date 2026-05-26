@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -922,7 +922,7 @@ function submitQuote(){
   ].filter(l=>l!==undefined&&l!==null).join('\n');
 
   var subj='Orion Hardware Quote — '+typeLabel+' — '+S.collection+' — '+name;
-  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(bodyLines);
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(bodyLines);
 
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
   $('success-box').style.display='block';
@@ -935,3 +935,4 @@ renderStepBar(1);
 </script>
 </body>
 </html>
+
