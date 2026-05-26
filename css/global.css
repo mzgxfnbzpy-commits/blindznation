@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    Blindznation — Global Stylesheet
    Same palette as Philly Blinds (identical design, different brand name only)
    ============================================================ */
@@ -6,17 +6,17 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --espresso:      #1C1510;
-  --espresso-mid:  #251E16;
+  --espresso: #1C1510;
+  --espresso-mid: #251E16;
   --espresso-deep: #120E09;
-  --gold:          #2DE0C1;
-  --gold-light:    #D0FAF4;
-  --gold-mid:      #E8FDFB;
-  --cream:         #F5ECD7;
-  --text-dark:     #C8B8A4;
-  --text-muted:    #A89880;
-  --text-faint:    #8A7A68;
-  --border-dark:   #2A201A;
+  --gold: #2DE0C1;
+  --gold-light: #D0FAF4;
+  --gold-mid: #E8FDFB;
+  --cream: #F5ECD7;
+  --text-dark: #C8B8A4;
+  --text-muted: #A89880;
+  --text-faint: #8A7A68;
+  --border-dark: #2A201A;
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -790,3 +790,22 @@ html, body { overflow-x: hidden; }
   color: var(--gold);
 }
 
+/* ============================================================
+   LIVE MODE — hide all public pricing displays
+   ============================================================ */
+.addon-price, .mo-price, .opt-card-price,
+.qtotal, .price-box, .price-pending,
+.price-estimate, .price-est-label,
+.price-line, .price-total-line, .price-note,
+.calc-price, .price-result, .price-display,
+.price-row, .price-summary, .price-breakdown,
+.price-out, .step-price, .configurator-price,
+#price-box, #price-pending, #qr-total, #q-total,
+#inline-total, #cv-pricesize, #pr-total,
+[class*="price-val"], [class*="qtotal-val"],
+[id^="pr-base"], [id^="pr-lining"], [id^="pr-soft"],
+[id^="pr-banding"], [id^="pr-sr"], [id^="pr-dn"],
+[id^="pr-valance"], [id^="pr-acc"], [id^="pr-freight"],
+[id^="pr-rd"], [id^="pr-motor"], [id^="pr-cargo"] {
+  display: none !important;
+}

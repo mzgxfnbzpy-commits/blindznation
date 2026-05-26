@@ -2,6 +2,19 @@
 // Blindznation — Shared Components
 // ============================================================
 
+// LIVE MODE — intercept all product/configurator clicks site-wide → contact popup
+window.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll(
+    '.product-card, .btn-configure, .btn-price, .opt-btn, [onclick*="setProd"], [onclick*="selSystem"], [onclick*="pickType"], .configure-btn, .price-btn, .check-out-btn, .btn-gold:not(.pb-cp-action)'
+  ).forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      pbShowContact('Get a custom quote — call, text, or email us');
+    }, true);
+  });
+});
+
 function _injectHead(isHome) {
   const prefix = isHome ? '' : '../';
 
@@ -1107,10 +1120,20 @@ function _initContactPanel() {
       '<div class="pb-cp-badge">Free &middot; No obligation</div>' +
       '<div class="pb-cp-title">Free Consultation &amp; Custom Quote</div>' +
       '<div class="pb-cp-note" id="pb-cp-hint">Tell us what you need &mdash; we\'ll measure, advise, and quote at no charge.</div>' +
-      '<a href="tel:6097421720" class="pb-cp-phone-btn">&#128222; (609) 742-1720</a>' +
-      '<div class="pb-cp-sub">Justin Healy &mdash; call or text 24/7</div>' +
-      '<a href="mailto:justin@blindznation.com" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#f5f5f3;border:1.5px solid #e8e8e4;color:#1C1510;text-decoration:none;font-size:14px;font-weight:600;padding:12px;border-radius:9px;margin-bottom:16px;transition:background .15s" onmouseover="this.style.background=\'#ebe8e4\'" onmouseout="this.style.background=\'#f5f5f3\'">&#9993;&#65039; justin@blindznation.com</a>' +
-      '<div class="pb-cp-or">or send a message</div>' +
+      '<div style="font-size:13px;font-weight:700;color:#1C1510;margin-bottom:10px;text-align:center">Justin Healy &nbsp;&middot;&nbsp; Blindznation</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:6px">' +
+        '<a href="tel:6097421720" class="pb-cp-action" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#1C1510;color:#2DE0C1;text-decoration:none;font-size:12px;font-weight:700;padding:12px 8px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">&#128222;<span>Call now</span></a>' +
+        '<a href="sms:6097421720" class="pb-cp-action" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#1C1510;color:#2DE0C1;text-decoration:none;font-size:12px;font-weight:700;padding:12px 8px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">&#128172;<span>Text now</span></a>' +
+        '<a href="mailto:justin@blindznation.com" class="pb-cp-action" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#1C1510;color:#2DE0C1;text-decoration:none;font-size:12px;font-weight:700;padding:12px 8px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">&#9993;&#65039;<span>Email</span></a>' +
+      '</div>' +
+      '<div style="text-align:center;font-size:11px;color:#999;margin-bottom:14px">(609) 742-1720 &nbsp;&middot;&nbsp; justin@blindznation.com &nbsp;&middot;&nbsp; 24/7</div>' +
+      '<div style="border:1.5px solid #e5f7f4;border-radius:9px;padding:11px 13px;margin-bottom:14px;background:#f4fdfb">' +
+        '<div style="font-size:11px;font-weight:700;color:#1C1510;margin-bottom:5px">&#128206; Attach photos, PDFs, or measurements <span style="font-weight:400;color:#888">(optional)</span></div>' +
+        '<input type="file" id="pb-cp-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" style="width:100%;font-size:12px;color:#555;font-family:inherit;cursor:pointer" onchange="pbCpShowFiles()">' +
+        '<div id="pb-cp-file-names" style="font-size:11px;color:#555;margin-top:5px;line-height:1.7"></div>' +
+        '<div style="font-size:10px;color:#aaa;margin-top:3px">Window photos, room photos, inspiration, spec sheets — email to justin@blindznation.com or attach here.</div>' +
+      '</div>' +
+      '<div class="pb-cp-or">or send a message below</div>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">' +
         '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Name *</label>' +
           '<input id="pb-cp-name" type="text" placeholder="Jane Smith" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
@@ -1127,14 +1150,6 @@ function _initContactPanel() {
       '</div>' +
       '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Notes</label>' +
         '<textarea id="pb-cp-notes" rows="2" placeholder="Window sizes, room, timeline, questions..." style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit;resize:vertical"></textarea></div>' +
-      '<div style="border:1.5px dashed #ddd;border-radius:9px;padding:12px 14px;margin-bottom:14px;background:#fafaf8">' +
-        '<div style="font-size:11px;font-weight:600;color:#444;margin-bottom:6px">&#128206; Attach photos or files <span style="font-weight:400;color:#999">(optional)</span></div>' +
-        '<input type="file" id="pb-cp-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" ' +
-          'style="width:100%;font-size:12px;color:#555;font-family:inherit;cursor:pointer" ' +
-          'onchange="pbCpShowFiles()">' +
-        '<div id="pb-cp-file-names" style="font-size:11px;color:#555;margin-top:5px;line-height:1.7"></div>' +
-        '<div style="font-size:10px;color:#aaa;margin-top:4px">Photos of your windows, room, inspiration — anything that helps.</div>' +
-      '</div>' +
       '<button onclick="pbSubmitContact()" style="width:100%;background:#1C1510;color:#2DE0C1;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">Request free consultation &#8594;</button>' +
       '<div id="pb-cp-sent" style="display:none;text-align:center;padding:16px;background:#EAF3DE;border-radius:10px;margin-top:10px;font-size:13px;color:#27500A">' +
         '<strong>Request sent!</strong> Justin will be in touch soon.<br>' +

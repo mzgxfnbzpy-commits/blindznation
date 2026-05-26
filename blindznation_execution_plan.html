@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blindznation — Execution Plan</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0F3460; color: #f0f0f0; margin: 0; padding: 32px; }
+  h1 { color: #E94560; font-size: 28px; margin-bottom: 4px; }
+  .sub { color: #aaa; font-size: 14px; margin-bottom: 32px; }
+  .section { background: #1A1A2E; border-radius: 12px; padding: 24px; margin-bottom: 24px; border-left: 4px solid #E94560; }
+  h2 { color: #E94560; font-size: 16px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  .task { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.04); }
+  .task:hover { background: rgba(255,255,255,0.07); }
+  .cb { width: 20px; height: 20px; border: 2px solid #E94560; border-radius: 4px; flex-shrink: 0; cursor: pointer; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .cb.done { background: #E94560; }
+  .label { flex: 1; font-size: 14px; line-height: 1.5; }
+  .label.done-text { text-decoration: line-through; color: #666; }
+  .badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle; }
+  .badge-done { background: #1a4a1a; color: #4caf50; }
+  .badge-todo { background: #4a1a1a; color: #E94560; }
+  .badge-tbd { background: #2a2a1a; color: #ffc107; }
+  .note { font-size: 12px; color: #888; margin-top: 4px; }
+</style>
+</head>
+<body>
+<h1>Blindznation — Execution Plan</h1>
+<div class="sub">Sister brand to Philly Blinds &nbsp;·&nbsp; Michael J. Healy Installations LLC &nbsp;·&nbsp; Last updated: May 2026</div>
+
+<div class="section">
+  <h2>Phase 1 — Project Setup</h2>
+  <div class="task"><div class="cb done">✓</div><div class="label done-text">Create blindznation project folder<span class="badge badge-done">DONE</span></div></div>
+  <div class="task"><div class="cb done">✓</div><div class="label done-text">Write CLAUDE.md with project rules and sync protocol<span class="badge badge-done">DONE</span></div></div>
+  <div class="task"><div class="cb done">✓</div><div class="label done-text">Copy all 48 pages from phillyblinds<span class="badge badge-done">DONE</span></div></div>
+  <div class="task"><div class="cb done">✓</div><div class="label done-text">Update shared.js — brand name, nav, footer, JSON-LD schema, email<span class="badge badge-done">DONE</span></div></div>
+  <div class="task"><div class="cb done">✓</div><div class="label done-text">Update global.css — placeholder color palette for blindznation<span class="badge badge-done">DONE</span></div></div>
+  <div class="task"><div class="cb done">✓</div><div class="label done-text">Update index.html + 31 sub-pages — meta tags, og:url, og:site_name<span class="badge badge-done">DONE</span></div></div>
+  <div class="task"><div class="cb done">✓</div><div class="label done-text">Git initialized + initial commit (1,080 files)<span class="badge badge-done">DONE</span></div></div>
+  <div class="task"><div class="cb done">✓</div><div class="label done-text">Desktop shortcuts created (Site + Execution Plan)<span class="badge badge-done">DONE</span></div></div>
+</div>
+
+<div class="section">
+  <h2>Phase 2 — Brand Finalization</h2>
+  <div class="task"><div class="cb"></div><div class="label">Owner confirms final blindznation brand colors<span class="badge badge-tbd">TBD</span><div class="note">Update :root block in css/global.css and theme-color in shared.js</div></div></div>
+  <div class="task"><div class="cb"></div><div class="label">Owner confirms blindznation contact email<span class="badge badge-tbd">TBD</span><div class="note">Replace blindznation@gmail.com placeholder in shared.js with final email</div></div></div>
+  <div class="task"><div class="cb"></div><div class="label">Create new favicon for blindznation brand<span class="badge badge-todo">TODO</span><div class="note">favicon.svg currently copies phillyblinds design</div></div></div>
+</div>
+
+<div class="section">
+  <h2>Phase 3 — Infrastructure</h2>
+  <div class="task"><div class="cb"></div><div class="label">Create GitHub repo for blindznation<span class="badge badge-todo">TODO</span><div class="note">gh repo create — separate from phillyblinds repo</div></div></div>
+  <div class="task"><div class="cb"></div><div class="label">Push to GitHub<span class="badge badge-todo">TODO</span><div class="note">git remote add origin [new repo URL] &amp;&amp; git push -u origin main</div></div></div>
+  <div class="task"><div class="cb"></div><div class="label">Create Vercel project for blindznation<span class="badge badge-todo">TODO</span><div class="note">Import from blindznation GitHub repo — separate from phillyblinds Vercel project</div></div></div>
+  <div class="task"><div class="cb"></div><div class="label">Set ANTHROPIC_API_KEY in blindznation Vercel env vars<span class="badge badge-todo">TODO</span><div class="note">Required for AI chatbot widget to function</div></div></div>
+  <div class="task"><div class="cb"></div><div class="label">Configure blindznation.com domain in Vercel<span class="badge badge-todo">TODO</span><div class="note">Point domain DNS to Vercel after purchasing blindznation.com</div></div></div>
+</div>
+
+<div class="section">
+  <h2>Phase 4 — Content Customization</h2>
+  <div class="task"><div class="cb"></div><div class="label">Update sitemap.xml with blindznation.com URLs<span class="badge badge-todo">TODO</span></div></div>
+  <div class="task"><div class="cb"></div><div class="label">Update robots.txt Sitemap URL to blindznation.com<span class="badge badge-todo">TODO</span></div></div>
+  <div class="task"><div class="cb"></div><div class="label">Review about.html for any Philly Blinds-specific text<span class="badge badge-todo">TODO</span></div></div>
+  <div class="task"><div class="cb"></div><div class="label">Confirm all mailto: links use correct blindznation email<span class="badge badge-todo">TODO</span><div class="note">Run grep across all pages when email is confirmed</div></div></div>
+</div>
+
+<div class="section">
+  <h2>Sync Rules (never break)</h2>
+  <div style="font-size:13px;line-height:1.8;color:#ccc;">
+    <p>1. <strong style="color:#E94560">phillyblinds is the MASTER</strong> — all product spec changes happen there first</p>
+    <p>2. Always open a <strong>separate Claude Code session</strong> from the blindznation folder</p>
+    <p>3. Each project has its own GitHub repo and Vercel deployment</p>
+    <p>4. When a spec changes in phillyblinds, flag it: "→ also apply to blindznation"</p>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.cb').forEach(function(cb) {
+  cb.addEventListener('click', function() {
+    if (this.classList.contains('done')) return;
+    this.classList.add('done');
+    this.textContent = '✓';
+    var label = this.nextElementSibling;
+    if (label) label.classList.add('done-text');
+  });
+});
+</script>
+</body>
+</html>
