@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Professional window treatment installation in Philadelphia and surrounding areas. We install customer-supplied products, handle motorization, and provide full-service custom installation quotes.">
+<meta property="og:title" content="Professional Installation — Philly Blinds">
+<meta property="og:description" content="Already have window treatments or need professional installation? Get a custom installation quote from Michael J. Healy Installations, LLC.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/installation.html">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Professional Installation — Philly Blinds">
+<meta name="twitter:description" content="Already have window treatments or need professional installation? Get a custom installation quote from Michael J. Healy Installations, LLC.">
+<title>Professional Installation — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+
+/* ── HERO ── */
+.page-hero{background:var(--espresso);padding:52px 28px 46px;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;top:0;right:0;width:280px;height:100%;background:linear-gradient(135deg,transparent 30%,rgba(45,224,193,0.06) 100%);pointer-events:none}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:18px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--cream)}
+.hero-eyebrow{font-size:10px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:12px}
+.page-hero h1{font-size:34px;font-weight:500;color:#fff;letter-spacing:-0.6px;margin-bottom:12px;line-height:1.2;max-width:560px}
+.page-hero h1 em{color:var(--gold);font-style:normal}
+.page-hero p{font-size:14px;color:var(--text-dark);line-height:1.75;max-width:520px;margin-bottom:28px}
+.hero-contact-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-phone{font-size:20px;font-weight:500;color:var(--gold);text-decoration:none;white-space:nowrap}
+.hero-phone-note{font-size:11px;color:var(--text-faint)}
+
+/* ── STICKY CONTACT BAR ── */
+.contact-bar{background:var(--espresso-mid);border-bottom:2px solid rgba(45,224,193,0.15);padding:12px 28px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;position:sticky;top:64px;z-index:90}
+.contact-bar-left{font-size:12px;color:var(--text-dark)}
+.contact-bar-left strong{color:var(--cream)}
+.contact-bar-right{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cb-phone{font-size:15px;font-weight:600;color:var(--gold);text-decoration:none;white-space:nowrap}
+.cb-email{font-size:12px;color:var(--text-muted);text-decoration:none;white-space:nowrap}
+.cb-email:hover{color:var(--cream)}
+.cb-badge{background:var(--gold);color:var(--espresso);font-size:9px;font-weight:700;padding:2px 7px;border-radius:6px;margin-left:4px}
+
+/* ── MAIN WRAP ── */
+.install-wrap{max-width:860px;margin:0 auto;padding:40px 28px 56px}
+
+/* ── CONTACT CARDS ── */
+.contact-trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:36px}
+.contact-card{background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:22px 20px;text-align:center;text-decoration:none;display:block;transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;position:relative;overflow:hidden}
+.contact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform 0.2s;transform-origin:left}
+.contact-card:hover{border-color:var(--gold);box-shadow:0 6px 24px rgba(45,224,193,0.14);transform:translateY(-2px)}
+.contact-card:hover::before{transform:scaleX(1)}
+.contact-icon{font-size:28px;margin-bottom:10px}
+.contact-label{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.contact-value{font-size:16px;font-weight:500;color:var(--gold)}
+.contact-sub{font-size:11px;color:#888;margin-top:4px;line-height:1.4}
+
+/* ── SECTION DIVIDER ── */
+.install-divider{height:1px;background:linear-gradient(90deg,var(--gold),rgba(45,224,193,0.15) 60%,transparent);margin:36px 0}
+
+/* ── SERVICE CARDS ── */
+.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:36px}
+.svc-card{background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:24px 20px;border-left:4px solid var(--gold);transition:box-shadow 0.2s,transform 0.2s}
+.svc-card:hover{box-shadow:0 6px 20px rgba(45,224,193,0.12);transform:translateY(-2px)}
+.svc-icon{width:40px;height:40px;border-radius:10px;background:rgba(45,224,193,0.1);border:1px solid rgba(45,224,193,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px}
+.svc-title{font-size:15px;font-weight:500;color:#111;margin-bottom:6px;letter-spacing:-0.1px}
+.svc-desc{font-size:12px;color:#555;line-height:1.65}
+.svc-detail{margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.svc-bullet{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;line-height:1.5}
+.svc-bullet::before{content:"✓";color:var(--gold);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* ── QUOTE FORM ── */
+.quote-form-wrap{background:#fff;border:1px solid #e8e8e4;border-radius:16px;padding:28px 24px;margin-bottom:28px}
+.form-heading{font-size:18px;font-weight:500;color:#111;margin-bottom:4px;letter-spacing:-0.2px}
+.form-sub{font-size:13px;color:#666;margin-bottom:22px;line-height:1.6}
+.success-state{background:#EAF3DE;border-radius:12px;padding:28px 24px;text-align:center;display:none}
+.success-state h3{font-size:16px;font-weight:500;color:#27500A;margin-bottom:8px}
+.success-state p{font-size:13px;color:#3B6D11;line-height:1.6}
+.success-state a{color:#27500A;font-weight:600}
+
+/* ── TRUST STRIP ── */
+.trust-strip{background:var(--espresso);border-radius:14px;padding:22px 26px;display:flex;gap:24px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:150px}
+.trust-dot-i{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px}
+.trust-item span{font-size:12px;color:var(--text-dark);line-height:1.5}
+
+@media(max-width:600px){
+  .page-hero h1{font-size:26px}
+  .contact-bar{top:64px}
+  .install-wrap{padding:28px 16px 40px}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Professional Installation</div>
+  <div class="hero-eyebrow">Michael J. Healy Installations, LLC</div>
+  <h1>Get a <em>Custom</em> Installation Quote</h1>
+  <p>Already have window treatments, or need professional installation on a new purchase? Contact us and we&rsquo;ll review your project, confirm the product type, measurements, mounting conditions, and schedule your installation.</p>
+  <div class="hero-contact-row">
+    <a class="hero-phone" href="tel:6097421720">(609) 742-1720</a>
+    <div class="hero-phone-note">Call or text 24/7 &mdash; we answer</div>
+  </div>
+</div>
+<!-- ══ STICKY CONTACT BAR ══════════════════════════════════ -->
+<div class="contact-bar">
+  <div class="contact-bar-left"><strong>Michael J. Healy Installations, LLC</strong> &nbsp;&middot;&nbsp; Philly Blinds &amp; Blindznation</div>
+  <div class="contact-bar-right">
+    <a class="cb-phone" href="tel:6097421720">(609) 742-1720</a>
+    <span class="cb-badge">24/7</span>
+    <a class="cb-email" href="mailto:justin@phillyblinds.com">justin@phillyblinds.com</a>
+  </div>
+</div>
+
+<!-- ══ MAIN CONTENT ══════════════════════════════════════════ -->
+<div class="install-wrap">
+
+  <!-- CONTACT BUTTONS -->
+  <div class="contact-trio">
+    <a class="contact-card" href="tel:6097421720">
+      <div class="contact-icon">📞</div>
+      <div class="contact-label">Call or Text</div>
+      <div class="contact-value">(609) 742-1720</div>
+      <div class="contact-sub">Available 24/7 &mdash; fastest way to get started</div>
+    </a>
+    <a class="contact-card" href="mailto:justin@phillyblinds.com">
+      <div class="contact-icon">✉️</div>
+      <div class="contact-label">Email Us</div>
+      <div class="contact-value" style="font-size:13px">justin@phillyblinds.com</div>
+      <div class="contact-sub">Include photos &amp; measurements if you have them</div>
+    </a>
+    <a class="contact-card" href="consult.html">
+      <div class="contact-icon">🏠</div>
+      <div class="contact-label">Book a Visit</div>
+      <div class="contact-value" style="font-size:14px">Free Consultation</div>
+      <div class="contact-sub">We come to you, review the project, and quote on-site</div>
+    </a>
+  </div>
+
+  <div class="install-divider"></div>
+
+  <!-- SERVICE CARDS -->
+  <div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px">What we install</div>
+  <div style="font-size:26px;font-weight:500;color:#111;letter-spacing:-0.5px;margin-bottom:6px">Installation services</div>
+  <div style="font-size:14px;color:#666;line-height:1.65;margin-bottom:24px;max-width:560px">We install everything we sell — and also install customer-supplied products when mounting conditions, product type, and compatibility can be confirmed ahead of time.</div>
+
+  <div class="service-grid">
+
+    <!-- Customer-supplied -->
+    <div class="svc-card">
+      <div class="svc-icon">📦</div>
+      <div class="svc-title">Customer-Supplied Products</div>
+      <div class="svc-desc">Have product already? We&rsquo;ll review your order and provide a professional installation quote.</div>
+      <div class="svc-detail">
+        <div class="svc-bullet">Roller shades, cellular, zebra &amp; woven wood</div>
+        <div class="svc-bullet">Faux wood &amp; real wood blinds</div>
+        <div class="svc-bullet">Custom drapery &amp; roman shades</div>
+        <div class="svc-bullet">Plantation shutters</div>
+        <div class="svc-bullet">Specialty &amp; Hunter Douglas products</div>
+      </div>
+    </div>
+
+    <!-- Custom installation review -->
+    <div class="svc-card">
+      <div class="svc-icon">🔍</div>
+      <div class="svc-title">Custom Installation Review</div>
+      <div class="svc-desc">Every installation is scoped individually. We review your conditions before committing to a price.</div>
+      <div class="svc-detail">
+        <div class="svc-bullet">Mounting surface &amp; wall type</div>
+        <div class="svc-bullet">Ceiling height &amp; access</div>
+        <div class="svc-bullet">Bracket type &amp; hardware compatibility</div>
+        <div class="svc-bullet">Motorization &amp; wiring needs</div>
+        <div class="svc-bullet">Product compatibility confirmation</div>
+      </div>
+    </div>
+
+    <!-- Professional measure -->
+    <div class="svc-card">
+      <div class="svc-icon">📐</div>
+      <div class="svc-title">Professional Measure</div>
+      <div class="svc-desc">Not sure your measurements are right? We measure before installation when needed to avoid costly remakes.</div>
+      <div class="svc-detail">
+        <div class="svc-bullet">Inside &amp; outside mount verification</div>
+        <div class="svc-bullet">3W&times;3H shutter measuring</div>
+        <div class="svc-bullet">Rod height &amp; stack-back for drapery</div>
+        <div class="svc-bullet">Depth &amp; obstruction check</div>
+      </div>
+    </div>
+
+    <!-- Motorization -->
+    <div class="svc-card">
+      <div class="svc-icon">⚡</div>
+      <div class="svc-title">Motorization &amp; Smart Home</div>
+      <div class="svc-desc">We program, wire, and integrate motorized shades and draperies into your smart home setup.</div>
+      <div class="svc-detail">
+        <div class="svc-bullet">Motor setup &amp; programming</div>
+        <div class="svc-bullet">Remote &amp; wall switch configuration</div>
+        <div class="svc-bullet">Hub &amp; bridge integration</div>
+        <div class="svc-bullet">Lutron, Somfy, Norman, Automate</div>
+        <div class="svc-bullet">Smart home wiring &amp; troubleshooting</div>
+      </div>
+    </div>
+
+  </div><!-- /service-grid -->
+
+  <div class="install-divider"></div>
+
+  <!-- QUOTE REQUEST FORM -->
+  <div class="quote-form-wrap" id="quote-form-wrap">
+    <div class="form-heading">Request an installation quote</div>
+    <div class="form-sub">Fill out the form below and we&rsquo;ll reach out to discuss your project. The more detail you can provide, the faster we can scope the job.</div>
+
+    <div class="form-row">
+      <div class="form-group"><label>Your name *</label><input type="text" id="inst-name" placeholder="Jane Smith"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="inst-phone" placeholder="(215) 555-0100"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="inst-email" placeholder="jane@example.com"></div>
+    <div class="form-group"><label>Installation address</label><input type="text" id="inst-address" placeholder="123 Main St, Philadelphia, PA 19103"></div>
+
+    <div class="form-row">
+      <div class="form-group"><label>Product type</label>
+        <select id="inst-product">
+          <option>Not sure yet</option>
+          <option>Roller shades</option>
+          <option>Cellular shades</option>
+          <option>Zebra / Day &amp; Night shades</option>
+          <option>Woven wood shades</option>
+          <option>Faux wood blinds</option>
+          <option>Sheer shades (Silhouette / Pirouette)</option>
+          <option>Custom drapery</option>
+          <option>Roman shades</option>
+          <option>Plantation shutters</option>
+          <option>Cornice / Valance</option>
+          <option>Motorization / Smart home only</option>
+          <option>Multiple product types</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Number of windows</label>
+        <select id="inst-windows">
+          <option>Not sure yet</option>
+          <option>1–3 windows</option>
+          <option>4–6 windows</option>
+          <option>7–10 windows</option>
+          <option>11–15 windows</option>
+          <option>16+ windows</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group"><label>Product source</label>
+      <select id="inst-source">
+        <option>I already have the product(s)</option>
+        <option>I&rsquo;m purchasing from Philly Blinds</option>
+        <option>I purchased elsewhere and need install help</option>
+        <option>Not sure yet</option>
+      </select>
+    </div>
+
+    <div class="form-group"><label>Does the job involve motorization or smart home wiring?</label>
+      <select id="inst-motor">
+        <option>No motorization</option>
+        <option>Yes — motor programming &amp; setup</option>
+        <option>Yes — wiring / hardwired motor</option>
+        <option>Yes — smart home integration (Lutron, Somfy, etc.)</option>
+        <option>Not sure — needs assessment</option>
+      </select>
+    </div>
+
+    <div class="form-group"><label>Tell us about your project *</label>
+      <textarea id="inst-notes" placeholder="Product brand/model if known, number of windows, floor/ceiling height, any tricky access, smart home system, timeline, etc." style="min-height:100px"></textarea>
+    </div>
+
+    <div class="delivery-section">
+      <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+      <div class="opt-row" id="grp-del-inst">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-del-inst');document.getElementById('del-inst-s').style.display='block';document.getElementById('del-inst-p').style.display='none'">Ship to me</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-del-inst');document.getElementById('del-inst-s').style.display='none';document.getElementById('del-inst-p').style.display='block'">I'll pick up</button>
+      </div>
+      <div id="del-inst-s" class="delivery-note">
+        Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with your quote.
+        <div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately in your quote.</div>
+      </div>
+      <div id="del-inst-p" class="delivery-note" style="display:none">
+        Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.
+      </div>
+    </div>
+    <button class="btn-gold" onclick="submitInstall()" style="width:100%;padding:14px;font-size:14px;font-weight:600">Request Installation Quote &rarr;</button>
+  </div>
+
+  <div class="success-state" id="inst-success">
+    <h3>Quote request sent!</h3>
+    <p>Your email app opened with the request pre-filled and sent to our team. We typically follow up within a few hours.<br><br>
+    For anything urgent — <a href="tel:6097421720">(609) 742-1720</a> &middot; 24/7 call or text.</p>
+  </div>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item"><div class="trust-dot-i"></div><span><strong style="color:#fff">60+ years combined experience</strong> &mdash; Michael (60yr) &amp; Justin (10yr). We&rsquo;ve seen every mounting condition.</span></div>
+    <div class="trust-item"><div class="trust-dot-i"></div><span><strong style="color:#fff">Clean, professional installs</strong> &mdash; we leave every job site cleaner than we found it.</span></div>
+    <div class="trust-item"><div class="trust-dot-i"></div><span><strong style="color:#fff">24/7 call or text</strong> &mdash; <a href="tel:6097421720" style="color:var(--gold);text-decoration:none">(609) 742-1720</a></span></div>
+  </div>
+
+</div><!-- /install-wrap -->
+
+<div class="cta-banner">
+  <div>
+    <h2>Ready to schedule your installation?</h2>
+    <p>Call or text us — we&rsquo;ll scope the job and get you a quote fast.</p>
+  </div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="mailto:justin@phillyblinds.com">Email justin@phillyblinds.com</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Installation'); renderFooter(false);
+
+function submitInstall() {
+  var name    = document.getElementById('inst-name').value.trim();
+  var phone   = document.getElementById('inst-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  var email   = document.getElementById('inst-email').value.trim();
+  var address = document.getElementById('inst-address').value.trim();
+  var product = document.getElementById('inst-product').value;
+  var windows = document.getElementById('inst-windows').value;
+  var source  = document.getElementById('inst-source').value;
+  var motor   = document.getElementById('inst-motor').value;
+  var notes   = document.getElementById('inst-notes').value.trim();
+
+  var delivery = getOpt('grp-del-inst');
+  var body = 'INSTALLATION QUOTE REQUEST\n\n'
+    + 'Name: ' + name + '\nPhone: ' + phone + '\nEmail: ' + (email || '—') + '\n'
+    + 'Address: ' + (address || '—') + '\n\n'
+    + 'Product type: ' + product + '\nNumber of windows: ' + windows + '\n'
+    + 'Product source: ' + source + '\nMotorization: ' + motor + '\n'
+    + 'Delivery preference: ' + delivery + '\n\n'
+    + 'Project details:\n' + (notes || 'None provided');
+
+  window.location.href = 'mailto:justin@phillyblinds.com'
+    + '?subject=' + encodeURIComponent('Installation Quote Request — ' + name)
+    + '&body=' + encodeURIComponent(body);
+
+  document.getElementById('quote-form-wrap').style.display = 'none';
+  document.getElementById('inst-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
+

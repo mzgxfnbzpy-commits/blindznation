@@ -1,0 +1,305 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Family-run window treatment business with 60+ years of combined experience. Justin and Michael Healy — design, fabrication, and installation from a single team. Philadelphia area.">
+<meta property="og:title" content="About Philly Blinds — Justin &amp; Michael Healy">
+<meta property="og:description" content="Family-run window treatment business with 60+ years of combined experience. Justin and Michael Healy — design, fabrication, and installation from a single team. Philadelphia area.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/about.html">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About Philly Blinds — Justin &amp; Michael Healy">
+<meta name="twitter:description" content="Family-run window treatment business with 60+ years of combined experience. Justin and Michael Healy — design, fabrication, and installation from a single team. Philadelphia area.">
+<title>About Us — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:48px 28px 44px;position:relative;overflow:hidden}
+.hero-deco{position:absolute;right:0;top:0;bottom:0;width:200px;background:var(--espresso-mid);opacity:0.5}
+.hero-inner{max-width:560px;position:relative;z-index:1}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:16px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--cream)}
+.page-hero h1{font-size:34px;font-weight:500;color:var(--cream);letter-spacing:-0.6px;margin-bottom:10px;line-height:1.2}
+.page-hero h1 em{color:var(--gold);font-style:normal}
+.page-hero p{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:440px}
+
+/* ── STORY ── */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+@media(max-width:640px){.story-grid{grid-template-columns:1fr}}
+.story-block p{font-size:13px;color:#444;line-height:1.8;margin-bottom:14px}
+.story-block p:last-child{margin-bottom:0}
+.story-stat-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:6px}
+.story-stat{background:var(--espresso-mid);border-radius:10px;padding:16px 18px;flex:1;min-width:110px}
+.story-stat-num{font-size:26px;font-weight:500;color:var(--gold);margin-bottom:3px}
+.story-stat-label{font-size:11px;color:var(--text-dark);line-height:1.4}
+
+/* ── TEAM ── */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.team-card{background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:24px 20px;text-align:center}
+.team-avatar{width:64px;height:64px;border-radius:50%;background:var(--espresso);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:22px;font-weight:500;color:var(--gold);border:2px solid var(--gold);flex-shrink:0}
+.team-name{font-size:15px;font-weight:500;color:#111;margin-bottom:3px}
+.team-role{font-size:11px;color:var(--gold);font-weight:500;letter-spacing:0.5px;margin-bottom:10px;text-transform:uppercase}
+.team-desc{font-size:12px;color:#666;line-height:1.6}
+.team-exp{display:inline-block;margin-top:10px;font-size:10px;font-weight:500;background:var(--espresso);color:var(--gold);padding:3px 9px;border-radius:6px;letter-spacing:0.3px}
+
+/* ── SERVICES ── */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.svc-card{background:var(--espresso-mid);border-radius:12px;padding:20px 16px}
+.svc-icon{width:36px;height:36px;border-radius:8px;background:rgba(45,224,193,0.15);border:0.5px solid rgba(45,224,193,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:18px}
+.svc-title{font-size:13px;font-weight:500;color:var(--cream);margin-bottom:5px}
+.svc-desc{font-size:11px;color:var(--text-muted);line-height:1.6}
+
+/* ── WHY US ── */
+.why-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.why-item{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:#fff;border:1px solid #e8e8e4;border-radius:10px}
+.why-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px}
+.why-text{font-size:12px;color:#444;line-height:1.6}
+.why-text strong{color:#111;display:block;margin-bottom:2px;font-size:13px}
+
+/* ── SERVICE AREAS ── */
+.area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.area-card{border-radius:12px;padding:20px 18px;border:1px solid #e8e8e4;background:#fff}
+.area-card.primary{border:2px solid var(--gold);background:var(--gold-mid)}
+.area-tag{font-size:10px;font-weight:500;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.area-city{font-size:16px;font-weight:500;color:#111;margin-bottom:4px}
+.area-note{font-size:12px;color:#666;line-height:1.5}
+
+/* ── CTA ── */
+.about-cta{background:var(--espresso);border-radius:14px;padding:32px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.about-cta h3{font-size:20px;font-weight:500;color:var(--cream);margin-bottom:5px;letter-spacing:-0.3px}
+.about-cta p{font-size:13px;color:var(--text-dark);line-height:1.6}
+.about-cta-btns{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="hero-deco"></div>
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; About us</div>
+    <h1>Father. Daughter. Son.<br><em>60 years</em> of craft.</h1>
+    <p>We are a small family business, and we are proud of it. Michael J. Healy Installations LLC is built on six decades of hands-on experience, an obsession with getting every detail right, and a genuine love for the craft.</p>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="section section-warm">
+  <div class="section-label">Our story</div>
+  <div class="section-title" style="margin-bottom:20px">One family. One standard. No shortcuts.</div>
+  <div class="story-grid">
+    <div class="story-block">
+      <p>Michael Healy — father and the backbone of everything we do — has spent over 60 years in the window treatment trade. He learned every stitch, measurement, and mechanism long before most of today's products existed. That depth of knowledge sets the standard for every job that leaves our hands.</p>
+      <p>His son Justin runs the business day to day — handling every call, measurement, quote, and installation personally. His daughter Sarah brings a designer's eye to custom fabrication, helping clients choose the right fabric, pleat style, and finish to make their space exactly what they imagined.</p>
+      <p>Together, we've done it all. Floor-to-ceiling motorized drapery. Fabric tent ceilings. Acoustic wall panels. Arch-top custom treatments. Historic homes where nothing is square. There is no job we haven't figured out — and we bring that depth of experience to every project, no matter the size.</p>
+      <p>We are particular about our work. We put real care into every seam, every bracket, every hem. That is not a marketing line — it is why clients keep calling us back.</p>
+    </div>
+    <div>
+      <div class="story-stat-row">
+        <div class="story-stat">
+          <div class="story-stat-num">60+</div>
+          <div class="story-stat-label">Years of combined family experience</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-num">2014</div>
+          <div class="story-stat-label">Year we opened for business</div>
+        </div>
+      </div>
+      <div class="story-stat-row" style="margin-top:12px">
+        <div class="story-stat">
+          <div class="story-stat-num">2</div>
+          <div class="story-stat-label">Primary markets — Philly & Salt Lake City</div>
+        </div>
+        <div class="story-stat">
+          <div class="story-stat-num">24/7</div>
+          <div class="story-stat-label">Call or text — always available</div>
+        </div>
+      </div>
+      <div style="border-radius:12px;overflow:hidden;margin-bottom:16px">
+        <img src="../images/about/team-job-site.JPEG" alt="The Philly Blinds team — Michael, Justin and Sarah — on the job" style="width:100%;height:auto;display:block">
+      </div>
+      <div style="margin-top:0px;padding:18px;background:var(--espresso);border-radius:12px">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:8px">Our brands</div>
+        <div style="font-size:14px;font-weight:500;color:var(--cream);margin-bottom:3px">Philly Blinds</div>
+        <div style="font-size:12px;color:var(--text-dark);margin-bottom:10px">Custom window treatments — shades, drapery, shutters</div>
+        <div style="font-size:14px;font-weight:500;color:var(--cream);margin-bottom:3px">Blindznation</div>
+        <div style="font-size:12px;color:var(--text-dark);margin-bottom:10px">Our sister brand — same family, same quality</div>
+        <div style="font-size:10px;color:var(--text-faint)">Michael J. Healy Installations LLC · Est. 2014</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div class="section section-white">
+  <div class="section-label">The team</div>
+  <div class="section-title" style="margin-bottom:20px">Who you're working with</div>
+  <div class="team-grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+    <div class="team-card" style="padding:0;overflow:hidden">
+      <div style="height:200px;overflow:hidden">
+        <img src="../images/about/justin-healy.JPEG" alt="Justin Healy rock climbing" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block">
+      </div>
+      <div style="padding:16px 18px">
+        <div class="team-name">Justin Healy</div>
+        <div class="team-role">Owner &amp; Lead Installer</div>
+        <div class="team-desc">Sales, measuring, installation, and customer relationships. If you call or text us, you're talking to Justin. Over a decade of experience in every product we carry.</div>
+        <div class="team-exp">10+ years experience</div>
+      </div>
+    </div>
+    <div class="team-card" style="padding:0;overflow:hidden">
+      <div style="height:200px;overflow:hidden">
+        <img src="../images/about/michael-healy.JPEG" alt="Michael Healy" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block">
+      </div>
+      <div style="padding:16px 18px">
+        <div class="team-name">Michael Healy</div>
+        <div class="team-role">Founder &amp; Master Craftsman</div>
+        <div class="team-desc">The family patriarch. Michael has been fabricating and installing window treatments for over 60 years. His standards set the bar for everything we do.</div>
+        <div class="team-exp">60+ years experience</div>
+      </div>
+    </div>
+    <div class="team-card" style="padding:0;overflow:hidden">
+      <div style="height:200px;overflow:hidden">
+        <img src="../images/about/sarah-healy.JPEG" alt="Sarah and Michael Healy" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block">
+      </div>
+      <div style="padding:16px 18px">
+        <div class="team-name">Sarah Healy</div>
+        <div class="team-role">Design &amp; Fabrication</div>
+        <div class="team-desc">Custom fabrication and design consultation — fabric, pleat style, and finish for every space. Sarah brings a designer's eye to every job and keeps the craft side polished.</div>
+        <div class="team-exp">Custom fabrication specialist</div>
+      </div>
+    </div>
+    <div class="team-card" style="padding:0;overflow:hidden">
+      <div style="height:200px;overflow:hidden;background:var(--espresso-mid)">
+        <img src="../images/about/justin-son.JPEG" alt="Justin with his son — the next generation" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block">
+      </div>
+      <div style="padding:16px 18px">
+        <div class="team-name">The Next Generation</div>
+        <div class="team-role">Chief Morale Officer</div>
+        <div class="team-desc">Still learning the trade, but already showing great instincts. He keeps the team motivated and the job site lively.</div>
+        <div class="team-exp">Est. 2023</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="section section-mid">
+  <div class="section-label">What we do</div>
+  <div class="section-title-light" style="margin-bottom:20px">Full service, start to finish</div>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-icon">📐</div>
+      <div class="svc-title">Free in-home measurement</div>
+      <div class="svc-desc">We come to you, measure every window, and provide a full written quote. No guessing, no charge.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🪡</div>
+      <div class="svc-title">Custom fabrication</div>
+      <div class="svc-desc">Drapery, Roman shades, and roller shades built in-house to your exact dimensions and fabric choice.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🔧</div>
+      <div class="svc-title">Professional installation</div>
+      <div class="svc-desc">Every product we sell, we install. Level brackets, proper clearances, clean finish — done right the first time.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">⚡</div>
+      <div class="svc-title">Motorization</div>
+      <div class="svc-desc">Lutron, Somfy, Automate, Rollease, Norman — we carry and install the full range of motor systems.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🏢</div>
+      <div class="svc-title">Commercial projects</div>
+      <div class="svc-desc">Hotels, offices, restaurants — we handle large-scale projects with lower per-unit pricing and full project management.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🎨</div>
+      <div class="svc-title">Design consultation</div>
+      <div class="svc-desc">Not sure what you want? Sarah can walk you through fabric options, styles, and what works best for your windows and light.</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="section section-warm">
+  <div class="section-label">Why choose us</div>
+  <div class="section-title" style="margin-bottom:20px">What sets us apart</div>
+  <div class="why-list">
+    <div class="why-item">
+      <div class="why-dot"></div>
+      <div class="why-text"><strong>Family-owned — no corporate middleman</strong>You talk directly to the person measuring, fabricating, and installing. No handoffs, no miscommunication.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-dot"></div>
+      <div class="why-text"><strong>We are particular — in the best way</strong>Every seam, every bracket, every hem gets our full attention. We are the kind of people who will redo something that is 95% right until it is 100% right.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-dot"></div>
+      <div class="why-text"><strong>60+ years of combined experience</strong>Michael Healy has been in this trade longer than most competitors have been in business. That knowledge passes through every job.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-dot"></div>
+      <div class="why-text"><strong>We fabricate what we sell</strong>Custom drapery and roller shades built in-house means tighter quality control and faster turnaround than outsourcing to a factory.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-dot"></div>
+      <div class="why-text"><strong>Honest, transparent pricing</strong>No inflated "list prices" with fake discounts. We quote what the job costs and stand behind it.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-dot"></div>
+      <div class="why-text"><strong>Available 24/7</strong>Call or text (609) 742-1720 any time. We respond — not a call center, not a form, the actual owner.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-dot"></div>
+      <div class="why-text"><strong>Every motor brand, one installer</strong>We carry Lutron, Somfy, Norman, Automate, Rollease — no upselling you on a brand we happen to stock more of.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE AREAS -->
+<div class="section section-white">
+  <div class="section-label">Where we work</div>
+  <div class="section-title" style="margin-bottom:8px">Service areas</div>
+  <div class="section-sub">We primarily serve the Philadelphia and Salt Lake City markets. Out-of-state and travel jobs are available — we're upfront about travel costs before anything is agreed.</div>
+  <div class="area-grid">
+    <div class="area-card primary">
+      <div class="area-tag">Primary market</div>
+      <div class="area-city">Philadelphia, PA</div>
+      <div class="area-note">Philadelphia and surrounding areas including South Jersey, Main Line, Delaware County, and Bucks County.</div>
+    </div>
+    <div class="area-card primary">
+      <div class="area-tag">Primary market</div>
+      <div class="area-city">Salt Lake City, UT</div>
+      <div class="area-note">Salt Lake City and surrounding communities. Full installation and measurement service available.</div>
+    </div>
+    <div class="area-card">
+      <div class="area-tag">By request</div>
+      <div class="area-city">Out of state</div>
+      <div class="area-note">We travel for larger residential or commercial projects. Premium pricing applies — we're always upfront about travel costs before you commit.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="section section-white" style="padding-top:0">
+  <div class="about-cta">
+    <div>
+      <h3>Ready to get started?</h3>
+      <p>Call or text us any time — we'll help you figure out exactly what you need, no pressure.</p>
+    </div>
+    <div class="about-cta-btns">
+      <a class="btn-gold" href="tel:6097421720">(609) 742-1720</a>
+      <a class="btn-ghost-light" href="consult.html">Book a consultation</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>renderNav('About'); renderFooter(false);</script>
+</body>
+</html>
+

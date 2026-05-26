@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configure Select drapery hardware — Brass, Iron Works, Wood, and Cortina traverse rods. All finishes, finials, brackets and accessories. Philly Blinds, Philadelphia.">
+<title>Select Hardware Configurator — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:44px 28px 40px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--cream)}
+.page-hero h1{font-size:32px;font-weight:500;color:var(--cream);letter-spacing:-0.5px;margin-bottom:10px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:540px;margin-bottom:22px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+
+.step-wrap{max-width:900px;margin:0 auto;padding:32px 28px}
+.step{margin-bottom:36px}
+.step-label{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.step-title{font-size:18px;font-weight:500;color:#1a1a1a;margin-bottom:4px;letter-spacing:-0.3px}
+.step-sub{font-size:13px;color:#666;line-height:1.6;margin-bottom:14px}
+
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:600px){.choice-grid{grid-template-columns:1fr}}
+.choice-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:14px;padding:24px 20px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.choice-card:hover{border-color:var(--gold);box-shadow:0 2px 16px rgba(200,151,63,.1)}
+.choice-card.sel{border:2px solid var(--gold);box-shadow:0 2px 20px rgba(200,151,63,.18)}
+.choice-icon{font-size:26px;margin-bottom:10px}
+.choice-title{font-size:15px;font-weight:600;color:#111;margin-bottom:5px}
+.choice-desc{font-size:13px;color:#555;line-height:1.6}
+.choice-tag{font-size:11px;color:var(--gold);font-weight:500;margin-top:10px}
+
+.coll-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-top:14px}
+.coll-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:14px;padding:20px 16px;cursor:pointer;transition:border-color .15s;text-align:center}
+.coll-card:hover{border-color:var(--gold)}
+.coll-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.coll-icon{font-size:26px;margin-bottom:8px}
+.coll-name{font-size:14px;font-weight:600;color:#111;margin-bottom:4px}
+.coll-desc{font-size:11px;color:#666;line-height:1.4}
+.coll-tag{font-size:10px;color:var(--gold);font-weight:500;margin-top:8px}
+
+.finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-top:14px}
+.finish-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s}
+.finish-card:hover{border-color:var(--gold)}
+.finish-card.sel{border:2px solid var(--gold);box-shadow:0 2px 12px rgba(200,151,63,.15)}
+.finish-swatch{height:48px;width:100%}
+.finish-name{font-size:11px;font-weight:500;color:#333;padding:7px 8px;text-align:center;line-height:1.3}
+.finish-surcharge{font-size:9px;color:var(--gold);display:block}
+
+.hw-section{display:none}
+.hw-section.on{display:block}
+
+.sec-box{background:#fafaf8;border:1px solid #e8e8e4;border-radius:14px;padding:24px;margin-bottom:0}
+
+.finial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:7px;margin-top:10px}
+.finial-btn{background:#fff;border:1.5px solid #e8e8e4;border-radius:9px;padding:9px 11px;cursor:pointer;font-size:12px;font-weight:500;color:#222;transition:border-color .15s;text-align:left;font-family:inherit;line-height:1.3}
+.finial-btn:hover{border-color:var(--gold)}
+.finial-btn.sel{border:2px solid var(--gold);background:var(--gold-mid);color:var(--espresso)}
+
+.bracket-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-top:10px}
+.bracket-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:13px 14px;cursor:pointer;transition:border-color .15s}
+.bracket-card:hover{border-color:var(--gold)}
+.bracket-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.bracket-card .bc-name{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.bracket-card .bc-desc{font-size:11px;color:#666;line-height:1.4}
+
+.summary-panel{background:var(--espresso);border-radius:14px;padding:20px;border:.5px solid var(--border-dark)}
+.summary-line{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;padding:5px 0;border-bottom:.5px solid rgba(200,151,63,.12)}
+.summary-line:last-child{border-bottom:none}
+.summary-key{color:var(--text-muted);flex-shrink:0;margin-right:12px}
+.summary-val{color:var(--cream);font-weight:500;text-align:right}
+
+.sec-divider{height:1px;background:linear-gradient(90deg,var(--gold),rgba(200,151,63,.1),transparent);margin:28px 0}
+
+/* Missing utility classes */
+.tooltip-note{font-size:11px;color:#888;line-height:1.6}
+.qty-btns{display:flex;align-items:center;gap:0}
+.qty-btn{width:36px;height:38px;border:1px solid #d8d8d4;background:#fff;font-size:18px;cursor:pointer;font-family:inherit;color:#333;transition:background .1s}
+.qty-btn:hover{background:var(--gold-mid)}
+.qty-btn:first-child{border-radius:8px 0 0 8px}
+.qty-btn:last-child{border-radius:0 8px 8px 0}
+.qty-num{width:54px;height:38px;border:1px solid #d8d8d4;border-left:0;border-right:0;text-align:center;font-size:15px;font-weight:600;font-family:inherit;color:#111;background:#fff}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="hardware.html">Hardware</a> &rsaquo; Select</div>
+  <h1>Select Drapery Hardware</h1>
+  <p class="sub">Premium brass, steel, and wood poles, decorative traverse rods, finials, rings &amp; brackets. Configure your exact specification below and we'll send a detailed quote.</p>
+  <div class="hero-pills">
+    <span class="hero-pill-gold hero-pill">Select Metal Brass</span>
+    <span class="hero-pill">Iron Works</span>
+    <span class="hero-pill">Select Wood</span>
+    <span class="hero-pill">Cortina Traverse</span>
+    <span class="hero-pill">Custom cut to size</span>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 2fr;height:180px;gap:3px;overflow:hidden">
+  <img src="../images/portfolio/IMG_2854.JPEG" alt="Drapery hardware installation" style="width:100%;height:100%;object-fit:cover;display:block">
+  <img src="../images/portfolio/IMG_0592.JPEG" alt="Rod and ring detail" style="width:100%;height:100%;object-fit:cover;display:block">
+  <img src="../images/portfolio/IMG_1369.JPEG" alt="Custom drapery with decorative rod" style="width:100%;height:100%;object-fit:cover;display:block">
+</div>
+
+<div class="step-wrap">
+
+<!-- ═══ STEP 1: SYSTEM TYPE ════════════════════════════════════ -->
+<div class="step">
+  <div class="step-label">Step 1</div>
+  <div class="step-title">What type of rod system?</div>
+  <div class="step-sub">Stationary rods hold fixed panels (rings or pocket). Traverse rods let panels open and close on a cord or hand-draw track.</div>
+  <div class="choice-grid">
+    <div class="choice-card" id="sys-stat" onclick="selSystem('stationary')">
+      <div class="choice-icon">🔩</div>
+      <div class="choice-title">Stationary Pole</div>
+      <div class="choice-desc">Fixed rod with finials — panels hang from rings. Best for pinch pleat, goblet, grommet, and tab-top styles.</div>
+      <div class="choice-tag">Select Metal Brass &middot; Iron Works &middot; Wood</div>
+    </div>
+    <div class="choice-card" id="sys-trav" onclick="selSystem('traverse')">
+      <div class="choice-icon">⇌</div>
+      <div class="choice-title">Decorative Traverse Rod</div>
+      <div class="choice-desc">Decorative fascia over an internal track — panels open and close. Pinch Pleat or Ripplefold&reg; compatible.</div>
+      <div class="choice-tag">Select Metal Traverse &middot; Cortina Collection &middot; Wood Traverse</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 2: COLLECTION ════════════════════════════════════ -->
+<div class="hw-section" id="sec-collection">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Step 2</div>
+    <div class="step-title" id="coll-title">Which collection?</div>
+    <div class="coll-grid" id="coll-cards"></div>
+  </div>
+</div>
+
+<!-- ═══ STEP 3: FINISH (brass/ironworks/cortina) ═══════════════════════════════════════ -->
+<div class="hw-section" id="sec-finish">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Step 3</div>
+    <div class="step-title">Choose your finish</div>
+    <div class="step-sub" id="finish-sub"></div>
+    <div class="finish-grid" id="finish-cards"></div>
+    <div class="tooltip-note" style="margin-top:10px" id="finish-note"></div>
+  </div>
+</div>
+
+<!-- ═══ STEP 4: DIAMETER (stationary brass/ironworks only) ══════════════════ -->
+<div class="hw-section" id="sec-diameter">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Step 4</div>
+    <div class="step-title">Pole diameter</div>
+    <div class="step-sub">Larger diameter handles heavier panels and makes a bolder statement.</div>
+    <div class="choice-grid">
+      <div class="choice-card" id="diam-34" onclick="selDiameter('3/4')">
+        <div class="choice-title">¾″ Diameter</div>
+        <div class="choice-desc">Slender, elegant profile. Lightweight to medium-weight panels. 6ft, 8ft, 12ft poles — cuttable to any size.</div>
+        <div class="choice-tag">22+ finials available</div>
+      </div>
+      <div class="choice-card" id="diam-1316" onclick="selDiameter('1-3/16')">
+        <div class="choice-title">1 3⁄16″ Diameter</div>
+        <div class="choice-desc">Substantial premium profile. Medium to heavy panels, large windows, floor-to-ceiling. Acrylic version available.</div>
+        <div class="choice-tag">25+ finials &middot; Crystal finials available</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 3W: WOOD FINISH ════════════════════════════════ -->
+<div class="hw-section" id="sec-wood-finish">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Step 3</div>
+    <div class="step-title">Choose your wood finish</div>
+    <div class="step-sub">13 stain and paint finishes. Finish samples available — ask us for a selector card.</div>
+    <div class="finish-grid" id="wood-finish-cards"></div>
+    <div class="tooltip-note" style="margin-top:10px">Finishes shown are approximate. Actual samples sent or available at consultation. Gold Leaf, Driftwood, and Matte Black carry a small surcharge.</div>
+  </div>
+</div>
+
+<!-- ═══ STEP 4W: WOOD DIAMETER ════════════════════════════════ -->
+<div class="hw-section" id="sec-wood-diam">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Step 4</div>
+    <div class="step-title">Pole diameter</div>
+    <div class="step-sub">Both diameters are available in smooth and fluted profiles. Cut to any length for $5/cut.</div>
+    <div class="choice-grid">
+      <div class="choice-card" id="wd-diam-138" onclick="selWoodDia('1-3/8')">
+        <div class="choice-title">1 3⁄8″ Diameter</div>
+        <div class="choice-desc">Classic wood pole size. Works with standard brackets and finials. Max 12ft continuous (spliced over 12ft).</div>
+        <div class="choice-tag">Smooth or fluted profile</div>
+      </div>
+      <div class="choice-card" id="wd-diam-214" onclick="selWoodDia('2-1/4')">
+        <div class="choice-title">2 1⁄4″ Diameter</div>
+        <div class="choice-desc">Bold statement pole. Best for large windows, floor-to-ceiling, or heavy drapery. Max 8ft continuous.</div>
+        <div class="choice-tag">Smooth or fluted profile</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 5A: STATIONARY DETAILS ════════════════════════ -->
+<div class="hw-section" id="sec-stat">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Step 5 — Pole configuration</div>
+    <div class="step-title" id="stat-title">Configure your stationary rod</div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Approximate window width</div>
+      <div class="opt-row" id="grp-stat-width">
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-width');sUpdate()">Under 48"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-width');sUpdate()">48"–72"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-width');sUpdate()">72"–96"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-width');sUpdate()">96"–120"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-width');sUpdate()">120"–144"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-width');sUpdate()">Over 144" (spliced)</button>
+      </div>
+      <div class="tooltip-note" style="margin-top:6px">Poles come in 6ft, 8ft, and 12ft lengths — cut to any measurement for $5/cut. Over 12ft: spliced using internal pole splice.</div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Window shape</div>
+      <div class="opt-row" id="grp-stat-shape">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-stat-shape');sUpdate()">Straight / standard</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-shape');sUpdate()">Bay window (bent pole)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-shape');sUpdate()">Arched / curved</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-shape');sUpdate()">Corner (90° elbow)</button>
+      </div>
+      <div class="tooltip-note" style="margin-top:6px">Curved and bent poles are priced per foot + bending surcharge. Template required — we coordinate with you.</div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Rod configuration</div>
+      <div class="opt-row" id="grp-stat-config">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-stat-config');sUpdate()">Single rod</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-config');sUpdate()">Double rod (sheer + drape)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-config');sUpdate()">By-pass (side-by-side panels)</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:4px">Finial style</div>
+      <div style="font-size:12px;color:#666;margin-bottom:10px">Sold in pairs (2 per rod).</div>
+      <div class="finial-grid" id="finial-grid"></div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Ring type</div>
+      <div class="opt-row" id="grp-ring-type">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-ring-type');toggleRingQty(true);sUpdate()">Round ring — pinch pleat &amp; goblet</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-ring-type');toggleRingQty(true);sUpdate()">Square ring — contemporary look</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-ring-type');toggleRingQty(true);sUpdate()">Flat ring — ripple fold &amp; casual panels</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-ring-type');toggleRingQty(true);sUpdate()">By-pass ring — for by-pass rod systems</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-ring-type');toggleRingQty(false);sUpdate()">No rings (grommet / rod pocket / tab top)</button>
+      </div>
+    </div>
+
+    <div id="ring-qty-wrap" style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:4px">Total rings</div>
+      <div style="font-size:12px;color:#666;margin-bottom:10px">We estimate 5 rings per 15" of panel width.</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <input type="number" id="ring-qty-input" min="1" max="99" placeholder="Total rings"
+          style="width:120px;padding:9px 12px;border:1.5px solid #d8d8d4;border-radius:8px;font-size:15px;font-weight:600;color:#111;font-family:inherit;text-align:center"
+          oninput="ringQtyChanged(this)">
+        <span id="ring-qty-estimate" style="font-size:12px;color:#888;line-height:1.4"></span>
+      </div>
+      <div id="grp-ring-qty" style="display:none"></div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:4px">Bracket style</div>
+      <div style="font-size:12px;color:#666;margin-bottom:10px">Standard (round) or Square (modern). Extended brackets project further for deep frames or layered panels.</div>
+      <div class="bracket-grid" id="stat-bracket-grid">
+        <div class="bracket-card sel" onclick="selBracket(this,'stat-bracket-grid','Standard Wall Bracket (3½&quot; return)')"><div class="bc-name">Standard Wall Bracket</div><div class="bc-desc">3½"–3¾" return · Most common</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Extended Wall Bracket (5¾&quot; return)')"><div class="bc-name">Extended Wall Bracket</div><div class="bc-desc">5¾"–6½" return · Deep window frames</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Double Wall Bracket')"><div class="bc-name">Double Wall Bracket</div><div class="bc-desc">Two rods — sheer + drape</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Ceiling Bracket')"><div class="bc-name">Ceiling Bracket</div><div class="bc-desc">Drop: 2¾"–3" · Floor-to-ceiling look</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Adjustable Swivel Bracket')"><div class="bc-name">Adjustable Swivel Bracket</div><div class="bc-desc">Bay windows &amp; curved poles · 4"–5½"</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Inside Mount Recess Bracket')"><div class="bc-name">Inside Mount Recess Bracket</div><div class="bc-desc">Inside window frame · Minimal look</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Square Wall Bracket')"><div class="bc-name">Square Wall Bracket</div><div class="bc-desc">Modern / geometric look · 3½"–3¾"</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Square Extended Bracket')"><div class="bc-name">Square Extended Bracket</div><div class="bc-desc">Modern look · 7"–7¼" return</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Square Double Bracket')"><div class="bc-name">Square Double Bracket</div><div class="bc-desc">Two rods · Modern style</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Urban Wall Bracket')"><div class="bc-name">Urban Wall Bracket</div><div class="bc-desc">Rounded urban style · By-pass option</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'stat-bracket-grid','Urban Double Bracket')"><div class="bc-name">Urban Double Bracket</div><div class="bc-desc">Two rods · Urban style · By-pass option</div></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Add baton?</div>
+      <div class="opt-row" id="grp-stat-baton">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-stat-baton');sUpdate()">No baton needed</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-baton');sUpdate()">39" Metal baton (matching finish)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-stat-baton');sUpdate()">39" Clear plexi baton</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Additional accessories</div>
+      <div class="opt-row" id="grp-stat-acc" style="flex-wrap:wrap">
+        <button class="opt-btn" onclick="toggleAcc(this,'French Return Elbow')">French Return Elbow</button>
+        <button class="opt-btn" onclick="toggleAcc(this,'Hinged Elbow')">Hinged Elbow</button>
+        <button class="opt-btn" onclick="toggleAcc(this,'90° Corner Elbow')">90° Corner Elbow</button>
+        <button class="opt-btn" onclick="toggleAcc(this,'Internal Pole Splice')">Internal Pole Splice</button>
+        <button class="opt-btn" onclick="toggleAcc(this,'Rosette + Spindle')">Rosette + Spindle</button>
+        <button class="opt-btn" onclick="toggleAcc(this,'Café Rod (½&quot;)')">Café Rod (½")</button>
+        <button class="opt-btn" onclick="toggleAcc(this,'Swing Arm (5/8&quot;)')">Swing Arm (5⁄8")</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Mount</div>
+        <div class="opt-row" id="grp-stat-mount">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-stat-mount');sUpdate()">Wall mount</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-stat-mount');sUpdate()">Ceiling mount</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Number of windows / rods</div>
+        <div class="qty-btns">
+          <button class="qty-btn" onclick="var n=document.getElementById('stat-qty');n.value=Math.max(1,parseInt(n.value)-1);sUpdate()">−</button>
+          <input class="qty-num" id="stat-qty" type="number" value="1" min="1" max="50" oninput="sUpdate()">
+          <button class="qty-btn" onclick="var n=document.getElementById('stat-qty');n.value=parseInt(n.value)+1;sUpdate()">+</button>
+        </div>
+      </div>
+    </div>
+    <button class="btn-gold" onclick="revealQuote()" style="width:100%;padding:13px;font-size:14px;font-weight:600">Review specification &amp; request quote →</button>
+  </div>
+</div>
+
+<!-- ═══ STEP 5W: WOOD STATIONARY DETAILS ════════════════════════ -->
+<div class="hw-section" id="sec-wood-stat">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Step 5 — Wood Pole configuration</div>
+    <div class="step-title">Select Wood Stationary Pole</div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Pole profile</div>
+      <div class="opt-row" id="grp-wd-profile">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-wd-profile');woodUpdate()">Smooth</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-profile');woodUpdate()">Fluted</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-profile');woodUpdate()">Decorative (carved)</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Approximate window width</div>
+      <div class="opt-row" id="grp-wd-width">
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-width');woodUpdate()">Under 48"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-width');woodUpdate()">48"–72"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-width');woodUpdate()">72"–96"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-width');woodUpdate()">96"–120"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-width');woodUpdate()">Over 120" (spliced)</button>
+      </div>
+      <div class="tooltip-note" style="margin-top:6px">Wood poles are cut to any size. Longer runs are spliced with a dowel splice.</div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Window shape</div>
+      <div class="opt-row" id="grp-wd-shape">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-wd-shape');woodUpdate()">Straight / standard</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-shape');woodUpdate()">Bay window (bent pole)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-shape');woodUpdate()">Corner (90° elbow)</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Rod configuration</div>
+      <div class="opt-row" id="grp-wd-config">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-wd-config');woodUpdate()">Single rod</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-config');woodUpdate()">Double rod (sheer + drape)</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:4px">Finial style</div>
+      <div style="font-size:12px;color:#666;margin-bottom:10px">Sold in pairs. Hand-finished to match your pole stain/paint.</div>
+      <div class="finial-grid" id="wood-finial-grid"></div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Ring type</div>
+      <div class="opt-row" id="grp-wd-ring">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-wd-ring');woodUpdate()">Round ring — pinch pleat</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-ring');woodUpdate()">Flat ring — ripple fold</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-wd-ring');woodUpdate()">No rings (grommet / rod pocket)</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Mount</div>
+        <div class="opt-row" id="grp-wd-mount">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-wd-mount');woodUpdate()">Wall mount</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-wd-mount');woodUpdate()">Ceiling mount</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Number of windows</div>
+        <div class="qty-btns">
+          <button class="qty-btn" onclick="var n=document.getElementById('wd-qty');n.value=Math.max(1,parseInt(n.value)-1);woodUpdate()">−</button>
+          <input class="qty-num" id="wd-qty" type="number" value="1" min="1" max="50" oninput="woodUpdate()">
+          <button class="qty-btn" onclick="var n=document.getElementById('wd-qty');n.value=parseInt(n.value)+1;woodUpdate()">+</button>
+        </div>
+      </div>
+    </div>
+    <button class="btn-gold" onclick="revealQuote()" style="width:100%;padding:13px;font-size:14px;font-weight:600">Review specification &amp; request quote →</button>
+  </div>
+</div>
+
+<!-- ═══ STEP 5B: TRAVERSE BRASS ═══════════════════════════════ -->
+<div class="hw-section" id="sec-trav-brass">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Step 5 — Traverse rod configuration</div>
+    <div class="step-title">Select Metal Brass Traverse</div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Fascia style</div>
+      <div class="choice-grid" style="margin-top:0">
+        <div class="choice-card sel" id="fascia-hr" onclick="selFascia('halfround')">
+          <div class="choice-title">1 3⁄16″ Half Round Fascia</div>
+          <div class="choice-desc">Classic rounded brass fascia. Traditional and elegant. All 8 brass finishes.</div>
+        </div>
+        <div class="choice-card" id="fascia-metro" onclick="selFascia('metro')">
+          <div class="choice-title">1 3⁄8″ Metro Flat Fascia</div>
+          <div class="choice-desc">Contemporary flat-face fascia. Clean, modern look. All 8 brass finishes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Track width (inches)</div>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div class="dim-box" style="flex:0 0 auto;padding:12px 16px;margin-bottom:0">
+          <div class="dim-box-label" style="margin-bottom:8px">Track width</div>
+          <input type="number" id="brass-width" min="12" max="384" step="0.5" placeholder="84" oninput="tBrassUpdate()" style="font-size:22px;font-weight:600;height:50px;text-align:center;width:110px">
+          <div class="dim-unit">inches</div>
+        </div>
+        <div style="font-size:12px;color:#666;line-height:1.7">Max continuous: 16ft (192"). Over 16ft: spliced 2-way center draw (up to 32ft).</div>
+      </div>
+      <div id="brass-bracket-note" style="display:none;margin-top:8px" class="tooltip-note"></div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Draw type</div>
+      <div class="opt-row" id="grp-brass-draw">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-brass-draw');tBrassUpdate()">Split draw — panels open from center</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-brass-draw');tBrassUpdate()">One-way right</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-brass-draw');tBrassUpdate()">One-way left</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Drapery style on this rod</div>
+      <div class="opt-row" id="grp-brass-pleat">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-brass-pleat');tBrassTogglePleat('pinch')">Pinch Pleat <span style="font-size:10px;color:#888">~3.5 wheeled carriers/ft</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-brass-pleat');tBrassTogglePleat('ripple')">Ripplefold&reg; <span style="font-size:10px;color:#888">specify fullness below</span></button>
+      </div>
+      <div id="brass-ripple-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+        <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Ripplefold fullness</div>
+        <div class="opt-row" id="grp-brass-ripple">
+          <button class="opt-btn" onclick="selOpt(this,'grp-brass-ripple');tBrassUpdate()">60%</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-brass-ripple');tBrassUpdate()">80% <span style="font-size:10px;color:#888">standard</span></button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-brass-ripple');tBrassUpdate()">100%</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-brass-ripple');tBrassUpdate()">120% <span style="font-size:10px;color:#888">deep wave</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Draw operation</div>
+      <div class="opt-row" id="grp-brass-op">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-brass-op');tBrassUpdate()">Cord draw <span style="font-size:10px;color:#888">includes tension device</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-brass-op');tBrassUpdate()">Hand draw <span style="font-size:10px;color:#888">includes 36" fiberglass baton</span></button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:4px">End caps / Finials</div>
+      <div style="font-size:12px;color:#666;margin-bottom:10px">Ordered separately. Sold in pairs.</div>
+      <div class="finial-grid" id="brass-finial-grid"></div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Single or double rod?</div>
+      <div class="opt-row" id="grp-brass-config">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-brass-config');tBrassUpdate()">Single rod</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-brass-config');tBrassUpdate()">Double rod — sheer behind, drape in front</button>
+      </div>
+      <div class="tooltip-note" style="margin-top:6px">Double rod: back track can be track-only (+$18/ft) or with fascia (+$41.25/ft). Specify preference in notes.</div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:4px">Bracket style</div>
+      <div style="font-size:12px;color:#666;margin-bottom:10px">Standard heavy-duty brackets included. Upgrade to decorative matching brackets for a premium look.</div>
+      <div class="bracket-grid" id="brass-bracket-grid">
+        <div class="bracket-card sel" onclick="selBracket(this,'brass-bracket-grid','Standard heavy-duty (included)')"><div class="bc-name">Standard Heavy-Duty</div><div class="bc-desc">Included with set · 3½"–4½" return</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'brass-bracket-grid','Round decorative — 4&quot; return')"><div class="bc-name">Round Decorative</div><div class="bc-desc">4" return · Matching finish</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'brass-bracket-grid','Round decorative extended — 5½&quot; return')"><div class="bc-name">Round Dec. Extended</div><div class="bc-desc">5½" return · Matching finish</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'brass-bracket-grid','Round decorative double — 7½&quot; return')"><div class="bc-name">Round Dec. Double</div><div class="bc-desc">7½" return · Two rods</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'brass-bracket-grid','Square decorative — 4&quot; return')"><div class="bc-name">Square Decorative</div><div class="bc-desc">4" return · Modern square look</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'brass-bracket-grid','Square decorative extended — 5½&quot; return')"><div class="bc-name">Square Dec. Extended</div><div class="bc-desc">5½" return · Modern look</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'brass-bracket-grid','Square decorative double — 7&quot; return')"><div class="bc-name">Square Dec. Double</div><div class="bc-desc">7" return · Two rods</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'brass-bracket-grid','Combo bracket — pole front / track back')"><div class="bc-name">Combo Bracket</div><div class="bc-desc">Pole on front, traverse on back · 7½"</div></div>
+        <div class="bracket-card" onclick="selBracket(this,'brass-bracket-grid','Ceiling mount bracket')"><div class="bc-name">Ceiling Mount</div><div class="bc-desc">Drop: 1½"–2"</div></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Cord drop length (cord draw only)</div>
+      <div class="opt-row" id="grp-brass-cord">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-brass-cord');tBrassUpdate()">Standard — 8ft</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-brass-cord');tBrassUpdate()">Custom — specify in notes</button>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px">
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Mount</div>
+        <div class="opt-row" id="grp-brass-mount">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-brass-mount');tBrassUpdate()">Wall mount</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-brass-mount');tBrassUpdate()">Ceiling mount</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Number of rods / windows</div>
+        <div class="qty-btns">
+          <button class="qty-btn" onclick="var n=document.getElementById('brass-qty');n.value=Math.max(1,parseInt(n.value)-1);tBrassUpdate()">−</button>
+          <input class="qty-num" id="brass-qty" type="number" value="1" min="1" max="50" oninput="tBrassUpdate()">
+          <button class="qty-btn" onclick="var n=document.getElementById('brass-qty');n.value=parseInt(n.value)+1;tBrassUpdate()">+</button>
+        </div>
+      </div>
+    </div>
+    <button class="btn-gold" onclick="revealQuote()" style="width:100%;padding:13px;font-size:14px;font-weight:600">Review specification &amp; request quote →</button>
+  </div>
+</div>
+
+<!-- ═══ WOOD INLINE QUOTE FORM ═══════════════════════════════════ -->
+<div class="hw-section" id="sec-wood-quote">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Select Wood — Custom Quote</div>
+    <div class="step-title">Tell us about your wood pole project</div>
+    <div class="step-sub">Select Wood comes in 1 3⁄8″ and 2 1⁄4″ diameters, 13 stains and paint finishes, and 10 finial styles. Leave your details and we'll put together a full quote.</div>
+    <div id="wd-q-form">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div>
+          <label style="font-size:12px;font-weight:600;color:#444;display:block;margin-bottom:5px">Your name *</label>
+          <input type="text" id="wd-q-name" placeholder="Jane Smith" style="width:100%;padding:9px 13px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;font-family:inherit;color:#222;box-sizing:border-box">
+        </div>
+        <div>
+          <label style="font-size:12px;font-weight:600;color:#444;display:block;margin-bottom:5px">Phone *</label>
+          <input type="tel" id="wd-q-phone" placeholder="(215) 555-0100" style="width:100%;padding:9px 13px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;font-family:inherit;color:#222;box-sizing:border-box">
+        </div>
+      </div>
+      <div style="margin-bottom:20px">
+        <label style="font-size:12px;font-weight:600;color:#444;display:block;margin-bottom:5px">Notes — finish preference, window width, number of rods, finial ideas</label>
+        <textarea id="wd-q-notes" style="width:100%;min-height:100px;padding:9px 13px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;font-family:inherit;color:#222;resize:vertical;box-sizing:border-box" placeholder="e.g. Dark Walnut finish, 96&quot; wide window, 3 rods, pinch pleat rings…"></textarea>
+      </div>
+      <button class="btn-gold" onclick="submitWoodQuote()" style="width:100%;padding:13px;font-size:14px;font-weight:600">Request Select Wood Quote →</button>
+    </div>
+    <div id="wd-q-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.8;text-align:center">
+      <strong>Quote request sent!</strong> We'll be in touch within a few hours.<br>
+      Urgent? Call or text <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> anytime.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ STEP 5C: CORTINA TRAVERSE ════════════════════════════ -->
+<div class="hw-section" id="sec-trav-cortina">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div class="step-label">Step 5 — Traverse rod configuration</div>
+    <div class="step-title">Cortina Collection Traverse</div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Track design</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px">
+        <div class="bracket-card sel" id="cort-sintra" onclick="selCortina('sintra',this)">
+          <div class="bc-name">Sintra</div>
+          <div class="bc-desc">Slim, minimal profile · Small curved face · Most subtle</div>
+        </div>
+        <div class="bracket-card" id="cort-obidos" onclick="selCortina('obidos',this)">
+          <div class="bc-name">Obidos</div>
+          <div class="bc-desc">Medium profile · Classic look · Versatile</div>
+        </div>
+        <div class="bracket-card" id="cort-coimbra" onclick="selCortina('coimbra',this)">
+          <div class="bc-name">Coimbra</div>
+          <div class="bc-desc">Largest fascia · Bold presence · Flat or curved face</div>
+        </div>
+      </div>
+      <div id="coimbra-face-wrap" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+        <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Coimbra front face style</div>
+        <div class="opt-row" id="grp-coimbra-face">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-coimbra-face');cUpdate()">Flat face</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-coimbra-face');cUpdate()">Curved face</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Single or double rod?</div>
+      <div class="opt-row" id="grp-cort-config">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-cort-config');cUpdate()">Single rod</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-cort-config');cUpdate()">Double rod (same track, front and back)</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Track width (inches)</div>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <div class="dim-box" style="flex:0 0 auto;padding:12px 16px;margin-bottom:0">
+          <div class="dim-box-label" style="margin-bottom:8px">Track width</div>
+          <input type="number" id="cort-width" min="12" max="236" step="0.5" placeholder="84" oninput="cUpdate()" style="font-size:22px;font-weight:600;height:50px;text-align:center;width:110px">
+          <div class="dim-unit">inches</div>
+        </div>
+        <div style="font-size:12px;color:#666;line-height:1.7">Max continuous: 236". Brackets included — count auto-calculated.</div>
+      </div>
+      <div id="cort-bracket-note" style="display:none;margin-top:8px" class="tooltip-note"></div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Draw type</div>
+      <div class="opt-row" id="grp-cort-draw">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-cort-draw');cUpdate()">Split center draw</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-cort-draw');cUpdate()">One-way right</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-cort-draw');cUpdate()">One-way left</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Drapery style</div>
+      <div class="opt-row" id="grp-cort-pleat">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-cort-pleat');cTogglePleat('pinch')">Pinch Pleat <span style="font-size:10px;color:#888">3.5 ball-bearing carriers/ft</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-cort-pleat');cTogglePleat('ripple')">Ripplefold&reg; <span style="font-size:10px;color:#888">slide carriers · 2 lbs/ft max</span></button>
+      </div>
+      <div id="cort-ripple-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+        <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Ripplefold fullness</div>
+        <div class="opt-row" id="grp-cort-ripple">
+          <button class="opt-btn" onclick="selOpt(this,'grp-cort-ripple');cUpdate()">60%</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-cort-ripple');cUpdate()">80%</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-cort-ripple');cUpdate()">100%</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-cort-ripple');cUpdate()">120%</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Draw operation</div>
+      <div class="opt-row" id="grp-cort-op">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-cort-op');cUpdate()">Cord draw (includes tension device)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-cort-op');cUpdate()">Hand draw (baton ordered separately)</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Mount</div>
+      <div class="opt-row" id="grp-cort-mount">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-cort-mount');cUpdate()">Wall mount — 3¼" return</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-cort-mount');cUpdate()">Wall mount extended — 6¼" return</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-cort-mount');cUpdate()">Ceiling mount — 2¼" drop</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-cort-mount');cUpdate()">Ceiling flush mount</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px">
+      <div style="font-size:13px;font-weight:600;color:#222;margin-bottom:8px">Number of rods / windows</div>
+      <div class="qty-btns">
+        <button class="qty-btn" onclick="var n=document.getElementById('cort-qty');n.value=Math.max(1,parseInt(n.value)-1);cUpdate()">−</button>
+        <input class="qty-num" id="cort-qty" type="number" value="1" min="1" max="50" oninput="cUpdate()">
+        <button class="qty-btn" onclick="var n=document.getElementById('cort-qty');n.value=parseInt(n.value)+1;cUpdate()">+</button>
+      </div>
+    </div>
+    <button class="btn-gold" onclick="revealQuote()" style="width:100%;padding:13px;font-size:14px;font-weight:600">Review specification &amp; request quote →</button>
+  </div>
+</div>
+
+<!-- ═══ SUMMARY + QUOTE ═══════════════════════════════════════ -->
+<div class="hw-section" id="sec-summary">
+  <div class="sec-divider"></div>
+  <div class="step">
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px">Your specification</div>
+    <div class="summary-panel"><div id="summary-lines"></div></div>
+  </div>
+</div>
+
+<div class="hw-section" id="sec-quote">
+  <div class="step">
+    <div class="step-label">Final step</div>
+    <div class="step-title">Request your quote</div>
+    <div id="sel-form">
+      <div class="form-row">
+        <div class="form-group"><label>Your name *</label><input type="text" id="sel-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="sel-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="sel-email" placeholder="jane@example.com"></div>
+      <div class="form-group">
+        <label>Notes — panel weight, fabric, any details we should know</label>
+        <textarea id="sel-notes" style="min-height:80px" placeholder="e.g. Heavy velvet drapes, floor to ceiling 108&quot;, 3 windows side by side, ripple fold overlap masters preferred…"></textarea>
+      </div>
+
+      <div style="background:var(--espresso-mid);border:.5px solid var(--border-dark);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px">
+        <div style="font-size:13px;color:var(--cream)"><strong style="color:var(--gold)">Also need custom drapery panels?</strong><br><span style="font-size:12px;color:var(--text-muted)">We fabricate in-house — panels &amp; hardware quoted together.</span></div>
+        <a href="soft-treatments.html" class="btn-gold" style="font-size:12px;padding:8px 14px;white-space:nowrap">Custom Drapery &rarr;</a>
+      </div>
+
+      <div class="delivery-section">
+        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+        <div class="opt-row" id="grp-del-sel">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-sel');document.getElementById('del-sel-s').style.display='block';document.getElementById('del-sel-p').style.display='none'">Ship to me</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-del-sel');document.getElementById('del-sel-s').style.display='none';document.getElementById('del-sel-p').style.display='block'">I'll pick up</button>
+        </div>
+        <div id="del-sel-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
+        <div id="del-sel-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+      </div>
+
+      <button class="btn-gold" onclick="submitSelect()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Request Select Hardware Quote &rarr;</button>
+    </div>
+    <div class="success-box" id="sel-success" style="display:none">
+      <strong>Quote request sent!</strong> We'll follow up within a few hours.<br>
+      Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
+    </div>
+  </div>
+</div>
+
+</div><!-- /step-wrap -->
+
+<div class="cta-banner">
+  <div>
+    <h2>Not sure which Select product fits?</h2>
+    <p>We carry the full Select line and can bring samples to your home — free of charge.</p>
+  </div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Hardware'); renderFooter(false);
+
+// ── DATA ──────────────────────────────────────────────────────────
+var BRASS_FINISHES = [
+  {code:'07',name:'Bronze',color:'#8B6344',surcharge:false},
+  {code:'22',name:'Satin Brass',color:'#C4A03A',surcharge:false},
+  {code:'27',name:'Brushed Brass',color:'#C9A84C',surcharge:false},
+  {code:'46',name:'Matte Black',color:'#2A2A2A',surcharge:false},
+  {code:'67',name:'Steel',color:'#8E8E8E',surcharge:false},
+  {code:'48',name:'Graphite',color:'#4A4A4A',surcharge:true},
+  {code:'65',name:'Gunmetal',color:'#6A6A6A',surcharge:true},
+  {code:'68',name:'Polished Nickel',color:'#D4D4D4',surcharge:true},
+];
+var IW_FINISHES = [
+  {code:'845',name:'Black',color:'#1A1A1A',surcharge:false},
+  {code:'815',name:'Black Copper',color:'#3D2B1F',surcharge:true},
+  {code:'857',name:'Sandstone',color:'#C8B89A',surcharge:true},
+  {code:'865',name:'Black Pewter',color:'#3A3A3A',surcharge:true},
+];
+var CORTINA_FINISHES = [
+  {code:'NB',name:'Gloss Black',color:'#111111',surcharge:false},
+  {code:'BL',name:'Gloss White',color:'#F0F0F0',surcharge:false},
+  {code:'BC',name:'Champagne',color:'#D4C090',surcharge:false},
+  {code:'AP',name:'Steel',color:'#9A9A9A',surcharge:false},
+];
+var WOOD_FINISHES = [
+  {code:'WD01',name:'Natural',color:'#D4B896',surcharge:false},
+  {code:'WD02',name:'Golden Oak',color:'#C8A050',surcharge:false},
+  {code:'WD03',name:'Honey Maple',color:'#D4A870',surcharge:false},
+  {code:'WD04',name:'Medium Cherry',color:'#C07040',surcharge:false},
+  {code:'WD05',name:'Dark Cherry',color:'#8B2018',surcharge:false},
+  {code:'WD06',name:'Mahogany',color:'#6A1808',surcharge:false},
+  {code:'WD07',name:'Dark Walnut',color:'#4A3018',surcharge:false},
+  {code:'WD08',name:'Espresso',color:'#2A1A0A',surcharge:false},
+  {code:'WD09',name:'White',color:'#F5F0E8',surcharge:false},
+  {code:'WD10',name:'Antique White',color:'#EDE0C8',surcharge:false},
+  {code:'WD11',name:'Driftwood',color:'#9A9080',surcharge:true},
+  {code:'WD12',name:'Matte Black',color:'#1A1A1A',surcharge:true},
+  {code:'WD13',name:'Gold Leaf',color:'#C8A030',surcharge:true},
+];
+
+var FINIALS_BRASS_34 = ['Opus','Nova','Acrylic Halo','Deco Aries','Windsor','Acrylic Ball','Ball','Candler','Tetra','Empire','Urban','Kingston','Aries','Gatsby','Modern Ball','Acrylic Aries','Acrylic Flare','Acrylic Mystic','Gala','Cadet','Landover','End Cap','Square End Cap'];
+var FINIALS_BRASS_1316 = FINIALS_BRASS_34.concat(['Stella Crystal','Solitaire Crystal']);
+var FINIALS_IW = ['Iron End Cap','Iron Ball','Capri End Cap','Argo','Avalon','Cypress','Royal','Valor','Grenada'];
+var FINIALS_WOOD = ['Ball','Fluted Ball','Acorn','Arrow','Pineapple','Trumpet','Square','Flat Disc','Decorative Ring','Endcap'];
+
+// ── STATE ─────────────────────────────────────────────────────────
+var SS = {
+  system:'', collection:'', finish:'', finishCode:'',
+  diameter:'', finial:'', travFinial:'', bracket:'Standard Wall Bracket (3½" return)',
+  brassBracket:'Standard heavy-duty (included)',
+  cortDesign:'sintra', accList:[], fascia:'halfround',
+  woodFinish:'', woodDia:'', woodFinial:''
+};
+
+// ── HELPERS ──────────────────────────────────────────────────────
+function reveal(id){var e=document.getElementById(id);if(e){e.classList.add('on');setTimeout(function(){e.scrollIntoView({behavior:'smooth',block:'nearest'});},80);}}
+function hide(id){var e=document.getElementById(id);if(e)e.classList.remove('on');}
+function hideAll(a){a.forEach(function(id){hide(id);});}
+function selOpt(el,grp){document.querySelectorAll('#'+grp+' .opt-btn').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');}
+function getOpt(grp){var s=document.querySelector('#'+grp+' .opt-btn.sel');return s?s.textContent.trim():'';}
+
+function revealQuote(){
+  renderSummary(getCurrentSummaryLines());
+  reveal('sec-summary');
+  reveal('sec-quote');
+}
+
+function getCurrentSummaryLines(){
+  if(SS.collection==='wood' && SS.system==='stationary') return getWoodSummary();
+  if(SS.collection==='brass' && SS.system==='traverse') return getBrassTravSummary();
+  if(SS.collection==='cortina') return getCortinaSummary();
+  return getStatSummary();
+}
+
+// ── STEP 1: SYSTEM ────────────────────────────────────────────────
+function selSystem(s){
+  SS.system=s; SS.collection=''; SS.finish=''; SS.diameter=''; SS.finial=''; SS.travFinial=''; SS.woodFinish=''; SS.woodDia='';
+  document.getElementById('sys-stat').classList.toggle('sel',s==='stationary');
+  document.getElementById('sys-trav').classList.toggle('sel',s==='traverse');
+  hideAll(['sec-collection','sec-finish','sec-wood-finish','sec-wood-diam','sec-diameter','sec-stat','sec-wood-stat','sec-trav-brass','sec-trav-cortina','sec-wood-quote','sec-summary','sec-quote']);
+  buildCollCards(s);
+  reveal('sec-collection');
+}
+
+// ── STEP 2: COLLECTION ────────────────────────────────────────────
+function buildCollCards(sys){
+  var cards;
+  if(sys==='stationary'){
+    cards=[
+      {id:'brass',icon:'🔩',name:'Select Metal Brass',desc:'8 stunning finishes · ¾" and 1 3/16" · 22+ finials · Brass construction',tag:'Most popular'},
+      {id:'ironworks',icon:'⚙️',name:'Iron Works',desc:'4 dark finishes · ¾" and 1 3/16" · 9 finials · Steel poles · Industrial look',tag:'Contemporary / industrial'},
+      {id:'wood',icon:'🪵',name:'Select Wood',desc:'13 finishes · 1 3/8" and 2 1/4" · Natural wood poles · Classic look',tag:'Custom quote'},
+    ];
+  } else {
+    cards=[
+      {id:'brass',icon:'🔩',name:'Select Metal Brass Traverse',desc:'Half Round or Metro Flat fascia · 8 finishes · Pinch Pleat or Ripplefold · Up to 32ft',tag:'Decorative traverse'},
+      {id:'cortina',icon:'🎛️',name:'Cortina Collection',desc:'Sintra, Obidos, or Coimbra designs · 4 finishes · Single or double rod · Up to 236"',tag:'Modern traverse'},
+      {id:'wood',icon:'🪵',name:'Select Wood Traverse',desc:'Wood poles with traverse hardware · 13 finishes · 1 3/8" and 2 1/4"',tag:'Custom quote'},
+    ];
+  }
+  document.getElementById('coll-title').textContent=sys==='stationary'?'Which collection?':'Which traverse system?';
+  document.getElementById('coll-cards').innerHTML=cards.map(function(c){
+    return '<div class="coll-card" id="coll-'+c.id+'" onclick="selCollection(\''+c.id+'\')">'+
+      '<div class="coll-icon">'+c.icon+'</div>'+
+      '<div class="coll-name">'+c.name+'</div>'+
+      '<div class="coll-desc">'+c.desc+'</div>'+
+      '<div class="coll-tag">'+c.tag+'</div>'+
+      '</div>';
+  }).join('');
+}
+
+function selCollection(coll){
+  SS.collection=coll; SS.finish=''; SS.diameter=''; SS.finial=''; SS.travFinial=''; SS.woodFinish=''; SS.woodDia='';
+  document.querySelectorAll('.coll-card').forEach(function(c){c.classList.remove('sel');});
+  var card=document.getElementById('coll-'+coll);
+  if(card)card.classList.add('sel');
+  hideAll(['sec-finish','sec-wood-finish','sec-wood-diam','sec-diameter','sec-stat','sec-wood-stat','sec-trav-brass','sec-trav-cortina','sec-wood-quote','sec-summary','sec-quote']);
+  if(coll==='wood'){
+    reveal('sec-wood-quote');
+  } else {
+    buildFinishes(coll);
+    reveal('sec-finish');
+  }
+}
+
+// ── STEP 3: FINISH ────────────────────────────────────────────────
+function buildFinishes(coll){
+  var fins=coll==='cortina'?CORTINA_FINISHES:(coll==='ironworks'?IW_FINISHES:BRASS_FINISHES);
+  var sub=fins.length+' finishes available.';
+  var note='';
+  if(coll==='brass'){sub='8 finishes — Bronze, Satin Brass, Brushed Brass, Matte Black, Steel, Graphite, Gunmetal, Polished Nickel.';note='Graphite (48), Gunmetal (65), and Polished Nickel (68) carry a small price surcharge over the standard 5 finishes.';}
+  else if(coll==='ironworks'){sub='4 finishes — Black, Black Copper, Sandstone, Black Pewter.';note='Black (845) is the base price; Black Copper, Sandstone, and Black Pewter carry a small surcharge.';}
+  else if(coll==='cortina'){sub='4 finishes — Gloss Black, Gloss White, Champagne, Steel.';note='All Cortina brackets and end caps are color-coordinated to your finish selection.';}
+  document.getElementById('finish-sub').textContent=sub;
+  document.getElementById('finish-note').textContent=note||'Finish samples available — ask us for a selector card.';
+  document.getElementById('finish-cards').innerHTML=fins.map(function(f){
+    var isLight=f.color==='#F0F0F0'||f.color==='#D4D4D4'||f.color==='#C8B89A';
+    var swatchBorder=isLight?'border-bottom:1px solid #ddd;':'';
+    return '<div class="finish-card" onclick="selFinish(\''+f.code+'\',\''+f.name+'\',this)">'+
+      '<div class="finish-swatch" style="background:'+f.color+';'+swatchBorder+'"></div>'+
+      '<div class="finish-name">'+f.name+(f.surcharge?'<span class="finish-surcharge">+surcharge</span>':'')+'</div>'+
+      '</div>';
+  }).join('');
+}
+
+function selFinish(code,name,el){
+  SS.finish=name; SS.finishCode=code;
+  document.querySelectorAll('#finish-cards .finish-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  hideAll(['sec-diameter','sec-stat','sec-trav-brass','sec-trav-cortina','sec-summary','sec-quote']);
+  if(SS.system==='stationary'){
+    reveal('sec-diameter');
+  } else {
+    if(SS.collection==='brass'){
+      buildBrassFinials();
+      reveal('sec-trav-brass');
+    } else if(SS.collection==='cortina'){
+      reveal('sec-trav-cortina');
+    }
+  }
+}
+
+// ── WOOD FINISH + DIAMETER ────────────────────────────────────────
+function buildWoodFinishCards(){
+  document.getElementById('wood-finish-cards').innerHTML=WOOD_FINISHES.map(function(f){
+    var isLight=f.color==='#F5F0E8'||f.color==='#EDE0C8';
+    var swatchBorder=isLight?'border-bottom:1px solid #ddd;':'';
+    return '<div class="finish-card" onclick="selWoodFinish(\''+f.code+'\',\''+f.name+'\',this)">'+
+      '<div class="finish-swatch" style="background:'+f.color+';'+swatchBorder+'"></div>'+
+      '<div class="finish-name">'+f.name+(f.surcharge?'<span class="finish-surcharge">+surcharge</span>':'')+'</div>'+
+      '</div>';
+  }).join('');
+}
+
+function selWoodFinish(code,name,el){
+  SS.woodFinish=name;
+  document.querySelectorAll('#wood-finish-cards .finish-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  hideAll(['sec-wood-diam','sec-wood-stat','sec-summary','sec-quote']);
+  reveal('sec-wood-diam');
+}
+
+function selWoodDia(d){
+  SS.woodDia=d;
+  document.getElementById('wd-diam-138').classList.toggle('sel',d==='1-3/8');
+  document.getElementById('wd-diam-214').classList.toggle('sel',d==='2-1/4');
+  hideAll(['sec-wood-stat','sec-summary','sec-quote']);
+  buildWoodFinials();
+  if(SS.system==='stationary'){
+    reveal('sec-wood-stat');
+  } else {
+    // Wood traverse — goes to wood stat config re-used section with traverse context
+    reveal('sec-wood-stat');
+  }
+  woodUpdate();
+}
+
+function buildWoodFinials(){
+  document.getElementById('wood-finial-grid').innerHTML=FINIALS_WOOD.map(function(f){
+    return '<button class="finial-btn" onclick="selWoodFinial(\''+f+'\',this)">'+f+'</button>';
+  }).join('');
+}
+
+function selWoodFinial(name,el){
+  SS.woodFinial=name;
+  document.querySelectorAll('#wood-finial-grid .finial-btn').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel');
+  woodUpdate();
+}
+
+function woodUpdate(){
+  var profile=getOpt('grp-wd-profile');
+  var width=getOpt('grp-wd-width');
+  var shape=getOpt('grp-wd-shape');
+  var config=getOpt('grp-wd-config');
+  var ring=getOpt('grp-wd-ring');
+  var mount=getOpt('grp-wd-mount');
+  var qty=parseInt(document.getElementById('wd-qty').value)||1;
+}
+
+function submitWoodQuote(){
+  var name=document.getElementById('wd-q-name').value.trim();
+  var phone=document.getElementById('wd-q-phone').value.trim();
+  if(!name||!phone){alert('Please enter your name and phone number.');return;}
+  var notes=document.getElementById('wd-q-notes').value.trim();
+  var sys=SS.system==='traverse'?'Select Wood Traverse':'Select Wood Stationary Pole';
+  var body='SELECT WOOD HARDWARE QUOTE REQUEST\n\nType: '+sys+'\nName: '+name+'\nPhone: '+phone+'\n\nProject notes:\n'+(notes||'None')+'\n\n--- phillyblinds.com/pages/select-rods.html ---';
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent('Select Wood Quote — '+name)+'&body='+encodeURIComponent(body);
+  document.getElementById('wd-q-form').style.display='none';
+  document.getElementById('wd-q-success').style.display='block';
+}
+
+function getWoodSummary(){
+  var profile=getOpt('grp-wd-profile');
+  var width=getOpt('grp-wd-width');
+  var shape=getOpt('grp-wd-shape');
+  var config=getOpt('grp-wd-config');
+  var ring=getOpt('grp-wd-ring');
+  var mount=getOpt('grp-wd-mount');
+  var qty=parseInt(document.getElementById('wd-qty').value)||1;
+  return [
+    {k:'Collection',v:'Select Wood'},
+    {k:'Finish',v:SS.woodFinish||'—'},
+    {k:'Diameter',v:SS.woodDia?SS.woodDia+'"':'—'},
+    {k:'Profile',v:profile||'—'},
+    {k:'Window width',v:width||'—'},
+    {k:'Window shape',v:shape||'—'},
+    {k:'Rod configuration',v:config||'—'},
+    {k:'Finial',v:SS.woodFinial||'— (not selected)'},
+    {k:'Ring type',v:ring||'—'},
+    {k:'Mount',v:mount||'—'},
+    {k:'Quantity',v:qty+' rod(s)'},
+  ];
+}
+
+// ── STEP 4: DIAMETER (brass/ironworks stationary) ──────────────────────────────────────────────
+function selDiameter(d){
+  SS.diameter=d; SS.finial='';
+  document.getElementById('diam-34').classList.toggle('sel',d==='3/4');
+  document.getElementById('diam-1316').classList.toggle('sel',d==='1-3/16');
+  hideAll(['sec-stat','sec-summary','sec-quote']);
+  var title=SS.collection==='ironworks'?'Iron Works – '+d+'" Pole':'Select Metal Brass – '+d+'" Pole';
+  document.getElementById('stat-title').textContent=title;
+  buildFinials();
+  reveal('sec-stat');
+  sUpdate();
+}
+
+// ── FINIALS ───────────────────────────────────────────────────────
+function buildFinials(){
+  var list=SS.collection==='ironworks'?FINIALS_IW:(SS.diameter==='3/4'?FINIALS_BRASS_34:FINIALS_BRASS_1316);
+  document.getElementById('finial-grid').innerHTML=list.map(function(f){
+    return '<button class="finial-btn" onclick="selFinial(\''+f+'\',this)">'+f+'</button>';
+  }).join('');
+}
+
+function buildBrassFinials(){
+  document.getElementById('brass-finial-grid').innerHTML=FINIALS_BRASS_1316.map(function(f){
+    return '<button class="finial-btn" onclick="selTravFinial(\''+f+'\',this)">'+f+'</button>';
+  }).join('');
+}
+
+function selFinial(name,el){
+  SS.finial=name;
+  document.querySelectorAll('#finial-grid .finial-btn').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel'); sUpdate();
+}
+function selTravFinial(name,el){
+  SS.travFinial=name;
+  document.querySelectorAll('#brass-finial-grid .finial-btn').forEach(function(b){b.classList.remove('sel');});
+  el.classList.add('sel'); tBrassUpdate();
+}
+
+// ── BRACKET ───────────────────────────────────────────────────────
+function selBracket(el,gridId,name){
+  if(gridId==='stat-bracket-grid') SS.bracket=name;
+  else SS.brassBracket=name;
+  document.querySelectorAll('#'+gridId+' .bracket-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  if(gridId==='stat-bracket-grid') sUpdate(); else tBrassUpdate();
+}
+
+// ── ACCESSORIES ────────────────────────────────────────────────
+function toggleAcc(el,name){
+  var idx=SS.accList.indexOf(name);
+  if(idx===-1){SS.accList.push(name);el.classList.add('sel');}
+  else{SS.accList.splice(idx,1);el.classList.remove('sel');}
+  sUpdate();
+}
+
+function toggleRingQty(show){
+  var w=document.getElementById('ring-qty-wrap');
+  if(w) w.style.display=show?'':'none';
+}
+
+function ringQtyChanged(inp){
+  var qty=parseInt(inp.value)||0;
+  var est=document.getElementById('ring-qty-estimate');
+  if(qty>0&&est){
+    var impliedWidth=Math.round(qty*15/5);
+    est.textContent='≈ '+qty+' rings for a ~'+impliedWidth+'" wide panel';
+    inp.style.borderColor='var(--gold,#C8973F)';
+  } else if(est){
+    est.textContent='';
+    inp.style.borderColor='#d8d8d4';
+  }
+  sUpdate();
+}
+
+// ── STATIONARY SUMMARY ────────────────────────────────────────────
+function getStatSummary(){
+  var width=getOpt('grp-stat-width');
+  var shape=getOpt('grp-stat-shape');
+  var config=getOpt('grp-stat-config');
+  var ring=getOpt('grp-ring-type');
+  var ringQtyInp=document.getElementById('ring-qty-input');
+  var ringQtyVal=ringQtyInp?parseInt(ringQtyInp.value)||0:0;
+  var ringQty=ringQtyVal>0?(ringQtyVal+' rings total (est. 5 per 15")'):'';
+  var mount=getOpt('grp-stat-mount');
+  var baton=getOpt('grp-stat-baton');
+  var qty=parseInt(document.getElementById('stat-qty').value)||1;
+  var accs=SS.accList.length?SS.accList.join(', '):'None';
+  return [
+    {k:'Collection',v:SS.collection==='ironworks'?'Select Iron Works':'Select Metal Brass'},
+    {k:'Finish',v:SS.finish||'—'},
+    {k:'Diameter',v:SS.diameter?SS.diameter+'"':'—'},
+    {k:'Window width',v:width||'—'},
+    {k:'Window shape',v:shape||'—'},
+    {k:'Rod configuration',v:config||'—'},
+    {k:'Finial',v:SS.finial||'— (not selected)'},
+    {k:'Ring type',v:ring||'—'},
+    {k:'Rings',v:ringQty||'—'},
+    {k:'Bracket style',v:SS.bracket},
+    {k:'Baton',v:baton||'—'},
+    {k:'Accessories',v:accs},
+    {k:'Mount',v:mount||'—'},
+    {k:'Quantity',v:qty+' rod(s)'},
+  ];
+}
+function sUpdate(){renderSummary(getStatSummary());}
+
+// ── BRASS TRAVERSE ────────────────────────────────────────────
+function selFascia(f){
+  SS.fascia=f;
+  document.getElementById('fascia-hr').classList.toggle('sel',f==='halfround');
+  document.getElementById('fascia-metro').classList.toggle('sel',f==='metro');
+  tBrassUpdate();
+}
+
+function tBrassTogglePleat(type){
+  document.getElementById('brass-ripple-opts').style.display=type==='ripple'?'block':'none';
+  tBrassUpdate();
+}
+
+function getBrassTravSummary(){
+  var w=parseFloat(document.getElementById('brass-width').value)||0;
+  var draw=getOpt('grp-brass-draw');
+  var pleat=getOpt('grp-brass-pleat');
+  var ripple=getOpt('grp-brass-ripple');
+  var op=getOpt('grp-brass-op');
+  var config=getOpt('grp-brass-config');
+  var bracket=SS.brassBracket;
+  var mount=getOpt('grp-brass-mount');
+  var cord=getOpt('grp-brass-cord');
+  var qty=parseInt(document.getElementById('brass-qty').value)||1;
+  var brCount=w?calcBrassBrackets(w):'—';
+  var brNote=document.getElementById('brass-bracket-note');
+  if(brNote){brNote.style.display=w?'block':'none';if(w)brNote.textContent=w+'" track requires '+brCount+' bracket(s). (Up to 57"=2, 58"–85"=3, 86"–113"=4, 114"–140"=5, 141"–168"=6, 169"–192"=7)';}
+  var isRipple=pleat.indexOf('Ripplefold')!==-1;
+  return [
+    {k:'Collection',v:'Select Metal Brass Traverse'},
+    {k:'Finish',v:SS.finish||'—'},
+    {k:'Fascia',v:SS.fascia==='halfround'?'1 3/16" Half Round Fascia':'1 3/8" Metro Flat Fascia'},
+    {k:'Track width',v:w?w+'"':'—'},
+    {k:'Draw',v:draw||'—'},
+    {k:'Drapery style',v:pleat.split(' ')[0]+(isRipple?' · '+ripple+' fullness':'')},
+    {k:'Operation',v:op.split(' ')[0]+(op.indexOf('Cord')!==-1?' · cord drop '+cord:'')},
+    {k:'Rod config',v:config||'—'},
+    {k:'Bracket',v:bracket},
+    {k:'Brackets needed',v:brCount!=='—'?brCount+' per rod':'—'},
+    {k:'Mount',v:mount||'—'},
+    {k:'Finial / End cap',v:SS.travFinial||'— (not selected)'},
+    {k:'Quantity',v:qty+' rod(s)'},
+  ];
+}
+function tBrassUpdate(){renderSummary(getBrassTravSummary());}
+
+function calcBrassBrackets(w){
+  if(w<=57)return 2;if(w<=85)return 3;if(w<=113)return 4;
+  if(w<=140)return 5;if(w<=168)return 6;return 7;
+}
+
+// ── CORTINA TRAVERSE ──────────────────────────────────────────────
+function selCortina(design,el){
+  SS.cortDesign=design;
+  ['cort-sintra','cort-obidos','cort-coimbra'].forEach(function(id){
+    var c=document.getElementById(id);if(c)c.classList.remove('sel');
+  });
+  el.classList.add('sel');
+  document.getElementById('coimbra-face-wrap').style.display=design==='coimbra'?'block':'none';
+  cUpdate();
+}
+
+function cTogglePleat(type){
+  document.getElementById('cort-ripple-opts').style.display=type==='ripple'?'block':'none';
+  cUpdate();
+}
+
+function getCortinaSummary(){
+  var w=parseFloat(document.getElementById('cort-width').value)||0;
+  var design=SS.cortDesign||'sintra';
+  var face=design==='coimbra'?(' · '+(getOpt('grp-coimbra-face')||'Flat face')):'';
+  var config=getOpt('grp-cort-config');
+  var draw=getOpt('grp-cort-draw');
+  var pleat=getOpt('grp-cort-pleat');
+  var ripple=getOpt('grp-cort-ripple');
+  var op=getOpt('grp-cort-op');
+  var mount=getOpt('grp-cort-mount');
+  var qty=parseInt(document.getElementById('cort-qty').value)||1;
+  var brCount=w?calcCortinaBrackets(w):'—';
+  var brNote=document.getElementById('cort-bracket-note');
+  if(brNote){brNote.style.display=w?'block':'none';if(w)brNote.textContent=w+'" track requires '+brCount+' brackets (included in set).';}
+  var isRipple=pleat.indexOf('Ripplefold')!==-1;
+  return [
+    {k:'Collection',v:'Cortina Collection'},
+    {k:'Finish',v:SS.finish||'—'},
+    {k:'Design',v:design.charAt(0).toUpperCase()+design.slice(1)+face},
+    {k:'Rod config',v:config||'—'},
+    {k:'Track width',v:w?w+'"':'—'},
+    {k:'Draw',v:draw||'—'},
+    {k:'Drapery style',v:pleat.split(' ')[0]+(isRipple?' · '+ripple+' fullness':'')},
+    {k:'Operation',v:op.split('(')[0].trim()},
+    {k:'Mount',v:mount||'—'},
+    {k:'Brackets needed',v:brCount!=='—'?brCount+' (included)':'—'},
+    {k:'Quantity',v:qty+' rod(s)'},
+  ];
+}
+function cUpdate(){renderSummary(getCortinaSummary());}
+
+function calcCortinaBrackets(w){
+  if(w<=60)return 2;if(w<=90)return 3;if(w<=120)return 4;
+  if(w<=150)return 5;if(w<=180)return 6;if(w<=210)return 7;return 8;
+}
+
+// ── SUMMARY RENDER ────────────────────────────────────────────────
+function renderSummary(lines){
+  var el=document.getElementById('summary-lines');
+  if(!el)return;
+  el.innerHTML=lines.map(function(l){
+    return '<div class="summary-line"><span class="summary-key">'+l.k+'</span><span class="summary-val">'+l.v+'</span></div>';
+  }).join('');
+}
+
+function getSummaryText(){
+  var lines=[];
+  document.querySelectorAll('#summary-lines .summary-line').forEach(function(d){
+    var spans=d.querySelectorAll('span');
+    if(spans.length>=2)lines.push(spans[0].textContent+': '+spans[1].textContent);
+  });
+  return lines.join('\n');
+}
+
+// ── SUBMIT ────────────────────────────────────────────────────────
+function submitSelect(){
+  var name=document.getElementById('sel-name').value.trim();
+  var phone=document.getElementById('sel-phone').value.trim();
+  if(!name||!phone){alert('Please enter your name and phone number.');return;}
+  var delivery=getOpt('grp-del-sel');
+  var spec=getSummaryText();
+  var body='SELECT HARDWARE QUOTE REQUEST\n\n'
+    +'Name: '+name+'\nPhone: '+phone
+    +'\nEmail: '+(document.getElementById('sel-email').value.trim()||'—')+'\n\n'
+    +'SPECIFICATION:\n'+spec+'\n\n'
+    +'Delivery: '+delivery+'\n\n'
+    +'Notes:\n'+(document.getElementById('sel-notes').value.trim()||'None');
+  window.location.href='mailto:blindznation@gmail.com'
+    +'?subject='+encodeURIComponent('Select Hardware Quote — '+(SS.collection||'')+(SS.finish||SS.woodFinish?' · '+(SS.finish||SS.woodFinish):'')+' — '+name)
+    +'&body='+encodeURIComponent(body);
+  document.getElementById('sel-form').style.display='none';
+  document.getElementById('sel-success').style.display='block';
+}
+</script>
+</body>
+</html>

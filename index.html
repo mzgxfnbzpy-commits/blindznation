@@ -1,0 +1,591 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Custom roller shades, cellular shades, roman shades, drapery &amp; plantation shutters. Fabricated and installed by Blindznation — serving Philadelphia, South Jersey &amp; the surrounding area. Instant online pricing.">
+<meta property="og:title" content="Blindznation — Custom Window Treatments | Philadelphia">
+<meta property="og:description" content="Custom roller shades, cellular shades, roman shades, drapery &amp; plantation shutters. Fabricated and installed by Blindznation — serving Philadelphia, South Jersey &amp; the surrounding area. Instant online pricing.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blindznation — Custom Window Treatments | Philadelphia">
+<meta name="twitter:description" content="Custom roller shades, cellular shades, roman shades, drapery &amp; plantation shutters. Fabricated and installed by Blindznation — serving Philadelphia, South Jersey &amp; the surrounding area. Instant online pricing.">
+<title>Blindznation — Custom Window Treatments | Philadelphia</title>
+<link rel="stylesheet" href="css/global.css">
+<style>
+
+/* ── HERO ── */
+.hero{background:var(--espresso);overflow:hidden;position:relative}
+.hero::after{content:'';position:absolute;top:0;right:0;width:320px;height:100%;background:linear-gradient(135deg,transparent 40%,rgba(45,224,193,0.05) 100%);pointer-events:none}
+.hero-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 400px;align-items:center;gap:48px;padding:64px 28px 56px;position:relative;z-index:1}
+.hero-inner{}
+.hero-eyebrow{font-size:11px;letter-spacing:2.5px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;font-weight:500}
+.hero h1{font-size:44px;font-weight:500;color:var(--cream);line-height:1.15;letter-spacing:-1px;margin-bottom:16px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{font-size:15px;color:var(--text-dark);line-height:1.75;margin-bottom:30px;max-width:420px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.trust-row{display:flex;gap:22px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-muted)}
+.trust-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.hero-mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:210px 210px;gap:8px;border-radius:16px;overflow:hidden;flex-shrink:0;box-shadow:0 0 0 1px rgba(45,224,193,0.15),0 24px 64px rgba(0,0,0,0.4)}
+.hero-mosaic img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-mosaic .hero-img-tall{grid-row:1/3}
+@media(max-width:880px){.hero-wrap{grid-template-columns:1fr;padding:48px 20px 44px}.hero-mosaic{display:none}.hero h1{font-size:34px}}
+@media(max-width:480px){.hero h1{font-size:28px}.hero p{font-size:14px}.hero-btns{flex-direction:column}.hero-btns a{text-align:center}}
+
+/* ── TEAL DIVIDER ── */
+.teal-divider{height:3px;background:linear-gradient(90deg,var(--gold) 0%,rgba(45,224,193,0.3) 60%,transparent 100%)}
+
+/* ── CATEGORY SECTION WRAPPER ── */
+.cat-section{border-left:4px solid var(--gold)}
+
+/* ── CATEGORY HEADER ── */
+.cat-header{background:var(--espresso);padding:30px 28px 26px}
+.cat-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.cat-label::after{content:'';flex:1;height:1px;background:rgba(45,224,193,0.2)}
+.cat-title{font-size:28px;font-weight:500;color:#fff;letter-spacing:-0.5px;margin-bottom:6px;line-height:1.2}
+.cat-sub{font-size:13px;color:var(--text-dark);line-height:1.6;max-width:520px}
+
+/* ── CATEGORY GRID WRAPPER ── */
+.cat-grid-wrap{padding:28px 28px 36px}
+.cat-grid-wrap.hard{background:#fff}
+.cat-grid-wrap.soft{background:var(--gold-mid)}
+
+/* ── PRODUCT CARDS ── */
+.pcard-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.pcard{background:#fff;border:1px solid #e8e8e4;border-radius:14px;overflow:hidden;text-decoration:none;display:block;transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;position:relative}
+.cat-grid-wrap.soft .pcard{background:#fff}
+.pcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);opacity:0;transition:opacity 0.2s;z-index:1}
+.pcard:hover{border-color:var(--gold);box-shadow:0 8px 28px rgba(45,224,193,0.18);transform:translateY(-3px)}
+.pcard:hover::before{opacity:1}
+
+.pcard-thumb{height:140px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.pcard-thumb::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(45,224,193,0.0),rgba(45,224,193,0.0));transition:background 0.2s}
+.pcard:hover .pcard-thumb::after{background:linear-gradient(90deg,var(--gold),rgba(45,224,193,0.3))}
+
+.motor-chip{position:absolute;bottom:8px;right:8px;background:var(--espresso);color:var(--gold);font-size:9px;padding:3px 7px;border-radius:6px;font-weight:500;letter-spacing:0.2px}
+
+.pcard-body{padding:14px 16px 16px}
+.pcard-name{font-size:14px;font-weight:500;margin-bottom:4px;color:#111;letter-spacing:-0.1px}
+.pcard-sub{font-size:12px;color:#666;margin-bottom:10px;line-height:1.45}
+
+/* ── MOTOR NOTE CHIP ── */
+.motor-note{display:inline-flex;align-items:center;gap:6px;background:rgba(45,224,193,0.08);border:1px solid rgba(45,224,193,0.2);border-radius:8px;padding:7px 13px;margin-bottom:22px;font-size:12px;color:var(--gold);font-weight:500}
+.motor-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+/* ── HOW IT WORKS ── */
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.how-card{background:var(--espresso-mid);border-radius:14px;padding:20px 16px;border:0.5px solid var(--border-dark);transition:border-color 0.2s}
+.how-card:hover{border-color:rgba(45,224,193,0.3)}
+.how-num{width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--espresso);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.how-title{font-size:14px;font-weight:500;color:var(--cream);margin-bottom:6px}
+.how-desc{font-size:12px;color:var(--text-muted);line-height:1.55}
+
+/* ── GET STARTED ── */
+.path-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.path-card{border-radius:14px;padding:22px 18px;cursor:pointer;border:1px solid #e8e8e4;background:#fff;transition:border-color 0.2s,box-shadow 0.2s,transform 0.2s;text-decoration:none;display:block}
+.path-card:hover{border-color:var(--gold);box-shadow:0 6px 20px rgba(45,224,193,0.12);transform:translateY(-2px)}
+.path-card.featured{border:2px solid var(--gold);box-shadow:0 4px 16px rgba(45,224,193,0.12)}
+.path-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:13px;font-size:20px}
+.path-card h3{font-size:14px;font-weight:500;margin-bottom:5px;color:#111}
+.path-card p{font-size:12px;color:#666;line-height:1.5}
+.path-tag{display:inline-block;font-size:10px;padding:3px 9px;border-radius:10px;margin-bottom:10px;font-weight:500}
+
+/* ── BRANDS ── */
+.brands-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:12px}
+.brand-pill{background:var(--espresso-mid);border:0.5px solid rgba(45,224,193,0.15);border-radius:8px;padding:9px 18px;font-size:13px;font-weight:500;color:var(--cream);transition:border-color 0.15s}
+.brand-pill:hover{border-color:rgba(45,224,193,0.4)}
+.brand-more{background:transparent;border:0.5px solid var(--border-dark);border-radius:8px;padding:9px 18px;font-size:13px;color:var(--text-faint);font-style:italic}
+
+/* ── FABRIC CARDS ── */
+.fabric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px}
+.fabric-card{background:var(--espresso-mid);border-radius:12px;padding:18px;border:0.5px solid var(--border-dark);transition:border-color 0.2s}
+.fabric-card:hover{border-color:rgba(45,224,193,0.3)}
+.fabric-icon{width:34px;height:34px;border-radius:8px;background:var(--espresso);display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:16px}
+.fabric-title{font-size:13px;font-weight:500;color:var(--cream);margin-bottom:5px}
+.fabric-desc{font-size:11px;color:var(--text-muted);line-height:1.6}
+.fabric-tag{display:inline-block;margin-top:10px;font-size:10px;padding:3px 9px;border-radius:6px;background:rgba(45,224,193,0.1);color:var(--gold);border:0.5px solid rgba(45,224,193,0.2)}
+
+/* ── TESTIMONIALS ── */
+.tcard{background:var(--espresso-mid);border-radius:14px;padding:20px;border:0.5px solid var(--border-dark)}
+.tcard-stars{color:var(--gold);font-size:14px;margin-bottom:10px;letter-spacing:1px}
+.tcard-text{font-size:13px;color:var(--text-dark);line-height:1.65;margin-bottom:14px}
+.tcard-name{font-size:11px;color:var(--text-faint);font-weight:500}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="site-nav"></nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-wrap">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Philadelphia &amp; surrounding areas</div>
+      <h1>Window treatments<br>crafted for<br><em>your</em> home</h1>
+      <p>Window treatments, wall upholstery, custom pillows and furniture — manual or fully motorized. Every product designed, fabricated, and installed by one expert family team.</p>
+      <div class="hero-btns">
+        <a class="btn-gold" href="pages/shades.html#select-product">Shop all products</a>
+        <a class="btn-ghost-light" href="pages/consult.html">Book free in-home visit</a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item"><div class="trust-dot"></div>Motorization on every product</div>
+        <div class="trust-item"><div class="trust-dot"></div>Custom fabrication</div>
+        <div class="trust-item"><div class="trust-dot"></div>Professional installation</div>
+      </div>
+    </div>
+    <div class="hero-mosaic">
+      <img class="hero-img-tall" src="images/portfolio/IMG_1369.JPEG" alt="Luxury bedroom floor-to-ceiling wave drapery" loading="eager">
+      <img src="images/portfolio/IMG_5583.JPEG" alt="Custom fabric wall upholstery panels" loading="eager">
+      <img src="images/portfolio/IMG_1959.JPEG" alt="Woven shade window treatment" loading="eager">
+    </div>
+  </div>
+</div>
+
+<div class="teal-divider"></div>
+
+<!-- ── CATEGORY QUICK-NAV ── -->
+<div style="background:#fff;border-bottom:1px solid #e8e8e4;padding:0 20px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch">
+  <div style="display:inline-flex;gap:0;min-width:100%">
+    <a href="pages/shades.html" style="display:inline-flex;align-items:center;gap:6px;padding:13px 20px;font-size:13px;font-weight:500;color:#555;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s" onmouseover="this.style.color='#111';this.style.borderColor='#2DE0C1'" onmouseout="this.style.color='#555';this.style.borderColor='transparent'">
+      <span style="font-size:15px">🪟</span> Shades &amp; Blinds
+    </a>
+    <a href="pages/soft-treatments.html" style="display:inline-flex;align-items:center;gap:6px;padding:13px 20px;font-size:13px;font-weight:500;color:#555;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s" onmouseover="this.style.color='#111';this.style.borderColor='#2DE0C1'" onmouseout="this.style.color='#555';this.style.borderColor='transparent'">
+      <span style="font-size:15px">🪡</span> Draperies
+    </a>
+    <a href="pages/soft-treatments.html?tab=roman" style="display:inline-flex;align-items:center;gap:6px;padding:13px 20px;font-size:13px;font-weight:500;color:#555;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s" onmouseover="this.style.color='#111';this.style.borderColor='#2DE0C1'" onmouseout="this.style.color='#555';this.style.borderColor='transparent'">
+      <span style="font-size:15px">🎞️</span> Roman Shades
+    </a>
+    <a href="pages/soft-treatments.html?tab=cornval" style="display:inline-flex;align-items:center;gap:6px;padding:13px 20px;font-size:13px;font-weight:500;color:#555;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s" onmouseover="this.style.color='#111';this.style.borderColor='#2DE0C1'" onmouseout="this.style.color='#555';this.style.borderColor='transparent'">
+      <span style="font-size:15px">🏛️</span> Cornices &amp; Valances
+    </a>
+    <a href="pages/shutters.html" style="display:inline-flex;align-items:center;gap:6px;padding:13px 20px;font-size:13px;font-weight:500;color:#555;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s" onmouseover="this.style.color='#111';this.style.borderColor='#2DE0C1'" onmouseout="this.style.color='#555';this.style.borderColor='transparent'">
+      <span style="font-size:15px">🚪</span> Shutters
+    </a>
+    <a href="pages/upholstery.html" style="display:inline-flex;align-items:center;gap:6px;padding:13px 20px;font-size:13px;font-weight:500;color:#555;text-decoration:none;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s" onmouseover="this.style.color='#111';this.style.borderColor='#2DE0C1'" onmouseout="this.style.color='#555';this.style.borderColor='transparent'">
+      <span style="font-size:15px">🛋️</span> Custom Upholstery
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HARD WINDOW TREATMENTS
+════════════════════════════════════════════ -->
+<div class="cat-section" id="section-hard">
+
+  <div class="cat-header">
+    <div class="cat-label">Category 1</div>
+    <div class="cat-title">Hard Window Treatments</div>
+    <div class="cat-sub">Structured, precision-fitted treatments — roller shades, blinds, shutters &amp; specialty sheers. Manual or fully motorized.</div>
+  </div>
+
+  <div class="cat-grid-wrap hard">
+    <div class="motor-note"><div class="motor-dot"></div>Motorization available on every product below</div>
+    <div class="pcard-grid">
+
+      <!-- Roller Shades — click reveals 3 sub-types on shades.html -->
+      <a class="pcard" href="pages/shades.html#roller-types">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/roller-shades-commercial.JPEG" alt="Roller shades — basic, Norman premium, or woven wood" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block">
+          <div class="motor-chip">+ motorized</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Roller Shades</div>
+          <div class="pcard-sub">Basic · Norman Premium</div>
+          <span class="badge badge-instant">Instant price</span>
+        </div>
+      </a>
+
+      <!-- Cellular Shades — direct to configurator -->
+      <a class="pcard" href="pages/shades.html?product=cellular">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/cellular-shades-new.png" alt="Cellular honeycomb shades" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
+          <div class="motor-chip">+ motorized</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Cellular Shades</div>
+          <div class="pcard-sub">Insulating honeycomb</div>
+          <span class="badge badge-instant">Instant price</span>
+        </div>
+      </a>
+
+      <!-- Zebra / Banded Shades — Wallace configurator -->
+      <a class="pcard" href="pages/wallace-banded-shades.html">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/ZEBRA SHADE MORIZED.JPEG" alt="Zebra dual sheer banded shades" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
+          <div class="motor-chip">+ motorized</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Zebra &amp; Banded Shades</div>
+          <div class="pcard-sub">Portfolio Dual Sheer &middot; Banded 2D</div>
+          <span class="badge badge-instant">Instant estimate</span>
+        </div>
+      </a>
+
+
+      <!-- Wood Blinds — opens Faux vs Real Wood chooser -->
+      <a class="pcard" href="pages/shades.html?product=blinds">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/faux-blinds.png" alt="Wood blinds" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block">
+          <div class="motor-chip">+ motorized</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Wood Blinds</div>
+          <div class="pcard-sub">Faux wood or real wood — instant quote</div>
+          <span class="badge badge-instant">Instant price</span>
+        </div>
+      </a>
+
+      <!-- Sheer Shades — choice page (Hunter Douglas or Wallace 3D) -->
+      <a class="pcard" href="pages/sheer-shades.html">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/PIROUTTES.JPEG" alt="Sheer shades — Hunter Douglas or Wallace 3D" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block">
+          <div class="motor-chip">+ motorized</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Sheer Shades</div>
+          <div class="pcard-sub">Hunter Douglas · Wallace 3D Dual Sheer</div>
+          <span class="badge badge-instant">Choose brand →</span>
+        </div>
+      </a>
+
+      <!-- Vertical Blinds — chooser for Norman vs Wallace -->
+      <a class="pcard" href="pages/shades.html?product=verticals">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/verticals.png" alt="Vertical Blinds" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Vertical Blinds</div>
+          <div class="pcard-sub">Norman Synchrony™ or Wallace</div>
+          <span class="badge badge-instant">Choose brand →</span>
+        </div>
+      </a>
+
+      <!-- Plantation Shutters -->
+      <a class="pcard" href="pages/shutters.html">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/SHUTTERS.JPEG" alt="Plantation shutters" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Plantation Shutters</div>
+          <div class="pcard-sub">Norman — wood &amp; composite</div>
+          <span class="badge badge-quote">Custom quote</span>
+        </div>
+      </a>
+
+    </div><!-- /pcard-grid -->
+  </div><!-- /cat-grid-wrap hard -->
+
+</div><!-- /cat-section HARD -->
+
+<!-- ── SECTION SEPARATOR ── -->
+<div style="background:var(--espresso-mid);padding:0 28px">
+  <div style="height:1px;background:linear-gradient(90deg,var(--gold) 0%,rgba(45,224,193,0.15) 70%,transparent)"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SOFT WINDOW TREATMENTS
+════════════════════════════════════════════ -->
+<div class="cat-section" id="section-soft" style="border-left-color:#B0EDE6">
+
+  <div class="cat-header" style="background:var(--espresso-mid)">
+    <div class="cat-label">Category 2</div>
+    <div class="cat-title">Soft Window Treatments</div>
+    <div class="cat-sub">Fabric-forward, handcrafted treatments — draperies, romans, cornices &amp; valances. Every piece made to your exact specifications.</div>
+  </div>
+
+  <div class="cat-grid-wrap soft">
+    <div class="pcard-grid">
+
+      <!-- Custom Drapery — direct to configurator -->
+      <a class="pcard" href="pages/soft-treatments.html">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/IMG_1368.JPEG" alt="Custom floor-to-ceiling drapery installation" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
+          <div class="motor-chip">+ motorized</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Custom Drapery</div>
+          <div class="pcard-sub">Pinch pleat, ripple fold &amp; more</div>
+          <span class="badge badge-instant">Instant price</span>
+        </div>
+      </a>
+
+      <!-- Roman Shades — direct to configurator -->
+      <a class="pcard" href="pages/soft-treatments.html?tab=roman">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/VINNETTES OR ROMAN SHADES CUSTOM.JPEG" alt="Custom roman shades living room" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
+          <div class="motor-chip">+ motorized</div>
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Roman Shades</div>
+          <div class="pcard-sub">Flat, permanent pleated &amp; relaxed</div>
+          <span class="badge badge-instant">Instant price</span>
+        </div>
+      </a>
+
+      <!-- Roman Shade Woven Woods -->
+      <a class="pcard" href="pages/woven-wood-shades.html">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/woven-wood-shades.png" alt="Natural woven Roman shades bamboo grass jute" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Roman Shade Woven Woods</div>
+          <div class="pcard-sub">Natural woven bamboo, grass &amp; jute &middot; 5 collections</div>
+          <span class="badge badge-instant">Instant quote</span>
+        </div>
+      </a>
+
+      <!-- Specialty Roman Shade -->
+      <div class="pcard" onclick="pbShowContact('Specialty Roman Shade — Arch, Oval, or Custom Shape')" style="cursor:pointer">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/specialty-roman-shade.jpg" alt="Specialty arch roman shade" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Specialty Roman Shade</div>
+          <div class="pcard-sub">Arch, oval &amp; custom shapes</div>
+          <span class="badge badge-quote">Free consultation</span>
+        </div>
+      </div>
+
+      <!-- Cornices -->
+      <a class="pcard" href="pages/soft-treatments.html?tab=cornval">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/custom cornice.JPG" alt="Custom upholstered cornice" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Cornices</div>
+          <div class="pcard-sub">Fabric-wrapped box valances · $50/ft</div>
+          <span class="badge badge-instant">Instant price</span>
+        </div>
+      </a>
+
+      <!-- Valances -->
+      <a class="pcard" href="pages/soft-treatments.html?tab=cornval">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/specialty-valance.JPEG" alt="Custom swag valance" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Valances &amp; Top Treatments</div>
+          <div class="pcard-sub">Swags, jabots &amp; fabric tops · $50/ft</div>
+          <span class="badge badge-instant">Instant price</span>
+        </div>
+      </a>
+
+      <!-- Specialty Drapery -->
+      <div class="pcard" onclick="pbShowContact('Specialty Drapery — Event, Commercial, or Custom Fabrication')" style="cursor:pointer">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/specialty-drape.JPG" alt="Specialty luxury drapery" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Specialty Drapery</div>
+          <div class="pcard-sub">Event, commercial &amp; custom fabrication</div>
+          <span class="badge badge-quote">Free consultation</span>
+        </div>
+      </div>
+
+      <!-- Specialty Cornice -->
+      <div class="pcard" onclick="pbShowContact('Specialty Cornice — Custom Sizing and Fabrication')" style="cursor:pointer">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/specialty-soft-treatments.JPG" alt="Specialty cornice custom fabrication" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Specialty Cornice</div>
+          <div class="pcard-sub">Custom-built fabric-wrapped cornices</div>
+          <span class="badge badge-quote">Free consultation</span>
+        </div>
+      </div>
+
+      <!-- Specialty Valance -->
+      <div class="pcard" onclick="pbShowContact('Specialty Valance — Swags, Jabots &amp; Custom Top Treatments')" style="cursor:pointer">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/specialty-valance.JPEG" alt="Specialty swag valance" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Specialty Valance</div>
+          <div class="pcard-sub">Swags, jabots &amp; custom top treatments</div>
+          <span class="badge badge-quote">Free consultation</span>
+        </div>
+      </div>
+
+    </div><!-- /pcard-grid -->
+  </div><!-- /cat-grid-wrap soft -->
+
+</div><!-- /cat-section SOFT -->
+
+<!-- ── SECTION SEPARATOR ── -->
+<div style="background:var(--espresso-mid);padding:0 28px">
+  <div style="height:1px;background:linear-gradient(90deg,var(--gold) 0%,rgba(45,224,193,0.15) 70%,transparent)"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CUSTOM UPHOLSTERY
+════════════════════════════════════════════ -->
+<div class="cat-section" id="section-upholstery" style="border-left-color:#C8973F">
+
+  <div class="cat-header" style="background:var(--espresso-mid)">
+    <div class="cat-label">Category 3</div>
+    <div class="cat-title">Custom Upholstery</div>
+    <div class="cat-sub">Fabric-wrapped wall panels, custom pillows, cushions, headboards, and furniture — all made in-house and installed by our team.</div>
+  </div>
+
+  <div class="cat-grid-wrap soft">
+    <div class="pcard-grid">
+
+      <!-- Wall Upholstery -->
+      <a class="pcard" href="pages/upholstery.html">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/upholstery/IMG_2170-1.JPEG" alt="Fabric-wrapped wall panels" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Wall Upholstery</div>
+          <div class="pcard-sub">Decorative &amp; acoustic fabric wall panels</div>
+          <span class="badge badge-quote">Custom quote</span>
+        </div>
+      </a>
+
+      <!-- Soft Furnishings -->
+      <a class="pcard" href="pages/upholstery.html">
+        <div class="pcard-thumb" style="position:relative;overflow:hidden">
+          <img src="images/thumbnails/HEADBOARD UPHOLSTERY.JPG" alt="Custom upholstered headboard" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block">
+        </div>
+        <div class="pcard-body">
+          <div class="pcard-name">Pillows, Cushions &amp; Furniture</div>
+          <div class="pcard-sub">Headboards, benches, chairs &amp; custom pillows</div>
+          <span class="badge badge-quote">Custom quote</span>
+        </div>
+      </a>
+
+    </div><!-- /pcard-grid -->
+  </div><!-- /cat-grid-wrap -->
+
+</div><!-- /cat-section UPHOLSTERY -->
+
+<div class="teal-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════ -->
+<div class="section section-warm">
+  <div class="section-label">How it works</div>
+  <div class="section-title" style="font-size:26px;margin-bottom:6px">From first look to final install</div>
+  <div class="section-sub">Simple, transparent process — every time.</div>
+  <div class="how-grid">
+    <div class="how-card"><div class="how-num">1</div><div class="how-title">Choose your category</div><div class="how-desc">Shades, drapery, shutters, upholstery — pick your product type and open the configurator.</div></div>
+    <div class="how-card"><div class="how-num">2</div><div class="how-title">Configure every detail</div><div class="how-desc">Fabric, mount, size, manual or motorized — see your price update live.</div></div>
+    <div class="how-card"><div class="how-num">3</div><div class="how-title">Order or get a quote</div><div class="how-desc">Standard products price instantly. Premium products quoted within 24 hrs.</div></div>
+    <a class="how-card" href="pages/installation.html" style="text-decoration:none;display:block;border:1px solid rgba(45,224,193,0.2)"><div class="how-num">4</div><div class="how-title" style="color:var(--gold)">Professional install &rarr;</div><div class="how-desc">We handle delivery, fitting, and full smart home integration.</div></a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     BRANDS + FABRIC
+════════════════════════════════════════════ -->
+<div class="section section-dark">
+  <div class="section-label">Brands we carry</div>
+  <div class="brands-row">
+    <div class="brand-pill">Lutron</div>
+    <div class="brand-pill">Somfy</div>
+    <div class="brand-pill">Norman</div>
+    <div class="brand-pill">Hunter Douglas</div>
+    <div class="brand-pill">Automate</div>
+    <div class="brand-pill">Rollease Acmeda</div>
+    <div class="brand-more">&amp; many more</div>
+  </div>
+  <div style="text-align:center;font-size:12px;color:var(--gold);margin-bottom:32px">Don&rsquo;t see your brand? We source almost any manufacturer &mdash; just ask.</div>
+  <hr class="divider-dark">
+  <div class="section-label">Fabric &amp; material</div>
+  <div class="fabric-grid">
+    <div class="fabric-card">
+      <div class="fabric-icon">🧵</div>
+      <div class="fabric-title">We supply the fabric</div>
+      <div class="fabric-desc">Full library of fabrics, sheers, blackouts, textures, and patterns. In-home consultation to help you choose.</div>
+      <div class="fabric-tag">In-home consultation available</div>
+    </div>
+    <div class="fabric-card">
+      <div class="fabric-icon">📦</div>
+      <div class="fabric-title">You supply the fabric</div>
+      <div class="fabric-desc">Ship your fabric to us and we&rsquo;ll fabricate your shades, blinds, or drapes using your material.</div>
+      <div class="fabric-tag">Customer fabric welcome</div>
+    </div>
+    <div class="fabric-card">
+      <div class="fabric-icon">🏠</div>
+      <div class="fabric-title">On-site consultation</div>
+      <div class="fabric-desc">Not sure what&rsquo;s right? We come to you, bring samples, and help you design the perfect window treatment.</div>
+      <div class="fabric-tag">Free in-home visit</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     GET STARTED
+════════════════════════════════════════════ -->
+<div class="section section-warm" style="border-top:1px solid rgba(45,224,193,0.1)">
+  <div class="section-label">Get started</div>
+  <div class="section-title" style="font-size:26px;margin-bottom:6px">How would you like to order?</div>
+  <div class="section-sub">Pick the path that fits where you are right now.</div>
+  <div class="path-grid">
+    <a class="path-card featured" href="pages/measure.html">
+      <div class="path-icon" style="background:var(--gold-light)">📐</div>
+      <div class="path-tag" style="background:var(--gold-light);color:#0A4A42">Fastest</div>
+      <h3>I have my measurements</h3>
+      <p>Enter exact sizes and configure your order directly online.</p>
+    </a>
+    <a class="path-card" href="pages/measure.html">
+      <div class="path-icon" style="background:#E6F1FB">📏</div>
+      <div class="path-tag" style="background:#E6F1FB;color:#0C447C">Step-by-step</div>
+      <h3>Help me measure</h3>
+      <p>Our guide walks you through it with clear diagrams.</p>
+    </a>
+    <a class="path-card" href="pages/consult.html">
+      <div class="path-icon" style="background:var(--gold-mid)">🏠</div>
+      <div class="path-tag" style="background:var(--gold-mid);color:#0A4A42">White glove</div>
+      <h3>Send someone to measure</h3>
+      <p>We visit, measure everything, and handle it all.</p>
+    </a>
+  </div>
+  <div style="margin-top:16px;text-align:center;font-size:12px;color:#888">
+    Not sure? <a href="tel:6097421720" style="color:var(--gold);font-weight:500">(609) 742-1720 &middot; call or text 24/7</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════ -->
+<div class="section section-dark">
+  <div class="section-label" style="color:var(--gold)">What clients say</div>
+  <div class="section-title-light" style="font-size:26px;margin-bottom:6px">Trusted across the Philadelphia area</div>
+  <div class="section-sub-light">From Philly row homes to mountain retreats.</div>
+  <div class="tgrid">
+    <div class="tcard"><div class="tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tcard-text">&ldquo;The motorized shades completely changed how we use our living room. Installation was flawless.&rdquo;</div><div class="tcard-name">Sarah M. &middot; Philadelphia, PA</div></div>
+    <div class="tcard"><div class="tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tcard-text">&ldquo;Custom drapes for our entire home including the double-height great room. Stunning result.&rdquo;</div><div class="tcard-name">James &amp; Lisa R. &middot; Bryn Mawr, PA</div></div>
+    <div class="tcard"><div class="tcard-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="tcard-text">&ldquo;Called at 9pm with a question and got a real answer. That kind of service is rare.&rdquo;</div><div class="tcard-name">David K. &middot; Cherry Hill, NJ</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     CTA BANNER
+════════════════════════════════════════════ -->
+<div class="cta-banner">
+  <div>
+    <h2>Ready to transform your windows?</h2>
+    <p>Call or text us anytime &mdash; we&rsquo;ll walk you through every option.</p>
+  </div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="pages/consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="js/shared.js"></script>
+<script>renderNav('home'); renderFooter(true);</script>
+</body>
+</html>
+

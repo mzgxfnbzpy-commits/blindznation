@@ -1,0 +1,1187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="0; url=soft-treatments.html">
+<meta name="description" content="Handcrafted custom drapery panels — pinch pleat, ripple fold, flat panel &amp; more. Hardware by Kirsch, Paris Texas, Orion and others. Free in-home consultation. Philadelphia area.">
+<meta property="og:title" content="Custom Drapery &amp; Hardware | Philly Blinds">
+<meta property="og:description" content="Handcrafted custom drapery panels — pinch pleat, ripple fold, flat panel &amp; more. Hardware by Kirsch, Paris Texas, Orion and others. Free in-home consultation. Philadelphia area.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/drapery.html">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Custom Drapery &amp; Hardware | Philly Blinds">
+<meta name="twitter:description" content="Handcrafted custom drapery panels — pinch pleat, ripple fold, flat panel &amp; more. Hardware by Kirsch, Paris Texas, Orion and others. Free in-home consultation. Philadelphia area.">
+<title>Custom Drapery &amp; Hardware — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:44px 28px 40px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--cream)}
+.page-hero h1{font-size:32px;font-weight:500;color:var(--cream);letter-spacing:-0.5px;margin-bottom:10px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:20px}
+.hero-trust{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hero-trust a{font-size:14px;font-weight:500;color:var(--gold);text-decoration:none}
+.hero-trust-badge{font-size:11px;color:var(--text-faint);padding:5px 12px;border:0.5px solid var(--border-dark);border-radius:20px}
+
+/* ── TAB SWITCHER ── */
+.page-tabs-wrap{background:var(--espresso-mid);border-bottom:1px solid var(--border-dark);padding:0 28px;position:sticky;top:56px;z-index:90}
+.page-tabs{display:flex;gap:0}
+.page-tab{padding:15px 28px;font-size:13px;font-weight:500;color:var(--text-muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:color .15s,border-color .15s;letter-spacing:.2px;font-family:inherit}
+.page-tab:hover{color:var(--cream)}
+.page-tab.active{color:var(--cream);border-bottom-color:var(--gold)}
+
+/* ── STEP HEADERS ── */
+.step-header{margin-bottom:24px}
+.step-num{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:5px}
+.step-title{font-size:20px;font-weight:500;letter-spacing:-0.3px;color:#1a1a1a}
+.step-title-light{font-size:20px;font-weight:500;letter-spacing:-0.3px;color:var(--cream)}
+.step-sub{font-size:13px;color:#666;margin-top:4px;line-height:1.6}
+.step-sub-light{font-size:13px;color:var(--text-dark);margin-top:4px;line-height:1.6}
+
+/* ── STYLE / HARDWARE TYPE CARDS ── */
+.style-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;margin-top:20px}
+.hw-type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:14px;margin-top:20px}
+.style-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.style-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(45,224,193,.12)}
+.style-card.sel{border:2px solid var(--gold);box-shadow:0 2px 16px rgba(45,224,193,.2)}
+.style-card.sel .style-label-bar{background:var(--gold)}
+.style-card.sel .style-name{color:var(--espresso)}
+.style-card.sel .style-desc{color:var(--espresso)}
+.style-img-wrap{height:150px;overflow:hidden;background:#F8F4EE}
+.style-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.hw-ph-wrap{height:150px;background:#F0EDE8;display:flex;align-items:center;justify-content:center}
+.style-svg-wrap{background:#F8F4EE;padding:18px;display:flex;align-items:center;justify-content:center;height:114px}
+.style-label-bar{background:#f2ede6;padding:12px 14px;transition:background .15s}
+.style-name{font-size:13px;font-weight:500;color:#222;margin-bottom:2px}
+.style-desc{font-size:11px;color:#888;line-height:1.4}
+
+/* ── FABRIC CARDS ── */
+.fabric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:20px}
+.fabric-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;padding:22px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.fabric-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(45,224,193,.1)}
+.fabric-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.fabric-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.fabric-icon-gold{background:rgba(45,224,193,.15)}
+.fabric-icon-cream{background:rgba(245,236,215,.6)}
+.fabric-icon-soft{background:#EFF5E8}
+.fabric-card h3{font-size:14px;font-weight:500;color:#111;margin-bottom:4px}
+.fabric-card p{font-size:12px;color:#666;line-height:1.5}
+.fabric-card a{font-size:12px;color:var(--gold);font-weight:500;text-decoration:none;display:inline-block;margin-top:6px}
+.fabric-card.sel h3{color:var(--espresso)}
+
+/* ── HARDWARE FORM ── */
+.hardware-brands{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.brand-pill{padding:6px 14px;border:1px solid #ddd;border-radius:20px;font-size:12px;color:#555;background:#fff;cursor:default}
+.brand-pill-more{padding:6px 14px;border:1px dashed #ccc;border-radius:20px;font-size:12px;color:#999;background:#fafafa}
+.hw-form{background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px}
+.hw-form-label{font-size:12px;font-weight:500;color:#444;margin-bottom:8px;display:block}
+.hw-section{margin-bottom:20px}
+
+/* ── QUOTE BOX ── */
+.quote-box{background:var(--espresso-mid);border:0.5px solid var(--border-dark);border-radius:14px;padding:24px;position:sticky;top:110px}
+.quote-box-head{font-size:11px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:16px}
+.quote-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:0.5px solid var(--border-dark)}
+.quote-row:last-of-type{border-bottom:none}
+.quote-key{font-size:11px;color:var(--text-faint);white-space:nowrap}
+.quote-val{font-size:12px;color:var(--cream);text-align:right;line-height:1.4}
+.quote-note{font-size:11px;color:var(--text-faint);margin-top:14px;line-height:1.6;padding-top:14px;border-top:0.5px solid var(--border-dark)}
+
+/* ── LAYOUT ── */
+.two-col{display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start}
+.contact-form-wrap{background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:28px}
+.success-box{display:none;background:#EAF3DE;border-radius:12px;padding:32px;text-align:center}
+.success-box h3{font-size:18px;font-weight:500;color:#27500A;margin-bottom:8px}
+.success-box p{font-size:13px;color:#3B6D11;line-height:1.6;margin-bottom:16px}
+.win-dimensions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.measure-hint{font-size:12px;color:var(--text-muted);margin-top:-6px;margin-bottom:14px;line-height:1.5}
+.measure-hint a{color:var(--gold);text-decoration:none;font-weight:500}
+.type-btn{padding:9px 16px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;background:#fff;color:#333;font-family:var(--font);transition:all .12s;text-align:center}
+.type-btn:hover{border-color:var(--gold)}
+.type-btn.sel{border:2px solid var(--gold);color:#0A4A42;font-weight:500;background:var(--gold-mid)}
+.type-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+
+/* ── CROSS-SELL PROMPT ── */
+.xsell-wrap{background:var(--espresso);border:1px solid var(--border-dark);border-radius:14px;padding:24px;margin-top:8px}
+.xsell-head{font-size:15px;font-weight:500;color:var(--cream);margin-bottom:6px}
+.xsell-sub{font-size:12px;color:var(--text-dark);margin-bottom:16px;line-height:1.6}
+.xsell-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:0}
+.xsell-btn{padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:all .12s;border:1.5px solid}
+.xsell-btn-yes{background:var(--gold);color:var(--espresso);border-color:var(--gold)}
+.xsell-btn-no{background:transparent;color:var(--text-muted);border-color:var(--border-dark)}
+.xsell-btn-no:hover{border-color:var(--text-muted);color:var(--cream)}
+
+/* ── MEASUREMENT CHOICE ── */
+.measure-choice-wrap{margin-top:20px}
+.measure-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.measure-choice-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;padding:20px;cursor:pointer;transition:border-color .15s,box-shadow .15s;text-align:center}
+.measure-choice-card:hover{border-color:var(--gold);box-shadow:0 2px 10px rgba(45,224,193,.1)}
+.measure-choice-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.measure-choice-icon{font-size:28px;margin-bottom:8px}
+.measure-choice-title{font-size:14px;font-weight:500;color:#111;margin-bottom:4px}
+.measure-choice-desc{font-size:11px;color:#666;line-height:1.5}
+
+@media(max-width:900px){.two-col{grid-template-columns:1fr}.quote-box{position:static}}
+@media(max-width:640px){.measure-choice-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.style-grid,.hw-type-grid{grid-template-columns:repeat(2,1fr)}.fabric-grid{grid-template-columns:1fr}.page-hero h1{font-size:24px}}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Custom drapery &amp; hardware</div>
+  <div class="section-label">Fully custom &bull; Philadelphia &amp; surrounding area</div>
+  <h1>Custom Drapery &amp; Hardware</h1>
+  <p class="sub">Handcrafted drapery panels and decorative hardware — made to your exact windows, your fabric, your style. Start with drapes or start with hardware.</p>
+  <div class="hero-trust">
+    <a href="tel:6097421720">(609) 742-1720</a>
+    <span class="hero-trust-badge">Available 24/7</span>
+    <span class="hero-trust-badge">Free in-home consultation</span>
+    <span class="hero-trust-badge">Quote within 24 hrs</span>
+  </div>
+</div>
+
+<!-- TAB SWITCHER -->
+<div class="page-tabs-wrap">
+  <div class="page-tabs">
+    <button class="page-tab active" id="tab-btn-drp" onclick="switchTab('drp')">Custom Drapery</button>
+    <button class="page-tab" id="tab-btn-hw" onclick="switchTab('hw')">Drapery Hardware</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     TAB 1 — CUSTOM DRAPERY
+═══════════════════════════════════════════════════════ -->
+<div id="tab-drp">
+
+<!-- Step 1: Drapery Style -->
+<div class="section section-warm">
+  <div class="step-header">
+    <div class="step-num">Step 1 of 4</div>
+    <div class="step-title">Choose your drapery style</div>
+    <div class="step-sub">Select the heading style that best fits your room. Not sure? We'll advise during your consultation.</div>
+  </div>
+  <div class="style-grid" id="style-grid">
+
+    <div class="style-card" onclick="selStyle(this,'Ripple Fold')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/RIPPLEFOLD.png" alt="Ripple Fold drapery" loading="lazy">
+      </div>
+      <div class="style-label-bar">
+        <div class="style-name">Ripple Fold</div>
+        <div class="style-desc">Continuous S-curve wave, modern &amp; clean</div>
+      </div>
+    </div>
+
+    <div class="style-card" onclick="selStyle(this,'Pinch Pleat')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/IMG_1368.JPEG" alt="Custom drapery installation" loading="lazy">
+      </div>
+      <div class="style-label-bar">
+        <div class="style-name">Pinch Pleat</div>
+        <div class="style-desc">Classic finger pleats, formal &amp; traditional</div>
+      </div>
+    </div>
+
+    <div class="style-card" onclick="selStyle(this,'Goblet Pleat')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/GOBLET PLEAT.png" alt="Goblet Pleat drapery" loading="lazy">
+      </div>
+      <div class="style-label-bar">
+        <div class="style-name">Goblet Pleat</div>
+        <div class="style-desc">Wine-glass pleats, luxurious &amp; formal</div>
+      </div>
+    </div>
+
+    <div class="style-card" onclick="selStyle(this,'Sheered Pocket')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/BEST SHEERS POCKET THUMBNAIL.JPG" alt="Sheered pocket drapery" loading="lazy">
+      </div>
+      <div class="style-label-bar">
+        <div class="style-name">Sheered Pocket</div>
+        <div class="style-desc">Rod slides through gathered pocket, soft &amp; ruffled</div>
+      </div>
+    </div>
+
+    <div class="style-card" onclick="selStyle(this,'Tabs')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/TAB TOP DRAPES.png" alt="Tab top drapery" loading="lazy">
+      </div>
+      <div class="style-label-bar">
+        <div class="style-name">Tabs</div>
+        <div class="style-desc">Fabric loops over the rod, casual &amp; relaxed</div>
+      </div>
+    </div>
+
+    <div class="style-card" onclick="selStyle(this,'Tie Top')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/TIE TOP DRAPES.png" alt="Tie top drapery" loading="lazy">
+      </div>
+      <div class="style-label-bar">
+        <div class="style-name">Tie Top</div>
+        <div class="style-desc">Fabric ties knotted over the rod, soft &amp; romantic</div>
+      </div>
+    </div>
+
+    <div class="style-card" onclick="selStyle(this,'Grommet')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/GROMMETED DRAPES .png" alt="Grommet drapery" loading="lazy">
+      </div>
+      <div class="style-label-bar">
+        <div class="style-name">Grommet</div>
+        <div class="style-desc">Metal rings at top, contemporary &amp; structured</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pinch sub-options -->
+  <div id="pinch-opts" style="display:none;margin-top:16px;padding:16px 18px;background:#fff;border:1px solid #e8e8e4;border-radius:10px">
+    <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:14px">Pinch Pleat details</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <div style="font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Number of fingers</div>
+        <div class="opt-row" id="pinch-grp-fingers">
+          <button class="opt-btn sel" onclick="selOpt(this,'pinch-grp-fingers');updateQuote()">1 finger</button>
+          <button class="opt-btn" onclick="selOpt(this,'pinch-grp-fingers');updateQuote()">2 finger</button>
+          <button class="opt-btn" onclick="selOpt(this,'pinch-grp-fingers');updateQuote()">3 finger</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Pinch position</div>
+        <div class="opt-row" id="pinch-grp-pos">
+          <button class="opt-btn sel" onclick="selOpt(this,'pinch-grp-pos');updateQuote()">Top</button>
+          <button class="opt-btn" onclick="selOpt(this,'pinch-grp-pos');updateQuote()">Bottom</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ripple sub-options -->
+  <div id="ripple-opts" style="display:none;margin-top:16px;padding:16px 18px;background:#fff;border:1px solid #e8e8e4;border-radius:10px">
+    <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:6px">Ripple Fold fullness</div>
+    <div style="font-size:11px;color:#888;margin-bottom:12px">Higher fullness = more fabric, fuller wave. Most tracks specify a fixed ratio.</div>
+    <div class="opt-row" id="ripple-grp-fullness">
+      <button class="opt-btn" onclick="selOpt(this,'ripple-grp-fullness');updateQuote()">60%</button>
+      <button class="opt-btn sel" onclick="selOpt(this,'ripple-grp-fullness');updateQuote()">80%</button>
+      <button class="opt-btn" onclick="selOpt(this,'ripple-grp-fullness');updateQuote()">100%</button>
+      <button class="opt-btn" onclick="selOpt(this,'ripple-grp-fullness');updateQuote()">120%</button>
+    </div>
+    <div style="font-size:11px;color:#999;margin-top:8px">80% is the most common default for ripple fold track systems.</div>
+  </div>
+</div>
+
+<!-- Step 2: Fabric -->
+<div class="section section-white">
+  <div class="step-header">
+    <div class="step-num">Step 2 of 4</div>
+    <div class="step-title">Who is supplying the fabric?</div>
+    <div class="step-sub">We work with all three paths — choose what applies to your project.</div>
+  </div>
+  <div class="fabric-grid">
+
+    <div class="fabric-card" onclick="selFabricPath(this,'We supply fabric')">
+      <div class="fabric-icon fabric-icon-gold">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="10" rx="2" stroke="#2DE0C1" stroke-width="1.5"/><line x1="3" y1="9" x2="17" y2="9" stroke="#2DE0C1" stroke-width="1"/></svg>
+      </div>
+      <h3>We supply the fabric</h3>
+      <p>Choose from our curated fabric collection. We bring samples to your home and help you select the perfect material, weight, and lining.</p>
+    </div>
+
+    <div class="fabric-card" onclick="selFabricPath(this,'Customer supplies fabric')">
+      <div class="fabric-icon fabric-icon-cream">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 16 L10 4 L15 16" stroke="#2DE0C1" stroke-width="1.5" stroke-linejoin="round"/><line x1="7" y1="12" x2="13" y2="12" stroke="#2DE0C1" stroke-width="1"/></svg>
+      </div>
+      <h3>I'm supplying my own fabric</h3>
+      <p>Have fabric you love? Ship it to us or drop it off. We'll handle the cutting, construction, lining, and hardware.</p>
+    </div>
+
+    <div class="fabric-card" onclick="selFabricPath(this,'Not sure yet')">
+      <div class="fabric-icon fabric-icon-soft">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#5A8040" stroke-width="1.5"/><path d="M10 6 C10 6,8 7.5,8 9 C8 10.5,10 10.5,10 12" stroke="#5A8040" stroke-width="1.5" stroke-linecap="round"/><circle cx="10" cy="14.5" r=".8" fill="#5A8040"/></svg>
+      </div>
+      <h3>Not sure yet</h3>
+      <p>No problem at all. Book a free consultation and we'll walk you through all the options together.</p>
+      <a href="consult.html">Book free consult &rsaquo;</a>
+    </div>
+
+  </div>
+
+  <div id="drape-fabric-picker" style="display:none;margin-top:20px;padding:20px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:12px">
+    <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:14px">Choose a fabric category &amp; color</div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#888;margin-bottom:8px">Fabric category</div>
+    <div class="opt-row" id="drape-grp-fabric-type">
+      <button class="opt-btn sel" onclick="selOpt(this,'drape-grp-fabric-type');drapeRenderColors()">Linen / Natural</button>
+      <button class="opt-btn" onclick="selOpt(this,'drape-grp-fabric-type');drapeRenderColors()">Cotton / Canvas</button>
+      <button class="opt-btn" onclick="selOpt(this,'drape-grp-fabric-type');drapeRenderColors()">Velvet</button>
+      <button class="opt-btn" onclick="selOpt(this,'drape-grp-fabric-type');drapeRenderColors()">Sheer / Voile</button>
+      <button class="opt-btn" onclick="selOpt(this,'drape-grp-fabric-type');drapeRenderColors()">Silk / Faux Silk</button>
+      <button class="opt-btn" onclick="selOpt(this,'drape-grp-fabric-type');drapeRenderColors()">Blackout</button>
+    </div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#888;margin:12px 0 8px">Color</div>
+    <div id="drape-fabric-colors" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    <div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#888;margin:14px 0 8px">Lining</div>
+    <div class="opt-row" id="drape-grp-lining">
+      <button class="opt-btn sel" onclick="selOpt(this,'drape-grp-lining');updateQuote()">Unlined</button>
+      <button class="opt-btn" onclick="selOpt(this,'drape-grp-lining');updateQuote()">Privacy lining</button>
+      <button class="opt-btn" onclick="selOpt(this,'drape-grp-lining');updateQuote()">Blackout lining</button>
+      <button class="opt-btn" onclick="selOpt(this,'drape-grp-lining');updateQuote()">Interlining (extra body)</button>
+    </div>
+    <div style="font-size:10px;color:#999;margin-top:10px;line-height:1.5">Color shown is approximate. We bring full swatch samples to every consultation.</div>
+  </div>
+</div>
+
+<!-- Step 3: Drapery Dimensions -->
+<div class="section section-warm">
+  <div class="step-header">
+    <div class="step-num">Step 3 of 4</div>
+    <div class="step-title">Window measurements</div>
+    <div class="step-sub">Do you have your measurements ready, or would you like guidance?</div>
+  </div>
+
+  <div class="measure-choice-grid" id="drp-measure-choice-grid">
+    <div class="measure-choice-card" id="drp-mc-have" onclick="drpSelMeasure('have')">
+      <div class="measure-choice-icon">📐</div>
+      <div class="measure-choice-title">I have my measurements</div>
+      <div class="measure-choice-desc">Enter exact width and height for each window. We'll prep your quote from there.</div>
+    </div>
+    <div class="measure-choice-card" id="drp-mc-guide" onclick="drpSelMeasure('guide')">
+      <div class="measure-choice-icon">📏</div>
+      <div class="measure-choice-title">I need a measuring guide</div>
+      <div class="measure-choice-desc">We'll walk you through it step by step — or send someone to measure for free.</div>
+    </div>
+  </div>
+
+  <!-- Have measurements: show input fields -->
+  <div id="drp-dims-form" style="display:none;margin-top:4px">
+    <div class="two-col">
+      <div>
+        <div class="hw-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Number of windows</label>
+              <select id="win-qty" onchange="updateWinDims();updateQuote()">
+                <option value="1">1 window</option>
+                <option value="2">2 windows</option>
+                <option value="3">3 windows</option>
+                <option value="4">4 windows</option>
+                <option value="5">5 windows</option>
+                <option value="6">6 windows</option>
+                <option value="7">7 windows</option>
+                <option value="8">8 windows</option>
+                <option value="9">9 windows</option>
+                <option value="10">10 windows</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mount type</label>
+              <div class="opt-row" id="mount-type">
+                <button class="opt-btn" onclick="selOpt(this,'mount-type');updateQuote()">Ceiling mount</button>
+                <button class="opt-btn" onclick="selOpt(this,'mount-type');updateQuote()">Wall mount</button>
+                <button class="opt-btn" onclick="selOpt(this,'mount-type');updateQuote()">Crown molding</button>
+              </div>
+            </div>
+          </div>
+          <div id="win-dims-wrap"></div>
+        </div>
+      </div>
+      <div>
+        <div class="quote-box" id="quote-box">
+          <div class="quote-box-head">Your quote summary</div>
+          <div class="quote-row"><span class="quote-key">Drapery style</span><span class="quote-val" id="qs-style">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Fabric path</span><span class="quote-val" id="qs-fabric">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Windows</span><span class="quote-val" id="qs-dims">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Mount type</span><span class="quote-val" id="qs-mount">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Rod &amp; hardware</span><span class="quote-val" id="qs-hw-addon">&mdash;</span></div>
+          <div class="quote-note">Custom drapery is quoted per project. Detailed quote within 24 hours of your request.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Need guide: show links -->
+  <div id="drp-dims-guide" style="display:none;margin-top:4px;padding:24px;background:#fff;border:1px solid #e8e8e4;border-radius:12px">
+    <div style="font-size:14px;font-weight:500;color:#111;margin-bottom:12px">Two ways to get your measurements</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="measure-drapes.html" class="btn-gold" style="text-decoration:none;display:inline-block">Step-by-step measuring guide &rarr;</a>
+      <a href="consult.html" class="btn-ghost-dark" style="text-decoration:none;display:inline-block">Send someone to measure (free)</a>
+    </div>
+    <div style="font-size:11px;color:#888;margin-top:14px;line-height:1.6">Once you have your measurements, come back and fill in the form above — or just call us at <a href="tel:6097421720" style="color:var(--gold);text-decoration:none;font-weight:500">(609) 742-1720</a> and we'll handle everything over the phone.</div>
+  </div>
+</div>
+
+<!-- Step 4: Also need hardware? -->
+<div class="section section-white" id="drp-xsell-section">
+  <div class="step-header">
+    <div class="step-num">Step 4 of 4</div>
+    <div class="step-title">Do you also need a rod &amp; brackets?</div>
+    <div class="step-sub">We can include hardware in the same quote — configure it here or note your preference and we'll advise.</div>
+  </div>
+  <div class="xsell-wrap">
+    <div class="xsell-btns">
+      <button class="xsell-btn xsell-btn-yes" onclick="showDrpHwAddon(true)">Yes, add hardware to my quote</button>
+      <button class="xsell-btn xsell-btn-no" onclick="showDrpHwAddon(false)">No, drapery only</button>
+    </div>
+  </div>
+
+  <!-- Hardware add-on for drapery tab -->
+  <div id="drp-hw-addon" style="display:none;margin-top:24px">
+    <div style="font-size:14px;font-weight:500;color:#111;margin-bottom:16px">Choose your hardware type</div>
+    <div class="hw-type-grid" id="drp-hw-type-grid">
+
+      <!-- Decorative Rod -->
+      <div class="style-card" onclick="selDrpHwType(this,'Decorative Rod')">
+        <div class="style-img-wrap">
+          <img src="../images/thumbnails/IMG_5574.JPEG" alt="Decorative rod with French returns" loading="lazy">
+        </div>
+        <div class="style-label-bar"><div class="style-name">Decorative</div><div class="style-desc">Rod is the design — elegant &amp; exposed</div></div>
+      </div>
+
+      <!-- Decorative + Rings -->
+      <div class="style-card" onclick="selDrpHwType(this,'Decorative + Rings')">
+        <div class="style-img-wrap">
+          <img src="../images/thumbnails/LUCITE ROD AND RINGS DRAPES GOLD.jpg" alt="Decorative rod with rings" loading="lazy">
+        </div>
+        <div class="style-label-bar"><div class="style-name">Decorative + Rings</div><div class="style-desc">Rod with clip or sewn rings, easy to slide</div></div>
+      </div>
+
+      <!-- Classic Traverse -->
+      <div class="style-card" onclick="selDrpHwType(this,'Classic Traverse')">
+        <div class="style-img-wrap">
+          <img src="../images/thumbnails/3 PRONG TACK TOP DRAPES ON TRAVERSE ROD.JPEG" alt="Classic traverse rod" loading="lazy">
+        </div>
+        <div class="style-label-bar"><div class="style-name">Classic Traverse</div><div class="style-desc">Corded or wand — fabric draws smoothly</div></div>
+      </div>
+
+      <!-- Modern Decorative Traverse -->
+      <div class="style-card" onclick="selDrpHwType(this,'Modern Decorative Traverse')">
+        <div class="hw-ph-wrap">
+          <!-- swap for real photo when available -->
+          <svg viewBox="0 0 80 60" width="80" height="60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="20" width="72" height="5" rx="2.5" fill="#8B6914"/><rect x="4" y="25" width="72" height="2" rx="1" fill="rgba(45,224,193,0.4)"/>
+            <rect x="12" y="27" width="22" height="26" rx="1" fill="rgba(45,224,193,0.25)" stroke="#2DE0C1" stroke-width="0.8"/>
+            <rect x="46" y="27" width="22" height="26" rx="1" fill="rgba(245,236,215,0.45)" stroke="#8B6914" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <div class="style-label-bar"><div class="style-name">Modern Decorative Traverse</div><div class="style-desc">Traverse function with decorative face</div></div>
+      </div>
+
+      <!-- Motorized Track -->
+      <div class="style-card" onclick="selDrpHwType(this,'Motorized Track')">
+        <div class="style-img-wrap">
+          <img src="../images/thumbnails/2 PRONG TACK BOT DRAPES MOTORIZED TRAC DECOERITVIE.JPEG" alt="Motorized decorative traverse" loading="lazy">
+        </div>
+        <div class="style-label-bar"><div class="style-name">Motorized Track</div><div class="style-desc">Somfy, Lutron, Rollease — remote or app</div></div>
+      </div>
+
+      <!-- Economical Traverse -->
+      <div class="style-card" onclick="selDrpHwType(this,'Economical Traverse')">
+        <div class="hw-ph-wrap">
+          <!-- swap for real photo when available -->
+          <svg viewBox="0 0 80 60" width="80" height="60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="22" width="72" height="4" rx="1" fill="#888"/>
+            <rect x="12" y="26" width="22" height="28" rx="1" fill="rgba(200,200,200,0.4)" stroke="#aaa" stroke-width="0.8"/>
+            <rect x="46" y="26" width="22" height="28" rx="1" fill="rgba(200,200,200,0.4)" stroke="#aaa" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <div class="style-label-bar"><div class="style-name">Economical Traverse</div><div class="style-desc">Simple &amp; reliable — great for multi-window projects</div></div>
+      </div>
+
+    </div><!-- /drp-hw-type-grid -->
+
+    <!-- Hardware detail options -->
+    <div id="drp-hw-opts" style="display:none;margin-top:20px">
+      <div class="hw-form">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:16px">Hardware details</div>
+        <div class="hardware-brands" style="margin-bottom:16px">
+          <span class="brand-pill">Kirsch</span><span class="brand-pill">Paris Texas</span><span class="brand-pill">Orion</span>
+          <span class="brand-pill">Forest</span><span class="brand-pill">Select</span><span class="brand-pill-more">+ more</span>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Brand preference</label>
+            <select id="d-hw-brand" onchange="updateQuote()">
+              <option value="">Select a brand</option>
+              <option>Kirsch</option><option>Paris Texas</option><option>Orion</option>
+              <option>Forest</option><option>Select</option><option>Other (specify in notes)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Rod diameter</label>
+            <div class="opt-row" id="d-hw-diameter">
+              <button class="opt-btn" onclick="selOpt(this,'d-hw-diameter');updateQuote()">3/4&quot;</button>
+              <button class="opt-btn" onclick="selOpt(this,'d-hw-diameter');updateQuote()">1&quot;</button>
+              <button class="opt-btn" onclick="selOpt(this,'d-hw-diameter');updateQuote()">1-3/16&quot;</button>
+              <button class="opt-btn" onclick="selOpt(this,'d-hw-diameter');updateQuote()">1-3/8&quot;</button>
+              <button class="opt-btn" onclick="selOpt(this,'d-hw-diameter');updateQuote()">1-3/4&quot;</button>
+              <button class="opt-btn" onclick="selOpt(this,'d-hw-diameter');updateQuote()">2&quot;</button>
+            </div>
+          </div>
+        </div>
+        <div class="hw-section">
+          <span class="hw-form-label">Finish</span>
+          <div class="opt-row" id="d-hw-finish">
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finish');updateQuote()">Matte Black</button>
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finish');updateQuote()">Polished Nickel</button>
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finish');updateQuote()">Brushed Gold</button>
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finish');updateQuote()">Bronze</button>
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finish');updateQuote()">Chrome</button>
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finish');updateQuote()">White</button>
+          </div>
+        </div>
+        <div class="hw-section">
+          <span class="hw-form-label">Finial style</span>
+          <div class="opt-row" id="d-hw-finial">
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finial');updateQuote()">Ball</button>
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finial');updateQuote()">Spear</button>
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finial');updateQuote()">Disc</button>
+            <button class="opt-btn" onclick="selOpt(this,'d-hw-finial');updateQuote()">French Returns</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /drp-hw-addon -->
+</div>
+
+<!-- Drapery Quote Form -->
+<div class="section section-warm">
+  <div class="step-header">
+    <div class="step-num">Almost done</div>
+    <div class="step-title">Request your custom quote</div>
+    <div class="step-sub">Leave your contact details and we'll follow up with a detailed written quote within 24 hours.</div>
+  </div>
+  <div id="drp-contact-section">
+    <div class="contact-form-wrap">
+      <div class="form-row">
+        <div class="form-group"><label>Your name *</label><input type="text" id="cf-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="cf-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="cf-email" placeholder="jane@example.com"></div>
+      <div class="form-group">
+        <label>Notes or questions</label>
+        <textarea id="cf-notes" placeholder="Room names, ceiling height, fabric preference, motor brand preference, hardware finish, timeline, etc."></textarea>
+      </div>
+      <div class="delivery-section">
+        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+        <div class="opt-row" id="grp-del-drp">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-drp');document.getElementById('del-drp-s').style.display='block';document.getElementById('del-drp-p').style.display='none'">Ship to me</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-del-drp');document.getElementById('del-drp-s').style.display='none';document.getElementById('del-drp-p').style.display='block'">I'll pick up</button>
+        </div>
+        <div id="del-drp-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with quote.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized in your quote.</div></div>
+        <div id="del-drp-p" class="delivery-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.</div>
+      </div>
+      <div class="call-strip" style="margin-bottom:16px">
+        <div class="call-text">Prefer to talk it through? We're here 24/7.</div>
+        <a class="call-num" href="tel:6097421720">(609) 742-1720</a>
+      </div>
+      <button class="btn-gold" onclick="submitDrpForm()" style="width:100%;padding:14px;font-size:14px">Request custom quote</button>
+    </div>
+  </div>
+  <div class="success-box" id="drp-form-success">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin-bottom:12px"><circle cx="20" cy="20" r="18" stroke="#27500A" stroke-width="2"/><path d="M12 20 L18 26 L28 14" stroke="#27500A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h3>Quote request received</h3>
+    <p>Thank you — we'll review your selections and prepare a detailed written quote within 24 hours.</p>
+    <p style="margin-top:8px">For anything urgent, reach us any time at <strong>(609) 742-1720</strong>.</p>
+    <a class="btn-dark" href="consult.html" style="margin-top:16px;display:inline-block">Book a free in-home visit</a>
+  </div>
+</div>
+
+</div><!-- /tab-drp -->
+
+
+<!-- ══════════════════════════════════════════════════════
+     TAB 2 — DRAPERY HARDWARE
+═══════════════════════════════════════════════════════ -->
+<div id="tab-hw" style="display:none">
+
+<!-- HW Step 1: Choose hardware type -->
+<div class="section section-warm">
+  <div class="step-header">
+    <div class="step-num">Step 1 of 3</div>
+    <div class="step-title">Choose your hardware style</div>
+    <div class="step-sub">Select the hardware type. Each type has its own look, operation, and compatibility with drapery styles.</div>
+  </div>
+  <div class="hw-type-grid" id="hw-type-grid">
+
+    <div class="style-card" onclick="selHwType(this,'Decorative Rod')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/IMG_5574.JPEG" alt="Decorative rod with French returns" loading="lazy">
+      </div>
+      <div class="style-label-bar"><div class="style-name">Decorative</div><div class="style-desc">Exposed rod IS the design — finials &amp; finish matter</div></div>
+    </div>
+
+    <div class="style-card" onclick="selHwType(this,'Decorative + Rings')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/LUCITE ROD AND RINGS DRAPES GOLD.jpg" alt="Decorative rod with rings" loading="lazy">
+      </div>
+      <div class="style-label-bar"><div class="style-name">Decorative + Rings</div><div class="style-desc">Rings hang from rod, fabric clips or sews to rings</div></div>
+    </div>
+
+    <div class="style-card" onclick="selHwType(this,'Classic Traverse')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/3 PRONG TACK TOP DRAPES ON TRAVERSE ROD.JPEG" alt="Classic traverse rod" loading="lazy">
+      </div>
+      <div class="style-label-bar"><div class="style-name">Classic Traverse</div><div class="style-desc">Corded or wand-operated, center overlap draw</div></div>
+    </div>
+
+    <div class="style-card" onclick="selHwType(this,'Modern Decorative Traverse')">
+      <div class="hw-ph-wrap">
+        <!-- swap for real photo when available -->
+        <svg viewBox="0 0 80 60" width="80" height="60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="20" width="72" height="5" rx="2.5" fill="#8B6914"/><rect x="4" y="25" width="72" height="2" rx="1" fill="rgba(45,224,193,0.4)"/>
+          <rect x="12" y="27" width="22" height="26" rx="1" fill="rgba(45,224,193,0.25)" stroke="#2DE0C1" stroke-width="0.8"/>
+          <rect x="46" y="27" width="22" height="26" rx="1" fill="rgba(245,236,215,0.45)" stroke="#8B6914" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="style-label-bar"><div class="style-name">Modern Decorative Traverse</div><div class="style-desc">Traverse function, decorative face — best of both</div></div>
+    </div>
+
+    <div class="style-card" onclick="selHwType(this,'Motorized Track')">
+      <div class="style-img-wrap">
+        <img src="../images/thumbnails/2 PRONG TACK BOT DRAPES MOTORIZED TRAC DECOERITVIE.JPEG" alt="Motorized decorative traverse" loading="lazy">
+      </div>
+      <div class="style-label-bar"><div class="style-name">Motorized Track</div><div class="style-desc">Somfy, Lutron, Rollease — remote or smart home</div></div>
+    </div>
+
+    <div class="style-card" onclick="selHwType(this,'Economical Traverse')">
+      <div class="hw-ph-wrap">
+        <!-- swap for real photo when available -->
+        <svg viewBox="0 0 80 60" width="80" height="60" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="22" width="72" height="4" rx="1" fill="#888"/>
+          <rect x="12" y="26" width="22" height="28" rx="1" fill="rgba(200,200,200,0.4)" stroke="#aaa" stroke-width="0.8"/>
+          <rect x="46" y="26" width="22" height="28" rx="1" fill="rgba(200,200,200,0.4)" stroke="#aaa" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="style-label-bar"><div class="style-name">Economical Traverse</div><div class="style-desc">Reliable, no-frills — ideal for multi-window projects</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- HW Step 2: Hardware options -->
+<div class="section section-white" id="hw-opts-section" style="display:none">
+  <div class="step-header">
+    <div class="step-num">Step 2 of 3</div>
+    <div class="step-title">Configure your hardware</div>
+    <div class="step-sub">Choose your brand, finish, and accessories. We can source specialty hardware on request.</div>
+  </div>
+  <div class="hardware-brands">
+    <span class="brand-pill">Kirsch</span><span class="brand-pill">Paris Texas</span><span class="brand-pill">Orion</span>
+    <span class="brand-pill">Forest</span><span class="brand-pill">Select</span><span class="brand-pill-more">+ more on request</span>
+  </div>
+  <div class="hw-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Brand preference</label>
+        <select id="hw-brand" onchange="updateHwQuote()">
+          <option value="">Select a brand</option>
+          <option>Kirsch</option><option>Paris Texas</option><option>Orion</option>
+          <option>Forest</option><option>Select</option><option>Other (specify in notes)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Rod / track diameter</label>
+        <div class="opt-row" id="hw-diameter">
+          <button class="opt-btn" onclick="selOpt(this,'hw-diameter');updateHwQuote()">3/4&quot;</button>
+          <button class="opt-btn" onclick="selOpt(this,'hw-diameter');updateHwQuote()">1&quot;</button>
+          <button class="opt-btn" onclick="selOpt(this,'hw-diameter');updateHwQuote()">1-3/16&quot;</button>
+          <button class="opt-btn" onclick="selOpt(this,'hw-diameter');updateHwQuote()">1-3/8&quot;</button>
+          <button class="opt-btn" onclick="selOpt(this,'hw-diameter');updateHwQuote()">1-3/4&quot;</button>
+          <button class="opt-btn" onclick="selOpt(this,'hw-diameter');updateHwQuote()">2&quot;</button>
+        </div>
+      </div>
+    </div>
+    <div class="hw-section">
+      <span class="hw-form-label">Finish</span>
+      <div class="opt-row" id="hw-finish">
+        <button class="opt-btn" onclick="selOpt(this,'hw-finish');updateHwQuote()">Matte Black</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-finish');updateHwQuote()">Polished Nickel</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-finish');updateHwQuote()">Brushed Gold</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-finish');updateHwQuote()">Bronze</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-finish');updateHwQuote()">Chrome</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-finish');updateHwQuote()">White</button>
+      </div>
+    </div>
+    <div class="hw-section" id="hw-finial-section">
+      <span class="hw-form-label">Finial style <span style="font-weight:400;color:#aaa;font-size:11px">(decorative rods only)</span></span>
+      <div class="opt-row" id="hw-finial">
+        <button class="opt-btn" onclick="selOpt(this,'hw-finial');updateHwQuote()">Ball</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-finial');updateHwQuote()">Spear</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-finial');updateHwQuote()">Disc</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-finial');updateHwQuote()">French Returns</button>
+      </div>
+    </div>
+    <div class="hw-section" id="hw-rings-section">
+      <span class="hw-form-label">Rings</span>
+      <div class="opt-row" id="hw-rings">
+        <button class="opt-btn" onclick="selOpt(this,'hw-rings');updateHwQuote()">Clip rings</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-rings');updateHwQuote()">Ripple fold rings</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-rings');updateHwQuote()">No rings needed</button>
+      </div>
+    </div>
+    <div class="hw-section" style="border-top:1px solid #eee;padding-top:18px;margin-top:4px">
+      <span class="hw-form-label">Add motorization? <span style="font-weight:400;color:#aaa">(optional)</span></span>
+      <div class="opt-row" id="hw-motor">
+        <button class="opt-btn sel" onclick="selOpt(this,'hw-motor');toggleHwMotor(false);updateHwQuote()">No thanks &ndash; manual</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-motor');toggleHwMotor(true);updateHwQuote()">Yes, motorize it</button>
+      </div>
+      <div id="hw-motor-note" style="display:none;margin-top:10px;font-size:12px;color:#555;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px;padding:12px 14px;line-height:1.6">
+        Motor brand compatibility depends on the hardware system you select. If you have a preference — <strong>Somfy, Lutron Sivoia, Rollease Acmeda</strong> — please note it below and we'll confirm compatibility.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HW Step 3: Dimensions -->
+<div class="section section-warm" id="hw-dims-section" style="display:none">
+  <div class="step-header">
+    <div class="step-num">Step 3 of 3</div>
+    <div class="step-title">Window measurements</div>
+    <div class="step-sub">Do you have your measurements ready, or would you like guidance?</div>
+  </div>
+
+  <div class="measure-choice-grid" id="hw-measure-choice-grid">
+    <div class="measure-choice-card" id="hw-mc-have" onclick="hwSelMeasure('have')">
+      <div class="measure-choice-icon">📐</div>
+      <div class="measure-choice-title">I have my measurements</div>
+      <div class="measure-choice-desc">Enter exact width and height for each window.</div>
+    </div>
+    <div class="measure-choice-card" id="hw-mc-guide" onclick="hwSelMeasure('guide')">
+      <div class="measure-choice-icon">📏</div>
+      <div class="measure-choice-title">I need a measuring guide</div>
+      <div class="measure-choice-desc">We'll walk you through it or send someone to measure for free.</div>
+    </div>
+  </div>
+
+  <!-- Have measurements -->
+  <div id="hw-dims-form" style="display:none;margin-top:4px">
+    <div class="two-col">
+      <div>
+        <div class="hw-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Number of windows</label>
+              <select id="hw-win-qty" onchange="updateHwWinDims();updateHwQuote()">
+                <option value="1">1 window</option>
+                <option value="2">2 windows</option>
+                <option value="3">3 windows</option>
+                <option value="4">4 windows</option>
+                <option value="5">5 windows</option>
+                <option value="6">6 windows</option>
+                <option value="7">7 windows</option>
+                <option value="8">8 windows</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Mount type</label>
+              <div class="opt-row" id="hw-mount-type">
+                <button class="opt-btn" onclick="selOpt(this,'hw-mount-type');updateHwQuote()">Ceiling mount</button>
+                <button class="opt-btn" onclick="selOpt(this,'hw-mount-type');updateHwQuote()">Wall mount</button>
+                <button class="opt-btn" onclick="selOpt(this,'hw-mount-type');updateHwQuote()">Crown molding</button>
+              </div>
+            </div>
+          </div>
+          <div id="hw-win-dims-wrap"></div>
+        </div>
+      </div>
+      <div>
+        <div class="quote-box" id="hw-quote-box">
+          <div class="quote-box-head">Your quote summary</div>
+          <div class="quote-row"><span class="quote-key">Hardware type</span><span class="quote-val" id="hw-qs-type">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Brand</span><span class="quote-val" id="hw-qs-brand">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Finish</span><span class="quote-val" id="hw-qs-finish">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Diameter</span><span class="quote-val" id="hw-qs-diam">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Finial</span><span class="quote-val" id="hw-qs-finial">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Rings</span><span class="quote-val" id="hw-qs-rings">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Motorization</span><span class="quote-val" id="hw-qs-motor">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Windows</span><span class="quote-val" id="hw-qs-dims">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Mount type</span><span class="quote-val" id="hw-qs-mount">&mdash;</span></div>
+          <div class="quote-row"><span class="quote-key">Also need drapes</span><span class="quote-val" id="hw-qs-drp-addon">&mdash;</span></div>
+          <div class="quote-note">Hardware is quoted per project. Detailed quote within 24 hours.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Need guide -->
+  <div id="hw-dims-guide" style="display:none;margin-top:4px;padding:24px;background:#fff;border:1px solid #e8e8e4;border-radius:12px">
+    <div style="font-size:14px;font-weight:500;color:#111;margin-bottom:12px">Two ways to get your measurements</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="measure-drapes.html" class="btn-gold" style="text-decoration:none;display:inline-block">Step-by-step measuring guide &rarr;</a>
+      <a href="consult.html" class="btn-ghost-dark" style="text-decoration:none;display:inline-block">Send someone to measure (free)</a>
+    </div>
+    <div style="font-size:11px;color:#888;margin-top:14px;line-height:1.6">Once you have measurements, come back here or call us at <a href="tel:6097421720" style="color:var(--gold);text-decoration:none;font-weight:500">(609) 742-1720</a>.</div>
+  </div>
+
+  <!-- Also need drapes? -->
+  <div id="hw-xsell-wrap" style="margin-top:28px">
+    <div class="xsell-wrap">
+      <div class="xsell-head">Do you also need custom drapes or panels?</div>
+      <div class="xsell-sub">We can include drapery fabrication in the same quote — just let us know your style preference and we'll handle everything together.</div>
+      <div class="xsell-btns">
+        <button class="xsell-btn xsell-btn-yes" onclick="showHwDrpAddon(true)">Yes, add custom drapes to my quote</button>
+        <button class="xsell-btn xsell-btn-no" onclick="showHwDrpAddon(false)">No, hardware only</button>
+      </div>
+    </div>
+    <!-- Drapery add-on for hardware tab -->
+    <div id="hw-drp-addon" style="display:none;margin-top:20px;padding:20px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:12px">
+      <div style="font-size:13px;font-weight:500;color:#333;margin-bottom:14px">What drapery style are you thinking?</div>
+      <div class="opt-row" id="hw-drp-style">
+        <button class="opt-btn" onclick="selOpt(this,'hw-drp-style');updateHwQuote()">Ripple Fold</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-drp-style');updateHwQuote()">Pinch Pleat</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-drp-style');updateHwQuote()">Goblet Pleat</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-drp-style');updateHwQuote()">Sheered Pocket</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-drp-style');updateHwQuote()">Tabs</button>
+        <button class="opt-btn" onclick="selOpt(this,'hw-drp-style');updateHwQuote()">Not sure yet</button>
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:12px;line-height:1.5">We'll include both hardware and fabric panels in the same quote. Note any fabric or lining preferences in the notes field below.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Hardware Quote Form -->
+<div class="section section-warm" id="hw-quote-form-section" style="display:none">
+  <div class="step-header">
+    <div class="step-num">Almost done</div>
+    <div class="step-title">Request your hardware quote</div>
+    <div class="step-sub">Leave your details and we'll prepare a written quote within 24 hours.</div>
+  </div>
+  <div id="hw-contact-section">
+    <div class="contact-form-wrap">
+      <div class="form-row">
+        <div class="form-group"><label>Your name *</label><input type="text" id="hw-cf-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="hw-cf-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="hw-cf-email" placeholder="jane@example.com"></div>
+      <div class="form-group">
+        <label>Notes or questions</label>
+        <textarea id="hw-cf-notes" placeholder="Motor brand preference, ceiling height, fabric style if adding drapes, timeline, etc."></textarea>
+      </div>
+      <div class="delivery-section">
+        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+        <div class="opt-row" id="grp-del-hw">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-hw');document.getElementById('del-hw-s').style.display='block';document.getElementById('del-hw-p').style.display='none'">Ship to me</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-del-hw');document.getElementById('del-hw-s').style.display='none';document.getElementById('del-hw-p').style.display='block'">I'll pick up</button>
+        </div>
+        <div id="del-hw-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized in your quote.</div></div>
+        <div id="del-hw-p" class="delivery-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Address provided after order confirmation.</div>
+      </div>
+      <div class="call-strip" style="margin-bottom:16px">
+        <div class="call-text">Prefer to talk it through? We're here 24/7.</div>
+        <a class="call-num" href="tel:6097421720">(609) 742-1720</a>
+      </div>
+      <button class="btn-gold" onclick="submitHwForm()" style="width:100%;padding:14px;font-size:14px">Request hardware quote</button>
+    </div>
+  </div>
+  <div class="success-box" id="hw-form-success">
+    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin-bottom:12px"><circle cx="20" cy="20" r="18" stroke="#27500A" stroke-width="2"/><path d="M12 20 L18 26 L28 14" stroke="#27500A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h3>Quote request received</h3>
+    <p>Thank you — we'll prepare your detailed hardware quote within 24 hours.</p>
+    <p style="margin-top:8px">For anything urgent: <strong>(609) 742-1720</strong>.</p>
+    <a class="btn-dark" href="consult.html" style="margin-top:16px;display:inline-block">Book a free in-home visit</a>
+  </div>
+</div>
+
+</div><!-- /tab-hw -->
+
+
+<!-- ══════════════════════════════════════════════════════
+     SHARED: MINI PORTFOLIO + CTA
+═══════════════════════════════════════════════════════ -->
+<div class="section section-warm">
+  <div class="section-label">Our work</div>
+  <div class="section-title">60 custom drapery installations</div>
+  <div class="section-sub">Every panel was Fabricated and installed by Blindznation.</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:16px" id="mini-portfolio"></div>
+  <a href="gallery.html" class="btn-gold">See all 60 photos + 3 videos &rarr;</a>
+</div>
+
+<div class="cta-banner">
+  <div>
+    <h2>Not sure where to start?</h2>
+    <p>Book a free in-home consultation — we'll measure, advise, and quote everything on the spot.</p>
+  </div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="consult.html">Book free consultation</a>
+    <a class="btn-outline" href="tel:6097421720">(609) 742-1720</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Drapery & hardware');
+renderFooter(false);
+
+// ── Mini portfolio ──────────────────────────────────────
+const drapeFiles = ['IMG_4927.JPEG','IMG_2861.JPEG','IMG_3018.JPEG','IMG_3023.JPEG','IMG_3032.JPEG','IMG_3034.JPEG','IMG_3367.JPEG','IMG_3575.JPEG','IMG_3578.JPEG'];
+(function(){
+  var g = document.getElementById('mini-portfolio'); if(!g) return;
+  g.innerHTML = drapeFiles.map(function(f){
+    return '<div style="border-radius:10px;overflow:hidden;border:1px solid #e8e8e4;cursor:pointer" onclick="window.location=\'gallery.html\'">'
+      +'<div style="height:110px;overflow:hidden"><img src="../images/portfolio/'+f+'" loading="lazy" alt="" style="width:100%;height:100%;object-fit:cover;display:block"></div></div>';
+  }).join('');
+})();
+
+// ── Tab switching ───────────────────────────────────────
+function switchTab(tab) {
+  document.getElementById('tab-drp').style.display = (tab === 'drp') ? '' : 'none';
+  document.getElementById('tab-hw').style.display  = (tab === 'hw')  ? '' : 'none';
+  document.getElementById('tab-btn-drp').classList.toggle('active', tab === 'drp');
+  document.getElementById('tab-btn-hw').classList.toggle('active',  tab === 'hw');
+}
+
+// ── Shared helpers ──────────────────────────────────────
+function getOpt(grpId) {
+  var el = document.querySelector('#' + grpId + ' .sel, #' + grpId + ' .opt-btn.sel');
+  return el ? el.textContent.trim() : '—';
+}
+function selOpt(el, grpId) {
+  document.querySelectorAll('#' + grpId + ' .opt-btn').forEach(function(b){ b.classList.remove('sel'); });
+  el.classList.add('sel');
+}
+
+// ══════════════════════════════════════════════════════
+// DRAPERY TAB LOGIC
+// ══════════════════════════════════════════════════════
+var _selStyle = '';
+var _selFabric = '';
+var _drpHwType = '';
+var _drpHwAddon = false;
+
+function selStyle(el, name) {
+  document.querySelectorAll('#style-grid .style-card').forEach(function(c){ c.classList.remove('sel'); });
+  _selStyle = (_selStyle === name) ? '' : name;
+  if (_selStyle) el.classList.add('sel');
+  document.getElementById('pinch-opts').style.display  = (_selStyle === 'Pinch Pleat') ? 'block' : 'none';
+  document.getElementById('ripple-opts').style.display = (_selStyle === 'Ripple Fold') ? 'block' : 'none';
+  updateQuote();
+}
+
+function selFabricPath(el, name) {
+  document.querySelectorAll('.fabric-card').forEach(function(c){ c.classList.remove('sel'); });
+  _selFabric = (_selFabric === name) ? '' : name;
+  if (_selFabric) el.classList.add('sel');
+  var picker = document.getElementById('drape-fabric-picker');
+  if (_selFabric === 'We supply fabric') { picker.style.display = 'block'; drapeRenderColors(); }
+  else picker.style.display = 'none';
+  updateQuote();
+}
+
+function drpSelMeasure(choice) {
+  document.getElementById('drp-mc-have').classList.toggle('sel', choice === 'have');
+  document.getElementById('drp-mc-guide').classList.toggle('sel', choice === 'guide');
+  document.getElementById('drp-dims-form').style.display  = (choice === 'have')  ? 'block' : 'none';
+  document.getElementById('drp-dims-guide').style.display = (choice === 'guide') ? 'block' : 'none';
+  if (choice === 'have') updateWinDims();
+}
+
+function showDrpHwAddon(show) {
+  _drpHwAddon = show;
+  var addon = document.getElementById('drp-hw-addon');
+  addon.style.display = show ? 'block' : 'none';
+  document.getElementById('qs-hw-addon').textContent = show ? 'Yes — configuring below' : 'No';
+  updateQuote();
+}
+
+function selDrpHwType(el, name) {
+  document.querySelectorAll('#drp-hw-type-grid .style-card').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  _drpHwType = name;
+  document.getElementById('drp-hw-opts').style.display = 'block';
+  updateQuote();
+}
+
+// Drapery fabric picker
+var DRAPE_COLOR_HEX = {
+  'White':'#FFFFFF','Soft White':'#F8F5F0','Ivory':'#FFFFF0','Cream':'#FFFDD0','Pearl':'#F0E8DC','Champagne':'#F7E7CE','Silver':'#C0C0C0',
+  'Natural':'#C8B890','Linen':'#F0E4D0','Flax':'#DDD0A0','Oatmeal':'#DECFA0','Sand':'#C8B27A','Dune':'#C09060','Stone':'#928070',
+  'Taupe':'#8A7868','Parchment':'#F2E8D0','Hemp':'#A89068','Bark':'#784E28','Warm Gray':'#A09870','Gray':'#888888','Charcoal':'#36444E',
+  'Espresso':'#2A1810','Black':'#1C1C1C','Smoke':'#9C9C9C','Gold':'#D4A828','Blush':'#F2B8B0','Rose':'#E07888',
+  'Sage':'#8EA870','Forest':'#2A6828','Navy':'#182860','Midnight':'#181828','Burgundy':'#780018','Dusty Blue':'#8890B6'
+};
+var DRAPE_FABRICS = {
+  'Linen / Natural': ['Natural','Ivory','Flax','Oatmeal','Sand','Linen','Dune','Stone','Taupe','Parchment','Hemp','Bark'],
+  'Cotton / Canvas': ['White','Ivory','Sand','Stone','Warm Gray','Gray','Charcoal','Black'],
+  'Velvet':          ['Ivory','Cream','Blush','Rose','Sage','Forest','Navy','Midnight','Charcoal','Black','Burgundy','Dusty Blue'],
+  'Sheer / Voile':   ['White','Soft White','Ivory','Champagne','Pearl','Silver','Blush'],
+  'Silk / Faux Silk':['Ivory','Champagne','Gold','Silver','Blush','Taupe','Sand','Smoke'],
+  'Blackout':        ['White','Ivory','Sand','Stone','Warm Gray','Gray','Charcoal','Espresso','Black']
+};
+var _drapeFabricCategory = 'Linen / Natural';
+var _drapeFabricColor = '';
+
+function drapeRenderColors() {
+  var typeBtn = document.querySelector('#drape-grp-fabric-type .opt-btn.sel');
+  _drapeFabricCategory = typeBtn ? typeBtn.textContent.trim() : 'Linen / Natural';
+  _drapeFabricColor = '';
+  var colors = DRAPE_FABRICS[_drapeFabricCategory] || [];
+  document.getElementById('drape-fabric-colors').innerHTML = colors.map(function(c){
+    var hex = DRAPE_COLOR_HEX[c] || '#ccc';
+    return '<button class="opt-btn" style="font-size:11px;display:inline-flex;align-items:center" onclick="selDrapeColor(this,\''+c.replace(/'/g,"\\'")+'\')">'
+      +'<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:'+hex+';border:1px solid rgba(0,0,0,0.15);margin-right:5px;flex-shrink:0"></span>'+c+'</button>';
+  }).join('');
+  updateQuote();
+}
+
+function selDrapeColor(el, color) {
+  document.querySelectorAll('#drape-fabric-colors .opt-btn').forEach(function(b){ b.classList.remove('sel'); });
+  el.classList.add('sel');
+  _drapeFabricColor = color;
+  updateQuote();
+}
+
+function updateWinDims() {
+  var qty = parseInt(document.getElementById('win-qty').value, 10);
+  var wrap = document.getElementById('win-dims-wrap');
+  var html = qty === 1
+    ? '<div class="win-dimensions"><div class="form-group"><label>Width (inches)</label><input type="number" id="w-w1" min="12" max="240" placeholder="e.g. 84" onchange="updateQuote()"></div><div class="form-group"><label>Height (inches)</label><input type="number" id="w-h1" min="12" max="200" placeholder="e.g. 96" onchange="updateQuote()"></div></div>'
+    : '';
+  if (qty > 1) for (var i=1;i<=qty;i++) html+='<div style="margin-bottom:10px"><div class="hw-form-label" style="font-size:11px;color:#888;margin-bottom:6px">Window '+i+'</div><div class="win-dimensions"><div class="form-group"><label>Width (in)</label><input type="number" id="w-w'+i+'" min="12" max="240" placeholder="e.g. 84" onchange="updateQuote()"></div><div class="form-group"><label>Height (in)</label><input type="number" id="w-h'+i+'" min="12" max="200" placeholder="e.g. 96" onchange="updateQuote()"></div></div></div>';
+  wrap.innerHTML = html;
+}
+
+function updateQuote() {
+  var qty = parseInt((document.getElementById('win-qty')||{value:'1'}).value, 10);
+  var dims = [];
+  for (var i=1;i<=qty;i++){
+    var wEl=document.getElementById('w-w'+i), hEl=document.getElementById('w-h'+i);
+    if(wEl&&hEl&&wEl.value&&hEl.value) dims.push(wEl.value+'"W x '+hEl.value+'"H');
+  }
+  var styleDisplay = _selStyle || '—';
+  if (_selStyle === 'Pinch Pleat') { var fingers=getOpt('pinch-grp-fingers'),pos=getOpt('pinch-grp-pos'); if(fingers!=='—') styleDisplay+=' · '+fingers+', '+pos.toLowerCase()+' pinch'; }
+  else if (_selStyle === 'Ripple Fold') { var full=getOpt('ripple-grp-fullness'); if(full!=='—') styleDisplay+=' · '+full+' fullness'; }
+  var qsStyle = document.getElementById('qs-style'); if(qsStyle) qsStyle.textContent = styleDisplay;
+  var fabricDisplay = _selFabric || '—';
+  if (_selFabric === 'We supply fabric' && _drapeFabricCategory) { fabricDisplay = _selFabric+' · '+_drapeFabricCategory; if(_drapeFabricColor) fabricDisplay+=' · '+_drapeFabricColor; var lb=document.querySelector('#drape-grp-lining .opt-btn.sel'); if(lb) fabricDisplay+=' · '+lb.textContent.trim(); }
+  var qsFabric = document.getElementById('qs-fabric'); if(qsFabric) qsFabric.textContent = fabricDisplay;
+  var qsDims = document.getElementById('qs-dims'); if(qsDims) qsDims.textContent = dims.length ? dims.join(', ') : (qty+' window'+(qty>1?'s':'')+' — dims pending');
+  var qsMount = document.getElementById('qs-mount'); if(qsMount) qsMount.textContent = getOpt('mount-type');
+  if (!_drpHwAddon) { var qsHw = document.getElementById('qs-hw-addon'); if(qsHw) qsHw.textContent='No'; }
+}
+
+function submitDrpForm() {
+  var name = document.getElementById('cf-name').value.trim();
+  var phone = document.getElementById('cf-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number so we can follow up.'); return; }
+  var email = document.getElementById('cf-email').value.trim();
+  var notes = document.getElementById('cf-notes').value.trim();
+  var delBtn = document.querySelector('#grp-del-drp .opt-btn.sel');
+  var qty = parseInt(document.getElementById('win-qty').value, 10);
+  var dims = [];
+  for(var i=1;i<=qty;i++){ var wEl=document.getElementById('w-w'+i),hEl=document.getElementById('w-h'+i); if(wEl&&hEl&&wEl.value&&hEl.value) dims.push('Win '+i+': '+wEl.value+'"W x '+hEl.value+'"H'); }
+  var hwSection = _drpHwAddon ? '\nHARDWARE ADD-ON\nType: '+_drpHwType+'\nBrand: '+(document.getElementById('d-hw-brand')?document.getElementById('d-hw-brand').value||'—':'—')+'\nDiameter: '+getOpt('d-hw-diameter')+'\nFinish: '+getOpt('d-hw-finish')+'\nFinial: '+getOpt('d-hw-finial') : '';
+  var body = 'CUSTOM DRAPERY QUOTE REQUEST\n─────────────────────────────\nName:  '+name+'\nPhone: '+phone+'\nEmail: '+(email||'—')+'\n\nDRAPERY\nStyle:       '+(_selStyle||'—')+'\nFabric path: '+(_selFabric||'—')+'\n\nWINDOWS\nMount: '+getOpt('mount-type')+'\n'+(dims.length?dims.join('\n'):'Dimensions: not yet provided')+hwSection+'\n\nDelivery: '+(delBtn?delBtn.textContent.trim():'Ship to me')+'\n\nNOTES\n'+(notes||'(none)');
+  window.location.href = 'mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Drapery Quote — '+name)+'&body='+encodeURIComponent(body);
+  document.getElementById('drp-contact-section').style.display = 'none';
+  var s = document.getElementById('drp-form-success'); s.style.display = 'block'; s.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ══════════════════════════════════════════════════════
+// HARDWARE TAB LOGIC
+// ══════════════════════════════════════════════════════
+var _hwType = '';
+var _hwMotorOn = false;
+var _hwDrpAddon = false;
+
+function selHwType(el, name) {
+  document.querySelectorAll('#hw-type-grid .style-card').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  _hwType = name;
+  document.getElementById('hw-opts-section').style.display = 'block';
+  document.getElementById('hw-dims-section').style.display = 'block';
+  document.getElementById('hw-quote-form-section').style.display = 'block';
+  var isTrack = (name === 'Motorized Track' || name === 'Economical Traverse' || name === 'Classic Traverse' || name === 'Modern Decorative Traverse');
+  document.getElementById('hw-finial-section').style.display = isTrack ? 'none' : '';
+  document.getElementById('hw-rings-section').style.display = (name === 'Decorative Rod') ? 'none' : '';
+  if (name === 'Motorized Track') {
+    var motorBtns = document.querySelectorAll('#hw-motor .opt-btn');
+    motorBtns.forEach(function(b){ b.classList.remove('sel'); });
+    motorBtns[1] && motorBtns[1].classList.add('sel');
+    toggleHwMotor(true);
+  }
+  updateHwQuote();
+  document.getElementById('hw-opts-section').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function toggleHwMotor(on) {
+  _hwMotorOn = on;
+  document.getElementById('hw-motor-note').style.display = on ? 'block' : 'none';
+}
+
+function hwSelMeasure(choice) {
+  document.getElementById('hw-mc-have').classList.toggle('sel', choice === 'have');
+  document.getElementById('hw-mc-guide').classList.toggle('sel', choice === 'guide');
+  document.getElementById('hw-dims-form').style.display  = (choice === 'have')  ? 'block' : 'none';
+  document.getElementById('hw-dims-guide').style.display = (choice === 'guide') ? 'block' : 'none';
+  if (choice === 'have') updateHwWinDims();
+}
+
+function showHwDrpAddon(show) {
+  _hwDrpAddon = show;
+  document.getElementById('hw-drp-addon').style.display = show ? 'block' : 'none';
+  document.getElementById('hw-qs-drp-addon').textContent = show ? 'Yes — style selected below' : 'No';
+  updateHwQuote();
+}
+
+function updateHwWinDims() {
+  var qty = parseInt(document.getElementById('hw-win-qty').value, 10);
+  var wrap = document.getElementById('hw-win-dims-wrap');
+  var html = qty === 1
+    ? '<div class="win-dimensions"><div class="form-group"><label>Width (inches)</label><input type="number" id="hw-w1" min="12" max="240" placeholder="e.g. 84" onchange="updateHwQuote()"></div><div class="form-group"><label>Height (inches)</label><input type="number" id="hw-h1" min="12" max="200" placeholder="e.g. 96" onchange="updateHwQuote()"></div></div>'
+    : '';
+  if (qty > 1) for (var i=1;i<=qty;i++) html+='<div style="margin-bottom:10px"><div class="hw-form-label" style="font-size:11px;color:#888;margin-bottom:6px">Window '+i+'</div><div class="win-dimensions"><div class="form-group"><label>Width (in)</label><input type="number" id="hw-w'+i+'" min="12" max="240" placeholder="e.g. 84" onchange="updateHwQuote()"></div><div class="form-group"><label>Height (in)</label><input type="number" id="hw-h'+i+'" min="12" max="200" placeholder="e.g. 96" onchange="updateHwQuote()"></div></div></div>';
+  wrap.innerHTML = html;
+}
+
+function updateHwQuote() {
+  var qty = parseInt((document.getElementById('hw-win-qty')||{value:'1'}).value, 10);
+  var dims = [];
+  for (var i=1;i<=qty;i++){
+    var wEl=document.getElementById('hw-w'+i), hEl=document.getElementById('hw-h'+i);
+    if(wEl&&hEl&&wEl.value&&hEl.value) dims.push(wEl.value+'"W x '+hEl.value+'"H');
+  }
+  var set = function(id, val){ var el=document.getElementById(id); if(el) el.textContent=val; };
+  var brandEl = document.getElementById('hw-brand');
+  set('hw-qs-type',   _hwType || '—');
+  set('hw-qs-brand',  brandEl && brandEl.value ? brandEl.value : '—');
+  set('hw-qs-finish', getOpt('hw-finish'));
+  set('hw-qs-diam',   getOpt('hw-diameter'));
+  set('hw-qs-finial', getOpt('hw-finial'));
+  set('hw-qs-rings',  getOpt('hw-rings'));
+  set('hw-qs-motor',  _hwMotorOn ? 'Yes (see notes for brand)' : 'No');
+  set('hw-qs-dims',   dims.length ? dims.join(', ') : (qty+' window'+(qty>1?'s':'')+' — dims pending'));
+  set('hw-qs-mount',  getOpt('hw-mount-type'));
+  if (!_hwDrpAddon) set('hw-qs-drp-addon', 'No');
+}
+
+function submitHwForm() {
+  var name  = document.getElementById('hw-cf-name').value.trim();
+  var phone = document.getElementById('hw-cf-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number so we can follow up.'); return; }
+  var email = document.getElementById('hw-cf-email').value.trim();
+  var notes = document.getElementById('hw-cf-notes').value.trim();
+  var delBtn = document.querySelector('#grp-del-hw .opt-btn.sel');
+  var qty = parseInt((document.getElementById('hw-win-qty')||{value:'1'}).value, 10);
+  var dims = [];
+  for(var i=1;i<=qty;i++){ var wEl=document.getElementById('hw-w'+i),hEl=document.getElementById('hw-h'+i); if(wEl&&hEl&&wEl.value&&hEl.value) dims.push('Win '+i+': '+wEl.value+'"W x '+hEl.value+'"H'); }
+  var brandEl = document.getElementById('hw-brand');
+  var drpAddonSection = _hwDrpAddon ? '\nDRAPERY ADD-ON\nStyle: '+getOpt('hw-drp-style') : '';
+  var body = 'DRAPERY HARDWARE QUOTE REQUEST\n─────────────────────────────\nName:  '+name+'\nPhone: '+phone+'\nEmail: '+(email||'—')+'\n\nHARDWARE\nType:         '+(_hwType||'—')+'\nBrand:        '+(brandEl&&brandEl.value?brandEl.value:'—')+'\nDiameter:     '+getOpt('hw-diameter')+'\nFinish:       '+getOpt('hw-finish')+'\nFinial:       '+getOpt('hw-finial')+'\nRings:        '+getOpt('hw-rings')+'\nMotorization: '+(_hwMotorOn?'Yes (see notes)':'No')+'\n\nWINDOWS\nMount: '+getOpt('hw-mount-type')+'\n'+(dims.length?dims.join('\n'):'Dimensions: not yet provided')+drpAddonSection+'\n\nDelivery: '+(delBtn?delBtn.textContent.trim():'Ship to me')+'\n\nNOTES\n'+(notes||'(none)');
+  window.location.href = 'mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Hardware Quote — '+name)+'&body='+encodeURIComponent(body);
+  document.getElementById('hw-contact-section').style.display = 'none';
+  var s = document.getElementById('hw-form-success'); s.style.display = 'block'; s.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+updateWinDims();
+updateQuote();
+</script>
+</body>
+</html>
+

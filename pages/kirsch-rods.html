@@ -1,0 +1,1801 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configure Kirsch drapery rods and hardware — Designer Metals, Wood Trends, Wrought Iron, Architrac traverse tracks. Quote request for Philadelphia area.">
+<meta property="og:title" content="Kirsch Rod Selector | Philly Blinds">
+<meta property="og:description" content="Configure your Kirsch drapery rod — decorative stationary, Estate traverse, or Architrac functional track. All collections, finishes, and AMP motorization available.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/kirsch-rods.html">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<title>Kirsch Rod Selector | Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+/* ── HERO ── */
+.page-hero{background:var(--espresso);padding:44px 28px 40px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--cream)}
+.page-hero h1{font-size:32px;font-weight:500;color:var(--cream);letter-spacing:-0.5px;margin-bottom:10px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:22px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+
+/* ── LAYOUT ── */
+.config-wrap{max-width:900px;margin:0 auto;padding:32px 24px 64px}
+
+/* ── STEP INDICATOR ── */
+.step-bar{display:flex;align-items:center;gap:0;margin-bottom:36px;overflow-x:auto;padding-bottom:4px}
+.step-dot{display:flex;align-items:center;gap:0;flex-shrink:0}
+.step-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:#e8e4de;color:#888;flex-shrink:0;transition:.15s}
+.step-circle.active{background:var(--gold);color:#fff}
+.step-circle.done{background:var(--espresso);color:var(--gold)}
+.step-line{width:36px;height:2px;background:#e8e4de;flex-shrink:0}
+.step-line.done{background:var(--espresso)}
+
+/* ── SECTION ── */
+.section{display:none}
+.section.on{display:block}
+.sec-label{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.sec-title{font-size:20px;font-weight:500;color:#111;margin-bottom:6px;letter-spacing:-0.3px}
+.sec-sub{font-size:13px;color:#666;line-height:1.6;margin-bottom:20px}
+
+/* ── CHOICE GRID (large cards 2-col) ── */
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+@media(max-width:580px){.choice-grid{grid-template-columns:1fr}}
+.choice-card{background:#fff;border:1.5px solid #e8e4de;border-radius:14px;padding:22px 20px;cursor:pointer;transition:.15s;position:relative}
+.choice-card:hover{border-color:var(--gold);box-shadow:0 2px 16px rgba(200,151,63,.12)}
+.choice-card.sel{border:2px solid var(--gold);box-shadow:0 2px 20px rgba(200,151,63,.18)}
+.choice-icon{font-size:26px;margin-bottom:10px}
+.choice-title{font-size:15px;font-weight:600;color:#111;margin-bottom:5px}
+.choice-desc{font-size:12px;color:#666;line-height:1.6}
+.choice-tag{font-size:10px;color:var(--gold);font-weight:600;margin-top:8px}
+.choice-badge{position:absolute;top:14px;right:14px;background:var(--gold);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.5px;text-transform:uppercase}
+
+/* ── OPTION ROW (smaller pills) ── */
+.opt-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.opt-pill{padding:9px 18px;border:1.5px solid #e8e4de;border-radius:30px;font-size:13px;color:#333;cursor:pointer;transition:.15s;background:#fff;white-space:nowrap}
+.opt-pill:hover{border-color:var(--gold)}
+.opt-pill.sel{border:2px solid var(--gold);color:var(--espresso);font-weight:500;background:var(--gold-mid)}
+.opt-pill.disabled{opacity:.35;cursor:not-allowed}
+
+/* ── FINISH GRID ── */
+.finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-bottom:20px}
+.finish-card{border:1.5px solid #e8e4de;border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s;background:#fff}
+.finish-card:hover{border-color:var(--gold)}
+.finish-card.sel{border:2px solid var(--gold);box-shadow:0 2px 10px rgba(200,151,63,.18)}
+.finish-swatch{height:52px;width:100%}
+.finish-name{font-size:10px;text-align:center;padding:6px 4px;color:#333;line-height:1.3;font-weight:500}
+
+/* ── FINIAL GRID ── */
+.finial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:20px}
+.finial-card{border:1.5px solid #e8e4de;border-radius:10px;padding:14px 10px 10px;cursor:pointer;transition:.15s;background:#fff;text-align:center}
+.finial-card:hover{border-color:var(--gold)}
+.finial-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.finial-art{font-size:28px;margin-bottom:6px}
+.finial-name{font-size:11px;font-weight:600;color:#222;margin-bottom:2px}
+.finial-desc{font-size:10px;color:#888;line-height:1.3}
+
+/* ── INFO BANNER ── */
+.info-banner{background:var(--gold-mid);border:1px solid rgba(200,151,63,.3);border-radius:10px;padding:14px 16px;font-size:13px;color:#555;line-height:1.6;margin-bottom:20px}
+.info-banner strong{color:var(--espresso)}
+.warn-banner{background:#fff8e8;border:1px solid #f0d070;border-radius:10px;padding:14px 16px;font-size:13px;color:#7a5a00;line-height:1.6;margin-bottom:20px}
+
+/* ── INPUT ROW ── */
+.inp-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+@media(max-width:580px){.inp-row{grid-template-columns:1fr}}
+.inp-group{display:flex;flex-direction:column;gap:5px}
+.inp-label{font-size:12px;font-weight:500;color:#444}
+.inp-field{padding:10px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;font-family:var(--font);color:#222;background:#fff;transition:.15s}
+.inp-field:focus{outline:none;border-color:var(--gold)}
+.inp-hint{font-size:11px;color:#888;line-height:1.4}
+textarea.inp-field{resize:vertical;min-height:90px}
+
+/* ── TOGGLE SWITCH ── */
+.toggle-row{display:flex;align-items:center;gap:14px;padding:12px 16px;background:#f8f4ee;border-radius:10px;margin-bottom:14px;cursor:pointer}
+.toggle-label{font-size:13px;color:#333;flex:1;line-height:1.4}
+.toggle-label small{display:block;font-size:11px;color:#888;margin-top:2px}
+.toggle-switch{width:42px;height:24px;border-radius:12px;background:#ccc;position:relative;flex-shrink:0;transition:.2s}
+.toggle-switch.on{background:var(--gold)}
+.toggle-switch::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:3px;left:3px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.toggle-switch.on::after{left:21px}
+
+/* ── DELIVERY SECTION ── */
+.delivery-section{background:#f0ece4;border-radius:12px;padding:20px;margin-bottom:20px}
+.delivery-title{font-size:14px;font-weight:600;color:#111;margin-bottom:14px}
+.delivery-opt{background:#fff;border:1.5px solid #e0dbd2;border-radius:10px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.15s}
+.delivery-opt:hover{border-color:var(--gold)}
+.delivery-opt.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.delivery-opt-title{font-size:13px;font-weight:600;color:#111;margin-bottom:3px}
+.delivery-opt-sub{font-size:11px;color:#777;line-height:1.5}
+
+/* ── NAV BUTTONS ── */
+.btn-row{display:flex;gap:12px;align-items:center;margin-top:24px}
+.btn-next{background:var(--gold);color:#fff;border:none;padding:13px 32px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font)}
+.btn-next:hover{background:#b5852e}
+.btn-back{background:none;border:1.5px solid #ccc;color:#555;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;transition:.15s;font-family:var(--font)}
+.btn-back:hover{border-color:#888;color:#222}
+.btn-submit{background:var(--espresso);color:var(--cream);border:none;padding:14px 36px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font)}
+.btn-submit:hover{background:#2c221a}
+
+/* ── SUMMARY CARD ── */
+.summary-card{background:#f8f4ee;border:1px solid #e0dbd2;border-radius:12px;padding:20px;margin-bottom:24px}
+.summary-title{font-size:13px;font-weight:600;color:var(--espresso);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
+.summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #e8e4de;font-size:13px;color:#444}
+.summary-row:last-child{border-bottom:none}
+.summary-row strong{color:#111;font-weight:500}
+
+/* ── SUCCESS ── */
+.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center}
+.success-box h3{font-size:20px;margin-bottom:8px}
+
+/* ── SEPARATOR ── */
+.divider{height:1px;background:#e8e4de;margin:24px 0}
+
+/* ── COLLECTION CARDS ── */
+.collection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+@media(max-width:640px){.collection-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:380px){.collection-grid{grid-template-columns:1fr}}
+.coll-card{border:1.5px solid #e8e4de;border-radius:14px;overflow:hidden;cursor:pointer;transition:.15s;background:#fff}
+.coll-card:hover{border-color:var(--gold)}
+.coll-card.sel{border:2px solid var(--gold);box-shadow:0 2px 16px rgba(200,151,63,.18)}
+.coll-swatch-strip{height:48px;display:flex}
+.coll-swatch-strip span{flex:1}
+.coll-body{padding:14px 12px}
+.coll-name{font-size:14px;font-weight:600;color:#111;margin-bottom:3px}
+.coll-sub{font-size:11px;color:#777;line-height:1.4}
+.coll-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.coll-chip{font-size:9px;padding:2px 7px;border-radius:8px;background:#f0ece4;color:#555;font-weight:500}
+.coll-chip-gold{background:rgba(200,151,63,.15);color:#8a6020}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a> / <a href="hardware.html">Drapery Hardware</a> / Kirsch Rod Selector
+  </div>
+  <h1>Kirsch® Rod Selector</h1>
+  <p class="sub">Configure your Kirsch drapery rod — decorative stationary poles, Estate™ traverse rods, or Architrac® functional tracks. We'll build your custom quote.</p>
+  <div class="hero-pills">
+    <span class="hero-pill hero-pill-gold">Designer Metals™</span>
+    <span class="hero-pill hero-pill-gold">Wood Trends™</span>
+    <span class="hero-pill hero-pill-gold">Wrought Iron</span>
+    <span class="hero-pill hero-pill-gold">Architrac® 94001</span>
+    <span class="hero-pill">AMP™ Motorization</span>
+    <span class="hero-pill">10-Year Warranty</span>
+  </div>
+</section>
+
+<!-- CONFIGURATOR -->
+<div class="config-wrap">
+
+  <!-- Step indicator -->
+  <div class="step-bar" id="step-bar">
+    <!-- filled by JS -->
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-box" id="success-box">
+    <h3>Quote request sent!</h3>
+    <p>We've received your Kirsch rod configuration. A member of our team will follow up within 1 business day to confirm pricing and availability.<br><strong>Questions? Call or text (609) 742-1720 anytime.</strong></p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 1 — ROD TYPE
+  ═══════════════════════════════════════════ -->
+  <div class="section on" id="sec-1">
+    <div class="sec-label">Step 1 of 7</div>
+    <div class="sec-title">What will this rod be used for?</div>
+    <div class="sec-sub">This determines which Kirsch system fits your project.</div>
+
+    <div class="choice-grid">
+      <div class="choice-card" onclick="selectType('static', this)">
+        <span class="coll-type-badge coll-type-luxury">Decorative</span>
+        <div class="choice-icon">🪞</div>
+        <div class="choice-title">Stationary / Decorative Pole</div>
+        <div class="choice-desc">Drapery hangs from rings that slide manually. Rod stays fixed. Ideal for panels that rarely open and close.</div>
+        <div class="choice-tag">Designer Metals · Wood Trends · Wrought Iron · 1″ · 1⅜″ · 2″</div>
+      </div>
+      <div class="choice-card" onclick="selectType('traverse', this)">
+        <span class="coll-type-badge coll-type-modern">Functional</span>
+        <div class="choice-icon">↔️</div>
+        <div class="choice-title">Traversing / Opens &amp; Closes</div>
+        <div class="choice-desc">Drapery travels smoothly on a track with carriers. One-way or two-way draw. Manual or AMP™ motorized. Max 16 ft / 64 lbs.</div>
+        <div class="choice-tag">Estate™ Traverse · Architrac® (7 models) · AMP™ motorizable</div>
+      </div>
+    </div>
+    <div class="choice-grid">
+      <div class="choice-card" onclick="selectType('basic', this)">
+        <span class="coll-type-badge coll-type-neutral" style="background:#f0f0ee;color:#666">Value</span>
+        <div class="choice-icon">💡</div>
+        <div class="choice-title">Basic / Budget Traverse</div>
+        <div class="choice-desc">Telescoping Superfine Pro or flat Lockseam rod. White finish only. Great for bedrooms, rentals, or back rooms.</div>
+        <div class="choice-tag">Superfine Pro · Lockseam · Tension Rods</div>
+      </div>
+      <div class="choice-card" onclick="selectType('unsure', this)">
+        <span class="coll-type-badge coll-type-trad">Help me</span>
+        <div class="choice-icon">💬</div>
+        <div class="choice-title">Not Sure — Help Me Decide</div>
+        <div class="choice-desc">Skip the configurator and send us a message. We'll recommend the right system based on your space and drapery.</div>
+      </div>
+    </div>
+
+    <div class="btn-row"><button class="btn-next" onclick="goStep(2)">Next →</button></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 2 — COLLECTION / SYSTEM
+  ═══════════════════════════════════════════ -->
+  <div class="section" id="sec-2">
+    <div class="sec-label">Step 2 of 7</div>
+    <div class="sec-title" id="sec2-title">Choose a Collection</div>
+    <div class="sec-sub" id="sec2-sub">Select the Kirsch collection that fits your design style.</div>
+
+    <!-- DECORATIVE STATIC/TRAVERSE collections -->
+    <div id="decor-collections">
+      <div class="collection-grid">
+        <div class="coll-card" onclick="selectCollection('dm', this)">
+          <div class="coll-swatch-strip">
+            <span style="background:#b8a882"></span>
+            <span style="background:#e8e0ce"></span>
+            <span style="background:#2a2a2a"></span>
+            <span style="background:#888"></span>
+            <span style="background:#8a6a30"></span>
+            <span style="background:#5a4820"></span>
+            <span style="background:#c8973f"></span>
+            <span style="background:#3a3028"></span>
+          </div>
+          <div class="coll-body">
+            <div class="coll-name">Designer Metals™</div>
+            <div class="coll-sub">8 metal finishes — Elegant Brass, Gunmetal, Black, Satin Nickel, Brushed Bronze, Gilded Bronze, Antique Silver, Polished Nickel</div>
+            <div class="coll-chips">
+              <span class="coll-chip">1" · 1⅜" · 2"</span>
+              <span class="coll-chip">27 finials</span>
+              <span class="coll-chip coll-chip-gold">Estate Traverse</span>
+              <span class="coll-chip coll-chip-gold">AMP™ Ready</span>
+            </div>
+          </div>
+        </div>
+        <div class="coll-card" onclick="selectCollection('wt', this)">
+          <div class="coll-swatch-strip">
+            <span style="background:#1a1a1a"></span>
+            <span style="background:#4a2010"></span>
+            <span style="background:#3a1a08"></span>
+            <span style="background:#8a5228"></span>
+            <span style="background:#6a1a10"></span>
+            <span style="background:#c8a870"></span>
+            <span style="background:#d8c8a0"></span>
+            <span style="background:#f5f0e0"></span>
+            <span style="background:#e0d0b0"></span>
+          </div>
+          <div class="coll-body">
+            <div class="coll-name">Wood Trends™</div>
+            <div class="coll-sub">9 wood finishes — Black, Coffee, Dark Chocolate, Estate Oak, Mahogany, Marble, Truffle, White, Unfinished</div>
+            <div class="coll-chips">
+              <span class="coll-chip">1⅜" · 2"</span>
+              <span class="coll-chip">18 finials</span>
+              <span class="coll-chip coll-chip-gold">Estate Traverse</span>
+              <span class="coll-chip coll-chip-gold">AMP™ Ready</span>
+            </div>
+          </div>
+        </div>
+        <div class="coll-card" onclick="selectCollection('wi', this)">
+          <div class="coll-swatch-strip">
+            <span style="background:#111"></span>
+            <span style="background:#5a3a28"></span>
+            <span style="background:#8a3a10"></span>
+            <span style="background:#3a3a3a"></span>
+            <span style="background:#d0d0d0"></span>
+            <span style="background:#7a5040"></span>
+          </div>
+          <div class="coll-body">
+            <div class="coll-name">Wrought Iron</div>
+            <div class="coll-sub">6 finishes — Black, Iron Oxide, Rust, Graphite, Chalk, Heirloom Copper. Sand-cast real wrought iron.</div>
+            <div class="coll-chips">
+              <span class="coll-chip">1" · 1⅜"</span>
+              <span class="coll-chip">18 finials</span>
+              <span class="coll-chip coll-chip-gold">1⅜" Estate</span>
+              <span class="coll-chip coll-chip-gold">AMP™ Ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAVERSE (Estate vs Architrac) -->
+    <div id="traverse-systems" style="display:none">
+      <div class="choice-grid">
+        <div class="choice-card" onclick="window.location='kirsch-2in-estate-traverse.html'">
+          <div class="choice-icon">🪩</div>
+          <div class="choice-title">2″ Estate™ Traverse Rod</div>
+          <div class="choice-desc">Decorative traverse with exposed finials and fascia. 3 finish collections, 5 draw types, AMP™ motorization, bracket spacing plan, drapery weight check, and stack-back calculator.</div>
+          <div class="choice-tag">Designer Metals · Wood Trends · Wrought Iron · AMP™ motorizable · Full configurator →</div>
+        </div>
+        <div class="choice-card" onclick="selectTraverseSystem('architrac', this)">
+          <div class="choice-icon">🔧</div>
+          <div class="choice-title">Architrac® Functional Track</div>
+          <div class="choice-desc">Industrial-grade concealed traverse track. 7 models for residential, commercial, hospital, and bay/curved applications. Manual or AMP™ motorized (94001 only). Ceiling, wall, recessed, or suspension mount.</div>
+          <div class="choice-tag">7 models · 94001 (Best Seller) · 94004 (Best Seller) · Curved/Bent options</div>
+          <div class="choice-badge">Commercial</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARCHITRAC MODEL PICKER (shown after selecting Architrac) -->
+    <div id="architrac-model-picker" style="display:none;margin-top:20px">
+      <div class="sec-label" style="margin-top:0">Select Architrac® Model</div>
+      <div class="sec-sub" style="font-size:13px;margin-bottom:14px">Each model has different mount options, bend/curve capability, and length limits. Choose the best fit for your project.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="choice-card" onclick="selectArchitracModel('94001', this)" style="padding:16px">
+          <div class="choice-badge" style="position:static;display:inline-block;margin-bottom:8px">Best Seller</div>
+          <div class="choice-title" style="font-size:14px">94001</div>
+          <div class="choice-desc" style="font-size:11px">Wall, ceiling, or recessed. One-way <strong>20ft / 80 lbs</strong> · Two-way <strong>40ft / 160 lbs</strong>. <strong>AMP™ motorized</strong> (max 16ft / 64 lbs). Draw: Hand, Cord, Baton, Duplex, Motorized. Bent (12" radius) or curved — manual only. Pleated &amp; Ripplefold™. Colors: White · Gray · Bronze · Black.</div>
+        </div>
+        <div class="choice-card" onclick="selectArchitracModel('94003', this)" style="padding:16px">
+          <div class="choice-title" style="font-size:14px">94003</div>
+          <div class="choice-desc" style="font-size:11px">Wall, ceiling, or recessed. One-way <strong>20ft / 80 lbs</strong> · Two-way <strong>40ft / 160 lbs</strong>. Draw: Hand &amp; Baton only. Can be bent (12" radius) or curved. Pleated &amp; Ripplefold™. Colors: White · Gray · Bronze · Black.</div>
+        </div>
+        <div class="choice-card" onclick="selectArchitracModel('94004', this)" style="padding:16px">
+          <div class="choice-badge" style="position:static;display:inline-block;margin-bottom:8px">Best Seller</div>
+          <div class="choice-title" style="font-size:14px">94004</div>
+          <div class="choice-desc" style="font-size:11px"><strong>Ceiling or recessed only.</strong> One-way <strong>16ft / 64 lbs</strong> · Two-way <strong>32ft / 128 lbs</strong>. Draw: Hand &amp; Baton only. <strong>Cannot be bent or curved.</strong> Low-profile ¾" track. Pre-drilled 16" on center. Pleated &amp; Ripplefold™. Colors: White · Gray · Bronze · Black.</div>
+        </div>
+        <div class="choice-card" onclick="selectArchitracModel('94005', this)" style="padding:16px">
+          <div class="choice-title" style="font-size:14px">94005</div>
+          <div class="choice-desc" style="font-size:11px"><strong>Ceiling or recessed only.</strong> One-way <strong>16ft / 64 lbs</strong> · Two-way <strong>32ft / 128 lbs</strong>. Draw: Hand &amp; Baton only. Can be bent (12" radius) or curved. Pre-drilled 16" on center. Pleated &amp; Ripplefold™. Colors: White · Gray · Bronze · Black.</div>
+        </div>
+        <div class="choice-card" onclick="selectArchitracModel('9046', this)" style="padding:16px">
+          <div class="choice-title" style="font-size:14px">9046</div>
+          <div class="choice-desc" style="font-size:11px">Ceiling or recessed only. One-way <strong>16ft / 64 lbs</strong> · Two-way <strong>32ft / 128 lbs</strong>. Draw: Hand &amp; Baton only. Bent (8" or 12" radius) or curved. Pleated only. Hospital/cubicle curtain track.</div>
+        </div>
+        <div class="choice-card" onclick="selectArchitracModel('9600', this)" style="padding:16px">
+          <div class="choice-title" style="font-size:14px">9600</div>
+          <div class="choice-desc" style="font-size:11px">Ceiling, wall, recessed, or <strong>suspension</strong> mount. One-way <strong>20ft / 80 lbs</strong> · Two-way <strong>40ft / 160 lbs</strong>. Draw: Hand &amp; Baton only. Bent (12" or 14" radius) or curved. Pleated only.</div>
+        </div>
+        <div class="choice-card" onclick="selectArchitracModel('K-Rail', this)" style="padding:16px">
+          <div class="choice-title" style="font-size:14px">K-Rail</div>
+          <div class="choice-desc" style="font-size:11px">Ceiling or wall mount. One-way <strong>16ft / 64 lbs</strong> · Two-way <strong>16ft / 64 lbs</strong>. Draw: Hand &amp; Baton only. <strong>Cannot be bent or curved.</strong> Pleated &amp; Ripplefold™. Compatible with Wrought Iron &amp; Wood Trends finials.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BASIC options -->
+    <div id="basic-options" style="display:none">
+      <div class="info-banner">All basic hardware is White finish only. Prices are lower than decorative collections — great for utility rooms, rentals, or any space where function matters more than aesthetics.</div>
+      <div class="choice-grid">
+        <div class="choice-card" onclick="selectBasic('superfine', this)">
+          <div class="choice-icon">⇔</div>
+          <div class="choice-title">Superfine Pro Traverse Rod</div>
+          <div class="choice-desc">Telescoping traverse rod. Single split draw (30"–228"), one-way draw (30"–120"), or double split draw (48"–156"). Continuous loop, baton, or hand draw. White only.</div>
+          <div class="choice-tag">Traversing · White only · Front return 2¾"–4½"</div>
+        </div>
+        <div class="choice-card" onclick="selectBasic('lockseam', this)">
+          <div class="choice-icon">≡</div>
+          <div class="choice-title">Lockseam Rod</div>
+          <div class="choice-desc">Flat-profile stationary curtain rods. ½" to 8½" face widths. Single, double (3½"+2½"), triple (5½"+3½"+2½"), or bay rod (78"–127"). White only.</div>
+          <div class="choice-tag">Stationary · White only</div>
+        </div>
+      </div>
+      <div class="choice-grid">
+        <div class="choice-card" onclick="selectBasic('tension', this)">
+          <div class="choice-icon">↕</div>
+          <div class="choice-title">Spring Tension / Sash Rod</div>
+          <div class="choice-desc">No brackets needed. Spring tension rods (⅝" oval 8"–72", ⁷⁄₁₆" 18"–48"), door sash rods (⁵⁄₁₆" 11"–36", ⁷⁄₁₆" 18"–28"), or flat sash (¹¹⁄₁₆" 16"–50"). Mostly White; Zinc available on door sash.</div>
+          <div class="choice-tag">Tension / Sash · White &amp; Zinc</div>
+        </div>
+        <div class="choice-card" onclick="goSection('unsure-form')">
+          <div class="choice-icon">💬</div>
+          <div class="choice-title">Not Sure</div>
+          <div class="choice-desc">Tell us about your space and we'll recommend the right rod system and size.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNSURE -->
+    <div id="unsure-options" style="display:none">
+      <div class="info-banner">No problem — fill in what you know below and our team will recommend the right hardware for your space.</div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep(1)">← Back</button>
+      <button class="btn-next" onclick="goStep(3)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 3 — FINISH / COLOR
+  ═══════════════════════════════════════════ -->
+  <div class="section" id="sec-3">
+    <div class="sec-label">Step 3 of 7</div>
+    <div class="sec-title">Choose Your Finish</div>
+    <div class="sec-sub">Select the finish that best matches your space. We can source finishes not listed — just let us know in the notes.</div>
+
+    <!-- Designer Metals finishes -->
+    <div id="finish-dm" style="display:none">
+      <div class="finish-grid">
+        <div class="finish-card" onclick="selectFinish('Elegant Brass', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#c8a850,#9a7828)"></div>
+          <div class="finish-name">Elegant Brass</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Antique Silver', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#c0b898,#8a8070)"></div>
+          <div class="finish-name">Antique Silver</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Polished Nickel', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#e8e0d0,#c0b8a8)"></div>
+          <div class="finish-name">Polished Nickel</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Satin Nickel', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#b0a898,#888078)"></div>
+          <div class="finish-name">Satin Nickel</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Brushed Bronze', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#7a6040,#5a4228)"></div>
+          <div class="finish-name">Brushed Bronze</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Gilded Bronze', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#c89840,#906820)"></div>
+          <div class="finish-name">Gilded Bronze</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Gunmetal', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#5a5850,#3a3830)"></div>
+          <div class="finish-name">Gunmetal</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Black', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#2a2828,#111)"></div>
+          <div class="finish-name">Black</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wood Trends finishes -->
+    <div id="finish-wt" style="display:none">
+      <div class="info-banner" style="margin-bottom:14px"><strong>Wood Trends™ — 9 Finishes:</strong> Wood stains and neutral paints. <strong>Note:</strong> Unfinished finish is not available on Estate™ Traverse Rods — stationary poles only. Rings, brackets, holdback medallions, and accessories are available in matching finishes.</div>
+      <div class="finish-grid">
+        <div class="finish-card" onclick="selectFinish('Black', this)">
+          <div class="finish-swatch" style="background:#1a1a1a"></div>
+          <div class="finish-name">Black</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Coffee', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#5a2808,#3a1808)"></div>
+          <div class="finish-name">Coffee</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Dark Chocolate', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#3a1a08,#200e04)"></div>
+          <div class="finish-name">Dark Chocolate</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Estate Oak', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#9a7040,#7a5020)"></div>
+          <div class="finish-name">Estate Oak</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Mahogany', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#781808,#500808)"></div>
+          <div class="finish-name">Mahogany</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Marble', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#e8e0d8,#c8c0b8)"></div>
+          <div class="finish-name">Marble</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Truffle', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#c8c0a8,#a8a090)"></div>
+          <div class="finish-name">Truffle</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('White', this)">
+          <div class="finish-swatch" style="background:#f5f0e8;border-bottom:1px solid #e0dbd2"></div>
+          <div class="finish-name">White</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Unfinished', this)">
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#e8d8b8,#c8b898)"></div>
+          <div class="finish-name">Unfinished</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wrought Iron finishes -->
+    <div id="finish-wi" style="display:none">
+      <div class="finish-grid">
+        <div class="finish-card" onclick="selectFinish('Black', this)">
+          <div class="finish-swatch" style="background:radial-gradient(ellipse at 30% 30%,#3a3838,#111)"></div>
+          <div class="finish-name">Black</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Iron Oxide', this)">
+          <div class="finish-swatch" style="background:radial-gradient(ellipse at 30% 30%,#6a3a18,#381808)"></div>
+          <div class="finish-name">Iron Oxide</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Rust', this)">
+          <div class="finish-swatch" style="background:radial-gradient(ellipse at 30% 30%,#8a3a10,#601808)"></div>
+          <div class="finish-name">Rust</div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Graphite', this)">
+          <div class="finish-swatch" style="background:radial-gradient(ellipse at 30% 30%,#484040,#282020)"></div>
+          <div class="finish-name">Graphite <span style="font-size:9px;color:var(--gold)">NEW</span></div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Chalk', this)">
+          <div class="finish-swatch" style="background:radial-gradient(ellipse at 30% 30%,#e0d8d0,#c0b8b0)"></div>
+          <div class="finish-name">Chalk <span style="font-size:9px;color:var(--gold)">NEW</span></div>
+        </div>
+        <div class="finish-card" onclick="selectFinish('Heirloom Copper', this)">
+          <div class="finish-swatch" style="background:radial-gradient(ellipse at 30% 30%,#8a5830,#604020)"></div>
+          <div class="finish-name">Heirloom Copper <span style="font-size:9px;color:var(--gold)">NEW</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Architrac colors -->
+    <div id="finish-arch" style="display:none">
+      <div class="info-banner"><strong>All Architrac® models</strong> are available in 4 track colors: White, Gray, Bronze, and Black. Track is concealed behind drapery. Color part numbers shown in the size step after model selection.</div>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="selectFinish('White');this.classList.toggle('sel')">White</div>
+        <div class="opt-pill" onclick="selectFinish('Gray');this.classList.toggle('sel')">Gray</div>
+        <div class="opt-pill" onclick="selectFinish('Bronze');this.classList.toggle('sel')">Bronze</div>
+        <div class="opt-pill" onclick="selectFinish('Black');this.classList.toggle('sel')">Black</div>
+      </div>
+    </div>
+
+    <!-- Basic White note -->
+    <div id="finish-basic" style="display:none">
+      <div class="info-banner"><strong>Finish:</strong> Superfine Pro, Lockseam, and most Tension/Sash rods are <strong>White only</strong>. Exception: the Zinc Door Sash Tension Rod (20"–36") is available in Zinc finish.</div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep(2)">← Back</button>
+      <button class="btn-next" onclick="goStep(4)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 4 — FINIAL / STYLE DETAIL
+  ═══════════════════════════════════════════ -->
+  <div class="section" id="sec-4">
+    <div class="sec-label">Step 4 of 7</div>
+    <div class="sec-title" id="sec4-title">Choose a Finial</div>
+    <div class="sec-sub" id="sec4-sub">Finials attach to the ends of stationary poles or Estate traverse rods as a decorative cap.</div>
+
+    <!-- Designer Metals 1" finials -->
+    <div id="finials-dm-1" style="display:none">
+      <div class="sec-label" style="margin-top:0">1" Finials — Designer Metals™</div>
+      <div class="finial-grid">
+        <div class="finial-card" onclick="selectFinial('Fitz', this)"><div class="finial-art">⬙</div><div class="finial-name">Fitz</div><div class="finial-desc">¾" deep · flat cap</div></div>
+        <div class="finial-card" onclick="selectFinial('Gavin', this)"><div class="finial-art">🔮</div><div class="finial-name">Gavin</div><div class="finial-desc">2-10/16" deep</div></div>
+        <div class="finial-card" onclick="selectFinial('Maxwell', this)"><div class="finial-art">●</div><div class="finial-name">Maxwell</div><div class="finial-desc">2" deep</div></div>
+        <div class="finial-card" id="finial-maxwell-duotone" onclick="selectDMFinial('Maxwell Duotone',this)"><div class="finial-art">⬤</div><div class="finial-name">Maxwell Duotone</div><div class="finial-desc">2 combos only</div><div style="font-size:9px;color:var(--gold);font-weight:600;margin-top:3px">SPECIAL FINISH ↓</div></div>
+        <div class="finial-card" onclick="selectFinial('Milo', this)"><div class="finial-art">◍</div><div class="finial-name">Milo</div><div class="finial-desc">2-1/16" deep</div></div>
+        <div class="finial-card" onclick="selectFinial('Soren', this)"><div class="finial-art">⬡</div><div class="finial-name">Soren</div><div class="finial-desc">2½" deep</div></div>
+        <div class="finial-card" onclick="selectFinial('Turin', this)"><div class="finial-art">▸◂</div><div class="finial-name">Turin</div><div class="finial-desc">3½" deep · elongated</div></div>
+      </div>
+    </div>
+
+    <!-- Designer Metals 1⅜" finials -->
+    <div id="finials-dm-138" style="display:none">
+      <div class="sec-label" style="margin-top:0">1⅜" Finials — Designer Metals™</div>
+      <div class="finial-grid">
+        <div class="finial-card" onclick="selectFinial('Archer', this)"><div class="finial-art">⊕</div><div class="finial-name">Archer</div><div class="finial-desc">4" deep · cage style</div></div>
+        <div class="finial-card" onclick="selectFinial('Briggs', this)"><div class="finial-art">◑</div><div class="finial-name">Briggs</div><div class="finial-desc">3-7/16" deep</div></div>
+        <div class="finial-card" id="finial-briggs-duotone" onclick="selectDMFinial('Briggs Duotone',this)"><div class="finial-art">◐</div><div class="finial-name">Briggs Duotone</div><div class="finial-desc">2 combos only</div><div style="font-size:9px;color:var(--gold);font-weight:600;margin-top:3px">SPECIAL FINISH ↓</div></div>
+        <div class="finial-card" onclick="selectFinial('Corsa', this)"><div class="finial-art">⬢</div><div class="finial-name">Corsa</div><div class="finial-desc">1⅝" deep · short cap</div></div>
+        <div class="finial-card" onclick="selectFinial('Elmore', this)"><div class="finial-art">⬟</div><div class="finial-name">Elmore</div><div class="finial-desc">3" deep</div></div>
+        <div class="finial-card" onclick="selectFinial('Emerson', this)"><div class="finial-art">⬠</div><div class="finial-name">Emerson</div><div class="finial-desc">2⅞" deep</div></div>
+        <div class="finial-card" onclick="selectFinial('Europa', this)"><div class="finial-art">💎</div><div class="finial-name">Europa</div><div class="finial-desc">3" deep · crystal accent</div></div>
+        <div class="finial-card" onclick="selectFinial('Harlow', this)"><div class="finial-art">⬕</div><div class="finial-name">Harlow</div><div class="finial-desc">4" deep · flat disc</div></div>
+        <div class="finial-card" onclick="selectFinial('Lenn', this)"><div class="finial-art">💠</div><div class="finial-name">Lenn</div><div class="finial-desc">1-15/16" deep · crystal</div></div>
+        <div class="finial-card" onclick="selectFinial('Odessa', this)"><div class="finial-art">⊛</div><div class="finial-name">Odessa</div><div class="finial-desc">3-7/32" deep · ribbed</div></div>
+        <div class="finial-card" onclick="selectFinial('Pandora', this)"><div class="finial-art">⬤</div><div class="finial-name">Pandora</div><div class="finial-desc">4" deep · ball</div></div>
+        <div class="finial-card" onclick="selectFinial('Quinn', this)"><div class="finial-art">◈</div><div class="finial-name">Quinn</div><div class="finial-desc">3-3/16" deep · faceted</div></div>
+        <div class="finial-card" onclick="selectFinial('Rao', this)"><div class="finial-art">⬙</div><div class="finial-name">Rao</div><div class="finial-desc">⅞" deep · low-profile</div></div>
+        <div class="finial-card" onclick="selectFinial('Stratta', this)"><div class="finial-art">▪</div><div class="finial-name">Stratta</div><div class="finial-desc">2¼" deep · square-ish</div></div>
+        <div class="finial-card" onclick="selectFinial('Vivien', this)"><div class="finial-art">⬥</div><div class="finial-name">Vivien</div><div class="finial-desc">3⅝" deep</div></div>
+      </div>
+      <div class="sec-label" style="margin-top:20px">Or choose an Endcap (no decorative projection)</div>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="selectFinial('Round Endcap');toggleOptPill(this)">Round Endcap</div>
+        <div class="opt-pill" onclick="selectFinial('Square Endcap');toggleOptPill(this)">Square Endcap</div>
+      </div>
+    </div>
+
+    <!-- Designer Metals 2" finials -->
+    <div id="finials-dm-2" style="display:none">
+      <div class="sec-label" style="margin-top:0">2" Finials — Designer Metals™</div>
+      <div class="finial-grid">
+        <div class="finial-card" onclick="selectFinial('Corsa', this)"><div class="finial-art">⬢</div><div class="finial-name">Corsa</div><div class="finial-desc">4¼" deep</div></div>
+        <div class="finial-card" onclick="selectFinial('Europa', this)"><div class="finial-art">💎</div><div class="finial-name">Europa</div><div class="finial-desc">2¼" deep · crystal</div></div>
+        <div class="finial-card" onclick="selectFinial('Pandora', this)"><div class="finial-art">⬤</div><div class="finial-name">Pandora</div><div class="finial-desc">5⅜" deep · ball</div></div>
+        <div class="finial-card" onclick="selectFinial('Rao', this)"><div class="finial-art">⬙</div><div class="finial-name">Rao</div><div class="finial-desc">1⅛" deep · low-profile</div></div>
+        <div class="finial-card" onclick="selectFinial('Stratta', this)"><div class="finial-art">▪</div><div class="finial-name">Stratta</div><div class="finial-desc">3⅛" deep · square-ish</div></div>
+      </div>
+    </div>
+
+    <!-- Wrought Iron 1" finials -->
+    <div id="finials-wi-1" style="display:none">
+      <div class="sec-label" style="margin-top:0">1" Finials — Wrought Iron</div>
+      <div class="finial-grid">
+        <div class="finial-card" onclick="selectFinial('Axiom', this)"><div class="finial-art">⊕</div><div class="finial-name">Axiom</div><div class="finial-desc">3¼"D · cross-ring design</div></div>
+        <div class="finial-card" onclick="selectFinial('Darby', this)"><div class="finial-art">⧊</div><div class="finial-name">Darby</div><div class="finial-desc">2-7/16"D · ribbed cylinder</div></div>
+        <div class="finial-card" onclick="selectFinial('Lincoln', this)"><div class="finial-art">⬛</div><div class="finial-name">Lincoln</div><div class="finial-desc">2¼"D · flat block</div></div>
+        <div class="finial-card" onclick="selectFinial('Otto', this)"><div class="finial-art">●</div><div class="finial-name">Otto</div><div class="finial-desc">2-1/16"D · round knob</div></div>
+        <div class="finial-card" onclick="selectFinial('Pedestal Ball', this)"><div class="finial-art">⬤</div><div class="finial-name">Pedestal Ball</div><div class="finial-desc">3¼"D · ball on base</div></div>
+        <div class="finial-card" onclick="selectFinial('Petite Faucet', this)"><div class="finial-art">⬙</div><div class="finial-name">Petite Faucet</div><div class="finial-desc">1¾"D · small square</div></div>
+        <div class="finial-card" onclick="selectFinial('Petite Modern Ball', this)"><div class="finial-art">◉</div><div class="finial-name">Petite Modern Ball</div><div class="finial-desc">2"D · small ball</div></div>
+        <div class="finial-card" onclick="selectFinial('Ponce', this)"><div class="finial-art">▸</div><div class="finial-name">Ponce</div><div class="finial-desc">4-13/16"D · elongated spear</div></div>
+        <div class="finial-card" onclick="selectFinial('Endcap', this)"><div class="finial-art">⬙</div><div class="finial-name">Endcap</div><div class="finial-desc">⅞"D · flat disc</div></div>
+      </div>
+    </div>
+
+    <!-- Wrought Iron 1⅜" finials -->
+    <div id="finials-wi-138" style="display:none">
+      <div class="sec-label" style="margin-top:0">1⅜" Finials — Wrought Iron</div>
+      <div class="finial-grid">
+        <div class="finial-card" onclick="selectFinial('Axiom', this)"><div class="finial-art">⊕</div><div class="finial-name">Axiom</div><div class="finial-desc">3-13/16"D · cross-ring</div></div>
+        <div class="finial-card" onclick="selectFinial('Darby', this)"><div class="finial-art">⧊</div><div class="finial-name">Darby</div><div class="finial-desc">3¼"D · ribbed cylinder</div></div>
+        <div class="finial-card" onclick="selectFinial('Lincoln', this)"><div class="finial-art">⬛</div><div class="finial-name">Lincoln</div><div class="finial-desc">2⅝"D · flat block</div></div>
+        <div class="finial-card" onclick="selectFinial('Otto', this)"><div class="finial-art">●</div><div class="finial-name">Otto</div><div class="finial-desc">2-9/16"D · knob</div></div>
+        <div class="finial-card" onclick="selectFinial('Pedestal Ball', this)"><div class="finial-art">⬤</div><div class="finial-name">Pedestal Ball</div><div class="finial-desc">4⅞"D · ball on base</div></div>
+        <div class="finial-card" onclick="selectFinial('Petite Faucet', this)"><div class="finial-art">⬙</div><div class="finial-name">Petite Faucet</div><div class="finial-desc">2⅜"D · small square</div></div>
+        <div class="finial-card" onclick="selectFinial('Petite Modern Ball', this)"><div class="finial-art">◉</div><div class="finial-name">Petite Modern Ball</div><div class="finial-desc">3⅜"D · small ball</div></div>
+        <div class="finial-card" onclick="selectFinial('Ponce', this)"><div class="finial-art">▸</div><div class="finial-name">Ponce</div><div class="finial-desc">5½"D · elongated spear</div></div>
+        <div class="finial-card" onclick="selectFinial('Endcap', this)"><div class="finial-art">⬙</div><div class="finial-name">Endcap</div><div class="finial-desc">1⅛"D · flat disc</div></div>
+      </div>
+    </div>
+
+    <!-- Wood Trends 1⅜" finials -->
+    <div id="finials-wt-138" style="display:none">
+      <div class="sec-label" style="margin-top:0">1⅜" Finials — Wood Trends™</div>
+      <div class="info-banner" style="margin-bottom:14px"><strong>Sold as pairs · 10 pairs/box.</strong> Available in all 9 finishes. <strong>Note:</strong> Button Ball is not available in Unfinished finish. <strong>K-Rail compatible:</strong> All 1⅜" Wood Trends™ finials also fit Kirsch Architrac® K-Rail Traverse Rods — note K-Rail compatibility in Step 7 if needed.</div>
+      <div class="finial-grid">
+        <div class="finial-card" onclick="selectFinial('Button Ball', this)"><div class="finial-art">●</div><div class="finial-name">Button Ball</div><div class="finial-desc">3½"D · 2½"H · 2½"W · Not in Unfinished</div></div>
+        <div class="finial-card" onclick="selectFinial('Chaucer', this)"><div class="finial-art">◍</div><div class="finial-name">Chaucer</div><div class="finial-desc">3¾"D · 3¼"H · 3¼"W · turned classic</div></div>
+        <div class="finial-card" onclick="selectFinial('Ethan', this)"><div class="finial-art">⬙</div><div class="finial-name">Ethan</div><div class="finial-desc">2¾"D · 3¼"H · 3¼"W · knob style</div></div>
+        <div class="finial-card" onclick="selectFinial('Hugo', this)"><div class="finial-art">⬤</div><div class="finial-name">Hugo</div><div class="finial-desc">2"D · 2½"H · 2½"W · barrel cap</div></div>
+        <div class="finial-card" onclick="selectFinial('Miller', this)"><div class="finial-art">◑</div><div class="finial-name">Miller</div><div class="finial-desc">2⅜"D · 3"H · 3"W · oval</div></div>
+        <div class="finial-card" onclick="selectFinial('Sherwood', this)"><div class="finial-art">⬡</div><div class="finial-name">Sherwood</div><div class="finial-desc">3¾"D · 2¾"H · 2¾"W · urn</div></div>
+        <div class="finial-card" onclick="selectFinial('Warren', this)"><div class="finial-art">⊕</div><div class="finial-name">Warren</div><div class="finial-desc">1¼"D · 2½"H · 2½"W · disc</div></div>
+        <div class="finial-card" onclick="selectFinial('Wood Ball', this)"><div class="finial-art">⬤</div><div class="finial-name">Wood Ball</div><div class="finial-desc">3½"D · 2½"H · 2½"W · classic ball</div></div>
+      </div>
+      <div class="sec-label" style="margin-top:14px">Or choose an Endcap (flush, no projection)</div>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="selectFinial('Endcap 1⅜&quot;');toggleOptPill(this,'wt-end')">Endcap — ¾"D · 2"H · all 9 finishes</div>
+      </div>
+    </div>
+
+    <!-- Wood Trends 2" finials -->
+    <div id="finials-wt-2" style="display:none">
+      <div class="sec-label" style="margin-top:0">2" Finials — Wood Trends™</div>
+      <div class="info-banner" style="margin-bottom:14px"><strong>Sold as pairs · 10 pairs/box.</strong> All 9 finishes including Unfinished available on all 2" styles. <strong>Ceiling mount note:</strong> Finial choices may be limited for ceiling-mounted Estate™ rods — confirm availability when using a ceiling bracket.</div>
+      <div class="finial-grid">
+        <div class="finial-card" onclick="selectFinial('Button Ball', this)"><div class="finial-art">●</div><div class="finial-name">Button Ball</div><div class="finial-desc">4⅝"D · 3½"H · 3½"W</div></div>
+        <div class="finial-card" onclick="selectFinial('Chaucer', this)"><div class="finial-art">◍</div><div class="finial-name">Chaucer</div><div class="finial-desc">4⅜"D · 3¾"H · 3¾"W · turned</div></div>
+        <div class="finial-card" onclick="selectFinial('Ethan', this)"><div class="finial-art">⬙</div><div class="finial-name">Ethan</div><div class="finial-desc">4"D · 4¾"H · 4¾"W · knob</div></div>
+        <div class="finial-card" onclick="selectFinial('Hugo', this)"><div class="finial-art">⬤</div><div class="finial-name">Hugo</div><div class="finial-desc">2⅞"D · 3¾"H · 3¾"W · barrel</div></div>
+        <div class="finial-card" onclick="selectFinial('Miller', this)"><div class="finial-art">◑</div><div class="finial-name">Miller</div><div class="finial-desc">3½"D · 4½"H · 4½"W · oval</div></div>
+        <div class="finial-card" onclick="selectFinial('Sherwood', this)"><div class="finial-art">⬡</div><div class="finial-name">Sherwood</div><div class="finial-desc">5"D · 3"H · 3"W · urn</div></div>
+        <div class="finial-card" onclick="selectFinial('Warren', this)"><div class="finial-art">⊕</div><div class="finial-name">Warren</div><div class="finial-desc">1⅞"D · 3¾"H · 3¾"W · disc</div></div>
+        <div class="finial-card" onclick="selectFinial('Wood Ball', this)"><div class="finial-art">⬤</div><div class="finial-name">Wood Ball</div><div class="finial-desc">5¼"D · 3¾"H · 3¾"W · ball</div></div>
+      </div>
+      <div class="sec-label" style="margin-top:14px">Or choose an Endcap (flush, no projection)</div>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="selectFinial('Endcap 2&quot;');toggleOptPill(this,'wt-end')">Endcap — 1⅜"D · 3"H · all 9 finishes</div>
+      </div>
+    </div>
+
+    <!-- Architrac — no finial -->
+    <div id="finials-arch" style="display:none">
+      <div class="info-banner"><strong>Architrac® 94001</strong> is a concealed functional track — no decorative finials. The track sits behind drapery headers and is not visible when panels are closed.</div>
+    </div>
+
+    <!-- Basic — no finial -->
+    <div id="finials-basic" style="display:none">
+      <div class="info-banner">Basic hardware rods do not use decorative finials. Finial plugs (White) are included with all stationary pole sets.</div>
+    </div>
+
+    <!-- ── DM DUOTONE PICKER ── shown when Maxwell or Briggs Duotone selected -->
+    <div id="dm-duotone-picker" style="display:none;margin-top:16px;padding:16px 18px;background:var(--gold-mid);border:1.5px solid rgba(200,151,63,.4);border-radius:12px">
+      <div class="sec-label" style="margin-top:0;color:#7a5020">Duotone Finish Combination — Required</div>
+      <div style="font-size:13px;color:#555;line-height:1.65;margin-bottom:12px">Duotone finials are <strong>NOT available in your main rod finish.</strong> They are factory-made in exactly 2 specific color combinations. Your rod body keeps its selected finish; only the finial tip uses the Duotone pair below.</div>
+      <div class="opt-row" id="grp-dm-duotone">
+        <div class="opt-pill" onclick="selectDuotonePair('Black + Brushed Bronze',this)">Black + Brushed Bronze<span style="font-size:10px;color:#888;display:block;margin-top:2px">1": #1043043 · 1⅜": Briggs series</span></div>
+        <div class="opt-pill" onclick="selectDuotonePair('Black + Satin Nickel',this)">Black + Satin Nickel<span style="font-size:10px;color:#888;display:block;margin-top:2px">1": #1043044 · 1⅜": Briggs series</span></div>
+      </div>
+    </div>
+
+    <!-- ── K-RAIL NOTE — 1⅜" DM finials also fit K-Rail ── -->
+    <div id="dm-krail-note" style="display:none;margin-top:10px" class="info-banner"><strong>K-Rail Compatible:</strong> All 1⅜" Designer Metals™ finials also fit Kirsch K-Rail systems. If you need K-Rail compatibility, note it in Step 7.</div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep(3)">← Back</button>
+      <button class="btn-next" onclick="goStep(5)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 5 — SIZE & DRAW (measurements + traverse options)
+  ═══════════════════════════════════════════ -->
+  <div class="section" id="sec-5">
+    <div class="sec-label">Step 5 of 7</div>
+    <div class="sec-title">Size &amp; Configuration</div>
+    <div class="sec-sub">Enter your measurements and select how the rod will be used.</div>
+
+    <!-- POLE SIZE (stationary decorative) -->
+    <div id="sz-pole-diameter" style="display:none">
+      <div class="sec-label" style="margin-top:0">Pole Diameter</div>
+      <div class="opt-row" id="pole-dia-opts">
+        <!-- filled by JS based on collection -->
+      </div>
+    </div>
+
+    <!-- POLE STYLE (smooth vs fluted — Wood Trends only) -->
+    <div id="sz-pole-style" style="display:none">
+      <div class="sec-label" style="margin-top:12px">Pole Style</div>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="S.poleStyle='Smooth';toggleOptPill(this,'polestyle')">Smooth</div>
+        <div class="opt-pill" onclick="S.poleStyle='Fluted';toggleOptPill(this,'polestyle')">Fluted</div>
+      </div>
+    </div>
+
+    <!-- POLE LENGTH (stationary) -->
+    <div id="sz-stationary" style="display:none">
+      <div class="sec-label" style="margin-top:12px">Pole Length</div>
+      <div class="info-banner" id="pole-length-info"></div>
+      <div class="inp-row">
+        <div class="inp-group">
+          <label class="inp-label">Width (inches)</label>
+          <input class="inp-field" type="number" id="rod-width" placeholder="e.g. 96" min="1" max="300">
+          <span class="inp-hint">Measure your window width + overhang. Most poles extend 6"–12" per side beyond the frame.</span>
+        </div>
+        <div class="inp-group">
+          <label class="inp-label">Quantity of Rods / Windows</label>
+          <input class="inp-field" type="number" id="rod-qty" placeholder="e.g. 2" min="1" max="50" value="1">
+        </div>
+      </div>
+
+      <!-- ══ DM STATIONARY DETAIL SECTIONS ══════════════════════════════ -->
+
+      <!-- Pole Type / Length — shown only for DM stationary -->
+      <div id="dm-pole-type-section" style="display:none">
+        <div class="sec-label" style="margin-top:16px">Pole Type &amp; Length</div>
+        <div id="dm-pole-1-note" style="display:none" class="info-banner"><strong>1" poles:</strong> Fixed lengths only — 4' (48"), 6' (72"), 8' (96"). No telescoping for 1". Poles join with internal splice #1042812 (Bright Zinc) for spans beyond 8'.</div>
+        <div id="dm-pole-138-note" style="display:none" class="info-banner"><strong>1⅜" poles:</strong> Fixed 4'/6'/8' <em>or</em> Telescoping 36"–66", 66"–120", 120"–180". Telescoping cuts to any exact length within its range. Internal splice #73304061 for spans over 180". All 8 finishes available in both fixed and telescoping.</div>
+        <div class="opt-row" id="grp-dm-pole-type">
+          <div class="opt-pill" onclick="selectDMPoleType(&quot;Fixed 4' (48&quot;&quot;)&quot;,this)">Fixed 4' <span style="font-size:10px;color:#888">48"</span></div>
+          <div class="opt-pill" onclick="selectDMPoleType(&quot;Fixed 6' (72&quot;&quot;)&quot;,this)">Fixed 6' <span style="font-size:10px;color:#888">72"</span></div>
+          <div class="opt-pill" onclick="selectDMPoleType(&quot;Fixed 8' (96&quot;&quot;)&quot;,this)">Fixed 8' <span style="font-size:10px;color:#888">96"</span></div>
+          <div class="opt-pill dm-tele-only" id="dm-tele-36-66" style="display:none" onclick="selectDMPoleType('Telescoping 36–66”',this)">Telescoping 36"–66"</div>
+          <div class="opt-pill dm-tele-only" id="dm-tele-66-120" style="display:none" onclick="selectDMPoleType('Telescoping 66–120”',this)">Telescoping 66"–120"</div>
+          <div class="opt-pill dm-tele-only" id="dm-tele-120-180" style="display:none" onclick="selectDMPoleType('Telescoping 120–180”',this)">Telescoping 120"–180"</div>
+        </div>
+      </div>
+
+      <!-- Bracket Type — shown only for DM stationary -->
+      <div id="dm-bracket-section" style="display:none">
+        <div class="sec-label" style="margin-top:16px">Bracket Type</div>
+
+        <!-- 1" bracket options -->
+        <div id="dm-bracket-1-opts" style="display:none">
+          <div style="font-size:11px;color:#777;margin-bottom:10px;line-height:1.55">1" brackets are sold per finish to match your pole. Weight limits are <em>per bracket</em>. Add a center bracket for poles over 48". All 8 finishes.</div>
+          <div class="opt-row" id="grp-dm-bracket-1">
+            <div class="opt-pill" onclick="selectDMBracket('3&quot; Return — 25 lbs/bracket · wall projection 2⅜&quot;',this)">3" Return <span style="font-size:10px;color:#888">wall 2⅜" · max 25 lbs</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('6&quot; Return — 12 lbs/bracket · wall projection 5⅜&quot;',this)">6" Return <span style="font-size:10px;color:#888">wall 5⅜" · max 12 lbs</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('3&quot; Bypass — 25 lbs/bracket (two overlapping rods)',this)">3" Bypass <span style="font-size:10px;color:#888">2 poles overlap · 25 lbs</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('6&quot; Bypass — 12 lbs/bracket (two overlapping rods)',this)">6" Bypass <span style="font-size:10px;color:#888">2 poles overlap · 12 lbs</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('French Return 3&quot; — 25 lbs · arm 3¼&quot; · overall 4⅜&quot;',this)">French Return 3" <span style="font-size:10px;color:#888">arm 3¼" · 25 lbs</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('French Return 6&quot; — 12 lbs',this)">French Return 6" <span style="font-size:10px;color:#888">12 lbs</span></div>
+          </div>
+          <div class="info-banner" style="font-size:11px;margin-top:6px;line-height:1.6"><strong>Bypass:</strong> Two rods pass at different depths from one bracket point — for rooms needing two panel layers that overlap at center. <strong>French Return:</strong> Panel wraps around the side of the rod so the end of the fabric touches the wall (no visible bracket gap).</div>
+        </div>
+
+        <!-- 1⅜" bracket options -->
+        <div id="dm-bracket-138-opts" style="display:none">
+          <div style="font-size:11px;color:#777;margin-bottom:10px;line-height:1.55">1⅜" brackets sold per finish to match pole. Weight limits are <em>per bracket</em>. Add center bracket for spans over 48". All 8 finishes.</div>
+          <div class="opt-row" id="grp-dm-bracket-138">
+            <div class="opt-pill" onclick="selectDMBracket('3&quot; Return — 32 lbs/bracket · wall 1¾&quot;',this)">3" Return <span style="font-size:10px;color:#888">wall 1¾" · max 32 lbs</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('6&quot; Return — 16 lbs/bracket · wall 4¾&quot;',this)">6" Return <span style="font-size:10px;color:#888">wall 4¾" · max 16 lbs</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('Decorative Return 3&quot;–4&quot; (adjustable projection)',this)">Decorative Return 3"–4" <span style="font-size:10px;color:#888">adj projection</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('Decorative Bypass 3&quot;–4&quot;',this)">Decorative Bypass <span style="font-size:10px;color:#888">two poles · adj 3"–4"</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('Decorative Ceiling Mount',this)">Ceiling Mount <span style="font-size:10px;color:#888">pole hangs from ceiling</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('Decorative Double Rod — inner 3&quot;–4&quot; + outer 6&quot;–7&quot;',this)">Double Rod Bracket <span style="font-size:10px;color:#888">two poles, one wall point</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('Deep Standard 5¼&quot;–7&quot; projection',this)">Deep Bracket 5¼"–7" <span style="font-size:10px;color:#888">large trim clearance</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('Inside Mount Socket #1832218',this)">Inside Mount Socket <span style="font-size:10px;color:#888">rod seats inside casing</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('Swivel Socket #1831428',this)">Swivel Socket <span style="font-size:10px;color:#888">angled/bay windows</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('French Return 3&quot; — 32 lbs · arm 3¼&quot; · back plate 3&quot;',this)">French Return 3" <span style="font-size:10px;color:#888">arm 3¼" · 32 lbs</span></div>
+            <div class="opt-pill" onclick="selectDMBracket('French Return 6&quot; — 16 lbs',this)">French Return 6" <span style="font-size:10px;color:#888">16 lbs</span></div>
+          </div>
+          <div class="info-banner" style="font-size:11px;margin-top:6px;line-height:1.6"><strong>Inside Mount Socket (#1832218):</strong> Rod rests inside casing — no wall holes. Requires ≈1½" casing depth minimum. <strong>Swivel Socket (#1831428):</strong> Allows rod to angle for bay or angled frames. <strong>Double Rod bracket:</strong> Both a front and back pole mount from one wall bracket — inner 3"–4" projection, outer 6"–7". <strong>Baton with Bypass C-Ring (#1831558, 36"):</strong> Mention in notes if needed.</div>
+        </div>
+      </div>
+
+      <!-- Ring Type — shown only for DM stationary -->
+      <div id="dm-ring-section" style="display:none">
+        <div class="sec-label" style="margin-top:16px">Ring Type</div>
+
+        <!-- 1" rings -->
+        <div id="dm-ring-1-opts" style="display:none">
+          <div style="font-size:11px;color:#777;margin-bottom:8px">1" rings: int 1⅜", ext 1-11/16". Sold per finish. Lock Ring is for French return only.</div>
+          <div class="opt-row" id="grp-dm-ring-1">
+            <div class="opt-pill" onclick="selectDMRing('Standard Rings (1&quot; int 1⅜&quot; / ext 1-11/16&quot;)',this)">Standard Rings
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Pinch pleat · Rod pocket · Tab top</span></div>
+            <div class="opt-pill" onclick="selectDMRing('Bypass C-Rings (1&quot;)',this)">Bypass C-Rings
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Bypass rods only</span></div>
+            <div class="opt-pill" onclick="selectDMRing('Lock Ring (1&quot;) — French return use only',this)">Lock Ring
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">French return only</span></div>
+          </div>
+        </div>
+
+        <!-- 1⅜" rings -->
+        <div id="dm-ring-138-opts" style="display:none">
+          <div style="font-size:11px;color:#777;margin-bottom:8px">1⅜" rings: int 1¾", ext 2⅛". Sold per finish. Lock Ring is for French return only.</div>
+          <div class="opt-row" id="grp-dm-ring-138">
+            <div class="opt-pill" onclick="selectDMRing('Standard Rings (1⅜&quot; int 1¾&quot; / ext 2⅛&quot;)',this)">Standard Rings
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Pinch pleat · Goblet · Rod pocket</span></div>
+            <div class="opt-pill" onclick="selectDMRing('Bypass C-Ring (1⅜&quot;)',this)">Bypass C-Ring
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Bypass rods only</span></div>
+            <div class="opt-pill" onclick="selectDMRing('Transitional Ring (1⅜&quot; int 1⅝&quot;) — K-Rail compatible',this)">Transitional Ring
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Ripplefold · K-Rail</span></div>
+            <div class="opt-pill" onclick="selectDMRing('Lock Ring (1⅜&quot;) — French return only',this)">Lock Ring
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">French return only</span></div>
+          </div>
+        </div>
+      </div>
+      <!-- ══ END DM STATIONARY DETAIL SECTIONS ══ -->
+
+    </div>
+
+    <!-- TRAVERSE ROD OPTIONS -->
+    <div id="sz-traverse" style="display:none">
+      <div class="sec-label" style="margin-top:0">Track Length</div>
+      <div id="traverse-limits-info" class="info-banner"></div>
+      <div class="inp-row">
+        <div class="inp-group">
+          <label class="inp-label">Track Width / Length (inches)</label>
+          <input class="inp-field" type="number" id="trav-width" placeholder="e.g. 120" min="18" max="480">
+          <span class="inp-hint">Measure from bracket to bracket (finished wall opening + any desired overlap). Estate min 18", max 192" (16ft).</span>
+        </div>
+        <div class="inp-group">
+          <label class="inp-label">Quantity of Tracks / Windows</label>
+          <input class="inp-field" type="number" id="trav-qty" placeholder="e.g. 1" min="1" max="20" value="1">
+        </div>
+      </div>
+
+      <div class="sec-label" style="margin-top:12px">Draw Type</div>
+      <div class="opt-row">
+        <div class="opt-pill" id="draw-two" onclick="selectDraw('Two-Way Split');toggleOptPill(this,'draw')">Two-Way Split Draw <span style="font-size:10px">⇦⇨</span></div>
+        <div class="opt-pill" id="draw-one-right" onclick="selectDraw('One-Way Right');toggleOptPill(this,'draw')">One-Way → Right</div>
+        <div class="opt-pill" id="draw-one-left" onclick="selectDraw('One-Way Left');toggleOptPill(this,'draw')">One-Way ← Left</div>
+      </div>
+
+      <div class="sec-label" style="margin-top:12px">Drapery Header Style</div>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="selectHeader('Pleated');toggleOptPill(this,'header')">Pleated (classic pins)</div>
+        <div class="opt-pill" onclick="selectHeader('Ripplefold');toggleOptPill(this,'header')">Ripplefold™ (modern wave)</div>
+        <div class="opt-pill" onclick="selectHeader('Not sure');toggleOptPill(this,'header')">Not sure</div>
+      </div>
+
+      <div id="ripplefold-options" style="display:none;margin-top:4px">
+        <div class="sec-label" style="margin-top:8px">Ripplefold™ Fullness</div>
+        <div class="opt-row">
+          <div class="opt-pill" onclick="selectFullness('60%');toggleOptPill(this,'fullness')">60% fullness</div>
+          <div class="opt-pill" onclick="selectFullness('80%');toggleOptPill(this,'fullness')">80% fullness</div>
+          <div class="opt-pill" onclick="selectFullness('100%');toggleOptPill(this,'fullness')">100% fullness</div>
+          <div class="opt-pill" onclick="selectFullness('120%');toggleOptPill(this,'fullness')">120% fullness</div>
+        </div>
+      </div>
+
+      <div class="sec-label" style="margin-top:12px">Mounting Location</div>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="selectMount('Wall Mount');toggleOptPill(this,'mount')">Wall Mount</div>
+        <div class="opt-pill" onclick="selectMount('Ceiling Mount');toggleOptPill(this,'mount')">Ceiling Mount</div>
+        <div class="opt-pill" id="mount-recessed" onclick="selectMount('Recessed Mount');toggleOptPill(this,'mount')">Recessed Mount</div>
+        <div class="opt-pill" onclick="selectMount('Double Rod (two panels at different depths)');toggleOptPill(this,'mount')">Double Rod</div>
+      </div>
+
+      <!-- ── DM ESTATE: ROD SIZE (1⅜" vs 2") ──────────────────────── -->
+      <!-- Shown only when collection=dm + Estate traverse -->
+      <div id="dm-estate-dia" style="display:none">
+        <div class="sec-label" style="margin-top:14px">Designer Metals™ Estate Rod Size</div>
+        <div style="font-size:12px;color:#666;margin-bottom:10px;line-height:1.65">Both 1⅜" and 2" Estate™ rods are available in all 8 Designer Metals™ finishes. 2" gives a bolder, more architectural look — but has only 5 finial choices vs 17 for 1⅜".</div>
+        <div class="opt-row" id="grp-dm-estate-dia">
+          <div class="opt-pill" onclick="selectDMEstateDia('1⅜&quot; Estate',this)">1⅜" Estate <span style="font-size:10px;color:#888">15 finials + 2 endcaps · most common</span></div>
+          <div class="opt-pill" onclick="selectDMEstateDia('2&quot; Estate',this)">2" Estate <span style="font-size:10px;color:#888">5 finials only: Corsa, Europa, Pandora, Rao, Stratta</span></div>
+        </div>
+        <div id="dm-estate-2in-warn" style="display:none" class="warn-banner"><strong>2" Estate — restricted finials:</strong> Only <strong>Corsa, Europa, Pandora, Rao, and Stratta</strong> fit the 2" Estate rod. If you selected a different finial in Step 4, please go back and update it.</div>
+        <div class="info-banner" style="margin-top:8px;font-size:11px;line-height:1.65"><strong>All Estate traverse limits apply regardless of size:</strong> Min 18" · Max 192" (16 ft) · Max 64 lbs total load · Max 4 lbs/ft · Tracks over 8': splice + keystone included · AMP™ motor available on both sizes (max 16 ft motorized) · <strong>Cannot be curved or bent when motorized.</strong></div>
+      </div>
+    </div>
+
+    <!-- BASIC rod specs -->
+    <div id="sz-basic" style="display:none">
+      <div class="inp-row">
+        <div class="inp-group">
+          <label class="inp-label">Window Width (inches)</label>
+          <input class="inp-field" type="number" id="basic-width" placeholder="e.g. 60" min="1" max="228">
+          <span class="inp-hint">We'll select the right telescoping size for your measurement.</span>
+        </div>
+        <div class="inp-group">
+          <label class="inp-label">Quantity</label>
+          <input class="inp-field" type="number" id="basic-qty" value="1" min="1" max="50">
+        </div>
+      </div>
+
+      <div id="sz-superfine-opts" style="display:none">
+        <div class="sec-label" style="margin-top:4px">Draw Configuration</div>
+        <div class="opt-row">
+          <div class="opt-pill" onclick="selectDraw('Split Draw');toggleOptPill(this,'draw');showSFNote('split')">Split Draw <span style="font-size:10px;color:#888">(30"–228")</span></div>
+          <div class="opt-pill" onclick="selectDraw('One-Way Right');toggleOptPill(this,'draw');showSFNote('oneway')">One-Way Right <span style="font-size:10px;color:#888">(30"–120" max)</span></div>
+          <div class="opt-pill" onclick="selectDraw('One-Way Left');toggleOptPill(this,'draw');showSFNote('oneway')">One-Way Left <span style="font-size:10px;color:#888">(30"–120" max)</span></div>
+          <div class="opt-pill" onclick="selectDraw('Double Split Draw');toggleOptPill(this,'draw');showSFNote('double')">Double Split Draw <span style="font-size:10px;color:#888">(48"–156" max)</span></div>
+        </div>
+        <div id="sf-draw-note" class="info-banner" style="display:none;margin-top:8px;font-size:12px"></div>
+        <div class="sec-label" style="margin-top:8px">Operation</div>
+        <div class="opt-row">
+          <div class="opt-pill" onclick="selectBasicOp('Continuous Loop');toggleOptPill(this,'basicop')">Continuous Loop (Cord)</div>
+          <div class="opt-pill" onclick="selectBasicOp('Baton');toggleOptPill(this,'basicop')">Baton Draw</div>
+          <div class="opt-pill" onclick="selectBasicOp('Hand Draw');toggleOptPill(this,'basicop')">Hand Draw</div>
+        </div>
+      </div>
+
+      <!-- Tension / Sash rod type selector -->
+      <div id="sz-tension-opts" style="display:none">
+        <div class="sec-label" style="margin-top:4px">Rod Type</div>
+        <div class="info-banner" style="font-size:12px;margin-bottom:10px">Spring tension and sash rods are mostly White. Zinc Door Sash Tension Rod available in Zinc finish.</div>
+        <div class="opt-row" style="flex-wrap:wrap">
+          <div class="opt-pill" onclick="selectLockseam('Spring Tension Rod ⅝&quot; Oval (8&quot;–72&quot;, White)');toggleOptPill(this,'trtype')">⅝" Oval Tension <span style="font-size:10px;color:#888">(8"–72")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('Spring Tension Rod ⁷⁄₁₆&quot; (18&quot;–48&quot;, White)');toggleOptPill(this,'trtype')">⁷⁄₁₆" Tension <span style="font-size:10px;color:#888">(18"–48")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('Door Sash Tension Rod 20&quot;–36&quot; (Zinc)');toggleOptPill(this,'trtype')">Door Sash Tension — Zinc <span style="font-size:10px;color:#888">(20"–36")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('Door Sash Rod ⁵⁄₁₆&quot; (11&quot;–36&quot;, White)');toggleOptPill(this,'trtype')">⁵⁄₁₆" Door Sash <span style="font-size:10px;color:#888">(11"–36")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('Door Sash Rod ⁷⁄₁₆&quot; (18&quot;–28&quot;, White)');toggleOptPill(this,'trtype')">⁷⁄₁₆" Door Sash <span style="font-size:10px;color:#888">(18"–28")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('Flat Sash Rod ¹¹⁄₁₆&quot; (16&quot;–50&quot;, White)');toggleOptPill(this,'trtype')">¹¹⁄₁₆" Flat Sash <span style="font-size:10px;color:#888">(16"–50")</span></div>
+        </div>
+      </div>
+
+      <div id="sz-lockseam-opts" style="display:none">
+        <div class="sec-label" style="margin-top:4px">Rod Type &amp; Face Width</div>
+        <div class="info-banner" style="font-size:12px;margin-bottom:10px">Single rods: all White, available 6"–120" depending on face width. Double: front 3½" + back 2½". Triple: front 5½" + mid 3½" + back 2½". Bay: 78"–127". Return depth equals face width.</div>
+        <div class="opt-row" style="flex-wrap:wrap">
+          <div class="opt-pill" onclick="selectLockseam('½&quot; Single (6&quot;–48&quot;)');toggleOptPill(this,'lsw')">½" Single <span style="font-size:10px;color:#888">(6"–48")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('1½&quot; Single (28&quot;–84&quot;)');toggleOptPill(this,'lsw')">1½" Single <span style="font-size:10px;color:#888">(28"–84")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('2½&quot; Single (18&quot;–120&quot;)');toggleOptPill(this,'lsw')">2½" Single <span style="font-size:10px;color:#888">(18"–120")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('3½&quot; Single (28&quot;–120&quot;)');toggleOptPill(this,'lsw')">3½" Single <span style="font-size:10px;color:#888">(28"–120")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('5½&quot; Single (28&quot;–120&quot;)');toggleOptPill(this,'lsw')">5½" Single <span style="font-size:10px;color:#888">(28"–120")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('8½&quot; Single (28&quot;–120&quot;)');toggleOptPill(this,'lsw')">8½" Single <span style="font-size:10px;color:#888">(28"–120")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('Double Rod (3½&quot; front + 2½&quot; back, 28&quot;–120&quot;)');toggleOptPill(this,'lsw')">Double <span style="font-size:10px;color:#888">(3½"+2½", 28"–120")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('Triple Rod (5½&quot; front + 3½&quot; mid + 2½&quot; back, 28&quot;–120&quot;)');toggleOptPill(this,'lsw')">Triple <span style="font-size:10px;color:#888">(5½"+3½"+2½", 28"–120")</span></div>
+          <div class="opt-pill" onclick="selectLockseam('Bay Rod (2½&quot; front return, 78&quot;–127&quot;)');toggleOptPill(this,'lsw')">Bay Rod <span style="font-size:10px;color:#888">(78"–127")</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep(4)">← Back</button>
+      <button class="btn-next" onclick="goStep(6)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 6 — MOTORIZATION (AMP)
+  ═══════════════════════════════════════════ -->
+  <div class="section" id="sec-6">
+    <div class="sec-label">Step 6 of 7</div>
+    <div class="sec-title">Motorization</div>
+    <div class="sec-sub" id="sec6-sub">AMP™ motorization is available on Estate™ traverse rods and Architrac® 94001 tracks.</div>
+
+    <!-- AMP eligible -->
+    <div id="amp-eligible" style="display:none">
+      <div class="info-banner">
+        <strong>AMP™ Motorization — Available</strong><br>
+        The AMP™ drapery motor mounts to the back of your traverse track. Motor is concealed behind drapery — no change to fabrication. RF remote included. Tug-to-open feature. Dual battery + AC power. Max 64 lbs. Max 16ft track.<br><br>
+        <strong>Product #62001300</strong> · DC 16.5V · 7.8 in/sec · 40W · 1.2Nm · UL/CE certified
+      </div>
+
+      <div class="toggle-row" onclick="toggleAMP(this)" id="amp-toggle">
+        <div class="toggle-label">
+          Add AMP™ Motorization
+          <small>Includes battery charger #62201300. RF remotes and wall switches sold separately.</small>
+        </div>
+        <div class="toggle-switch" id="amp-switch"></div>
+      </div>
+
+      <div id="amp-extras" style="display:none;margin-top:14px">
+        <div class="sec-label">Optional AMP™ Accessories</div>
+        <div class="opt-row">
+          <div class="opt-pill" id="amp-remote" onclick="toggleAMPExtra(this,'remote')">RF Remote (White #62101000)</div>
+          <div class="opt-pill" id="amp-remote-blk" onclick="toggleAMPExtra(this,'remote-blk')">RF Remote (Black #62101010)</div>
+          <div class="opt-pill" id="amp-wall-surface" onclick="toggleAMPExtra(this,'wall-surface')">Surface Wall Switch</div>
+          <div class="opt-pill" id="amp-wall-flush" onclick="toggleAMPExtra(this,'wall-flush')">Flush Wall Switch</div>
+          <div class="opt-pill" id="amp-gateway" onclick="toggleAMPExtra(this,'gateway')">USB Bridge / Smart Home</div>
+        </div>
+        <div class="warn-banner" id="amp-bend-warning" style="display:none"><strong>Note:</strong> Architrac® 94001 with AMP™ motorization <strong>cannot</strong> be bent or curved. Motorized track must be perfectly straight.</div>
+      </div>
+    </div>
+
+    <!-- AMP not eligible -->
+    <div id="amp-not-eligible" style="display:none">
+      <div class="info-banner">AMP™ motorization is only available on <strong>Estate™ traverse rods</strong> and <strong>Architrac® 94001</strong> tracks. Your current selection (stationary pole or basic hardware) cannot be motorized through Kirsch. If you need motorized drapery, consider upgrading to an Estate™ traverse rod — let us know in the notes.</div>
+    </div>
+
+    <!-- Wood Trends accessories (shown for wt collection) -->
+    <div id="wt-accessories" style="display:none;margin-top:20px">
+      <div class="divider"></div>
+      <div class="sec-label" style="margin-top:0">Wood Trends™ Accessories — Add to Your Order?</div>
+      <div class="sec-sub" style="font-size:12px;margin-bottom:14px">Check anything you'd like to include. We'll add pricing to your quote. All items available in your chosen finish.</div>
+      <div style="font-size:11px;color:#888;margin-bottom:10px;line-height:1.7;background:#fafaf8;border-radius:8px;padding:10px 12px;border:1px solid #e8e8e4">
+        <strong style="color:#111">Restriction notes:</strong>
+        Ceiling Mount bracket and Double Bracket are <strong>not available in Unfinished finish</strong> — specify a stained or painted finish when adding these.
+        The <strong>Double Bracket for 2" poles</strong> mounts a 2" front rod and a 1⅜" back rod simultaneously from one wall point — you must order both pole sizes.
+        Wood <strong>Elbows are Unfinished only</strong> (natural bare wood, paint/stain yourself to match).
+        The <strong>4¼" Return bracket is 1⅜" only</strong> — not available for 2" poles.
+        Holdback Medallions are not available in Unfinished.
+      </div>
+      <div class="opt-row" style="flex-wrap:wrap">
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'rings')">Rings with Eyelet <span style="font-size:10px;color:#888">1⅜"=$15.37 · 2"=$18.17/bag · 7 rings/bag (1⅜") or 4 rings/bag (2")</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'metal-clip')">Metal Clip for Rings <span style="font-size:10px;color:#888">Brass · $16.05/50 pack · clips to eyelet for rod-pocket panels</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'bracket-3.5')">3½" Return Bracket <span style="font-size:10px;color:#888">1⅜"=$11.77 ea · 2"=$17.24 ea · 9 finishes</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'bracket-4.25')">4¼" Return Bracket <span style="font-size:10px;color:#888">1⅜" ONLY · $12.44 ea · 9 finishes</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'bracket-6')">6" Return Bracket <span style="font-size:10px;color:#888">1⅜"=$35.25/5-pair box · 2"=$18.04 ea · 9 finishes</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'ceiling-bracket')">Ceiling Mount Bracket <span style="font-size:10px;color:#888">1⅜"=$21.77 · 2"=$23.79 · 8 finishes (no Unfinished)</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'double-bracket')">Double Bracket — front 2" + back 1⅜" <span style="font-size:10px;color:#888">$24.86 ea · 8 finishes (no Unfinished) · requires 2 pole sizes</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'inside-socket')">Inside Mount Socket (1⅜" only) <span style="font-size:10px;color:#888">$9.89/pair · 9 finishes · rod seats inside window casing</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'swivel-socket')">Swivel Socket — angled / bay window <span style="font-size:10px;color:#888">1⅜"=$26.72 · 2"=$32.73 · 9 finishes</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'holdback')">3¾" Holdback Medallion <span style="font-size:10px;color:#888">$42.47/pair · 8 finishes (no Unfinished) · adj 3" or 5" clearance</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'elbow')">Wood Elbow Kit — wrap-around bay <span style="font-size:10px;color:#888">Unfinished only · 3½"–5½" or 6"–8" clearance · includes metal bracket &amp; hidden support</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'teflon')">Teflon Tape — smooth ring glide <span style="font-size:10px;color:#888">$65.18/roll · 54ft · stationary poles only</span></div>
+        <div class="opt-pill" onclick="toggleWTAccessory(this,'pole-connector')">Pole Connector #5610E061 <span style="font-size:10px;color:#888">$1.70 ea · Zinc Plated · for splicing poles · always support splice with a bracket</span></div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep(5)">← Back</button>
+      <button class="btn-next" onclick="goStep(7)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       STEP 7 — CONTACT & QUOTE
+  ═══════════════════════════════════════════ -->
+  <div class="section" id="sec-7">
+    <div class="sec-label">Step 7 of 7</div>
+    <div class="sec-title">Your Quote Request</div>
+    <div class="sec-sub">Review your selections and send us your request. We'll follow up with pricing and lead time within 1 business day.</div>
+
+    <!-- Summary -->
+    <div class="summary-card" id="quote-summary">
+      <div class="summary-title">Your Configuration</div>
+      <!-- filled by JS -->
+    </div>
+
+    <!-- Contact form -->
+    <div class="inp-row">
+      <div class="inp-group">
+        <label class="inp-label">Your Name *</label>
+        <input class="inp-field" type="text" id="q-name" placeholder="Full name">
+      </div>
+      <div class="inp-group">
+        <label class="inp-label">Phone / Email *</label>
+        <input class="inp-field" type="text" id="q-contact" placeholder="Best way to reach you">
+      </div>
+    </div>
+
+    <div class="inp-group" style="margin-bottom:14px">
+      <label class="inp-label">Project Address / Location</label>
+      <input class="inp-field" type="text" id="q-address" placeholder="City, State (or full address)">
+    </div>
+
+    <div class="inp-group" style="margin-bottom:14px">
+      <label class="inp-label">Notes / Special Requests</label>
+      <textarea class="inp-field" id="q-notes" placeholder="Fabric weight, room details, drapery stack requirements, curved track needs, etc."></textarea>
+    </div>
+
+    <!-- Delivery -->
+    <div class="delivery-section">
+      <div class="delivery-title">Installation or Pick-Up?</div>
+      <div class="delivery-opt" id="del-install" onclick="selectDelivery('install')">
+        <div class="delivery-opt-title">Professional Installation (Philadelphia / South Jersey area)</div>
+        <div class="delivery-opt-sub">We measure, supply, and install. Our team has 60+ years combined experience. Pricing includes on-site measurement and installation labor.</div>
+      </div>
+      <div class="delivery-opt" id="del-ship" onclick="selectDelivery('ship')">
+        <div class="delivery-opt-title">Ship to Me</div>
+        <div class="delivery-opt-sub">We ship Kirsch hardware directly to you. UPS / FedEx from Huntingdon Valley, PA 19006. Tariffs, duties, and freight charges apply on top of product pricing and will be disclosed at quote stage.</div>
+      </div>
+      <div class="delivery-opt" id="del-pickup" onclick="selectDelivery('pickup')">
+        <div class="delivery-opt-title">Pick Up</div>
+        <div class="delivery-opt-sub">Pick up at our location once order is ready. Address provided after order confirmation: Huntingdon Valley, PA 19006.</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep(6)">← Back</button>
+    </div>
+    <button onclick="reqMoreInfo('Kirsch Drapery Hardware')" class="req-info-link" style="display:block;margin-bottom:14px">Request more information about Kirsch hardware →</button>
+    <button class="btn-submit-cta" onclick="submitQuote()" style="font-family:var(--font)">
+      Get Custom Quote →
+      <span class="cta-sub">We'll follow up within a few hours · (609) 742-1720</span>
+    </button>
+  </div>
+
+  <!-- UNSURE / HELP FORM (separate flow) -->
+  <div class="section" id="sec-unsure">
+    <div class="sec-label">Custom Quote</div>
+    <div class="sec-title">Tell Us About Your Project</div>
+    <div class="sec-sub">No worries — describe your space and what you're looking for. We'll recommend the perfect Kirsch solution and follow up with a quote.</div>
+
+    <div class="inp-row">
+      <div class="inp-group">
+        <label class="inp-label">Your Name *</label>
+        <input class="inp-field" type="text" id="u-name" placeholder="Full name">
+      </div>
+      <div class="inp-group">
+        <label class="inp-label">Phone / Email *</label>
+        <input class="inp-field" type="text" id="u-contact" placeholder="Best way to reach you">
+      </div>
+    </div>
+    <div class="inp-group" style="margin-bottom:14px">
+      <label class="inp-label">Window Width(s) &amp; Quantity</label>
+      <input class="inp-field" type="text" id="u-size" placeholder="e.g. 3 windows, each about 72&quot; wide">
+    </div>
+    <div class="inp-group" style="margin-bottom:14px">
+      <label class="inp-label">Describe Your Space &amp; Style</label>
+      <textarea class="inp-field" id="u-notes" placeholder="What room? Modern or traditional? Will drapery open/close often? Fabric weight? Ceiling height? Any colors/metals you like?"></textarea>
+    </div>
+    <div class="delivery-section">
+      <div class="delivery-title">Are you local to the Philadelphia area?</div>
+      <div class="delivery-opt" id="u-del-local" onclick="selectDelivery('install','u')">
+        <div class="delivery-opt-title">Yes — I'd like in-home measurement &amp; installation</div>
+      </div>
+      <div class="delivery-opt" id="u-del-remote" onclick="selectDelivery('ship','u')">
+        <div class="delivery-opt-title">No — I'd like hardware shipped or picked up</div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn-back" onclick="goStep(1)">← Back</button>
+      <button class="btn-submit" onclick="submitUnsure()">Send My Request →</button>
+    </div>
+  </div>
+
+</div><!-- end config-wrap -->
+
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Kirsch Rods');
+renderFooter(false);
+
+// ── STATE ──
+const S = {
+  type: '',         // 'static'|'traverse'|'basic'|'unsure'
+  collection: '',   // 'dm'|'wt'|'wi'|'arch'|'basic-sf'|'basic-ls'|'basic-tn'
+  traverseSystem: '', // 'estate'|'architrac'
+  architracModel: '', // '94001'|'94003'|'94004'|'94005'|'9046'|'9600'|'K-Rail'
+  finish: '',
+  finial: '',
+  poleDia: '',
+  poleStyle: '',    // 'Smooth'|'Fluted' (Wood Trends only)
+  rodWidth: '',
+  rodQty: 1,
+  draw: '',
+  header: '',
+  fullness: '',
+  mount: '',
+  motorized: false,
+  ampExtras: [],
+  delivery: '',
+  basicSubtype: '',
+  basicDraw: '',
+  basicOp: '',
+  lockseamWidth: '',
+  dmDuotoneFinish: '',
+  dmPoleType: '',
+  dmBracketType: '',
+  dmRingType: '',
+  dmEstateDia: ''
+};
+
+const TOTAL_STEPS = 7;
+
+// ── STEP BAR ──
+function renderStepBar(current) {
+  const bar = document.getElementById('step-bar');
+  let html = '';
+  for (let i = 1; i <= TOTAL_STEPS; i++) {
+    const cls = i < current ? 'done' : i === current ? 'active' : '';
+    html += `<div class="step-dot"><div class="step-circle ${cls}">${i < current ? '✓' : i}</div></div>`;
+    if (i < TOTAL_STEPS) html += `<div class="step-line ${i < current ? 'done' : ''}"></div>`;
+  }
+  bar.innerHTML = html;
+}
+
+// ── NAVIGATION ──
+let currentStep = 1;
+
+function goStep(n) {
+  // Hide all sections
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('on'));
+
+  if (n === 'unsure') {
+    document.getElementById('sec-unsure').classList.add('on');
+    document.getElementById('step-bar').style.display = 'none';
+    return;
+  }
+
+  currentStep = n;
+  renderStepBar(n);
+  document.getElementById('step-bar').style.display = 'flex';
+
+  const sec = document.getElementById('sec-' + n);
+  if (sec) sec.classList.add('on');
+
+  // Update step content based on current state
+  if (n === 2) updateStep2();
+  if (n === 3) updateStep3();
+  if (n === 4) updateStep4();
+  if (n === 5) updateStep5();
+  if (n === 6) updateStep6();
+  if (n === 7) updateStep7();
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function goSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('on'));
+  document.getElementById('step-bar').style.display = 'none';
+  document.getElementById(id === 'unsure-form' ? 'sec-unsure' : id).classList.add('on');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── STEP 1 ──
+function selectType(t, el) {
+  S.type = t;
+  document.querySelectorAll('#sec-1 .choice-card').forEach(c => c.classList.remove('sel'));
+  (el || event.target).classList.add('sel');
+
+  if (t === 'unsure') { goSection('unsure-form'); return; }
+  goStep(2);
+}
+
+// ── STEP 2 ──
+function updateStep2() {
+  hide('decor-collections'); hide('traverse-systems'); hide('basic-options'); hide('unsure-options');
+  document.getElementById('architrac-model-picker').style.display = 'none';
+
+  if (S.type === 'static') {
+    show('decor-collections');
+    document.getElementById('sec2-title').textContent = 'Choose a Collection';
+    document.getElementById('sec2-sub').textContent = 'All three decorative collections work as stationary poles. Rings slide on manually.';
+  } else if (S.type === 'traverse') {
+    show('traverse-systems');
+    document.getElementById('sec2-title').textContent = 'Decorative or Functional Traverse?';
+    document.getElementById('sec2-sub').textContent = 'Estate™ rods show visible finials; Architrac® tracks are fully concealed behind drapery.';
+  } else if (S.type === 'basic') {
+    show('basic-options');
+    document.getElementById('sec2-title').textContent = 'Basic Hardware Type';
+    document.getElementById('sec2-sub').textContent = 'White finish only. Great for budget-conscious projects.';
+  }
+}
+
+function selectCollection(c, el) {
+  S.collection = c;
+  document.querySelectorAll('.coll-card').forEach(el => el.classList.remove('sel'));
+  (el || event.target).classList.add('sel');
+
+  // For traverse type, collection implies Estate system
+  if (S.type === 'traverse' && c !== 'arch') {
+    S.traverseSystem = 'estate';
+  }
+  goStep(3);
+}
+
+function selectTraverseSystem(sys, el) {
+  S.traverseSystem = sys;
+  document.querySelectorAll('#traverse-systems .choice-card').forEach(c => c.classList.remove('sel'));
+  (el || event.target).classList.add('sel');
+
+  if (sys === 'architrac') {
+    S.collection = 'arch';
+    // Show model picker — don't jump to step 3 yet
+    hide('decor-collections');
+    document.getElementById('architrac-model-picker').style.display = 'block';
+    document.getElementById('sec2-title').textContent = 'Choose Architrac® Model';
+    document.getElementById('sec2-sub').textContent = 'Select the track model that best fits your project requirements.';
+  } else {
+    // Show collection choices for Estate
+    hide('traverse-systems');
+    show('decor-collections');
+    document.getElementById('sec2-title').textContent = 'Estate™ Collection';
+    document.getElementById('sec2-sub').textContent = 'All three collections offer Estate™ traverse rods — choose your preferred finish family.';
+  }
+}
+
+function selectArchitracModel(m, el) {
+  S.architracModel = m;
+  document.querySelectorAll('#architrac-model-picker .choice-card').forEach(c => c.classList.remove('sel'));
+  (el || event.target).classList.add('sel');
+  goStep(3);
+}
+
+function selectBasic(sub, el) {
+  S.basicSubtype = sub;
+  S.collection = 'basic-' + sub;
+  document.querySelectorAll('#basic-options .choice-card').forEach(c => c.classList.remove('sel'));
+  (el || event.target).classList.add('sel');
+  goStep(3);
+}
+
+// ── STEP 3 ──
+function updateStep3() {
+  hide('finish-dm'); hide('finish-wt'); hide('finish-wi'); hide('finish-arch'); hide('finish-basic');
+  clearFinishSel();
+
+  if (S.collection === 'dm') show('finish-dm');
+  else if (S.collection === 'wt') show('finish-wt');
+  else if (S.collection === 'wi') show('finish-wi');
+  else if (S.collection === 'arch') show('finish-arch');
+  else show('finish-basic');
+}
+
+function selectFinish(f, el) {
+  // Block Unfinished on Estate Traverse — stationary poles only
+  if (f === 'Unfinished' && S.type === 'traverse') {
+    alert('Unfinished finish is not available on Estate™ Traverse Rods. Please choose a stained or painted finish.');
+    return;
+  }
+  S.finish = f;
+  (el || event.target).closest('.finish-grid, #finish-arch, #finish-basic')
+    ?.querySelectorAll('.finish-card').forEach(c => c.classList.remove('sel'));
+  (el || event.target).classList.add('sel');
+}
+
+function clearFinishSel() {
+  document.querySelectorAll('.finish-card').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('#finish-arch .opt-pill, #finish-basic .opt-pill').forEach(p => p.classList.remove('sel'));
+}
+
+// ── STEP 4 ──
+function updateStep4() {
+  // Hide all finial panels
+  ['finials-dm-1','finials-dm-138','finials-dm-2','finials-wi-1','finials-wi-138','finials-wt-138','finials-wt-2','finials-arch','finials-basic'].forEach(hide);
+
+  document.getElementById('sec4-title').textContent = 'Choose a Finial';
+  document.getElementById('sec4-sub').textContent = 'Select the finial style for the ends of your pole or rod.';
+
+  if (S.collection === 'dm') {
+    // Show based on pole diameter selected (we'll show all 1⅜" by default since most common)
+    show('finials-dm-138');
+    if (S.poleDia === '1"') { hide('finials-dm-138'); show('finials-dm-1'); }
+    else if (S.poleDia === '2"') { hide('finials-dm-138'); show('finials-dm-2'); }
+  } else if (S.collection === 'wt') {
+    if (S.poleDia === '2"') show('finials-wt-2');
+    else show('finials-wt-138');
+  } else if (S.collection === 'wi') {
+    show('finials-wi-138');
+    if (S.poleDia === '1"') { hide('finials-wi-138'); show('finials-wi-1'); }
+  } else if (S.collection === 'arch') {
+    show('finials-arch');
+    document.getElementById('sec4-title').textContent = 'Track Finish — No Finials';
+    document.getElementById('sec4-sub').textContent = 'Architrac® 94001 is a concealed track with no visible finials.';
+  } else {
+    show('finials-basic');
+    document.getElementById('sec4-title').textContent = 'No Finials on Basic Hardware';
+  }
+}
+
+function selectFinial(f, el) {
+  S.finial = f;
+  document.querySelectorAll('.finial-card').forEach(c => c.classList.remove('sel'));
+  (el || event.target).classList.add('sel');
+}
+
+// ── STEP 5 ──
+function updateStep5() {
+  hide('sz-pole-diameter'); hide('sz-stationary'); hide('sz-traverse'); hide('sz-basic');
+  hide('sz-superfine-opts'); hide('sz-lockseam-opts'); hide('sz-tension-opts'); hide('sz-pole-style');
+  document.getElementById('mount-recessed').style.display = S.collection === 'arch' ? '' : 'none';
+
+  if (S.type === 'static') {
+    show('sz-pole-diameter');
+    show('sz-stationary');
+    if (S.collection === 'wt') show('sz-pole-style');
+
+    // Fill diameter options
+    const opts = document.getElementById('pole-dia-opts');
+    let diameters = [];
+    if (S.collection === 'dm') diameters = S.type === 'static' ? ['1"','1⅜"'] : ['1"','1⅜"','2"']; // 2" is Estate traverse only — no 2" stationary DM pole exists
+    else if (S.collection === 'wt') diameters = ['1⅜"','2"'];
+    else if (S.collection === 'wi') diameters = S.type === 'static' ? ['1"','1⅜"'] : ['1⅜"']; // WI Estate traverse: 1⅜" ONLY
+    opts.innerHTML = diameters.map(d =>
+      `<div class="opt-pill" onclick="selectPoleDia('${d}', this)">${d}</div>`
+    ).join('');
+
+    // Pole length info
+    const info = document.getElementById('pole-length-info');
+    if (S.collection === 'dm') {
+      info.innerHTML = S.poleDia === '1"'
+        ? '<strong>Designer Metals™ 1" poles:</strong> Fixed lengths only — 4\'(48"), 6\'(72"), 8\'(96"). No telescoping for 1". Splice with #1042812 for runs over 8\'.'
+        : '<strong>Designer Metals™ 1⅜" poles:</strong> Fixed 4\'/6\'/8\' or Telescoping 36"–66", 66"–120", 120"–180". All 8 finishes. Splice with #73304061 for runs over 15\'.' ;
+      if (S.poleDia) updateDMSubSections(S.poleDia);
+    }
+    else if (S.collection === 'wt') info.innerHTML = '<strong>Wood Trends™ poles:</strong> Fixed 4\', 6\', 8\', 12\' — Smooth or Fluted. Can be spliced for longer runs with Pole Connector #5610E061 — <strong>always support every splice with a bracket.</strong> To cut: wrap with painter\'s tape, cut with fine-tooth saw, drill new finial pilot hole. <strong>1⅜" broken-pack pricing/piece:</strong> 4\'=$25.80 · 6\'=$38.61 · 8\'=$49.56 · 12\'=$77.32 (6 pieces/box). <strong>2" broken-pack pricing/piece:</strong> 4\'=$58.52 · 6\'=$85.20 · 8\'=$112.97 · 12\'=$172.41 (2 pieces/box).';
+    else if (S.collection === 'wi') info.innerHTML = '<strong>Wrought Iron poles:</strong> Fixed 6\' or 8\'. Can be spliced and spliced with internal rod splice for longer runs.';
+    else info.innerHTML = '';
+
+  } else if (S.type === 'traverse' || (S.type === 'static' && S.traverseSystem === 'estate')) {
+    show('sz-traverse');
+    const info = document.getElementById('traverse-limits-info');
+    if (S.traverseSystem === 'estate' || S.collection !== 'arch') {
+      const estPrice = S.collection === 'wt' ? ' <strong>1⅜" = $42/ft · 2" = $48/ft</strong> (manual). AMP™ motorization +$621.' : '';
+      info.innerHTML = '<strong>Estate™ Traverse Rod:</strong> Min 18" · Max 192" (16ft) · Max 64 lbs / 4 lbs per ft. Tracks over 8ft: splice + keystone included. AMP™ available (max 16ft motorized, cannot curve when motorized). Pleated or Ripplefold™ headers.' + estPrice + (S.collection === 'wt' ? ' <strong>Note:</strong> Unfinished finish not available on Estate™ Traverse Rods.' : '');
+      // Show DM Estate dia picker
+      const dmED = document.getElementById('dm-estate-dia');
+      if (dmED) dmED.style.display = S.collection === 'dm' ? '' : 'none';
+    } else {
+      // Data verified against official Kirsch spec sheets (v2.26 / v7.25 / v11.23)
+      const archLimits = {
+        '94001': 'One-Way manual <strong>20ft / 80 lbs</strong> · Two-Way manual <strong>40ft / 160 lbs</strong>. <strong>AMP™ motorized: 16ft / 64 lbs max.</strong> Draw types: Hand, Cord, Baton, Duplex, Motorized. Can be bent (12" radius) or curved — <strong>manual only</strong>. Cannot be convex bent/curved. AMP cannot be bent or curved. Wall, ceiling, or recessed mount. Pleated &amp; Ripplefold™. Colors: White (94270H025) · Gray (94270H090) · Bronze (94270H064) · Black (94270H059).',
+        '94003': 'One-Way <strong>20ft / 80 lbs</strong> · Two-Way <strong>40ft / 160 lbs</strong>. Draw types: Hand &amp; Baton only. Can be bent (12" radius) or curved. Wall, ceiling, or recessed mount. Pleated &amp; Ripplefold™. Colors: White (94373025) · Gray (94373090) · Bronze (94373064) · Black (94373059).',
+        '94004': 'One-Way <strong>16ft / 64 lbs</strong> · Two-Way <strong>32ft / 128 lbs</strong>. Draw types: Hand &amp; Baton only. <strong>Cannot be bent or curved.</strong> Ceiling or recessed mount only. Pre-drilled 16" on center; max bracket spacing 32". Pleated &amp; Ripplefold™. Colors: White (94374025) · Gray (94374090) · Bronze (94374064) · Black (94374059).',
+        '94005': 'One-Way <strong>16ft / 64 lbs</strong> · Two-Way <strong>32ft / 128 lbs</strong>. Draw types: Hand &amp; Baton only. Can be bent (12" radius) or curved. Ceiling or recessed mount only. Pre-drilled 16" on center; max bracket spacing 32". Pleated &amp; Ripplefold™. Colors: White (94375025) · Gray (94375090) · Bronze (94375064) · Black (94375059).',
+        '9046':  'One-Way <strong>16ft / 64 lbs</strong> · Two-Way <strong>32ft / 128 lbs</strong>. Draw types: Hand &amp; Baton only. Can be bent (8" or 12" radius) or curved. Ceiling or recessed mount only. Pleated only. Hospital/cubicle curtain track.',
+        '9600':  'One-Way <strong>20ft / 80 lbs</strong> · Two-Way <strong>40ft / 160 lbs</strong>. Draw types: Hand &amp; Baton only. Can be bent (12" or 14" radius) or curved. Ceiling, wall, recessed, or suspension mount. Pleated only.',
+        'K-Rail': 'One-Way <strong>16ft / 64 lbs</strong> · Two-Way <strong>16ft / 64 lbs</strong>. Draw types: Hand &amp; Baton only. <strong>Cannot be bent or curved.</strong> Ceiling or wall mount. Pleated &amp; Ripplefold™. Compatible with Wrought Iron and Wood Trends finials.'
+      };
+      const m = S.architracModel || '94001';
+      info.innerHTML = '<strong>Architrac® ' + m + ':</strong> ' + (archLimits[m] || archLimits['94001']) + ' All models: max 4 lbs/ft drapery weight.';
+    }
+  } else if (S.type === 'basic') {
+    show('sz-basic');
+    if (S.basicSubtype === 'superfine') show('sz-superfine-opts');
+    else if (S.basicSubtype === 'lockseam') show('sz-lockseam-opts');
+    else if (S.basicSubtype === 'tension') show('sz-tension-opts');
+  }
+}
+
+function selectPoleDia(d, el) {
+  S.poleDia = d;
+  ['finials-dm-1','finials-dm-138','finials-dm-2','finials-wi-1','finials-wi-138','finials-wt-138','finials-wt-2'].forEach(hide);
+  if (S.collection === 'dm') {
+    if (d === '1"') show('finials-dm-1');
+    else if (d === '2"') show('finials-dm-2');
+    else show('finials-dm-138');
+    // K-Rail note only for 1⅜"
+    const kr = document.getElementById('dm-krail-note');
+    if (kr) kr.style.display = d === '1⅜"' ? '' : 'none';
+  } else if (S.collection === 'wi') {
+    if (d === '1"') show('finials-wi-1');
+    else show('finials-wi-138');
+  } else if (S.collection === 'wt') {
+    if (d === '2"') show('finials-wt-2');
+    else show('finials-wt-138');
+  }
+  // Show DM stationary sub-sections when DM static pole
+  if (S.collection === 'dm' && S.type === 'static') updateDMSubSections(d);
+}
+
+function selectDraw(d) { S.draw = d; }
+function showSFNote(type) {
+  var el = document.getElementById('sf-draw-note');
+  if (!el) return;
+  var msgs = {
+    'split':  'Split Draw: available in 30"–48", 48"–84", 66"–120", 84"–156", and 156"–228". Front return 2¾"–4½".',
+    'oneway': 'One-Way Draw (Left or Right): available up to 66"–120" maximum. Not available above 120". Front return 2¾"–4½".',
+    'double': 'Double Traverse Split Draw: available in 48"–84" and 84"–156" only. Front return 2¾"–4½" and 5¼"–6½".'
+  };
+  el.textContent = msgs[type] || '';
+  el.style.display = msgs[type] ? 'block' : 'none';
+}
+function selectHeader(h) {
+  S.header = h;
+  document.getElementById('ripplefold-options').style.display = h === 'Ripplefold' ? 'block' : 'none';
+}
+function selectFullness(f) { S.fullness = f; }
+function selectMount(m) { S.mount = m; }
+function selectBasicOp(o) { S.basicOp = o; }
+function selectLockseam(w) { S.lockseamWidth = w; }
+
+// ── STEP 6 ──
+function updateStep6() {
+  // AMP only available on Estate traverse or Architrac 94001
+  const isEstate = S.traverseSystem === 'estate';
+  const isArch94001 = S.collection === 'arch' && S.architracModel === '94001';
+  const ampEligible = isEstate || isArch94001;
+  if (ampEligible) {
+    show('amp-eligible');
+    hide('amp-not-eligible');
+    // Bend warning only for 94001 (AMP cannot be bent/curved)
+    document.getElementById('amp-bend-warning').style.display = isArch94001 ? 'block' : 'none';
+    // Update sub text for non-94001 Architrac that lands here (shouldn't normally)
+    const sub = document.getElementById('sec6-sub');
+    if (sub) sub.textContent = isArch94001
+      ? 'AMP™ motorization is available on Architrac® 94001. Max 16ft motorized. Track cannot be bent or curved when motorized.'
+      : 'AMP™ motorization is available on Estate™ traverse rods.';
+  } else {
+    hide('amp-eligible');
+    show('amp-not-eligible');
+    const sub = document.getElementById('sec6-sub');
+    if (sub) {
+      if (S.collection === 'arch') {
+        sub.textContent = 'AMP™ motorization is only available on Architrac® 94001. Your selected model (' + (S.architracModel || 'N/A') + ') is manual-only.';
+      } else {
+        sub.textContent = 'AMP™ motorization is only available on Estate™ traverse rods and Architrac® 94001.';
+      }
+    }
+  }
+  document.getElementById('wt-accessories').style.display = S.collection === 'wt' ? 'block' : 'none';
+}
+
+const wtAccessories = [];
+function toggleWTAccessory(el, key) {
+  el.classList.toggle('sel');
+  const idx = wtAccessories.indexOf(key);
+  if (idx >= 0) wtAccessories.splice(idx, 1);
+  else wtAccessories.push(key);
+}
+
+function toggleAMP(row) {
+  S.motorized = !S.motorized;
+  const sw = document.getElementById('amp-switch');
+  sw.classList.toggle('on', S.motorized);
+  row.classList.toggle('sel', S.motorized);
+  document.getElementById('amp-extras').style.display = S.motorized ? 'block' : 'none';
+}
+
+function toggleAMPExtra(el, key) {
+  el.classList.toggle('sel');
+  const idx = S.ampExtras.indexOf(key);
+  if (idx >= 0) S.ampExtras.splice(idx, 1);
+  else S.ampExtras.push(key);
+}
+
+// ── STEP 7 ──
+function updateStep7() {
+  const sum = document.getElementById('quote-summary');
+  const rows = [
+    ['Rod Type', S.type === 'static' ? 'Stationary / Decorative' : S.type === 'traverse' ? 'Traverse / Traversing' : S.type === 'basic' ? 'Basic Hardware' : 'Custom Quote'],
+    ['Collection', collectionLabel()],
+    ['Architrac Model', S.architracModel || '—'],
+    ['Finish', S.finish || '—'],
+    ['Finial', S.finial || '—'],
+    ['Pole Diameter', S.poleDia || S.dmEstateDia || '—'],
+    ['Estate Rod Size', S.dmEstateDia ? S.dmEstateDia : null],
+    ['Pole Type', S.dmPoleType ? S.dmPoleType : null],
+    ['Duotone Combo', S.dmDuotoneFinish ? S.dmDuotoneFinish : ((S.finial||'').includes('Duotone') ? '⚠ Not selected — REQUIRED' : null)],
+    ['Bracket Type', S.dmBracketType ? S.dmBracketType : null],
+    ['Ring Type', S.dmRingType ? S.dmRingType : null],
+    ['Pole Style', S.poleStyle || '—'],
+    ['Track Width', (document.getElementById('trav-width') || {value:''}).value ? document.getElementById('trav-width').value + '"' : (document.getElementById('rod-width') || {value:''}).value ? document.getElementById('rod-width').value + '"' : '—'],
+    ['Draw', S.draw || '—'],
+    ['Header Style', S.header ? (S.header + (S.fullness ? ' ' + S.fullness : '')) : '—'],
+    ['Mounting', S.mount || '—'],
+    ['AMP™ Motorization', S.motorized ? 'Yes — ' + (S.ampExtras.length ? S.ampExtras.join(', ') : 'motor only') : 'No'],
+  ].filter(r => r[1] && r[1] !== '—');
+
+  sum.innerHTML = '<div class="summary-title">Your Configuration</div>' +
+    rows.map(r => `<div class="summary-row"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('');
+}
+
+function collectionLabel() {
+  const map = {dm:'Designer Metals™',wt:'Wood Trends™',wi:'Wrought Iron','basic-superfine':'Superfine Pro (Basic)','basic-lockseam':'Lockseam (Basic)','basic-tension':'Tension / Sash (Basic)'};
+  if (S.collection === 'arch') return 'Architrac® ' + (S.architracModel || '');
+  return map[S.collection] || S.collection;
+}
+
+// ── DELIVERY ──
+function selectDelivery(opt, prefix) {
+  S.delivery = opt;
+  prefix = prefix || '';
+  ['install','ship','pickup'].forEach(o => {
+    const el = document.getElementById((prefix ? prefix + '-' : '') + 'del-' + o);
+    if (el) el.classList.toggle('sel', o === opt);
+  });
+}
+
+// ── SUBMIT ──
+function submitQuote() {
+  const name = document.getElementById('q-name').value.trim();
+  const contact = document.getElementById('q-contact').value.trim();
+  if (!name || !contact) { alert('Please enter your name and contact information.'); return; }
+
+  const travW = (document.getElementById('trav-width') || {value:''}).value;
+  const rodW = (document.getElementById('rod-width') || {value:''}).value;
+  const notes = document.getElementById('q-notes').value;
+  const addr = document.getElementById('q-address').value;
+
+  const body = [
+    '=== KIRSCH ROD QUOTE REQUEST ===',
+    '',
+    'CONTACT',
+    'Name: ' + name,
+    'Phone/Email: ' + contact,
+    'Location: ' + (addr || 'Not provided'),
+    '',
+    'CONFIGURATION',
+    'Rod Type: ' + (S.type === 'static' ? 'Stationary/Decorative' : S.type === 'traverse' ? 'Traverse Rod' : 'Basic Hardware'),
+    'System: ' + (S.traverseSystem === 'estate' ? 'Estate™ Traverse' : S.traverseSystem === 'architrac' ? ('Architrac® ' + (S.architracModel || '94001')) : ''),
+    'Collection: ' + collectionLabel(),
+    'Finish/Color: ' + (S.finish || 'Not specified'),
+    'Finial: ' + (S.finial || 'N/A'),
+    'Pole Diameter: ' + (S.poleDia || S.dmEstateDia || 'N/A'),
+    ...(S.dmEstateDia ? ['Estate Rod Size: ' + S.dmEstateDia] : []),
+    ...(S.dmDuotoneFinish ? ['Duotone Combo: ' + S.dmDuotoneFinish] : []),
+    ...(S.dmPoleType ? ['Pole Type: ' + S.dmPoleType] : []),
+    ...(S.dmBracketType ? ['Bracket Type: ' + S.dmBracketType] : []),
+    ...(S.dmRingType ? ['Ring Type: ' + S.dmRingType] : []),
+    'Pole Style: ' + (S.poleStyle || 'N/A'),
+    'Width: ' + (travW || rodW || 'See notes'),
+    'Quantity: ' + (document.getElementById('rod-qty')?.value || document.getElementById('trav-qty')?.value || '1'),
+    'Draw Type: ' + (S.draw || 'N/A'),
+    'Header Style: ' + (S.header || 'N/A') + (S.fullness ? ' ' + S.fullness : ''),
+    'Mounting: ' + (S.mount || 'N/A'),
+    '',
+    'MOTORIZATION',
+    'AMP™ Motor: ' + (S.motorized ? 'YES — Motor #62001300' : 'No'),
+    'AMP™ Extras: ' + (S.ampExtras.length ? S.ampExtras.join(', ') : 'None'),
+    'Pole Style: ' + (S.poleStyle || 'N/A'),
+    'Accessories Requested: ' + (wtAccessories.length ? wtAccessories.join(', ') : 'None'),
+    '',
+    'DELIVERY / SERVICE',
+    'Preference: ' + (S.delivery === 'install' ? 'Professional Installation' : S.delivery === 'ship' ? 'Ship to Customer' : 'Pick Up'),
+    '',
+    'NOTES',
+    notes || 'None',
+    '',
+    '--- Sent from phillyblinds.com/pages/kirsch-rods.html ---'
+  ].join('\n');
+
+  const subject = 'Kirsch Rod Quote — ' + collectionLabel() + ' — ' + name;
+  window.location.href = 'mailto:justin@phillyblinds.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('on'));
+  document.getElementById('success-box').style.display = 'block';
+  document.getElementById('step-bar').style.display = 'none';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function submitUnsure() {
+  const name = document.getElementById('u-name').value.trim();
+  const contact = document.getElementById('u-contact').value.trim();
+  if (!name || !contact) { alert('Please enter your name and contact info.'); return; }
+
+  const size = document.getElementById('u-size').value;
+  const notes = document.getElementById('u-notes').value;
+
+  const body = [
+    '=== KIRSCH HARDWARE HELP REQUEST ===',
+    '',
+    'Name: ' + name,
+    'Contact: ' + contact,
+    'Window sizes: ' + (size || 'Not provided'),
+    'Delivery: ' + (S.delivery || 'Not selected'),
+    '',
+    'PROJECT DETAILS',
+    notes || 'No details provided',
+    '',
+    '--- Sent from phillyblinds.com/pages/kirsch-rods.html ---'
+  ].join('\n');
+
+  window.location.href = 'mailto:justin@phillyblinds.com?subject=' + encodeURIComponent('Kirsch Hardware Help — ' + name) + '&body=' + encodeURIComponent(body);
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('on'));
+  document.getElementById('success-box').style.display = 'block';
+  document.getElementById('step-bar').style.display = 'none';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── DM-SPECIFIC FUNCTIONS ──
+
+function selectDMFinial(name, el) {
+  S.finial = name;
+  S.dmDuotoneFinish = '';
+  document.querySelectorAll('.finial-card').forEach(c => c.classList.remove('sel'));
+  if (el) el.classList.add('sel');
+  const isDuotone = name === 'Maxwell Duotone' || name === 'Briggs Duotone';
+  const picker = document.getElementById('dm-duotone-picker');
+  if (picker) picker.style.display = isDuotone ? '' : 'none';
+  if (isDuotone) {
+    document.querySelectorAll('#grp-dm-duotone .opt-pill').forEach(p => p.classList.remove('sel'));
+  }
+}
+
+function selectDuotonePair(pair, el) {
+  S.dmDuotoneFinish = pair;
+  document.querySelectorAll('#grp-dm-duotone .opt-pill').forEach(p => p.classList.remove('sel'));
+  if (el) el.classList.add('sel');
+}
+
+function selectDMPoleType(t, el) {
+  S.dmPoleType = t;
+  document.querySelectorAll('#grp-dm-pole-type .opt-pill').forEach(p => p.classList.remove('sel'));
+  if (el) el.classList.add('sel');
+}
+
+function selectDMBracket(b, el) {
+  S.dmBracketType = b;
+  // Deselect all bracket pills in both groups
+  ['grp-dm-bracket-1','grp-dm-bracket-138'].forEach(g => {
+    const grp = document.getElementById(g);
+    if (grp) grp.querySelectorAll('.opt-pill').forEach(p => p.classList.remove('sel'));
+  });
+  if (el) el.classList.add('sel');
+}
+
+function selectDMRing(r, el) {
+  S.dmRingType = r;
+  ['grp-dm-ring-1','grp-dm-ring-138'].forEach(g => {
+    const grp = document.getElementById(g);
+    if (grp) grp.querySelectorAll('.opt-pill').forEach(p => p.classList.remove('sel'));
+  });
+  if (el) el.classList.add('sel');
+}
+
+function selectDMEstateDia(dia, el) {
+  S.dmEstateDia = dia;
+  S.poleDia = dia.replace(' Estate','');
+  document.querySelectorAll('#grp-dm-estate-dia .opt-pill').forEach(p => p.classList.remove('sel'));
+  if (el) el.classList.add('sel');
+  // Update finials panel for 2" vs 1⅜"
+  if (S.collection === 'dm') {
+    ['finials-dm-1','finials-dm-138','finials-dm-2'].forEach(hide);
+    const is2in = dia.startsWith('2"');
+    if (is2in) show('finials-dm-2');
+    else show('finials-dm-138');
+    const warn = document.getElementById('dm-estate-2in-warn');
+    if (warn) warn.style.display = is2in ? '' : 'none';
+  }
+}
+
+function updateDMSubSections(dia) {
+  // Show all three DM stationary sections
+  ['dm-pole-type-section','dm-bracket-section','dm-ring-section'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = '';
+  });
+
+  const is1in = dia === '1"';
+  const is138 = dia === '1⅜"';
+
+  // Pole length notes
+  const n1 = document.getElementById('dm-pole-1-note');
+  const n138 = document.getElementById('dm-pole-138-note');
+  if (n1) n1.style.display = is1in ? '' : 'none';
+  if (n138) n138.style.display = is138 ? '' : 'none';
+
+  // Telescoping pills — 1⅜" only
+  document.querySelectorAll('.dm-tele-only').forEach(el => {
+    el.style.display = is138 ? '' : 'none';
+  });
+
+  // Bracket options
+  const b1 = document.getElementById('dm-bracket-1-opts');
+  const b138 = document.getElementById('dm-bracket-138-opts');
+  if (b1) b1.style.display = is1in ? '' : 'none';
+  if (b138) b138.style.display = is138 ? '' : 'none';
+
+  // Ring options
+  const r1 = document.getElementById('dm-ring-1-opts');
+  const r138 = document.getElementById('dm-ring-138-opts');
+  if (r1) r1.style.display = is1in ? '' : 'none';
+  if (r138) r138.style.display = is138 ? '' : 'none';
+}
+
+// ── HELPERS ──
+function show(id) { const el = document.getElementById(id); if (el) el.style.display = ''; }
+function hide(id) { const el = document.getElementById(id); if (el) el.style.display = 'none'; }
+
+function toggleOptPill(el, group) {
+  if (group) {
+    // single-select within group: deselect siblings
+    const container = el.closest('.opt-row, .opt-pills-group, .section');
+    if (container) {
+      container.querySelectorAll('.opt-pill').forEach(p => {
+        if (p.dataset.group === group || !p.dataset.group) p.classList.remove('sel');
+      });
+    }
+    el.classList.add('sel');
+  } else {
+    el.classList.toggle('sel');
+  }
+}
+
+// ── INIT ──
+renderStepBar(1);
+</script>
+</body>
+</html>
+

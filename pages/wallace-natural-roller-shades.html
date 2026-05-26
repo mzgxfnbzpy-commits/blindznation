@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configure Wallace Portfolio Collection Natural Roller Shades — single or double shade, 20 natural woven fabric patterns, motorization available. Custom quote for Philadelphia area.">
+<meta property="og:title" content="Wallace Portfolio Natural Roller Shades | Philly Blinds">
+<meta property="og:type" content="website">
+<title>Wallace Portfolio Natural Roller Shades | Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:44px 28px 40px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:560px;margin-bottom:20px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.3);color:var(--gold)}
+
+.config-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1140px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+
+.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:16px;overflow:hidden;transition:box-shadow .15s}
+.step-block.active{box-shadow:0 2px 20px rgba(45,224,193,.1);border-color:rgba(45,224,193,.3)}
+.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;background:#fff}
+.step-num-circle{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-block.done .step-num-circle{background:var(--gold);color:var(--espresso)}
+.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
+.step-head-val{font-size:12px;color:var(--gold);font-weight:500;text-align:right}
+.step-body{padding:0 20px 20px;display:block}
+
+/* Big type-selector cards */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
+@media(max-width:500px){.type-grid{grid-template-columns:1fr}}
+.type-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:14px;padding:24px 20px;cursor:pointer;transition:all .15s}
+.type-card:hover{border-color:var(--gold);box-shadow:0 2px 16px rgba(45,224,193,.1)}
+.type-card.sel{border:2px solid var(--gold);background:rgba(45,224,193,.05)}
+.type-icon{font-size:30px;margin-bottom:10px}
+.type-name{font-size:16px;font-weight:500;color:#111;margin-bottom:6px}
+.type-desc{font-size:12px;color:#555;line-height:1.6}
+.type-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:6px;background:var(--gold-light);color:#0A4A42;margin-top:8px;font-weight:500}
+
+.opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.opt-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+@media(max-width:480px){.opt-grid-2,.opt-grid-3{grid-template-columns:1fr 1fr}}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:13px 11px;cursor:pointer;transition:all .12s;text-align:center}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:rgba(45,224,193,.06)}
+.opt-card.blocked{opacity:.4;pointer-events:none}
+.opt-card-icon{font-size:20px;margin-bottom:5px}
+.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px}
+.opt-card-desc{font-size:11px;color:#666;line-height:1.4}
+.opt-card.sel .opt-card-title{color:#0A4A42}
+
+/* Fabric pattern grid */
+.fab-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.fab-tab{font-size:11px;padding:4px 12px;border-radius:16px;border:1px solid #ddd;background:#fff;cursor:pointer;font-family:inherit;transition:all .12s}
+.fab-tab.on{background:var(--espresso);color:var(--gold);border-color:var(--espresso)}
+.fab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.fab-card{border:1.5px solid #e8e8e4;border-radius:10px;padding:12px 10px;cursor:pointer;transition:all .12s;background:#fff}
+.fab-card:hover{border-color:var(--gold)}
+.fab-card.sel{border:2px solid var(--gold);background:rgba(45,224,193,.05)}
+.fab-name{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.fab-meta{font-size:10px;color:#777;line-height:1.5}
+.fab-badge{display:inline-block;font-size:9px;padding:1px 6px;border-radius:5px;font-weight:600;margin-bottom:4px;background:#F8F3E8;color:#7A5A1A}
+
+/* Back fabric selection */
+.back-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:10px}
+.back-card{border:1.5px solid #e8e8e4;border-radius:10px;padding:10px 12px;cursor:pointer;transition:all .12s;background:#fff}
+.back-card:hover{border-color:var(--gold)}
+.back-card.sel{border:2px solid var(--gold);background:rgba(45,224,193,.06)}
+.back-name{font-size:12px;font-weight:500;color:#111;margin-bottom:1px}
+.back-code{font-size:10px;color:#888}
+
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media(max-width:480px){.dim-row{grid-template-columns:1fr}}
+.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
+.dim-input{width:80px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
+.dim-unit{font-size:12px;color:#666;margin-left:4px}
+
+.size-ok{background:#DCFCE7;border:1px solid #86EFAC;border-radius:8px;padding:8px 12px;font-size:12px;color:#14532d;margin-top:8px}
+.size-error{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:8px 12px;font-size:12px;color:#7f1d1d;margin-top:6px}
+.size-warn{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:8px 12px;font-size:12px;color:#7d5a00;margin-top:6px}
+.computed-info{background:var(--gold-mid);border:1px solid #e8e8e4;border-radius:8px;padding:10px 14px;margin-top:10px}
+.computed-row{display:flex;justify-content:space-between;font-size:12px;padding:2px 0}
+.computed-key{color:#666}
+.computed-val{font-weight:500;color:#111}
+
+.info-box{background:rgba(45,224,193,.08);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#0A4A42;margin-top:10px;line-height:1.6}
+.warn-box{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:10px 14px;font-size:12px;color:#7d5a00;margin-top:10px;line-height:1.6;display:flex;gap:8px}
+.err-box{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:10px 14px;font-size:12px;color:#7f1d1d;margin-top:10px;line-height:1.6;display:flex;gap:8px}
+
+.hw-color-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.hw-color-opt{display:flex;align-items:center;gap:6px;padding:6px 10px;border:1.5px solid #e8e8e4;border-radius:8px;cursor:pointer;font-size:12px;transition:all .12s}
+.hw-color-opt:hover{border-color:var(--gold)}
+.hw-color-opt.sel{border:2px solid var(--gold);background:rgba(45,224,193,.06);font-weight:500}
+.hw-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
+
+.acc-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:.5px solid #f0f0ee}
+.acc-item:last-child{border-bottom:none}
+.acc-label{font-size:13px;font-weight:500;color:#111}
+.acc-sub{font-size:11px;color:#666;line-height:1.4;margin-top:2px}
+
+.spec-panel{background:var(--espresso);border-radius:14px;padding:20px;position:sticky;top:80px}
+.spec-title{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.spec-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:12px;padding:5px 0;border-bottom:.5px solid #2A201A;gap:8px}
+.spec-row:last-of-type{border-bottom:none}
+.spec-key{color:#7A6A58;flex-shrink:0}
+.spec-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word}
+.spec-val.empty{color:#3A2E24;font-style:italic}
+.spec-divider{border:.5px solid #2A201A;margin:10px 0}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="shades.html">Shades</a> &rsaquo; Wallace Natural Roller Shades</div>
+  <h1>Wallace Portfolio Natural Roller Shades</h1>
+  <p class="sub">Natural woven-look roller shades in 20 fabric patterns — available as single shades or double shades with a back light-filtering or room-darkening fabric. Configure and get a custom quote below.</p>
+  <div class="hero-pills">
+    <span class="hero-pill-gold hero-pill">Wallace Authorized</span>
+    <span class="hero-pill">20 natural fabric patterns</span>
+    <span class="hero-pill">Single or double shade</span>
+    <span class="hero-pill">Motorization available</span>
+    <span class="hero-pill">Custom quote</span>
+  </div>
+</div>
+
+<div class="config-layout">
+<div id="configurator">
+
+<!-- STEP 1: SINGLE vs DOUBLE — must come first -->
+<div class="step-block active open" id="step-1">
+  <div class="step-head" onclick="toggleStep('step-1')">
+    <div class="step-num-circle">1</div>
+    <div class="step-head-title">Shade type</div>
+    <div class="step-head-val" id="s1-val"></div>
+  </div>
+  <div class="step-body">
+    <div style="font-size:12px;color:#666;margin-bottom:12px;line-height:1.6">This is the first decision — it changes which top treatments, controls, and options are available.</div>
+    <div class="type-grid">
+      <div class="type-card" id="tc-single" onclick="selectType('single')">
+        <div class="type-icon">🪟</div>
+        <div class="type-name">Single Natural Roller</div>
+        <div class="type-desc">Natural woven-look fabric only. Open roll, cassette, box valance, or traditional valance. All control types available.</div>
+        <span class="type-badge">All control types · Up to 108" tall</span>
+      </div>
+      <div class="type-card" id="tc-double" onclick="selectType('double')">
+        <div class="type-icon">🪟🪟</div>
+        <div class="type-name">Double Natural Roller</div>
+        <div class="type-desc">Natural front fabric + light-filtering or room-darkening back fabric on dual bracket. Max height 96". No cassette, no Pro Wand, no decorative metal brackets.</div>
+        <span class="type-badge">Enhanced privacy · Max 96" tall</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: MOUNT -->
+<div class="step-block" id="step-2">
+  <div class="step-head" onclick="toggleStep('step-2')">
+    <div class="step-num-circle">2</div>
+    <div class="step-head-title">Mount type</div>
+    <div class="step-head-val" id="s2-val"></div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid-2">
+      <div class="opt-card" id="mc-in" onclick="selectMount('inside')">
+        <div class="opt-card-icon">⬛</div>
+        <div class="opt-card-title">Inside Mount</div>
+        <div class="opt-card-desc">Fits within the window frame. 1/8" deduction applied.</div>
+      </div>
+      <div class="opt-card" id="mc-out" onclick="selectMount('outside')">
+        <div class="opt-card-icon">🔲</div>
+        <div class="opt-card-title">Outside Mount</div>
+        <div class="opt-card-desc">Mounts on the wall above or around the frame.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: SIZE -->
+<div class="step-block" id="step-3">
+  <div class="step-head" onclick="toggleStep('step-3')">
+    <div class="step-num-circle">3</div>
+    <div class="step-head-title">Width &amp; height</div>
+    <div class="step-head-val" id="s3-val"></div>
+  </div>
+  <div class="step-body">
+    <div id="size-type-note" class="info-box" style="display:none"></div>
+    <div class="dim-row" style="margin-top:12px">
+      <div>
+        <div class="dim-label">Order Width</div>
+        <div style="display:flex;align-items:center">
+          <input class="dim-input" type="number" id="inp-w" min="12" max="120" step="0.125" placeholder="e.g. 36" oninput="validateSize()">
+          <span class="dim-unit">in</span>
+        </div>
+      </div>
+      <div>
+        <div class="dim-label">Order Height</div>
+        <div style="display:flex;align-items:center">
+          <input class="dim-input" type="number" id="inp-h" min="12" max="115" step="0.125" placeholder="e.g. 72" oninput="validateSize()">
+          <span class="dim-unit">in</span>
+        </div>
+      </div>
+    </div>
+    <div class="dim-row" style="margin-top:6px">
+      <div>
+        <div class="dim-label">Quantity</div>
+        <div style="display:flex;align-items:center">
+          <input class="dim-input" type="number" id="inp-qty" min="1" max="50" value="1" oninput="validateSize()">
+          <span class="dim-unit">shades</span>
+        </div>
+      </div>
+      <div>
+        <div class="dim-label">Room / window label</div>
+        <input type="text" id="inp-room" placeholder="e.g. Master Bedroom Left" style="padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;width:100%">
+      </div>
+    </div>
+    <div id="size-msgs" style="margin-top:8px"></div>
+    <div id="size-computed" class="computed-info" style="display:none">
+      <div class="computed-row"><span class="computed-key">Fabric width (approx.)</span><span class="computed-val" id="cp-fabW">—</span></div>
+      <div class="computed-row"><span class="computed-key">Note</span><span class="computed-val" style="color:#888;font-size:10px">Exact deduction confirmed at quote based on top treatment + control</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4: FRONT FABRIC -->
+<div class="step-block" id="step-4">
+  <div class="step-head" onclick="toggleStep('step-4')">
+    <div class="step-num-circle">4</div>
+    <div class="step-head-title">Front fabric pattern</div>
+    <div class="step-head-val" id="s4-val"></div>
+  </div>
+  <div class="step-body">
+    <div style="font-size:12px;color:#666;margin-bottom:10px;line-height:1.6">Select your fabric pattern — this sets max width/height. Specific color and PR code entered below.</div>
+    <div class="fab-filter">
+      <button class="fab-tab on" onclick="filterFab('all',this)">All</button>
+      <button class="fab-tab" onclick="filterFab('A',this)">Group A</button>
+      <button class="fab-tab" onclick="filterFab('B',this)">Group B</button>
+      <button class="fab-tab" onclick="filterFab('C',this)">Group C</button>
+      <button class="fab-tab" onclick="filterFab('D',this)">Group D</button>
+      <button class="fab-tab" onclick="filterFab('E',this)">Group E</button>
+    </div>
+    <div class="fab-grid" id="fab-grid"></div>
+    <div id="fab-color-wrap" style="display:none;margin-top:14px">
+      <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:6px">Fabric color / PR code</div>
+      <div style="font-size:11px;color:#888;margin-bottom:6px;line-height:1.6">Enter the specific color name and PR code from the Wallace sample book or swatch card. Call us for swatches if needed.</div>
+      <input type="text" id="fab-color-inp" placeholder="e.g. Ash · PR-017" style="width:100%;padding:9px 11px;border:1px solid #ddd;border-radius:8px;font-size:13px" oninput="updateFabColor(this.value)">
+      <div id="rhea-warn" class="err-box" style="display:none;margin-top:8px"><span>⚠️</span><span>Rhea is not available with Square Cassette fabric wrap or Fabric-Wrapped Box Valance. These options will be blocked.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5: BACK FABRIC (double only) -->
+<div class="step-block" id="step-5" style="display:none">
+  <div class="step-head" onclick="toggleStep('step-5')">
+    <div class="step-num-circle">5</div>
+    <div class="step-head-title">Back fabric</div>
+    <div class="step-head-val" id="s5-val"></div>
+  </div>
+  <div class="step-body">
+    <div style="font-size:12px;color:#666;margin-bottom:10px">Select the back fabric for your double shade — light filtering or room darkening.</div>
+    <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:6px">Light Filtering</div>
+    <div class="back-grid" id="back-lf-grid"></div>
+    <div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 6px">Room Darkening</div>
+    <div class="warn-box" style="margin-bottom:8px"><span>⚠️</span><span>Room-darkening back fabrics block most light but are not total blackout — some light may pass through side gaps and deductions.</span></div>
+    <div class="back-grid" id="back-rd-grid"></div>
+  </div>
+</div>
+
+<!-- STEP 6: TOP TREATMENT -->
+<div class="step-block" id="step-6">
+  <div class="step-head" onclick="toggleStep('step-6')">
+    <div class="step-num-circle">6</div>
+    <div class="step-head-title">Top treatment / bracket style</div>
+    <div class="step-head-val" id="s6-val"></div>
+  </div>
+  <div class="step-body" id="s6-body">
+    <!-- Built dynamically -->
+  </div>
+</div>
+
+<!-- STEP 7: ROLL DIRECTION -->
+<div class="step-block" id="step-7">
+  <div class="step-head" onclick="toggleStep('step-7')">
+    <div class="step-num-circle">7</div>
+    <div class="step-head-title">Roll direction</div>
+    <div class="step-head-val" id="s7-val"></div>
+  </div>
+  <div class="step-body" id="s7-body">
+    <!-- Built dynamically -->
+  </div>
+</div>
+
+<!-- STEP 8: CONTROL -->
+<div class="step-block" id="step-8">
+  <div class="step-head" onclick="toggleStep('step-8')">
+    <div class="step-num-circle">8</div>
+    <div class="step-head-title">Control type</div>
+    <div class="step-head-val" id="s8-val"></div>
+  </div>
+  <div class="step-body" id="s8-body">
+    <!-- Built dynamically -->
+  </div>
+</div>
+
+<!-- STEP 9: CONTROL DETAILS -->
+<div class="step-block" id="step-9" style="display:none">
+  <div class="step-head" onclick="toggleStep('step-9')">
+    <div class="step-num-circle">9</div>
+    <div class="step-head-title" id="s9-title">Control details</div>
+    <div class="step-head-val" id="s9-val"></div>
+  </div>
+  <div class="step-body" id="s9-body">
+    <!-- Built dynamically -->
+  </div>
+</div>
+
+<!-- STEP 10: MOTOR ACCESSORIES -->
+<div class="step-block" id="step-10" style="display:none">
+  <div class="step-head" onclick="toggleStep('step-10')">
+    <div class="step-num-circle">10</div>
+    <div class="step-head-title">Motor accessories</div>
+    <div class="step-head-val" id="s10-val">Optional</div>
+  </div>
+  <div class="step-body" id="s10-body">
+    <!-- Built dynamically -->
+  </div>
+</div>
+
+<!-- STEP 11: OPTIONS -->
+<div class="step-block" id="step-11">
+  <div class="step-head" onclick="toggleStep('step-11')">
+    <div class="step-num-circle">11</div>
+    <div class="step-head-title">Hold-downs &amp; spacer blocks <span style="font-size:11px;color:#aaa;font-weight:400">(optional)</span></div>
+    <div class="step-head-val" id="s11-val">None</div>
+  </div>
+  <div class="step-body">
+    <div class="acc-item">
+      <input type="checkbox" id="opt-holddown" onchange="updateOptions()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0;margin-top:2px">
+      <div><div class="acc-label">Hold-Down Brackets</div><div class="acc-sub">For single shades — supplied on request to secure bottom of shade</div></div>
+    </div>
+    <div class="acc-item">
+      <input type="checkbox" id="opt-spacer" onchange="updateOptions()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0;margin-top:2px">
+      <div><div class="acc-label">3/8&quot; Spacer Blocks</div><div class="acc-sub">Available for all shade styles — max two per bracket recommended</div></div>
+    </div>
+    <div id="box-val-return-wrap" style="display:none;margin-top:12px">
+      <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:6px">Box valance return depth</div>
+      <div class="info-box">Returns from 1" to 6". Outside mount recommended: 3¼" single shade, 4" double shade. Returns not recommended inside mount. Valance must be at least 1⅞" wider than shade when returns are used.</div>
+      <input type="text" id="val-return-inp" placeholder='e.g. 3 1/4" returns' style="width:100%;margin-top:8px;padding:9px 11px;border:1px solid #ddd;border-radius:8px;font-size:13px" oninput="updateOptions()">
+    </div>
+  </div>
+</div>
+
+<!-- STEP 12: QUOTE FORM -->
+<div class="step-block open" id="step-12">
+  <div class="step-head" onclick="toggleStep('step-12')">
+    <div class="step-num-circle">12</div>
+    <div class="step-head-title">Get your custom quote</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row" style="margin-top:12px">
+      <div class="form-group"><label>Name *</label><input type="text" id="q-name" placeholder="Jane Smith"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="q-phone" placeholder="(215) 555-0100"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="q-email" placeholder="jane@example.com"></div>
+    <div class="form-group"><label>Installation address</label><input type="text" id="q-address" placeholder="123 Main St, Philadelphia PA"></div>
+    <div class="form-group"><label>Additional notes / questions</label><textarea id="q-notes" style="min-height:70px" placeholder="Timeline, room details, swatch requests, anything else..."></textarea></div>
+
+    <div class="delivery-section" style="margin-top:12px">
+      <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+      <div class="opt-grid-2">
+        <div class="opt-card sel" id="del-ship" onclick="selectDelivery('ship')">
+          <div class="opt-card-icon">📦</div>
+          <div class="opt-card-title">Ship to me</div>
+          <div class="opt-card-desc">UPS or FedEx from Huntingdon Valley, PA</div>
+        </div>
+        <div class="opt-card" id="del-pickup" onclick="selectDelivery('pickup')">
+          <div class="opt-card-icon">🏠</div>
+          <div class="opt-card-title">I'll pick up</div>
+          <div class="opt-card-desc">Pickup in Huntingdon Valley, PA. Address confirmed after order.</div>
+        </div>
+      </div>
+      <div id="del-ship-note" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA. <div class="delivery-tariff">Tariffs and import fees are additional.</div></div>
+      <div id="del-pickup-note" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+    </div>
+
+    <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Submit Specification &amp; Request Quote &rarr;</button>
+
+    <div id="quote-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
+      <strong>Specification submitted!</strong><br>Your email app opened with the complete spec pre-filled. Our team will review and follow up within a few hours.<br><br>
+      Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
+    </div>
+
+    <button class="disclaimer-toggle" onclick="this.nextElementSibling.classList.toggle('open')" style="margin-top:16px">
+      ▶ Product notes &amp; disclaimers
+    </button>
+    <div class="disclaimer-body">
+      <div class="disclaimer-item">Natural roller fabrics are light-filtering — not room darkening or blackout on their own</div>
+      <div class="disclaimer-item">Room-darkening back fabric is not total blackout — light may pass through side gaps</div>
+      <div class="disclaimer-item">Steaming and spot cleaning not recommended — light dusting only</div>
+      <div class="disclaimer-item">Natural fibers may show slight texture variation — a normal characteristic</div>
+      <div class="disclaimer-item">Rhea fabric is not compatible with cassette fabric wrap or fabric-wrapped box valance</div>
+      <div class="disclaimer-item">Double shades max height 96" regardless of fabric selection</div>
+      <div class="disclaimer-item">AC hardwired motor requires a licensed electrician</div>
+      <div class="disclaimer-item">Pro Wand decorative metal bracket requires top mount installation</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /configurator -->
+
+<!-- SPEC PANEL -->
+<div>
+  <div class="spec-panel">
+    <div class="spec-title">Live Specification</div>
+    <div class="spec-row"><span class="spec-key">Shade type</span><span class="spec-val empty" id="sp-type">— select above</span></div>
+    <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val empty" id="sp-mount">—</span></div>
+    <div class="spec-row"><span class="spec-key">Width × Height</span><span class="spec-val empty" id="sp-dims">—</span></div>
+    <div class="spec-row"><span class="spec-key">Qty</span><span class="spec-val empty" id="sp-qty">—</span></div>
+    <div class="spec-row"><span class="spec-key">Front fabric</span><span class="spec-val empty" id="sp-front">—</span></div>
+    <div class="spec-row"><span class="spec-key">Price group</span><span class="spec-val empty" id="sp-group">—</span></div>
+    <div class="spec-row" id="sp-back-row" style="display:none"><span class="spec-key">Back fabric</span><span class="spec-val empty" id="sp-back">—</span></div>
+    <div class="spec-row"><span class="spec-key">Top treatment</span><span class="spec-val empty" id="sp-top">—</span></div>
+    <div class="spec-row"><span class="spec-key">Roll direction</span><span class="spec-val empty" id="sp-roll">—</span></div>
+    <div class="spec-row"><span class="spec-key">Control</span><span class="spec-val empty" id="sp-control">—</span></div>
+    <div class="spec-divider"></div>
+    <div class="spec-row"><span class="spec-key">Pricing</span><span class="spec-val" style="color:var(--gold)">Custom quote</span></div>
+    <div class="spec-row"><span class="spec-key">Lead time</span><span class="spec-val">Confirmed at quote</span></div>
+    <div style="margin-top:14px">
+      <a href="tel:6097421720" class="btn-gold" style="display:block;text-align:center;padding:11px;font-size:13px">(609) 742-1720 &middot; 24/7</a>
+    </div>
+  </div>
+  <div style="background:var(--gold-mid);border:1px solid #e8e8e4;border-radius:12px;padding:16px;margin-top:14px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:6px">Wallace Blinds · 2026</div>
+    <div style="font-size:12px;color:#555;line-height:1.6">Portfolio Collection Natural Roller Shades — natural woven-look roller fabric. Not woven wood. Not the Portfolio Natural Woven Shades product.</div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<div class="cta-banner">
+  <div>
+    <h2>Want to see the fabrics in person?</h2>
+    <p>We can order swatches and come out for a free in-home consultation. Call or text Justin anytime.</p>
+  </div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Shades & blinds'); renderFooter(false);
+
+// ═══════════════════════════════════════════════════════════════
+// FABRIC DATA — patterns from PDF pages 4-5
+// maxH = single shade max height; double shades always capped at 96"
+// rhea = true → no cassette fabric wrap, no fabric-wrapped box valance
+// Exact PR-XXX color codes entered by customer from sample book
+// ═══════════════════════════════════════════════════════════════
+var FABRICS = [
+  {name:'Alston',  group:'A', maxW:90,  maxH:108, rhea:false, note:'Best privacy'},
+  {name:'Easton',  group:'A', maxW:90,  maxH:108, rhea:false},
+  {name:'Hampton', group:'A', maxW:90,  maxH:108, rhea:false, note:'Best privacy'},
+  {name:'Isla',    group:'A', maxW:90,  maxH:108, rhea:false},
+  {name:'Marco',   group:'A', maxW:90,  maxH:108, rhea:false},
+  {name:'Mason',   group:'A', maxW:90,  maxH:108, rhea:false},
+  {name:'Clifton', group:'B', maxW:90,  maxH:108, rhea:false},
+  {name:'Iris',    group:'B', maxW:72,  maxH:108, rhea:false, note:'Max 72" wide'},
+  {name:'Keys',    group:'B', maxW:90,  maxH:108, rhea:false},
+  {name:'Seville', group:'B', maxW:90,  maxH:108, rhea:false},
+  {name:'Cyprus',  group:'C', maxW:90,  maxH:96,  rhea:false, note:'Max 96" tall · Best privacy'},
+  {name:'Lace',    group:'C', maxW:90,  maxH:108, rhea:false},
+  {name:'Layla',   group:'C', maxW:90,  maxH:108, rhea:false},
+  {name:'Wyatt',   group:'C', maxW:90,  maxH:96,  rhea:false, note:'Max 96" tall'},
+  {name:'Ashton',  group:'D', maxW:114, maxH:108, rhea:false},
+  {name:'Brenna',  group:'D', maxW:114, maxH:108, rhea:false},
+  {name:'Mallory', group:'D', maxW:114, maxH:108, rhea:false},
+  {name:'Torrey',  group:'D', maxW:114, maxH:108, rhea:false},
+  {name:'Rhea',    group:'E', maxW:114, maxH:108, rhea:true,  note:'No cassette wrap · No box valance'},
+  {name:'Sophie',  group:'E', maxW:114, maxH:108, rhea:false}
+];
+
+// Back fabrics for double shades
+var BACK_LF = [
+  {code:'NRLF-01',name:'White',light:'LF'},
+  {code:'NRLF-02',name:'Cotton',light:'LF'},
+  {code:'NRLF-03',name:'Beige',light:'LF'},
+  {code:'NRLF-05',name:'Limestone',light:'LF'},
+  {code:'NRLF-06',name:'Mist',light:'LF'},
+  {code:'NRLF-07',name:'Gray',light:'LF'}
+];
+var BACK_RD = [
+  {code:'NRRD-01',name:'White',light:'RD'},
+  {code:'NRRD-02',name:'Sand',light:'RD'},
+  {code:'NRRD-03',name:'Beige',light:'RD'},
+  {code:'NRRD-04',name:'Titanium',light:'RD'},
+  {code:'NRRD-05',name:'Gray',light:'RD'},
+  {code:'NRRD-07',name:'Basalt',light:'RD'},
+  {code:'NRRD-08',name:'Iron',light:'RD'},
+  {code:'NRRD-09',name:'Black',light:'RD'}
+];
+
+// Top treatments keyed by id
+var TOP_TREATMENTS = {
+  'open-std':    {label:'Open Roll — Standard Bracket',     single:true,  double:false, cassette:false, note:'Silver brackets with color-coordinated covers. Clutch, cordless, Pro Wand, or motor.'},
+  'open-metal':  {label:'Open Roll — Decorative Metal Bracket', single:true, double:false, cassette:false, note:'Antique Brass, Satin Nickel, or Black. Cordless, Pro Wand, or motor only (no clutch). Pro Wand requires top mount.'},
+  'open-dual':   {label:'Open Roll — Dual Bracket',         single:false, double:true,  cassette:false, note:'Silver brackets, white covers. Double shades only. Clutch, cordless, or motor.'},
+  'cassette':    {label:'Square Cassette',                   single:true,  double:false, cassette:true,  note:'4" cassette. Colors: White, Beige, Gray, Black. Wrapped or unwrapped. Standard roll only.'},
+  'box-valance': {label:'Fabric-Wrapped Box Valance',        single:true,  double:true,  cassette:false, note:'4" height single, 6" height double. Top or face mount. Returns available. Max width 116".'},
+  'trad-valance':{label:'Traditional Valance',               single:true,  double:true,  cassette:false, note:'Wood headrail with fabric valance. 6" single, 8" double. Returns available.'}
+};
+
+// Fabric width deductions (inches) by top treatment + control
+// Keys: top treatment key → control key → deduction
+var DEDUCTIONS = {
+  'open-std':    {clutch:1.5, cordless:1.25, prowand:1.5,  motor:1.375},
+  'open-metal':  {clutch:null, cordless:1.375, prowand:1.5, motor:1.375},
+  'open-dual':   {clutch:1.5, cordless:1.0,  prowand:null, motor:1.375},
+  'cassette':    {clutch:1.5, cordless:1.0,  prowand:1.5,  motor:1.5},
+  'box-valance': {clutch:1.5, cordless:1.0,  prowand:1.5,  motor:1.375},
+  'trad-valance':{clutch:1.375, cordless:0.75, prowand:1.5, motor:1.5}
+};
+
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+var S = {
+  shadeType: '',    // 'single' | 'double'
+  mount: '',
+  width: 0, height: 0, qty: 1, room: '',
+  fabric: null, fabColor: '',
+  backFabric: null,
+  topTreatment: '',
+  cassetteColor: 'White', cassetteWrap: true,
+  metalBracketColor: 'Satin Nickel',
+  valanceReturn: '',
+  rollDir: '',
+  control: '',
+  controlSide: '',
+  chainColor: 'White', chainDrop: '',
+  wandLength: '',
+  motorType: '',
+  motorAccessories: [],
+  holdDown: false, spacer: false,
+  delivery: 'ship'
+};
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 1 — SHADE TYPE
+// ═══════════════════════════════════════════════════════════════
+function selectType(t) {
+  S.shadeType = t;
+  S.topTreatment = ''; S.control = ''; S.rollDir = '';
+  document.getElementById('tc-single').classList.toggle('sel', t === 'single');
+  document.getElementById('tc-double').classList.toggle('sel', t === 'double');
+  var label = t === 'single' ? 'Single Natural Roller' : 'Double Natural Roller';
+  completeStep('step-1', label);
+  updateSpec('sp-type', label);
+
+  // Show/hide back fabric step
+  document.getElementById('step-5').style.display = t === 'double' ? 'block' : 'none';
+  document.getElementById('sp-back-row').style.display = t === 'double' ? 'flex' : 'none';
+
+  // Update size note
+  var note = document.getElementById('size-type-note');
+  if (t === 'double') {
+    note.style.display = 'block';
+    note.textContent = 'Double shades: maximum height 96" regardless of fabric selection.';
+  } else {
+    note.style.display = 'none';
+  }
+
+  buildTopTreatmentStep();
+  buildControlStep();
+  validateSize();
+  activateStep('step-2');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 2 — MOUNT
+// ═══════════════════════════════════════════════════════════════
+function selectMount(m) {
+  S.mount = m;
+  document.getElementById('mc-in').classList.toggle('sel', m === 'inside');
+  document.getElementById('mc-out').classList.toggle('sel', m === 'outside');
+  var label = m === 'inside' ? 'Inside Mount' : 'Outside Mount';
+  completeStep('step-2', label);
+  updateSpec('sp-mount', label);
+  validateSize();
+  activateStep('step-3');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 3 — SIZE
+// ═══════════════════════════════════════════════════════════════
+function validateSize() {
+  var w = parseFloat(document.getElementById('inp-w').value) || 0;
+  var h = parseFloat(document.getElementById('inp-h').value) || 0;
+  var qty = parseInt(document.getElementById('inp-qty').value) || 1;
+  S.width = w; S.height = h; S.qty = qty;
+  S.room = document.getElementById('inp-room') ? document.getElementById('inp-room').value.trim() : '';
+
+  var msgs = document.getElementById('size-msgs');
+  msgs.innerHTML = '';
+  var errors = [], warns = [];
+
+  if (w > 0 && h > 0) {
+    var maxH = S.shadeType === 'double' ? 96 : (S.fabric ? S.fabric.maxH : 108);
+    var maxW = S.fabric ? S.fabric.maxW : 114;
+
+    if (S.fabric && w > S.fabric.maxW) errors.push('Width ' + w + '" exceeds ' + S.fabric.name + ' maximum of ' + S.fabric.maxW + '".');
+    if (S.shadeType === 'double' && h > 96) errors.push('Double shades: maximum height is 96". Entered: ' + h + '".');
+    if (S.fabric && !S.shadeType === 'double' && h > S.fabric.maxH) errors.push('Height ' + h + '" exceeds ' + S.fabric.name + ' maximum of ' + S.fabric.maxH + '".');
+
+    errors.forEach(function(e){ msgs.innerHTML += '<div class="size-error">⚠️ ' + e + '</div>'; });
+    warns.forEach(function(w){ msgs.innerHTML += '<div class="size-warn">⚠️ ' + w + '</div>'; });
+
+    if (!errors.length) {
+      msgs.innerHTML += '<div class="size-ok">✓ Dimensions within specification.</div>';
+      updateSpec('sp-dims', w + '" × ' + h + '"');
+      updateSpec('sp-qty', qty);
+      document.getElementById('s3-val').textContent = w + '" × ' + h + '"';
+
+      // Approximate fabric width
+      var ded = getDeduction();
+      var im = S.mount === 'inside' ? 0.125 : 0;
+      var fabW = (w - im - ded).toFixed(3);
+      document.getElementById('cp-fabW').textContent = fabW + '"';
+      document.getElementById('size-computed').style.display = 'block';
+
+      if (!document.getElementById('step-4').classList.contains('done')) activateStep('step-4');
+    } else {
+      document.getElementById('size-computed').style.display = 'none';
+    }
+  } else {
+    document.getElementById('size-computed').style.display = 'none';
+  }
+}
+
+function getDeduction() {
+  if (!S.topTreatment || !S.control) return 1.375;
+  var row = DEDUCTIONS[S.topTreatment];
+  if (!row) return 1.375;
+  return row[S.control] || 1.375;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 4 — FRONT FABRIC
+// ═══════════════════════════════════════════════════════════════
+function buildFabGrid(filter) {
+  var grid = document.getElementById('fab-grid');
+  var list = filter === 'all' ? FABRICS : FABRICS.filter(function(f){ return f.group === filter; });
+  grid.innerHTML = list.map(function(f, i) {
+    var idx = FABRICS.indexOf(f);
+    var sel = S.fabric && S.fabric.name === f.name ? ' sel' : '';
+    return '<div class="fab-card' + sel + '" onclick="selectFabric(' + idx + ')">' +
+      '<span class="fab-badge">Group ' + f.group + '</span>' +
+      '<div class="fab-name">' + f.name + '</div>' +
+      '<div class="fab-meta">Max ' + f.maxW + '"W × ' + f.maxH + '"H' + (f.note ? '<br>' + f.note : '') + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function filterFab(f, btn) {
+  document.querySelectorAll('.fab-tab').forEach(function(t){ t.classList.remove('on'); });
+  btn.classList.add('on');
+  buildFabGrid(f);
+}
+
+function selectFabric(idx) {
+  S.fabric = FABRICS[idx];
+  S.fabColor = '';
+  buildFabGrid('all');
+  document.querySelectorAll('.fab-tab')[0].click();
+
+  document.getElementById('fab-color-wrap').style.display = 'block';
+  document.getElementById('fab-color-inp').value = '';
+  document.getElementById('rhea-warn').style.display = S.fabric.rhea ? 'flex' : 'none';
+
+  updateSpec('sp-front', S.fabric.name + ' · Group ' + S.fabric.group);
+  updateSpec('sp-group', 'Group ' + S.fabric.group);
+  validateSize();
+  buildTopTreatmentStep();
+
+  if (S.shadeType === 'double') activateStep('step-5');
+  else activateStep('step-6');
+}
+
+function updateFabColor(val) {
+  S.fabColor = val;
+  if (val.trim()) {
+    completeStep('step-4', S.fabric.name + (val ? ' · ' + val : ''));
+    updateSpec('sp-front', S.fabric.name + (val ? ' · ' + val : '') + ' · Group ' + S.fabric.group);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 5 — BACK FABRIC (double only)
+// ═══════════════════════════════════════════════════════════════
+function buildBackGrids() {
+  ['back-lf-grid','back-rd-grid'].forEach(function(id){ document.getElementById(id).innerHTML = ''; });
+  BACK_LF.forEach(function(b,i) {
+    document.getElementById('back-lf-grid').innerHTML +=
+      '<div class="back-card" id="backc-' + b.code + '" onclick="selectBack(\'' + b.code + '\',\'' + b.name + '\',\'LF\')">' +
+      '<div class="back-name">Light Filtering ' + b.name + '</div><div class="back-code">' + b.code + '</div></div>';
+  });
+  BACK_RD.forEach(function(b,i) {
+    document.getElementById('back-rd-grid').innerHTML +=
+      '<div class="back-card" id="backc-' + b.code + '" onclick="selectBack(\'' + b.code + '\',\'' + b.name + '\',\'RD\')">' +
+      '<div class="back-name">Room Darkening ' + b.name + '</div><div class="back-code">' + b.code + '</div></div>';
+  });
+}
+
+function selectBack(code, name, type) {
+  S.backFabric = {code:code, name:name, type:type};
+  document.querySelectorAll('.back-card').forEach(function(el){ el.classList.remove('sel'); });
+  var el = document.getElementById('backc-' + code);
+  if (el) el.classList.add('sel');
+  var label = (type === 'RD' ? 'Room Darkening ' : 'Light Filtering ') + name + ' · ' + code;
+  completeStep('step-5', label);
+  updateSpec('sp-back', label);
+  activateStep('step-6');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 6 — TOP TREATMENT
+// ═══════════════════════════════════════════════════════════════
+function buildTopTreatmentStep() {
+  var body = document.getElementById('s6-body');
+  var isDouble = S.shadeType === 'double';
+  var isRhea = S.fabric && S.fabric.rhea;
+
+  var items = [
+    {key:'open-std',    icon:'📋', title:'Open Roll — Standard Bracket',     desc:'Silver brackets + color covers · Clutch, cordless, Pro Wand, or motor', show:!isDouble},
+    {key:'open-metal',  icon:'✨', title:'Open Roll — Decorative Metal Bracket', desc:'Antique Brass · Satin Nickel · Black · Cordless, Pro Wand, or motor only', show:!isDouble},
+    {key:'open-dual',   icon:'⚙️', title:'Open Roll — Dual Bracket',         desc:'Silver/white · Double shades only · Clutch, cordless, or motor', show:isDouble},
+    {key:'cassette',    icon:'📦', title:'Square Cassette',                   desc:'4" cassette · White/Beige/Gray/Black · Standard roll only' + (isRhea ? ' — BLOCKED (Rhea fabric)' : ''), show:!isDouble, blocked:isRhea},
+    {key:'box-valance', icon:'🎨', title:'Fabric-Wrapped Box Valance',        desc:'4" single / 6" double · Returns available · Max 116" wide' + (isRhea ? ' — BLOCKED (Rhea fabric)' : ''), show:true, blocked:isRhea},
+    {key:'trad-valance',icon:'🪵', title:'Traditional Valance',               desc:'Wood headrail + fabric · 6" single / 8" double · Returns available', show:true}
+  ];
+
+  body.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:4px">' +
+    items.filter(function(i){ return i.show; }).map(function(item) {
+      var sel = S.topTreatment === item.key ? ' sel' : '';
+      var blocked = item.blocked ? ' blocked' : '';
+      var onclick = item.blocked ? '' : 'onclick="selectTopTreatment(\'' + item.key + '\')"';
+      return '<div class="opt-card' + sel + blocked + '" id="tt-' + item.key + '" ' + onclick + '>' +
+        '<div class="opt-card-icon">' + item.icon + '</div>' +
+        '<div class="opt-card-title">' + item.title + '</div>' +
+        '<div class="opt-card-desc">' + item.desc + '</div>' +
+      '</div>';
+    }).join('') + '</div>';
+
+  // Sub-options appear below when a treatment is selected
+  body.innerHTML += '<div id="tt-sub-opts" style="margin-top:14px"></div>';
+}
+
+function selectTopTreatment(key) {
+  S.topTreatment = key;
+  S.control = ''; S.rollDir = '';
+  document.querySelectorAll('[id^="tt-"]').forEach(function(el){ el.classList.remove('sel'); });
+  var el = document.getElementById('tt-' + key);
+  if (el) el.classList.add('sel');
+
+  var label = TOP_TREATMENTS[key] ? TOP_TREATMENTS[key].label : key;
+  completeStep('step-6', label);
+  updateSpec('sp-top', label);
+
+  buildTopSubOpts(key);
+  buildRollStep();
+  buildControlStep();
+  validateSize();
+  activateStep('step-7');
+}
+
+function buildTopSubOpts(key) {
+  var wrap = document.getElementById('tt-sub-opts');
+  var html = '';
+  if (key === 'cassette') {
+    html += '<div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Cassette color</div>' +
+      '<div class="hw-color-row" id="grp-cass-color">' +
+      ['White','Beige','Gray','Black'].map(function(c) {
+        var dots = {White:'#F5F5F5',Beige:'#D4B896',Gray:'#909090',Black:'#1A1A1A'};
+        return '<div class="hw-color-opt' + (c === S.cassetteColor ? ' sel' : '') + '" onclick="selCassetteColor(\'' + c + '\',this)"><span class="hw-dot" style="background:' + dots[c] + '"></span>' + c + '</div>';
+      }).join('') + '</div>' +
+      '<div style="font-size:12px;font-weight:500;color:#444;margin:12px 0 8px">Fabric wrap</div>' +
+      '<div class="opt-grid-2">' +
+      '<div class="opt-card' + (S.cassetteWrap ? ' sel' : '') + '" onclick="selCassetteWrap(true)"><div class="opt-card-title">Wrapped</div><div class="opt-card-desc">Fabric-covered cassette housing</div></div>' +
+      '<div class="opt-card' + (!S.cassetteWrap ? ' sel' : '') + '" onclick="selCassetteWrap(false)"><div class="opt-card-title">Unwrapped</div><div class="opt-card-desc">Solid color cassette housing</div></div>' +
+      '</div>';
+    if (S.fabric && S.fabric.rhea) html = '<div class="err-box"><span>⚠️</span><span>Rhea fabric cannot use square cassette fabric wrap.</span></div>';
+  } else if (key === 'open-metal') {
+    html += '<div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Bracket color</div>' +
+      '<div class="opt-grid-3">' +
+      ['Antique Brass','Satin Nickel','Black'].map(function(c) {
+        return '<div class="opt-card' + (S.metalBracketColor === c ? ' sel' : '') + '" onclick="selMetalBracket(\'' + c + '\')">' +
+          '<div class="opt-card-title">' + c + '</div></div>';
+      }).join('') + '</div>';
+  } else if (key === 'box-valance') {
+    if (S.fabric && S.fabric.rhea) {
+      html = '<div class="err-box"><span>⚠️</span><span>Rhea fabric cannot use fabric-wrapped box valance.</span></div>';
+    } else {
+      html += '<div style="font-size:12px;font-weight:500;color:#444;margin-bottom:6px">Valance height</div>' +
+        '<div class="opt-grid-2">' +
+        '<div class="opt-card' + (S.shadeType === 'double' ? '' : ' sel') + '" onclick="this.classList.add(\'sel\');this.nextElementSibling.classList.remove(\'sel\')"><div class="opt-card-title">4" height</div><div class="opt-card-desc">Single shades</div></div>' +
+        '<div class="opt-card' + (S.shadeType === 'double' ? ' sel' : '') + '" onclick="this.classList.add(\'sel\');this.previousElementSibling.classList.remove(\'sel\')"><div class="opt-card-title">6" height</div><div class="opt-card-desc">Double shades — recommended</div></div>' +
+        '</div>' +
+        '<div class="info-box" style="margin-top:10px">Returns from 1"–6". Outside mount recommended: 3¼" single, 4" double. Not recommended inside mount. If returns used, valance must be ≥1⅞" wider than shade.</div>';
+      document.getElementById('box-val-return-wrap').style.display = 'block';
+    }
+  }
+  wrap.innerHTML = html;
+}
+
+function selCassetteColor(c, el) {
+  S.cassetteColor = c;
+  document.querySelectorAll('#grp-cass-color .hw-color-opt').forEach(function(e){ e.classList.remove('sel'); });
+  el.classList.add('sel');
+}
+function selCassetteWrap(v) {
+  S.cassetteWrap = v;
+  document.querySelectorAll('#tt-cassette ~ #tt-sub-opts .opt-card').forEach(function(e,i){ e.classList.toggle('sel', i === (v ? 0 : 1)); });
+  buildTopSubOpts('cassette');
+}
+function selMetalBracket(c) {
+  S.metalBracketColor = c;
+  buildTopSubOpts('open-metal');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 7 — ROLL DIRECTION
+// ═══════════════════════════════════════════════════════════════
+function buildRollStep() {
+  var body = document.getElementById('s7-body');
+  var tt = S.topTreatment;
+  var isDouble = S.shadeType === 'double';
+
+  if (isDouble) {
+    body.innerHTML = '<div class="info-box">Double shades: roll direction is fixed — front fabric reverse roll, back fabric standard roll. No selection needed.</div>';
+    S.rollDir = 'double-fixed';
+    completeStep('step-7', 'Front: Reverse · Back: Standard (fixed)');
+    updateSpec('sp-roll', 'Front Reverse / Back Standard');
+    return;
+  }
+
+  var reverseBlocked = tt === 'cassette' || tt === 'trad-valance';
+  var whyBlocked = tt === 'cassette' ? 'Not available with square cassette' : tt === 'trad-valance' ? 'Not available with traditional valance' : '';
+
+  body.innerHTML = '<div class="opt-grid-2">' +
+    '<div class="opt-card' + (S.rollDir === 'standard' ? ' sel' : '') + '" id="rd-std" onclick="selectRoll(\'standard\')">' +
+      '<div class="opt-card-title">Standard Roll</div>' +
+      '<div class="opt-card-desc">Fabric off back of roll — best for privacy and light blocking</div>' +
+    '</div>' +
+    '<div class="opt-card' + (reverseBlocked ? ' blocked' : (S.rollDir === 'reverse' ? ' sel' : '')) + '" id="rd-rev" onclick="selectRoll(\'reverse\')">' +
+      '<div class="opt-card-title">Reverse Roll</div>' +
+      '<div class="opt-card-desc">' + (reverseBlocked ? '<span style="color:#dc2626;font-weight:600">' + whyBlocked + '</span>' : 'Fabric off front — best for clearing obstructions') + '</div>' +
+    '</div>' +
+  '</div>';
+
+  if (reverseBlocked && S.rollDir === 'reverse') {
+    S.rollDir = 'standard';
+    document.getElementById('rd-std') && document.getElementById('rd-std').classList.add('sel');
+  }
+}
+
+function selectRoll(dir) {
+  S.rollDir = dir;
+  document.getElementById('rd-std') && document.getElementById('rd-std').classList.toggle('sel', dir === 'standard');
+  document.getElementById('rd-rev') && document.getElementById('rd-rev').classList.toggle('sel', dir === 'reverse');
+  completeStep('step-7', dir === 'standard' ? 'Standard Roll' : 'Reverse Roll');
+  updateSpec('sp-roll', dir === 'standard' ? 'Standard' : 'Reverse');
+  activateStep('step-8');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 8 — CONTROL TYPE
+// ═══════════════════════════════════════════════════════════════
+function buildControlStep() {
+  var body = document.getElementById('s8-body');
+  var tt = S.topTreatment;
+  var isDouble = S.shadeType === 'double';
+
+  var controls = [
+    {key:'clutch',   icon:'🔗', title:'Clutch',     desc:'Plastic bead chain — White, Beige, Gray, or Black. 2–5 ft drops.',
+      blocked: tt === 'open-metal'},
+    {key:'cordless', icon:'👆', title:'Cordless',   desc:'Raise/lower by hand. Clear hem grip + optional Lift Assist pole.',
+      blocked: false},
+    {key:'prowand',  icon:'⚡', title:'Pro Wand Motor', desc:'Rechargeable battery. White wand. 24/36/48/60" lengths.',
+      blocked: isDouble, blockedReason: 'Not available for double shades'},
+    {key:'motor',    icon:'🔋', title:'Remote Motor',   desc:'LI rechargeable, DC, or AC hardwired. 15-ch remote/wall switch.',
+      blocked: false}
+  ];
+
+  if (!tt) {
+    body.innerHTML = '<div style="font-size:12px;color:#888">Select a top treatment first.</div>';
+    return;
+  }
+
+  body.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:4px">' +
+    controls.map(function(c) {
+      var isBlocked = c.blocked || (tt === 'open-metal' && c.key === 'clutch');
+      var sel = S.control === c.key && !isBlocked ? ' sel' : '';
+      var blocked = isBlocked ? ' blocked' : '';
+      var desc = isBlocked && c.blockedReason ? '<span style="color:#dc2626;font-weight:600">' + c.blockedReason + '</span>' : c.desc;
+      return '<div class="opt-card' + sel + blocked + '" id="ctrl-' + c.key + '" onclick="selectControl(\'' + c.key + '\')">' +
+        '<div class="opt-card-icon">' + c.icon + '</div>' +
+        '<div class="opt-card-title">' + c.title + '</div>' +
+        '<div class="opt-card-desc">' + desc + '</div>' +
+      '</div>';
+    }).join('') + '</div>';
+}
+
+function selectControl(key) {
+  S.control = key;
+  S.controlSide = '';
+  var labels = {clutch:'Clutch', cordless:'Cordless', prowand:'Pro Wand Motor', motor:'Remote Motor'};
+  completeStep('step-8', labels[key]);
+  updateSpec('sp-control', labels[key]);
+  validateSize();
+
+  var needsSide = key !== 'cordless';
+  var needsMotorAcc = key === 'motor' || key === 'prowand';
+  document.getElementById('step-9').style.display = 'block';
+  document.getElementById('step-10').style.display = needsMotorAcc ? 'block' : 'none';
+
+  buildControlDetails(key);
+  if (needsMotorAcc) buildMotorAcc(key);
+
+  activateStep('step-9');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 9 — CONTROL DETAILS
+// ═══════════════════════════════════════════════════════════════
+function buildControlDetails(key) {
+  var body = document.getElementById('s9-body');
+  var titleEl = document.getElementById('s9-title');
+  titleEl.textContent = 'Control side' + (key === 'clutch' ? ' + chain' : key === 'prowand' ? ' + wand length' : key === 'motor' ? ' + motor type' : '');
+
+  var sideHTML = '<div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Control side</div>' +
+    '<div class="opt-grid-2">' +
+    '<div class="opt-card' + (S.controlSide === 'Right' ? ' sel' : '') + '" id="side-right" onclick="selectSide(\'Right\')"><div class="opt-card-title">Right</div></div>' +
+    '<div class="opt-card' + (S.controlSide === 'Left' ? ' sel' : '') + '" id="side-left" onclick="selectSide(\'Left\')"><div class="opt-card-title">Left</div></div>' +
+    '</div>';
+
+  var extraHTML = '';
+
+  if (key === 'clutch') {
+    extraHTML = '<div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 8px">Chain color</div>' +
+      '<div class="hw-color-row" id="grp-chain-color">' +
+      ['White','Beige','Gray','Black'].map(function(c) {
+        var dots = {White:'#F5F5F5',Beige:'#D4B896',Gray:'#909090',Black:'#1A1A1A'};
+        return '<div class="hw-color-opt' + (c === S.chainColor ? ' sel' : '') + '" onclick="selChainColor(\'' + c + '\',this)"><span class="hw-dot" style="background:' + dots[c] + '"></span>' + c + '</div>';
+      }).join('') + '</div>' +
+      '<div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 8px">Chain drop length</div>' +
+      '<div class="opt-grid-3">' +
+      ['2 ft','3 ft','4 ft','5 ft'].map(function(l){
+        var isClosest = S.height > 0 && isChainDefault(l);
+        return '<div class="opt-card' + (S.chainDrop === l ? ' sel' : '') + '" onclick="selChainDrop(\'' + l + '\')">' +
+          '<div class="opt-card-title">' + l + (isClosest ? ' ✓' : '') + '</div>' +
+          (isClosest ? '<div class="opt-card-desc">Default (≈2/3 height)</div>' : '') +
+        '</div>';
+      }).join('') + '</div>' +
+      '<div class="info-box" style="margin-top:10px">Default chain is closest to 2/3 of shade height. Compliant cord tensioner included. Metal chain available — note in quote.</div>';
+  }
+
+  if (key === 'prowand') {
+    extraHTML = '<div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 8px">Wand length</div>' +
+      '<div class="opt-grid-2">' +
+      ['24"','36"','48"','60"'].map(function(l) {
+        return '<div class="opt-card' + (S.wandLength === l ? ' sel' : '') + '" onclick="selWandLength(\'' + l + '\')">' +
+          '<div class="opt-card-title">' + l + '</div></div>';
+      }).join('') + '</div>' +
+      (S.topTreatment === 'open-metal' ? '<div class="info-box" style="margin-top:10px">Pro Wand with decorative metal bracket requires top mount installation.</div>' : '');
+  }
+
+  if (key === 'motor') {
+    extraHTML = '<div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 8px">Motor type</div>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px">' +
+      [
+        {v:'li-std',   label:'LI Rechargeable',     desc:'Standard lift — rechargeable lithium ion'},
+        {v:'li-power', label:'LI Power Lift',        desc:'Heavy fabric/oversized — rechargeable LI'},
+        {v:'dc-12v',   label:'12V DC Hardwired',     desc:'Hardwired to 12V DC power'},
+        {v:'dc-ext',   label:'12V DC External',      desc:'External 12V DC power supply'},
+        {v:'ac-100',   label:'AC 100–240V Hardwired',desc:'Requires licensed electrician'}
+      ].map(function(m) {
+        var warn = m.v === 'ac-100' ? '<div class="opt-card-desc" style="color:#dc2626">Electrician required</div>' : '<div class="opt-card-desc">' + m.desc + '</div>';
+        return '<div class="opt-card' + (S.motorType === m.v ? ' sel' : '') + '" onclick="selMotorType(\'' + m.v + '\')">' +
+          '<div class="opt-card-title">' + m.label + '</div>' + warn + '</div>';
+      }).join('') + '</div>';
+  }
+
+  if (key === 'cordless') {
+    extraHTML = '<div class="info-box" style="margin-top:10px">Cordless shades include a clear hem grip. Lift Assist pole (telescopes to 45") available — request in notes.</div>';
+  }
+
+  body.innerHTML = sideHTML + extraHTML;
+}
+
+function selectSide(side) {
+  S.controlSide = side;
+  ['side-right','side-left'].forEach(function(id){ var el=document.getElementById(id); if(el) el.classList.remove('sel'); });
+  var el = document.getElementById('side-' + side.toLowerCase()); if(el) el.classList.add('sel');
+  document.getElementById('s9-val').textContent = side;
+  activateStep('step-11');
+}
+function selChainColor(c,el) { S.chainColor=c; document.querySelectorAll('#grp-chain-color .hw-color-opt').forEach(function(e){e.classList.remove('sel');}); el.classList.add('sel'); }
+function selChainDrop(l) { S.chainDrop=l; buildControlDetails('clutch'); }
+function selWandLength(l) { S.wandLength=l; buildControlDetails('prowand'); }
+function selMotorType(v) { S.motorType=v; buildControlDetails('motor'); if(S.motorType==='ac-100'){ document.querySelector('#s9-body .err-box') || (document.getElementById('s9-body').insertAdjacentHTML('beforeend','<div class="err-box" style="margin-top:10px"><span>⚠️</span><span>AC hardwired motor requires installation by a licensed electrician.</span></div>')); } }
+function isChainDefault(l) {
+  if (!S.height) return false;
+  var twoThirds = S.height * 2 / 3;
+  var drops = {'2 ft':24, '3 ft':36, '4 ft':48, '5 ft':60};
+  var best = Object.keys(drops).reduce(function(a,b){ return Math.abs(drops[a]-twoThirds) < Math.abs(drops[b]-twoThirds) ? a : b; });
+  return l === best;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 10 — MOTOR ACCESSORIES
+// ═══════════════════════════════════════════════════════════════
+function buildMotorAcc(key) {
+  var body = document.getElementById('s10-body');
+  var items = [
+    {id:'acc-remote15', label:'15-Channel Handheld Remote',  sub:'Controls up to 15 shades'},
+    {id:'acc-switch15', label:'15-Channel Wall Switch',       sub:'Wall-mounted controller'},
+    {id:'acc-prohub',   label:'Pro Hub',                     sub:'Smart home integration'},
+    {id:'acc-batt',     label:'Rechargeable LI Battery Pack', sub:'External battery for remote motor'},
+    {id:'acc-adapter',  label:'Plug-in Power Adapter',       sub:'Continuous power without charging'},
+    {id:'acc-ext6',     label:'6" Extension Cable',          sub:'Short extension'},
+    {id:'acc-ext48',    label:'48" Extension Cable',         sub:'Medium extension'},
+    {id:'acc-ext96',    label:'96" Extension Cable',         sub:'Long extension'},
+    {id:'acc-charger',  label:'16½ ft Charger',              sub:'Extended reach charger cable'}
+  ];
+  body.innerHTML = items.map(function(item) {
+    return '<div class="acc-item">' +
+      '<input type="checkbox" class="acc-check" id="' + item.id + '" onchange="updateMotorAcc()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0;margin-top:2px">' +
+      '<div><div class="acc-label">' + item.label + '</div><div class="acc-sub">' + item.sub + '</div></div>' +
+    '</div>';
+  }).join('');
+}
+
+function updateMotorAcc() {
+  var acc = [];
+  document.querySelectorAll('#s10-body .acc-check:checked').forEach(function(el) {
+    var lbl = el.nextElementSibling && el.nextElementSibling.querySelector('.acc-label');
+    if (lbl) acc.push(lbl.textContent);
+  });
+  S.motorAccessories = acc;
+  document.getElementById('s10-val').textContent = acc.length ? acc.length + ' selected' : 'Optional';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP 11 — OPTIONS
+// ═══════════════════════════════════════════════════════════════
+function updateOptions() {
+  S.holdDown = document.getElementById('opt-holddown').checked;
+  S.spacer = document.getElementById('opt-spacer').checked;
+  S.valanceReturn = document.getElementById('val-return-inp') ? document.getElementById('val-return-inp').value.trim() : '';
+  var opts = [];
+  if (S.holdDown) opts.push('Hold-downs');
+  if (S.spacer) opts.push('Spacer blocks');
+  document.getElementById('s11-val').textContent = opts.length ? opts.join(', ') : 'None';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// DELIVERY
+// ═══════════════════════════════════════════════════════════════
+function selectDelivery(mode) {
+  S.delivery = mode;
+  document.getElementById('del-ship').classList.toggle('sel', mode === 'ship');
+  document.getElementById('del-pickup').classList.toggle('sel', mode === 'pickup');
+  document.getElementById('del-ship-note').style.display = mode === 'ship' ? 'block' : 'none';
+  document.getElementById('del-pickup-note').style.display = mode === 'pickup' ? 'block' : 'none';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STEP HELPERS
+// ═══════════════════════════════════════════════════════════════
+function activateStep(id) { document.getElementById(id).classList.add('active','open'); }
+function toggleStep(id){const el=document.getElementById(id);el.classList.add('active');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),60);}
+function openStep(id){const el=document.getElementById(id);el.classList.add('active');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),80);}
+function completeStep(id, val) {
+  var el = document.getElementById(id);
+  el.classList.add('done'); el.classList.remove('active');
+  var vid = id.replace('step-','s') + '-val';
+  var vel = document.getElementById(vid);
+  if (vel) vel.textContent = val;
+}
+function updateSpec(id, val) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = val; el.classList.remove('empty');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SUBMIT QUOTE
+// ═══════════════════════════════════════════════════════════════
+function submitQuote() {
+  var name  = document.getElementById('q-name').value.trim();
+  var phone = document.getElementById('q-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+
+  var fab = S.fabric;
+  var tt = S.topTreatment;
+  var ctrl = S.control;
+  var ctrllabels = {clutch:'Clutch', cordless:'Cordless', prowand:'Pro Wand Motor', motor:'Remote Motor'};
+  var ttlabels = {'open-std':'Open Roll — Standard Bracket','open-metal':'Open Roll — Decorative Metal Bracket','open-dual':'Open Roll — Dual Bracket','cassette':'Square Cassette','box-valance':'Fabric-Wrapped Box Valance','trad-valance':'Traditional Valance'};
+  var delivery = S.delivery === 'pickup' ? "I'll pick up (Huntingdon Valley, PA)" : 'Ship to me (UPS/FedEx from Huntingdon Valley, PA)';
+
+  var warns = [];
+  if (fab && S.width > fab.maxW) warns.push('Width exceeds fabric max (' + fab.maxW + '")');
+  if (S.shadeType === 'double' && S.height > 96) warns.push('Double shade height exceeds 96" maximum');
+  if (S.motorType === 'ac-100') warns.push('AC hardwired motor requires a licensed electrician');
+  if (S.backFabric && S.backFabric.type === 'RD') warns.push('Room-darkening back fabric is not total blackout — light may pass through side gaps');
+  if (fab && fab.rhea && (tt === 'cassette' || tt === 'box-valance')) warns.push('Rhea fabric selected with incompatible top treatment — please review');
+
+  var im = S.mount === 'inside' ? 0.125 : 0;
+  var ded = getDeduction();
+  var fabW = S.width > 0 ? (S.width - im - ded).toFixed(3) + '"' : '—';
+
+  var body = 'WALLACE PORTFOLIO COLLECTION NATURAL ROLLER SHADES — SPECIFICATION REQUEST\n\n'
+    + '── CUSTOMER ──\n'
+    + 'Name: ' + name + '\nPhone: ' + phone
+    + '\nEmail: ' + (document.getElementById('q-email').value.trim() || '—')
+    + '\nAddress: ' + (document.getElementById('q-address').value.trim() || '—') + '\n\n'
+    + '── PRODUCT SPECIFICATION ──\n'
+    + 'Product: Wallace Portfolio Collection Natural Roller Shades (2026)\n'
+    + 'Shade type: ' + (S.shadeType === 'single' ? 'Single Natural Roller' : 'Double Natural Roller') + '\n'
+    + 'Room / window: ' + (S.room || '—') + '\n'
+    + 'Mount: ' + (S.mount === 'inside' ? 'Inside Mount (−1/8" deduction)' : S.mount === 'outside' ? 'Outside Mount' : '—') + '\n'
+    + 'Ordered width: ' + (S.width || '—') + '"\n'
+    + 'Ordered height: ' + (S.height || '—') + '"\n'
+    + 'Quantity: ' + S.qty + '\n'
+    + 'Approx. fabric width: ' + fabW + '\n'
+    + '\n── FRONT FABRIC ──\n'
+    + 'Pattern: ' + (fab ? fab.name : '—') + '\n'
+    + 'Price group: ' + (fab ? 'Group ' + fab.group : '—') + '\n'
+    + 'Color / PR code: ' + (S.fabColor || '— (to be confirmed with sample book)') + '\n'
+    + 'Max width: ' + (fab ? fab.maxW + '"' : '—') + '\n'
+    + 'Max height: ' + (fab ? fab.maxH + '"' : '—') + '\n'
+    + (fab && fab.rhea ? 'NOTE: Rhea fabric — no cassette wrap, no box valance\n' : '')
+    + (S.shadeType === 'double'
+      ? '\n── BACK FABRIC ──\n'
+        + 'Back fabric: ' + (S.backFabric ? (S.backFabric.type === 'RD' ? 'Room Darkening' : 'Light Filtering') + ' ' + S.backFabric.name + ' · ' + S.backFabric.code : '—') + '\n'
+      : '')
+    + '\n── TOP TREATMENT / BRACKET ──\n'
+    + 'Top treatment: ' + (ttlabels[tt] || '—') + '\n'
+    + (tt === 'cassette' ? 'Cassette color: ' + S.cassetteColor + '\nFabric wrap: ' + (S.cassetteWrap ? 'Wrapped' : 'Unwrapped') + '\n' : '')
+    + (tt === 'open-metal' ? 'Bracket color: ' + S.metalBracketColor + '\n' : '')
+    + 'Roll direction: ' + (S.rollDir === 'double-fixed' ? 'Front: Reverse / Back: Standard (fixed for double shades)' : S.rollDir === 'standard' ? 'Standard Roll' : S.rollDir === 'reverse' ? 'Reverse Roll' : '—') + '\n'
+    + '\n── CONTROL ──\n'
+    + 'Control type: ' + (ctrllabels[ctrl] || '—') + '\n'
+    + (S.controlSide ? 'Control side: ' + S.controlSide + '\n' : '')
+    + (ctrl === 'clutch' ? 'Chain color: ' + S.chainColor + '\nChain drop: ' + (S.chainDrop || 'default (closest to 2/3 height)') + '\n' : '')
+    + (ctrl === 'prowand' ? 'Wand length: ' + (S.wandLength || '— specify') + '\n' : '')
+    + (ctrl === 'motor' ? 'Motor type: ' + (S.motorType || '— specify') + '\n' : '')
+    + (S.motorAccessories.length ? 'Motor accessories: ' + S.motorAccessories.join(', ') + '\n' : '')
+    + '\n── OPTIONS ──\n'
+    + 'Hold-down brackets: ' + (S.holdDown ? 'Yes' : 'No') + '\n'
+    + 'Spacer blocks: ' + (S.spacer ? 'Yes (3/8")' : 'No') + '\n'
+    + (S.valanceReturn ? 'Box valance returns: ' + S.valanceReturn + '\n' : '')
+    + (warns.length ? '\n── WARNINGS / FLAGS ──\n' + warns.map(function(w){ return '• ' + w; }).join('\n') + '\n' : '')
+    + '\n── DELIVERY ──\n'
+    + delivery + '\n\n'
+    + '── NOTES ──\n'
+    + (document.getElementById('q-notes').value.trim() || 'None');
+
+  window.location.href = 'mailto:justin@phillyblinds.com'
+    + '?subject=' + encodeURIComponent('Wallace Natural Roller Spec — ' + name + (fab ? ' · ' + fab.name : ''))
+    + '&body=' + encodeURIComponent(body);
+
+  document.getElementById('quote-success').style.display = 'block';
+}
+
+// ── INIT ──
+buildFabGrid('all');
+buildBackGrids();
+buildTopTreatmentStep();
+buildControlStep();
+</script>
+</body>
+</html>

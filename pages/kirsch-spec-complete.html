@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Complete Kirsch drapery hardware specifications — Estate Traverse, Architrac, Designer Metals, Wood Trends, Wrought Iron, AMP motorization. All options, limits, and combinations.">
+<meta property="og:title" content="Kirsch Hardware Complete Specs | Philly Blinds">
+<meta property="og:type" content="website">
+<title>Kirsch Hardware — Complete Specifications | Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:44px 28px 40px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:28px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px;line-height:1.3}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:600px;margin-bottom:20px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.3);color:var(--gold)}
+
+/* Content layout */
+.content-wrap{max-width:1100px;margin:0 auto;padding:32px 28px 60px}
+@media(max-width:700px){.content-wrap{padding:20px 16px 48px}}
+
+/* Section headers */
+.spec-section{margin-bottom:48px}
+.spec-section-head{background:var(--espresso);border-radius:12px 12px 0 0;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.spec-section-icon{font-size:20px}
+.spec-section-title{font-size:17px;font-weight:500;color:var(--cream);letter-spacing:-0.3px}
+.spec-section-sub{font-size:12px;color:var(--text-dark);margin-top:2px}
+.spec-section-body{background:#fff;border:1px solid #e8e8e4;border-top:none;border-radius:0 0 12px 12px;padding:20px}
+
+/* Spec tables */
+.spec-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0}
+.spec-table th{background:var(--espresso);color:var(--gold);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:8px 10px;text-align:left}
+.spec-table td{padding:8px 10px;border-bottom:.5px solid #f0f0ee;vertical-align:top}
+.spec-table tr:last-child td{border-bottom:none}
+.spec-table tr:nth-child(even) td{background:#fafaf8}
+.spec-table .yes{color:#059669;font-weight:600}
+.spec-table .no{color:#dc2626;font-weight:600}
+.spec-table .note{color:var(--gold);font-weight:600}
+.spec-table .warn{color:#d97706;font-weight:600}
+
+/* Rule cards */
+.rule-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:12px 0}
+.rule-card{border-radius:10px;padding:12px 14px;font-size:12px;line-height:1.6}
+.rule-ok{background:#DCFCE7;border:1px solid #86EFAC;color:#14532d}
+.rule-warn{background:#FFF3CD;border:1px solid #FFC107;color:#7d5a00}
+.rule-block{background:#FEE2E2;border:1px solid #EF4444;color:#7f1d1d}
+.rule-info{background:rgba(45,224,193,.08);border:1px solid rgba(45,224,193,.25);color:#0A4A42}
+.rule-title{font-weight:700;margin-bottom:3px}
+
+/* Subsection */
+.subsec{margin-top:20px}
+.subsec-title{font-size:13px;font-weight:600;color:#333;border-bottom:1.5px solid var(--gold);padding-bottom:5px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.subsec-title .badge-mini{font-size:9px;padding:1px 7px;border-radius:5px;font-weight:600;background:var(--espresso);color:var(--gold)}
+
+/* Finial grid */
+.finial-row{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.finial-chip{background:#f0ece4;border-radius:6px;padding:4px 10px;font-size:11px;color:#444;border:.5px solid #ddd}
+.finial-chip strong{color:#111}
+
+/* Finish swatches inline */
+.finish-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.finish-item{display:flex;align-items:center;gap:5px;font-size:11px;color:#444}
+.f-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(0,0,0,.12);flex-shrink:0}
+
+/* Compatibility matrix */
+.compat-table{width:100%;border-collapse:collapse;font-size:11px}
+.compat-table th{background:#2A201A;color:var(--gold);font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:8px 6px;text-align:center}
+.compat-table th:first-child{text-align:left;padding-left:10px}
+.compat-table td{padding:7px 6px;border-bottom:.5px solid #f0f0ee;text-align:center;vertical-align:middle}
+.compat-table td:first-child{text-align:left;padding-left:10px;font-weight:500;color:#111}
+.compat-table tr:nth-child(even) td{background:#fafaf8}
+.c-yes{color:#059669;font-size:14px}
+.c-no{color:#dc2626;font-size:14px}
+.c-cond{color:#d97706;font-size:14px;cursor:help}
+.c-na{color:#ccc;font-size:12px}
+
+/* Info/warn boxes */
+.info-box{background:rgba(45,224,193,.08);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#0A4A42;margin:10px 0;line-height:1.6}
+.warn-box{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:10px 14px;font-size:12px;color:#7d5a00;margin:10px 0;line-height:1.6}
+.err-box{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:10px 14px;font-size:12px;color:#7f1d1d;margin:10px 0;line-height:1.6}
+
+/* Quote configurator */
+.config-block{background:#fff;border:1.5px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden}
+.config-head{background:var(--espresso);padding:12px 18px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.config-num{width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--espresso);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.config-label{font-size:13px;font-weight:500;color:var(--cream)}
+.config-body{padding:16px 18px;display:none}
+.config-block.open .config-body{display:block}
+.opt-row-sm{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.opt-pill{padding:6px 14px;border:1.5px solid #e8e8e4;border-radius:20px;font-size:12px;cursor:pointer;background:#fff;transition:all .12s;font-family:inherit}
+.opt-pill:hover{border-color:var(--gold)}
+.opt-pill.sel{background:var(--gold);border-color:var(--gold);color:var(--espresso);font-weight:600}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="hardware.html">Hardware</a> &rsaquo; Kirsch Complete Specs</div>
+  <h1>Kirsch Drapery Hardware — Complete Specifications</h1>
+  <p class="sub">All rods, all options, all combinations, all restrictions. Estate™ Traverse · Architrac® (7 models) · Designer Metals™ · Wood Trends™ · Wrought Iron · AMP™ Motorization · Basic Hardware.</p>
+  <div class="hero-pills">
+    <span class="hero-pill-gold hero-pill">Kirsch Authorized</span>
+    <span class="hero-pill">Estate 1⅜" &amp; 2"</span>
+    <span class="hero-pill">Architrac 7 models</span>
+    <span class="hero-pill">AMP™ motorization</span>
+    <span class="hero-pill">10-year warranty</span>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+<!-- ═══ SECTION 1: ESTATE TRAVERSE RODS ═══════════════════════════════ -->
+<div class="spec-section" id="estate">
+  <div class="spec-section-head">
+    <div class="spec-section-icon">🎭</div>
+    <div>
+      <div class="spec-section-title">Estate™ Traverse Rods</div>
+      <div class="spec-section-sub">Decorative traversing rod with exposed finials — 1⅜" and 2" diameters · Designer Metals™ · Wood Trends™ · Wrought Iron</div>
+    </div>
+  </div>
+  <div class="spec-section-body">
+
+    <!-- PERFORMANCE SPECS -->
+    <div class="subsec">
+      <div class="subsec-title">Performance Specs <span class="badge-mini">Both 1⅜" and 2"</span></div>
+      <table class="spec-table">
+        <tr><th>Spec</th><th>Value</th><th>Notes</th></tr>
+        <tr><td>Minimum track</td><td>18"</td><td>Both sizes</td></tr>
+        <tr><td>Maximum track</td><td>192" (16 ft)</td><td>Both sizes</td></tr>
+        <tr><td>Max fabric weight</td><td>64 lbs total</td><td>Both motorized and manual</td></tr>
+        <tr><td>Max per linear foot</td><td>4 lbs/ft</td><td>Reduce bracket spacing for heavier fabric</td></tr>
+        <tr><td>Splice rule</td><td>8 ft+ = 1 splice + 1 keystone</td><td>Included with rod — no extra charge</td></tr>
+        <tr><td>Draw types</td><td>One-Way Left · One-Way Right · Two-Way Split</td><td>All draw types compatible with AMP</td></tr>
+        <tr><td>Header types</td><td>Pleated OR Ripplefold™</td><td>Ordered with either slides or Ripplefold carriers — specify at order</td></tr>
+        <tr><td>Mount options</td><td>Wall · Ceiling · Double Rod</td><td>All compatible with AMP™ motorization</td></tr>
+        <tr><td>AMP™ motorization</td><td class="yes">✓ Compatible</td><td>One motor only · cannot bend/curve when motorized</td></tr>
+        <tr><td>Bending / curving</td><td class="no">✗ Never</td><td>Estate rods are straight track ONLY — even manual</td></tr>
+        <tr><td>Ripplefold™ fullness</td><td>60% · 80% · 100% · 120%</td><td>Snap-tape or wheeled Butt Master carriers</td></tr>
+        <tr><td>Warranty</td><td>10 yr hardware · 7 yr cord · 5 yr motor</td><td></td></tr>
+      </table>
+    </div>
+
+    <!-- BRACKET SPACING -->
+    <div class="subsec">
+      <div class="subsec-title">Bracket Spacing Rule <span class="badge-mini">Universal</span></div>
+      <div class="info-box">
+        <strong>Rule:</strong> End brackets at both ends. At stack ends (where fabric piles up): first center bracket within <strong>24" of the end bracket</strong>, then every <strong>48" intervals</strong> from there.<br>
+        <strong>Example — 12 ft two-way split:</strong> End | 24" | bracket | 48" | bracket | 48" | bracket | 24" | End = <strong>5 brackets</strong><br>
+        Reduce spacing for heavy or bulky fabrics. Center brackets are adjustable in projection.
+      </div>
+      <table class="spec-table" style="margin-top:8px">
+        <tr><th>Track Length</th><th>Brackets (est.)</th><th>Notes</th></tr>
+        <tr><td>18"–48"</td><td>2</td><td>End brackets only</td></tr>
+        <tr><td>49"–96"</td><td>3</td><td>2 ends + 1 center</td></tr>
+        <tr><td>97"–144"</td><td>4–5</td><td>2 ends + 2–3 center (24"+48" spacing at stack end)</td></tr>
+        <tr><td>145"–192"</td><td>5–6</td><td>2 ends + 3–4 center (24"+48" spacing)</td></tr>
+      </table>
+    </div>
+
+    <!-- TOP HOLE INSTALLATION -->
+    <div class="subsec">
+      <div class="subsec-title">Top Hole (Installation Measurement) — 1⅜" Estate</div>
+      <table class="spec-table">
+        <tr><th>Mount</th><th>Header</th><th>Add to finished length</th><th>Floor-to-ceiling subtract</th><th>Pin set</th></tr>
+        <tr><td>Wall Mount</td><td>Pleated</td><td>+1-11/16"</td><td>−2⅛"</td><td>½"</td></tr>
+        <tr><td>Wall Mount</td><td>Ripplefold™</td><td>+1-11/16"</td><td>−2⅛"</td><td>½"</td></tr>
+        <tr><td>Ceiling Mount</td><td>Pleated</td><td>+0"</td><td>−3⅝"</td><td>½"</td></tr>
+        <tr><td>Ceiling Mount</td><td>Ripplefold™</td><td>+0"</td><td>−3⅝"</td><td>½"</td></tr>
+      </table>
+    </div>
+
+    <!-- 1-3/8" ESTATE BY COLLECTION -->
+    <div class="subsec">
+      <div class="subsec-title">1⅜" Estate — By Collection</div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:10px">
+
+        <!-- Designer Metals -->
+        <div style="border:1.5px solid #e8e8e4;border-radius:10px;padding:14px">
+          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:8px">Designer Metals™</div>
+          <div class="finish-row">
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#C8A84A,#8B6914)"></div>Elegant Brass</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#B0B8C0,#7A8490)"></div>Antique Silver</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#4A4A52,#2A2A30)"></div>Gunmetal</div>
+            <div class="finish-item"><div class="f-dot" style="background:#1A1A1A;border-color:#333"></div>Black</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#E8E8E8,#C0C0C0)"></div>Polished Nickel</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#8B5E3C,#5A3820)"></div>Brushed Bronze</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#C8A040,#7A5A10)"></div>Gilded Bronze</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#C0C0B8,#8A8A80)"></div>Satin Nickel</div>
+          </div>
+          <div style="font-size:11px;color:#666;margin-top:6px"><strong>15 finial styles:</strong></div>
+          <div class="finial-row">
+            <span class="finial-chip"><strong>Archer</strong> 4"</span><span class="finial-chip"><strong>Briggs</strong> 3-7/16"</span><span class="finial-chip"><strong>Briggs Duotone</strong></span><span class="finial-chip"><strong>Corsa</strong> 1⅝"</span><span class="finial-chip"><strong>Elmore</strong> 3"</span><span class="finial-chip"><strong>Emerson</strong> 2⅞"</span><span class="finial-chip"><strong>Europa</strong> 3"</span><span class="finial-chip"><strong>Harlow</strong> 4" disc</span><span class="finial-chip"><strong>Lenn</strong> 1-15/16"</span><span class="finial-chip"><strong>Odessa</strong> 3-7/32"</span><span class="finial-chip"><strong>Pandora</strong> 4" ball</span><span class="finial-chip"><strong>Quinn</strong> 3-3/16"</span><span class="finial-chip"><strong>Rao</strong> ⅞"</span><span class="finial-chip"><strong>Stratta</strong> 2¼"</span><span class="finial-chip"><strong>Vivien</strong> 3⅝"</span><span class="finial-chip"><strong>Round Endcap</strong></span><span class="finial-chip"><strong>Square Endcap</strong></span>
+          </div>
+          <div style="font-size:11px;color:#666;margin-top:8px"><strong>Product #:</strong> Slides 83687867–83687926 · Ripplefold 83688867–83688926 · Keystone 1832226–28</div>
+          <div style="font-size:11px;color:#666;margin-top:4px"><strong>Wall bracket:</strong> #94129061 Zinc · #1856973 Satin Nickel · #1856978 Brushed Bronze · #1857324 Black<br><strong>Ceiling bracket:</strong> #1796061<br><strong>Double bracket:</strong> #71132062/110/006/012 (3⅛" H) · #71134110 Satin Brass (2¼" H)</div>
+        </div>
+
+        <!-- Wood Trends -->
+        <div style="border:1.5px solid #e8e8e4;border-radius:10px;padding:14px">
+          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:8px">Wood Trends™</div>
+          <div class="err-box" style="margin:0 0 8px;padding:6px 10px;font-size:11px">⚠ <strong>Unfinished finish NOT available</strong> on Estate Traverse Rods — stationary poles only</div>
+          <div class="finish-row">
+            <div class="finish-item"><div class="f-dot" style="background:#1A1A1A;border-color:#333"></div>Black</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#6B4423,#3A2010)"></div>Coffee</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#3A2010,#200808)"></div>Dark Chocolate</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#C8A870,#8B6830)"></div>Estate Oak</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#5C2010,#380808)"></div>Mahogany</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#E0D8C8,#C0B0A0)"></div>Marble</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#8B6830,#5C4020)"></div>Truffle</div>
+            <div class="finish-item"><div class="f-dot" style="background:#F5F5F5;border-color:#ddd"></div>White</div>
+          </div>
+          <div style="font-size:11px;color:#666;margin-top:6px"><strong>9 finial styles</strong> — Ball, Disc/Flat, Spear/Tapered, Cylinder/Barrel, Square/Block, Open/Cage, Ethan ball, Endcap, Custom (contact for full catalog)</div>
+          <div style="font-size:11px;color:#666;margin-top:6px">Fixed poles: 4' / 6' / 8' / 12'. Same traverse rod body as Designer Metals — Wood Trends finials and fascia.</div>
+        </div>
+
+        <!-- Wrought Iron -->
+        <div style="border:1.5px solid #e8e8e4;border-radius:10px;padding:14px">
+          <div style="font-size:13px;font-weight:600;color:#111;margin-bottom:8px">Wrought Iron <span style="font-size:10px;color:#888;font-weight:400">— 1⅜" ONLY (no 2" WI)</span></div>
+          <div class="finish-row">
+            <div class="finish-item"><div class="f-dot" style="background:#1A1A1A;border-color:#333"></div>Black</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#6B5A48,#3A2A20)"></div>Iron Oxide</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#C86020,#903010)"></div>Rust</div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#606870,#404850)"></div>Graphite <span style="font-size:9px;color:var(--gold)">NEW</span></div>
+            <div class="finish-item"><div class="f-dot" style="background:#F0EDE8;border-color:#ddd"></div>Chalk <span style="font-size:9px;color:var(--gold)">NEW</span></div>
+            <div class="finish-item"><div class="f-dot" style="background:radial-gradient(#C87840,#905020)"></div>Heirloom Copper <span style="font-size:9px;color:var(--gold)">NEW</span></div>
+          </div>
+          <div style="font-size:11px;color:#666;margin-top:6px"><strong>9 finial styles:</strong></div>
+          <div class="finial-row">
+            <span class="finial-chip"><strong>Axiom</strong> 3-13/16"</span><span class="finial-chip"><strong>Darby</strong> 3¼"</span><span class="finial-chip"><strong>Lincoln</strong> 2⅝"</span><span class="finial-chip"><strong>Otto</strong> 2-9/16"</span><span class="finial-chip"><strong>Pedestal Ball</strong> 4⅞"</span><span class="finial-chip"><strong>Petite Faucet</strong> 2⅜"</span><span class="finial-chip"><strong>Petite Modern Ball</strong> 3⅜"</span><span class="finial-chip"><strong>Ponce</strong> 5½"</span><span class="finial-chip"><strong>Endcap</strong> 1⅛"</span>
+          </div>
+          <div style="font-size:11px;color:#666;margin-top:6px"><strong>Product #:</strong> Slides 83697770–83697777 · Ripplefold 83698770–83698777 · Keystone 1833770–77<br>Finish suffix: 770=Black, 771=Iron Oxide, 772=Rust, 773=Graphite, 774=Chalk, 775=Heirloom Copper</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2" ESTATE -->
+    <div class="subsec">
+      <div class="subsec-title">2" Estate — Key Differences from 1⅜"</div>
+      <div class="rule-grid">
+        <div class="rule-warn"><div class="rule-title">⚠ Collections available</div>Designer Metals™ and Wood Trends™ ONLY — 2" Estate is NOT available in Wrought Iron</div>
+        <div class="rule-warn"><div class="rule-title">⚠ Only 5 finial styles</div>Corsa (4¼") · Europa (2¼") · Pandora (5⅜") · Rao (1⅛") · Stratta (3⅛") — no other finials fit 2" rod</div>
+        <div class="rule-ok"><div class="rule-title">✓ Same performance specs</div>Min 18" · Max 192" · Max 64 lbs · 4 lbs/ft · AMP compatible · Same splice rule</div>
+        <div class="rule-ok"><div class="rule-title">✓ Same draw + mount options</div>One-Way or Two-Way · Wall, Ceiling, or Double · All AMP compatible</div>
+      </div>
+      <div style="font-size:11px;color:#666;margin-top:8px"><strong>2" DM Product #:</strong> Slides 93685867–93685926 · Ripplefold 93686867–93686926 · Keystone 1832234–36<br><strong>Double brackets (fit both 1⅜" + 2"):</strong> #71134110 Satin Brass (H 2¼") · #71132062/110/006/012 (H 3⅛") — proj. 9¼" front / 5¼" back, returns 8¼" / 4¼"</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: ARCHITRAC TRACKS ════════════════════════════════════ -->
+<div class="spec-section" id="architrac">
+  <div class="spec-section-head">
+    <div class="spec-section-icon">⚙️</div>
+    <div>
+      <div class="spec-section-title">Architrac® Tracks — All 7 Models</div>
+      <div class="spec-section-sub">Functional concealed traverse — residential, commercial, and specialty applications</div>
+    </div>
+  </div>
+  <div class="spec-section-body">
+
+    <div class="warn-box">Only Architrac 94001 is compatible with AMP™ motorization. All other Architrac models are manual only.</div>
+
+    <div class="subsec">
+      <div class="subsec-title">Model Comparison</div>
+      <div style="overflow-x:auto">
+      <table class="compat-table" style="min-width:700px">
+        <tr>
+          <th style="text-align:left;padding-left:10px;min-width:120px">Model</th>
+          <th>Max OW</th><th>Max OW Weight</th><th>Max TW</th><th>Max TW Weight</th>
+          <th>AMP™</th><th>Bend/Curve</th><th>Wall</th><th>Ceiling</th><th>Recessed</th><th>Suspension</th>
+        </tr>
+        <tr>
+          <td><strong>94001</strong> <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 5px;border-radius:4px">AMP</span></td>
+          <td>20 ft (manual)<br>16 ft (AMP)</td><td>80 lbs (man.)<br>64 lbs (AMP)</td>
+          <td>40 ft (manual)<br>16 ft (AMP)</td><td>160 lbs (man.)<br>64 lbs (AMP)</td>
+          <td class="c-yes">✓</td>
+          <td><span style="color:#d97706;font-weight:600">Manual only</span></td>
+          <td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-na">—</td>
+        </tr>
+        <tr>
+          <td><strong>94003</strong> <span style="font-size:9px;background:#059669;color:#fff;padding:1px 5px;border-radius:4px">REC.</span></td>
+          <td colspan="2">Up to 20 ft / 80 lbs</td>
+          <td colspan="2">Up to 40 ft / 160 lbs</td>
+          <td class="c-no">✗</td>
+          <td><span style="color:#059669;font-weight:600">✓ Manual only</span></td>
+          <td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-na">—</td>
+        </tr>
+        <tr>
+          <td><strong>94004</strong></td>
+          <td colspan="2">Standard residential</td>
+          <td colspan="2">Standard residential</td>
+          <td class="c-no">✗</td><td class="c-no">✗</td>
+          <td class="c-na">—</td><td class="c-yes">✓ only</td><td class="c-yes">✓</td><td class="c-na">—</td>
+        </tr>
+        <tr>
+          <td><strong>94005</strong> <span style="font-size:9px;background:#dc2626;color:#fff;padding:1px 5px;border-radius:4px">NOT REC.</span></td>
+          <td colspan="2">Standard</td><td colspan="2">Standard</td>
+          <td class="c-no">✗</td><td class="c-no">✗</td>
+          <td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-na">—</td><td class="c-na">—</td>
+        </tr>
+        <tr>
+          <td><strong>9046</strong> <span style="font-size:9px;background:#1E40AF;color:#fff;padding:1px 5px;border-radius:4px">COMMERCIAL</span></td>
+          <td>16 ft</td><td>64 lbs</td>
+          <td>32 ft</td><td>128 lbs</td>
+          <td class="c-no">✗</td>
+          <td><span style="color:#059669;font-weight:600">✓ 8"–12" radius</span></td>
+          <td class="c-na">—</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-na">—</td>
+        </tr>
+        <tr>
+          <td><strong>9600</strong> <span style="font-size:9px;background:#1E40AF;color:#fff;padding:1px 5px;border-radius:4px">HEAVY DUTY</span></td>
+          <td>20 ft</td><td>80 lbs</td>
+          <td>40 ft</td><td>160 lbs</td>
+          <td class="c-no">✗</td>
+          <td><span style="color:#059669;font-weight:600">✓ 12"–14" radius</span></td>
+          <td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td>
+        </tr>
+        <tr>
+          <td><strong>K-Rail</strong> <span style="font-size:9px;background:#7C3AED;color:#fff;padding:1px 5px;border-radius:4px">DECORATIVE</span></td>
+          <td>16 ft</td><td>64 lbs</td>
+          <td>16 ft</td><td>64 lbs</td>
+          <td class="c-no">✗</td><td class="c-no">✗</td>
+          <td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-na">—</td><td class="c-na">—</td>
+        </tr>
+      </table>
+      </div>
+    </div>
+
+    <!-- ARCHITRAC DETAIL CARDS -->
+    <div class="subsec">
+      <div class="subsec-title">Model Details</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:10px">
+
+        <div style="border:1.5px solid #e8e8e4;border-radius:10px;padding:14px">
+          <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px">94001 — AMP™ Capable <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:4px;margin-left:4px">MOTORIZABLE</span></div>
+          <div style="font-size:11px;color:#555;line-height:1.7">Heavy-duty ball-bearing pulleys. Wall, ceiling, or recessed mount. Can be bent or curved for bay windows (MANUAL ONLY — not motorized). Custom sizes ordered to spec.<br>
+          <strong>Colors:</strong> White · Gray · Bronze · Black<br>
+          <strong>Track:</strong> 1½" × 1-11/16" cross-section<br>
+          <strong>Bracket:</strong> #94270 — adjustable 3¼"–4¾" projection<br>
+          <strong>Manual max:</strong> One-Way 20ft/80lbs · Two-Way 40ft/160lbs<br>
+          <strong>AMP max:</strong> Both draw types 16ft/64lbs<br>
+          <strong>Pleated + Ripplefold™:</strong> Both compatible</div>
+        </div>
+
+        <div style="border:2px solid var(--gold);border-radius:10px;padding:14px;background:rgba(45,224,193,.03)">
+          <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px">94003 — Recommended for Most Jobs <span style="font-size:9px;background:#059669;color:#fff;padding:1px 6px;border-radius:4px;margin-left:4px">RECOMMENDED</span></div>
+          <div style="font-size:11px;color:#555;line-height:1.7">Most versatile standard residential track. Wall, ceiling, or recessed mount. Can be curved for bay windows (manual only). No AMP motorization.<br>
+          <strong>Colors:</strong> White #94373025 · Gray #94373090 · Bronze #94373064 · Black #94373059<br>
+          <strong>Manual max:</strong> One-Way 20ft/80lbs · Two-Way 40ft/160lbs<br>
+          <strong>AMP:</strong> Not compatible<br>
+          <strong>Best for:</strong> Most residential installs, bay windows, large windows without motorization needs</div>
+        </div>
+
+        <div style="border:1.5px solid #e8e8e4;border-radius:10px;padding:14px">
+          <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px">94004 — Easy Ceiling Mount</div>
+          <div style="font-size:11px;color:#555;line-height:1.7">Flange on back for flush ceiling installation. Ceiling mount only — cannot wall mount. Manual only, no bending.<br>
+          <strong>Best for:</strong> Clean ceiling installations, new construction where track can be hidden above ceiling line<br>
+          <strong>AMP:</strong> Not compatible</div>
+        </div>
+
+        <div style="border:1.5px solid #FEE2E2;border-radius:10px;padding:14px;background:#fff9f9">
+          <div style="font-size:13px;font-weight:700;color:#991B1B;margin-bottom:6px">94005 — NOT RECOMMENDED ⚠</div>
+          <div style="font-size:11px;color:#555;line-height:1.7">Screws mount directly through track face — no standard brackets. Limited access for adjustment or repair. Cannot bend, no AMP.<br>
+          <strong>Use only when:</strong> No other mounting option exists and access is not a concern<br>
+          <strong>Wall + ceiling:</strong> Both available</div>
+        </div>
+
+        <div style="border:1.5px solid #BFDBFE;border-radius:10px;padding:14px;background:#F0F7FF">
+          <div style="font-size:13px;font-weight:700;color:#1E40AF;margin-bottom:6px">9046 — Commercial / Hospital Grade</div>
+          <div style="font-size:11px;color:#555;line-height:1.7">Heavy-duty commercial track for hospital cubicle curtains, hotels, large commercial spaces. Ceiling or recessed mount only. Can be bent (8"–12" radius). Manual only, pleated headers only.<br>
+          <strong>One-Way:</strong> Max 16ft / 64 lbs<br>
+          <strong>Two-Way:</strong> Max 32ft / 128 lbs<br>
+          <strong>Mount:</strong> Ceiling · Recessed only<br>
+          <strong>Headers:</strong> Pleated only (not Ripplefold)</div>
+        </div>
+
+        <div style="border:1.5px solid #BFDBFE;border-radius:10px;padding:14px;background:#F0F7FF">
+          <div style="font-size:13px;font-weight:700;color:#1E40AF;margin-bottom:6px">9600 — Heavy Duty / Extra Strength</div>
+          <div style="font-size:11px;color:#555;line-height:1.7">Maximum capacity track for very heavy draperies, hotels, theaters, commercial use. All mount types including suspension. Can be bent (12"–14" radius). Manual only, pleated headers only.<br>
+          <strong>One-Way:</strong> Max 20ft / 80 lbs<br>
+          <strong>Two-Way:</strong> Max 40ft / 160 lbs<br>
+          <strong>Mount:</strong> Wall · Ceiling · Recessed · Suspension</div>
+        </div>
+
+        <div style="border:1.5px solid #DDD6FE;border-radius:10px;padding:14px;background:#F5F3FF">
+          <div style="font-size:13px;font-weight:700;color:#5B21B6;margin-bottom:6px">K-Rail — Decorative Traverse</div>
+          <div style="font-size:11px;color:#555;line-height:1.7">Unique product: a functional traverse track that accepts 1⅜" finials from Kirsch decorative collections (Designer Metals, Wood Trends, Wrought Iron). Combines the look of a decorative rod with smooth traverse operation. Wall or ceiling mount. Cannot bend. Manual only.<br>
+          <strong>One-Way + Two-Way:</strong> Both max 16ft / 64 lbs<br>
+          <strong>Headers:</strong> Pleated AND Ripplefold™ compatible<br>
+          <strong>Compatible finials:</strong> All 1⅜" Wrought Iron finials · All 1⅜" Wood Trends finials · Designer Metals 1⅜" finials</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ARCHITRAC RESTRICTIONS -->
+    <div class="subsec">
+      <div class="subsec-title">Critical Restrictions Summary</div>
+      <div class="rule-grid">
+        <div class="rule-block"><div class="rule-title">✗ AMP motor: 94001 ONLY</div>No other Architrac model can be motorized. 94003, 94004, 94005, 9046, 9600, K-Rail are all manual only.</div>
+        <div class="rule-block"><div class="rule-title">✗ No bending when motorized</div>94001 with AMP cannot be bent or curved. Bending is manual 94001/94003/9046/9600 only.</div>
+        <div class="rule-warn"><div class="rule-title">⚠ One motor per rod</div>Never install two AMP motors on a single Architrac. One motor only, ever.</div>
+        <div class="rule-warn"><div class="rule-title">⚠ Pleated only for 9046/9600</div>9046 and 9600 do not support Ripplefold™ carriers — pleated headers only.</div>
+        <div class="rule-ok"><div class="rule-title">✓ K-Rail accepts decorative finials</div>K-Rail is the only Architrac track compatible with 1⅜" decorative finials from DM/WT/WI collections.</div>
+        <div class="rule-ok"><div class="rule-title">✓ 94001 bend: manual only</div>94001 can be bent for bay windows or curved applications — but ONLY when installed as manual (no AMP).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 3: DECORATIVE STATIONARY POLES ══════════════════════════ -->
+<div class="spec-section" id="stationary">
+  <div class="spec-section-head">
+    <div class="spec-section-icon">✨</div>
+    <div>
+      <div class="spec-section-title">Decorative Stationary Poles</div>
+      <div class="spec-section-sub">Designer Metals™ (1" &amp; 1⅜") · Wood Trends™ (1⅜" &amp; 2") · Wrought Iron (1" &amp; 1⅜")</div>
+    </div>
+  </div>
+  <div class="spec-section-body">
+
+    <div class="info-box">Stationary poles use rings (sold separately) to hang panels. They do not traverse — panels hang stationary or are manually slid along the rod using rings. For traversing drapery, see Estate Traverse Rods above.</div>
+
+    <div class="subsec">
+      <div class="subsec-title">Pole Sizes &amp; Lengths</div>
+      <table class="spec-table">
+        <tr><th>Collection</th><th>Diameter</th><th>Fixed Lengths</th><th>Telescoping</th><th>Notes</th></tr>
+        <tr><td>Designer Metals™</td><td>1"</td><td>4' (48") · 6' (72") · 8' (96")</td><td>None for 1"</td><td>Internal splice #1042812 for spans over 8'</td></tr>
+        <tr><td>Designer Metals™</td><td>1⅜"</td><td>4' · 6' · 8'</td><td>36"–66" · 66"–120" · 120"–180"</td><td>Internal splice #73304061 for over 180"</td></tr>
+        <tr><td>Wood Trends™</td><td>1⅜"</td><td>4' · 6' · 8' · 12'</td><td>Available</td><td>Unfinished available for stationary poles only</td></tr>
+        <tr><td>Wood Trends™</td><td>2"</td><td>4' · 6' · 8' · 12'</td><td>Available</td><td></td></tr>
+        <tr><td>Wrought Iron</td><td>1"</td><td>6' · 8'</td><td>None</td><td>Real sand-cast iron</td></tr>
+        <tr><td>Wrought Iron</td><td>1⅜"</td><td>6' · 8'</td><td>None</td><td>Also fits Estate traverse and K-Rail</td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">Bracket Options — Designer Metals™ 1"</div>
+      <table class="spec-table">
+        <tr><th>Style</th><th>Wall-to-Pole</th><th>Max Weight/Bracket</th><th>Notes</th></tr>
+        <tr><td>3" Return O Bracket</td><td>2⅜"</td><td>25 lbs</td><td>#1042918–25 · All 8 finishes</td></tr>
+        <tr><td>6" Return O Bracket</td><td>5⅜"</td><td>12 lbs</td><td>#1042926–33 · All 8 finishes</td></tr>
+        <tr><td>3" Bypass O Bracket</td><td>2⅜"</td><td>25 lbs</td><td>#1042934–41 · For bypass installations</td></tr>
+        <tr><td>6" Bypass O Bracket</td><td>5⅜"</td><td>12 lbs</td><td>#1042942–49</td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">Bracket Options — Designer Metals™ 1⅜"</div>
+      <table class="spec-table">
+        <tr><th>Style</th><th>Wall-to-Pole</th><th>Return</th><th>Max Weight</th><th>Product #</th></tr>
+        <tr><td>3" Return O Bracket</td><td>1¾"</td><td>3"</td><td>32 lbs/bracket</td><td>#1042706–09</td></tr>
+        <tr><td>6" Return O Bracket</td><td>4¾"</td><td>6"</td><td>16 lbs/bracket</td><td>#1042894–01</td></tr>
+        <tr><td>Decorative Bracket</td><td>varies</td><td>3"–4"</td><td>—</td><td>#1832074–81</td></tr>
+        <tr><td>Decorative Bypass</td><td>varies</td><td>3"–4"</td><td>—</td><td>#1832090–97</td></tr>
+        <tr><td>Decorative Ceiling</td><td>—</td><td>—</td><td>—</td><td>#1832082–89</td></tr>
+        <tr><td>Decorative Double</td><td>—</td><td>Inner 3"–4" / Outer 6"–7"</td><td>—</td><td>#1832106–13</td></tr>
+        <tr><td>Standard (deep) Brackets</td><td>5¼"–7"</td><td>—</td><td>—</td><td>#1858569–74</td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">French Return Deductions — Designer Metals™</div>
+      <table class="spec-table">
+        <tr><th>Size</th><th>Diameter</th><th>Max Weight</th><th>Arm length</th><th>Overall length</th><th>Notes</th></tr>
+        <tr><td>3" Return Left/Right</td><td>1"</td><td>25 lbs</td><td>3¼"</td><td>4⅜"</td><td></td></tr>
+        <tr><td>6" Return Left/Right</td><td>1"</td><td>12 lbs</td><td>—</td><td>—</td><td></td></tr>
+        <tr><td>3" Return Left/Right</td><td>1⅜"</td><td>32 lbs</td><td>3¼"</td><td>4¾"</td><td>Back plate 3"</td></tr>
+        <tr><td>6" Return Left/Right</td><td>1⅜"</td><td>16 lbs</td><td>—</td><td>—</td><td></td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">Rings &amp; Accessories by Collection</div>
+      <table class="spec-table">
+        <tr><th>Item</th><th>DM 1"</th><th>DM 1⅜"</th><th>WI 1"</th><th>WI 1⅜"</th></tr>
+        <tr><td>Ring inner dia.</td><td>1⅜"</td><td>1¾"</td><td>1⅝"</td><td>2"</td></tr>
+        <tr><td>Ring outer dia.</td><td>1-11/16"</td><td>2⅛"</td><td>2⅛"</td><td>2½"</td></tr>
+        <tr><td>Ext. to eyelet</td><td>—</td><td>—</td><td>2⅜"</td><td>2-13/16"</td></tr>
+        <tr><td>Bypass C-Ring</td><td class="yes">✓ Available</td><td class="yes">✓ Available</td><td class="yes">✓ Available</td><td class="yes">✓ Available</td></tr>
+        <tr><td>Transitional Ring (int 1⅝")</td><td class="no">—</td><td class="yes">✓ #varies</td><td class="no">—</td><td class="no">—</td></tr>
+        <tr><td>Lock Ring (French return)</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+        <tr><td>36" Baton w/ C-Ring</td><td class="no">—</td><td class="yes">✓ #1831558</td><td class="yes">✓ #56375xxx</td><td class="yes">✓ #56376xxx</td></tr>
+        <tr><td>Inside Mount Socket</td><td class="no">—</td><td class="yes">✓ #1832218–25</td><td class="yes">✓ #56370xxx</td><td class="yes">✓ #56470xxx</td></tr>
+        <tr><td>Swivel Socket</td><td class="no">—</td><td class="yes">✓ #1831428–27</td><td class="yes">✓ #56367xxx</td><td class="yes">✓ #56467xxx</td></tr>
+        <tr><td>Internal Rod Splice</td><td>✓ #1042812 Zinc</td><td>✓ #73304061 Zinc</td><td>✓ #56366061</td><td>✓ #56466061</td></tr>
+        <tr><td>Teflon Tape</td><td>✓ #84990000</td><td>✓ #84990000</td><td>✓ #84990000</td><td>✓ #84990000</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: BASIC HARDWARE ══════════════════════════════════════ -->
+<div class="spec-section" id="basic">
+  <div class="spec-section-head">
+    <div class="spec-section-icon">🔧</div>
+    <div>
+      <div class="spec-section-title">Basic Hardware — White Only</div>
+      <div class="spec-section-sub">Superfine Pro™ traverse · Lockseam curtain rods · Tension rods · Sash rods</div>
+    </div>
+  </div>
+  <div class="spec-section-body">
+
+    <div class="subsec">
+      <div class="subsec-title">Superfine Pro™ Traverse Rods — White Only · Front return 2¾"–4½"</div>
+      <table class="spec-table">
+        <tr><th>Type</th><th>Draw</th><th>Range</th><th>Product #</th></tr>
+        <tr><td>Single Traverse</td><td>Split Draw</td><td>30"–48" / 48"–84" / 66"–120" / 84"–156" / 156"–228"</td><td>1046730–1046734</td></tr>
+        <tr><td>Single Traverse</td><td>One-Way Right</td><td>30"–48" / 48"–84" / 66"–120"</td><td>1046738–1046740</td></tr>
+        <tr><td>Single Traverse</td><td>One-Way Left</td><td>30"–48" / 48"–84" / 66"–120"</td><td>1046735–1046737</td></tr>
+        <tr><td>Double Traverse</td><td>Split Draw</td><td>48"–84" / 84"–156"</td><td>1046742–1046743</td></tr>
+        <tr><td colspan="4" style="background:#f8f4ee;font-size:11px;color:#666">Double traverse returns: Front 2¾"–4½" / Back 5¼"–6½". Components: Slides #1046741 · Cord 3.5mm #6810355000 · Tension Device #1042822 · Tension Kit #1045674</td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">Lockseam Curtain Rods — Flat Stationary · White Only</div>
+      <table class="spec-table">
+        <tr><th>Size</th><th>Type</th><th>Range</th><th>Brackets</th><th>Product #</th></tr>
+        <tr><td>½"</td><td>Single</td><td>6"–11" / 12"–20" / 20"–36" / 28"–48"</td><td>2 brackets</td><td>1046633–1046636</td></tr>
+        <tr><td>1½"</td><td>Single</td><td>28"–48" / 48"–84"</td><td>2–3 brackets</td><td>1046616–1046617</td></tr>
+        <tr><td>2½"</td><td>Single</td><td>18"–28" / 28"–48" / 48"–84" / 84"–120"</td><td>2–4 brackets</td><td>1046618–1046621</td></tr>
+        <tr><td>3½"</td><td>Single</td><td>28"–48" / 48"–84" / 84"–120"</td><td>2–4 brackets</td><td>1046622–1046624</td></tr>
+        <tr><td>5½"</td><td>Single</td><td>28"–48" / 48"–84" / 84"–120"</td><td>2–4 brackets</td><td>1046637–1046639</td></tr>
+        <tr><td>8½"</td><td>Single</td><td>28"–48" / 48"–84" / 84"–120"</td><td>2–4 brackets</td><td>1046640–1046642</td></tr>
+        <tr><td>3½" front + 2½" back</td><td>Double</td><td>28"–48" / 48"–84" / 84"–120"</td><td>2–4 brackets</td><td>1046625–1046627</td></tr>
+        <tr><td>5½" + 3½" + 2½"</td><td>Triple</td><td>28"–48" / 48"–84" / 84"–120"</td><td>2–4 brackets</td><td>1046628–1046630</td></tr>
+        <tr><td>Bay Rod</td><td>Single</td><td>78"–127"</td><td>2 brackets + 2 center supports</td><td>1046643</td></tr>
+        <tr><td colspan="5" style="background:#f8f4ee;font-size:11px;color:#666">Components: Single Bracket #1046631 · Double Bracket #1046632 · Bay Extender w/ Endcap #1046644</td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">Tension Rods — No Brackets Needed</div>
+      <table class="spec-table">
+        <tr><th>Style</th><th>Finish</th><th>Range</th><th>Product #</th></tr>
+        <tr><td>⅝" Oval Tension Rod</td><td>White</td><td>8"–11" / 11"–16" / 16"–24" / 22"–36" / 36"–60" / 48"–72"</td><td>1940412–1940426</td></tr>
+        <tr><td>7/16" Tension Rod</td><td>White</td><td>18"–28" / 28"–48"</td><td>1940417–1940418</td></tr>
+        <tr><td>Door Sash Tension Rod</td><td>Zinc</td><td>20"–36" (2 units/bag)</td><td>1958666</td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">Sash Rods — White Only</div>
+      <table class="spec-table">
+        <tr><th>Style</th><th>Range</th><th>Product #</th></tr>
+        <tr><td>5/16" Door Sash Rod</td><td>11"–19" / 20"–36"</td><td>1940415–1940416</td></tr>
+        <tr><td>7/16" Door Sash Rod</td><td>18"–28"</td><td>1940339</td></tr>
+        <tr><td>11/16" Flat Sash Rod</td><td>16"–28" / 28"–50"</td><td>272025–273025</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 5: AMP™ MOTORIZATION ═══════════════════════════════════ -->
+<div class="spec-section" id="amp">
+  <div class="spec-section-head">
+    <div class="spec-section-icon">⚡</div>
+    <div>
+      <div class="spec-section-title">AMP™ Motorization — Complete Reference</div>
+      <div class="spec-section-sub">Compatible with Estate Traverse Rods and Architrac 94001 only</div>
+    </div>
+  </div>
+  <div class="spec-section-body">
+
+    <div class="rule-grid">
+      <div class="rule-ok"><div class="rule-title">✓ Compatible rods</div>Estate Traverse (1⅜" and 2" — all collections) · Architrac 94001</div>
+      <div class="rule-block"><div class="rule-title">✗ NOT compatible</div>Architrac 94003 · 94004 · 94005 · 9046 · 9600 · K-Rail · Superfine Pro · Lockseam · Stationary poles</div>
+      <div class="rule-block"><div class="rule-title">✗ One motor only</div>Never install two AMP motors on a single rod. One motor per rod, maximum.</div>
+      <div class="rule-block"><div class="rule-title">✗ No bending/curving</div>Motorized Estate or 94001 track CANNOT be bent or curved. Straight track only when motorized.</div>
+      <div class="rule-warn"><div class="rule-title">⚠ Power cord is 6 ft fixed</div>Non-extendable. Plan outlet location before installation — cable extensions add reach after motor.</div>
+      <div class="rule-warn"><div class="rule-title">⚠ Max track when motorized</div>16 ft maximum — both Estate and 94001. (Manual 94001 can go to 20/40 ft.)</div>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">Motor Specs — Product #62001300</div>
+      <table class="spec-table">
+        <tr><th>Spec</th><th>Value</th></tr>
+        <tr><td>Power supply</td><td>DC 16.5V · 0.89A input (100–240VAC 50/60Hz 0.5A) — auto-switching universal voltage</td></tr>
+        <tr><td>Battery capacity</td><td>2.55Ah — dual battery system (works during power outage)</td></tr>
+        <tr><td>Average speed</td><td>7.8 inches/second</td></tr>
+        <tr><td>Torque</td><td>1.2 Nm</td></tr>
+        <tr><td>Variable speed</td><td>80 / 100 / 120 RPM</td></tr>
+        <tr><td>Power cord</td><td>6 ft (non-extendable — use cable extensions for reach)</td></tr>
+        <tr><td>Color</td><td>White only</td></tr>
+        <tr><td>Certifications</td><td>UL · CE</td></tr>
+        <tr><td>Features</td><td>Soft start/stop · Tug-to-open · Auto limits · Favorite position · RF pairs easily · Dry contact input</td></tr>
+        <tr><td>Charger included</td><td>Yes — #62201300 (16.5V / 0.89A)</td></tr>
+        <tr><td>Smart home</td><td>Via USB Bridge: Alexa · Google Home · IFTTT · SmartThings · Control4 · Crestron · ELAN · URC · RTI</td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">All AMP™ Accessories</div>
+      <table class="spec-table">
+        <tr><th>Product #</th><th>Item</th><th>Notes</th></tr>
+        <tr><td>62001300</td><td>AMP Motor (White)</td><td>DC 16.5V — the motor itself, included with rod purchase</td></tr>
+        <tr><td>62201300</td><td>Battery Charger 16.5V/0.89A</td><td>Included with motor</td></tr>
+        <tr><td>62101000</td><td>RF Remote Control — White, 15-channel</td><td>Pairs to up to 15 motors</td></tr>
+        <tr><td>62101010</td><td>RF Remote Control — Black, 15-channel</td><td></td></tr>
+        <tr><td>62109000</td><td>Surface Mount Wall Switch</td><td>Mounts on wall surface</td></tr>
+        <tr><td>62108000</td><td>Flush Mount Wall Switch</td><td>Installs in standard electrical box</td></tr>
+        <tr><td>62102000</td><td>USB Bridge / Gateway</td><td>Wi-Fi or Ethernet, Bluetooth setup, USB-C or PoE power — enables full smart home integration</td></tr>
+        <tr><td>1026660</td><td>15" Cable Extension</td><td>For outlet close to rod end</td></tr>
+        <tr><td>1026661</td><td>4' Cable Extension</td><td></td></tr>
+        <tr><td>1026662</td><td>10' Cable Extension</td><td>Most common for typical rooms</td></tr>
+        <tr><td>1026663</td><td>20' Cable Extension</td><td>For long runs to outlet</td></tr>
+        <tr><td>84531025</td><td>Motorhead Adapter Right (White)</td><td>Required for motor on right end</td></tr>
+        <tr><td>84532025</td><td>Motorhead Adapter Left (White)</td><td>Required for motor on left end</td></tr>
+        <tr><td>84503059</td><td>Master Carrier Adapter — Black</td><td>Connects motor belt to master carrier</td></tr>
+        <tr><td>84503025</td><td>Master Carrier Adapter — White</td><td></td></tr>
+        <tr><td>84510000</td><td>Motor Belt (109 yds/box)</td><td>The drive belt — replacement/extra</td></tr>
+        <tr><td>84509061</td><td>Adjustable Pulley Right</td><td>Idler pulley at non-motor end</td></tr>
+        <tr><td>84508061</td><td>Adjustable Pulley Left</td><td></td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">Stack Guide — Pleated, 2.5× fullness, 4 carriers/ft</div>
+      <table class="spec-table">
+        <tr><th>Track Length</th><th>One-Way stackback</th><th>Two-Way per side</th><th>Notes</th></tr>
+        <tr><td>48" (4 ft)</td><td>17"</td><td>11¼" per side</td><td></td></tr>
+        <tr><td>72" (6 ft)</td><td>22¼"</td><td>14" per side</td><td></td></tr>
+        <tr><td>96" (8 ft)</td><td>27½"</td><td>16½" per side</td><td></td></tr>
+        <tr><td>120" (10 ft)</td><td>33"</td><td>19¼" per side</td><td></td></tr>
+        <tr><td>144" (12 ft)</td><td>38¼"</td><td>21¾" per side</td><td></td></tr>
+        <tr><td>192" (16 ft)</td><td>48¾"</td><td>27" per side</td><td></td></tr>
+      </table>
+    </div>
+
+    <div class="subsec">
+      <div class="subsec-title">Ripplefold™ Stack Guide — Butt Master #84111, 100% fullness</div>
+      <table class="spec-table">
+        <tr><th>Snaps</th><th>Snap Tape Length</th><th>Stackback</th></tr>
+        <tr><td>10</td><td>41"</td><td>6.5"</td></tr>
+        <tr><td>20</td><td>83.5"</td><td>12"</td></tr>
+        <tr><td>30</td><td>126"</td><td>17.5"</td></tr>
+        <tr><td>40</td><td>168.5"</td><td>23"</td></tr>
+        <tr><td>50</td><td>211"</td><td>28.5"</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 6: FABRIC WEIGHT CALCULATOR ════════════════════════════ -->
+<div class="spec-section" id="weight">
+  <div class="spec-section-head">
+    <div class="spec-section-icon">⚖️</div>
+    <div>
+      <div class="spec-section-title">Fabric Weight Calculator</div>
+      <div class="spec-section-sub">Max 64 lbs total · 4 lbs per linear foot on Estate and 94001 motorized</div>
+    </div>
+  </div>
+  <div class="spec-section-body">
+    <div class="info-box">Formula: (yards × 36 × fabric width in inches) ÷ 1296 = sq yds. Then sq yds × oz/sq yd ÷ 16 = lbs.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin:12px 0">
+      <div><div class="dim-label">Yards of fabric</div><input type="number" id="wc-yards" min="1" step="1" placeholder="e.g. 32" oninput="wCalc()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px"></div>
+      <div><div class="dim-label">Fabric width (inches)</div><input type="number" id="wc-width" min="36" step="1" placeholder="e.g. 54" oninput="wCalc()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px"></div>
+      <div><div class="dim-label">Track length (feet)</div><input type="number" id="wc-track" min="1.5" max="16" step="0.5" placeholder="e.g. 10" oninput="wCalc()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px"></div>
+      <div><div class="dim-label">Fabric weight (oz/sq yd)</div>
+        <select id="wc-oz" onchange="wCalc()" style="width:100%;padding:9px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px">
+          <option value="">-- select --</option>
+          <option value="3">2–4 oz · Silk, Chintz</option>
+          <option value="5">4–6 oz · Printed Cotton</option>
+          <option value="8">6–10 oz · Linen, Blackout</option>
+          <option value="12">10–14 oz · Jacquard</option>
+          <option value="16">14–18 oz · Velvet</option>
+          <option value="13">12–14 oz · Bump Lining</option>
+        </select>
+      </div>
+    </div>
+    <div id="wc-result" style="margin-top:4px"></div>
+    <div class="subsec" style="margin-top:16px">
+      <div class="subsec-title">Fabric Weight Reference</div>
+      <table class="spec-table">
+        <tr><th>Fabric Type</th><th>oz/sq yd</th><th>Category</th></tr>
+        <tr><td>Silks · Chintz</td><td>2–4 oz</td><td>Light</td></tr>
+        <tr><td>Printed Cottons · Drapery Lining</td><td>2–6 oz</td><td>Light–Medium</td></tr>
+        <tr><td>Linens · Blackout Lining</td><td>6–10 oz</td><td>Medium</td></tr>
+        <tr><td>Interlining</td><td>5–6 oz</td><td>Medium</td></tr>
+        <tr><td>Jacquards · Tapestries</td><td>10–14 oz</td><td>Heavy</td></tr>
+        <tr><td>Bump Lining</td><td>12–14 oz</td><td>Heavy</td></tr>
+        <tr><td>Velvets</td><td>14–18 oz</td><td>Very Heavy — reduce bracket spacing</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 7: MASTER COMPATIBILITY MATRIX ══════════════════════════ -->
+<div class="spec-section" id="matrix">
+  <div class="spec-section-head">
+    <div class="spec-section-icon">📊</div>
+    <div>
+      <div class="spec-section-title">Master Compatibility Matrix</div>
+      <div class="spec-section-sub">All rods × all features — at a glance</div>
+    </div>
+  </div>
+  <div class="spec-section-body">
+    <div style="overflow-x:auto">
+    <table class="compat-table" style="min-width:800px">
+      <tr>
+        <th style="text-align:left;padding-left:10px;min-width:160px">Rod / Track</th>
+        <th>AMP™ Motor</th><th>Bend/Curve</th><th>Pleated</th><th>Ripplefold™</th>
+        <th>One-Way</th><th>Two-Way</th><th>Wall Mt.</th><th>Ceiling Mt.</th><th>Double Rod</th>
+      </tr>
+      <tr><td><strong>Estate 1⅜" (DM/WT/WI)</strong></td><td class="c-yes">✓</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td></tr>
+      <tr><td><strong>Estate 2" (DM/WT only)</strong></td><td class="c-yes">✓</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td></tr>
+      <tr><td><strong>Architrac 94001</strong></td><td class="c-yes">✓</td><td><span class="c-cond" title="Manual only — not when motorized">⚠ man.</span></td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td></tr>
+      <tr><td><strong>Architrac 94003</strong></td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-na">—</td></tr>
+      <tr><td><strong>Architrac 94004</strong></td><td class="c-no">✗</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-no">✗</td><td class="c-yes">✓ only</td><td class="c-na">—</td></tr>
+      <tr><td><strong>Architrac 94005</strong></td><td class="c-no">✗</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-na">—</td></tr>
+      <tr><td><strong>Architrac 9046</strong></td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-na">—</td></tr>
+      <tr><td><strong>Architrac 9600</strong></td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-na">—</td></tr>
+      <tr><td><strong>K-Rail</strong></td><td class="c-no">✗</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-na">—</td></tr>
+      <tr><td><strong>Superfine Pro Traverse</strong></td><td class="c-no">✗</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-no">✗</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-no">✗</td><td class="c-yes">✓</td></tr>
+      <tr><td><strong>Lockseam (stationary)</strong></td><td class="c-no">✗</td><td class="c-no">✗</td><td class="c-na">—</td><td class="c-na">—</td><td class="c-na">—</td><td class="c-na">—</td><td class="c-yes">✓</td><td class="c-no">✗</td><td class="c-yes">✓</td></tr>
+      <tr><td><strong>DM/WT/WI Stationary</strong></td><td class="c-no">✗</td><td class="c-no">✗</td><td class="c-na">—</td><td class="c-na">—</td><td class="c-na">—</td><td class="c-na">—</td><td class="c-yes">✓</td><td class="c-yes">✓</td><td class="c-yes">✓</td></tr>
+    </table>
+    </div>
+    <div style="font-size:11px;color:#888;margin-top:8px">✓ = Yes · ✗ = No · ⚠ = Conditional (hover/read notes) · — = Not applicable</div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 8: QUOTE FORM ═══════════════════════════════════════════ -->
+<div class="spec-section" id="quote">
+  <div class="spec-section-head">
+    <div class="spec-section-icon">📋</div>
+    <div>
+      <div class="spec-section-title">Request a Quote</div>
+      <div class="spec-section-sub">Use the reference above to select your specs, then submit here</div>
+    </div>
+  </div>
+  <div class="spec-section-body">
+
+    <div class="config-block open" id="qb-rod">
+      <div class="config-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="config-num">1</div>
+        <div class="config-label">Rod / track type</div>
+      </div>
+      <div class="config-body">
+        <div class="opt-row-sm" id="grp-rod-type">
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Estate 1⅜" Traverse</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Estate 2" Traverse</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 94001</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 94003</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 94004</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 94005</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 9046</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 9600</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">K-Rail</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Superfine Pro Traverse</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Lockseam Curtain Rod</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Decorative Stationary Pole</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Other / Custom</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="config-block open" id="qb-collection">
+      <div class="config-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="config-num">2</div>
+        <div class="config-label">Collection / finish</div>
+      </div>
+      <div class="config-body">
+        <div class="opt-row-sm" id="grp-coll">
+          <button class="opt-pill" onclick="selPill(this,'grp-coll')">Designer Metals™</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-coll')">Wood Trends™</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-coll')">Wrought Iron</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-coll')">White (Basic)</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-coll')">N/A</button>
+        </div>
+        <div style="margin-top:10px">
+          <div class="dim-label">Specific finish name</div>
+          <input type="text" id="q-finish" placeholder="e.g. Elegant Brass · Espresso · Black" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px">
+        </div>
+      </div>
+    </div>
+
+    <div class="config-block open" id="qb-specs">
+      <div class="config-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="config-num">3</div>
+        <div class="config-label">Specifications</div>
+      </div>
+      <div class="config-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+          <div><div class="dim-label">Track / rod length (inches)</div><input type="number" id="q-len" min="6" max="240" step="0.5" placeholder="e.g. 120" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px"></div>
+          <div><div class="dim-label">Quantity (rods)</div><input type="number" id="q-qty" min="1" max="50" value="1" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px"></div>
+        </div>
+        <div class="dim-label">Header type</div>
+        <div class="opt-row-sm" id="grp-header" style="margin-bottom:10px">
+          <button class="opt-pill" onclick="selPill(this,'grp-header')">Pleated</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-header')">Ripplefold™ 60%</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-header')">Ripplefold™ 80%</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-header')">Ripplefold™ 100%</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-header')">Ripplefold™ 120%</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-header')">N/A</button>
+        </div>
+        <div class="dim-label">Draw type</div>
+        <div class="opt-row-sm" id="grp-draw" style="margin-bottom:10px">
+          <button class="opt-pill" onclick="selPill(this,'grp-draw')">Two-Way / Split</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-draw')">One-Way Right</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-draw')">One-Way Left</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-draw')">N/A</button>
+        </div>
+        <div class="dim-label">Mount type</div>
+        <div class="opt-row-sm" id="grp-mount" style="margin-bottom:10px">
+          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Wall Mount</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Ceiling Mount</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Recessed Mount</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Suspension</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Double Rod</button>
+        </div>
+        <div class="dim-label">Finial (if applicable)</div>
+        <input type="text" id="q-finial" placeholder="e.g. Pandora · Archer · Axiom — or 'Endcap' or 'N/A'" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;margin-bottom:10px">
+        <div class="dim-label">AMP™ motorization</div>
+        <div class="opt-row-sm" id="grp-motor">
+          <button class="opt-pill" onclick="selPill(this,'grp-motor')">Yes — Motor Right</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-motor')">Yes — Motor Left</button>
+          <button class="opt-pill" onclick="selPill(this,'grp-motor')">No — Manual</button>
+        </div>
+        <div style="margin-top:10px">
+          <div class="dim-label">Motor accessories needed</div>
+          <input type="text" id="q-motor-acc" placeholder="e.g. RF Remote White, 10' Extension, USB Bridge" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px">
+        </div>
+        <div style="margin-top:10px">
+          <div class="dim-label">Room / window label</div>
+          <input type="text" id="q-room" placeholder="e.g. Master Bedroom Left, Living Room Bay" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px">
+        </div>
+      </div>
+    </div>
+
+    <div class="config-block open" id="qb-contact">
+      <div class="config-head" onclick="this.parentElement.classList.toggle('open')">
+        <div class="config-num">4</div>
+        <div class="config-label">Contact &amp; delivery</div>
+      </div>
+      <div class="config-body">
+        <div class="form-row" style="margin-top:8px">
+          <div class="form-group"><label>Name *</label><input type="text" id="q-name" placeholder="Jane Smith"></div>
+          <div class="form-group"><label>Phone *</label><input type="tel" id="q-phone" placeholder="(215) 555-0100"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" id="q-email" placeholder="jane@example.com"></div>
+        <div class="form-group"><label>Installation address</label><input type="text" id="q-address" placeholder="123 Main St, Philadelphia PA"></div>
+        <div class="form-group"><label>Additional notes</label><textarea id="q-notes" style="min-height:70px" placeholder="Fabric weight/type, ceiling height, any special requirements, installation notes..."></textarea></div>
+        <div class="delivery-section" style="margin-top:12px">
+          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="border:1.5px solid #e8e8e4;border-radius:11px;padding:13px;cursor:pointer;text-align:center;transition:all .12s" id="del-ship" onclick="selDel('ship')">
+              <div style="font-size:20px;margin-bottom:4px">📦</div><div style="font-size:13px;font-weight:500">Ship to me</div><div style="font-size:11px;color:#666">UPS/FedEx from Huntingdon Valley, PA</div>
+            </div>
+            <div style="border:1.5px solid #e8e8e4;border-radius:11px;padding:13px;cursor:pointer;text-align:center;transition:all .12s" id="del-pickup" onclick="selDel('pickup')">
+              <div style="font-size:20px;margin-bottom:4px">🏠</div><div style="font-size:13px;font-weight:500">I'll pick up</div><div style="font-size:11px;color:#666">Address confirmed after order</div>
+            </div>
+          </div>
+          <div id="del-ship-note" class="delivery-note" style="display:none">Shipped via <strong>UPS or FedEx</strong>. <div class="delivery-tariff">Tariffs and import fees additional.</div></div>
+          <div id="del-pickup-note" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+        </div>
+        <button class="btn-gold" onclick="submitQ()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Submit Specification &amp; Request Quote &rarr;</button>
+        <div id="q-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
+          <strong>Specification submitted!</strong> Your email app opened with the full spec. We'll follow up within a few hours.<br>Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- /content-wrap -->
+
+<div class="cta-banner">
+  <div><h2>Need help spec-ing a Kirsch job?</h2><p>We do this daily. Call or text Justin and we'll walk through every detail — brackets, weight limits, motor compatibility, all of it.</p></div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="kirsch-estate-traverse.html">1⅜" Estate Configurator →</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Hardware'); renderFooter(false);
+
+var _delivery = 'ship';
+
+/* ── dim label helper ── */
+function dim_label(){}
+document.querySelectorAll('.dim-label').forEach(function(){});
+
+/* ── opt pill selector ── */
+function selPill(el, grp) {
+  document.querySelectorAll('#' + grp + ' .opt-pill').forEach(function(b){ b.classList.remove('sel'); });
+  el.classList.add('sel');
+}
+
+/* ── delivery ── */
+function selDel(m) {
+  _delivery = m;
+  var ship = document.getElementById('del-ship'), pick = document.getElementById('del-pickup');
+  ship.style.border = m==='ship' ? '2px solid var(--gold)' : '1.5px solid #e8e8e4';
+  ship.style.background = m==='ship' ? 'rgba(45,224,193,.05)' : '';
+  pick.style.border = m==='pickup' ? '2px solid var(--gold)' : '1.5px solid #e8e8e4';
+  pick.style.background = m==='pickup' ? 'rgba(45,224,193,.05)' : '';
+  document.getElementById('del-ship-note').style.display = m==='ship' ? 'block' : 'none';
+  document.getElementById('del-pickup-note').style.display = m==='pickup' ? 'block' : 'none';
+}
+
+/* ── weight calc ── */
+function wCalc() {
+  var y=parseFloat(document.getElementById('wc-yards').value)||0;
+  var w=parseFloat(document.getElementById('wc-width').value)||0;
+  var t=parseFloat(document.getElementById('wc-track').value)||0;
+  var oz=parseFloat(document.getElementById('wc-oz').value)||0;
+  var res=document.getElementById('wc-result');
+  if(!y||!w||!oz){res.innerHTML='';return;}
+  var sqyd=(y*36*w)/1296;
+  var lbs=(sqyd*oz)/16;
+  var lim=t>0?Math.min(64,t*4):64;
+  var pct=(lbs/lim*100).toFixed(0);
+  var cls=lbs>lim?'err-box':lbs>lim*.85?'warn-box':'rule-ok';
+  res.innerHTML='<div class="'+cls+'" style="padding:10px 14px;border-radius:8px;font-size:13px;margin-top:4px">'+
+    '<strong>Estimated weight: '+lbs.toFixed(1)+' lbs</strong> ('+sqyd.toFixed(1)+' sq yds × '+oz+' oz ÷ 16)<br>'+
+    'Track limit: '+lim.toFixed(0)+' lbs — using '+pct+'%'+
+    (lbs>lim?'<br><strong>⚠ EXCEEDS LIMIT — split into two rods, reduce yardage, or choose lighter fabric.</strong>':'')+
+  '</div>';
+}
+
+/* ── submit ── */
+function submitQ() {
+  var name=document.getElementById('q-name').value.trim();
+  var phone=document.getElementById('q-phone').value.trim();
+  if(!name||!phone){alert('Please enter your name and phone number.');return;}
+
+  function gp(grp){ var s=document.querySelector('#'+grp+' .opt-pill.sel'); return s?s.textContent.trim():'—'; }
+  var delivery=_delivery==='pickup'?"I'll pick up (Huntingdon Valley, PA)":'Ship to me (UPS/FedEx)';
+
+  var body='KIRSCH DRAPERY HARDWARE — SPECIFICATION REQUEST\n\n'
+    +'── CUSTOMER ──\n'
+    +'Name: '+name+'\nPhone: '+phone
+    +'\nEmail: '+(document.getElementById('q-email').value.trim()||'—')
+    +'\nAddress: '+(document.getElementById('q-address').value.trim()||'—')+'\n\n'
+    +'── PRODUCT SPECIFICATION ──\n'
+    +'Rod / track type: '+gp('grp-rod-type')+'\n'
+    +'Collection: '+gp('grp-coll')+'\n'
+    +'Finish: '+(document.getElementById('q-finish').value.trim()||'—')+'\n'
+    +'Length: '+(document.getElementById('q-len').value||'—')+'" | Qty: '+(document.getElementById('q-qty').value||'1')+'\n'
+    +'Header: '+gp('grp-header')+'\n'
+    +'Draw: '+gp('grp-draw')+'\n'
+    +'Mount: '+gp('grp-mount')+'\n'
+    +'Finial: '+(document.getElementById('q-finial').value.trim()||'—')+'\n'
+    +'Motorization: '+gp('grp-motor')+'\n'
+    +'Motor accessories: '+(document.getElementById('q-motor-acc').value.trim()||'None')+'\n'
+    +'Room / window: '+(document.getElementById('q-room').value.trim()||'—')+'\n'
+    +'\n── DELIVERY ──\n'+delivery+'\n\n'
+    +'── NOTES ──\n'+(document.getElementById('q-notes').value.trim()||'None');
+
+  window.location.href='mailto:justin@phillyblinds.com'
+    +'?subject='+encodeURIComponent('Kirsch Hardware Spec — '+gp('grp-rod-type')+' — '+name)
+    +'&body='+encodeURIComponent(body);
+  document.getElementById('q-success').style.display='block';
+}
+</script>
+</body>
+</html>

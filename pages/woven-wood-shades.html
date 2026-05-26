@@ -1,0 +1,1447 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Woven Wood Shades — natural bamboo, jute, flax and reed as roller shades or roman shades. Instant quote configurator. Philly Blinds.">
+<meta property="og:title" content="Woven Wood Shades | Philly Blinds">
+<meta property="og:description" content="Natural bamboo, jute, flax, and reed — configure your woven wood roller shade instantly or choose from five premium roman shade collections.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/woven-wood-shades.html">
+<meta property="og:site_name" content="Blindznation">
+<title>Woven Wood Shades — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+/* ── Hub hero ── */
+.ww-hero {
+  background: var(--espresso);
+  padding: 52px 28px 44px;
+  text-align: center;
+  border-bottom: 2px solid rgba(45,224,193,0.12);
+}
+.ww-hero-pill {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(45,224,193,0.1);
+  border: 1px solid rgba(45,224,193,0.2);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 18px;
+}
+.ww-hero h1 {
+  font-size: clamp(28px,5vw,44px);
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+.ww-hero p {
+  font-size: 15px;
+  color: var(--text-dark);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ── Choice section ── */
+#choice-section {
+  background: var(--espresso-mid);
+  padding: 48px 28px;
+}
+.choice-title {
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.choice-subtitle {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 32px;
+}
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+@media (max-width: 540px) { .choice-grid { grid-template-columns: 1fr; } }
+.choice-card {
+  background: var(--espresso);
+  border: 2px solid rgba(45,224,193,0.1);
+  border-radius: 14px;
+  padding: 32px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+  text-align: center;
+}
+.choice-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.choice-icon {
+  font-size: 36px;
+  margin-bottom: 14px;
+  display: block;
+}
+.choice-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.choice-card p {
+  font-size: 13px;
+  color: var(--text-dark);
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+.choice-btn {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--espresso);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.choice-btn:hover { opacity: 0.88; }
+
+/* ── Back button ── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--gold);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 24px;
+  text-decoration: none;
+}
+.back-btn:hover { opacity: 0.8; }
+
+/* ── Roller configurator wrapper ── */
+#roller-section {
+  display: none;
+  background: var(--gold-mid);
+  padding: 36px 28px 56px;
+  min-height: 400px;
+}
+.cfg-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.cfg-section-title {
+  font-size: 22px;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+.cfg-section-sub {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* ── Steps ── */
+.step-block {
+  background: #fff;
+  border: 1px solid #e8e8e4;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.step-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+.step-header-left { display: flex; align-items: center; gap: 12px; }
+.step-num {
+  width: 28px; height: 28px;
+  background: var(--espresso);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600; color: var(--gold);
+  flex-shrink: 0;
+}
+.step-label { font-size: 14px; font-weight: 500; color: #111; }
+.step-selection-preview { font-size: 12px; color: var(--gold); margin-left: 4px; }
+.step-chevron { font-size: 12px; color: #aaa; transition: transform 0.2s; }
+.step-chevron.open { transform: rotate(180deg); }
+.step-body {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid #f0ede8;
+}
+.step-body.active { display: block; }
+
+/* ── Fabric cards ── */
+.fabric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.fabric-card {
+  background: #fff;
+  border: 1.5px solid #e8e8e4;
+  border-radius: 10px;
+  padding: 12px 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  text-align: center;
+}
+.fabric-card:hover { border-color: var(--gold); }
+.fabric-card.selected { border: 2px solid var(--gold); background: var(--gold-mid); box-shadow: 0 2px 10px rgba(200,151,63,.12); }
+.fabric-swatch {
+  width: 100%;
+  height: 40px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.fabric-code { font-size: 10px; color: #999; margin-bottom: 2px; }
+.fabric-name { font-size: 12px; color: #111; font-weight: 500; line-height: 1.3; margin-bottom: 3px; }
+.fabric-pg { font-size: 11px; color: var(--gold); }
+.fabric-mat { font-size: 10px; color: var(--text-faint); }
+
+/* ── Group filter tabs ── */
+.group-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+  margin-top: 14px;
+}
+.gf-btn {
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #555;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.gf-btn:hover, .gf-btn.active {
+  background: var(--gold);
+  color: var(--espresso);
+  border-color: var(--gold);
+  font-weight: 600;
+}
+
+/* ── Option chips ── */
+.option-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+.opt-chip {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1.5px solid #e8e8e4;
+  background: #fff;
+  color: #333;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+  font-family: inherit;
+}
+.opt-chip:hover { border-color: var(--gold); }
+.opt-chip.selected { border: 2px solid var(--gold); background: var(--gold-mid); color: var(--espresso); }
+.opt-chip small { display: block; font-size: 11px; color: #888; margin-top: 2px; }
+
+/* ── Form fields ── */
+.field-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 14px; }
+.field-group { flex: 1; min-width: 140px; }
+.field-group label {
+  display: block;
+  font-size: 12px;
+  color: #444;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.field-group input, .field-group select, .field-group textarea {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  padding: 9px 12px;
+  color: #111;
+  font-size: 13px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.field-group input:focus, .field-group select:focus, .field-group textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.field-note {
+  font-size: 11px;
+  color: #999;
+  margin-top: 5px;
+}
+.field-error {
+  font-size: 11px;
+  color: #c0392b;
+  margin-top: 4px;
+  display: none;
+}
+
+/* ── Price panel — keep dark for contrast ── */
+#roller-price-panel {
+  background: var(--espresso);
+  border: .5px solid var(--border-dark);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+.pp-title {
+  font-size: 10px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.pp-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-dark);
+  padding: 5px 0;
+  border-bottom: .5px solid rgba(200,151,63,.08);
+}
+.pp-row:last-child { border-bottom: none; }
+.pp-row.total {
+  color: var(--cream);
+  font-weight: 700;
+  font-size: 16px;
+  padding-top: 10px;
+}
+.pp-row span:last-child { color: var(--gold); }
+.pp-disclaimer {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* ── Delivery section ── */
+.delivery-section {
+  background: #F9F7F4;
+  border: 1px solid #e8e4dc;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-top: 16px;
+}
+.delivery-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111;
+  margin-bottom: 12px;
+}
+.delivery-options { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+.del-opt {
+  flex: 1; min-width: 180px;
+  background: #fff;
+  border: 1.5px solid #ddd;
+  border-radius: 9px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.del-opt.selected { border: 2px solid var(--gold); }
+.del-opt h4 { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 3px; }
+.del-opt p { font-size: 11px; color: #666; line-height: 1.4; }
+.tariff-note {
+  font-size: 11px;
+  color: #666;
+  background: rgba(200,151,63,0.06);
+  border: 1px solid rgba(200,151,63,0.15);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+/* ── Submit button ── */
+.submit-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--espresso);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 15px 24px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: opacity 0.15s;
+  letter-spacing: 0.3px;
+}
+.submit-btn:hover { opacity: 0.88; }
+.required-note { font-size: 11px; color: var(--text-faint); margin-top: 8px; text-align: center; }
+
+/* ── Roman section ── */
+#roman-section {
+  display: none;
+  background: var(--gold-mid);
+  padding: 36px 28px 56px;
+}
+.roman-wrap { max-width: 900px; margin: 0 auto; }
+.roman-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.roman-card {
+  background: #fff;
+  border: 1px solid #e8e8e4;
+  border-radius: 14px;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.roman-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 20px rgba(200,151,63,.12);
+  transform: translateY(-2px);
+}
+.roman-card-icon { font-size: 26px; margin-bottom: 10px; }
+.roman-card h3 { font-size: 14px; font-weight: 600; color: #111; margin-bottom: 6px; }
+.roman-card p { font-size: 12px; color: #666; line-height: 1.55; margin-bottom: 16px; flex: 1; }
+.roman-configure-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold);
+  color: var(--espresso);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  transition: opacity 0.15s;
+}
+.roman-configure-btn:hover { opacity: 0.85; }
+.roman-card-badge {
+  display: inline-block;
+  font-size: 10px;
+  color: var(--gold);
+  background: rgba(200,151,63,.08);
+  border: 1px solid rgba(200,151,63,.2);
+  border-radius: 10px;
+  padding: 2px 8px;
+  margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<!-- ── HERO ── -->
+<div class="page-hero" style="background:var(--espresso);padding:44px 28px 40px">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="shades.html">Shades &amp; Blinds</a> &rsaquo; Woven Wood Shades</div>
+  <h1 style="font-size:32px;font-weight:500;color:var(--cream);letter-spacing:-.5px;margin-bottom:10px;line-height:1.2">Woven Wood Shades</h1>
+  <p style="font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:20px">Natural bamboo, jute, flax, and reed — as roller shades or roman shades. Six premium collections. Instant pricing available.</p>
+  <div class="hero-badges">
+    <span class="badge badge-instant" style="font-size:11px">Instant pricing</span>
+    <span style="font-size:11px;padding:3px 10px;border-radius:6px;border:.5px solid var(--border-dark);color:var(--text-faint)">6 collections</span>
+    <span style="font-size:11px;padding:3px 10px;border-radius:6px;border:.5px solid var(--border-dark);color:var(--text-faint)">Roller &amp; Roman styles</span>
+    <span style="font-size:11px;padding:3px 10px;border-radius:6px;border:.5px solid var(--border-dark);color:var(--text-faint)">Custom fabricated</span>
+  </div>
+</div>
+
+<!-- ── CHOICE SECTION ── -->
+<div id="choice-section" style="background:#fff;padding:36px 28px 40px;border-bottom:1px solid #e8e8e4">
+  <div style="max-width:760px;margin:0 auto">
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px">Step 1</div>
+    <div style="font-size:20px;font-weight:500;color:#111;letter-spacing:-.3px;margin-bottom:20px">Which style do you need?</div>
+    <div class="choice-grid">
+      <div class="choice-card" onclick="showRoller()" id="choice-roller">
+        <div class="choice-icon">📜</div>
+        <div class="choice-title">Roller Shade</div>
+        <div class="choice-desc">Clean roll-up operation. Natural woven fabric on a roller — instant pricing from the Portfolio Natural Woven Rollers collection.</div>
+        <div class="choice-tag">Portfolio Woven Rollers &middot; Instant price</div>
+      </div>
+      <div class="choice-card" onclick="showRoman()" id="choice-roman">
+        <div class="choice-icon">🏠</div>
+        <div class="choice-title">Roman Shade</div>
+        <div class="choice-desc">Classic fold-up style. Five premium woven collections — Dynasty, Galaxy, Portfolio, Walden Premier, and Walden Select.</div>
+        <div class="choice-tag">5 collections &middot; Custom quote</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     ROLLER CONFIGURATOR
+════════════════════════════════════════════ -->
+<div id="roller-section" style="display:none">
+  <div class="cfg-wrap">
+    <button class="back-btn" onclick="showChoice()">&#8592; Back to style choice</button>
+    <div class="cfg-section-title">Custom Roller Shade Configurator</div>
+    <div class="cfg-section-sub">Wallace Portfolio Collection &mdash; Natural Woven Rollers &bull; 2026 pricing. All prices are MSRP estimates, confirmed at order.</div>
+
+    <!-- STEP 1 — FABRIC -->
+    <div class="step-block" id="step1">
+      <div class="step-header" onclick="toggleStep('step1')">
+        <div class="step-header-left">
+          <div class="step-num">1</div>
+          <div class="step-label">Fabric / Pattern<span class="step-selection-preview" id="s1-preview"></span></div>
+        </div>
+        <div class="step-chevron open" id="step1-chev">&#9660;</div>
+      </div>
+      <div class="step-body active" id="step1-body">
+        <p style="font-size:12px;color:var(--text-muted);margin-top:10px">Select a price group to filter, then click a fabric to choose it.</p>
+        <div class="group-filters">
+          <button class="gf-btn active" onclick="filterFabrics('all',this)">All Groups</button>
+          <button class="gf-btn" onclick="filterFabrics('A',this)">Group A</button>
+          <button class="gf-btn" onclick="filterFabrics('B',this)">Group B</button>
+          <button class="gf-btn" onclick="filterFabrics('C',this)">Group C</button>
+          <button class="gf-btn" onclick="filterFabrics('D',this)">Group D</button>
+          <button class="gf-btn" onclick="filterFabrics('E',this)">Group E</button>
+        </div>
+        <div class="fabric-grid" id="fabric-grid"></div>
+      </div>
+    </div>
+
+    <!-- STEP 2 — MOUNT -->
+    <div class="step-block" id="step2">
+      <div class="step-header" onclick="toggleStep('step2')">
+        <div class="step-header-left">
+          <div class="step-num">2</div>
+          <div class="step-label">Mount Type<span class="step-selection-preview" id="s2-preview"></span></div>
+        </div>
+        <div class="step-chevron" id="step2-chev">&#9660;</div>
+      </div>
+      <div class="step-body" id="step2-body">
+        <div class="option-chips" style="margin-top:14px">
+          <div class="opt-chip" data-val="inside" onclick="selectMount(this)">
+            Inside Mount
+            <small>Deduction: 1/8" applied automatically</small>
+          </div>
+          <div class="opt-chip" data-val="outside" onclick="selectMount(this)">
+            Outside Mount
+            <small>Order at desired finished size</small>
+          </div>
+          <div class="opt-chip" data-val="ceiling" onclick="selectMount(this)">
+            Ceiling Mount
+            <small>Requires sufficient ceiling depth</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 — DIMENSIONS -->
+    <div class="step-block" id="step3">
+      <div class="step-header" onclick="toggleStep('step3')">
+        <div class="step-header-left">
+          <div class="step-num">3</div>
+          <div class="step-label">Dimensions<span class="step-selection-preview" id="s3-preview"></span></div>
+        </div>
+        <div class="step-chevron" id="step3-chev">&#9660;</div>
+      </div>
+      <div class="step-body" id="step3-body">
+        <p style="font-size:12px;color:var(--text-muted);margin-top:10px">Enter your ordered width and height (before any deductions). Minimum width varies by control type. Maximum width: 114" overall (90" for most fabrics). Minimum height: 12". Maximum height: 108" single shade, 96" double shade.</p>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Width (inches) <span style="color:#e07070">*</span></label>
+            <input type="number" id="inp-width" min="10" max="114" step="0.125" placeholder="e.g. 36" oninput="dimChanged()">
+            <div class="field-error" id="err-width">Width is out of range for the selected fabric / control.</div>
+          </div>
+          <div class="field-group">
+            <label>Height (inches) <span style="color:#e07070">*</span></label>
+            <input type="number" id="inp-height" min="12" max="108" step="0.125" placeholder="e.g. 72" oninput="dimChanged()">
+            <div class="field-error" id="err-height">Height is out of range for selected fabric / shade type.</div>
+          </div>
+        </div>
+        <div class="field-note">For inside mount, measure the window opening. We apply the 1/8" deduction automatically.</div>
+      </div>
+    </div>
+
+    <!-- STEP 4 — CONTROL -->
+    <div class="step-block" id="step4">
+      <div class="step-header" onclick="toggleStep('step4')">
+        <div class="step-header-left">
+          <div class="step-num">4</div>
+          <div class="step-label">Control Type<span class="step-selection-preview" id="s4-preview"></span></div>
+        </div>
+        <div class="step-chevron" id="step4-chev">&#9660;</div>
+      </div>
+      <div class="step-body" id="step4-body">
+        <div class="option-chips" style="margin-top:14px" id="control-chips">
+          <div class="opt-chip" data-val="clutch" data-minw="10" onclick="selectControl(this)">
+            Clutch &amp; Chain
+            <small>Min width: 10" &bull; Single or Double shade</small>
+          </div>
+          <div class="opt-chip" data-val="cordless" data-minw="13" onclick="selectControl(this)">
+            Cordless
+            <small>Min width: 13" &bull; Single or Double shade</small>
+          </div>
+          <div class="opt-chip" data-val="prowand" data-minw="23" onclick="selectControl(this)">
+            Pro Wand Motor
+            <small>Min width: 23" &bull; Single shade only &bull; +$256</small>
+          </div>
+          <div class="opt-chip" data-val="remote-li" data-minw="23" onclick="selectControl(this)">
+            Remote Motor (Rechargeable)
+            <small>Min width: 23" &bull; +$420</small>
+          </div>
+          <div class="opt-chip" data-val="remote-dc" data-minw="17.375" onclick="selectControl(this)">
+            Remote Motor (DC/Battery Pack)
+            <small>Min width: 17&#8540;" &bull; +$420</small>
+          </div>
+          <div class="opt-chip" data-val="remote-ac" data-minw="21" onclick="selectControl(this)">
+            Remote Motor (AC Hardwired)
+            <small>Min width: 21" &bull; +$420</small>
+          </div>
+          <div class="opt-chip" data-val="powerlift" data-minw="29.5" onclick="selectControl(this)">
+            Power Lift Motor
+            <small>Min width: 29&#189;" &bull; +$579</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 — SINGLE OR DOUBLE -->
+    <div class="step-block" id="step5">
+      <div class="step-header" onclick="toggleStep('step5')">
+        <div class="step-header-left">
+          <div class="step-num">5</div>
+          <div class="step-label">Single or Double Shade<span class="step-selection-preview" id="s5-preview"></span></div>
+        </div>
+        <div class="step-chevron" id="step5-chev">&#9660;</div>
+      </div>
+      <div class="step-body" id="step5-body">
+        <p style="font-size:12px;color:var(--text-muted);margin-top:10px">Single shade: natural woven fabric only. Double shade: adds a back fabric liner for privacy or room-darkening. Not available with Pro Wand or Cassette. Double shade max height: 96".</p>
+        <div class="option-chips" style="margin-top:14px" id="double-chips">
+          <div class="opt-chip" data-val="single" onclick="selectDouble(this)">
+            Single Shade
+            <small>Natural woven fabric only</small>
+          </div>
+          <div class="opt-chip" data-val="double" onclick="selectDouble(this)">
+            Double Shade (Dual Bracket)
+            <small>Adds back liner for privacy or room-darkening</small>
+          </div>
+        </div>
+        <!-- Back fabric selector -->
+        <div id="back-fabric-wrap" style="display:none;margin-top:16px">
+          <p style="font-size:13px;font-weight:600;color:var(--cream);margin-bottom:10px">Choose Back Fabric:</p>
+          <div class="option-chips" id="back-fabric-chips">
+            <div class="opt-chip" data-code="NRLF-01" data-type="lf" onclick="selectBackFabric(this)">LF White<small>Light-Filtering</small></div>
+            <div class="opt-chip" data-code="NRLF-02" data-type="lf" onclick="selectBackFabric(this)">LF Cotton<small>Light-Filtering</small></div>
+            <div class="opt-chip" data-code="NRLF-03" data-type="lf" onclick="selectBackFabric(this)">LF Beige<small>Light-Filtering</small></div>
+            <div class="opt-chip" data-code="NRLF-05" data-type="lf" onclick="selectBackFabric(this)">LF Limestone<small>Light-Filtering</small></div>
+            <div class="opt-chip" data-code="NRLF-06" data-type="lf" onclick="selectBackFabric(this)">LF Mist<small>Light-Filtering</small></div>
+            <div class="opt-chip" data-code="NRLF-07" data-type="lf" onclick="selectBackFabric(this)">LF Gray<small>Light-Filtering</small></div>
+            <div class="opt-chip" data-code="NRRD-01" data-type="rd" onclick="selectBackFabric(this)">RD White<small>Room-Darkening</small></div>
+            <div class="opt-chip" data-code="NRRD-02" data-type="rd" onclick="selectBackFabric(this)">RD Sand<small>Room-Darkening</small></div>
+            <div class="opt-chip" data-code="NRRD-03" data-type="rd" onclick="selectBackFabric(this)">RD Beige<small>Room-Darkening</small></div>
+            <div class="opt-chip" data-code="NRRD-04" data-type="rd" onclick="selectBackFabric(this)">RD Titanium<small>Room-Darkening</small></div>
+            <div class="opt-chip" data-code="NRRD-05" data-type="rd" onclick="selectBackFabric(this)">RD Gray<small>Room-Darkening</small></div>
+            <div class="opt-chip" data-code="NRRD-07" data-type="rd" onclick="selectBackFabric(this)">RD Basalt<small>Room-Darkening</small></div>
+            <div class="opt-chip" data-code="NRRD-08" data-type="rd" onclick="selectBackFabric(this)">RD Iron<small>Room-Darkening</small></div>
+            <div class="opt-chip" data-code="NRRD-09" data-type="rd" onclick="selectBackFabric(this)">RD Black<small>Room-Darkening</small></div>
+          </div>
+          <p style="font-size:11px;color:var(--text-faint);margin-top:8px">Note: Room-darkening back fabric may not achieve total blackout due to light gaps at shade edges.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6 — TOP TREATMENT -->
+    <div class="step-block" id="step6">
+      <div class="step-header" onclick="toggleStep('step6')">
+        <div class="step-header-left">
+          <div class="step-num">6</div>
+          <div class="step-label">Top Treatment<span class="step-selection-preview" id="s6-preview"></span></div>
+        </div>
+        <div class="step-chevron" id="step6-chev">&#9660;</div>
+      </div>
+      <div class="step-body" id="step6-body">
+        <div class="option-chips" style="margin-top:14px" id="top-treatment-chips">
+          <div class="opt-chip" data-val="none" onclick="selectTopTreatment(this)">
+            Open Roll (Standard)
+            <small>No extra charge &bull; Single or Double</small>
+          </div>
+          <div class="opt-chip" data-val="metal" onclick="selectTopTreatment(this)">
+            Open Roll (Decorative Metal Bracket)
+            <small>Antique Brass, Satin Nickel, or Black &bull; +$169 &bull; Single only</small>
+          </div>
+          <div class="opt-chip" data-val="cassette" onclick="selectTopTreatment(this)">
+            Square Cassette
+            <small>4 colors: White/Beige/Gray/Black &bull; Single only &bull; See pricing</small>
+          </div>
+          <div class="opt-chip" data-val="boxvalance" onclick="selectTopTreatment(this)">
+            Fabric Wrapped Box Valance
+            <small>4" or 6" height &bull; Single or Double &bull; See pricing</small>
+          </div>
+          <div class="opt-chip" data-val="tradvalance" onclick="selectTopTreatment(this)">
+            Traditional Valance (Wood Head Rail)
+            <small>Classic look &bull; Single or Double &bull; +$51</small>
+          </div>
+        </div>
+        <!-- Cassette color -->
+        <div id="cassette-color-wrap" style="display:none;margin-top:14px">
+          <p style="font-size:12px;color:var(--text-dark);margin-bottom:8px">Cassette color:</p>
+          <div class="option-chips">
+            <div class="opt-chip" data-val="white" onclick="selectCassetteColor(this)">White</div>
+            <div class="opt-chip" data-val="beige" onclick="selectCassetteColor(this)">Beige</div>
+            <div class="opt-chip" data-val="gray" onclick="selectCassetteColor(this)">Gray</div>
+            <div class="opt-chip" data-val="black" onclick="selectCassetteColor(this)">Black</div>
+          </div>
+        </div>
+        <!-- Metal bracket color -->
+        <div id="metal-color-wrap" style="display:none;margin-top:14px">
+          <p style="font-size:12px;color:var(--text-dark);margin-bottom:8px">Bracket color:</p>
+          <div class="option-chips">
+            <div class="opt-chip" data-val="antique-brass" onclick="selectMetalColor(this)">Antique Brass</div>
+            <div class="opt-chip" data-val="satin-nickel" onclick="selectMetalColor(this)">Satin Nickel</div>
+            <div class="opt-chip" data-val="black" onclick="selectMetalColor(this)">Black</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 7 — ROLL DIRECTION -->
+    <div class="step-block" id="step7">
+      <div class="step-header" onclick="toggleStep('step7')">
+        <div class="step-header-left">
+          <div class="step-num">7</div>
+          <div class="step-label">Roll Direction<span class="step-selection-preview" id="s7-preview"></span></div>
+        </div>
+        <div class="step-chevron" id="step7-chev">&#9660;</div>
+      </div>
+      <div class="step-body" id="step7-body">
+        <div class="option-chips" style="margin-top:14px">
+          <div class="opt-chip" data-val="standard" onclick="selectRollDir(this)">
+            Standard Roll
+            <small>Fabric off the back &bull; closer to window &bull; better privacy</small>
+          </div>
+          <div class="opt-chip" data-val="reverse" onclick="selectRollDir(this)">
+            Reverse Roll
+            <small>Fabric off the front &bull; clears obstructions &bull; not available with cassette or single+traditional valance</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 8 — QUANTITY -->
+    <div class="step-block" id="step8">
+      <div class="step-header" onclick="toggleStep('step8')">
+        <div class="step-header-left">
+          <div class="step-num">8</div>
+          <div class="step-label">Quantity<span class="step-selection-preview" id="s8-preview"></span></div>
+        </div>
+        <div class="step-chevron" id="step8-chev">&#9660;</div>
+      </div>
+      <div class="step-body" id="step8-body">
+        <div class="field-row" style="margin-top:14px">
+          <div class="field-group" style="max-width:140px">
+            <label>Number of shades</label>
+            <input type="number" id="inp-qty" min="1" max="50" value="1" oninput="updatePrice()">
+          </div>
+        </div>
+        <div class="field-note">If ordering multiple identical shades, enter the quantity here. For shades with different sizes or fabrics, submit separate quotes.</div>
+      </div>
+    </div>
+
+    <!-- PRICE PANEL -->
+    <div id="roller-price-panel" style="display:none">
+      <div class="pp-title">Estimated Price (MSRP)</div>
+      <div class="pp-row"><span>Shade (1x)</span><span id="pp-shade-price">—</span></div>
+      <div class="pp-row" id="pp-motor-row" style="display:none"><span id="pp-motor-label">Motor upgrade</span><span id="pp-motor-price">—</span></div>
+      <div class="pp-row" id="pp-top-row" style="display:none"><span id="pp-top-label">Top treatment</span><span id="pp-top-price">—</span></div>
+      <div class="pp-row" id="pp-back-row" style="display:none"><span>Back fabric (double shade)</span><span id="pp-back-price">—</span></div>
+      <div class="pp-row" id="pp-cordless-row" style="display:none"><span>Cordless control</span><span id="pp-cordless-price">—</span></div>
+      <div class="pp-row" id="pp-qty-row" style="display:none"><span id="pp-qty-label">Subtotal x qty</span><span id="pp-qty-price">—</span></div>
+      <div class="pp-row total"><span>Estimated Total</span><span id="pp-total">—</span></div>
+      <div class="pp-disclaimer">* All prices are MSRP estimates only. Final price confirmed at order. Does not include installation, freight, or applicable taxes. Tariff surcharges may apply on imported components.</div>
+    </div>
+
+    <!-- STEP 9 — DELIVERY -->
+    <div class="step-block" id="step9">
+      <div class="step-header" onclick="toggleStep('step9')">
+        <div class="step-header-left">
+          <div class="step-num">9</div>
+          <div class="step-label">Delivery or Pickup<span class="step-selection-preview" id="s9-preview"></span></div>
+        </div>
+        <div class="step-chevron" id="step9-chev">&#9660;</div>
+      </div>
+      <div class="step-body" id="step9-body">
+        <div class="delivery-section">
+          <div class="delivery-title">How would you like to receive your order?</div>
+          <div class="delivery-options">
+            <div class="del-opt selected" id="del-ship" onclick="selectDelivery('ship')">
+              <h4>&#x1F4E6; Ship to me</h4>
+              <p>UPS or FedEx from Huntingdon Valley, PA. Shipping cost calculated at order. Typically 5&ndash;10 business days after production.</p>
+            </div>
+            <div class="del-opt" id="del-pickup" onclick="selectDelivery('pickup')">
+              <h4>&#x1F3E0; I'll pick up</h4>
+              <p>Pick up at our Huntingdon Valley, PA location (address confirmed after order placement).</p>
+            </div>
+          </div>
+          <div class="tariff-note">
+            <strong>Tariff notice:</strong> Products may be subject to U.S. government import tariffs and duties. Any applicable surcharges will be disclosed at the time of order confirmation. We are committed to full transparency on pricing.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 10 — QUOTE FORM -->
+    <div class="step-block" id="step10">
+      <div class="step-header" onclick="toggleStep('step10')">
+        <div class="step-header-left">
+          <div class="step-num">10</div>
+          <div class="step-label">Get Your Quote</div>
+        </div>
+        <div class="step-chevron" id="step10-chev">&#9660;</div>
+      </div>
+      <div class="step-body" id="step10-body">
+        <p style="font-size:13px;color:var(--text-dark);margin-top:10px;margin-bottom:16px">We'll review your configuration and send a confirmed price within 24 hours.</p>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Your Name <span style="color:#e07070">*</span></label>
+            <input type="text" id="q-name" placeholder="First &amp; last name">
+          </div>
+          <div class="field-group">
+            <label>Phone Number <span style="color:#e07070">*</span></label>
+            <input type="tel" id="q-phone" placeholder="(215) 555-0100">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Email Address</label>
+            <input type="email" id="q-email" placeholder="you@example.com">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Additional Notes</label>
+            <textarea id="q-notes" rows="3" placeholder="Window location, special requirements, existing hardware, etc."></textarea>
+          </div>
+        </div>
+        <button class="submit-btn" onclick="submitRollerQuote()">Send Quote Request &rarr;</button>
+        <div class="required-note">* Required fields. Clicking will open your email client with your selections pre-filled.</div>
+      </div>
+    </div>
+  </div><!-- /cfg-wrap -->
+</div><!-- /roller-section -->
+
+<!-- ════════════════════════════════════════════
+     ROMAN SHADE COLLECTION SELECTOR
+════════════════════════════════════════════ -->
+<div id="roman-section" style="display:none">
+  <div class="roman-wrap">
+    <button class="back-btn" onclick="showChoice()">&#8592; Back to style choice</button>
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px">Roman Shade Collections</div>
+    <div style="font-size:22px;font-weight:500;color:#111;letter-spacing:-.3px;margin-bottom:6px">Choose your woven wood collection</div>
+    <div style="font-size:13px;color:#666;margin-bottom:4px">Five premium collections. Click a collection to configure and get an instant or custom quote.</div>
+
+    <div class="roman-grid">
+
+      <!-- Portfolio Natural Shades -->
+      <div class="roman-card">
+        <div class="roman-card-icon">&#127807;</div>
+        <span class="roman-card-badge">Full Configurator</span>
+        <h3>Wallace Portfolio Natural Shades</h3>
+        <p>Bamboo, jute, sisal, grass, and natural draperies. The broadest Portfolio collection &mdash; roman shades, sliding panels, and natural draperies. Waterfall, flat fold, and hobbled styles.</p>
+        <a class="roman-configure-btn" href="wallace-portfolio-natural-shades.html">Configure &rarr;</a>
+      </div>
+
+      <!-- Dynasty Woven Collection -->
+      <div class="roman-card">
+        <div class="roman-card-icon">&#127756;</div>
+        <span class="roman-card-badge">Quote Available</span>
+        <h3>Dynasty Woven Collection</h3>
+        <p>48 patterns across 5 price groups. Includes bamboo, jute, and natural fiber blends in rich earth tones and modern neutrals. Hobbled and edge-binding options on all patterns.</p>
+        <a class="roman-configure-btn" href="dynasty-woven-woods.html">Configure &rarr;</a>
+      </div>
+
+      <!-- Galaxy Woven Collection -->
+      <div class="roman-card">
+        <div class="roman-card-icon">&#127774;</div>
+        <span class="roman-card-badge">Full Configurator</span>
+        <h3>Galaxy Woven Collection</h3>
+        <p>73 patterns in 6 price groups. The largest woven wood collection &mdash; bamboo, jute, paper, and fiber blends with waterfall, flat fold, hobbled, and motorized styles.</p>
+        <a class="roman-configure-btn" href="galaxy-woven-woods.html">Configure &rarr;</a>
+      </div>
+
+      <!-- Walden Premier -->
+      <div class="roman-card">
+        <div class="roman-card-icon">&#127807;</div>
+        <span class="roman-card-badge">Quote Available</span>
+        <h3>Walden Premier</h3>
+        <p>Contemporary bamboo, jute, and ramie patterns reimagined for modern decor. Premium craftsmanship with hand-processed natural fibers. Sliding panels and natural draperies also available.</p>
+        <a class="roman-configure-btn" href="walden-premier-woven.html">Configure &rarr;</a>
+      </div>
+
+      <!-- Walden Select -->
+      <div class="roman-card">
+        <div class="roman-card-icon">&#127807;</div>
+        <span class="roman-card-badge">Quote Available</span>
+        <h3>Walden Select</h3>
+        <p>Bamboo, jute, and ramie in trending gray and white color choices. Cord-free cordless system and motorization options. Roman shades, sliding panels, and natural draperies.</p>
+        <a class="roman-configure-btn" href="walden-select-woven.html">Configure &rarr;</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Woven Wood Shades');
+renderFooter(false);
+
+// ─── FABRIC DATA ──────────────────────────────────────────────
+const FABRICS = [
+  {code:'PR-017',name:'Alston Ash',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#9E9085'},
+  {code:'PR-015',name:'Alston Peppered White',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#E8E0D4'},
+  {code:'PR-016',name:'Alston Russet',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#8B5E3C'},
+  {code:'PR-031',name:'Easton Charcoal',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#5A5750'},
+  {code:'PR-032',name:'Easton Iron',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#3A3835'},
+  {code:'PR-030',name:'Easton Smoke',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#7A7870'},
+  {code:'PR-025',name:'Hampton Graphite',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#6A6860'},
+  {code:'PR-024',name:'Hampton Pebble',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#B0A898'},
+  {code:'PR-023',name:'Hampton Snowfall',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#EEE8E0'},
+  {code:'PR-022',name:'Isla Rockside',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#2E2B28'},
+  {code:'PR-026',name:'Isla Seashell',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#F0EAE0'},
+  {code:'PR-021',name:'Marco Contrast',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#1E1C1A'},
+  {code:'PR-018',name:'Mason Grove',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#7A5840'},
+  {code:'PR-019',name:'Mason Lumber',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#9E8870'},
+  {code:'PR-020',name:'Mason Shade',pg:'A',mat:'100% Paper',maxW:90,maxH:108,color:'#8A8278'},
+  {code:'PR-027',name:'Clifton Silver',pg:'B',mat:'100% Paper',maxW:90,maxH:108,color:'#B0B0B0'},
+  {code:'PR-013',name:'Iris Cream',pg:'B',mat:'100% Flax',maxW:72,maxH:108,color:'#E8D8BC'},
+  {code:'PR-131',name:'Iris Fossil',pg:'B',mat:'100% Flax',maxW:72,maxH:108,color:'#A89888'},
+  {code:'PR-014',name:'Iris Khaki',pg:'B',mat:'100% Flax',maxW:72,maxH:108,color:'#C0A878'},
+  {code:'PR-093',name:'Keys Almond',pg:'B',mat:'100% Paper',maxW:90,maxH:108,color:'#D8C8A8'},
+  {code:'PR-094',name:'Keys Harbor Gray',pg:'B',mat:'100% Paper',maxW:90,maxH:108,color:'#9898A0'},
+  {code:'PR-095',name:'Keys Hazelnut',pg:'B',mat:'100% Paper',maxW:90,maxH:108,color:'#B89070'},
+  {code:'PR-034',name:'Seville Earth',pg:'B',mat:'100% Paper',maxW:90,maxH:108,color:'#988070'},
+  {code:'PR-033',name:'Seville Wisp',pg:'B',mat:'100% Paper',maxW:90,maxH:108,color:'#E0D8CC'},
+  {code:'PR-291',name:'Cyprus Crystal',pg:'C',mat:'100% Paper',maxW:90,maxH:96,color:'#F0ECEC'},
+  {code:'PR-292',name:'Cyprus Morning Mist',pg:'C',mat:'100% Paper',maxW:90,maxH:96,color:'#D8CEC8'},
+  {code:'PR-029',name:'Cyprus Thunder',pg:'C',mat:'100% Paper',maxW:90,maxH:96,color:'#686060'},
+  {code:'PR-028',name:'Lace Snow',pg:'C',mat:'100% Paper',maxW:90,maxH:108,color:'#F4F0E8'},
+  {code:'PR-089',name:'Layla Natural White',pg:'C',mat:'100% Paper',maxW:90,maxH:108,color:'#EDE8E0'},
+  {code:'PR-090',name:'Layla Truffle',pg:'C',mat:'100% Paper',maxW:90,maxH:108,color:'#78685C'},
+  {code:'PR-881',name:'Wyatt Almond',pg:'C',mat:'100% Paper',maxW:90,maxH:96,color:'#D8CCBC'},
+  {code:'PR-883',name:'Wyatt Antique White',pg:'C',mat:'100% Paper',maxW:90,maxH:96,color:'#EEE8DC'},
+  {code:'PR-088',name:'Wyatt Marble',pg:'C',mat:'100% Paper',maxW:90,maxH:96,color:'#C8C0B8'},
+  {code:'PR-882',name:'Wyatt Slate',pg:'C',mat:'100% Paper',maxW:90,maxH:96,color:'#888888'},
+  {code:'PR-Z4C',name:'Ashton Camel',pg:'D',mat:'100% Paper',maxW:114,maxH:108,color:'#C89860'},
+  {code:'PR-Z4A',name:'Ashton Dove',pg:'D',mat:'100% Paper',maxW:114,maxH:108,color:'#C0B8B0'},
+  {code:'PR-Z3A',name:'Brenna Cloud',pg:'D',mat:'100% Paper',maxW:114,maxH:108,color:'#E8E4E0'},
+  {code:'PR-Z3B',name:'Brenna Mirage',pg:'D',mat:'100% Paper',maxW:114,maxH:108,color:'#A8A8A8'},
+  {code:'PR-Y3C',name:'Mallory Fog',pg:'D',mat:'50% Flax, 50% Paper',maxW:114,maxH:108,color:'#BCBCBC'},
+  {code:'PR-Y3A',name:'Mallory Frost',pg:'D',mat:'50% Flax, 50% Paper',maxW:114,maxH:108,color:'#E8E8EC'},
+  {code:'PR-Z1D',name:'Torrey Twine',pg:'D',mat:'70% Paper, 30% Hemp',maxW:114,maxH:108,color:'#C0A878'},
+  {code:'PR-M8A',name:'Rhea Champagne',pg:'E',mat:'100% Hemp',maxW:90,maxH:108,color:'#D8C898',noSquareCassette:true},
+  {code:'PR-M8C',name:'Rhea Moonlight',pg:'E',mat:'100% Hemp',maxW:90,maxH:108,color:'#C8C8C0',noSquareCassette:true},
+  {code:'PR-M8E',name:'Rhea Sapphire',pg:'E',mat:'100% Hemp',maxW:90,maxH:108,color:'#282830',noSquareCassette:true},
+  {code:'PR-Z5F',name:'Sophie Birch',pg:'E',mat:'80% Flax, 20% Poly/Cotton',maxW:114,maxH:108,color:'#F0EAE2'},
+  {code:'PR-Z5J',name:'Sophie Limestone',pg:'E',mat:'80% Flax, 20% Poly/Cotton',maxW:114,maxH:108,color:'#C8C0B0'},
+  {code:'PR-Z5K',name:'Sophie Linen',pg:'E',mat:'80% Flax, 20% Poly/Cotton',maxW:114,maxH:108,color:'#D8C8A8'},
+  {code:'PR-Z5B',name:'Sophie Papyrus',pg:'E',mat:'80% Flax, 20% Poly/Cotton',maxW:114,maxH:108,color:'#E8E0D0'},
+  {code:'PR-Z5A',name:'Sophie Pearl',pg:'E',mat:'80% Flax, 20% Poly/Cotton',maxW:114,maxH:108,color:'#F4F0EC'},
+  {code:'PR-Z5E',name:'Sophie Sand',pg:'E',mat:'80% Flax, 20% Poly/Cotton',maxW:114,maxH:108,color:'#D0C0A0'},
+  {code:'PR-Z5G',name:'Sophie Sea Breeze',pg:'E',mat:'80% Flax, 20% Poly/Cotton',maxW:114,maxH:108,color:'#E8F0F0'},
+  {code:'PR-Z5M',name:'Sophie Skyline',pg:'E',mat:'80% Flax, 20% Poly/Cotton',maxW:114,maxH:108,color:'#9098A0'},
+  {code:'PR-Z5H',name:'Sophie Twig',pg:'E',mat:'80% Flax, 20% Poly/Cotton',maxW:114,maxH:108,color:'#8A7060'},
+];
+
+// ─── PRICE MATRICES ──────────────────────────────────────────
+// Rows = heights (24,30,36,42,48,54,60,66,72,78,84,96,108)
+// Cols = widths  (24,30,36,42,48,54,60,66,72,78,84,90)
+const WIDTHS_AB = [24,30,36,42,48,54,60,66,72,78,84,90];
+const HEIGHTS_AB = [24,30,36,42,48,54,60,66,72,78,84,96,108];
+const PRICES_A = [
+  [163,204,245,285,326,367,408,448,489,530,571,611],
+  [196,245,293,342,391,440,489,538,587,636,685,734],
+  [228,285,342,399,456,514,571,628,685,742,799,856],
+  [261,326,391,456,522,587,652,717,783,848,913,978],
+  [293,367,440,514,587,660,734,807,880,954,1027,1100],
+  [326,408,489,571,652,734,815,897,978,1060,1141,1223],
+  [359,448,538,628,717,807,897,986,1076,1166,1255,1345],
+  [391,489,587,685,783,880,978,1076,1174,1272,1369,1467],
+  [424,530,636,742,848,954,1060,1166,1272,1378,1484,1590],
+  [456,571,685,799,913,1027,1141,1255,1369,1484,1598,1712],
+  [494,617,740,863,986,1109,1233,1356,1479,1602,1725,1848],
+  [564,705,845,986,1127,1267,1409,1550,1691,1831,1972,2113],
+  [635,793,951,1109,1267,1426,1586,1744,1902,2060,2219,2377]
+];
+const PRICES_B = [
+  [174,217,261,304,348,391,435,478,522,565,608,652],
+  [209,261,313,365,417,469,522,574,626,678,730,782],
+  [243,304,365,426,487,548,608,669,730,791,852,913],
+  [278,348,417,487,556,626,695,765,835,904,974,1043],
+  [313,391,469,548,626,704,782,861,939,1017,1095,1174],
+  [348,435,522,608,695,782,869,956,1043,1130,1217,1304],
+  [382,478,574,669,765,861,956,1052,1147,1243,1339,1434],
+  [417,522,626,730,835,939,1043,1147,1252,1356,1460,1565],
+  [452,565,678,791,904,1017,1130,1243,1356,1469,1582,1695],
+  [487,608,730,852,974,1095,1217,1339,1460,1582,1704,1825],
+  [526,658,788,920,1051,1183,1314,1446,1577,1709,1839,1972],
+  [601,752,901,1052,1201,1352,1502,1653,1802,1953,2102,2253],
+  [676,845,1014,1183,1351,1521,1689,1859,2027,2197,2365,2535]
+];
+// Cyprus/Wyatt max H=96 so 108 row not used for those fabrics
+const PRICES_C = [
+  [194,242,290,339,387,435,484,532,581,629,677,726],
+  [232,290,348,406,464,523,581,639,697,755,813,871],
+  [271,339,406,474,542,610,677,745,813,881,948,1016],
+  [310,387,464,542,619,697,774,852,929,1006,1084,1161],
+  [348,435,523,610,697,784,871,958,1045,1132,1219,1306],
+  [387,484,581,677,774,871,968,1064,1161,1258,1355,1451],
+  [426,532,639,745,852,958,1064,1171,1277,1384,1490,1597],
+  [464,581,697,813,929,1045,1161,1277,1393,1510,1626,1742],
+  [503,629,755,881,1006,1132,1258,1384,1510,1635,1761,1887],
+  [542,677,813,948,1084,1219,1355,1490,1626,1761,1897,2032],
+  [586,732,878,1024,1170,1316,1463,1610,1756,1902,2048,2195],
+  [669,837,1004,1171,1338,1505,1672,1840,2007,2174,2341,2508],
+  [753,941,1129,1317,1505,1693,1880,2070,2258,2446,2634,2822]
+];
+const WIDTHS_DE = [24,30,36,42,48,54,60,66,72,78,84,96,108,114];
+const HEIGHTS_DE = [24,30,36,42,48,54,60,66,72,78,84,96,108];
+const PRICES_D = [
+  [231,283,336,389,442,495,548,601,654,707,760,866,972,1025],
+  [273,336,400,464,527,591,654,718,781,845,908,1036,1163,1226],
+  [315,389,464,538,612,686,760,834,908,983,1057,1205,1353,1428],
+  [358,442,527,612,697,781,866,951,1036,1120,1205,1375,1544,1629],
+  [400,495,591,686,781,877,972,1067,1163,1258,1353,1544,1735,1830],
+  [442,548,654,760,866,972,1078,1184,1290,1396,1502,1714,1925,2031],
+  [485,601,718,834,951,1067,1184,1300,1417,1533,1650,1883,2116,2233],
+  [527,654,781,908,1036,1163,1290,1417,1544,1671,1798,2053,2307,2434],
+  [569,707,845,983,1120,1258,1396,1533,1671,1809,1947,2222,2497,2635],
+  [612,760,908,1057,1205,1353,1502,1650,1798,1947,2095,2392,2688,2836],
+  [654,813,972,1131,1290,1449,1608,1767,1925,2084,2243,2561,2879,3038],
+  [739,919,1099,1279,1459,1639,1820,2000,2180,2360,2540,2900,3260,3440],
+  [831,1039,1247,1455,1663,1871,2078,2286,2494,2702,2910,3325,3741,3949]
+];
+const PRICES_E = [
+  [245,301,358,414,471,527,584,640,697,753,810,866,974,1028],
+  [290,358,425,493,561,629,697,764,832,900,968,1036,1165,1230],
+  [335,414,493,572,651,730,810,889,968,1047,1126,1205,1356,1431],
+  [380,471,561,651,742,832,923,1013,1103,1194,1284,1374,1546,1632],
+  [425,527,629,730,832,934,1036,1137,1239,1341,1442,1544,1737,1833],
+  [471,584,697,810,923,1036,1148,1261,1374,1487,1600,1713,1928,2035],
+  [516,640,764,889,1013,1137,1261,1386,1510,1634,1759,1883,2118,2236],
+  [561,697,832,968,1103,1239,1374,1510,1646,1781,1917,2052,2309,2437],
+  [606,753,900,1047,1194,1341,1487,1634,1781,1928,2075,2222,2500,2638],
+  [651,810,968,1126,1284,1442,1600,1759,1917,2075,2233,2391,2690,2840],
+  [697,866,1036,1205,1374,1544,1713,1883,2052,2222,2391,2561,2881,3041],
+  [787,979,1171,1363,1555,1747,1939,2131,2324,2516,2708,2900,3262,3443],
+  [885,1107,1328,1549,1771,1992,2213,2435,2656,2877,3099,3541,3984,4205]
+];
+// Back fabric pricing (rows=heights, cols=widths[24..114])
+const BF_WIDTHS = [24,30,36,42,48,54,60,66,72,78,84,96,108,114];
+const BF_HEIGHTS = [24,30,36,42,48,54,60,66,72,78,84,96];
+const PRICES_BF = [
+  [90,102,114,125,137,148,160,172,183,195,207,236,266,280],
+  [100,114,128,141,155,169,183,197,211,225,239,273,308,325],
+  [109,125,141,158,174,190,207,223,239,255,272,311,349,369],
+  [118,137,155,174,193,211,230,249,267,286,304,348,391,413],
+  [128,148,169,190,211,232,253,274,295,316,337,385,433,457],
+  [137,160,183,207,230,253,276,300,323,346,370,422,475,501],
+  [146,172,197,223,249,274,300,325,351,376,402,460,517,546],
+  [155,183,211,239,267,295,323,351,379,407,435,497,559,590],
+  [165,195,225,255,286,316,346,376,407,437,467,534,601,634],
+  [174,207,239,272,304,337,370,402,435,467,500,571,643,678],
+  [183,218,253,288,323,358,393,428,463,497,532,608,684,723],
+  [202,242,281,321,360,400,439,479,518,558,598,683,768,811]
+];
+// Cassette surcharge by width (24..114" in 6" steps)
+const CASS_WIDTHS = [24,30,36,42,48,54,60,66,72,78,84,96,108,114];
+const CASS_PRICES = [117,146,176,205,234,263,293,322,351,380,410,468,527,556];
+// Box Valance (same width cols as cassette + 116")
+const BOX_WIDTHS = [24,30,36,42,48,54,60,66,72,78,84,96,108,114,116];
+const BOX_PRICES = [137,172,206,240,275,309,343,378,412,446,481,550,618,653,664];
+
+// ─── STATE ────────────────────────────────────────────────────
+let state = {
+  fabric: null,
+  mount: null,
+  width: null,
+  height: null,
+  control: null,
+  isDouble: null,
+  backFabric: null,
+  topTreatment: null,
+  cassetteColor: null,
+  metalColor: null,
+  rollDir: null,
+  delivery: 'ship',
+  qty: 1
+};
+
+// ─── NAV FUNCTIONS ────────────────────────────────────────────
+function showChoice() {
+  document.getElementById('choice-section').style.display = 'block';
+  document.getElementById('roller-section').style.display = 'none';
+  document.getElementById('roman-section').style.display = 'none';
+  window.scrollTo({top: 0, behavior:'smooth'});
+}
+function showRoller() {
+  document.getElementById('choice-section').style.display = 'none';
+  document.getElementById('roller-section').style.display = 'block';
+  document.getElementById('roman-section').style.display = 'none';
+  buildFabricGrid('all');
+  window.scrollTo({top: document.getElementById('roller-section').offsetTop - 80, behavior:'smooth'});
+}
+function showRoman() {
+  document.getElementById('choice-section').style.display = 'none';
+  document.getElementById('roller-section').style.display = 'none';
+  document.getElementById('roman-section').style.display = 'block';
+  window.scrollTo({top: document.getElementById('roman-section').offsetTop - 80, behavior:'smooth'});
+}
+
+// ─── STEP TOGGLE ─────────────────────────────────────────────
+function toggleStep(id) {
+  const body = document.getElementById(id + '-body');
+  const chev = document.getElementById(id + '-chev');
+  const isOpen = body.classList.contains('active');
+  body.classList.toggle('active', !isOpen);
+  if (chev) chev.classList.toggle('open', !isOpen);
+}
+
+// ─── FABRIC ──────────────────────────────────────────────────
+function buildFabricGrid(filter) {
+  const grid = document.getElementById('fabric-grid');
+  const list = filter === 'all' ? FABRICS : FABRICS.filter(f => f.pg === filter);
+  grid.innerHTML = list.map(f => `
+    <div class="fabric-card ${state.fabric && state.fabric.code === f.code ? 'selected' : ''}"
+         onclick="selectFabric('${f.code}')" data-pg="${f.pg}">
+      <div class="fabric-swatch" style="background:${f.color}"></div>
+      <div class="fabric-code">${f.code}</div>
+      <div class="fabric-name">${f.name}</div>
+      <div class="fabric-pg">Group ${f.pg}</div>
+      <div class="fabric-mat">${f.mat}</div>
+    </div>
+  `).join('');
+}
+function filterFabrics(pg, btn) {
+  document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildFabricGrid(pg);
+}
+function selectFabric(code) {
+  state.fabric = FABRICS.find(f => f.code === code);
+  document.querySelectorAll('.fabric-card').forEach(c => c.classList.remove('selected'));
+  document.querySelectorAll('.fabric-card').forEach(c => {
+    if (c.querySelector('.fabric-code').textContent === code) c.classList.add('selected');
+  });
+  document.getElementById('s1-preview').textContent = state.fabric ? ' — ' + state.fabric.name : '';
+  updatePrice();
+  validateDims();
+}
+
+// ─── MOUNT ────────────────────────────────────────────────────
+function selectMount(el) {
+  document.querySelectorAll('#step2-body .opt-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.mount = el.dataset.val;
+  document.getElementById('s2-preview').textContent = ' — ' + el.textContent.split('\n')[0].trim();
+}
+
+// ─── DIMENSIONS ──────────────────────────────────────────────
+function dimChanged() {
+  state.width = parseFloat(document.getElementById('inp-width').value) || null;
+  state.height = parseFloat(document.getElementById('inp-height').value) || null;
+  const wStr = state.width ? state.width + '"' : '';
+  const hStr = state.height ? state.height + '"' : '';
+  document.getElementById('s3-preview').textContent = (wStr && hStr) ? ' — ' + wStr + ' W x ' + hStr + ' H' : '';
+  validateDims();
+  updatePrice();
+}
+function validateDims() {
+  let wErr = '', hErr = '';
+  const w = state.width, h = state.height;
+  const fab = state.fabric;
+  const maxW = fab ? fab.maxW : 114;
+  const maxH = fab ? fab.maxH : 108;
+  const doubleMaxH = 96;
+
+  if (w !== null) {
+    if (w < 10 || w > maxW) wErr = `Width must be 10"–${maxW}" for this fabric.`;
+  }
+  if (h !== null) {
+    const mH = state.isDouble === 'double' ? Math.min(maxH, doubleMaxH) : maxH;
+    if (h < 12 || h > mH) hErr = `Height must be 12"–${mH}" for this configuration.`;
+  }
+  document.getElementById('err-width').style.display = wErr ? 'block' : 'none';
+  document.getElementById('err-width').textContent = wErr;
+  document.getElementById('err-height').style.display = hErr ? 'block' : 'none';
+  document.getElementById('err-height').textContent = hErr;
+}
+
+// ─── CONTROL ─────────────────────────────────────────────────
+function selectControl(el) {
+  document.querySelectorAll('#control-chips .opt-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.control = el.dataset.val;
+  document.getElementById('s4-preview').textContent = ' — ' + el.firstChild.textContent.trim();
+  // Pro wand = single shade only
+  if (state.control === 'prowand' && state.isDouble === 'double') {
+    state.isDouble = 'single';
+    document.querySelectorAll('#double-chips .opt-chip').forEach(c => c.classList.remove('selected'));
+    document.querySelector('#double-chips .opt-chip[data-val="single"]').classList.add('selected');
+    document.getElementById('s5-preview').textContent = ' — Single Shade';
+    document.getElementById('back-fabric-wrap').style.display = 'none';
+  }
+  updatePrice();
+}
+
+// ─── DOUBLE SHADE ────────────────────────────────────────────
+function selectDouble(el) {
+  document.querySelectorAll('#double-chips .opt-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.isDouble = el.dataset.val;
+  document.getElementById('s5-preview').textContent = ' — ' + el.firstChild.textContent.trim();
+  document.getElementById('back-fabric-wrap').style.display = state.isDouble === 'double' ? 'block' : 'none';
+  validateDims();
+  updatePrice();
+}
+function selectBackFabric(el) {
+  document.querySelectorAll('#back-fabric-chips .opt-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.backFabric = {code: el.dataset.code, type: el.dataset.type, name: el.firstChild.textContent.trim()};
+  updatePrice();
+}
+
+// ─── TOP TREATMENT ────────────────────────────────────────────
+function selectTopTreatment(el) {
+  document.querySelectorAll('#top-treatment-chips .opt-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.topTreatment = el.dataset.val;
+  document.getElementById('s6-preview').textContent = ' — ' + el.firstChild.textContent.trim();
+  document.getElementById('cassette-color-wrap').style.display = state.topTreatment === 'cassette' ? 'block' : 'none';
+  document.getElementById('metal-color-wrap').style.display = state.topTreatment === 'metal' ? 'block' : 'none';
+  updatePrice();
+}
+function selectCassetteColor(el) {
+  document.querySelectorAll('#cassette-color-wrap .opt-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.cassetteColor = el.dataset.val;
+}
+function selectMetalColor(el) {
+  document.querySelectorAll('#metal-color-wrap .opt-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.metalColor = el.dataset.val;
+}
+
+// ─── ROLL DIRECTION ───────────────────────────────────────────
+function selectRollDir(el) {
+  document.querySelectorAll('#step7-body .opt-chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.rollDir = el.dataset.val;
+  document.getElementById('s7-preview').textContent = ' — ' + el.firstChild.textContent.trim();
+}
+
+// ─── DELIVERY ────────────────────────────────────────────────
+function selectDelivery(val) {
+  state.delivery = val;
+  document.getElementById('del-ship').classList.toggle('selected', val === 'ship');
+  document.getElementById('del-pickup').classList.toggle('selected', val === 'pickup');
+  document.getElementById('s9-preview').textContent = val === 'ship' ? ' — Ship to me' : ' — Pick up';
+}
+
+// ─── PRICE LOOKUP ────────────────────────────────────────────
+function lookupPrice(matrix, widths, heights, w, h) {
+  // Find closest bracket
+  let wIdx = widths.length - 1;
+  for (let i = 0; i < widths.length; i++) { if (widths[i] >= w) { wIdx = i; break; } }
+  let hIdx = heights.length - 1;
+  for (let i = 0; i < heights.length; i++) { if (heights[i] >= h) { hIdx = i; break; } }
+  return matrix[hIdx][wIdx];
+}
+function updatePrice() {
+  const qty = parseInt(document.getElementById('inp-qty').value) || 1;
+  state.qty = qty;
+  document.getElementById('s8-preview').textContent = qty > 1 ? ' — x' + qty : '';
+
+  if (!state.fabric || !state.width || !state.height) {
+    document.getElementById('roller-price-panel').style.display = 'none';
+    return;
+  }
+  const w = state.width, h = state.height;
+  const pg = state.fabric.pg;
+  let shadePrice = 0;
+  const widths = (pg === 'D' || pg === 'E') ? WIDTHS_DE : WIDTHS_AB;
+  const heights = HEIGHTS_DE; // DE have 13 rows same as AB
+  const heightsAB = HEIGHTS_AB;
+
+  if (pg === 'A') shadePrice = lookupPrice(PRICES_A, WIDTHS_AB, HEIGHTS_AB, w, h);
+  else if (pg === 'B') shadePrice = lookupPrice(PRICES_B, WIDTHS_AB, HEIGHTS_AB, w, h);
+  else if (pg === 'C') shadePrice = lookupPrice(PRICES_C, WIDTHS_AB, HEIGHTS_AB, w, h);
+  else if (pg === 'D') shadePrice = lookupPrice(PRICES_D, WIDTHS_DE, HEIGHTS_DE, w, h);
+  else if (pg === 'E') shadePrice = lookupPrice(PRICES_E, WIDTHS_DE, HEIGHTS_DE, w, h);
+
+  // Motor surcharge
+  let motorCost = 0, motorLabel = '';
+  if (state.control === 'prowand') { motorCost = 256; motorLabel = 'Pro Wand Motor'; }
+  else if (state.control === 'remote-li' || state.control === 'remote-dc' || state.control === 'remote-ac') { motorCost = 420; motorLabel = 'Remote Motor'; }
+  else if (state.control === 'powerlift') { motorCost = 579; motorLabel = 'Power Lift Motor'; }
+
+  // Cordless surcharge
+  let cordlessCost = 0;
+  if (state.control === 'cordless') {
+    cordlessCost = state.isDouble === 'double' ? 84 : 42;
+  }
+
+  // Top treatment surcharge
+  let topCost = 0, topLabel = '';
+  if (state.topTreatment === 'cassette') {
+    topCost = lookupPrice([CASS_PRICES], CASS_WIDTHS, [1], w, 0);
+    topLabel = 'Square Cassette';
+  } else if (state.topTreatment === 'boxvalance') {
+    topCost = lookupPrice([BOX_PRICES], BOX_WIDTHS, [1], w, 0);
+    topLabel = 'Box Valance';
+  } else if (state.topTreatment === 'tradvalance') {
+    topCost = 51;
+    topLabel = 'Traditional Valance';
+  } else if (state.topTreatment === 'metal') {
+    topCost = 169;
+    topLabel = 'Decorative Metal Bracket';
+  }
+
+  // Back fabric
+  let bfCost = 0;
+  if (state.isDouble === 'double' && state.backFabric) {
+    bfCost = lookupPrice(PRICES_BF, BF_WIDTHS, BF_HEIGHTS, w, Math.min(h, 96));
+  }
+
+  const subtotal1 = shadePrice + motorCost + cordlessCost + topCost + bfCost;
+  const total = subtotal1 * qty;
+
+  // Show panel
+  const panel = document.getElementById('roller-price-panel');
+  panel.style.display = 'block';
+  document.getElementById('pp-shade-price').textContent = '$' + shadePrice.toLocaleString();
+
+  const motorRow = document.getElementById('pp-motor-row');
+  motorRow.style.display = motorCost ? 'flex' : 'none';
+  document.getElementById('pp-motor-label').textContent = motorLabel;
+  document.getElementById('pp-motor-price').textContent = motorCost ? '+$' + motorCost : '';
+
+  const topRow = document.getElementById('pp-top-row');
+  topRow.style.display = topCost ? 'flex' : 'none';
+  document.getElementById('pp-top-label').textContent = topLabel;
+  document.getElementById('pp-top-price').textContent = topCost ? '+$' + topCost.toLocaleString() : '';
+
+  const backRow = document.getElementById('pp-back-row');
+  backRow.style.display = bfCost ? 'flex' : 'none';
+  document.getElementById('pp-back-price').textContent = bfCost ? '+$' + bfCost.toLocaleString() : '';
+
+  const cordlessRow = document.getElementById('pp-cordless-row');
+  cordlessRow.style.display = cordlessCost ? 'flex' : 'none';
+  document.getElementById('pp-cordless-price').textContent = cordlessCost ? '+$' + cordlessCost : '';
+
+  const qtyRow = document.getElementById('pp-qty-row');
+  qtyRow.style.display = qty > 1 ? 'flex' : 'none';
+  document.getElementById('pp-qty-label').textContent = 'Subtotal x ' + qty;
+  document.getElementById('pp-qty-price').textContent = qty > 1 ? '$' + (subtotal1 * qty).toLocaleString() : '';
+
+  document.getElementById('pp-total').textContent = '$' + total.toLocaleString();
+}
+
+// ─── SUBMIT ──────────────────────────────────────────────────
+function submitRollerQuote() {
+  const name = document.getElementById('q-name').value.trim();
+  const phone = document.getElementById('q-phone').value.trim();
+  const email = document.getElementById('q-email').value.trim();
+  const notes = document.getElementById('q-notes').value.trim();
+
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!phone) { alert('Please enter your phone number.'); return; }
+
+  const fab = state.fabric;
+  const ctrl = state.control || 'Not selected';
+  const mount = state.mount || 'Not selected';
+  const rollDir = state.rollDir || 'Standard';
+  const topTx = state.topTreatment || 'Open Roll (Standard)';
+  const isDouble = state.isDouble || 'single';
+
+  const subject = encodeURIComponent('Woven Wood Roller Shade Quote — ' + (fab ? fab.name : 'No fabric selected') + ' — ' + name);
+
+  const body = encodeURIComponent([
+    'WOVEN WOOD ROLLER SHADE QUOTE REQUEST',
+    '======================================',
+    '',
+    'CUSTOMER INFO',
+    'Name: ' + name,
+    'Phone: ' + phone,
+    'Email: ' + (email || 'Not provided'),
+    '',
+    'SHADE CONFIGURATION',
+    'Fabric: ' + (fab ? fab.name + ' (' + fab.code + ') — Group ' + (fab ? fab.pg : '') : 'Not selected'),
+    'Material: ' + (fab ? fab.mat : ''),
+    'Mount Type: ' + mount,
+    'Width: ' + (state.width ? state.width + '"' : 'Not entered'),
+    'Height: ' + (state.height ? state.height + '"' : 'Not entered'),
+    'Control Type: ' + ctrl,
+    'Single/Double: ' + isDouble,
+    'Back Fabric: ' + (isDouble === 'double' && state.backFabric ? state.backFabric.name + ' (' + state.backFabric.code + ')' : 'N/A'),
+    'Top Treatment: ' + topTx,
+    'Cassette Color: ' + (state.cassetteColor || 'N/A'),
+    'Metal Bracket Color: ' + (state.metalColor || 'N/A'),
+    'Roll Direction: ' + rollDir,
+    'Quantity: ' + state.qty,
+    'Delivery: ' + (state.delivery === 'ship' ? 'Ship via UPS/FedEx' : 'Customer pickup'),
+    '',
+    'NOTES FROM CUSTOMER',
+    notes || '(none)',
+    '',
+    'PRICE ESTIMATE (MSRP — confirm at order)',
+    'Shade base: $' + (fab && state.width && state.height ? '(see pricing matrix)' : 'N/A'),
+    '',
+    'Please confirm pricing and availability. Customer is aware all prices are MSRP estimates confirmed at order.',
+  ].join('\n'));
+
+  window.location.href = 'mailto:justin@phillyblinds.com?subject=' + subject + '&body=' + body;
+}
+
+// Quantity input
+document.getElementById('inp-qty').addEventListener('input', function() {
+  state.qty = parseInt(this.value) || 1;
+  document.getElementById('s8-preview').textContent = state.qty > 1 ? ' — x' + state.qty : '';
+  updatePrice();
+});
+
+// Auto-open first step
+window.addEventListener('DOMContentLoaded', function() {
+  // Steps start collapsed except step 1 which is open
+});
+</script>
+</body>
+</html>
+

@@ -1,0 +1,1063 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Drapery hardware — decorative rods, rings, traverse systems and more. Brands include Select, Orion, Kirsch, Paris Texas, and The Finial Company. Philadelphia area supply and installation.">
+<meta property="og:title" content="Drapery Hardware — Rods, Tracks &amp; Rings | Philly Blinds">
+<meta property="og:description" content="Decorative and functional drapery hardware — rods, rings, traverse tracks. Custom supply and professional installation.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/hardware.html">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<title>Drapery Hardware — Rods, Tracks &amp; Rings | Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:44px 28px 40px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--cream)}
+.page-hero h1{font-size:32px;font-weight:500;color:var(--cream);letter-spacing:-0.5px;margin-bottom:10px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:22px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.3);color:var(--gold)}
+
+/* ── STEP ── */
+.step-wrap{max-width:900px;margin:0 auto;padding:32px 28px}
+.step{margin-bottom:36px}
+.step-label{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.step-title{font-size:18px;font-weight:500;color:#1a1a1a;margin-bottom:4px;letter-spacing:-0.3px}
+.step-sub{font-size:13px;color:#666;line-height:1.6}
+
+/* ── CHOICE CARDS (big 2-up) ── */
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:600px){.choice-grid{grid-template-columns:1fr}}
+.choice-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:14px;padding:26px 22px;cursor:pointer;transition:border-color .15s,box-shadow .15s;position:relative}
+.choice-card:hover{border-color:var(--gold);box-shadow:0 2px 16px rgba(45,224,193,.1)}
+.choice-card.sel{border:2px solid var(--gold);box-shadow:0 2px 20px rgba(45,224,193,.18)}
+.choice-icon{font-size:28px;margin-bottom:10px}
+.choice-title{font-size:16px;font-weight:500;color:#111;margin-bottom:5px}
+.choice-desc{font-size:13px;color:#555;line-height:1.6}
+.choice-brands{font-size:11px;color:var(--gold);font-weight:500;margin-top:10px}
+
+/* ── OPTION CARDS (sub-type) ── */
+.opt-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:14px}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);box-shadow:0 2px 12px rgba(45,224,193,.15)}
+.opt-card.sel .opt-label-bar{background:var(--gold)}
+.opt-card.sel .opt-name,.opt-card.sel .opt-desc{color:var(--espresso)}
+.opt-art{height:110px;background:#F8F4EE;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.opt-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.opt-label-bar{background:#f2ede6;padding:10px 12px;transition:background .15s}
+.opt-name{font-size:13px;font-weight:500;color:#222;margin-bottom:1px}
+.opt-desc{font-size:11px;color:#888;line-height:1.4}
+
+/* ── BRAND CARDS ── */
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:14px}
+.brand-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;padding:18px 16px;cursor:pointer;transition:border-color .15s;text-align:center}
+.brand-card:hover{border-color:var(--gold)}
+.brand-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.brand-name{font-size:14px;font-weight:500;color:#111;margin-bottom:4px}
+.brand-desc{font-size:11px;color:#666;line-height:1.4}
+
+/* ── HIDDEN SECTIONS ── */
+.hw-section{display:none}
+.hw-section.on{display:block}
+
+/* ── DRAPE CROSS-SELL ── */
+.drape-crosssell{background:var(--espresso-mid);border:.5px solid var(--border-dark);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
+.drape-crosssell-text{font-size:13px;color:var(--cream)}
+.drape-crosssell-text strong{color:var(--gold)}
+
+/* ── QTY CONTROLS ── */
+.qty-btns{display:flex;align-items:center;gap:0;border:1px solid #ddd;border-radius:8px;overflow:hidden;width:fit-content}
+.qty-btn{width:36px;height:36px;border:none;background:#f5f5f3;color:#333;font-size:18px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .12s;flex-shrink:0}
+.qty-btn:hover{background:#e8e4de}
+.qty-num{width:52px;height:36px;border:none;border-left:1px solid #ddd;border-right:1px solid #ddd;text-align:center;font-size:15px;font-weight:600;color:#1a1a1a;font-family:var(--font);-moz-appearance:textfield}
+.qty-num::-webkit-inner-spin-button,.qty-num::-webkit-outer-spin-button{-webkit-appearance:none}
+/* ── TOOLTIP NOTE ── */
+.tooltip-note{font-size:11px;color:#666;line-height:1.6;background:#fafaf8;border:1px solid #e8e4de;border-radius:8px;padding:8px 12px}
+/* ── SUCCESS ── */
+.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;display:none}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Hardware</div>
+  <h1>Drapery Hardware</h1>
+  <p class="sub">Rods, rings, traverse systems, and decorative finials — supplied and professionally installed. We carry the top hardware brands and will help you find the right system for your panels and space.</p>
+  <div class="hero-pills">
+    <span class="hero-pill-gold hero-pill">Supply + installation</span>
+    <span class="hero-pill">Decorative &amp; functional</span>
+    <span class="hero-pill">Custom sizing available</span>
+    <span class="hero-pill">Free in-home consult</span>
+  </div>
+</div>
+
+<!-- HERO PHOTO -->
+<div style="height:340px;overflow:hidden">
+  <img src="../images/portfolio/hardware-bay-rods.JPEG" alt="Custom gold curved drapery rod installed in octagonal bay window" style="width:100%;height:100%;object-fit:cover;object-position:center 60%;display:block">
+</div>
+
+<div class="step-wrap">
+
+  <!-- PICK TYPE — always visible -->
+  <div class="step">
+    <div class="step-title" style="margin-bottom:4px">What type of hardware?</div>
+    <div class="step-sub">Decorative hardware is meant to be seen. Functional/traverse tracks are engineered for smooth operation and are typically hidden behind a valance.</div>
+    <div class="choice-grid">
+      <div class="choice-card" id="card-decorative" onclick="hwPickType('decorative')">
+        <div class="choice-icon">✨</div>
+        <div class="choice-title">Decorative</div>
+        <div class="choice-desc">Visible rods, rings &amp; finials — part of the design. Dozens of finishes and styles.</div>
+        <div class="choice-brands">Select · Orion · Kirsch · Paris Texas · The Finial Company</div>
+      </div>
+      <div class="choice-card" id="card-functional" onclick="hwPickType('functional')">
+        <div class="choice-icon">⚙️</div>
+        <div class="choice-title">Non-decorative / Traverse</div>
+        <div class="choice-desc">Engineered tracks for smooth, reliable operation — ideal for motorized drapery and large windows.</div>
+        <div class="choice-brands">Kirsch Architrac · Custom traverse systems</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DECORATIVE PATH ─────────────────────────── -->
+  <div class="hw-section" id="sec-decorative">
+
+    <!-- STYLE — appears after type pick -->
+    <div class="step" id="dec-style-step">
+      <div class="step-title" style="margin-bottom:4px">Which style?</div>
+      <div class="opt-cards" id="dec-type-cards">
+
+        <div class="opt-card" onclick="hwPickStyle(this,'Rods &amp; Rings')">
+          <div class="opt-art">
+            <img src="../images/thumbnails/rods-and-rings.png" alt="Rod and rings" style="object-position:center 20%">
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">Rods &amp; Rings</div><div class="opt-desc">Classic ring-and-rod — pinch, goblet &amp; grommet pleat</div></div>
+        </div>
+
+        <div class="opt-card" onclick="hwPickStyle(this,'Traverse Rod')">
+          <div class="opt-art">
+            <img src="../images/thumbnails/RIPPLEFOLD.png" alt="Traverse rod" style="object-position:center 15%">
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">Traverse Rod</div><div class="opt-desc">Cord or wand operated — great for ripple fold</div></div>
+        </div>
+
+        <div class="opt-card" onclick="hwPickStyle(this,'Specialty / Custom')">
+          <div class="opt-art">
+            <img src="../images/thumbnails/specialty-hardware.JPEG" alt="Specialty hardware">
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">Specialty / Custom</div><div class="opt-desc">Bay windows, arches, curved tracks</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BRAND — appears after style pick (hidden for specialty) -->
+    <div class="hw-section" id="dec-brand-step">
+      <div class="step">
+        <div class="step-title" style="margin-bottom:4px">Which brand?</div>
+        <div class="step-sub" style="margin-bottom:12px">All brands offer custom lengths, finishes &amp; bracket configs. We'll help you match to your space.</div>
+        <div class="brand-grid" id="dec-brand-cards">
+          <div class="brand-card" onclick="window.location.href='select-rods.html'" style="position:relative">
+            <div class="brand-name">Select</div>
+            <div class="brand-desc">Brass · Iron Works · Cortina traverse · 8 finishes</div>
+            <div style="font-size:9px;color:var(--gold);font-weight:700;margin-top:6px;text-transform:uppercase;letter-spacing:.5px">Configure online →</div>
+          </div>
+          <div class="brand-card" onclick="window.location.href='orion-rods.html'" style="position:relative">
+            <div class="brand-name">Orion</div>
+            <div class="brand-desc">Iron Art, Italian, Wood Art, Bohemia Crystal · Traversing · Somfy Motorized · 3D</div>
+            <div style="font-size:9px;color:var(--gold);font-weight:700;margin-top:6px;text-transform:uppercase;letter-spacing:.5px">Configure online →</div>
+          </div>
+          <div class="brand-card" onclick="window.location.href='kirsch-rods.html'" style="position:relative">
+            <div class="brand-name">Kirsch</div>
+            <div class="brand-desc">Classic American — rods + traverse</div>
+            <div style="font-size:9px;color:var(--gold);font-weight:700;margin-top:6px;text-transform:uppercase;letter-spacing:.5px">Configure online →</div>
+          </div>
+          <div class="brand-card" onclick="window.location.href='paris-texas-rods.html'" style="position:relative">
+            <div class="brand-name">Paris Texas</div>
+            <div class="brand-desc">35 hand-painted finishes · R-TEC motorized · Somfy</div>
+            <div style="font-size:9px;color:var(--gold);font-weight:700;margin-top:6px;text-transform:uppercase;letter-spacing:.5px">Configure online →</div>
+          </div>
+          <div class="brand-card" onclick="hwPickBrand(this,'The Finial Company')">
+            <div class="brand-name">The Finial Co.</div>
+            <div class="brand-desc">Artisan finials, handcrafted details</div>
+          </div>
+          <div class="brand-card" onclick="hwPickBrand(this,'Not sure')">
+            <div class="brand-name">Not sure</div>
+            <div class="brand-desc">We'll recommend based on your space</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /sec-decorative -->
+
+  <!-- ── FUNCTIONAL PATH ────────────────────────── -->
+  <!-- ── KIRSCH BASICS CONFIGURATOR ──────────────────────────── -->
+  <div class="hw-section" id="sec-functional">
+
+    <!-- Header -->
+    <div style="background:var(--espresso);border-radius:12px;padding:18px 22px;margin-bottom:24px;display:flex;align-items:center;gap:14px">
+      <div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px">Kirsch Basics</div>
+        <div style="font-size:16px;font-weight:600;color:var(--cream)">Non-Decorative Hardware</div>
+        <div style="font-size:12px;color:var(--text-dark);margin-top:3px">Traverse rods, curtain rods, tension &amp; sash rods — functional, reliable. Architrac available in White or Black.</div>
+      </div>
+    </div>
+
+    <!-- Step 1: System type -->
+    <div class="step" id="kf-step1">
+      <div class="step-label">Step 1</div>
+      <div class="step-title">What type of system?</div>
+      <div class="opt-cards" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));margin-top:14px">
+
+        <div class="opt-card" onclick="kfSetType('traverse',this)">
+          <div class="opt-art" style="height:90px;background:#f5f5f3">
+            <svg viewBox="0 0 200 60" width="160" xmlns="http://www.w3.org/2000/svg">
+              <rect x="5" y="22" width="190" height="8" rx="4" fill="#ccc"/>
+              <rect x="0" y="18" width="12" height="16" rx="3" fill="#aaa"/>
+              <rect x="188" y="18" width="12" height="16" rx="3" fill="#aaa"/>
+              <rect x="90" y="14" width="20" height="24" rx="3" fill="#bbb"/>
+              <line x1="60" y1="30" x2="60" y2="56" stroke="#bbb" stroke-width="2"/>
+              <line x1="140" y1="30" x2="140" y2="56" stroke="#bbb" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">Traverse Rod</div><div class="opt-desc">Cord-draw system — panels open &amp; close on a track</div></div>
+        </div>
+
+        <div class="opt-card" onclick="kfSetType('lockseam',this)">
+          <div class="opt-art" style="height:90px;background:#f5f5f3">
+            <svg viewBox="0 0 200 60" width="160" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="24" width="180" height="12" rx="6" fill="#ccc"/>
+              <rect x="0" y="20" width="14" height="20" rx="4" fill="#aaa"/>
+              <rect x="186" y="20" width="14" height="20" rx="4" fill="#aaa"/>
+              <rect x="93" y="16" width="14" height="28" rx="4" fill="#bbb"/>
+            </svg>
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">Lockseam Curtain Rod</div><div class="opt-desc">Stationary rod — rod pocket, grommet, or tab panels</div></div>
+        </div>
+
+        <div class="opt-card" onclick="kfSetType('tension',this)">
+          <div class="opt-art" style="height:90px;background:#f5f5f3">
+            <svg viewBox="0 0 200 60" width="160" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="100" cy="30" rx="90" ry="6" fill="#ccc"/>
+              <circle cx="10" cy="30" r="8" fill="#aaa"/>
+              <circle cx="190" cy="30" r="8" fill="#aaa"/>
+            </svg>
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">Tension Rod</div><div class="opt-desc">Spring-loaded, no holes needed — café curtains &amp; sheers</div></div>
+        </div>
+
+        <div class="opt-card" onclick="kfSetType('sash',this)">
+          <div class="opt-art" style="height:90px;background:#f5f5f3">
+            <svg viewBox="0 0 200 60" width="160" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="27" width="180" height="6" rx="3" fill="#ccc"/>
+              <circle cx="12" cy="30" r="5" fill="#aaa"/>
+              <circle cx="188" cy="30" r="5" fill="#aaa"/>
+              <rect x="10" y="35" width="180" height="6" rx="3" fill="#ccc"/>
+            </svg>
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">Sash Rod</div><div class="opt-desc">Flat or round — door panels, café tiers, small windows</div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Step 2: Sub-options (changes per type) -->
+    <div class="step" id="kf-step2" style="display:none">
+      <div class="step-label">Step 2</div>
+      <div class="step-title" id="kf-step2-title">Options</div>
+
+      <!-- TRAVERSE sub-options -->
+      <!-- ── ARCHITRAC FULL CONFIGURATOR ── -->
+      <div id="kf-traverse-opts" style="display:none">
+
+        <!-- Model selection -->
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:10px">Kirsch Architrac® model</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:6px">
+
+          <div id="arch-94003-card" class="opt-card sel" onclick="archSelModel('94003',this)" style="padding:14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+              <span style="font-size:13px;font-weight:700;color:#1a1a1a">94003</span>
+              <span style="font-size:9px;font-weight:700;background:var(--gold);color:var(--espresso);padding:2px 7px;border-radius:8px">RECOMMENDED</span>
+            </div>
+            <div style="font-size:12px;color:#555;line-height:1.5">Wall &amp; ceiling mount · Curvable for bay windows · Most versatile</div>
+          </div>
+
+          <div id="arch-94001-card" class="opt-card" onclick="archSelModel('94001',this)" style="padding:14px">
+            <div style="font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:6px">94001</div>
+            <div style="font-size:12px;color:#555;line-height:1.5">Cord draw · Standard residential traverse · Wall or ceiling mount</div>
+          </div>
+
+          <div id="arch-94004-card" class="opt-card" onclick="archSelModel('94004',this)" style="padding:14px">
+            <div style="font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:6px">94004</div>
+            <div style="font-size:12px;color:#555;line-height:1.5">Easy ceiling mount · Flange on back for flush ceiling installation</div>
+          </div>
+
+          <div id="arch-94005-card" class="opt-card" onclick="archSelModel('94005',this)" style="padding:14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+              <span style="font-size:13px;font-weight:700;color:#1a1a1a">94005</span>
+              <span style="font-size:9px;font-weight:700;background:#FEE2E2;color:#991B1B;padding:2px 7px;border-radius:8px">NOT REC.</span>
+            </div>
+            <div style="font-size:12px;color:#555;line-height:1.5">Direct mount through track · Requires low-profile trim screws · Limited access</div>
+          </div>
+        </div>
+        <div id="arch-model-note" class="tooltip-note" style="margin-bottom:16px">94003 Architrac: wall or ceiling mount, can be curved for bay windows. Most versatile — recommended for most applications.</div>
+
+        <!-- Cord length — 94001 only -->
+        <div id="arch-cord-wrap" style="display:none;margin-bottom:14px">
+          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Cord length</div>
+          <div style="font-size:11px;color:#666;margin-bottom:8px;line-height:1.6">Cord length = your panel drop (floor-to-top-of-pocket) + ~12" for operation. Measure ceiling-to-floor if unsure.</div>
+          <div class="opt-row" id="grp-arch-cord">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-cord');archCalc()">36"</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-arch-cord');archCalc()">48"</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-arch-cord');archCalc()">60"</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-arch-cord');archCalc()">72"</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-arch-cord');archCalc()">84"</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-arch-cord');archCalc()">96"</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-arch-cord');archCalc()">Custom — note in quote</button>
+          </div>
+        </div>
+
+        <!-- Exact width -->
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:4px">Exact track width (inches)</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <div class="dim-box" style="flex:0 0 auto;padding:12px 16px;margin-bottom:0">
+            <div class="dim-box-label" style="margin-bottom:8px">Track width</div>
+            <input type="number" id="arch-width" min="12" max="240" step="0.5" placeholder="84" oninput="archCalc()" style="font-size:22px;font-weight:600;height:50px;text-align:center;width:110px">
+            <div class="dim-unit">inches</div>
+          </div>
+          <div style="font-size:12px;color:#666;line-height:1.7">Enter the exact finished width of your window opening or desired coverage. We cut the track to size.</div>
+        </div>
+
+        <!-- Draw type -->
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Draw type</div>
+        <div class="opt-row" id="grp-kf-draw">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-draw');archCalc()">Split draw — pair of panels opens from center</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-draw');archCalc()">One-way right — single panel draws right</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-draw');archCalc()">One-way left — single panel draws left</button>
+        </div>
+
+        <!-- Color + Mount -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Track color</div>
+            <div class="opt-row" id="grp-arch-color">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-color');archCalc()"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#F0F0F0;border:1px solid #ccc;margin-right:5px;vertical-align:middle"></span>White</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-arch-color');archCalc()"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#222;margin-right:5px;vertical-align:middle"></span>Black</button>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Mount type</div>
+            <div class="opt-row" id="grp-arch-mount">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-mount');archCalc()">Wall mount</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-arch-mount');archCalc()">Ceiling mount</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pleat / drapery style -->
+        <div style="margin-top:14px">
+          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Drapery style on this track</div>
+          <div class="opt-row" id="grp-arch-pleat">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-pleat');archTogglePleat('pinch')">Pinch pleat</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-arch-pleat');archTogglePleat('ripple')">Ripple fold</button>
+          </div>
+          <!-- Ripple fold fullness — shown only for ripple fold -->
+          <div id="arch-ripple-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+            <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Ripple fold fullness %</div>
+            <div class="opt-row" id="grp-arch-ripple-pct">
+              <button class="opt-btn" onclick="selOpt(this,'grp-arch-ripple-pct');archCalc()">60%</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-ripple-pct');archCalc()">80%</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-arch-ripple-pct');archCalc()">100%</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-arch-ripple-pct');archCalc()">120%</button>
+            </div>
+            <div style="font-size:10px;color:#aaa;margin-top:6px">80% is standard ripple fold. Higher % = more wave depth.</div>
+          </div>
+        </div>
+
+        <!-- Auto-calculated accessories -->
+        <div id="arch-accessories" style="display:none;margin-top:20px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Recommended accessories</div>
+
+          <!-- Brackets -->
+          <div style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <div style="font-size:13px;font-weight:600;color:#1a1a1a">Brackets</div>
+              <div id="arch-bracket-count" style="font-size:16px;font-weight:700;color:var(--espresso)"></div>
+            </div>
+            <div id="arch-bracket-note" style="font-size:11px;color:#666;line-height:1.6;margin-bottom:10px"></div>
+            <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:5px">Color</div>
+            <div class="opt-row" id="grp-bracket-color" style="margin-bottom:10px">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-bracket-color');document.getElementById('grp-bracket-color').dataset.manualSet='1'"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#F0F0F0;border:1px solid #ccc;margin-right:5px;vertical-align:middle"></span>White</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-bracket-color');document.getElementById('grp-bracket-color').dataset.manualSet='1'"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#222;margin-right:5px;vertical-align:middle"></span>Black</button>
+            </div>
+            <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Adjust quantity if needed</div>
+            <div class="qty-btns">
+              <button class="qty-btn" onclick="var n=document.getElementById('arch-brackets-inp');n.value=Math.max(1,parseInt(n.value)-1)">−</button>
+              <input class="qty-num" id="arch-brackets-inp" type="number" value="2" min="1" max="50">
+              <button class="qty-btn" onclick="var n=document.getElementById('arch-brackets-inp');n.value=parseInt(n.value)+1">+</button>
+            </div>
+          </div>
+
+          <!-- Master carriers -->
+          <div id="arch-master-wrap" style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <div style="font-size:13px;font-weight:600;color:#1a1a1a">Master carriers</div>
+              <span style="font-size:10px;background:var(--gold-mid);color:#7A5A28;padding:2px 8px;border-radius:6px">Sold in pairs</span>
+            </div>
+            <div id="arch-master-note" style="font-size:11px;color:#666;line-height:1.6;margin-bottom:10px"></div>
+            <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Pairs needed (1 pair = 1 over + 1 under)</div>
+            <div class="qty-btns">
+              <button class="qty-btn" onclick="var n=document.getElementById('arch-masters-inp');n.value=Math.max(1,parseInt(n.value)-1)">−</button>
+              <input class="qty-num" id="arch-masters-inp" type="number" value="1" min="1" max="20">
+              <button class="qty-btn" onclick="var n=document.getElementById('arch-masters-inp');n.value=parseInt(n.value)+1">+</button>
+            </div>
+          </div>
+
+          <!-- Ball bearing / Ripplefold snap carriers -->
+          <div style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <div id="arch-carrier-label" style="font-size:13px;font-weight:600;color:#1a1a1a">Ball bearing carriers</div>
+              <div id="arch-carrier-count" style="font-size:16px;font-weight:700;color:var(--espresso)"></div>
+            </div>
+            <div id="arch-carrier-note" style="font-size:11px;color:#666;line-height:1.6;margin-bottom:10px"></div>
+            <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:5px">Color</div>
+            <div class="opt-row" id="grp-carrier-color" style="margin-bottom:10px">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-carrier-color');document.getElementById('grp-carrier-color').dataset.manualSet='1'"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#F0F0F0;border:1px solid #ccc;margin-right:5px;vertical-align:middle"></span>White</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-carrier-color');document.getElementById('grp-carrier-color').dataset.manualSet='1'"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#222;margin-right:5px;vertical-align:middle"></span>Black</button>
+            </div>
+            <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Adjust quantity</div>
+            <div class="qty-btns">
+              <button class="qty-btn" onclick="var n=document.getElementById('arch-carriers-inp');n.value=Math.max(1,parseInt(n.value)-1)">−</button>
+              <input class="qty-num" id="arch-carriers-inp" type="number" value="6" min="1" max="200">
+              <button class="qty-btn" onclick="var n=document.getElementById('arch-carriers-inp');n.value=parseInt(n.value)+1">+</button>
+            </div>
+          </div>
+
+          <!-- Batons -->
+          <div style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+            <div style="font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Batons (manual pull)</div>
+            <div style="font-size:11px;color:#666;margin-bottom:10px;line-height:1.5">White only — standard option. Pull to open/close panels. <span id="arch-baton-custom-note"></span></div>
+
+            <!-- Attachment type -->
+            <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Attachment clip</div>
+            <div class="opt-row" id="grp-arch-baton-clip">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-baton-clip');archRenderBatons()">Plastic clip</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-arch-baton-clip');archRenderBatons()">Stainless steel clip</button>
+            </div>
+
+            <!-- Baton length grid -->
+            <div style="font-size:11px;font-weight:600;color:#555;margin:10px 0 6px">Length (select one or more)</div>
+            <div id="arch-baton-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px"></div>
+
+            <div style="margin-top:10px;padding:10px 13px;background:#FBF7F0;border-radius:8px;font-size:11px;color:#7A5A28;line-height:1.5">
+              Need a custom color baton? <button onclick="pbShowContact('Custom color baton for Architrac traverse system')" style="background:none;border:none;color:var(--gold);font-weight:600;cursor:pointer;font-size:11px;font-family:inherit;text-decoration:underline;padding:0">Request a quote →</button>
+            </div>
+          </div>
+
+          <!-- Qty of baton sets -->
+          <div style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:4px">
+            <div style="font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Number of baton sets</div>
+            <div style="font-size:11px;color:#666;margin-bottom:10px">1 baton per panel — split draw defaults to 2 (one per panel), one-way defaults to 1. Edit below if needed.</div>
+            <div class="qty-btns">
+              <button class="qty-btn" onclick="var n=document.getElementById('arch-batons-inp');n.value=Math.max(1,parseInt(n.value)-1)">−</button>
+              <input class="qty-num" id="arch-batons-inp" type="number" value="2" min="1" max="20">
+              <button class="qty-btn" onclick="var n=document.getElementById('arch-batons-inp');n.value=parseInt(n.value)+1">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOCKSEAM sub-options -->
+      <div id="kf-lockseam-opts" style="display:none">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Rod configuration</div>
+        <div class="opt-row" id="grp-kf-rconfig">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-rconfig');kfUpdate()">Single rod</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-rconfig');kfUpdate()">Double rod</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-rconfig');kfUpdate()">Triple rod</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-rconfig');kfUpdate()">Bay rod</button>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Rod diameter (front rod)</div>
+        <div class="opt-row" id="grp-kf-diam">
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">½″ <span style="font-size:10px;color:#888">sheer/café</span></button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">1½″</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">2½″ <span style="font-size:10px;color:#888">standard</span></button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">3½″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">5½″ <span style="font-size:10px;color:#888">wide valance</span></button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">8½″ <span style="font-size:10px;color:#888">wide valance</span></button>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Width range</div>
+        <div class="opt-row" id="grp-kf-ls-width">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-ls-width');kfUpdate()">Under 28″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-ls-width');kfUpdate()">28″ – 48″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-ls-width');kfUpdate()">48″ – 84″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-ls-width');kfUpdate()">84″ – 120″</button>
+        </div>
+        <div class="tooltip-note" style="margin-top:8px">All White finish. Center support bracket included on orders over 48″. Bay rod available 78″–127″.</div>
+      </div>
+
+      <!-- TENSION sub-options -->
+      <div id="kf-tension-opts" style="display:none">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Tension rod type</div>
+        <div class="opt-row" id="grp-kf-ten-type">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-ten-type');kfUpdate()">⅝″ Oval</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-type');kfUpdate()">⁷⁄₁₆″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-type');kfUpdate()">Door sash (zinc)</button>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Width range</div>
+        <div class="opt-row" id="grp-kf-ten-width">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-ten-width');kfUpdate()">8″ – 16″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-width');kfUpdate()">16″ – 28″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-width');kfUpdate()">22″ – 48″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-width');kfUpdate()">36″ – 72″</button>
+        </div>
+        <div class="tooltip-note" style="margin-top:8px">Spring tension — no drilling required. ⅝″ oval and ⁷⁄₁₆″ are White; door sash tension rod is Zinc (#1958666, 20″–36″).</div>
+      </div>
+
+      <!-- SASH sub-options -->
+      <div id="kf-sash-opts" style="display:none">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Sash rod type</div>
+        <div class="opt-row" id="grp-kf-sash-type">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-sash-type');kfUpdate()">⁵⁄₁₆″ Door sash rod (11″–36″)</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-type');kfUpdate()">⁷⁄₁₆″ Door sash rod (18″–28″)</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-type');kfUpdate()">¹¹⁄₁₆″ Flat sash rod (16″–50″)</button>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Width range</div>
+        <div class="opt-row" id="grp-kf-sash-width">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-sash-width');kfUpdate()">11″ – 19″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-width');kfUpdate()">16″ – 28″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-width');kfUpdate()">20″ – 36″</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-width');kfUpdate()">28″ – 50″</button>
+        </div>
+        <div class="tooltip-note" style="margin-top:8px">All White finish. ⁵⁄₁₆″ and ⁷⁄₁₆″ are door sash rods (bracket-free inside a frame). ¹¹⁄₁₆″ is a flat sash rod for café tiers, sheers, and small windows.</div>
+      </div>
+    </div>
+
+    <!-- Step 3: Quantity + mount + summary -->
+    <div class="step" id="kf-step3" style="display:none">
+      <div class="step-label">Step 3</div>
+      <div class="step-title">Quantity &amp; details</div>
+      <div class="form-row" style="margin-top:12px">
+        <div class="form-group">
+          <label>How many rods / windows?</label>
+          <div class="qty-btns">
+            <button class="qty-btn" onclick="var n=document.getElementById('kf-qty');n.value=Math.max(1,parseInt(n.value)-1);kfUpdate()">−</button>
+            <input class="qty-num" id="kf-qty" type="number" value="1" min="1" max="50" oninput="kfUpdate()">
+            <button class="qty-btn" onclick="var n=document.getElementById('kf-qty');n.value=parseInt(n.value)+1;kfUpdate()">+</button>
+          </div>
+        </div>
+        <div class="form-group" id="kf-mount-group">
+          <label>Mount</label>
+          <div class="opt-row" id="grp-kf-mount" style="margin-top:8px">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-mount');kfUpdate()">Wall mount</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-kf-mount');kfUpdate()">Ceiling mount</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary box -->
+      <div id="kf-summary" style="display:none;background:var(--espresso);border-radius:12px;padding:16px 18px;margin:16px 0">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Your selection</div>
+        <div id="kf-summary-lines"></div>
+        <div style="font-size:11px;color:var(--text-faint);margin-top:10px;line-height:1.5">Kirsch Basic hardware — White finish · Quote includes supply only. Installation available — ask in notes.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── QUOTE FORM — appears automatically ────────────────────── -->
+  <div class="hw-section" id="sec-quote">
+    <div class="step">
+      <div id="hw-form">
+
+        <div class="form-row">
+          <div class="form-group"><label>Your name *</label><input type="text" id="hw-name" placeholder="Jane Smith"></div>
+          <div class="form-group"><label>Phone *</label><input type="tel" id="hw-phone" placeholder="(215) 555-0100"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" id="hw-email" placeholder="jane@example.com"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Number of windows / rods</label><input type="number" id="hw-qty" min="1" value="1"></div>
+          <div class="form-group">
+            <label>Exact rod width (inches) *</label>
+            <input type="number" id="hw-width" min="1" max="480" step="0.25" placeholder="e.g. 84" style="font-size:15px;padding:10px 12px">
+            <div style="font-size:11px;color:#888;margin-top:4px">Measure the finished rod length you need. For multiple windows, enter the widest — note others in the Notes field.</div>
+          </div>
+        </div>
+        <div class="form-group"><label>Finish preference</label>
+          <select id="hw-finish">
+            <option>Not sure yet — please advise</option>
+            <option>Matte black</option><option>Brushed nickel</option><option>Polished chrome</option>
+            <option>Antique bronze / oil rubbed</option><option>Brushed gold / champagne</option>
+            <option>Satin brass</option><option>Ivory / white</option><option>Custom — specify in notes</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Notes — drapery type, panel weight, motorization plans, anything else</label>
+          <textarea id="hw-notes" style="min-height:80px" placeholder="e.g. ripple fold panels, ceiling mount, 3 windows, considering Somfy motor…"></textarea>
+        </div>
+
+        <div class="drape-crosssell">
+          <div class="drape-crosssell-text"><strong>Also need custom drapery panels?</strong><br><span style="font-size:12px;color:var(--text-muted)">We fabricate in-house — panels &amp; hardware quoted together.</span></div>
+          <a href="soft-treatments.html" class="btn-gold" style="font-size:12px;padding:8px 14px;white-space:nowrap">Custom Drapery &rarr;</a>
+        </div>
+
+        <div class="delivery-section" style="margin-top:16px">
+          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+          <div class="opt-row" id="grp-del-hw">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-del-hw');document.getElementById('del-hw-s').style.display='block';document.getElementById('del-hw-p').style.display='none'">Ship to me</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-del-hw');document.getElementById('del-hw-s').style.display='none';document.getElementById('del-hw-p').style.display='block'">I'll pick up</button>
+          </div>
+          <div id="del-hw-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
+          <div id="del-hw-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+        </div>
+
+        <button onclick="reqMoreInfo('Drapery Hardware')" class="req-info-link" style="display:block;margin-bottom:14px">Request more information about Drapery Hardware →</button>
+        <button class="btn-submit-cta" onclick="submitHardware()" style="font-family:var(--font)">
+          Get Custom Hardware Quote →
+          <span class="cta-sub">We'll follow up within a few hours · (609) 742-1720 · 24/7</span>
+        </button>
+      </div>
+      <div class="success-box" id="hw-success">
+        <strong>Quote request sent!</strong> We'll follow up within a few hours.<br>
+        Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /step-wrap -->
+
+<div class="cta-banner">
+  <div>
+    <h2>Not sure what you need?</h2>
+    <p>We'll come to your home, look at your windows, and tell you exactly what hardware works — free of charge.</p>
+  </div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Hardware'); renderFooter(false);
+
+var hwState = { type:'', style:'', brand:'' };
+
+function hwReveal(id) {
+  var el = document.getElementById(id);
+  el.classList.add('on');
+  setTimeout(function(){ el.scrollIntoView({ behavior:'smooth', block:'nearest' }); }, 60);
+}
+function hwUpdateSummary() {
+}
+
+function hwPickType(type) {
+  hwState.type = type; hwState.style = ''; hwState.brand = '';
+  document.getElementById('card-decorative').classList.toggle('sel', type === 'decorative');
+  document.getElementById('card-functional').classList.toggle('sel', type === 'functional');
+  // Reset downstream
+  document.getElementById('sec-decorative').classList.remove('on');
+  document.getElementById('sec-functional').classList.remove('on');
+  document.getElementById('dec-brand-step').classList.remove('on');
+  document.getElementById('sec-quote').classList.remove('on');
+  document.querySelectorAll('#dec-type-cards .opt-card').forEach(function(c){ c.classList.remove('sel'); });
+  document.querySelectorAll('#dec-brand-cards .brand-card').forEach(function(c){ c.classList.remove('sel'); });
+
+  if (type === 'decorative') {
+    hwReveal('sec-decorative');
+  } else {
+    hwReveal('sec-functional');
+    // Kirsch basics starts at type selection — no auto-reveal of form
+  }
+}
+
+// ── KIRSCH BASICS CONFIGURATOR ────────────────────────────
+var kfType = '';
+
+function kfSetType(type, el) {
+  kfType = type;
+  document.querySelectorAll('#kf-step1 .opt-card').forEach(function(c){ c.classList.remove('sel'); });
+  if (el) el.classList.add('sel');
+
+  // Show/hide sub-option panels
+  ['traverse','lockseam','tension','sash'].forEach(function(t) {
+    var el2 = document.getElementById('kf-' + t + '-opts');
+    if (el2) el2.style.display = t === type ? 'block' : 'none';
+  });
+
+  var titles = {
+    traverse: 'Traverse rod configuration',
+    lockseam: 'Curtain rod options',
+    tension:  'Tension rod options',
+    sash:     'Sash rod options'
+  };
+  document.getElementById('kf-step2-title').textContent = titles[type] || 'Options';
+  document.getElementById('kf-step2').style.display = 'block';
+  document.getElementById('kf-step3').style.display = 'block';
+  // Mount is already chosen inside the Architrac configurator — don't repeat it in Step 3
+  var mountGroup = document.getElementById('kf-mount-group');
+  if (mountGroup) mountGroup.style.display = type === 'traverse' ? 'none' : '';
+  kfUpdate();
+  // Traverse: wait until user enters a width before showing the quote form (archCalc reveals it)
+  if (type !== 'traverse') hwReveal('sec-quote');
+  setTimeout(function() {
+    var s = document.getElementById('kf-step2');
+    if (s) { var nav = document.getElementById('site-nav'); var off = nav ? nav.offsetHeight + 12 : 86; window.scrollTo({ top: s.getBoundingClientRect().top + window.scrollY - off, behavior: 'smooth' }); }
+  }, 80);
+}
+
+function kfUpdate() {
+  var qty = parseInt(document.getElementById('kf-qty').value) || 1;
+  var mount = (document.querySelector('#grp-kf-mount .opt-btn.sel') || {}).textContent || 'Wall mount';
+  var lines = [];
+
+  if (kfType === 'traverse') {
+    // Traverse uses the Architrac sub-configurator — its own summary (archCalc) handles the spec
+    // panel and email. Do not duplicate here.
+    return;
+  } else if (kfType === 'lockseam') {
+    var config = (document.querySelector('#grp-kf-rconfig .opt-btn.sel') || {}).textContent || '—';
+    var diam   = (document.querySelector('#grp-kf-diam .opt-btn.sel') || {}).textContent || '—';
+    var width2 = (document.querySelector('#grp-kf-ls-width .opt-btn.sel') || {}).textContent || '—';
+    lines = [
+      {l:'System', v:'Kirsch Lockseam® Curtain Rod'},
+      {l:'Configuration', v:config},
+      {l:'Rod diameter', v:diam.replace(/<[^>]+>/g,'').trim()},
+      {l:'Width range', v:width2},
+      {l:'Mount', v:mount},
+      {l:'Quantity', v:qty + ' rod(s)'},
+      {l:'Finish', v:'White · Brackets included'}
+    ];
+  } else if (kfType === 'tension') {
+    var ttype = (document.querySelector('#grp-kf-ten-type .opt-btn.sel') || {}).textContent || '—';
+    var twidth= (document.querySelector('#grp-kf-ten-width .opt-btn.sel') || {}).textContent || '—';
+    lines = [
+      {l:'System', v:'Kirsch Tension Rod'},
+      {l:'Type', v:ttype},
+      {l:'Width range', v:twidth},
+      {l:'Quantity', v:qty + ' rod(s)'},
+      {l:'Finish', v:'White (zinc for door sash)'}
+    ];
+  } else if (kfType === 'sash') {
+    var stype = (document.querySelector('#grp-kf-sash-type .opt-btn.sel') || {}).textContent || '—';
+    var swidth= (document.querySelector('#grp-kf-sash-width .opt-btn.sel') || {}).textContent || '—';
+    lines = [
+      {l:'System', v:'Kirsch Lockseam® Sash Rod'},
+      {l:'Type', v:stype},
+      {l:'Width range', v:swidth},
+      {l:'Mount', v:mount},
+      {l:'Quantity', v:qty + ' rod(s)'},
+      {l:'Finish', v:'White'}
+    ];
+  }
+
+  if (!lines.length) return;
+  var html = lines.map(function(l) {
+    return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:.5px solid rgba(45,224,193,.15)">' +
+      '<span style="color:var(--text-muted)">' + l.l + '</span>' +
+      '<span style="color:var(--cream);font-weight:500">' + l.v + '</span>' +
+      '</div>';
+  }).join('');
+  document.getElementById('kf-summary-lines').innerHTML = html;
+  document.getElementById('kf-summary').style.display = 'block';
+
+  // Pre-fill the quote form
+  document.getElementById('hw-notes').placeholder = 'e.g. ' + (lines[0].v) + ', ' + qty + ' window(s), ' + mount.toLowerCase() + '. Any other details…';
+}
+
+function kfGetSummary() {
+  if (kfType === 'traverse') {
+    // Architrac configurator — use its dedicated summary only
+    return (window._archSummary || []).join('\n');
+  }
+  var lines = [];
+  document.querySelectorAll('#kf-summary-lines > div').forEach(function(d) {
+    var spans = d.querySelectorAll('span');
+    if (spans.length >= 2) lines.push(spans[0].textContent + ': ' + spans[1].textContent);
+  });
+  return lines.join('\n');
+}
+
+// ── ARCHITRAC CONFIGURATOR ────────────────────────────────────
+var ARCH_MODEL_NOTES = {
+  '94001': '94001 Cord draw — standard residential traverse. Wall or ceiling mount. Solid workhorse for most installs.',
+  '94003': '94003 Architrac (Recommended) — wall or ceiling mount, can be curved for bay windows. Most versatile option for any application.',
+  '94004': '94004 Easy ceiling mount — flange on back of track for flush ceiling installation. Great for low-clearance ceilings.',
+  '94005': '⚠ 94005 Direct mount — screws go through the track. Requires low-profile trim screws. Difficult to adjust after install. Not recommended.'
+};
+
+var ARCH_BATONS = [
+  {sku:'BA80A',len:24,att:'Plastic',price:3.71},
+  {sku:'BA80S',len:24,att:'Stainless Steel',price:3.71},
+  {sku:'BA81A',len:30,att:'Plastic',price:3.90},
+  {sku:'BA81S',len:30,att:'Stainless Steel',price:3.90},
+  {sku:'BA82A',len:36,att:'Plastic',price:5.20},
+  {sku:'BA82S',len:36,att:'Stainless Steel',price:5.20},
+  {sku:'BA84A',len:48,att:'Plastic',price:7.80},
+  {sku:'BA84S',len:48,att:'Stainless Steel',price:7.80},
+  {sku:'BA86A',len:60,att:'Plastic',price:9.10},
+  {sku:'BA86S',len:60,att:'Stainless Steel',price:9.10},
+  {sku:'BA88A',len:72,att:'Plastic',price:10.40},
+  {sku:'BA88S',len:72,att:'Stainless Steel',price:10.40},
+  {sku:'BA94A',len:84,att:'Plastic',price:12.35},
+  {sku:'BA96A',len:96,att:'Plastic',price:13.00}
+];
+
+var _archModel = '94003';
+var _archSelectedBatons = [];
+
+function archSelModel(model, el) {
+  _archModel = model;
+  ['94001','94003','94004','94005'].forEach(function(m) {
+    var c = document.getElementById('arch-' + m + '-card');
+    if (c) c.classList.toggle('sel', m === model);
+  });
+  var note = document.getElementById('arch-model-note');
+  if (note) note.textContent = ARCH_MODEL_NOTES[model] || '';
+
+  // Cord length: 94001 only (cord-draw model)
+  var cordWrap = document.getElementById('arch-cord-wrap');
+  if (cordWrap) cordWrap.style.display = model === '94001' ? 'block' : 'none';
+
+  archCalc();
+}
+
+function archCalc() {
+  var w = parseFloat(document.getElementById('arch-width').value) || 0;
+  var drawSel = (document.querySelector('#grp-kf-draw .opt-btn.sel') || {}).textContent || '';
+  var isSplit = drawSel.indexOf('Split') !== -1;
+  var acc = document.getElementById('arch-accessories');
+  if (!w) { if (acc) acc.style.display = 'none'; return; }
+  if (acc) acc.style.display = 'block';
+  hwReveal('sec-quote');
+
+  // Brackets: 1 per foot (every 12") + 2 extra
+  var feetBrackets = Math.ceil(w / 12);
+  var totalBrackets = feetBrackets + 2;
+  var bInp = document.getElementById('arch-brackets-inp');
+  if (bInp) bInp.value = totalBrackets;
+  var bCount = document.getElementById('arch-bracket-count');
+  if (bCount) bCount.textContent = totalBrackets + ' brackets';
+  var bNote = document.getElementById('arch-bracket-note');
+  if (bNote) bNote.innerHTML = '<strong>' + feetBrackets + '</strong> brackets (1 per foot for ' + Math.ceil(w/12) + ' ft) + <strong>2 extra</strong> = <strong>' + totalBrackets + ' total</strong>. Edit the quantity below if needed.';
+
+  // Master carriers: 1 set per pair
+  var masterWrap = document.getElementById('arch-master-wrap');
+  var mNote = document.getElementById('arch-master-note');
+  var mInp = document.getElementById('arch-masters-inp');
+  if (isSplit) {
+    if (masterWrap) masterWrap.style.display = 'block';
+    if (mNote) mNote.innerHTML = 'Split draw: <strong>1 overlap set</strong> (1 over-arm + 1 under-arm) at the center per pair of panels. Default is 1 set. Add more sets if you have additional panel pairs.';
+    if (mInp && parseInt(mInp.value) < 1) mInp.value = 1;
+    var soldTag = masterWrap ? masterWrap.querySelector('[style*="gold-mid"]') : null;
+    if (soldTag) soldTag.textContent = 'Sold in pairs — 1 over + 1 under';
+  } else {
+    if (masterWrap) masterWrap.style.display = 'block';
+    if (mNote) mNote.innerHTML = 'One-way draw: <strong>1 single-arm master carrier</strong> at the leading edge of the panel. Specify left or right in the notes.';
+    if (mInp && parseInt(mInp.value) < 1) mInp.value = 1;
+    var soldTag = masterWrap ? masterWrap.querySelector('[style*="gold-mid"]') : null;
+    if (soldTag) soldTag.textContent = 'Single-arm carrier';
+  }
+
+  // Carriers: ball bearing (standard) or ripplefold snap carriers
+  var pleatSelNow = (document.querySelector('#grp-arch-pleat .opt-btn.sel') || {}).textContent || '';
+  var isRipple = pleatSelNow.toLowerCase().indexOf('ripple') !== -1;
+  var numRods = isSplit ? 2 : 1; // split draw = 2 rods, one-way = 1 rod
+  var calcWidth = isRipple ? (w + 10 * numRods) : w; // +10" per rod for ripplefold snap carriers
+  var rawCarriers = Math.ceil(calcWidth / 50 * 25);
+  var carrierLabel = document.getElementById('arch-carrier-label');
+  if (carrierLabel) carrierLabel.textContent = isRipple ? 'Ripplefold snap carriers' : 'Ball bearing carriers';
+  var cInp = document.getElementById('arch-carriers-inp');
+  if (cInp) cInp.value = rawCarriers;
+  var cCount = document.getElementById('arch-carrier-count');
+  if (cCount) cCount.textContent = rawCarriers + ' carriers';
+  var cNote = document.getElementById('arch-carrier-note');
+  if (cNote) {
+    if (isRipple) {
+      cNote.innerHTML = 'Ripplefold: track ' + w + '″ + <strong>' + (10 * numRods) + '″ extra</strong> (' + numRods + ' rod × 10″) = <strong>' + calcWidth + '″</strong> → <strong>' + rawCarriers + ' snap carriers</strong>. Edit below if needed.';
+    } else {
+      cNote.innerHTML = '<strong>25 carriers per 50″</strong> of track for ' + w + '″ = <strong>' + rawCarriers + ' carriers</strong>. Edit below if needed.';
+    }
+  }
+
+  // Batons: 1 per panel — sold individually, default 1 each
+  var numPanels = isSplit ? 2 : 1;
+  var bainp = document.getElementById('arch-batons-inp');
+  if (bainp && parseInt(bainp.value) < numPanels) bainp.value = numPanels; // only set if lower than default
+  var bainpLabel = bainp ? bainp.closest('div') : null;
+  // Update baton count label
+  var batonSetsNote = document.querySelector('#arch-accessories .qty-val, #arch-batons-inp + *');
+  // note is in the qty section
+  var batonQtyDiv = bainp ? bainp.closest('[style]') : null;
+  var bcn = document.getElementById('arch-baton-custom-note');
+  if (bcn) bcn.textContent = 'White only. Need a custom color? Use the link below.';
+
+  archRenderBatons();
+
+  // Auto-sync bracket/carrier color to track color unless user manually overrode it
+  var trackColorBtn = document.querySelector('#grp-arch-color .opt-btn.sel');
+  var trackIsBlack = (trackColorBtn || {}).textContent.indexOf('Black') !== -1;
+  ['grp-bracket-color','grp-carrier-color'].forEach(function(gid) {
+    var btns = document.querySelectorAll('#' + gid + ' .opt-btn');
+    if (!btns.length) return;
+    var grpEl = document.getElementById(gid);
+    if (grpEl && !grpEl.dataset.manualSet) {
+      btns.forEach(function(b){ b.classList.remove('sel'); });
+      btns[trackIsBlack ? 1 : 0].classList.add('sel');
+    }
+  });
+
+  // Read actual user-adjusted quantities (not auto-calculated)
+  var finalBrackets = parseInt((document.getElementById('arch-brackets-inp') || {}).value) || totalBrackets;
+  var finalCarriers = parseInt((document.getElementById('arch-carriers-inp') || {}).value) || rawCarriers;
+  var finalMasters  = parseInt((document.getElementById('arch-masters-inp')  || {}).value) || 1;
+  var finalBatons   = parseInt((document.getElementById('arch-batons-inp')   || {}).value) || numPanels;
+
+  // Extract clean color labels (strip dot-span whitespace)
+  function colorLabel(grpSel, fallback) {
+    var t = ((document.querySelector(grpSel + ' .opt-btn.sel') || {}).textContent || fallback).trim();
+    return t.replace(/^\s+|\s+$/g,'').replace(/\s+/g,' ');
+  }
+  var color        = colorLabel('#grp-arch-color', 'White');
+  var bracketColor = colorLabel('#grp-bracket-color', color);
+  var carrierColor = colorLabel('#grp-carrier-color', color);
+  var mount   = (document.querySelector('#grp-arch-mount .opt-btn.sel') || {}).textContent || 'Wall mount';
+  var pleatSel = (document.querySelector('#grp-arch-pleat .opt-btn.sel') || {}).textContent || 'Pinch pleat';
+  var ripplePct = pleatSel.indexOf('Ripple') !== -1
+    ? ' — ' + ((document.querySelector('#grp-arch-ripple-pct .opt-btn.sel') || {}).textContent || '80%') + ' fullness'
+    : '';
+  var cordSel = _archModel === '94001'
+    ? ((document.querySelector('#grp-arch-cord .opt-btn.sel') || {}).textContent || '').trim()
+    : '';
+
+  window._archSummary = [
+    'Architrac model: ' + _archModel,
+    'Track width: ' + w + '"',
+    'Draw: ' + drawSel.split('—')[0].trim(),
+    'Drapery style: ' + pleatSel.trim() + ripplePct,
+    'Track color: ' + color,
+    'Mount: ' + mount,
+    (_archModel === '94001' && cordSel ? 'Cord length: ' + cordSel : ''),
+    'Brackets: ' + finalBrackets + ' — ' + bracketColor,
+    isSplit
+      ? 'Master carriers: ' + finalMasters + ' overlap set(s) (over + under arm each)'
+      : 'Master carrier: ' + finalMasters + ' single-arm (specify left or right in notes)',
+    (isRipple ? 'Ripplefold snap carriers' : 'Ball bearing carriers') + ': ' + finalCarriers + ' — ' + carrierColor,
+    'Batons: ' + finalBatons + ' (1 per panel, sold individually)'
+  ].filter(Boolean);
+}
+
+function archTogglePleat(type) {
+  var rippleOpts = document.getElementById('arch-ripple-opts');
+  if (rippleOpts) rippleOpts.style.display = type === 'ripple' ? 'block' : 'none';
+  archCalc();
+}
+
+function archRenderBatons() {
+  var clipSel = (document.querySelector('#grp-arch-baton-clip .opt-btn.sel') || {}).textContent || 'Plastic clip';
+  var isPlastic = clipSel.indexOf('Plastic') !== -1 || clipSel.indexOf('plastic') !== -1;
+  var filtered = ARCH_BATONS.filter(function(b) {
+    return isPlastic ? b.att === 'Plastic' : b.att === 'Stainless Steel';
+  });
+  var grid = document.getElementById('arch-baton-grid');
+  if (!grid) return;
+  grid.innerHTML = filtered.map(function(b) {
+    var sel = _archSelectedBatons.indexOf(b.sku) !== -1;
+    return '<div onclick="archToggleBaton(\'' + b.sku + '\',this)" style="border:1.5px solid ' + (sel ? 'var(--gold)' : '#e8e8e4') + ';background:' + (sel ? 'var(--gold-mid)' : '#fff') + ';border-radius:8px;padding:10px 12px;cursor:pointer;transition:border-color .15s">' +
+      '<div style="font-size:13px;font-weight:600;color:#1a1a1a">' + b.len + '"</div>' +
+      '<div style="font-size:10px;color:#888;margin-top:2px">' + b.sku + '</div>' +
+      '<div style="font-size:13px;font-weight:700;color:var(--espresso);margin-top:4px">$' + b.price.toFixed(2) + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+function archToggleBaton(sku, el) {
+  var idx = _archSelectedBatons.indexOf(sku);
+  if (idx === -1) {
+    _archSelectedBatons.push(sku);
+    el.style.borderColor = 'var(--gold)';
+    el.style.background = 'var(--gold-mid)';
+  } else {
+    _archSelectedBatons.splice(idx, 1);
+    el.style.borderColor = '#e8e8e4';
+    el.style.background = '#fff';
+  }
+}
+
+// Auto-init: make Traverse the default when non-decorative is selected
+(function() {
+  var origHwPickType = window.hwPickType;
+  window.hwPickType = function(type) {
+    if (origHwPickType) origHwPickType(type);
+    if (type === 'functional') {
+      // Auto-select Traverse as default
+      setTimeout(function() {
+        var traverseCard = document.querySelector('#kf-step1 .opt-card:first-child');
+        if (traverseCard && !traverseCard.classList.contains('sel')) {
+          kfSetType('traverse', traverseCard);
+        }
+      }, 50);
+    }
+  };
+})();
+
+function hwPickStyle(el, style) {
+  hwState.style = style; hwState.brand = '';
+  document.querySelectorAll('#dec-type-cards .opt-card').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  document.getElementById('dec-brand-step').classList.remove('on');
+  document.getElementById('sec-quote').classList.remove('on');
+
+  if (style === 'Specialty / Custom') {
+    // Specialty goes straight to form (no brand needed)
+    hwUpdateSummary();
+    hwReveal('sec-quote');
+  } else {
+    hwReveal('dec-brand-step');
+  }
+}
+
+function hwPickBrand(el, brand) {
+  hwState.brand = brand;
+  document.querySelectorAll('#dec-brand-cards .brand-card').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  hwUpdateSummary();
+  hwReveal('sec-quote');
+}
+
+function submitHardware() {
+  var name  = document.getElementById('hw-name').value.trim();
+  var phone = document.getElementById('hw-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  var delivery = getOpt('grp-del-hw');
+  // Include Kirsch selection if non-decorative
+  var kirschSummary = (hwState.type !== 'decorative' && typeof kfGetSummary === 'function') ? kfGetSummary() : '';
+  var body = 'HARDWARE QUOTE REQUEST\n\n'
+    + 'Name: ' + name + '\nPhone: ' + phone
+    + '\nEmail: ' + (document.getElementById('hw-email').value.trim() || '—') + '\n\n'
+    + 'Hardware type: ' + (hwState.type === 'decorative' ? 'Decorative' : 'Non-decorative — Kirsch Basics') + '\n'
+    + (hwState.style ? 'Style: ' + hwState.style + '\n' : '')
+    + (hwState.brand ? 'Brand: ' + hwState.brand + '\n' : '')
+    + (kirschSummary ? '\nKIRSCH SELECTION:\n' + kirschSummary + '\n' : '')
+    + '\nQty (windows): ' + (document.getElementById('kf-qty') ? document.getElementById('kf-qty').value : document.getElementById('hw-qty').value) + '\n'
+    + 'Width: ' + document.getElementById('hw-width').value + '\n'
+    + 'Finish: ' + document.getElementById('hw-finish').value + '\n'
+    + 'Delivery: ' + delivery + '\n\n'
+    + 'Notes:\n' + (document.getElementById('hw-notes').value.trim() || 'None');
+  window.location.href = 'mailto:justin@phillyblinds.com'
+    + '?subject=' + encodeURIComponent('Hardware Quote — ' + (hwState.style || hwState.type) + ' — ' + name)
+    + '&body=' + encodeURIComponent(body);
+  document.getElementById('hw-form').style.display = 'none';
+  document.getElementById('hw-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
+

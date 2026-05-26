@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kirsch 2″ Estate™ Traverse Rod configurator — all finishes, draw types, mount options, AMP motorization, carriers, bracket spacing, and stack-back calculator. Philadelphia area.">
+<title>Kirsch 2″ Estate™ Traverse Rod — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:linear-gradient(to right,rgba(28,21,16,.94) 35%,rgba(28,21,16,.55) 65%,rgba(28,21,16,.2) 100%),url('../images/thumbnails/specialty-soft-treatments.JPG') right center/cover no-repeat;padding:48px 28px 44px;min-height:260px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+/* Layout */
+.config-layout{display:grid;grid-template-columns:1fr 310px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+/* Step blocks */
+.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden}
+.step-block.active{box-shadow:0 2px 18px rgba(200,151,63,.1);border-color:rgba(200,151,63,.3)}
+.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
+.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
+.step-head-val{font-size:12px;color:var(--gold);font-weight:500;max-width:200px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step-body{padding:4px 20px 20px;display:none}
+.step-block.active .step-body,.step-block.open .step-body{display:block}
+/* Opt cards */
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;text-align:center;transition:all .15s}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.opt-card.sel .opt-card-title{color:#7A4F00}
+.opt-card-desc{font-size:11px;color:#666;line-height:1.45}
+.opt-card.disabled{opacity:.35;pointer-events:none}
+/* Finish chips */
+.finish-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.fin-chip{display:flex;align-items:center;gap:7px;padding:7px 13px;border:1.5px solid #e8e8e4;border-radius:20px;cursor:pointer;font-size:12px;font-weight:500;transition:all .15s;background:#fff;color:#333}
+.fin-chip:hover{border-color:var(--gold)}
+.fin-chip.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06);color:#7A4F00}
+.fin-dot{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.1);flex-shrink:0}
+.coll-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#aaa;margin:12px 0 6px}
+/* Dim inputs */
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
+.dim-input{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:var(--font);box-sizing:border-box}
+.dim-unit{font-size:12px;color:#666;margin-top:3px}
+/* Messages */
+.msg-ok{background:#DCFCE7;border:1px solid #86EFAC;border-radius:8px;padding:9px 13px;font-size:12px;color:#14532d;margin-top:8px}
+.msg-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-top:8px}
+.msg-warn{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.55}
+.msg-info{background:rgba(200,151,63,.08);border:1px solid rgba(200,151,63,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#7A4F00;margin-top:8px;line-height:1.55}
+/* Addon rows */
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
+.addon-row:hover{border-color:var(--gold)}
+.addon-row.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.addon-left{display:flex;align-items:center;gap:10px;flex:1}
+.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0}
+.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#1C1510}
+.addon-name{font-size:13px;font-weight:500;color:#111}
+.addon-sub{font-size:11px;color:#666;margin-top:1px}
+.addon-price{font-size:12px;font-weight:600;color:var(--gold);flex-shrink:0}
+.sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 6px}
+.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
+/* Bracket table */
+.brkt-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:10px}
+.brkt-table th{text-align:left;padding:5px 8px;background:#f8f5f0;font-weight:600;color:#555;border-bottom:1px solid #e8e8e4}
+.brkt-table td{padding:5px 8px;color:#333;border-bottom:.5px solid #f0f0ee}
+.brkt-table tr:last-child td{border-bottom:none}
+/* Spec panel */
+.spec-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
+.sp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+.sp-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:7px;gap:8px;align-items:baseline}
+.sp-label{color:var(--text-muted);line-height:1.4;flex-shrink:0}
+.sp-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word;max-width:160px}
+.sp-div{border:none;border-top:.5px solid var(--border-dark);margin:10px 0}
+.sp-warn{font-size:10px;color:#FFC107;margin-top:5px;line-height:1.5}
+.sp-note{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
+/* Form */
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);box-sizing:border-box}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1}}
+.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:22px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center;margin-top:12px}
+/* Drapery weight calc */
+.wt-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.wt-result{background:#f8f5f0;border:1px solid #e8dfd0;border-radius:8px;padding:12px;margin-top:10px;font-size:12px}
+.wt-result-val{font-size:20px;font-weight:600;color:var(--espresso);margin-bottom:4px}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="hardware.html">Hardware</a> &rsaquo; <a href="kirsch-rods.html">Kirsch Rods</a> &rsaquo; 2″ Estate™ Traverse</div>
+  <h1>Kirsch 2″ Estate™ Traverse Rod</h1>
+  <p class="sub">Heavy-duty 2″ ball-bearing traverse rod for pleated and Ripplefold™ drapery. Wall or ceiling mount. Manual or AMP™ motorized. 18″ to 16 ft. 64 lb maximum load.</p>
+  <div class="hero-pills">
+    <span class="hero-pill hero-pill-gold">Kirsch® Authorized</span>
+    <span class="hero-pill">18″ – 16 ft</span>
+    <span class="hero-pill">64 lb max load</span>
+    <span class="hero-pill">Pleated · Ripplefold™</span>
+    <span class="hero-pill">AMP™ Motorization</span>
+    <span class="hero-pill">3 finish collections</span>
+  </div>
+</div>
+
+<div class="config-layout">
+<div><!-- left col -->
+
+<!-- STEP 1: FINISH COLLECTION -->
+<div class="step-block active" id="step1">
+  <div class="step-head" onclick="toggleStep('step1')">
+    <div class="step-num">1</div>
+    <div class="step-head-title">Finish collection</div>
+    <div class="step-head-val" id="s1val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="opt-card" onclick="pickColl(this,'dm')">
+        <div class="opt-card-title">Designer Metals</div>
+        <div class="opt-card-desc">8 hand-painted metal finishes</div>
+      </div>
+      <div class="opt-card" onclick="pickColl(this,'wt')">
+        <div class="opt-card-title">Wood Trends</div>
+        <div class="opt-card-desc">8 painted &amp; stained wood finishes</div>
+      </div>
+      <div class="opt-card" onclick="pickColl(this,'wi')">
+        <div class="opt-card-title">Wrought Iron</div>
+        <div class="opt-card-desc">6 hand-forged iron finishes</div>
+      </div>
+    </div>
+    <!-- Designer Metals finishes -->
+    <div id="fin-dm" style="display:none">
+      <div class="coll-label">Designer Metals — 8 finishes</div>
+      <div class="finish-grid" id="fin-dm-grid"></div>
+    </div>
+    <!-- Wood Trends finishes -->
+    <div id="fin-wt" style="display:none">
+      <div class="coll-label">Wood Trends — 8 finishes</div>
+      <div class="finish-grid" id="fin-wt-grid"></div>
+    </div>
+    <!-- Wrought Iron finishes -->
+    <div id="fin-wi" style="display:none">
+      <div class="coll-label">Wrought Iron — 6 finishes</div>
+      <div class="finish-grid" id="fin-wi-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: DRAW TYPE -->
+<div class="step-block" id="step2">
+  <div class="step-head" onclick="toggleStep('step2')">
+    <div class="step-num">2</div>
+    <div class="step-head-title">Draw type</div>
+    <div class="step-head-val" id="s2val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
+      <div class="opt-card" onclick="pickDraw(this,'hand','Hand Draw')">
+        <div class="opt-card-title">Hand Draw</div>
+        <div class="opt-card-desc">Pull drapery by hand to open &amp; close</div>
+      </div>
+      <div class="opt-card" onclick="pickDraw(this,'cord','Cord Draw')">
+        <div class="opt-card-title">Cord Draw</div>
+        <div class="opt-card-desc">Pull-cord operates both panels</div>
+      </div>
+      <div class="opt-card" onclick="pickDraw(this,'baton','Baton Draw')">
+        <div class="opt-card-title">Baton Draw</div>
+        <div class="opt-card-desc">Smooth wand baton control</div>
+      </div>
+      <div class="opt-card" onclick="pickDraw(this,'duplex','Duplex Baton')">
+        <div class="opt-card-title">Duplex Baton</div>
+        <div class="opt-card-desc">Split draw — pulling one baton moves both panels simultaneously</div>
+      </div>
+      <div class="opt-card" onclick="pickDraw(this,'motor','AMP™ Motorized')">
+        <div class="opt-card-title">AMP™ Motorized</div>
+        <div class="opt-card-desc">Quiet RF motor · app + remote + tug feature</div>
+      </div>
+    </div>
+    <div id="motor-detail" style="display:none;margin-top:14px">
+      <div class="msg-info">AMP™ Motorization adds $621/rod (dealer cost). Charger (#62201300) is included. Remotes and gateway sold separately. Motor mounts to the back of the track — no change needed to drapery fabrication.</div>
+      <div class="sub-label" style="margin-top:12px">AMP™ accessories (optional)</div>
+      <div class="addon-row" id="acc-remote15" onclick="toggleAddon(this,'remote15')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">15-Channel RF Remote</div><div class="addon-sub">#62101000 White · #62101010 Black</div></div></div>
+        <div class="addon-price">$47.85</div>
+      </div>
+      <div class="addon-row" id="acc-gateway" onclick="toggleAddon(this,'gateway')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">AMP™ Gateway USB Bridge</div><div class="addon-sub">#62102000 White · app control + smart home integration</div></div></div>
+        <div class="addon-price">$141.33</div>
+      </div>
+      <div class="addon-row" id="acc-wallswitch" onclick="toggleAddon(this,'wallswitch')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Wall Switch (recessed) RF 15-ch</div><div class="addon-sub">#62108000 White</div></div></div>
+        <div class="addon-price">$38.59</div>
+      </div>
+      <div class="addon-row" id="acc-wallswitchsurface" onclick="toggleAddon(this,'wallswitchSurf')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Wall Switch Surface RF 15-ch</div><div class="addon-sub">#62109000 White</div></div></div>
+        <div class="addon-price">$61.75</div>
+      </div>
+      <div class="sub-label">Cable extensions (optional)</div>
+      <div class="addon-row" id="acc-cable15" onclick="toggleAddon(this,'cable15')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">15″ Cable Assembly</div><div class="addon-sub">#1026660</div></div></div>
+        <div class="addon-price">$6.57</div>
+      </div>
+      <div class="addon-row" id="acc-cable4" onclick="toggleAddon(this,'cable4')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">4′ Cable Assembly</div><div class="addon-sub">#1026661</div></div></div>
+        <div class="addon-price">$7.40</div>
+      </div>
+      <div class="addon-row" id="acc-cable10" onclick="toggleAddon(this,'cable10')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">10′ Cable Assembly</div><div class="addon-sub">#1026662</div></div></div>
+        <div class="addon-price">$11.01</div>
+      </div>
+      <div class="addon-row" id="acc-cable20" onclick="toggleAddon(this,'cable20')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">20′ Cable Assembly</div><div class="addon-sub">#1026663</div></div></div>
+        <div class="addon-price">$15.93</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: HEADING STYLE -->
+<div class="step-block" id="step3">
+  <div class="step-head" onclick="toggleStep('step3')">
+    <div class="step-num">3</div>
+    <div class="step-head-title">Drapery heading style</div>
+    <div class="step-head-val" id="s3val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:1fr 1fr">
+      <div class="opt-card" onclick="pickHeading(this,'pleated','Pleated')">
+        <div class="opt-card-title">Pleated</div>
+        <div class="opt-card-desc">Classic pinch pleat · slip-in or pin-on hooks · 4 carriers/ft standard · heading above or below track</div>
+      </div>
+      <div class="opt-card" onclick="pickHeading(this,'ripplefold','Ripplefold™')">
+        <div class="opt-card-title">Ripplefold™</div>
+        <div class="opt-card-desc">No hooks or pins · snaps onto wheeled carriers · less stack-back · identical interior &amp; exterior appearance</div>
+      </div>
+    </div>
+    <!-- Ripplefold fullness options -->
+    <div id="ripplefold-opts" style="display:none;margin-top:14px">
+      <div class="sub-label" style="margin-top:0">Ripplefold™ fullness</div>
+      <div class="opt-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="opt-card" onclick="pickFullness(this,'120')"><div class="opt-card-title">120%</div><div class="opt-card-desc">Most fabric · fullest look</div></div>
+        <div class="opt-card" onclick="pickFullness(this,'100')"><div class="opt-card-title">100%</div><div class="opt-card-desc">Standard fullness</div></div>
+        <div class="opt-card" onclick="pickFullness(this,'80')"><div class="opt-card-title">80%</div><div class="opt-card-desc">Lighter look</div></div>
+        <div class="opt-card" onclick="pickFullness(this,'60')"><div class="opt-card-title">60%</div><div class="opt-card-desc">Minimal fullness</div></div>
+      </div>
+      <div class="msg-info" style="margin-top:8px">Carrier item numbers: 120% = 82120 · 100% = 82100 · 80% = 82080 · 60% = 82060 (all White/Black). Two Sides Snap Pendant #82001 included for each carrier.</div>
+    </div>
+    <div class="msg-info" style="margin-top:10px;font-size:11px">Both heading styles work with hand, cord, baton, duplex, and AMP™ motorized draw. Ripplefold™ carriers are wheeled (82xxx series). Pleated uses ball bearing carriers (86700) or buttmaster carriers (84110–84214).</div>
+  </div>
+</div>
+
+<!-- STEP 4: MOUNT TYPE -->
+<div class="step-block" id="step4">
+  <div class="step-head" onclick="toggleStep('step4')">
+    <div class="step-num">4</div>
+    <div class="step-head-title">Mount type</div>
+    <div class="step-head-val" id="s4val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(160px,1fr))">
+      <div class="opt-card" onclick="pickMount(this,'wall','Wall Mount')">
+        <div class="opt-card-title">Wall Mount</div>
+        <div class="opt-card-desc">Standard L bracket · all components included with rod. 2¾″ wall to pole center.</div>
+      </div>
+      <div class="opt-card" onclick="pickMount(this,'ceiling','Ceiling Mount')">
+        <div class="opt-card-title">Ceiling Mount</div>
+        <div class="opt-card-desc">94130xxx brackets included · order 1796061 separately. 4¼″ from ceiling to track bottom.</div>
+      </div>
+      <div class="opt-card" onclick="pickMount(this,'dbl-wall','Double Wall Mount')">
+        <div class="opt-card-title">Double Wall Mount</div>
+        <div class="opt-card-desc">Two rods — 2″ front, separate back rod. 8¼″ or 4¼″ return. 5¼″ or 9¼″ projection.</div>
+      </div>
+      <div class="opt-card" onclick="pickMount(this,'dbl-combo','2″ + 1⅜″ Double')">
+        <div class="opt-card-title">2″ + 1⅜″ Double</div>
+        <div class="opt-card-desc">2″ front Estate + 1⅜″ back Estate on double bracket #71134110.</div>
+      </div>
+    </div>
+    <!-- Wall mount bracket options -->
+    <div id="wall-bracket-opts" style="display:none;margin-top:14px">
+      <div class="sub-label" style="margin-top:0">Wall bracket finish</div>
+      <div class="finish-grid">
+        <div class="fin-chip" onclick="pickBrktFinish(this,'Zinc','#B8B0A0')"><div class="fin-dot" style="background:#B8B0A0"></div>Zinc (#94129061)</div>
+        <div class="fin-chip" onclick="pickBrktFinish(this,'Satin Nickel','#C0BCBC')"><div class="fin-dot" style="background:#C0BCBC"></div>Satin Nickel (#1856973)</div>
+        <div class="fin-chip" onclick="pickBrktFinish(this,'Brushed Bronze','#9A7A60')"><div class="fin-dot" style="background:#9A7A60"></div>Brushed Bronze (#1856978)</div>
+        <div class="fin-chip" onclick="pickBrktFinish(this,'Black','#222')"><div class="fin-dot" style="background:#222"></div>Black (#1857324)</div>
+      </div>
+      <div class="msg-info" style="margin-top:8px;font-size:11px">Wall mount: 2¾″ wall to pole. Return 3¼″. All wall mount components are included when rod is ordered wall-mounted.</div>
+    </div>
+    <!-- Ceiling mount info -->
+    <div id="ceiling-mount-note" style="display:none;margin-top:12px">
+      <div class="msg-info">Ceiling mount: 94130xxx brackets included with rod. Also order item <strong>#1796061</strong> ceiling mount bracket — quantity based on bracket spacing plan. Ceiling to track bottom: 4¼″. Pole center to ceiling: 6⅛″–7⅛″.</div>
+    </div>
+    <!-- Double wall info -->
+    <div id="dbl-wall-note" style="display:none;margin-top:12px">
+      <div class="msg-info">Double Wall Mount parts: 94130xxx brackets (included), item 94125xxx double bracket, item #1796061 ceiling mount brackets. Returns: 8¼″ or 4¼″. Projections: 5¼″ or 9¼″.</div>
+    </div>
+    <div id="dbl-combo-note" style="display:none;margin-top:12px">
+      <div class="msg-info">2″ Front + 1⅜″ Back: parts include 94130xxx (with rod) + double bracket #71134110. Suitable when two rod sizes are needed on same window.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5: TRACK LENGTH -->
+<div class="step-block" id="step5">
+  <div class="step-head" onclick="toggleStep('step5')">
+    <div class="step-num">5</div>
+    <div class="step-head-title">Track length</div>
+    <div class="step-head-val" id="s5val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="dim-row">
+      <div>
+        <div class="dim-label">Track length (inches)</div>
+        <input class="dim-input" type="number" id="track-len" min="18" max="192" step="0.5" placeholder="e.g. 84" oninput="calcTrack()">
+        <div class="dim-unit">18″ min · 192″ (16 ft) max</div>
+      </div>
+      <div>
+        <div class="dim-label">Draw direction</div>
+        <div class="opt-grid" style="grid-template-columns:1fr;margin-top:4px;gap:6px">
+          <div class="opt-card sel" id="draw-oneway" onclick="pickDrawDir(this,'oneway','One-Way')"><div class="opt-card-title" style="font-size:12px">One-Way</div></div>
+          <div class="opt-card" id="draw-twoway" onclick="pickDrawDir(this,'twoway','Two-Way (Split)')"><div class="opt-card-title" style="font-size:12px">Two-Way (Split)</div></div>
+        </div>
+      </div>
+    </div>
+    <div id="track-msg" style="margin-top:8px"></div>
+    <!-- Bracket spacing plan -->
+    <div id="bracket-plan" style="display:none;margin-top:12px">
+      <div class="sub-label" style="margin-top:0">Bracket spacing plan</div>
+      <table class="brkt-table" id="brkt-table"></table>
+      <div class="step-note" style="margin-top:6px">Spacing may need to be shortened for heavier draperies. All mounting options are compatible with AMP™ motorization.</div>
+    </div>
+    <!-- Splice note -->
+    <div id="splice-note" class="msg-warn" style="display:none;margin-top:8px"></div>
+    <!-- Stack-back estimator -->
+    <div id="stackback-panel" style="display:none;margin-top:14px">
+      <div class="sub-label" style="margin-top:0">Stack-back estimate</div>
+      <div id="stackback-content"></div>
+      <div class="step-note">Stack size is estimated. Actual stack depends on fabric weight and type.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 6: FINIAL -->
+<div class="step-block" id="step6">
+  <div class="step-head" onclick="toggleStep('step6')">
+    <div class="step-num">6</div>
+    <div class="step-head-title">Finial</div>
+    <div class="step-head-val" id="s6val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:1fr 1fr">
+      <div class="opt-card" onclick="pickFinial(this,'stratta','Stratta')">
+        <div class="opt-card-title">Stratta</div>
+        <div class="opt-card-desc">Only 2″ finial available · 3⅛″D × 3⅝″H × 3⅝″W · $45.72/pair · 8 finishes</div>
+      </div>
+      <div class="opt-card" onclick="pickFinial(this,'none','No finial')">
+        <div class="opt-card-title">No finial</div>
+        <div class="opt-card-desc">Endcap only · included with assembled set</div>
+      </div>
+    </div>
+    <div id="stratta-finishes" style="display:none;margin-top:12px">
+      <div class="sub-label" style="margin-top:0">Stratta finish</div>
+      <div class="finish-grid" id="stratta-fin-grid"></div>
+      <div class="msg-info" style="margin-top:8px;font-size:11px">Stratta is the only 2″ finial in the Designer Metals collection. 4 pairs per box. Item #1832210 (AS), #1043919 (EB), #1832216 (PN), #1832211A (BK), #1832214 (GB), #1832217 (SN), #1832212 (BB), #1043963 (GM).</div>
+    </div>
+    <div id="swivel-socket-opt" style="margin-top:12px">
+      <div class="addon-row" id="acc-swivel" onclick="toggleAddon(this,'swivelSocket')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Swivel Socket</div><div class="addon-sub">Allows angled installation · 2¹⁄₁₆″ pole dia · ¼″ socket depth · $23.13/piece · 8 finishes</div></div></div>
+        <div class="addon-price">$23.13</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 7: DRAPERY WEIGHT CHECK -->
+<div class="step-block" id="step7">
+  <div class="step-head" onclick="toggleStep('step7')">
+    <div class="step-num">7</div>
+    <div class="step-head-title">Drapery weight check</div>
+    <div class="step-head-val" id="s7val">Optional</div>
+  </div>
+  <div class="step-body">
+    <div class="msg-info" style="margin-top:4px">Maximum: <strong>64 lbs total</strong> OR <strong>4 lbs per foot</strong> of track. Exceeding this limit will damage the rod and void warranty. Use the calculator below to verify.</div>
+    <div class="sub-label">Quick weight estimate</div>
+    <div class="wt-grid">
+      <div class="form-group">
+        <label>Fabric yards</label>
+        <input type="number" id="wt-yards" placeholder="e.g. 24" oninput="calcWeight()" style="padding:8px 10px">
+      </div>
+      <div class="form-group">
+        <label>Fabric width (inches)</label>
+        <input type="number" id="wt-width" placeholder="e.g. 54" oninput="calcWeight()" style="padding:8px 10px">
+      </div>
+      <div class="form-group">
+        <label>Fabric weight (oz/sq yd)</label>
+        <select id="wt-ozPerYd" onchange="calcWeight()" style="padding:8px 10px">
+          <option value="">— select fabric type —</option>
+          <optgroup label="Light">
+            <option value="3">Silks / Chintz — 2–4 oz (avg 3)</option>
+          </optgroup>
+          <optgroup label="Medium">
+            <option value="5">Printed Cottons — 4–6 oz (avg 5)</option>
+            <option value="7.5">Drapery Lining — 2–4 oz fabric + avg lining</option>
+          </optgroup>
+          <optgroup label="Heavy">
+            <option value="8">Linens — 6–10 oz (avg 8)</option>
+            <option value="12">Jacquards — 10–14 oz (avg 12)</option>
+            <option value="16">Velvets — 14–18 oz (avg 16)</option>
+            <option value="13">Bump Lining — 12–14 oz (avg 13)</option>
+          </optgroup>
+          <optgroup label="Custom">
+            <option value="custom">Enter custom oz/sq yd →</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Lining yards (optional)</label>
+        <input type="number" id="wt-lining-yards" placeholder="e.g. 24" oninput="calcWeight()" style="padding:8px 10px">
+      </div>
+    </div>
+    <div id="wt-custom-row" style="display:none" class="form-group">
+      <label>Custom fabric oz/sq yd</label>
+      <input type="number" id="wt-custom-oz" placeholder="e.g. 11" oninput="calcWeight()" style="padding:8px 10px;width:120px">
+    </div>
+    <div id="wt-result" class="wt-result" style="display:none">
+      <div class="wt-result-val" id="wt-result-lbs">—</div>
+      <div id="wt-result-status"></div>
+      <div id="wt-formula" style="font-size:10px;color:#888;margin-top:4px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 8: QUANTITY & DELIVERY -->
+<div class="step-block" id="step8">
+  <div class="step-head" onclick="toggleStep('step8')">
+    <div class="step-num">8</div>
+    <div class="step-head-title">Quantity &amp; delivery</div>
+    <div class="step-head-val" id="s8val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Qty of rods</label>
+        <input type="number" id="qty" value="1" min="1" max="50" oninput="updateSpec()">
+      </div>
+      <div class="form-group">
+        <label>Room / window</label>
+        <input type="text" id="room-label" placeholder="e.g. Living room">
+      </div>
+    </div>
+    <div class="opt-grid" style="grid-template-columns:1fr 1fr;margin-top:8px">
+      <div class="opt-card sel" id="del-ship" onclick="pickDel(this,'ship')"><div class="opt-card-title" style="font-size:12px">📦 Ship to me</div><div class="opt-card-desc">UPS/FedEx from Huntingdon Valley, PA</div></div>
+      <div class="opt-card" id="del-pickup" onclick="pickDel(this,'pickup')"><div class="opt-card-title" style="font-size:12px">🏠 Pick up</div><div class="opt-card-desc">Huntingdon Valley, PA · address after order</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 9: CONTACT & SUBMIT -->
+<div class="step-block" id="step9">
+  <div class="step-head" onclick="toggleStep('step9')">
+    <div class="step-num">9</div>
+    <div class="step-head-title">Your info &amp; submit</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row">
+      <div class="form-group"><label>Name *</label><input type="text" id="q-name" placeholder="Jane Smith"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="q-phone" placeholder="(215) 555-0100"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="q-email" placeholder="jane@example.com"></div>
+    <div class="form-group"><label>Notes / questions</label><textarea id="q-notes" placeholder="Special requirements, window configuration, fabric weight info, installer questions..."></textarea></div>
+    <div id="q-err" class="msg-err" style="display:none">Please enter your name and phone number.</div>
+    <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:13px;font-size:14px;font-weight:600">Request Kirsch 2″ Estate Rod Quote →</button>
+    <div class="success-box" id="success-box">
+      <strong>Quote request sent!</strong><br>We'll follow up within a few hours.<br>Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- /left col -->
+
+<!-- RIGHT: Spec panel -->
+<div>
+  <div class="spec-panel">
+    <div class="sp-title">Specification</div>
+    <div class="sp-row"><span class="sp-label">Rod</span><span class="sp-val">Kirsch 2″ Estate™ Traverse</span></div>
+    <div class="sp-row"><span class="sp-label">Collection</span><span class="sp-val" id="sp-coll">—</span></div>
+    <div class="sp-row"><span class="sp-label">Finish</span><span class="sp-val" id="sp-fin">—</span></div>
+    <div class="sp-row"><span class="sp-label">Draw</span><span class="sp-val" id="sp-draw">—</span></div>
+    <div class="sp-row"><span class="sp-label">Heading</span><span class="sp-val" id="sp-heading">—</span></div>
+    <div class="sp-row" id="sp-fullness-row" style="display:none"><span class="sp-label">Fullness</span><span class="sp-val" id="sp-fullness">—</span></div>
+    <div class="sp-row"><span class="sp-label">Mount</span><span class="sp-val" id="sp-mount">—</span></div>
+    <div class="sp-row"><span class="sp-label">Bracket finish</span><span class="sp-val" id="sp-brkt">Matches rod</span></div>
+    <div class="sp-row"><span class="sp-label">Track length</span><span class="sp-val" id="sp-len">—</span></div>
+    <div class="sp-row"><span class="sp-label">Direction</span><span class="sp-val" id="sp-dir">—</span></div>
+    <div class="sp-row"><span class="sp-label">Finial</span><span class="sp-val" id="sp-finial">—</span></div>
+    <div class="sp-row"><span class="sp-label">Qty</span><span class="sp-val" id="sp-qty">1 rod</span></div>
+    <div class="sp-div"></div>
+    <div class="sp-warn" id="sp-warn-wt" style="display:none">⚠ Drapery weight may exceed rod capacity.</div>
+    <div class="sp-warn" id="sp-warn-splice" style="display:none">⚠ Track over 8 ft will be spliced (keystone provided).</div>
+    <div class="sp-note">Pricing: custom quote. Dealer cost ~$56/ft for manual rod · AMP™ motorization +$621. All pricing confirmed at order. Dealer cost for reference only — not public retail pricing.</div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<div class="cta-banner">
+  <div><h2>Questions about Estate Traverse Rods?</h2><p>Call Justin — we spec and install these rods regularly and can advise on weight capacity, bracket spacing, and motorization.</p></div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 · 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Hardware');
+renderFooter(false);
+
+// ═══════════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════════
+var DM_FINISHES = [
+  {name:'Antique Silver',  hex:'#B0ACA8'},
+  {name:'Elegant Brass',   hex:'#C8A840'},
+  {name:'Gunmetal',        hex:'#606060'},
+  {name:'Black',           hex:'#222222'},
+  {name:'Polished Nickel', hex:'#D4D4D0'},
+  {name:'Brushed Bronze',  hex:'#9A7A60'},
+  {name:'Gilded Bronze',   hex:'#B08040'},
+  {name:'Satin Nickel',    hex:'#C0BCBC'}
+];
+var WT_FINISHES = [
+  {name:'Black',            hex:'#222222'},
+  {name:'Mahogany',         hex:'#6B2A18'},
+  {name:'Dark Chocolate',   hex:'#3A1E10'},
+  {name:'Truffle',          hex:'#7A5040'},
+  {name:'Coffee',           hex:'#5C3620'},
+  {name:'Marble',           hex:'#D0C8C0'},
+  {name:'Estate Oak',       hex:'#C09860'},
+  {name:'White',            hex:'#F5F5F0'}
+];
+var WI_FINISHES = [
+  {name:'Black',            hex:'#222222'},
+  {name:'Iron Oxide',       hex:'#6B3820'},
+  {name:'Golden Heirloom',  hex:'#C8A030'},
+  {name:'Graphite',         hex:'#505050'},
+  {name:'Chalk',            hex:'#E8E4E0'},
+  {name:'Rust',             hex:'#A04020'}
+];
+var STRATTA_FINISHES = [
+  {name:'Antique Silver', hex:'#B0ACA8', item:'1832210'},
+  {name:'Elegant Brass',  hex:'#C8A840', item:'1043919'},
+  {name:'Polished Nickel',hex:'#D4D4D0', item:'1832216'},
+  {name:'Black',          hex:'#222222', item:'1832211A'},
+  {name:'Gilded Bronze',  hex:'#B08040', item:'1832214'},
+  {name:'Satin Nickel',   hex:'#C0BCBC', item:'1832217'},
+  {name:'Brushed Bronze', hex:'#9A7A60', item:'1832212'},
+  {name:'Gunmetal',       hex:'#606060', item:'1043963'}
+];
+
+// Pleated stackback table (4 carriers/ft, 2.5x fullness) from Kirsch 2026 price guide
+// [track_inches, stackback_oneway, stackback_twoway_per_side]
+var PLEATED_STACK = [
+  [18,8.75,null],[24,9.25,null],[30,11.75,8.75],[36,14.5,10],[42,15.75,10.5],
+  [48,17,11.25],[54,18.5,12],[60,19.75,12.5],[66,21,13.25],[72,22.25,14],
+  [78,23.75,14.5],[84,25,15.25],[90,26.25,16],[96,27.5,16.5],[102,29,17.25],
+  [108,30.25,18],[114,31.5,18.5],[120,33,19.25],[126,34.25,19.75],[132,35.5,20.5],
+  [138,36.75,21.25],[144,38.25,21.75],[150,39.5,22.5],[156,40.75,23.25],
+  [162,42.25,23.75],[168,43.5,24.5],[174,44.75,25.25],[180,46,25.75],
+  [186,47.5,26.5],[192,48.75,27]
+];
+
+// STATE
+var S = {
+  coll:null, finish:null,
+  draw:null, isMotor:false,
+  heading:null, fullness:null,
+  mount:null, brktFinish:null,
+  len:0, dir:'oneway',
+  finial:null, finialFinish:null,
+  swivelSocket:false,
+  remote15:false, gateway:false, wallswitch:false, wallswitchSurf:false,
+  cable15:false, cable4:false, cable10:false, cable20:false,
+  qty:1, del:'ship'
+};
+
+// ═══════════════════════════════════════════════════════════
+// BUILD FINISH GRIDS
+// ═══════════════════════════════════════════════════════════
+function buildFinishGrid(arr, gridId, onclick_fn, itemFn) {
+  var g = document.getElementById(gridId);
+  g.innerHTML = arr.map(function(f) {
+    var isDark = isDarkHex(f.hex);
+    var itemStr = itemFn ? ' · '+itemFn(f) : '';
+    return '<div class="fin-chip" onclick="'+onclick_fn+'(this,\''+f.name+'\',\''+f.hex+'\')">'
+      +'<div class="fin-dot" style="background:'+f.hex+'"></div>'
+      +f.name+itemStr+'</div>';
+  }).join('');
+}
+function isDarkHex(h){var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return(0.299*r+0.587*g+0.114*b)<140;}
+
+buildFinishGrid(DM_FINISHES,'fin-dm-grid','pickDMFin',null);
+buildFinishGrid(WT_FINISHES,'fin-wt-grid','pickWTFin',null);
+buildFinishGrid(WI_FINISHES,'fin-wi-grid','pickWIFin',null);
+buildFinishGrid(STRATTA_FINISHES,'stratta-fin-grid','pickStrattaFin',function(f){return f.item;});
+
+// ═══════════════════════════════════════════════════════════
+// STEP HELPERS
+// ═══════════════════════════════════════════════════════════
+function toggleStep(id){document.getElementById(id).classList.toggle('open');}
+function openStep(id){var e=document.getElementById(id);e.classList.add('active','open');}
+function markDone(id,txt){var e=document.getElementById(id);e.classList.add('done');var v=document.getElementById(id.replace('step','s')+'val');if(v&&txt)v.textContent=txt;}
+function sp(id,val){var e=document.getElementById(id);if(e){e.textContent=val||'—';}}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 1: COLLECTION & FINISH
+// ═══════════════════════════════════════════════════════════
+function pickColl(el,coll){
+  S.coll=coll; S.finish=null;
+  document.querySelectorAll('#step1 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  ['fin-dm','fin-wt','fin-wi'].forEach(function(id){document.getElementById(id).style.display='none';});
+  document.getElementById('fin-'+coll).style.display='block';
+  var collNames={dm:'Designer Metals',wt:'Wood Trends',wi:'Wrought Iron'};
+  sp('sp-coll',collNames[coll]);
+  sp('sp-fin','— select finish below');
+  document.getElementById('s1val').textContent=collNames[coll];
+}
+function pickFinish(name){
+  S.finish=name; sp('sp-fin',name);
+  markDone('step1',S.coll+' · '+name);
+  updateSpec();
+  openStep('step2');
+}
+function pickDMFin(el,name){clearFinChips('fin-dm-grid');el.classList.add('sel');pickFinish(name);}
+function pickWTFin(el,name){clearFinChips('fin-wt-grid');el.classList.add('sel');pickFinish(name);}
+function pickWIFin(el,name){clearFinChips('fin-wi-grid');el.classList.add('sel');pickFinish(name);}
+function clearFinChips(id){document.querySelectorAll('#'+id+' .fin-chip').forEach(function(c){c.classList.remove('sel');});}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 2: DRAW TYPE
+// ═══════════════════════════════════════════════════════════
+function pickDraw(el,key,label){
+  S.draw=key; S.isMotor=(key==='motor');
+  document.querySelectorAll('#step2 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  document.getElementById('motor-detail').style.display=S.isMotor?'block':'none';
+  markDone('step2',label); sp('sp-draw',label);
+  updateSpec();
+  openStep('step3');
+}
+function toggleAddon(el,key){
+  el.classList.toggle('sel'); S[key]=el.classList.contains('sel');
+  var c=el.querySelector('.addon-check');
+  if(c){c.style.background=S[key]?'var(--gold)':'';c.style.borderColor=S[key]?'var(--gold)':'#ccc';c.style.color=S[key]?'#1C1510':'transparent';}
+  updateSpec();
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 3: HEADING
+// ═══════════════════════════════════════════════════════════
+function pickHeading(el,key,label){
+  S.heading=key; S.fullness=null;
+  document.querySelectorAll('#step3 .opt-card').forEach(function(c){if(!c.closest('#ripplefold-opts'))c.classList.remove('sel');});
+  el.classList.add('sel');
+  document.getElementById('ripplefold-opts').style.display=key==='ripplefold'?'block':'none';
+  if(key==='ripplefold'){document.getElementById('s3val').textContent='Ripplefold™ — select fullness';}
+  else{markDone('step3',label);sp('sp-heading',label);updateSpec();openStep('step4');}
+  document.getElementById('sp-fullness-row').style.display=key==='ripplefold'?'flex':'none';
+}
+function pickFullness(el,pct){
+  S.fullness=pct;
+  document.querySelectorAll('#ripplefold-opts .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  var lbl='Ripplefold™ '+pct+'%';
+  markDone('step3',lbl); sp('sp-heading','Ripplefold™'); sp('sp-fullness',pct+'% fullness');
+  updateSpec(); openStep('step4');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 4: MOUNT
+// ═══════════════════════════════════════════════════════════
+function pickMount(el,key,label){
+  S.mount=key;
+  document.querySelectorAll('#step4 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  document.getElementById('wall-bracket-opts').style.display=key==='wall'?'block':'none';
+  document.getElementById('ceiling-mount-note').style.display=key==='ceiling'?'block':'none';
+  document.getElementById('dbl-wall-note').style.display=key==='dbl-wall'?'block':'none';
+  document.getElementById('dbl-combo-note').style.display=key==='dbl-combo'?'block':'none';
+  markDone('step4',label); sp('sp-mount',label);
+  updateSpec(); openStep('step5');
+}
+function pickBrktFinish(el,name){
+  document.querySelectorAll('#wall-bracket-opts .fin-chip').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel'); S.brktFinish=name; sp('sp-brkt',name); updateSpec();
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 5: TRACK LENGTH
+// ═══════════════════════════════════════════════════════════
+function pickDrawDir(el,key,label){
+  S.dir=key;
+  ['draw-oneway','draw-twoway'].forEach(function(id){document.getElementById(id).classList.remove('sel');});
+  el.classList.add('sel'); sp('sp-dir',label); calcTrack();
+}
+
+function calcTrack(){
+  var len=parseFloat(document.getElementById('track-len').value)||0;
+  S.len=len;
+  var msg=document.getElementById('track-msg');
+  var bracketPlan=document.getElementById('bracket-plan');
+  var spliceNote=document.getElementById('splice-note');
+  var stackPanel=document.getElementById('stackback-panel');
+  msg.innerHTML=''; bracketPlan.style.display='none'; spliceNote.style.display='none'; stackPanel.style.display='none';
+  if(!len) return;
+  if(len<18){msg.innerHTML='<div class="msg-err">⚠ Minimum track length is 18″.</div>';return;}
+  if(len>192){msg.innerHTML='<div class="msg-err">⚠ Maximum track length is 16 ft (192″). Kirsch does not offer longer individual tracks.</div>';return;}
+  var lenFt=(len/12).toFixed(2);
+  msg.innerHTML='<div class="msg-ok">✓ '+len+'″ ('+lenFt+' ft) — within specification.</div>';
+  // Splice check
+  if(len>96){
+    spliceNote.innerHTML='⚠ Track over 8 ft ('+len+'″) will be factory-spliced. One splice and one Keystone cover piece are included.';
+    spliceNote.style.display='block';
+    document.getElementById('sp-warn-splice').style.display='block';
+  } else {
+    document.getElementById('sp-warn-splice').style.display='none';
+  }
+  // Bracket spacing plan
+  buildBracketPlan(len);
+  // Stack-back estimate
+  buildStackback(len);
+  sp('sp-len',len+'″ ('+(len/12).toFixed(1)+' ft)');
+  sp('sp-dir',S.dir==='oneway'?'One-Way':'Two-Way (Split)');
+  markDone('step5',len+'″ · '+(S.dir==='oneway'?'One-Way':'Two-Way'));
+  updateSpec();
+  openStep('step6');
+}
+
+function buildBracketPlan(len){
+  var isOneway=(S.dir==='oneway');
+  var plan=[];
+  var cur=0;
+  // First bracket at 0 (left end)
+  plan.push({pos:0,note:'End bracket — left'});
+  if(isOneway){
+    // Stack side (assume left stack for simplicity) — next bracket at max 24" from end
+    if(len>24){plan.push({pos:24,note:'Stack bracket — max 24″ from end'});}
+    var next=isOneway?24:0;
+    // Right end bracket
+    while(next+48 < len){next+=48;plan.push({pos:Math.round(next),note:'At 48″ intervals'});}
+    plan.push({pos:Math.round(len),note:'End bracket — right'});
+  } else {
+    // Two-way: both ends are stack sides
+    var r=Math.round(Math.min(24,len));
+    plan.push({pos:r,note:'Stack bracket — max 24″ from left end'});
+    var p2=Math.round(len-Math.min(24,len));
+    if(p2>r) plan.push({pos:p2,note:'Stack bracket — max 24″ from right end'});
+    // Fill 48" intervals in middle
+    var cur2=r;
+    while(cur2+48<p2){cur2+=48;plan.push({pos:Math.round(cur2),note:'At 48″ intervals'});}
+    plan.push({pos:Math.round(len),note:'End bracket — right'});
+  }
+  // Sort by position and deduplicate
+  plan.sort(function(a,b){return a.pos-b.pos;});
+  var seen={};
+  plan=plan.filter(function(p){if(seen[p.pos])return false;seen[p.pos]=true;return true;});
+  var html='<thead><tr><th>Bracket #</th><th>Position from left</th><th>Note</th></tr></thead><tbody>';
+  plan.forEach(function(p,i){
+    html+='<tr><td>'+(i+1)+'</td><td>'+p.pos+'″'+(p.pos===0?'':' ('+( p.pos/12).toFixed(1)+'ft')+(p.pos>0?')':'')+'</td><td>'+p.note+'</td></tr>';
+  });
+  html+='</tbody>';
+  document.getElementById('brkt-table').innerHTML=html;
+  document.getElementById('bracket-plan').style.display='block';
+}
+
+function buildStackback(len){
+  if(!S.heading) return;
+  var panel=document.getElementById('stackback-panel');
+  var content=document.getElementById('stackback-content');
+  // Find closest stack data
+  var row=PLEATED_STACK.find(function(r){return r[0]>=len;});
+  if(!row) row=PLEATED_STACK[PLEATED_STACK.length-1];
+  if(S.heading==='pleated'){
+    var ow=row[1]; var tw=row[2];
+    content.innerHTML='<div class="wt-result">'
+      +'<div>At 4 carriers/ft, 2½× fullness:</div>'
+      +'<div style="display:flex;gap:20px;margin-top:6px">'
+      +'<div><div style="font-size:16px;font-weight:600;color:var(--espresso)">'+(ow||'—')+'″</div><div style="font-size:11px;color:#666">One-way stack</div></div>'
+      +(tw?'<div><div style="font-size:16px;font-weight:600;color:var(--espresso)">'+tw+'″</div><div style="font-size:11px;color:#666">Per side (two-way)</div></div>':'')
+      +'</div></div>';
+    panel.style.display='block';
+  } else if(S.heading==='ripplefold'&&S.fullness){
+    // Ripplefold stackback is ~1/3 of track for 100%
+    var stackFactor={120:0.22,100:0.19,80:0.16,60:0.13}[S.fullness]||0.19;
+    var rfStack=Math.round(len*stackFactor*10)/10;
+    content.innerHTML='<div class="wt-result">'
+      +'<div>Ripplefold™ '+S.fullness+'% fullness (approx):</div>'
+      +'<div style="display:flex;gap:20px;margin-top:6px">'
+      +'<div><div style="font-size:16px;font-weight:600;color:var(--espresso)">'+rfStack+'″</div><div style="font-size:11px;color:#666">One-way stack (est.)</div></div>'
+      +'<div><div style="font-size:16px;font-weight:600;color:var(--espresso)">'+(Math.round(rfStack/2*10)/10)+'″</div><div style="font-size:11px;color:#666">Per side (two-way, est.)</div></div>'
+      +'</div><div style="font-size:10px;color:#888;margin-top:4px">For exact Ripplefold™ stack data, see Kirsch Ripplefold Fabrication Manual (snap tape length varies by vane count and fullness).</div></div>';
+    panel.style.display='block';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 6: FINIAL
+// ═══════════════════════════════════════════════════════════
+function pickFinial(el,key,label){
+  S.finial=key;
+  document.querySelectorAll('#step6 > .step-body > .opt-grid .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  document.getElementById('stratta-finishes').style.display=key==='stratta'?'block':'none';
+  if(key==='none'){markDone('step6','No finial / endcap only');sp('sp-finial','Endcap only');updateSpec();openStep('step7');}
+  else{document.getElementById('s6val').textContent='Stratta — select finish';}
+}
+function pickStrattaFin(el,name){
+  document.querySelectorAll('#stratta-fin-grid .fin-chip').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel'); S.finialFinish=name;
+  markDone('step6','Stratta · '+name); sp('sp-finial','Stratta · '+name);
+  updateSpec(); openStep('step7');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 7: DRAPERY WEIGHT
+// ═══════════════════════════════════════════════════════════
+document.getElementById('wt-ozPerYd').addEventListener('change',function(){
+  document.getElementById('wt-custom-row').style.display=this.value==='custom'?'block':'none';
+  calcWeight();
+});
+function calcWeight(){
+  var yards=parseFloat(document.getElementById('wt-yards').value)||0;
+  var width=parseFloat(document.getElementById('wt-width').value)||0;
+  var ozSel=document.getElementById('wt-ozPerYd').value;
+  var oz=ozSel==='custom'?(parseFloat(document.getElementById('wt-custom-oz').value)||0):parseFloat(ozSel)||0;
+  var liningYards=parseFloat(document.getElementById('wt-lining-yards').value)||0;
+  if(!yards||!width||!oz){document.getElementById('wt-result').style.display='none';return;}
+  var sqYds=(yards*36*width)/1296;
+  var lbs=(sqYds*oz)/16;
+  var liningLbs=0;
+  if(liningYards>0){var linSqYds=(liningYards*36*width)/1296;liningLbs=(linSqYds*3)/16;}
+  var total=Math.round((lbs+liningLbs)*10)/10;
+  var perFt=S.len>0?Math.round((total/(S.len/12))*10)/10:null;
+  document.getElementById('wt-result').style.display='block';
+  document.getElementById('wt-result-lbs').textContent=total+' lbs'+(liningLbs>0?' (fabric '+Math.round(lbs*10)/10+' + lining '+Math.round(liningLbs*10)/10+')'  :'');
+  var over=total>64||(perFt&&perFt>4);
+  document.getElementById('wt-result-status').innerHTML=over
+    ?'<div class="msg-err" style="margin-top:4px">⚠ Exceeds maximum: 64 lbs total or 4 lbs/ft. Reduce fabric or use multiple rods.</div>'
+    :'<div class="msg-ok" style="margin-top:4px">✓ Within rod capacity (64 lbs max / 4 lbs per ft)</div>';
+  document.getElementById('sp-warn-wt').style.display=over?'block':'none';
+  document.getElementById('wt-formula').textContent='SqYds='+sqYds.toFixed(1)+' · '+oz+'oz/sqyd · '+lbs.toFixed(1)+' lbs fabric'+(liningYards>0?' + '+liningLbs.toFixed(1)+' lbs lining':'')+( perFt?' · '+perFt+' lbs/ft':'');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 8: DELIVERY
+// ═══════════════════════════════════════════════════════════
+function pickDel(el,key){
+  S.del=key;
+  document.querySelectorAll('#step8 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  markDone('step8',(parseInt(document.getElementById('qty').value)||1)+' rod(s) · '+(key==='ship'?'Ship':'Pickup'));
+  updateSpec();
+}
+
+// ═══════════════════════════════════════════════════════════
+// SPEC UPDATE
+// ═══════════════════════════════════════════════════════════
+function updateSpec(){
+  var qty=parseInt(document.getElementById('qty').value)||1;
+  sp('sp-qty',qty+' rod'+(qty>1?'s':''));
+  document.getElementById('s8val').textContent=qty+' rod'+(qty>1?'s':'')+' · '+(S.del==='ship'?'Ship':'Pickup');
+}
+
+// ═══════════════════════════════════════════════════════════
+// SUBMIT
+// ═══════════════════════════════════════════════════════════
+function submitQuote(){
+  var name=document.getElementById('q-name').value.trim();
+  var phone=document.getElementById('q-phone').value.trim();
+  var err=document.getElementById('q-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+  var qty=parseInt(document.getElementById('qty').value)||1;
+  var motorAccs=[];
+  if(S.remote15) motorAccs.push('15-ch RF Remote ($47.85)');
+  if(S.gateway) motorAccs.push('AMP Gateway USB Bridge ($141.33)');
+  if(S.wallswitch) motorAccs.push('Wall Switch recessed ($38.59)');
+  if(S.wallswitchSurf) motorAccs.push('Wall Switch Surface ($61.75)');
+  if(S.cable15) motorAccs.push('15″ Cable ($6.57)');
+  if(S.cable4) motorAccs.push("4′ Cable ($7.40)");
+  if(S.cable10) motorAccs.push("10′ Cable ($11.01)");
+  if(S.cable20) motorAccs.push("20′ Cable ($15.93)");
+  var lines=[
+    'KIRSCH 2″ ESTATE™ TRAVERSE ROD — QUOTE REQUEST','',
+    'PRODUCT:',
+    'Rod: Kirsch 2″ Estate™ Traverse Rod',
+    'Track model: 83601 / 93601',
+    'Finish collection: '+(S.coll==='dm'?'Designer Metals':S.coll==='wt'?'Wood Trends':'Wrought Iron')||(S.coll||'—'),
+    'Finish: '+(S.finish||'—'),
+    '',
+    'CONFIGURATION:',
+    'Draw type: '+(S.draw==='hand'?'Hand Draw':S.draw==='cord'?'Cord Draw':S.draw==='baton'?'Baton Draw':S.draw==='duplex'?'Duplex Baton (split — one baton moves both panels)':S.draw==='motor'?'AMP™ Motorized':S.draw||'—'),
+    (S.isMotor?'AMP™ motor upcharge: +$621/rod (charger #62201300 included)':''),
+    (S.isMotor&&motorAccs.length?'AMP™ accessories: '+motorAccs.join(', '):''),
+    'Drapery heading: '+(S.heading==='pleated'?'Pleated':S.heading==='ripplefold'?('Ripplefold™ '+S.fullness+'% fullness'):S.heading||'—'),
+    'Mount type: '+(S.mount==='wall'?'Wall Mount (all components included)':S.mount==='ceiling'?'Ceiling Mount (94130xxx included; order #1796061 separately)':S.mount==='dbl-wall'?'Double Wall Mount (94125xxx + #1796061 + 94130xxx)':S.mount==='dbl-combo'?'2″ Front + 1⅜″ Back Double (94130xxx + #71134110)':S.mount||'—'),
+    (S.brktFinish?'Wall bracket finish: '+S.brktFinish:''),
+    'Track length: '+(S.len?S.len+'″ ('+( S.len/12).toFixed(1)+' ft)':'—'),
+    'Draw direction: '+(S.dir==='oneway'?'One-Way':'Two-Way (Split Draw)'),
+    (S.len>96?'NOTE: Track over 8 ft — will be factory-spliced. One Keystone provided.':''),
+    'Finial: '+(S.finial==='stratta'?('Stratta · '+(S.finialFinish||'finish TBD')):S.finial==='none'?'Endcap only':'—'),
+    (S.swivelSocket?'Swivel Socket: Yes (+$23.13/piece)':''),
+    '',
+    'QUANTITY & DELIVERY:',
+    'Qty: '+qty+' rod'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley, PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('q-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,'Phone: '+phone,
+    'Email: '+(document.getElementById('q-email').value.trim()||'—')
+  ].filter(function(l){return l!==null&&l!==undefined;}).join('\n');
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Kirsch 2″ Estate Traverse Rod — '+name)+'&body='+encodeURIComponent(lines);
+  document.getElementById('success-box').style.display='block';
+}
+
+// INIT — pre-select one-way draw direction
+document.getElementById('draw-oneway').classList.add('sel');
+</script>
+</body>
+</html>

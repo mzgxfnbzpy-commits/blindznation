@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Finial Company drapery hardware configurator — Modern Metal, Steel, Wood &amp; Resin, Traverse Systems. All collections, finishes, and restrictions. Custom quote. Philadelphia area.">
+<title>The Finial Company Hardware — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:linear-gradient(to right,rgba(28,21,16,.94) 35%,rgba(28,21,16,.55) 65%,rgba(28,21,16,.2) 100%),url('../images/thumbnails/specialty-soft-treatments.JPG') right center/cover no-repeat;padding:48px 28px 44px;min-height:240px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+.config-layout{display:grid;grid-template-columns:1fr 310px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:900px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+/* Steps */
+.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden}
+.step-block.active{box-shadow:0 2px 18px rgba(200,151,63,.1);border-color:rgba(200,151,63,.3)}
+.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
+.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
+.step-head-val{font-size:12px;color:var(--gold);font-weight:500;max-width:200px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step-body{padding:4px 20px 20px;display:none}
+.step-block.active .step-body,.step-block.open .step-body{display:block}
+/* Opt cards */
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;text-align:center;transition:all .15s}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.opt-card.sel .opt-card-title{color:#7A4F00}
+.opt-card-desc{font-size:11px;color:#666;line-height:1.45}
+.opt-card.blocked{opacity:.35;pointer-events:none;cursor:default}
+/* Collection cards */
+.coll-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:10px}
+.coll-card{border:1.5px solid #e8e8e4;border-radius:12px;padding:16px 14px;cursor:pointer;transition:all .15s;background:#fff}
+.coll-card:hover{border-color:var(--gold)}
+.coll-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.coll-card-title{font-size:13px;font-weight:600;color:#111;margin-bottom:4px}
+.coll-card-sub{font-size:11px;color:#777;line-height:1.5}
+.coll-badge{display:inline-block;font-size:9px;padding:1px 6px;border-radius:4px;background:#f0ece4;color:#555;font-weight:600;margin-bottom:6px}
+/* Finish chips */
+.finish-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.fin-chip{display:flex;align-items:center;gap:7px;padding:7px 12px;border:1.5px solid #e8e8e4;border-radius:20px;cursor:pointer;font-size:12px;font-weight:500;transition:all .15s;background:#fff;color:#333;white-space:nowrap}
+.fin-chip:hover{border-color:var(--gold)}
+.fin-chip.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06);color:#7A4F00}
+.fin-chip.blocked{opacity:.35;pointer-events:none}
+.fin-dot{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.1);flex-shrink:0}
+/* Finial selector */
+.finial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:8px;max-height:300px;overflow-y:auto}
+.finial-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:10px 12px;cursor:pointer;transition:all .15s;background:#fff}
+.finial-card:hover{border-color:var(--gold)}
+.finial-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.finial-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
+.finial-sku{font-size:9px;color:#aaa;letter-spacing:.4px;font-weight:600}
+.finial-dim{font-size:10px;color:#888;margin-top:2px}
+/* Standard finish search */
+.sf-search{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);box-sizing:border-box;margin-bottom:8px}
+.sf-list{max-height:200px;overflow-y:auto;border:1px solid #eee;border-radius:8px}
+.sf-item{padding:8px 12px;cursor:pointer;font-size:12px;transition:background .1s;display:flex;align-items:center;gap:8px;border-bottom:.5px solid #f5f5f5}
+.sf-item:last-child{border-bottom:none}
+.sf-item:hover{background:#FBF7F0}
+.sf-item.sel{background:rgba(200,151,63,.08);font-weight:500}
+/* Dims */
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
+.dim-input{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:var(--font);box-sizing:border-box}
+/* Messages */
+.msg-ok{background:#DCFCE7;border:1px solid #86EFAC;border-radius:8px;padding:9px 13px;font-size:12px;color:#14532d;margin-top:8px;line-height:1.5}
+.msg-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-top:8px;line-height:1.5}
+.msg-warn{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.55}
+.msg-info{background:rgba(200,151,63,.08);border:1px solid rgba(200,151,63,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#7A4F00;margin-top:8px;line-height:1.55}
+.sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 6px}
+.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
+/* Addon rows */
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
+.addon-row:hover{border-color:var(--gold)}
+.addon-row.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.addon-left{display:flex;align-items:center;gap:10px;flex:1}
+.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
+.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#1C1510}
+.addon-name{font-size:13px;font-weight:500;color:#111}
+.addon-sub{font-size:11px;color:#666;margin-top:1px}
+/* Spec panel */
+.spec-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
+.sp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+.sp-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px;gap:8px;align-items:baseline}
+.sp-label{color:var(--text-muted);flex-shrink:0;line-height:1.4}
+.sp-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word;max-width:170px;font-size:11px}
+.sp-div{border:none;border-top:.5px solid var(--border-dark);margin:10px 0}
+.sp-warn{font-size:10px;color:#FFC107;margin-top:5px;line-height:1.5}
+.sp-note{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
+/* Form */
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);box-sizing:border-box}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:22px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center;margin-top:12px}
+/* Warning banner */
+.restriction-banner{background:#1a1208;border:1px solid rgba(200,151,63,.25);border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:12px;color:var(--text-dark);line-height:1.7}
+.restriction-banner strong{color:var(--gold)}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="hardware.html">Hardware</a> &rsaquo; The Finial Company</div>
+  <h1>The Finial Company</h1>
+  <p class="sub">Custom drapery hardware — Modern Metal, 1⅜″ Metal, Steel, Wood &amp; Resin, Outdoor, and Traverse Systems. Hand-painted to order in 50+ finishes. Every item custom-manufactured.</p>
+  <div class="hero-pills">
+    <span class="hero-pill hero-pill-gold">50+ standard finishes</span>
+    <span class="hero-pill">Modern · Transitional · Traditional</span>
+    <span class="hero-pill">Traverse systems</span>
+    <span class="hero-pill">Custom quotes</span>
+  </div>
+</div>
+
+<div class="config-layout">
+<div><!-- left col -->
+
+<div class="restriction-banner">
+  <strong>All items are custom-manufactured to order.</strong> No changes or cancellations after 24 hours of order confirmation. Pricing is from The Finial Company Retail Price List — not shown publicly. Lead time: Modern Metal &amp; Metal Collection ship within 48 hours (non-painted options); all painted products, custom products, and traverse systems ship within <strong>10–15 business days</strong>. Rush orders (+30%) available in 5 business days — <strong>not available</strong> for arch rods, bay windows, custom brackets, or mitered returns. Poles/tracks over 96″ must ship common carrier.
+</div>
+
+<!-- STEP 1: COLLECTION CATEGORY -->
+<div class="step-block active" id="step1">
+  <div class="step-head" onclick="toggleStep('step1')">
+    <div class="step-num">1</div>
+    <div class="step-head-title">Collection category</div>
+    <div class="step-head-val" id="s1val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="coll-grid">
+      <div class="coll-card" onclick="pickColl('modern-metal',this)">
+        <div class="coll-badge">1⅛″ · 1⅜″</div>
+        <div class="coll-card-title">Modern Metal</div>
+        <div class="coll-card-sub">14 finials · 3 cuff/collar options · 5 contemporary finishes + acrylic · 400+ design combos</div>
+      </div>
+      <div class="coll-card" onclick="pickColl('metal-138',this)">
+        <div class="coll-badge">1⅜″ only</div>
+        <div class="coll-card-title">1⅜″ Metal</div>
+        <div class="coll-card-sub">9 finials · 8 plated finishes + all 50 standard hand-painted finishes</div>
+      </div>
+      <div class="coll-card" onclick="pickColl('steel',this)">
+        <div class="coll-badge">½″ – 1¾″</div>
+        <div class="coll-card-title">Steel</div>
+        <div class="coll-card-sub">5 subcollections · all 50 finishes · round, square, hammered, twisted profiles · bypass available</div>
+      </div>
+      <div class="coll-card" onclick="pickColl('wood',this)">
+        <div class="coll-badge">1⅜″ · 2″–2¼″ · 3″</div>
+        <div class="coll-card-title">Wood &amp; Resin</div>
+        <div class="coll-card-sub">3 diameters · smooth, grooved, fluted, reeded profiles · max 192″ (1⅜″: max 144″)</div>
+      </div>
+      <div class="coll-card" onclick="pickColl('outdoor',this)">
+        <div class="coll-badge">5-year warranty</div>
+        <div class="coll-card-title">Outdoor Hardware</div>
+        <div class="coll-card-sub">5 weather-resistant finishes · 5-year rust/fade warranty · ¾″–1¾″ poles</div>
+      </div>
+      <div class="coll-card" onclick="pickColl('traverse',this)">
+        <div class="coll-badge">Light · Heavy · Motorized</div>
+        <div class="coll-card-title">Traverse Systems</div>
+        <div class="coll-card-sub">Corded/baton or motorized (BTX/Somfy) · pinch pleat or Ripplefold™ · wood fascia optional</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: SUB-SELECTION (diameter/profile/system) — filled by JS -->
+<div class="step-block" id="step2" style="display:none">
+  <div class="step-head" onclick="toggleStep('step2')">
+    <div class="step-num">2</div>
+    <div class="step-head-title" id="s2title">Diameter / system</div>
+    <div class="step-head-val" id="s2val">—</div>
+  </div>
+  <div class="step-body" id="s2body"></div>
+</div>
+
+<!-- STEP 3: FINISH -->
+<div class="step-block" id="step3" style="display:none">
+  <div class="step-head" onclick="toggleStep('step3')">
+    <div class="step-num">3</div>
+    <div class="step-head-title">Finish</div>
+    <div class="step-head-val" id="s3val">—</div>
+  </div>
+  <div class="step-body" id="s3body"></div>
+</div>
+
+<!-- STEP 4: FINIALS (left + right) -->
+<div class="step-block" id="step4" style="display:none">
+  <div class="step-head" onclick="toggleStep('step4')">
+    <div class="step-num">4</div>
+    <div class="step-head-title">Finials</div>
+    <div class="step-head-val" id="s4val">—</div>
+  </div>
+  <div class="step-body" id="s4body"></div>
+</div>
+
+<!-- STEP 5: CUFF / COLLAR (Modern Metal only) -->
+<div class="step-block" id="step5" style="display:none">
+  <div class="step-head" onclick="toggleStep('step5')">
+    <div class="step-num">5</div>
+    <div class="step-head-title">Cuff or collar</div>
+    <div class="step-head-val" id="s5val">—</div>
+  </div>
+  <div class="step-body" id="s5body"></div>
+</div>
+
+<!-- STEP 6: POLE LENGTH -->
+<div class="step-block" id="step6" style="display:none">
+  <div class="step-head" onclick="toggleStep('step6')">
+    <div class="step-num">6</div>
+    <div class="step-head-title">Pole length</div>
+    <div class="step-head-val" id="s6val">—</div>
+  </div>
+  <div class="step-body" id="s6body"></div>
+</div>
+
+<!-- STEP 7: BRACKETS -->
+<div class="step-block" id="step7" style="display:none">
+  <div class="step-head" onclick="toggleStep('step7')">
+    <div class="step-num">7</div>
+    <div class="step-head-title">Brackets &amp; mount</div>
+    <div class="step-head-val" id="s7val">—</div>
+  </div>
+  <div class="step-body" id="s7body"></div>
+</div>
+
+<!-- STEP 8: RINGS -->
+<div class="step-block" id="step8" style="display:none">
+  <div class="step-head" onclick="toggleStep('step8')">
+    <div class="step-num">8</div>
+    <div class="step-head-title">Rings</div>
+    <div class="step-head-val" id="s8val">—</div>
+  </div>
+  <div class="step-body" id="s8body"></div>
+</div>
+
+<!-- STEP 9: ACCESSORIES (batons, tiebacks, rosettes, extras) -->
+<div class="step-block" id="step9" style="display:none">
+  <div class="step-head" onclick="toggleStep('step9')">
+    <div class="step-num">9</div>
+    <div class="step-head-title">Accessories &amp; special options</div>
+    <div class="step-head-val" id="s9val">Optional</div>
+  </div>
+  <div class="step-body" id="s9body"></div>
+</div>
+
+<!-- STEP 10: TRAVERSE-SPECIFIC DETAILS (shown only for traverse) -->
+<div class="step-block" id="step10" style="display:none">
+  <div class="step-head" onclick="toggleStep('step10')">
+    <div class="step-num">10</div>
+    <div class="step-head-title">Traverse specifications</div>
+    <div class="step-head-val" id="s10val">—</div>
+  </div>
+  <div class="step-body" id="s10body"></div>
+</div>
+
+<!-- STEP 11: QUANTITY & DELIVERY -->
+<div class="step-block" id="step11" style="display:none">
+  <div class="step-head" onclick="toggleStep('step11')">
+    <div class="step-num" id="qtyStepNum">11</div>
+    <div class="step-head-title">Quantity &amp; delivery</div>
+    <div class="step-head-val" id="s11val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row">
+      <div class="form-group"><label>Number of rods / systems</label><input type="number" id="qty" value="1" min="1" max="99" oninput="updateSpec()"></div>
+      <div class="form-group"><label>Room / window label</label><input type="text" id="room-label" placeholder="e.g. Living room bay"></div>
+    </div>
+    <div style="margin-top:8px">
+      <div class="dim-label" style="margin-bottom:6px">Rush order?</div>
+      <div class="opt-grid" style="grid-template-columns:1fr 1fr 1fr">
+        <div class="opt-card sel" id="rush-no" onclick="pickRush(this,'no','Standard')"><div class="opt-card-title" style="font-size:12px">Standard</div><div class="opt-card-desc">10–15 bus. days</div></div>
+        <div class="opt-card" id="rush-yes" onclick="pickRush(this,'yes','Rush +30%')"><div class="opt-card-title" style="font-size:12px">Rush +30%</div><div class="opt-card-desc">5 bus. days</div></div>
+      </div>
+      <div id="rush-warn" class="msg-warn" style="display:none">⚠ Rush not available for arch rods, bay windows, custom brackets, or mitered returns.</div>
+    </div>
+    <div style="margin-top:12px">
+      <div class="dim-label" style="margin-bottom:6px">Delivery</div>
+      <div class="opt-grid" style="grid-template-columns:1fr 1fr">
+        <div class="opt-card sel" id="del-ship" onclick="pickDel(this,'ship')"><div class="opt-card-title" style="font-size:12px">📦 Ship to me</div><div class="opt-card-desc">UPS/FedEx · poles over 96″ = common carrier</div></div>
+        <div class="opt-card" id="del-pickup" onclick="pickDel(this,'pickup')"><div class="opt-card-title" style="font-size:12px">🏠 Pick up</div><div class="opt-card-desc">Huntingdon Valley, PA</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 12: CONTACT & SUBMIT -->
+<div class="step-block" id="step12" style="display:none">
+  <div class="step-head" onclick="toggleStep('step12')">
+    <div class="step-num" id="contactStepNum">12</div>
+    <div class="step-head-title">Your info &amp; submit</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row">
+      <div class="form-group"><label>Name *</label><input type="text" id="q-name" placeholder="Jane Smith"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="q-phone" placeholder="(215) 555-0100"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="q-email" placeholder="jane@example.com"></div>
+    <div class="form-group"><label>Notes / questions</label><textarea id="q-notes" placeholder="Additional specifications, custom finish requests, arch template details, special requirements..."></textarea></div>
+    <div id="q-err" class="msg-err" style="display:none">Please enter your name and phone number.</div>
+    <button class="btn-submit-cta" onclick="submitQuote()" style="font-family:var(--font)">
+      Get Custom Quote — The Finial Company →
+      <span class="cta-sub">Hand-painted to order · We'll follow up within a few hours · (609) 742-1720</span>
+    </button>
+    <div class="success-box" id="success-box">
+      <strong>Quote request sent!</strong><br>We'll follow up within a few hours. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- /left col -->
+
+<!-- RIGHT: Spec panel -->
+<div>
+  <div class="spec-panel">
+    <div class="sp-title">Order Specification</div>
+    <div class="sp-row"><span class="sp-label">Collection</span><span class="sp-val" id="sp-coll">—</span></div>
+    <div class="sp-row" id="sp-sub-row"><span class="sp-label">Diameter/Profile</span><span class="sp-val" id="sp-sub">—</span></div>
+    <div class="sp-row"><span class="sp-label">Finish</span><span class="sp-val" id="sp-finish">—</span></div>
+    <div class="sp-row"><span class="sp-label">Finial (L)</span><span class="sp-val" id="sp-fin-l">—</span></div>
+    <div class="sp-row"><span class="sp-label">Finial (R)</span><span class="sp-val" id="sp-fin-r">—</span></div>
+    <div class="sp-row" id="sp-cuff-row"><span class="sp-label">Cuff/Collar</span><span class="sp-val" id="sp-cuff">—</span></div>
+    <div class="sp-row"><span class="sp-label">Pole length</span><span class="sp-val" id="sp-len">—</span></div>
+    <div class="sp-row"><span class="sp-label">Brackets</span><span class="sp-val" id="sp-brkt">—</span></div>
+    <div class="sp-row"><span class="sp-label">Rings</span><span class="sp-val" id="sp-rings">—</span></div>
+    <div class="sp-row" id="sp-trav-row" style="display:none"><span class="sp-label">Traverse</span><span class="sp-val" id="sp-trav">—</span></div>
+    <div class="sp-row"><span class="sp-label">Qty · Rush</span><span class="sp-val" id="sp-qty">—</span></div>
+    <div class="sp-div"></div>
+    <div class="sp-warn" id="sp-warn-cs" style="display:none">⚠ Pole over 96″ — common carrier shipping required.</div>
+    <div class="sp-warn" id="sp-warn-bp" style="display:none">⚠ Bypass brackets: install standard brackets at both ends.</div>
+    <div class="sp-warn" id="sp-warn-ret" style="display:none">⚠ Return/drop over 8″ — additional fees + support arm required.</div>
+    <div class="sp-warn" id="sp-warn-acr" style="display:none">⚠ Clear acrylic cannot be spliced.</div>
+    <div class="sp-note">All items are custom-manufactured. Pricing from The Finial Company Retail Price List — not displayed publicly. No cancellations after 24 hours of order confirmation.</div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<div class="cta-banner">
+  <div><h2>Need help specifying Finial Company hardware?</h2><p>Call Justin — we work with TFC regularly and can walk you through finish selection, sizing, and custom options.</p></div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 · 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Hardware');
+renderFooter(false);
+
+// ═══════════════════════════════════════════════════════════
+// DATA — The Finial Company September 2018 Catalog
+// ═══════════════════════════════════════════════════════════
+
+var STANDARD_FINISHES = [
+  {code:'610',name:'Cobalt Bronze',hex:'#5A4030'},
+  {code:'690',name:'Champagne',hex:'#D8C890'},
+  {code:'660',name:'Antique White',hex:'#F0EAD0'},
+  {code:'630',name:'Ash Gray',hex:'#A8A09A'},
+  {code:'680',name:'Aged Gold',hex:'#B8922A'},
+  {code:'640',name:'Oil Rubbed Bronze',hex:'#3A2418'},
+  {code:'620',name:'Weathered Iron',hex:'#706858'},
+  {code:'670',name:'Espresso',hex:'#2C1808'},
+  {code:'650',name:'Hickory',hex:'#7A5830'},
+  {code:'600',name:'Gilded Red',hex:'#7A3018'},
+  {code:'105',name:'Bronze',hex:'#7A5030'},
+  {code:'129B',name:'Antique Steel w/Black Highlights',hex:'#606878'},
+  {code:'106',name:'Bronze with Gold',hex:'#8A6030'},
+  {code:'129',name:'Antique Steel',hex:'#7878A0'},
+  {code:'107',name:'Bronze with Gold and Gray',hex:'#706848'},
+  {code:'109',name:'Flat Black',hex:'#1A1A1A'},
+  {code:'112',name:'Silver with Gold',hex:'#C8C0A0'},
+  {code:'110',name:'Flat Black with Gold',hex:'#281808'},
+  {code:'117',name:'Walnut Gold',hex:'#8A6028'},
+  {code:'126',name:'Dark Walnut Gloss with Gold',hex:'#382008'},
+  {code:'700',name:'Graphite',hex:'#484850'},
+  {code:'740',name:'Smoky Mocha',hex:'#604840'},
+  {code:'710',name:'Tarnished Silver',hex:'#909898'},
+  {code:'790',name:'Vintage Bronze',hex:'#806040'},
+  {code:'720',name:'Tawny Oak',hex:'#A07030'},
+  {code:'780',name:'Hazelwood',hex:'#907050'},
+  {code:'730',name:'Rose Gold',hex:'#C08870'},
+  {code:'760',name:'Rustic Iron',hex:'#504848'},
+  {code:'750',name:'Polished Gold',hex:'#D4A820'},
+  {code:'770',name:'Bronze Patina',hex:'#507058'},
+  {code:'150',name:'Gray with Gold',hex:'#888878'},
+  {code:'155',name:'Antique',hex:'#A89870'},
+  {code:'270',name:'Mahogany Rust',hex:'#6A2818'},
+  {code:'320',name:'Pewter',hex:'#909090'},
+  {code:'350G',name:'Statuary Bronze with Gold',hex:'#786040'},
+  {code:'330',name:'Bronze with Black',hex:'#402818'},
+  {code:'250B',name:'Platinum w/Black Highlights',hex:'#9898A8'},
+  {code:'200',name:'Walnut Gold with Gray Accents',hex:'#786040'},
+  {code:'240',name:'Walnut',hex:'#4A2C10'},
+  {code:'250',name:'Platinum',hex:'#B0B0C0'},
+  {code:'800',name:'Charred Toasted Oak',hex:'#2C2010'},
+  {code:'820',name:'Sea Salt Black',hex:'#283038'},
+  {code:'840',name:'White with Gold Accents',hex:'#F0E8C8'},
+  {code:'860',name:'Grayed Brass',hex:'#A09870'},
+  {code:'880',name:'Parchment',hex:'#E8D8A0'},
+  {code:'810',name:'Bronzed Ore',hex:'#806848'},
+  {code:'830',name:'Driftwood',hex:'#A89880'},
+  {code:'850',name:'Soft Brass',hex:'#C0A860'},
+  {code:'870',name:'Chalet Gray',hex:'#8090A0'},
+  {code:'890',name:'Warm Walnut',hex:'#7A5838'}
+];
+
+// Modern Metal finials — all work with both 1-1/8" and 1-3/8"
+var MM_FINIALS = [
+  {name:'Bryant',sku:'TFCM600',dim:'2⅞″L × 2¾″W',needsCuff:true,hasAcrylic:true,acrylicSku:'TFCM600/CL'},
+  {name:'Declan',sku:'TFCM601',dim:'2¼″L × 2¼″W',needsCuff:true,hasAcrylic:true,acrylicSku:'TFCM601/CL'},
+  {name:'Upton',sku:'TFCM602',dim:'4″L × 1⅞″W',needsCuff:true,hasAcrylic:true,acrylicSku:'TFCM602/CL'},
+  {name:'Delano',sku:'TFCM603',dim:'4″L × 1⅞″W',needsCuff:true,hasAcrylic:false},
+  {name:'Mercer',sku:'TFCM604',dim:'4″L × 2⅛″W',needsCuff:true,hasAcrylic:false},
+  {name:'Luca',sku:'TFCM605',dim:'2″L × 3¾″W',needsCuff:true,hasAcrylic:false},
+  {name:'Stiles',sku:'TFCM606',dim:'2⅜″L × 3″W',needsCuff:true,hasAcrylic:false},
+  {name:'Anson',sku:'TFCM691',dim:'⅞″L × 3″W',needsCuff:true,hasAcrylic:true,acrylicSku:'TFCM691/CL'},
+  {name:'Eason',sku:'TFCM692',dim:'1″L × 2⅞″W',needsCuff:true,hasAcrylic:true,acrylicSku:'TFCM692/CL'},
+  {name:'Bex End Cap 1⅛″',sku:'TFCM118690',dim:'¾″L × 1⅜″W',needsCuff:false,hasAcrylic:false,diamLock:'1-1/8'},
+  {name:'Bex End Cap 1⅜″',sku:'TFCM138690',dim:'1″L × 1⅝″W',needsCuff:false,hasAcrylic:false,diamLock:'1-3/8'}
+];
+
+// 1-3/8" Metal collection finials
+var METAL138_FINIALS = [
+  {name:'Turner',sku:'TFCM138100',dim:'5″L × 3″W'},
+  {name:'Britton',sku:'TFCM138101',dim:'3¼″L × 3⅞″W'},
+  {name:'Ashby',sku:'TFCM138102',dim:'3⅞″L × 3⅜″W'},
+  {name:'Abington',sku:'TFCM138103',dim:'4⅜″L × 3¼″W'},
+  {name:'Harlow',sku:'TFCM138104',dim:'4⅜″L × 3″W'},
+  {name:'Weston',sku:'TFCM138105',dim:'4¼″L × 3⅛″W'},
+  {name:'Brentford',sku:'TFCM138106',dim:'3⅝″L × 3¼″W'},
+  {name:'Rothwell',sku:'TFCM138107',dim:'4⅛″L × 3″W'},
+  {name:'Wells End Cap',sku:'TFCM138190',dim:'1¼″L × 2¼″W'}
+];
+
+// Steel poles by subcollection
+var STEEL_POLES = {
+  'half': [
+    {profile:'50SRB',desc:'½″ round solid',maxIn:240,rings:['SR05']}
+  ],
+  'three-quarter': [
+    {profile:'75RD',desc:'¾″ round solid',maxIn:220,rings:['SR1','CR-SR75'],mitered:true,bent:true},
+    {profile:'75HSRB',desc:'¾″ hammered round solid',maxIn:115,rings:['SR1'],mitered:false,bent:false,noBypass:true},
+    {profile:'SRH75',desc:'¾″ square hammered solid',maxIn:228,rings:['SQRG1'],noBypass:true}
+  ],
+  'one': [
+    {profile:'RR100',desc:'1″ round tube',maxIn:192,rings:['SR3','FSR1','CR-SR3','TFCS100SCRI']},
+    {profile:'SRT1',desc:'1″ solid rope twist',maxIn:228,rings:['SR3 (min 1½″ ID)'],minRingID:1.5,noBypass:true},
+    {profile:'ST2',desc:'1″ single twist solid',maxIn:228,rings:['SR3 (min 1½″ ID)'],minRingID:1.5,noBypass:true},
+    {profile:'ST3',desc:'1″ double twist solid',maxIn:228,rings:['SR3 (min 1½″ ID)'],minRingID:1.5,noBypass:true},
+    {profile:'SHT1',desc:'1″ square hammered tube',maxIn:228,rings:['SQRG1'],squareBrackets:true},
+    {profile:'1SQ',desc:'1″ smooth square tube',maxIn:288,rings:['SQRG1'],squareBrackets:true,noBypass:true}
+  ],
+  'one-quarter': [
+    {profile:'RR125',desc:'1¼″ round tube',maxIn:192,rings:['SR3','FSR1','CR-SR7','TFCS114MCRI']},
+    {profile:'RD125',desc:'1¹¹⁄₁₆″ round tube heavy wall',maxIn:252,rings:['SR3','FSR1'],mitered:true,bent:true},
+    {profile:'SRT2',desc:'1¼″ solid rope',maxIn:228,rings:['SR7 (min 1¾″ ID)'],minRingID:1.75,noBypass:true}
+  ],
+  'one-half-three-quarter': [
+    {profile:'RR175',desc:'1¾″ round tube',maxIn:192,rings:['SR7','FSR2','CR-SR12']},
+    {profile:'RD175',desc:'1⅝″ round tube heavy wall',maxIn:288,rings:['SR7','FSR2'],mitered:true,bent:true},
+    {profile:'TRT',desc:'1½″ twisted tube',maxIn:216,rings:['SR7 (min 2″ ID)'],minRingID:2.0,noBypass:true}
+  ]
+};
+
+// Wood poles by subcollection
+var WOOD_POLES = {
+  'wood-138': {
+    profiles: [
+      {profile:'WNF38',desc:'1⅜″ fluted wood'},
+      {profile:'WG38',desc:'1⅜″ grooved wood'},
+      {profile:'WR38',desc:'1⅜″ reeded wood'},
+      {profile:'WS38',desc:'1⅜″ smooth wood'}
+    ],
+    maxIn: 144, incrementFt: 2, minFt: 2, rings: ['SR13','OVL1','OVL3','FSR1','HSR1','38FLR (fluted wood ring)','TFCS138MCRI (c-ring)']
+  },
+  'wood-2-2.25': {
+    profiles: [
+      {profile:'WWR',desc:'2″ smooth wood'},
+      {profile:'2WR',desc:'2″ reeded wood'},
+      {profile:'2WG',desc:'2″ grooved wood'},
+      {profile:'WWF',desc:'2″ fluted wood'},
+      {profile:'225WS',desc:'2¼″ smooth wood'},
+      {profile:'225WR',desc:'2¼″ reeded wood'},
+      {profile:'225WG',desc:'2¼″ grooved wood'},
+      {profile:'225FL',desc:'2¼″ fluted wood'},
+      {profile:'225WWR',desc:'2¼″ wide reeded wood'}
+    ],
+    maxIn: 192, incrementFt: 2, minFt: 2, rings: ['SR7','SR12','OVL7','OVL12','OVL2','HSR2','SR5 (twisted)','WWRG (fluted 2″)','225-RWR (fluted 2¼″)','DRRG3 (leafy resin)']
+  },
+  'wood-3': {
+    profiles: [
+      {profile:'3GR',desc:'3″ grooved wood'},
+      {profile:'3RD',desc:'3″ reeded wood'},
+      {profile:'3SM',desc:'3″ smooth wood'}
+    ],
+    maxIn: 192, incrementFt: 2, minFt: 2, rings: ['WRG3 (fluted wood)','DRRG4 (leafy resin)','SR11','HSR3']
+  }
+};
+
+// Outdoor finishes
+var OUTDOOR_FINISHES = [
+  {code:'103-OH',name:'Satin Black Gloss',hex:'#222222'},
+  {code:'440-OH',name:'Soft Gold Gloss',hex:'#C8A040'},
+  {code:'450-OH',name:'Aluminum Gloss',hex:'#B0B8C0'},
+  {code:'105-OH',name:'Bronze Gloss',hex:'#7A5030'},
+  {code:'270-OH',name:'Mahogany Rust Gloss',hex:'#6A2818'}
+];
+
+// Outdoor poles
+var OUTDOOR_POLES = [
+  {profile:'RR100-OH',desc:'1″ round tube, max 192″',poleMax:192},
+  {profile:'RR125-OH',desc:'1¼″ round tube, max 192″',poleMax:192},
+  {profile:'RR175-OH',desc:'1¾″ round tube, max 192″',poleMax:192},
+  {profile:'ST2-OH',desc:'1″ single twist, max 228″',poleMax:228},
+  {profile:'ST3-OH',desc:'1″ double twist, max 228″',poleMax:228},
+  {profile:'75HSRB-OH',desc:'¾″ hammered round, max 115″',poleMax:115}
+];
+
+// STATE
+var S = {
+  coll:'',sub:'',finish:'',finLeft:'',finRight:'',finLeftSku:'',finRightSku:'',
+  cuff:'',poleLen:0,poleProfile:'',
+  brktType:'',brktReturn:'',brktQty:1,bypassUsed:false,
+  rings:'',ringsQty:0,
+  baton:'',batonLen:'',tieback:'',rosette:'',metalBand:'',
+  extraFinialFinish:'',customFinishNote:'',
+  rush:'no',del:'ship',qty:1,
+  // Traverse
+  travSystem:'',travMotor:'',travFasciaDia:'',travFasciaProfile:'',
+  travLen:0,travDraw:'',travHeading:'',travFullness:'',travMount:'',
+  // Warnings
+  warnBypass:false,warnReturn:false,warnCarrier:false,warnAcrylic:false
+};
+
+var currentFinialTarget = 'left'; // 'left' or 'right'
+
+// ═══════════════════════════════════════════════════════════
+// STEP HELPERS
+// ═══════════════════════════════════════════════════════════
+function toggleStep(id){document.getElementById(id).classList.toggle('open');}
+function openStep(id){var e=document.getElementById(id);e.style.display='block';e.classList.add('active','open');}
+function markDone(id,txt){var e=document.getElementById(id);e.classList.add('done');var v=document.getElementById('s'+id.replace('step','')+'-val')||document.getElementById('s'+id.replace('step','')+'val');if(v&&txt)v.textContent=txt;}
+function sp(id,val){var e=document.getElementById(id);if(e){e.textContent=val||'—';}}
+function showWarn(id,show){var e=document.getElementById(id);if(e)e.style.display=show?'block':'none';}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 1: COLLECTION
+// ═══════════════════════════════════════════════════════════
+function pickColl(key,el){
+  S.coll=key;
+  document.querySelectorAll('#step1 .coll-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  var labels={
+    'modern-metal':'Modern Metal (1⅛″ & 1⅜″)',
+    'metal-138':'1⅜″ Metal',
+    'steel':'Steel',
+    'wood':'Wood & Resin',
+    'outdoor':'Outdoor Hardware',
+    'traverse':'Traverse Systems'
+  };
+  document.getElementById('s1val').textContent=labels[key];
+  sp('sp-coll',labels[key]);
+  document.getElementById('step1').classList.add('done');
+  // Reset downstream
+  S.sub='';S.finish='';S.finLeft='';S.finRight='';S.cuff='';S.poleLen=0;
+  // Build step 2
+  buildStep2(key);
+  openStep('step2');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 2: DIAMETER / PROFILE / SYSTEM
+// ═══════════════════════════════════════════════════════════
+function buildStep2(coll){
+  var body=document.getElementById('s2body');
+  var title=document.getElementById('s2title');
+  var step2=document.getElementById('step2');
+  step2.style.display='block';
+
+  if(coll==='modern-metal'){
+    title.textContent='Diameter';
+    body.innerHTML='<div class="opt-grid" style="grid-template-columns:1fr 1fr"><div class="opt-card" onclick="pickSub(this,\'1-1/8\',\'1⅛″ diameter\')"><div class="opt-card-title">1⅛″</div><div class="opt-card-desc">TFCM118 · poles 2–12 ft · 5 finishes</div></div><div class="opt-card" onclick="pickSub(this,\'1-3/8\',\'1⅜″ diameter\')"><div class="opt-card-title">1⅜″</div><div class="opt-card-desc">TFCM138 · poles 2–12 ft · + Clear Acrylic option</div></div></div><div class="msg-info" style="margin-top:10px">All Modern Metal finials work with both 1⅛″ and 1⅜″ poles. Cuffs and collars <strong>must match your selected pole diameter</strong>.</div>';
+  } else if(coll==='metal-138'){
+    title.textContent='Diameter';
+    body.innerHTML='<div class="msg-info">Fixed 1⅜″ diameter. 8 specialty plated finishes + all 50 standard hand-painted finishes. 10′ and 12′ poles not available in Brushed Bronze (BZ) or Oil Rubbed Bronze (ORB).</div><div style="margin-top:10px;font-size:12px;color:#444"><strong>MK (Matte Black) ring</strong> coordinates with VZ (Venetian Bronze) and DRB (Dark Oil Rubbed Bronze) finishes.</div>';
+    pickSub(null,'1-3/8','1⅜″ Metal');
+  } else if(coll==='steel'){
+    title.textContent='Steel subcollection';
+    var opts=[
+      {val:'half',label:'½″ Steel',desc:'50SRB solid round · max 240″ · light weight treatments · French doors'},
+      {val:'three-quarter',label:'¾″ Steel',desc:'75RD / 75HSRB / SRH75 · max 115–228″ · round & square profiles'},
+      {val:'one',label:'1″ Steel',desc:'RR100 / SRT1 / ST2 / ST3 / SHT1 / 1SQ · max 192–288″ · largest finial selection'},
+      {val:'one-quarter',label:'1¼″ Steel',desc:'RR125 / RD125 / SRT2 · max 192–252″ · 30 finial designs'},
+      {val:'one-half-three-quarter',label:'1½″–1¾″ Steel',desc:'RR175 / RD175 / TRT · max 192–288″ · grandest scale'}
+    ];
+    body.innerHTML='<div class="coll-grid">'+opts.map(function(o){return '<div class="coll-card" onclick="pickSub(this,\''+o.val+'\',\''+o.label+'\')" ><div class="coll-card-title">'+o.label+'</div><div class="coll-card-sub">'+o.desc+'</div></div>';}).join('')+'</div>';
+  } else if(coll==='wood'){
+    title.textContent='Wood diameter';
+    body.innerHTML='<div class="coll-grid"><div class="coll-card" onclick="pickSub(this,\'wood-138\',\'1⅜″ Wood & Resin\')"><div class="coll-card-title">1⅜″</div><div class="coll-card-sub">WNF38 / WG38 / WR38 / WS38 · max 144″ · 2 ft increments</div></div><div class="coll-card" onclick="pickSub(this,\'wood-2-2.25\',\'2″–2¼″ Wood & Resin\')"><div class="coll-card-title">2″ – 2¼″</div><div class="coll-card-sub">9 profiles · max 192″ · 2 ft increments · largest finial variety</div></div><div class="coll-card" onclick="pickSub(this,\'wood-3\',\'3″ Wood & Resin\')"><div class="coll-card-title">3″</div><div class="coll-card-sub">3GR / 3RD / 3SM · max 192″ · 2 ft increments · stately grand scale</div></div></div><div class="step-note" style="margin-top:8px">Wood poles: 2 ft increments, 2 ft minimum. Fall-off not saved or shipped. Mitered returns available — fees apply.</div>';
+  } else if(coll==='outdoor'){
+    title.textContent='Outdoor Hardware';
+    body.innerHTML='<div class="msg-info">5 weather-resistant finishes with protective high-gloss topcoat. 5-year warranty against rust &amp; fading when properly maintained. <strong>Lead time: 10–15 business days. Splicing not recommended for outdoor rods. Professional installation recommended. Brackets every 3 feet.</strong> Each order includes 2 oz. of finish and protective topcoat for maintenance.</div>';
+    pickSub(null,'outdoor-all','Outdoor Hardware');
+  } else if(coll==='traverse'){
+    title.textContent='Traverse system type';
+    body.innerHTML='<div class="coll-grid"><div class="coll-card" onclick="pickSub(this,\'trav-light\',\'Light Duty Traverse\')"><div class="coll-card-title">Light Duty</div><div class="coll-card-sub">Corded or baton draw · Pinch pleat only · Lightweight fabrics &amp; sheers · Up to 20 ft continuous</div></div><div class="coll-card" onclick="pickSub(this,\'trav-heavy\',\'Heavy Duty Traverse\')"><div class="coll-card-title">Heavy Duty</div><div class="coll-card-sub">Corded or baton draw · Pinch pleat OR Ripplefold™ (60/80/100/120%) · Heavier fabrics · Up to 20 ft continuous</div></div><div class="coll-card" onclick="pickSub(this,\'trav-motor\',\'Motorized Traverse\')"><div class="coll-card-title">Motorized</div><div class="coll-card-sub">BTX (120 lbs / 40 ft) or Somfy Glydea (77–132 lbs / 32–36 ft) · Ripplefold 80/100/120% or pinch pleat · Curved track available</div></div></div>';
+  }
+}
+
+function pickSub(el,key,label){
+  if(el){
+    document.querySelectorAll('#s2body .coll-card,#s2body .opt-card').forEach(function(c){c.classList.remove('sel');});
+    el.classList.add('sel');
+  }
+  S.sub=key;
+  document.getElementById('s2val').textContent=label;
+  sp('sp-sub',label);
+  document.getElementById('step2').classList.add('done');
+  buildStep3(S.coll,key);
+  openStep('step3');
+  // Hide/show cuff step
+  document.getElementById('step5').style.display=(S.coll==='modern-metal')?'block':'none';
+  // Show/hide traverse step
+  document.getElementById('step10').style.display=S.coll==='traverse'?'block':'none';
+  document.getElementById('sp-trav-row').style.display=S.coll==='traverse'?'flex':'none';
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 3: FINISH
+// ═══════════════════════════════════════════════════════════
+function buildStep3(coll,sub){
+  var body=document.getElementById('s3body');
+  document.getElementById('step3').style.display='block';
+
+  if(coll==='modern-metal'){
+    var finishes=[
+      {code:'CH',name:'Chrome',hex:'#E0E8F0'},
+      {code:'SG',name:'Satin Gold',hex:'#D4B04A'},
+      {code:'MK',name:'Matte Black',hex:'#282828'},
+      {code:'BN',name:'Brushed Nickel',hex:'#C0C0C0'},
+      {code:'BBN',name:'Brushed Black Nickel',hex:'#404050'}
+    ];
+    var html='<div class="finish-row">'+finishes.map(function(f){
+      return '<div class="fin-chip" onclick="pickFinish(this,\''+f.code+' '+f.name+'\')"><div class="fin-dot" style="background:'+f.hex+'"></div>'+f.code+' '+f.name+'</div>';
+    }).join('');
+    if(sub==='1-3/8'){
+      html+='<div class="fin-chip" onclick="pickFinish(this,\'CL Clear Acrylic\')"><div class="fin-dot" style="background:rgba(200,220,255,.4);border:1px solid #aaa"></div>CL Clear Acrylic</div>';
+    }
+    html+='</div>';
+    if(sub==='1-1/8') html+='<div class="step-note">Clear Acrylic only available in 1⅜″ diameter.</div>';
+    body.innerHTML=html;
+  } else if(coll==='metal-138'){
+    var pl=[
+      {code:'PN',name:'Polished Nickel',hex:'#D8D8D8'},
+      {code:'AB',name:'Antique Brass',hex:'#C09840'},
+      {code:'ORB',name:'Oil Rubbed Bronze',hex:'#2A1808'},
+      {code:'MK',name:'Matte Black',hex:'#282828'},
+      {code:'AP',name:'Antique Pewter',hex:'#808090'},
+      {code:'SK',name:'Satin Black',hex:'#303030'},
+      {code:'BZ',name:'Brushed Bronze',hex:'#8A6030'},
+      {code:'VZ',name:'Venetian Bronze',hex:'#5A3820'},
+      {code:'DRB',name:'Dark Oil Rubbed Bronze',hex:'#1A0C04'}
+    ];
+    body.innerHTML='<div class="sub-label" style="margin-top:4px">Specialty plated finishes</div><div class="finish-row">'+pl.map(function(f){return '<div class="fin-chip" onclick="pickFinish(this,\''+f.code+' '+f.name+'\')"><div class="fin-dot" style="background:'+f.hex+'"></div>'+f.name+'</div>';}).join('')+'</div>'
+      +'<div class="sub-label">Or any of 50 standard hand-painted finishes</div>'
+      +'<div class="step-note" style="margin-bottom:6px">10′ and 12′ poles NOT available in BZ (Brushed Bronze) or ORB (Oil Rubbed Bronze).</div>'
+      +buildSFPicker();
+  } else if(coll==='outdoor'){
+    body.innerHTML='<div class="finish-row">'+OUTDOOR_FINISHES.map(function(f){
+      return '<div class="fin-chip" onclick="pickFinish(this,\''+f.code+' '+f.name+'\')"><div class="fin-dot" style="background:'+f.hex+'"></div>'+f.name+'</div>';
+    }).join('')+'</div><div class="step-note" style="margin-top:6px">5-year warranty against rust and fading. Each order includes 2 oz. touch-up finish and protective topcoat.</div>';
+  } else if(coll==='traverse'){
+    body.innerHTML='<div class="step-note">Track and bracket finish is matched to your fascia finish. Select from:<br><br><strong>White, Bronze, or Antique Gold</strong> for track/brackets/glides.</div>'
+      +'<div class="opt-grid" style="grid-template-columns:repeat(3,1fr);margin-top:10px">'
+      +'<div class="opt-card" onclick="pickFinish(this,\'White\')"><div class="opt-card-title">White</div></div>'
+      +'<div class="opt-card" onclick="pickFinish(this,\'Bronze\')"><div class="opt-card-title">Bronze</div></div>'
+      +'<div class="opt-card" onclick="pickFinish(this,\'Antique Gold\')"><div class="opt-card-title">Antique Gold</div></div>'
+      +'</div>'
+      +'<div class="msg-info" style="margin-top:10px">If ordering wood fascia: the fascia finish is selected from the 50 standard hand-painted finishes. Track color is matched accordingly. Specify desired fascia finish in notes.</div>'
+      +buildSFPicker();
+  } else {
+    // Steel, Wood — all 50 standard finishes
+    body.innerHTML='<div class="step-note" style="margin-bottom:6px">All 50 standard hand-painted finishes available. '+
+      (coll==='outdoor'?'':'Custom finishes available (strike-off sample for approval, see Retail Price List).')+
+      '</div>'+buildSFPicker();
+  }
+}
+
+function buildSFPicker(){
+  return '<div class="sub-label">Search &amp; select finish</div>'
+    +'<input class="sf-search" type="text" placeholder="Type finish name or code..." oninput="filterSF(this.value)" id="sf-search">'
+    +'<div class="sf-list" id="sf-list">'+STANDARD_FINISHES.map(function(f,i){
+      return '<div class="sf-item" data-code="'+f.code+'" data-name="'+f.name.toLowerCase()+'" onclick="pickSF(this,\''+f.code+' '+f.name+'\')">'
+        +'<div class="fin-dot" style="background:'+f.hex+';border:1px solid rgba(0,0,0,.1)"></div>'
+        +'<span>'+f.code+' — '+f.name+'</span></div>';
+    }).join('')+'</div>';
+}
+
+function filterSF(q){
+  q=q.toLowerCase();
+  document.querySelectorAll('#sf-list .sf-item').forEach(function(el){
+    el.style.display=(!q||el.dataset.code.toLowerCase().includes(q)||el.dataset.name.includes(q))?'flex':'none';
+  });
+}
+
+function pickSF(el,val){
+  document.querySelectorAll('.sf-item').forEach(function(i){i.classList.remove('sel');});
+  el.classList.add('sel');
+  pickFinish(null,val);
+}
+
+function pickFinish(el,val){
+  if(el){
+    document.querySelectorAll('#s3body .fin-chip,#s3body .opt-card').forEach(function(c){c.classList.remove('sel');});
+    el.classList.add('sel');
+  }
+  S.finish=val;
+  document.getElementById('s3val').textContent=val;
+  sp('sp-finish',val);
+  document.getElementById('step3').classList.add('done');
+  // Acrylic warning
+  var isAcrylic=val==='CL Clear Acrylic';
+  S.warnAcrylic=isAcrylic;
+  showWarn('sp-warn-acr',isAcrylic);
+  // 10'/12' restriction for BZ/ORB
+  if(S.coll==='metal-138'&&(val.startsWith('ORB')||val.startsWith('BZ'))){
+    document.getElementById('s3val').textContent=val+' ⚠ (10′ & 12′ not available)';
+  }
+  buildStep4(S.coll,S.sub);
+  openStep('step4');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 4: FINIALS
+// ═══════════════════════════════════════════════════════════
+function buildStep4(coll,sub){
+  var body=document.getElementById('s4body');
+  document.getElementById('step4').style.display='block';
+  var finials=[];
+  if(coll==='modern-metal'){
+    finials=MM_FINIALS;
+    body.innerHTML='<div class="msg-info" style="margin-top:4px">All Modern Metal finials work with both 1⅛″ and 1⅜″ diameters. Bex End Caps do NOT require a cuff or collar. All other finials require a cuff or collar (step 5).</div>'
+      +'<div class="sub-label">Left finial</div><div class="finial-grid" id="fin-left-grid">'
+      +finials.map(function(f){
+        return '<div class="finial-card" onclick="pickFinial(this,\'left\',\''+f.name+'\',\''+f.sku+'\')">'
+          +'<div class="finial-name">'+f.name+'</div>'
+          +'<div class="finial-sku">'+f.sku+'</div>'
+          +'<div class="finial-dim">'+f.dim+'</div>'
+          +(f.needsCuff?'<div style="font-size:9px;color:#f59e0b;margin-top:2px">Needs cuff/collar</div>':'<div style="font-size:9px;color:#16a34a;margin-top:2px">No cuff needed</div>')
+          +(f.hasAcrylic?'<div style="font-size:9px;color:#6366f1;margin-top:2px">Acrylic: '+f.acrylicSku+'</div>':'')
+          +'</div>';
+      }).join('')+'</div>'
+      +'<div class="sub-label">Right finial</div><div class="finial-grid" id="fin-right-grid">'
+      +finials.map(function(f){
+        return '<div class="finial-card" onclick="pickFinial(this,\'right\',\''+f.name+'\',\''+f.sku+'\')">'
+          +'<div class="finial-name">'+f.name+'</div>'
+          +'<div class="finial-sku">'+f.sku+'</div>'
+          +'<div class="finial-dim">'+f.dim+'</div></div>';
+      }).join('')+'</div>';
+  } else if(coll==='metal-138'){
+    finials=METAL138_FINIALS;
+    body.innerHTML='<div class="msg-info" style="margin-top:4px">Finial wall mount adapter (TFCM138310) turns any 1⅜″ finial into a tieback. Also available in all 50 standard hand-painted finishes (surcharge — see Retail Price List).</div>'
+      +'<div class="sub-label">Left finial</div><div class="finial-grid" id="fin-left-grid">'
+      +finials.map(function(f){return '<div class="finial-card" onclick="pickFinial(this,\'left\',\''+f.name+'\',\''+f.sku+'\')" ><div class="finial-name">'+f.name+'</div><div class="finial-sku">'+f.sku+'</div><div class="finial-dim">'+f.dim+'</div></div>';}).join('')+'</div>'
+      +'<div class="sub-label">Right finial</div><div class="finial-grid" id="fin-right-grid">'
+      +finials.map(function(f){return '<div class="finial-card" onclick="pickFinial(this,\'right\',\''+f.name+'\',\''+f.sku+'\')" ><div class="finial-name">'+f.name+'</div><div class="finial-sku">'+f.sku+'</div><div class="finial-dim">'+f.dim+'</div></div>';}).join('')+'</div>';
+  } else if(coll==='traverse'){
+    body.innerHTML='<div class="msg-info">Finials and mitered returns sold separately for traverse systems. Specify below if needed.</div>'
+      +'<div class="form-group" style="margin-top:10px"><label>Left finial name/code (optional)</label><input type="text" id="fin-left-text" placeholder="e.g. F214-2, or No finial — mitered return" oninput="updateFinFromText()"></div>'
+      +'<div class="form-group"><label>Right finial name/code (optional)</label><input type="text" id="fin-right-text" placeholder="e.g. F214-2" oninput="updateFinFromText()"></div>';
+    document.getElementById('step4').classList.add('done');
+    document.getElementById('s4val').textContent='Specify in notes';
+  } else {
+    // Steel, wood, outdoor — large finial catalog; capture by text
+    body.innerHTML='<div class="msg-info">Steel and Wood finials are cataloged by size. Specify finial by name/SKU from the catalog. Multiple finials share compatibility across sizes; finial adaptors available when needed.</div>'
+      +'<div class="form-group" style="margin-top:10px"><label>Left finial — name or catalog code *</label><input type="text" id="fin-left-text" placeholder="e.g. SF-1, SF132, F214-2..." oninput="updateFinFromText()"></div>'
+      +'<div class="form-group"><label>Right finial — name or catalog code</label><input type="text" id="fin-right-text" placeholder="Same as left, or specify different" oninput="updateFinFromText()"></div>'
+      +'<div class="form-group"><label>Finial finish (if different from pole finish)</label><input type="text" id="fin-finish-text" placeholder="Leave blank if same finish as pole" oninput="updateFinFromText()"></div>'
+      +'<div class="step-note">Finial adaptors (FA-S / FA-M / FA-L) available to adapt finials to larger diameter poles. Note any SEC-125 finial — not for use with square poles 1SQ or SHT1. SQEC finial only fits 1SQ and SHT1 poles.</div>';
+    document.getElementById('step4').classList.add('done');
+    document.getElementById('s4val').textContent='Specify below';
+  }
+}
+
+function updateFinFromText(){
+  var l=document.getElementById('fin-left-text');
+  var r=document.getElementById('fin-right-text');
+  S.finLeft=l?l.value:'';
+  S.finRight=r?r.value:'';
+  sp('sp-fin-l',S.finLeft||'—');
+  sp('sp-fin-r',S.finRight||'—');
+  if(S.finLeft){document.getElementById('step4').classList.add('done');document.getElementById('s4val').textContent=S.finLeft;}
+}
+
+function pickFinial(el,side,name,sku){
+  document.querySelectorAll('#fin-'+side+'-grid .finial-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  if(side==='left'){S.finLeft=name;S.finLeftSku=sku;sp('sp-fin-l',name+' ('+sku+')');}
+  else{S.finRight=name;S.finRightSku=sku;sp('sp-fin-r',name+' ('+sku+')');}
+  if(S.finLeft&&S.finRight){
+    document.getElementById('step4').classList.add('done');
+    document.getElementById('s4val').textContent=S.finLeft+' / '+S.finRight;
+  }
+  // Cuff logic for modern metal
+  if(S.coll==='modern-metal'){
+    var finData=MM_FINIALS.find(function(f){return f.name===S.finLeft||f.name===S.finRight;});
+    if(finData&&!finData.needsCuff){
+      document.getElementById('step5').style.display='none';
+      S.cuff='None (Bex End Cap — no cuff required)';
+      sp('sp-cuff','None (Bex End Cap)');
+    } else if(S.coll==='modern-metal'){
+      document.getElementById('step5').style.display='block';
+    }
+    if(S.finLeft&&S.finRight) buildStep5CuffOrCollar(S.sub);
+  }
+  if(S.finLeft&&S.finRight) buildStep6(S.coll,S.sub);
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 5: CUFF / COLLAR (Modern Metal only)
+// ═══════════════════════════════════════════════════════════
+function buildStep5CuffOrCollar(dia){
+  var body=document.getElementById('s5body');
+  document.getElementById('step5').style.display='block';
+  var prefix=dia==='1-1/8'?'118':'138';
+  var opts=[
+    {sku:'TFCM'+prefix+'800',name:'Modern Cuff',dim:'1″L × '+(dia==='1-1/8'?'1⅜″':'1⅝″')+'W'},
+    {sku:'TFCM'+prefix+'801',name:'Modern Collar',dim:'1⅝″L × '+(dia==='1-1/8'?'1⅜″':'1⅝″')+'W'},
+    {sku:'TFCM'+prefix+'802',name:'Transitional Collar',dim:(dia==='1-1/8'?'1⅝″':'1⅞″')+'L × '+(dia==='1-1/8'?'1⅜″':'1⅝″')+'W'}
+  ];
+  body.innerHTML='<div class="msg-info" style="margin-top:4px">Cuff/collar must match your '+dia+'″ pole diameter. Available in all 5 Modern Metal finishes. Finishes can be mixed and matched with pole and finial finishes.</div>'
+    +'<div class="opt-grid">'+opts.map(function(o){
+      return '<div class="opt-card" onclick="pickCuff(this,\''+o.name+' ('+o.sku+')\')">'
+        +'<div class="opt-card-title">'+o.name+'</div>'
+        +'<div class="opt-card-desc">'+o.sku+'<br>'+o.dim+'</div></div>';
+    }).join('')+'</div>'
+    +'<div class="sub-label">Cuff/collar finish (if different from pole)</div>'
+    +'<div class="form-group"><input type="text" id="cuff-finish" placeholder="Leave blank to match pole finish" oninput="S.cuff=(document.getElementById(\'cuff-finish\').value?S.cuff+\' — finish: \'+document.getElementById(\'cuff-finish\').value:S.cuff)"></div>';
+}
+
+function pickCuff(el,val){
+  document.querySelectorAll('#s5body .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  S.cuff=val;
+  document.getElementById('step5').classList.add('done');
+  document.getElementById('s5val').textContent=val;
+  sp('sp-cuff',val);
+  buildStep6(S.coll,S.sub);
+  openStep('step6');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 6: POLE LENGTH
+// ═══════════════════════════════════════════════════════════
+function buildStep6(coll,sub){
+  var body=document.getElementById('s6body');
+  document.getElementById('step6').style.display='block';
+  var html='';
+  if(coll==='traverse'){
+    html='<div class="dim-label">Track length (feet)</div>'
+      +'<div style="display:flex;gap:10px;align-items:center;margin-top:6px"><input class="dim-input" type="number" id="pole-len" style="width:100px" min="4" max="40" step="1" placeholder="12" oninput="calcPoleLen()"><span style="font-size:12px;color:#666">feet</span></div>'
+      +'<div class="msg-info" style="margin-top:8px">Corded/baton traverse tracks: 2 ft increments, 4 ft minimum, up to 20 ft continuous (spliced lengths longer). Motorized traverse tracks: 1 ft increments, 6 ft minimum, up to 20 ft continuous. Fall-off not saved or shipped.</div>';
+  } else if(coll==='modern-metal'||coll==='metal-138'){
+    html='<div class="msg-info" style="margin-top:4px">2 ft increments · 2 ft minimum · max 12 ft.<br>'
+      +(S.finish&&(S.finish.startsWith('ORB')||S.finish.startsWith('BZ'))?'<strong style="color:#dc2626">⚠ 10 ft and 12 ft poles NOT available in this finish.</strong><br>':'')
+      +(S.finish==='CL Clear Acrylic'?'<strong style="color:#dc2626">⚠ Clear Acrylic cannot be spliced.</strong><br>':'')
+      +'Fall-off not saved or shipped.</div>'
+      +'<div class="opt-grid" style="margin-top:10px">'+[2,4,6,8,10,12].map(function(ft){
+        var blocked=((S.finish&&(S.finish.startsWith('ORB')||S.finish.startsWith('BZ')))&&(ft===10||ft===12));
+        return '<div class="opt-card'+(blocked?' blocked':'')+'" onclick="pickPoleLen(this,'+ft+',\''+ft+' ft\')"><div class="opt-card-title">'+ft+' ft</div><div class="opt-card-desc">'+(ft*12)+'″</div></div>';
+      }).join('')+'</div>'
+      +'<div class="sub-label">Custom length within standard increments</div>'
+      +'<div style="display:flex;gap:10px;align-items:center;margin-top:4px"><input class="dim-input" type="number" id="pole-len-custom" style="width:100px" min="2" max="12" step="2" placeholder="ft" oninput="calcPoleLen()"><span style="font-size:12px;color:#666">ft (2 ft increments)</span></div>';
+  } else if(coll==='wood'){
+    var maxFt=sub==='wood-138'?12:16;
+    html='<div class="msg-info" style="margin-top:4px">2 ft increments · 2 ft minimum · max '+(sub==='wood-138'?'144″ (12 ft)':'192″ (16 ft)')+'. Fall-off not saved or shipped.</div>'
+      +'<div style="display:flex;gap:10px;align-items:center;margin-top:8px"><input class="dim-input" type="number" id="pole-len" style="width:100px" min="2" max="'+maxFt+'" step="2" placeholder="e.g. 10" oninput="calcPoleLen()"><span style="font-size:12px;color:#666">ft (2 ft increments)</span></div>';
+  } else if(coll==='outdoor'){
+    html='<div class="msg-info" style="margin-top:4px">1 ft increments · 2 ft minimum. Splicing NOT recommended for outdoor rods. Max length depends on profile selected.</div>'
+      +'<div style="margin-top:10px"><div class="sub-label" style="margin-top:0">Pole profile</div><div class="opt-grid">'+OUTDOOR_POLES.map(function(p){
+        return '<div class="opt-card" onclick="pickOutdoorPole(this,\''+p.profile+'\','+p.poleMax+')"><div class="opt-card-title" style="font-size:11px">'+p.profile+'</div><div class="opt-card-desc">'+p.desc+'</div></div>';
+      }).join('')+'</div></div>'
+      +'<div style="display:flex;gap:10px;align-items:center;margin-top:10px"><input class="dim-input" type="number" id="pole-len" style="width:100px" min="2" max="240" step="1" placeholder="length" oninput="calcPoleLen()"><span style="font-size:12px;color:#666">inches</span></div><div id="pole-len-msg" style="margin-top:6px"></div>';
+  } else {
+    // Steel — show profiles
+    var poles=STEEL_POLES[sub]||[];
+    html='<div class="msg-info" style="margin-top:4px">1 ft increments · 2 ft minimum. Fall-off not saved or shipped. Poles over 96″ ship common carrier.</div>'
+      +'<div class="sub-label" style="margin-top:8px">Pole profile</div>'
+      +'<div class="opt-grid">'+poles.map(function(p){
+        return '<div class="opt-card" onclick="pickSteelPole(this,\''+p.profile+'\','+p.maxIn+')">'
+          +'<div class="opt-card-title" style="font-size:11px">'+p.profile+'</div>'
+          +'<div class="opt-card-desc">'+p.desc+'<br>Max '+p.maxIn+'″'+(p.minRingID?' · ring min '+p.minRingID+'″ ID':'')+''+(p.noBypass?' · no bypass':'')+''+(p.squareBrackets?' · square brackets only':'')+'</div></div>';
+      }).join('')+'</div>'
+      +'<div style="display:flex;gap:10px;align-items:center;margin-top:10px"><input class="dim-input" type="number" id="pole-len" style="width:100px" min="24" max="300" step="12" placeholder="e.g. 96" oninput="calcPoleLen()"><span style="font-size:12px;color:#666">inches</span></div>'
+      +'<div id="pole-len-msg" style="margin-top:6px"></div>';
+  }
+  body.innerHTML=html;
+}
+
+function pickOutdoorPole(el,profile,maxIn){
+  document.querySelectorAll('#s6body .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  S.poleProfile=profile;
+  document.getElementById('pole-len').max=maxIn;
+}
+
+function pickSteelPole(el,profile,maxIn){
+  document.querySelectorAll('#s6body .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  S.poleProfile=profile;
+  document.getElementById('pole-len').max=maxIn;
+  // Check if noBypass
+  var allPoles=[];
+  Object.keys(STEEL_POLES).forEach(function(k){allPoles=allPoles.concat(STEEL_POLES[k]);});
+  var pData=allPoles.find(function(p){return p.profile===profile;});
+  if(pData){
+    var msgEl=document.getElementById('pole-len-msg');
+    if(msgEl) msgEl.innerHTML=pData.noBypass?'<div class="msg-warn" style="margin-top:0">⚠ Bypass brackets not available for '+profile+'.</div>':
+      pData.squareBrackets?'<div class="msg-info" style="margin-top:0">Use L125-SQ / L135-SQ brackets and SQRG1 ring with square profiles.</div>':'';
+    if(pData.minRingID){
+      if(msgEl) msgEl.innerHTML+='<div class="msg-warn" style="margin-top:6px">⚠ Twisted pole: rings must have minimum '+pData.minRingID+'″ ID.</div>';
+    }
+  }
+}
+
+function pickPoleLen(el,ft,label){
+  document.querySelectorAll('#s6body .opt-card:not(.blocked)').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  S.poleLen=ft*12;
+  finalizePoleLen(ft*12,ft+' ft ('+(ft*12)+'″)');
+}
+
+function calcPoleLen(){
+  var custEl=document.getElementById('pole-len-custom');
+  var lenEl=document.getElementById('pole-len');
+  var val=custEl?parseFloat(custEl.value):parseFloat(lenEl?lenEl.value:0);
+  if(!val||val<=0) return;
+  var inchVal=(S.coll==='wood'||S.coll==='modern-metal'||S.coll==='metal-138'||S.coll==='traverse')?val*12:val;
+  finalizePoleLen(inchVal,(S.coll==='traverse'?val+' ft':S.coll==='wood'||S.coll==='modern-metal'||S.coll==='metal-138'?val+' ft':val+'″'));
+}
+
+function finalizePoleLen(inches,label){
+  S.poleLen=inches;
+  var overCC=inches>96;
+  S.warnCarrier=overCC;
+  showWarn('sp-warn-cs',overCC);
+  if(overCC&&document.getElementById('pole-len-msg')) document.getElementById('pole-len-msg').innerHTML='<div class="msg-warn" style="margin-top:0">⚠ Over 96″ — must ship via common carrier. Actual freight cost applies.</div>';
+  document.getElementById('step6').classList.add('done');
+  document.getElementById('s6val').textContent=label;
+  sp('sp-len',label+(S.poleProfile?' · '+S.poleProfile:''));
+  buildStep7(S.coll,S.sub);
+  openStep('step7');
+  buildStep8(S.coll,S.sub);
+  buildStep9(S.coll,S.sub);
+  openStep('step11');
+  openStep('step12');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 7: BRACKETS
+// ═══════════════════════════════════════════════════════════
+function buildStep7(coll,sub){
+  var body=document.getElementById('s7body');
+  document.getElementById('step7').style.display='block';
+  var html='<div class="msg-info" style="margin-top:4px">Support brackets every 3–4 feet recommended. Return or drop over 8″ on any custom bracket incurs additional fees and requires a support arm.</div>';
+
+  if(coll==='traverse'){
+    html+='<div class="sub-label" style="margin-top:10px">Mount type</div>'
+      +'<div class="opt-grid" style="grid-template-columns:1fr 1fr"><div class="opt-card" onclick="pickBrkt(this,\'Wall mount\',\'Standard adj 3½″–4½″ return (6″ return available at no charge)\',false)"><div class="opt-card-title">Wall Mount</div><div class="opt-card-desc">Standard: 3½″–4½″ adj. 6″ available.</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Ceiling mount\',\'CMBC clip for track-only; CMTB for custom ceiling\',false)"><div class="opt-card-title">Ceiling Mount</div><div class="opt-card-desc">CMBC clip (no fascia) or CMTB custom</div></div></div>'
+      +'<div class="step-note">Single brackets: HDTB35 (adj 3½″–4½″). Double/single 6″: HDTB. Custom up to 10″: HDTB10. Stationary front pole: order TBKT214 or TBKT300 separately.</div>';
+  } else if(coll==='modern-metal'){
+    html+='<div class="opt-grid">'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Single 3½″ return\',S.sub===\'1-1/8\'?\'TFCM118420 · 2″Dia backplate\':\'TFCM138420 · 2½″Dia backplate\',false)"><div class="opt-card-title">Single 3½″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Single 6″ return\',S.sub===\'1-1/8\'?\'TFCM118420L\':\'TFCM138420L\',false)"><div class="opt-card-title">Single 6″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Double 6½″/3½″\',S.sub===\'1-1/8\'?\'TFCM118424 (6½″ front, 3½″ back)\':\'TFCM138424 (6½″ front, 3½″ back)\',false)"><div class="opt-card-title">Double 6½″/3½″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Eyelet single 3½″\',S.sub===\'1-1/8\'?\'TFCM118426\':\'TFCM138426\',false)"><div class="opt-card-title">Eyelet 3½″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Eyelet single 6″\',S.sub===\'1-1/8\'?\'TFCM118427\':\'TFCM138427\',false)"><div class="opt-card-title">Eyelet 6″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Bypass single 3½″\',S.sub===\'1-1/8\'?\'TFCM118428 · CAUTION: add standard brackets at each end\':\'TFCM138428 · CAUTION: add standard brackets at each end\',true)"><div class="opt-card-title">Bypass 3½″</div><div class="opt-card-desc" style="color:#dc2626">Standard brackets at each end required</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Inside mount (pairs)\',S.sub===\'1-1/8\'?\'TFCM118401 (1¾″W, 1¼″ deep)\':\'TFCM138401 (2″W, 1⅝″ deep)\',false)"><div class="opt-card-title">Inside Mount</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Hinged elbow\',S.sub===\'1-1/8\'?\'TFCM118402 (2″L)\':\'TFCM138402 (2″L)\',false)"><div class="opt-card-title">Hinged Elbow</div></div>'
+      +'</div>';
+  } else if(coll==='metal-138'){
+    html+='<div class="opt-grid">'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Single 3½″–4½″\',\'TFCM138400 · 2″Dia backplate\',false)"><div class="opt-card-title">Single 3½″–4½″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Single 5″–6½″\',\'TFCM138400L · 2″Dia backplate\',false)"><div class="opt-card-title">Single 5″–6½″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Double 6″/3½″\',\'TFCM138404\',false)"><div class="opt-card-title">Double 6″/3½″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Eyelet single 3½″\',\'TFCM138406\',false)"><div class="opt-card-title">Eyelet 3½″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Bypass single 3½″\',\'TFCM138408 · CAUTION: add standard brackets at each end\',true)"><div class="opt-card-title">Bypass 3½″</div><div class="opt-card-desc" style="color:#dc2626">Standard brackets at each end required</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Inside mount (pairs)\',\'TFCM138401\',false)"><div class="opt-card-title">Inside Mount</div></div>'
+      +'</div>';
+  } else {
+    html+='<div class="opt-grid">'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Standard single 3½″ return\',\'(model depends on profile selected)\',false)"><div class="opt-card-title">Single 3½″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Standard single 6″ return\',\'(model depends on profile)\',false)"><div class="opt-card-title">Single 6″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Double bracket 6″ front / 3″ back\',\'(model depends on profile)\',false)"><div class="opt-card-title">Double 6″/3″</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Adjustable single bracket\',\'(model depends on profile — various returns)\',false)"><div class="opt-card-title">Adjustable</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Ceiling mount bracket\',\'BL4 or TFCS___MCMBK — specify drop needed\',false)"><div class="opt-card-title">Ceiling Mount</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Inside mount brackets (pairs)\',\'IM125 / IM175 / IMB050 — sold in pairs\',false)"><div class="opt-card-title">Inside Mount</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Bypass bracket\',\'SCB35 (3½″) or SCB6 (6″) · Standard brackets at each end required · use with correct c-ring\',true)"><div class="opt-card-title">Bypass</div><div class="opt-card-desc" style="color:#dc2626">Std brackets at ends required</div></div>'
+      +'<div class="opt-card" onclick="pickBrkt(this,\'Custom bracket\',\'FBKT / TBKT / DBL1 · Returns over 8″ = additional fees + support arm\',false)"><div class="opt-card-title">Custom Bracket</div></div>'
+      +'</div>';
+  }
+  html+='<div id="brkt-warn-area" style="margin-top:8px"></div>';
+  html+='<div class="sub-label">Number of brackets</div><div style="display:flex;gap:10px;align-items:center;margin-top:4px"><input class="dim-input" type="number" id="brkt-qty" style="width:80px" min="2" max="20" value="3" oninput="S.brktQty=parseInt(this.value)||3;sp(\'sp-brkt\',S.brktType+\' × \'+S.brktQty)"><span style="font-size:12px;color:#666">brackets</span></div>'
+    +'<div class="step-note">Standard: 2 end brackets + 1 support bracket for every 3–4 ft of track/rod.</div>';
+  body.innerHTML=html;
+}
+
+function pickBrkt(el,type,note,isBypass){
+  document.querySelectorAll('#s7body .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  S.brktType=type; S.bypassUsed=isBypass;
+  showWarn('sp-warn-bp',isBypass);
+  S.warnBypass=isBypass;
+  var warnArea=document.getElementById('brkt-warn-area');
+  if(warnArea) warnArea.innerHTML=isBypass
+    ?'<div class="msg-err">⚠ BYPASS BRACKETS do not have full cradles. <strong>Standard brackets must be installed at each end</strong> to secure the pole.</div>':'';
+  // Check return for custom bracket warning
+  var returnOver8=type.includes('custom')||type.includes('Custom');
+  S.warnReturn=returnOver8;
+  showWarn('sp-warn-ret',returnOver8);
+  document.getElementById('step7').classList.add('done');
+  document.getElementById('s7val').textContent=type;
+  var qty=parseInt(document.getElementById('brkt-qty').value)||3;
+  S.brktQty=qty;
+  sp('sp-brkt',type+' × '+qty+' · '+note);
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 8: RINGS
+// ═══════════════════════════════════════════════════════════
+function buildStep8(coll,sub){
+  var body=document.getElementById('s8body');
+  document.getElementById('step8').style.display='block';
+  var rings=[];
+  if(coll==='modern-metal') rings=['TFCM'+(S.sub==='1-1/8'?'118':'138')+'205 (ring, '+( S.sub==='1-1/8'?'1⅝″ID':'2″ID')+')','TFCM'+(S.sub==='1-1/8'?'118':'138')+'207 (c-ring, includes plastic insert)'];
+  else if(coll==='metal-138') rings=['TFCM138200 (ring, 2″ID)','TFCM138201 (c-ring, 2″ID) — MK rings coordinate with VZ and DRB finishes'];
+  else if(coll==='wood'){
+    var wd=WOOD_POLES[sub];
+    rings=wd?wd.rings:[];
+  } else if(coll==='outdoor') rings=['SR1-OH (3/4″ pole, 1″ID)','SR3-OH (1″ or 1¼″, 1½″ID)','SR7-OH (1¾″, 2¼″ID)','HSR1-OH (1″/1¼″ hammered)','HSR175-OH (1¾″ hammered)','OVL1-OH (1″/1¼″ oval)','OVL175-OH (1¾″ oval)','SR5-OH (twisted, 2⅝″ID)'];
+  else if(coll==='steel'){
+    var allP=[];
+    Object.keys(STEEL_POLES).forEach(function(k){allP=allP.concat(STEEL_POLES[k]);});
+    var p=allP.find(function(pp){return pp.profile===S.poleProfile;});
+    rings=p?p.rings:['SR05 (½″)','SR1 (¾″)','SR3 (1″ & 1¼″)','SR7 (1¾″)','FSR1 (heavy)','HSR1 (hammered)','OVL1 (oval)','SQRG1 (square poles)'];
+  }
+  body.innerHTML=(rings.length?'<div class="sub-label" style="margin-top:4px">Compatible rings for this configuration</div>'
+    +'<div class="finish-row">'+rings.map(function(r){return '<div class="fin-chip" onclick="pickRing(this,\''+r+'\')">'+r+'</div>';}).join('')+'</div>':'<div class="msg-info">Ring selection depends on pole profile. Specify below.</div>')
+    +(coll==='traverse'?'<div class="msg-info" style="margin-top:8px">C-rings available for 2″, 2¼″ and 3″ round fascia traverse systems (not with mitered returns). 225CR (2/2¼″) or 3CR (3″).</div>':'')
+    +'<div class="sub-label">Specify rings</div>'
+    +'<div class="form-row"><div class="form-group"><label>Ring type / SKU</label><input type="text" id="ring-type-txt" placeholder="e.g. SR3, 38FLR..." oninput="updateRingText()"></div><div class="form-group"><label>Quantity</label><input type="number" id="ring-qty-inp" min="0" max="500" placeholder="e.g. 40" oninput="updateRingText()"></div></div>';
+  document.getElementById('step8').classList.add('done');
+  document.getElementById('s8val').textContent='Select above';
+}
+
+function pickRing(el,val){
+  document.querySelectorAll('#s8body .fin-chip').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  S.rings=val;
+  document.getElementById('step8').classList.add('done');
+  document.getElementById('s8val').textContent=val;
+  sp('sp-rings',val);
+}
+
+function updateRingText(){
+  var t=document.getElementById('ring-type-txt');
+  var q=document.getElementById('ring-qty-inp');
+  if(t&&t.value){
+    S.rings=t.value+(q&&q.value?' × '+q.value:'');
+    S.ringsQty=parseInt(q&&q.value)||0;
+    document.getElementById('step8').classList.add('done');
+    document.getElementById('s8val').textContent=S.rings;
+    sp('sp-rings',S.rings);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 9: ACCESSORIES
+// ═══════════════════════════════════════════════════════════
+function buildStep9(coll,sub){
+  var body=document.getElementById('s9body');
+  document.getElementById('step9').style.display='block';
+  body.innerHTML='<div class="sub-label" style="margin-top:4px">Baton (optional)</div>'
+    +'<div class="opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))">'
+    +'<div class="opt-card" onclick="pickBaton(this,\'None\')"><div class="opt-card-title" style="font-size:12px">No baton</div></div>'
+    +'<div class="opt-card" onclick="pickBaton(this,\'Steel baton (SBTN) — specify finish and length up to 60″\')"><div class="opt-card-title" style="font-size:12px">Steel baton</div><div class="opt-card-desc">3/8″ dia · up to 60″</div></div>'
+    +'<div class="opt-card" onclick="pickBaton(this,\'Steel baton 60″+ (SBTN60) — up to 96″\')"><div class="opt-card-title" style="font-size:12px">Steel 60″+</div><div class="opt-card-desc">3/8″ dia · up to 96″</div></div>'
+    +(coll!=='outdoor'?'<div class="opt-card" onclick="pickBaton(this,\'Fiberglass baton white (FBTN) — up to 48″\')"><div class="opt-card-title" style="font-size:12px">Fiberglass</div><div class="opt-card-desc">White · up to 48″</div></div>':'')
+    +'<div class="opt-card" onclick="pickBaton(this,\'Clear acrylic baton (ABTN-36 or ABTN-48)\')"><div class="opt-card-title" style="font-size:12px">Clear acrylic</div><div class="opt-card-desc">36″ or 48″</div></div>'
+    +((coll==='wood'||coll==='metal-138')?'<div class="opt-card" onclick="pickBaton(this,\'Wood baton (WBTN) — specify finish, 3/8″, up to 48″\')"><div class="opt-card-title" style="font-size:12px">Wood baton</div><div class="opt-card-desc">3/8″ · up to 48″</div></div>':'')
+    +'</div>'
+    +(coll==='modern-metal'?'<div class="msg-info" style="margin-top:8px">Modern Metal batons: TFCM312S (36″), TFCM314S (48″), TFCM316S (60″) in 5 modern finishes. Acrylic baton ABTN-36/ABTN-48 also available.</div>':'')
+    +'<div class="sub-label">Tieback (optional)</div>'
+    +'<div class="finish-row"><div class="fin-chip" onclick="pickTieback(this,\'None\')">None</div>'
+    +(coll==='modern-metal'?'<div class="fin-chip" onclick="pickTieback(this,\'TFCM990 metal tieback extension + TFCM991 base\')">Modern Metal tieback</div>':'')
+    +(coll==='metal-138'?'<div class="fin-chip" onclick="pickTieback(this,\'TFCM138310 finial wall mount adaptor (turns any 1⅜″ finial into tieback)\')">Finial-to-tieback adapter</div>':'')
+    +'<div class="fin-chip" onclick="pickTieback(this,\'TTBH-1 (4½″L × 1¼″ proj) or TTBH-2 (3½″L × 1¼″ proj)\')">Standard tieback</div>'
+    +'<div class="fin-chip" onclick="pickTieback(this,\'STB swing arm (10″L) or STBA1/STBA7 decorative arm\')">Swing arm tieback</div>'
+    +'</div>'
+    +'<div class="sub-label">Rosette (optional)</div>'
+    +'<div class="form-group"><input type="text" id="rosette-txt" placeholder="e.g. R73, ROS-1C, R8... specify diameter and material" oninput="S.rosette=this.value;sp(\'sp-acc\',buildAccSummary())"></div>'
+    +(coll!=='traverse'?'<div class="step-note">Metal band (MB100 / MB138 / MB214) attaches any rosette to the front of a pole. Rosette posts: NBL2/4/6 (steel) or WTBS2/4/6 (wood) available.</div>':'')
+    +'<div class="sub-label">Custom / special options</div>'
+    +'<div class="form-group"><textarea id="custom-acc-txt" placeholder="Custom finishes, mitered returns, arches (template required), bent poles, finial adaptors, ceiling mount drop specifications, swing arms, splices needed..." style="min-height:60px" oninput="S.customFinishNote=this.value"></textarea></div>'
+    +(coll==='steel'||coll==='wood'?'<div class="msg-warn" style="margin-top:6px">⚠ <strong>Custom arches</strong> require a template. Available for ½″, ¾″, 1″, 1¼″ steel poles only. Rush NOT available for arches.</div>':'')
+    +'<div class="step-note">Metal band (MB100 / MB138 / MB214) attaches rosette to pole. Finial adaptors FA-S / FA-M / FA-L / FC1 adapt finials between different size poles. Pole splices available for extended lengths.</div>';
+}
+
+function pickBaton(el,val){
+  document.querySelectorAll('#step9 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  S.baton=val;
+  document.getElementById('s9val').textContent=val==='None'?'Optional':'Baton selected';
+}
+
+function pickTieback(el,val){
+  document.querySelectorAll('#step9 .fin-chip').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  S.tieback=val;
+}
+
+function buildAccSummary(){
+  var parts=[];
+  if(S.baton&&S.baton!=='None') parts.push('Baton: '+S.baton);
+  if(S.tieback&&S.tieback!=='None') parts.push('Tieback: '+S.tieback);
+  if(S.rosette) parts.push('Rosette: '+S.rosette);
+  return parts.length?parts.join(' · '):'None';
+}
+
+function updateSpec(){
+  var qty=parseInt(document.getElementById('qty').value)||1;
+  S.qty=qty;
+  var rush=S.rush==='yes'?'+30% rush':'Standard';
+  sp('sp-qty',qty+' · '+rush);
+  document.getElementById('s11val').textContent=qty+(qty>1?' items':' item')+' · '+rush;
+}
+
+function pickRush(el,val,label){
+  S.rush=val;
+  document.querySelectorAll('#step11 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  document.getElementById('rush-warn').style.display=val==='yes'?'block':'none';
+  updateSpec();
+}
+
+function pickDel(el,val){
+  S.del=val;
+  document.querySelectorAll('#step11 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+}
+
+// ═══════════════════════════════════════════════════════════
+// SUBMIT
+// ═══════════════════════════════════════════════════════════
+function submitQuote(){
+  var name=document.getElementById('q-name').value.trim();
+  var phone=document.getElementById('q-phone').value.trim();
+  var err=document.getElementById('q-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+  var qty=parseInt(document.getElementById('qty').value)||1;
+  var collLabels={'modern-metal':'Modern Metal','metal-138':'1⅜″ Metal','steel':'Steel','wood':'Wood & Resin','outdoor':'Outdoor Hardware','traverse':'Traverse Systems'};
+  var custAcc=(document.getElementById('custom-acc-txt')&&document.getElementById('custom-acc-txt').value)||'';
+  var travDetails='';
+  if(S.coll==='traverse'){
+    var travFields=['trav-system','trav-motor','trav-fascia-dia','trav-fascia-profile','trav-heading','trav-fullness','trav-draw','trav-mount'];
+    travFields.forEach(function(id){var e=document.getElementById(id);if(e&&e.value) travDetails+='\n  '+id.replace('trav-','').replace(/-/g,' ')+': '+e.value;});
+  }
+  var lines=[
+    'THE FINIAL COMPANY HARDWARE — QUOTE REQUEST',
+    '',
+    'COLLECTION: '+( collLabels[S.coll]||S.coll),
+    'Sub-type / Diameter: '+(S.sub||'—'),
+    'Pole profile: '+(S.poleProfile||'—'),
+    'Finish: '+(S.finish||'—'),
+    '',
+    'FINIALS:',
+    'Left finial: '+((S.finLeft||'—')+(S.finLeftSku?' ('+S.finLeftSku+')':'')),
+    'Right finial: '+((S.finRight||'—')+(S.finRightSku?' ('+S.finRightSku+')':'')),
+    S.coll==='modern-metal'?'Cuff / Collar: '+(S.cuff||'—'):'',
+    '',
+    'POLE:',
+    'Pole length: '+(S.poleLen?S.poleLen+'″ ('+(S.poleLen/12).toFixed(2)+' ft)':'—'),
+    S.poleLen>96?'⚠ Over 96″ — common carrier shipping required':'',
+    S.warnAcrylic?'⚠ Clear Acrylic selected — cannot be spliced':'',
+    '',
+    'BRACKETS & RINGS:',
+    'Bracket type: '+(S.brktType||'—')+' × '+(S.brktQty||'—'),
+    S.bypassUsed?'⚠ Bypass brackets — standard brackets must be at each end':'',
+    'Rings: '+(S.rings||'—'),
+    '',
+    'ACCESSORIES:',
+    'Baton: '+(S.baton||'None'),
+    'Tieback: '+(S.tieback||'None'),
+    'Rosette: '+(S.rosette||'None'),
+    custAcc?'Custom / special options:\n'+custAcc:'',
+    '',
+    S.coll==='traverse'?'TRAVERSE DETAILS:'+travDetails:'',
+    '',
+    'ORDER:',
+    'Quantity: '+qty,
+    'Room / window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Rush order: '+(S.rush==='yes'?'+30% rush (5 business days)':'Standard (10–15 business days for painted/custom)'),
+    'Delivery: '+(S.del==='ship'?'Ship to me (UPS/FedEx from Huntingdon Valley, PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('q-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('q-email').value.trim()||'—'),
+    '',
+    'Pricing: From The Finial Company Retail Price List. Not displayed publicly.',
+    'No changes/cancellations after 24 hours of order confirmation.'
+  ].filter(function(l){return l!==null&&l!==undefined;}).join('\n');
+
+  window.location.href='mailto:justin@phillyblinds.com'
+    +'?subject='+encodeURIComponent('Finial Company Hardware Quote — '+name)
+    +'&body='+encodeURIComponent(lines);
+  document.getElementById('success-box').style.display='block';
+}
+
+// INIT
+document.getElementById('step11').style.display='block';
+document.getElementById('step12').style.display='block';
+</script>
+</body>
+</html>

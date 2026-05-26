@@ -1,0 +1,930 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configure Norman SmartDrape™ — vertical sheer vane system. Wand tilt or motorized. 47 fabric colors. Instant MSRP estimate. Serving Philadelphia area.">
+<meta property="og:title" content="Norman SmartDrape™ Configurator | Philly Blinds">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/norman-sheers.html">
+<meta property="og:site_name" content="Blindznation">
+<title>Norman SmartDrape™ | Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:44px 28px 40px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:560px;margin-bottom:20px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+
+/* ── MAIN LAYOUT ── */
+.config-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:860px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+
+/* ── STEPS ── */
+.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden;transition:box-shadow .15s}
+.step-block.active{box-shadow:0 2px 20px rgba(200,151,63,.1);border-color:rgba(200,151,63,.3)}
+.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;background:#fff;user-select:none}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
+.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
+.step-head-val{font-size:12px;color:var(--gold);font-weight:500;max-width:180px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step-body{padding:4px 20px 20px;display:block}
+
+/* ── OPT CARDS ── */
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
+.opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+.opt-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+@media(max-width:500px){.opt-grid-3{grid-template-columns:1fr 1fr}}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:14px 12px;cursor:pointer;transition:all .15s;text-align:center}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.opt-card-icon{font-size:22px;margin-bottom:6px}
+.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px}
+.opt-card-desc{font-size:11px;color:#666;line-height:1.4}
+.opt-card.sel .opt-card-title{color:#7A4F00}
+.opt-card.blocked{opacity:.35;pointer-events:none;cursor:default}
+
+/* ── FABRIC SWATCHES ── */
+.coll-filter-row{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.coll-btn{padding:6px 13px;border:1.5px solid #ddd;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;background:#fff;font-family:var(--font);transition:all .15s;color:#444;white-space:nowrap}
+.coll-btn:hover{border-color:var(--gold)}
+.coll-btn.sel{border:2px solid var(--gold);background:rgba(200,151,63,.07);color:#7A4F00}
+.fabric-section{margin-top:12px}
+.coll-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#999;margin-bottom:8px}
+.fabric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
+.swatch{border:1.5px solid #e8e8e4;border-radius:10px;overflow:hidden;cursor:pointer;transition:all .15s}
+.swatch:hover{border-color:var(--gold);transform:translateY(-1px)}
+.swatch.sel{border:2px solid var(--gold);box-shadow:0 2px 10px rgba(200,151,63,.2)}
+.swatch-color{height:52px;width:100%;position:relative}
+.swatch-label{padding:5px 6px;background:#fff}
+.swatch-name{font-size:10px;font-weight:500;color:#222;line-height:1.3;margin-bottom:1px}
+.swatch-code{font-size:9px;color:#aaa}
+.swatch-hw{font-size:8px;color:#bbb;margin-top:1px}
+
+/* ── DIMS ── */
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.dim-field{display:flex;flex-direction:column;gap:4px}
+.dim-label{font-size:12px;font-weight:500;color:#444}
+.dim-input-wrap{display:flex;gap:6px;align-items:center}
+.dim-input{width:70px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:15px;text-align:center;font-family:var(--font)}
+.dim-unit{font-size:12px;color:#666}
+
+/* ── MSGS ── */
+.msg-ok{background:#DCFCE7;border:1px solid #86EFAC;border-radius:8px;padding:8px 12px;font-size:12px;color:#14532d;margin-top:8px}
+.msg-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:8px 12px;font-size:12px;color:#7f1d1d;margin-top:6px}
+.msg-warn{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:8px 12px;font-size:12px;color:#7d5a00;margin-top:6px;line-height:1.5}
+.msg-info{background:rgba(200,151,63,.08);border:1px solid rgba(200,151,63,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#7A4F00;margin-top:8px;line-height:1.55}
+.computed-info{background:#F9F5EE;border:1px solid #E8DFD0;border-radius:8px;padding:10px 14px;margin-top:10px}
+.computed-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#555}
+.computed-val{font-weight:500;color:#222}
+
+/* ── ACCESSORIES ── */
+.acc-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:.5px solid #f0f0ee}
+.acc-row:last-child{border-bottom:none}
+.acc-label{font-size:13px;font-weight:500;color:#111}
+.acc-sub{font-size:11px;color:#666;line-height:1.4;margin-top:2px}
+
+/* ── SPEC PANEL ── */
+.spec-panel{background:var(--espresso);border-radius:14px;padding:20px;position:sticky;top:72px}
+.spec-title{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.spec-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:11px;padding:5px 0;border-bottom:.5px solid #2A201A;gap:8px}
+.spec-row:last-of-type{border-bottom:none}
+.spec-key{color:#7A6A58;flex-shrink:0}
+.spec-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word;max-width:160px}
+.spec-val.empty{color:#3A2E24;font-style:italic}
+.spec-divider{border:.5px solid #2A201A;margin:10px 0}
+.price-box{background:#1a1208;border-radius:10px;padding:13px;margin-top:12px}
+.price-box-label{font-size:10px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.price-line{display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58}
+.price-line-val{color:var(--cream)}
+.price-total{display:flex;justify-content:space-between;font-size:15px;font-weight:600;margin-top:8px;padding-top:8px;border-top:.5px solid #3A2E24}
+.price-total-label{color:var(--cream)}
+.price-total-val{color:var(--gold)}
+.price-note{font-size:9px;color:#4A3A28;margin-top:6px;line-height:1.6}
+
+/* ── FORM ── */
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
+.form-group input,.form-group textarea{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);box-sizing:border-box}
+.form-group textarea{min-height:72px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}.opt-grid-2{grid-template-columns:1fr}}
+
+/* ── DELIVERY ── */
+.del-opt{background:#fff;border:1.5px solid #e0dbd2;border-radius:9px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:.15s}
+.del-opt:hover{border-color:var(--gold)}
+.del-opt.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.del-opt-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px}
+.del-opt-sub{font-size:11px;color:#777;line-height:1.5}
+
+/* ── DISCLAIMER ── */
+.disclaimer-toggle{background:none;border:none;font-size:12px;color:var(--gold);cursor:pointer;padding:0;font-family:var(--font);display:flex;align-items:center;gap:6px;margin-top:16px}
+.disclaimer-body{display:none;margin-top:8px;font-size:11px;color:#555;line-height:1.7}
+.disclaimer-body.open{display:block}
+.disclaimer-item{padding:3px 0 3px 14px;position:relative}
+.disclaimer-item::before{content:"·";position:absolute;left:4px;color:#aaa}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="shades.html">Shades</a> &rsaquo; SmartDrape™</div>
+  <h1>Norman SmartDrape™</h1>
+  <p class="sub">Vertical sheer vane system — drapery-style elegance with the function of a shade. Wide-span capable, wand tilt or motorized. 47 fabrics, outside mount only, valance-free headrail.</p>
+  <div class="hero-pills">
+    <span class="hero-pill-gold hero-pill">Norman® Authorized</span>
+    <span class="hero-pill">47 fabric colors</span>
+    <span class="hero-pill">Wand tilt · Motorized</span>
+    <span class="hero-pill">Best for Kids® certified</span>
+    <span class="hero-pill">Outside mount only</span>
+  </div>
+</div>
+
+<div class="config-layout">
+<div><!-- left col -->
+
+<!-- STEP 1: OPERATION -->
+<div class="step-block active" id="step1">
+  <div class="step-head" onclick="toggleStep('step1')">
+    <div class="step-num">1</div>
+    <div class="step-head-title">Operation</div>
+    <div class="step-head-val" id="s1val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid-2">
+      <div class="opt-card" id="op-wand" onclick="pickOp('wand')">
+        <div class="opt-card-icon">🪄</div>
+        <div class="opt-card-title">Wand Tilt</div>
+        <div class="opt-card-desc">Manual wand. Left, right, or traveling center stack.</div>
+      </div>
+      <div class="opt-card" id="op-motor" onclick="pickOp('motor')">
+        <div class="opt-card-icon">⚡</div>
+        <div class="opt-card-title">Motorized</div>
+        <div class="opt-card-desc">Norman Smart motor. Center stack + center opening available.</div>
+      </div>
+    </div>
+    <div id="motor-note" class="msg-info" style="display:none;margin-top:10px">Motorized SmartDrape: Norman Smart Rechargeable Battery or AC Adapter. Min width confirmed in Norman motorization binder. $642/shade MSRP estimate.</div>
+  </div>
+</div>
+
+<!-- STEP 2: STACK -->
+<div class="step-block" id="step2">
+  <div class="step-head" onclick="toggleStep('step2')">
+    <div class="step-num">2</div>
+    <div class="step-head-title">Stack configuration</div>
+    <div class="step-head-val" id="s2val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" id="stack-opts"><!-- filled by JS --></div>
+    <div id="sbs-wrap" style="display:none;margin-top:12px;display:flex;align-items:center;gap:10px">
+      <input type="checkbox" id="sbs-check" onchange="onSBSChange()" style="width:16px;height:16px;cursor:pointer">
+      <label for="sbs-check" style="font-size:13px;color:#444;cursor:pointer">Side-by-side configuration (wand tilt only — two independently operated shades)</label>
+    </div>
+    <div id="center-open-note" class="msg-info" style="display:none;margin-top:8px">Center Opening: motorized only. Two synchronized panels part from the center outward. Track widths 30″–286¾″ available.</div>
+  </div>
+</div>
+
+<!-- STEP 3: MOUNT -->
+<div class="step-block" id="step3">
+  <div class="step-head" onclick="toggleStep('step3')">
+    <div class="step-num">3</div>
+    <div class="step-head-title">Mount type</div>
+    <div class="step-head-val" id="s3val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="msg-info" style="margin-top:4px;margin-bottom:10px">SmartDrape™ is <strong>Outside Mount only</strong> — no inside mount. No deductions are taken. Order your desired finished track width.</div>
+    <div class="opt-grid-3">
+      <div class="opt-card sel" id="mc-wall" onclick="pickMount(this,'wall')">
+        <div class="opt-card-icon">🔲</div>
+        <div class="opt-card-title">Wall Mount</div>
+        <div class="opt-card-desc">L bracket · Standard. Recommended for doors.</div>
+      </div>
+      <div class="opt-card" id="mc-ceiling" onclick="pickMount(this,'ceiling')">
+        <div class="opt-card-icon">⬆</div>
+        <div class="opt-card-title">Ceiling Mount</div>
+        <div class="opt-card-desc">Direct mount or C clip.</div>
+      </div>
+      <div class="opt-card" id="mc-pocket" onclick="pickMount(this,'pocket')">
+        <div class="opt-card-icon">▫</div>
+        <div class="opt-card-title">Ceiling Pocket</div>
+        <div class="opt-card-desc">Recessed. Min pocket depth 4⅞″.</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;align-items:center;gap:10px">
+      <input type="checkbox" id="door-check" onchange="onDoorChange()" style="width:16px;height:16px;cursor:pointer">
+      <label for="door-check" style="font-size:13px;color:#444;cursor:pointer">Patio door / slider application</label>
+    </div>
+    <div id="door-warn" class="msg-warn" style="display:none;margin-top:8px">Patio door: allow ≥4″ overlap beyond opening width, ≥3″ above opening height, ½″ floor clearance minimum. No magnetic hold-downs (SmartDrape doesn't use them).</div>
+  </div>
+</div>
+
+<!-- STEP 4: DIMENSIONS -->
+<div class="step-block" id="step4">
+  <div class="step-head" onclick="toggleStep('step4')">
+    <div class="step-num">4</div>
+    <div class="step-head-title">Track width &amp; height</div>
+    <div class="step-head-val" id="s4val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="dim-row">
+      <div class="dim-field">
+        <div class="dim-label">Track width (order width)</div>
+        <div class="dim-input-wrap">
+          <input class="dim-input" type="number" id="inp-w" min="17.625" max="285.625" step="0.125" placeholder="48" oninput="calcDims()">
+          <span class="dim-unit">in</span>
+        </div>
+      </div>
+      <div class="dim-field">
+        <div class="dim-label">Height (order height)</div>
+        <div class="dim-input-wrap">
+          <input class="dim-input" type="number" id="inp-h" min="24" max="144" step="0.125" placeholder="84" oninput="calcDims()">
+          <span class="dim-unit">in</span>
+        </div>
+      </div>
+    </div>
+    <div class="dim-row" style="margin-top:6px">
+      <div class="dim-field">
+        <div class="dim-label">Quantity</div>
+        <div class="dim-input-wrap">
+          <input class="dim-input" type="number" id="inp-qty" min="1" max="50" value="1" oninput="calcDims()">
+          <span class="dim-unit">shades</span>
+        </div>
+      </div>
+    </div>
+    <div id="dim-msg" style="margin-top:8px"></div>
+    <div id="computed-panel" class="computed-info" style="display:none">
+      <div class="computed-row"><span>Shade fabric width</span><span class="computed-val" id="cp-fabric">—</span></div>
+      <div class="computed-row"><span>SmartJoints required</span><span class="computed-val" id="cp-joints">—</span></div>
+      <div class="computed-row"><span>Area</span><span class="computed-val" id="cp-area">—</span></div>
+    </div>
+    <div class="msg-info" style="margin-top:10px;font-size:11px">No deductions taken. Order your desired finished track width. For wand tilt: min 17⅝″, max 285⅝″. Height: 24″–144″, max 237 sq ft.</div>
+  </div>
+</div>
+
+<!-- STEP 5: LIGHT CONTROL -->
+<div class="step-block" id="step5">
+  <div class="step-head" onclick="toggleStep('step5')">
+    <div class="step-num">5</div>
+    <div class="step-head-title">Light control</div>
+    <div class="step-head-val" id="s5val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid-2">
+      <div class="opt-card" id="oc-lf" onclick="pickOpacity('lf')">
+        <div class="opt-card-icon">☀️</div>
+        <div class="opt-card-title">Light Filtering</div>
+        <div class="opt-card-desc">Diffuses light, maintains view. Standard pricing.</div>
+      </div>
+      <div class="opt-card" id="oc-rd" onclick="pickOpacity('rd')">
+        <div class="opt-card-icon">🌙</div>
+        <div class="opt-card-title">Room Darkening</div>
+        <div class="opt-card-desc">Significantly reduces light. Not blackout. +20% surcharge.</div>
+      </div>
+    </div>
+    <div id="rd-warn" class="msg-warn" style="display:none;margin-top:8px">Room Darkening fabric reduces light significantly but is not a blackout product. Some light passes through edges and vane openings.</div>
+  </div>
+</div>
+
+<!-- STEP 6: FABRIC -->
+<div class="step-block" id="step6">
+  <div class="step-head" onclick="toggleStep('step6')">
+    <div class="step-num">6</div>
+    <div class="step-head-title">Fabric</div>
+    <div class="step-head-val" id="s6val">—</div>
+  </div>
+  <div class="step-body">
+    <div id="fabric-body"><!-- filled by JS --></div>
+  </div>
+</div>
+
+<!-- STEP 7: HARDWARE COLOR -->
+<div class="step-block" id="step7">
+  <div class="step-head" onclick="toggleStep('step7')">
+    <div class="step-num">7</div>
+    <div class="step-head-title">Hardware color</div>
+    <div class="step-head-val" id="s7val">Fabric default</div>
+  </div>
+  <div class="step-body">
+    <div class="msg-info" style="margin-top:4px;margin-bottom:10px">Default hardware color is coordinated to your selected fabric. You may override below. Wand, brackets, motor, and keystone all match headrail color.</div>
+    <div class="opt-grid" id="hw-color-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="opt-card" onclick="pickHW(this,'White')"><div class="opt-card-title" style="font-size:12px">White</div></div>
+      <div class="opt-card" onclick="pickHW(this,'Cottage White')"><div class="opt-card-title" style="font-size:12px">Cottage White</div></div>
+      <div class="opt-card" onclick="pickHW(this,'Matte Silver')"><div class="opt-card-title" style="font-size:12px">Matte Silver</div></div>
+      <div class="opt-card" onclick="pickHW(this,'Black')"><div class="opt-card-title" style="font-size:12px">Black</div></div>
+      <div class="opt-card" onclick="pickHW(this,'Bronze')"><div class="opt-card-title" style="font-size:12px">Bronze</div></div>
+      <div class="opt-card" onclick="pickHW(this,'Brass')"><div class="opt-card-title" style="font-size:12px">Brass</div></div>
+    </div>
+    <div class="msg-info" style="margin-top:8px;font-size:11px">Charging Extension Wand (motorized accessory) defaults to selected fabric color. Override available in: Cloud Cream, Day Light, Silver, Black, Chocolate, Moonbeam.</div>
+  </div>
+</div>
+
+<!-- STEP 8: ACCESSORIES -->
+<div class="step-block" id="step8">
+  <div class="step-head" onclick="toggleStep('step8')">
+    <div class="step-num">8</div>
+    <div class="step-head-title">Accessories</div>
+    <div class="step-head-val" id="s8val">Optional</div>
+  </div>
+  <div class="step-body" style="padding-top:8px">
+    <div class="acc-row">
+      <input type="checkbox" id="acc-keystone" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
+      <div><div class="acc-label">Keystones <span style="color:var(--gold)">$73 ea</span></div><div class="acc-sub">Decorative SmartJoint covers. Optional on spliced tracks.</div></div>
+    </div>
+    <div class="acc-row">
+      <input type="checkbox" id="acc-extra-wand" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
+      <div><div class="acc-label">Additional wand <span style="color:var(--gold)">$89</span></div><div class="acc-sub">Extra operation wand (e.g. for Traveling Center Stack, one per end).</div></div>
+    </div>
+    <div class="acc-row">
+      <input type="checkbox" id="acc-alt-colors" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
+      <div><div class="acc-label">Alternating colors <span style="color:var(--gold)">+10%</span></div><div class="acc-sub">Two-color alternating vane pattern. Both colors must be same fabric category (LF or RD). Not available for Center Opening.</div></div>
+    </div>
+    <div class="acc-row">
+      <input type="checkbox" id="acc-vane-pack" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
+      <div><div class="acc-label">Additional vane pack <span style="color:var(--gold)">$230–$540</span></div><div class="acc-sub">6 vanes per pack. Cost depends on shade height. Original WO# required for replacement orders.</div></div>
+    </div>
+    <div class="acc-row">
+      <input type="checkbox" id="acc-shims" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
+      <div><div class="acc-label">Aluminum shims <span style="color:var(--gold)">$28 ea</span></div><div class="acc-sub">One per L bracket. Adds ⁹⁄₁₆″ projection for clearance over molding.</div></div>
+    </div>
+    <div class="acc-row">
+      <input type="checkbox" id="acc-long-bracket" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
+      <div><div class="acc-label">Long L brackets <span style="color:var(--gold)">$61/shade</span></div><div class="acc-sub">Extended reach (5¹¹⁄₁₆″ vs standard 3¹⁵⁄₁₆″). No shims needed with long brackets.</div></div>
+    </div>
+    <div class="acc-row" id="acc-charge-row" style="display:none">
+      <input type="checkbox" id="acc-charge-wand" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
+      <div><div class="acc-label">Charging Extension Wand</div><div class="acc-sub">Motorized only. Defaults to fabric color. Colors: Cloud Cream, Day Light, Silver, Black, Chocolate, Moonbeam — specify at quote.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 9: DELIVERY + CONTACT -->
+<div class="step-block" id="step9">
+  <div class="step-head" onclick="toggleStep('step9')">
+    <div class="step-num">9</div>
+    <div class="step-head-title">Delivery &amp; quote</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row" style="margin-bottom:12px">
+      <div class="del-opt sel" id="del-ship" onclick="pickDel('ship')">
+        <div class="del-opt-title">📦 Ship to me</div>
+        <div class="del-opt-sub">UPS or FedEx from Huntingdon Valley, PA. Tariffs additional.</div>
+      </div>
+      <div class="del-opt" id="del-pickup" onclick="pickDel('pickup')">
+        <div class="del-opt-title">🏠 I'll pick up</div>
+        <div class="del-opt-sub">Pickup in Huntingdon Valley, PA. Address confirmed after order.</div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Name *</label><input type="text" id="q-name" placeholder="Jane Smith"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="q-phone" placeholder="(215) 555-0100"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="q-email" placeholder="jane@example.com"></div>
+    <div class="form-group"><label>Notes / questions</label><textarea id="q-notes" placeholder="Timeline, room details, alternating color preference, patio door details, anything else..."></textarea></div>
+    <div id="q-err" class="msg-err" style="display:none">Please enter your name and phone number.</div>
+    <button onclick="reqMoreInfo('Norman SmartDrape™')" class="req-info-link" style="display:block;margin-bottom:10px;font-size:12px;color:var(--gold);background:none;border:none;cursor:pointer;text-align:left;padding:0">Request more information about SmartDrape™ →</button>
+    <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:13px;font-size:14px;font-weight:600">Submit SmartDrape™ Specification &amp; Request Quote →</button>
+    <div id="quote-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
+      <strong>Specification submitted!</strong><br>Your email app opened with the complete spec pre-filled. We'll follow up within a few hours.<br><br>
+      Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> · 24/7.
+    </div>
+    <button class="disclaimer-toggle" onclick="this.nextElementSibling.classList.toggle('open')" style="margin-top:16px">▶ Product expectations &amp; care</button>
+    <div class="disclaimer-body">
+      <div class="disclaimer-item">Room Darkening is not blackout — some light passes through edges and vane openings</div>
+      <div class="disclaimer-item">Minor gaps between closed vanes are normal</div>
+      <div class="disclaimer-item">Slight vane bowing and wrinkles are normal; wrinkles usually disappear after a few days hanging</div>
+      <div class="disclaimer-item">Fabric fraying at cut edges is normal and can be clipped</div>
+      <div class="disclaimer-item">Vane alignment tolerance: ±13/16″ per shade</div>
+      <div class="disclaimer-item">Fabric composition: 100% Polyester</div>
+      <div style="font-size:11px;font-weight:500;color:#444;margin:8px 0 4px">Care</div>
+      <div class="disclaimer-item">Light dusting or air blower — OK</div>
+      <div class="disclaimer-item">Steam or iron to remove wrinkles — OK</div>
+      <div class="disclaimer-item">Vacuuming — not recommended</div>
+      <div class="disclaimer-item">Spot cleaning — not recommended (fabric is not water resistant)</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /left col -->
+
+<!-- RIGHT: Spec + Price panel -->
+<div>
+  <div class="spec-panel">
+    <div class="spec-title">Configuration</div>
+    <div class="spec-row"><span class="spec-key">Operation</span><span class="spec-val empty" id="sp-op">—</span></div>
+    <div class="spec-row"><span class="spec-key">Stack</span><span class="spec-val empty" id="sp-stack">—</span></div>
+    <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val" id="sp-mount">Wall Mount</span></div>
+    <div class="spec-row"><span class="spec-key">Width × Height</span><span class="spec-val empty" id="sp-dims">—</span></div>
+    <div class="spec-row"><span class="spec-key">Qty</span><span class="spec-val empty" id="sp-qty">—</span></div>
+    <div class="spec-row"><span class="spec-key">Light control</span><span class="spec-val empty" id="sp-opacity">—</span></div>
+    <div class="spec-row"><span class="spec-key">Fabric</span><span class="spec-val empty" id="sp-fabric">—</span></div>
+    <div class="spec-row"><span class="spec-key">Hardware</span><span class="spec-val" id="sp-hw">Fabric default</span></div>
+    <div class="spec-row"><span class="spec-key">Accessories</span><span class="spec-val" id="sp-acc">None</span></div>
+    <div class="spec-divider"></div>
+    <div id="price-pending" style="font-size:11px;color:var(--text-muted);text-align:center;padding:8px 0;font-style:italic">Select operation, dimensions &amp; fabric to see an estimate.</div>
+    <div id="price-box" class="price-box" style="display:none">
+      <div class="price-box-label">MSRP Estimate</div>
+      <div class="price-line"><span>Base (1 shade)</span><span class="price-line-val" id="pr-base">—</span></div>
+      <div class="price-line" id="pr-rd-row" style="display:none"><span>RD surcharge (+20%)</span><span class="price-line-val" id="pr-rd">—</span></div>
+      <div class="price-line" id="pr-alt-row" style="display:none"><span>Alternating colors (+10%)</span><span class="price-line-val" id="pr-alt">—</span></div>
+      <div class="price-line" id="pr-motor-row" style="display:none"><span>Norman Smart motor</span><span class="price-line-val">$642/shade</span></div>
+      <div class="price-line"><span>Qty</span><span class="price-line-val" id="pr-qty">1</span></div>
+      <div class="price-total"><span class="price-total-label">Est. total</span><span class="price-total-val" id="pr-total">—</span></div>
+      <div class="price-note">MSRP estimate from Feb 2026 Norman price book. Accessories and motor surcharges are additional. Final price confirmed at quote.</div>
+    </div>
+  </div>
+  <div style="background:var(--gold-mid);border:1px solid #e8e8e4;border-radius:12px;padding:16px;margin-top:14px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:6px">Norman® Authorized</div>
+    <div style="font-size:12px;color:#555;line-height:1.6">SmartDrape™ uses Norman's proprietary motor system only. Looking for PerfectSheer™? <a href="shades.html#card-perfectsheer" style="color:var(--gold)">Configure it here →</a></div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<div class="cta-banner">
+  <div><h2>Questions about SmartDrape™?</h2><p>Call Justin — we spec these products daily and can walk you through every option including motorization and wide-span configurations.</p></div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 · 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Shades & blinds');
+renderFooter(false);
+
+// ═══════════════════════════════════════════════════════════
+// STATE — initialized before any function calls
+// ═══════════════════════════════════════════════════════════
+var S = {
+  op: 'wand', stack: 'left', mount: 'wall', isDoor: false,
+  w: 0, h: 0, qty: 1,
+  opacity: '', fabric: null,
+  hw: '', // '' = fabric default
+  accs: [],
+  delivery: 'ship'
+};
+
+// ═══════════════════════════════════════════════════════════
+// FABRIC DATA — source: Norman PDF pages 40–41 (Feb 2026)
+// ═══════════════════════════════════════════════════════════
+var SD_FABRICS = {
+  lf: {
+    'Plain': [
+      {code:'F1124',name:'White',         hw:'White',        hex:'#F5F5F0'},
+      {code:'F1128',name:'Ivory',          hw:'Cottage White',hex:'#F0E8D0'},
+      {code:'F1132',name:'Light Gray',     hw:'Matte Silver', hex:'#C4C4C0'},
+      {code:'F1136',name:'Gray',           hw:'Black',        hex:'#888080'},
+      {code:'F1140',name:'Charcoal',       hw:'Black',        hex:'#404040'},
+      {code:'F1866',name:'French Silver',  hw:'Matte Silver', hex:'#B4B8C0'},
+      {code:'F1867',name:'Alabaster',      hw:'Cottage White',hex:'#E8DCC8'},
+      {code:'F1868',name:'Leather Brown',  hw:'Bronze',       hex:'#8B6334'},
+      {code:'F1341',name:'Cottonwood',     hw:'Cottage White',hex:'#E8D0B0'},
+      {code:'F1345',name:'Platinum',       hw:'Cottage White',hex:'#C8C0B0'},
+      {code:'F2128',name:'Linen White',    hw:'White',        hex:'#F4F0E4'},
+      {code:'F2129',name:'Linen Ivory',    hw:'Cottage White',hex:'#ECE4C4'},
+      {code:'F2130',name:'Linen Cottonwood',hw:'Cottage White',hex:'#D4C098'}
+    ],
+    'Net': [
+      {code:'F1125',name:'White',     hw:'White',        hex:'#F2F2EE'},
+      {code:'F1129',name:'Ivory',     hw:'Cottage White',hex:'#EEE4C4'},
+      {code:'F1133',name:'Light Gray',hw:'Matte Silver', hex:'#BCBCB8'},
+      {code:'F1137',name:'Gray',      hw:'Black',        hex:'#807878'},
+      {code:'F1141',name:'Charcoal',  hw:'Black',        hex:'#3C3C3C'},
+      {code:'F1342',name:'Cottonwood',hw:'Cottage White',hex:'#E4CCA8'},
+      {code:'F1346',name:'Platinum',  hw:'Cottage White',hex:'#C4BCA8'}
+    ],
+    'Pacific': [
+      {code:'F1126',name:'White',     hw:'White',        hex:'#F0F0EC'},
+      {code:'F1130',name:'Ivory',     hw:'Cottage White',hex:'#EAE0C4'},
+      {code:'F1134',name:'Light Gray',hw:'Matte Silver', hex:'#B8B8B0'},
+      {code:'F1138',name:'Gray',      hw:'Black',        hex:'#787878'},
+      {code:'F1343',name:'Cottonwood',hw:'Cottage White',hex:'#E0CCAC'},
+      {code:'F1347',name:'Platinum',  hw:'Cottage White',hex:'#C0B8A8'}
+    ],
+    'Circle': [
+      {code:'F1127',name:'White',     hw:'White',        hex:'#F0F0EC'},
+      {code:'F1131',name:'Ivory',     hw:'Cottage White',hex:'#EAE0C4'},
+      {code:'F1135',name:'Light Gray',hw:'Matte Silver', hex:'#BCBCB8'},
+      {code:'F1139',name:'Gray',      hw:'Black',        hex:'#7C7C7C'},
+      {code:'F1344',name:'Cottonwood',hw:'Cottage White',hex:'#E0CCAC'},
+      {code:'F1348',name:'Platinum',  hw:'Cottage White',hex:'#C0B8A8'}
+    ],
+    'Lakeshore Stripe': [
+      {code:'F1663',name:'White',          hw:'White',        hex:'#F5F5EE'},
+      {code:'F1664',name:'Light Gray',     hw:'Matte Silver', hex:'#C0C0BC'},
+      {code:'F1665',name:'Charcoal',       hw:'Black',        hex:'#444444'},
+      {code:'F1964',name:'Warm White',     hw:'White',        hex:'#F4EED8'},
+      {code:'F1965',name:'Fog Mist',       hw:'Cottage White',hex:'#D4D0C4'},
+      {code:'F2038',name:'Reddish Brown',  hw:'Bronze',       hex:'#8B4A30'},
+      {code:'F2039',name:'Malibu Beige',   hw:'Cottage White',hex:'#D4C4A4'},
+      {code:'F2040',name:'Shadow',         hw:'Matte Silver', hex:'#A8A4A0'},
+      {code:'F2041',name:'Latte',          hw:'Cottage White',hex:'#C4A880'},
+      {code:'F2042',name:'Empirical Gray', hw:'Matte Silver', hex:'#989090'}
+    ]
+  },
+  rd: {
+    'Standard': [
+      {code:'F1169',name:'Soft White',hw:'White',        hex:'#F2F2EC'},
+      {code:'F1170',name:'Crema',     hw:'Cottage White',hex:'#E8D8C0'},
+      {code:'F1171',name:'Coffee',    hw:'Black',        hex:'#5C3820'},
+      {code:'F1172',name:'Carbon',    hw:'Black',        hex:'#2C2C2C'},
+      {code:'F1603',name:'Light Gray',hw:'Matte Silver', hex:'#B0ACA8'},
+      {code:'F1604',name:'Cottonwood',hw:'Cottage White',hex:'#D8C8A8'}
+    ],
+    'Plain': [
+      {code:'F1854',name:'Soft White',hw:'White',        hex:'#F0F0E8'},
+      {code:'F1855',name:'Crema',     hw:'Cottage White',hex:'#E4D4B8'},
+      {code:'F1856',name:'Coffee',    hw:'Black',        hex:'#583218'},
+      {code:'F1857',name:'Carbon',    hw:'Black',        hex:'#282828'},
+      {code:'F1858',name:'Light Gray',hw:'Matte Silver', hex:'#ACACA8'}
+    ]
+  }
+};
+
+// ═══════════════════════════════════════════════════════════
+// PRICE TABLE — source: Norman Feb 2026 price book p.27
+// Track widths (W): 48, 60, 72, 84, 100, 120, 132, 144
+// Heights (H): 36, 48, 54, 60, 66, 72, 78, 84, 90, 96, 108, 120, 132, 148, 160, 172, 184
+// ═══════════════════════════════════════════════════════════
+var SD_W = [48,60,72,84,100,120,132,144];
+var SD_H = [36,48,54,60,66,72,78,84,90,96,108,120,132,148,160,172,184];
+var SD_PRICES = [
+  [758,892,951,1013,1107,1171,1235,1306,1400,1484,1604,1821,2051,2305,2582,2834,3088],
+  [842,998,1082,1156,1269,1342,1415,1499,1609,1705,1842,2071,2314,2575,2886,3146,3408],
+  [951,1146,1239,1342,1459,1555,1643,1744,1868,1983,2277,2535,2817,3111,3485,3779,4073],
+  [1026,1281,1382,1491,1624,1730,1835,1939,2078,2203,2382,2651,2941,3249,3639,3947,4255],
+  [1115,1347,1459,1576,1714,1830,1942,2052,2203,2337,2587,2865,3169,3486,3904,4223,4542],
+  [1262,1455,1590,1720,1867,1996,2124,2244,2411,2559,2928,3225,3546,3889,4355,4699,5042],
+  [1310,1554,1695,1832,1984,2122,2263,2386,2563,2717,2966,3267,3589,3935,4409,4758,5107],
+  [1382,1685,1835,1979,2146,2292,2450,2575,2769,2929,3069,3377,3711,4070,4560,4922,5285]
+];
+var SD_ADD_PER_FT = [255,263,296,309,320,345,350,369]; // per extra foot over 184"
+
+function lookupPrice(w,h){
+  var wi=SD_W.findIndex(function(v){return w<=v;}); if(wi<0)wi=SD_W.length-1;
+  var hi=SD_H.findIndex(function(v){return h<=v;});
+  var base;
+  if(hi>=0){
+    base=SD_PRICES[wi][hi];
+  } else {
+    // over 184" height
+    var extraFt=Math.ceil((h-184)/12);
+    base=SD_PRICES[wi][SD_H.length-1]+extraFt*SD_ADD_PER_FT[wi];
+  }
+  return base||0;
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP HELPERS
+// ═══════════════════════════════════════════════════════════
+function toggleStep(id){var el=document.getElementById(id);el.classList.add('active');setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'start'});},60);}
+function openStep(id){var e=document.getElementById(id);if(e){e.classList.add('active','open');}}
+function markDone(id,txt){
+  var el=document.getElementById(id);
+  el.classList.add('done');
+  var vEl=document.getElementById(id.replace('step','s')+'val');
+  if(vEl&&txt) vEl.textContent=txt;
+}
+function sp(id,val){var e=document.getElementById(id);if(e){e.textContent=val||'—';e.classList.toggle('empty',!val||val==='—');}}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 1: OPERATION
+// ═══════════════════════════════════════════════════════════
+function pickOp(op){
+  S.op=op;
+  document.getElementById('op-wand').classList.toggle('sel',op==='wand');
+  document.getElementById('op-motor').classList.toggle('sel',op==='motor');
+  document.getElementById('motor-note').style.display=op==='motor'?'block':'none';
+  document.getElementById('acc-charge-row').style.display=op==='motor'?'flex':'none';
+  var lbl=op==='wand'?'Wand Tilt':'Motorized (Norman Smart)';
+  markDone('step1',lbl); sp('sp-op',lbl);
+  // Rebuild stack options
+  buildStack();
+  calcPrice();
+  openStep('step2');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 2: STACK
+// ═══════════════════════════════════════════════════════════
+function buildStack(){
+  var opts=S.op==='wand'?[
+    {val:'left',  label:'Left Stack',              desc:'All vanes stack to left side'},
+    {val:'right', label:'Right Stack',             desc:'All vanes stack to right side'},
+    {val:'center',label:'Traveling Center Stack',  desc:'Wand on each side — vanes draw from center'}
+  ]:[
+    {val:'left',  label:'Left Stack',      desc:'Vanes stack left'},
+    {val:'right', label:'Right Stack',     desc:'Vanes stack right'},
+    {val:'center',label:'Center Stack',    desc:'Vanes stack toward center (added Jan 2026)'},
+    {val:'copen', label:'Center Opening',  desc:'Motorized only — two panels part from center outward'}
+  ];
+  document.getElementById('stack-opts').innerHTML=opts.map(function(o){
+    return '<div class="opt-card'+(S.stack===o.val?' sel':'')+'" id="stk-'+o.val+'" onclick="pickStack(\''+o.val+'\')">'
+      +'<div class="opt-card-title">'+o.label+'</div><div class="opt-card-desc">'+o.desc+'</div></div>';
+  }).join('');
+  // SBS toggle: wand only
+  var sbsWrap=document.getElementById('sbs-wrap');
+  if(sbsWrap) sbsWrap.style.display=S.op==='wand'?'flex':'none';
+  document.getElementById('center-open-note').style.display=S.op==='motor'?'block':'none';
+}
+
+function pickStack(v){
+  S.stack=v;
+  document.querySelectorAll('#stack-opts .opt-card').forEach(function(c){c.classList.remove('sel');});
+  var el=document.getElementById('stk-'+v);
+  if(el) el.classList.add('sel');
+  var labels={'left':'Left Stack','right':'Right Stack','center':'Traveling Center Stack','copen':'Center Opening'};
+  markDone('step2',labels[v]||v); sp('sp-stack',labels[v]||v);
+  calcDims();
+  openStep('step3');
+}
+
+function onSBSChange(){calcDims();}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 3: MOUNT
+// ═══════════════════════════════════════════════════════════
+function pickMount(el,m){
+  S.mount=m;
+  ['mc-wall','mc-ceiling','mc-pocket'].forEach(function(id){
+    var e=document.getElementById(id); if(e) e.classList.remove('sel');
+  });
+  el.classList.add('sel');
+  var lbl={'wall':'Wall Mount (L bracket)','ceiling':'Ceiling Mount','pocket':'Ceiling Pocket Mount'}[m]||'Outside Mount';
+  markDone('step3',lbl); sp('sp-mount',lbl);
+  openStep('step4');
+}
+
+function onDoorChange(){
+  S.isDoor=document.getElementById('door-check').checked;
+  document.getElementById('door-warn').style.display=S.isDoor?'block':'none';
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 4: DIMENSIONS
+// ═══════════════════════════════════════════════════════════
+function calcDims(){
+  S.w=parseFloat(document.getElementById('inp-w').value)||0;
+  S.h=parseFloat(document.getElementById('inp-h').value)||0;
+  S.qty=parseInt(document.getElementById('inp-qty').value)||1;
+  var msgEl=document.getElementById('dim-msg');
+  var comp=document.getElementById('computed-panel');
+  msgEl.innerHTML=''; comp.style.display='none';
+  if(!S.w||!S.h) return;
+
+  var isSBS=document.getElementById('sbs-check')&&document.getElementById('sbs-check').checked;
+  var minW=isSBS?15.625:17.625;
+  var maxW=isSBS?284.375:285.625;
+  var errs=[];
+  if(S.w<minW) errs.push('Min width '+(isSBS?'(side-by-side) ':'')+'is '+minW+'″.');
+  if(S.w>maxW) errs.push('Max width '+(isSBS?'(side-by-side) ':'')+'is '+maxW+'″.');
+  if(S.h<24) errs.push('Min height is 24″.');
+  if(S.h>144) errs.push('Max height is 144″.');
+  var area=(S.w/12)*(S.h/12);
+  if(area>237) errs.push('Area '+area.toFixed(1)+' sq ft exceeds 237 sq ft maximum.');
+  if(S.stack==='copen'&&S.w<30) errs.push('Center Opening minimum track width is 30″.');
+
+  if(errs.length){
+    msgEl.innerHTML=errs.map(function(e){return '<div class="msg-err">⚠ '+e+'</div>';}).join('');
+    return;
+  }
+
+  msgEl.innerHTML='<div class="msg-ok">✓ '+S.w+'″ × '+S.h+'″ · '+area.toFixed(1)+' sq ft — within spec.</div>';
+  comp.style.display='block';
+  var joints=S.w<=97.625?0:S.w<=189.625?1:2;
+  document.getElementById('cp-fabric').textContent=S.w+'″ (no deduction — outside mount)';
+  document.getElementById('cp-joints').textContent=joints===0?'None (track ≤97⅝″)':joints===1?'1 SmartJoint™':'2 SmartJoints™';
+  document.getElementById('cp-area').textContent=area.toFixed(1)+' sq ft';
+  var dimsText=S.w+'″ × '+S.h+'″';
+  markDone('step4',dimsText);
+  sp('sp-dims',dimsText); sp('sp-qty',S.qty+' shade'+(S.qty>1?'s':''));
+  calcPrice();
+  openStep('step5');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 5: LIGHT CONTROL
+// ═══════════════════════════════════════════════════════════
+function pickOpacity(o){
+  S.opacity=o;
+  S.fabric=null;
+  document.getElementById('oc-lf').classList.toggle('sel',o==='lf');
+  document.getElementById('oc-rd').classList.toggle('sel',o==='rd');
+  document.getElementById('rd-warn').style.display=o==='rd'?'block':'none';
+  var lbl=o==='lf'?'Light Filtering':'Room Darkening (+20%)';
+  markDone('step5',lbl); sp('sp-opacity',lbl);
+  sp('sp-fabric','—');
+  document.getElementById('s6val').textContent='—';
+  document.getElementById('step6').classList.remove('done');
+  buildFabricGrid();
+  calcPrice();
+  openStep('step6');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 6: FABRIC
+// ═══════════════════════════════════════════════════════════
+var activeColl='';
+function buildFabricGrid(){
+  var body=document.getElementById('fabric-body');
+  if(!S.opacity){body.innerHTML='<div class="msg-info">Select light control first (step 5).</div>';return;}
+  var colls=Object.keys(SD_FABRICS[S.opacity]);
+  activeColl=activeColl&&SD_FABRICS[S.opacity][activeColl]?activeColl:colls[0];
+  // Collection filter buttons
+  var btns='<div class="coll-filter-row">'+colls.map(function(c){
+    return '<button class="coll-btn'+(c===activeColl?' sel':'')+'" onclick="switchColl(\''+c+'\')">'+c+'</button>';
+  }).join('')+'</div>';
+  // Swatches for active collection
+  var fabrics=SD_FABRICS[S.opacity][activeColl]||[];
+  var swatches=fabrics.map(function(f){
+    var isSel=S.fabric&&S.fabric.code===f.code;
+    var isDark=isDark_(f.hex);
+    return '<div class="swatch'+(isSel?' sel':'')+'" onclick="pickFabric(\''+f.code+'\',\''+f.name+'\',\''+activeColl+'\',\''+f.hw+'\',\''+f.hex+'\')">'
+      +'<div class="swatch-color" style="background:'+f.hex+'"><span style="position:absolute;bottom:4px;right:5px;font-size:8px;color:'+(isDark?'rgba(255,255,255,.6)':'rgba(0,0,0,.4)')+'">'+f.code+'</span></div>'
+      +'<div class="swatch-label"><div class="swatch-name">'+f.name+'</div><div class="swatch-hw" style="color:#ccc">hw: '+f.hw+'</div></div>'
+      +'</div>';
+  }).join('');
+  body.innerHTML=btns+'<div class="fabric-grid">'+swatches+'</div>'
+    +'<div class="msg-info" style="margin-top:10px;font-size:11px">Codes shown are verified from Norman Feb 2026 price book. Final color confirmed with swatches at quote.</div>';
+}
+
+function switchColl(c){
+  activeColl=c;
+  buildFabricGrid();
+}
+
+function isDark_(hex){
+  var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return (0.299*r+0.587*g+0.114*b)<140;
+}
+
+function pickFabric(code,name,coll,hw,hex){
+  S.fabric={code:code,name:name,coll:coll,hw:hw,hex:hex};
+  if(!S.hw) S.hw=hw; // Set hardware default from fabric
+  buildFabricGrid();
+  markDone('step6',name+' · '+coll);
+  sp('sp-fabric',name+' ('+code+') · '+coll);
+  sp('sp-hw',S.hw||'Fabric default ('+hw+')');
+  calcPrice();
+  openStep('step7');
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 7: HARDWARE COLOR
+// ═══════════════════════════════════════════════════════════
+function pickHW(el,color){
+  S.hw=color;
+  document.querySelectorAll('#hw-color-grid .opt-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  markDone('step7',color); sp('sp-hw',color);
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 8: ACCESSORIES
+// ═══════════════════════════════════════════════════════════
+function updateAcc(){
+  var ids=['acc-keystone','acc-extra-wand','acc-alt-colors','acc-vane-pack','acc-shims','acc-long-bracket','acc-charge-wand'];
+  var labels={
+    'acc-keystone':'Keystones ($73 ea)',
+    'acc-extra-wand':'Additional wand ($89)',
+    'acc-alt-colors':'Alternating colors (+10%)',
+    'acc-vane-pack':'Additional vane pack',
+    'acc-shims':'Aluminum shims ($28 ea)',
+    'acc-long-bracket':'Long L brackets ($61/shade)',
+    'acc-charge-wand':'Charging Extension Wand'
+  };
+  var checked=[];
+  ids.forEach(function(id){
+    var el=document.getElementById(id);
+    if(el&&el.checked) checked.push(labels[id]);
+  });
+  S.accs=checked;
+  sp('sp-acc',checked.length>0?checked.join(', '):'None');
+  calcPrice();
+}
+
+// ═══════════════════════════════════════════════════════════
+// STEP 9: DELIVERY
+// ═══════════════════════════════════════════════════════════
+function pickDel(d){
+  S.delivery=d;
+  document.getElementById('del-ship').classList.toggle('sel',d==='ship');
+  document.getElementById('del-pickup').classList.toggle('sel',d==='pickup');
+}
+
+// ═══════════════════════════════════════════════════════════
+// PRICE CALCULATION
+// ═══════════════════════════════════════════════════════════
+function calcPrice(){
+  if(!S.w||!S.h||!S.opacity){
+    document.getElementById('price-pending').style.display='block';
+    document.getElementById('price-box').style.display='none';
+    return;
+  }
+  var base=lookupPrice(S.w,S.h);
+  if(!base){
+    document.getElementById('price-pending').style.display='block';
+    document.getElementById('price-box').style.display='none';
+    return;
+  }
+  document.getElementById('price-pending').style.display='none';
+  document.getElementById('price-box').style.display='block';
+
+  var per=base;
+  document.getElementById('pr-base').textContent='$'+base.toLocaleString();
+  // RD surcharge
+  var isRD=S.opacity==='rd';
+  var rdAdd=isRD?Math.round(base*0.20):0;
+  document.getElementById('pr-rd-row').style.display=isRD?'flex':'none';
+  if(isRD) document.getElementById('pr-rd').textContent='+$'+rdAdd;
+  per+=rdAdd;
+  // Alternating colors
+  var isAlt=document.getElementById('acc-alt-colors')&&document.getElementById('acc-alt-colors').checked;
+  var altAdd=isAlt?Math.round(base*0.10):0;
+  document.getElementById('pr-alt-row').style.display=isAlt?'flex':'none';
+  if(isAlt) document.getElementById('pr-alt').textContent='+$'+altAdd;
+  per+=altAdd;
+  // Motor
+  var isMotor=S.op==='motor';
+  document.getElementById('pr-motor-row').style.display=isMotor?'flex':'none';
+  if(isMotor) per+=642;
+  // Total
+  document.getElementById('pr-qty').textContent=S.qty+' shade'+(S.qty>1?'s':'');
+  document.getElementById('pr-total').textContent='~$'+Math.round(per*S.qty).toLocaleString();
+}
+
+// ═══════════════════════════════════════════════════════════
+// SUBMIT
+// ═══════════════════════════════════════════════════════════
+function getOpt(id){var e=document.getElementById(id);return e?e.textContent.trim():'';}
+
+function submitQuote(){
+  var name=document.getElementById('q-name').value.trim();
+  var phone=document.getElementById('q-phone').value.trim();
+  var err=document.getElementById('q-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+  var stackLabels={'left':'Left Stack','right':'Right Stack','center':'Traveling Center Stack','copen':'Center Opening'};
+  var mountLabels={'wall':'Wall Mount (L bracket)','ceiling':'Ceiling Mount','pocket':'Ceiling Pocket Mount'};
+  var isSBS=document.getElementById('sbs-check')&&document.getElementById('sbs-check').checked;
+  var joints=S.w<=97.625?0:S.w<=189.625?1:2;
+  var body=[
+    'NORMAN SMARTDRAPE™ SPECIFICATION REQUEST','',
+    '── CUSTOMER ──',
+    'Name: '+name,'Phone: '+phone,
+    'Email: '+(document.getElementById('q-email').value.trim()||'—'),'',
+    '── SPECIFICATION ──',
+    'Product: Norman SmartDrape™ (valance-free headrail, outside mount only)',
+    'Operation: '+(S.op==='wand'?'Wand Tilt':'Motorized — Norman Smart'),
+    'Stack: '+(stackLabels[S.stack]||S.stack),
+    'Side by side: '+(isSBS?'Yes — two independently operated shades':'No'),
+    'Mount: '+(mountLabels[S.mount]||S.mount),
+    S.isDoor?'Patio door/slider application: YES — overlap ≥4" width, ≥3" height, ½" floor clearance':'',
+    'Track width (order width): '+(S.w||'—')+'″',
+    'Height: '+(S.h||'—')+'″',
+    'SmartJoints required: '+(joints===0?'None':joints===1?'1 SmartJoint™':'2 SmartJoints™'),
+    'Area: '+((S.w&&S.h)?((S.w/12)*(S.h/12)).toFixed(1)+' sq ft':'—'),
+    'Quantity: '+S.qty,'',
+    '── FABRIC ──',
+    'Light control: '+(S.opacity==='lf'?'Light Filtering':'Room Darkening (+20% surcharge)'),
+    'Collection: '+(S.fabric?S.fabric.coll:'—'),
+    'Color: '+(S.fabric?S.fabric.name:'—'),
+    'Fabric code: '+(S.fabric?S.fabric.code:'—'),
+    'Default hardware color (from fabric): '+(S.fabric?S.fabric.hw:'—'),
+    'Hardware color override: '+(S.hw&&S.hw!==( S.fabric?S.fabric.hw:'')?S.hw:'None (using fabric default)'),'',
+    '── ACCESSORIES ──',
+    S.accs.length>0?S.accs.join('\n'):'None','',
+    '── DELIVERY ──',
+    S.delivery==='ship'?'Ship to me (UPS/FedEx from Huntingdon Valley, PA)':'Will pick up (Huntingdon Valley, PA)','',
+    '── NOTES ──',
+    document.getElementById('q-notes').value.trim()||'None'
+  ].filter(function(l){return l!==undefined&&l!==null;}).join('\n');
+
+  window.location.href='mailto:justin@phillyblinds.com'
+    +'?subject='+encodeURIComponent('Norman SmartDrape™ Spec — '+name)
+    +'&body='+encodeURIComponent(body);
+  document.getElementById('quote-success').style.display='block';
+}
+
+// ═══════════════════════════════════════════════════════════
+// INIT — called AFTER all function and state definitions
+// ═══════════════════════════════════════════════════════════
+(function(){
+  // Pre-select defaults and mark step3 done (wall mount pre-selected)
+  pickOp('wand');        // operation → builds stack options → opens step2
+  pickStack('left');     // stack → opens step3
+  // Mount is pre-selected (wall) — mark done
+  markDone('step3','Wall Mount (L bracket)');
+  openStep('step4');
+})();
+</script>
+</body>
+</html>
+

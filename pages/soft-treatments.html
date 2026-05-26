@@ -1,0 +1,2263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Custom drapery and roman shades — handcrafted to your exact dimensions. Your fabric or ours. Motorization available. Philadelphia & surrounding area.">
+<meta property="og:title" content="Soft Treatments — Custom Drapery &amp; Roman Shades | Philly Blinds">
+<meta property="og:description" content="Custom drapery and roman shades — handcrafted to your exact dimensions. Your fabric or ours. Motorization available.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/soft-treatments.html">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<title>Soft Treatments — Custom Drapery &amp; Roman Shades | Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+/* ── HERO ── */
+.page-hero{background:linear-gradient(to right,rgba(28,21,16,.92) 35%,rgba(28,21,16,.55) 65%,rgba(28,21,16,.30) 100%),url('../images/thumbnails/drapes-custom.jpg') right center/cover no-repeat;padding:44px 28px 40px;min-height:320px;position:relative;overflow:hidden}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--cream)}
+.page-hero h1{font-size:32px;font-weight:500;color:var(--cream);letter-spacing:-0.5px;margin-bottom:10px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:22px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.3);color:var(--gold)}
+
+/* ── TYPE TABS ── */
+.type-tabs{display:flex;gap:0;background:var(--espresso-mid);border-bottom:1px solid var(--border-dark);padding:0 28px;position:sticky;top:56px;z-index:90}
+.type-tab{padding:15px 28px;font-size:13px;font-weight:500;color:var(--text-muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:color .15s,border-color .15s;font-family:inherit}
+.type-tab:hover{color:var(--cream)}
+.type-tab.on{color:var(--cream);border-bottom-color:var(--gold)}
+.tab-panel{display:none}.tab-panel.on{display:block}
+
+/* ── STEP LAYOUT ── */
+.step-wrap{max-width:900px;margin:0 auto;padding:32px 28px}
+.step{margin-bottom:32px}
+.step-label{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.step-title{font-size:18px;font-weight:500;color:#1a1a1a;margin-bottom:4px;letter-spacing:-0.3px}
+.step-sub{font-size:13px;color:#666;line-height:1.6}
+
+/* ── OPTION CARDS (style, pleat) ── */
+.opt-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-top:16px}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.opt-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(45,224,193,.12)}
+.opt-card.sel{border:2px solid var(--gold);box-shadow:0 2px 16px rgba(45,224,193,.2)}
+.opt-card.sel .opt-label-bar{background:var(--gold)}
+.opt-card.sel .opt-name,.opt-card.sel .opt-desc{color:var(--espresso)}
+.opt-art{height:160px;overflow:hidden;background:#F8F4EE;display:flex;align-items:center;justify-content:center;position:relative}
+.opt-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
+.opt-label-bar{background:#f2ede6;padding:11px 13px;transition:background .15s}
+.opt-name{font-size:13px;font-weight:500;color:#222;margin-bottom:1px}
+.opt-desc{font-size:11px;color:#888;line-height:1.4}
+
+/* ── FABRIC PATH CARDS ── */
+.fabric-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px}
+.fabric-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;padding:20px;cursor:pointer;transition:border-color .15s}
+.fabric-card:hover{border-color:var(--gold)}
+.fabric-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.fabric-card h3{font-size:13px;font-weight:500;color:#111;margin-bottom:4px}
+.fabric-card p{font-size:12px;color:#666;line-height:1.5}
+
+/* ── DIMS + PRICE BOX ── */
+.configurator{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+@media(max-width:820px){.configurator{grid-template-columns:1fr}}
+.price-box{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:120px}
+.pb-title{font-size:12px;font-weight:500;color:var(--cream);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.pb-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:.5px solid #2A201A}
+.pb-key{color:#7A6A58}.pb-val{color:var(--cream);font-weight:500}
+.pb-total-row{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--gold)}
+.pb-total-label{font-size:14px;font-weight:500;color:var(--cream)}
+.pb-total-val{font-size:20px;font-weight:500;color:var(--gold)}
+.pb-note{font-size:10px;color:#5A4A38;margin-top:8px;line-height:1.6}
+.qty-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.qty-btn{width:32px;height:32px;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}
+.qty-val{width:44px;text-align:center;border:1px solid #ddd;border-radius:8px;padding:5px;font-size:14px}
+
+/* ── HARDWARE CROSS-SELL ── */
+.hw-crosssell{background:var(--espresso-mid);border:0.5px solid var(--border-dark);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
+.hw-crosssell-text{font-size:13px;color:var(--cream);}
+.hw-crosssell-text strong{color:var(--gold)}
+
+/* ── SUCCESS ── */
+.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;display:none}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Soft treatments</div>
+  <h1>Soft Treatments</h1>
+  <p class="sub">Handcrafted drapery panels and roman shades — custom to your exact size, your fabric choice, and your room. We fabricate and install everything ourselves.</p>
+  <div class="hero-pills">
+    <span class="hero-pill-gold hero-pill">Custom fabrication</span>
+    <span class="hero-pill">Your fabric or ours</span>
+    <span class="hero-pill">Motorization available</span>
+    <span class="hero-pill">Free in-home consult</span>
+  </div>
+  <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+    <a href="tel:6097421720" style="display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:var(--espresso);font-size:13px;font-weight:700;padding:10px 18px;border-radius:8px;text-decoration:none">&#128222; Call Justin — (609) 742-1720</a>
+    <span style="font-size:11px;color:rgba(255,255,255,0.65)">24/7 call or text</span>
+  </div>
+</div>
+
+<!-- TYPE TABS -->
+<div class="type-tabs" id="type-tabs">
+  <button class="type-tab on" onclick="switchTab('drapes',this)">Custom Drapery <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;vertical-align:middle">INSTANT PRICE</span></button>
+  <button class="type-tab" onclick="switchTab('roman',this)">Roman Shades <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;vertical-align:middle">INSTANT PRICE</span></button>
+  <button class="type-tab" onclick="switchTab('cornval',this)">Cornices &amp; Valances <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;vertical-align:middle">INSTANT PRICE</span></button>
+  <button class="type-tab" onclick="switchTab('woven',this)">Woven Wood</button>
+  <button class="type-tab" style="color:var(--gold)" onclick="pbShowContact('Specialty Soft Treatments — Custom Fabrication')">Specialty ✦</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB: CUSTOM DRAPERY
+════════════════════════════════════════════════════════════ -->
+<div class="tab-panel on" id="tab-drapes">
+<div class="step-wrap">
+
+  <!-- STEP 1: PLEAT STYLE -->
+  <div class="step">
+    <div class="step-label">Step 1</div>
+    <div class="step-title">Choose your pleat style</div>
+    <div class="step-sub">The pleat determines the look and how the panel hangs. Not sure? Book a free consult — we'll bring samples.</div>
+    <div class="opt-cards" id="pleat-cards">
+      <div class="opt-card" onclick="selectPleat(this,'Ripple Fold')">
+        <div class="opt-art">
+          <img src="../images/pleat-styles/ripplefold.png" alt="Ripple fold drapery">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Ripple Fold</div><div class="opt-desc">Continuous S-wave, modern clean look</div></div>
+      </div>
+      <div class="opt-card" onclick="selectPleat(this,'Pinch Pleat')">
+        <div class="opt-art">
+          <img src="../images/pleat-styles/pinch-pleat.png" alt="Pinch pleat drapery">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Pinch Pleat</div><div class="opt-desc">2-prong or 3-prong, tack top or bottom</div></div>
+      </div>
+      <div class="opt-card" onclick="selectPleat(this,'Box Pleat')">
+        <div class="opt-art">
+          <img src="../images/pleat-styles/box-pleat.png" alt="Box pleat drapery">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Box Pleat</div><div class="opt-desc">Structured flat pleat, tailored look</div></div>
+      </div>
+      <div class="opt-card" onclick="selectPleat(this,'Goblet Pleat')">
+        <div class="opt-art">
+          <img src="../images/pleat-styles/goblet-pleat.png" alt="Goblet pleat drapery">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Goblet Pleat</div><div class="opt-desc">Formal chalice-shaped heading</div></div>
+      </div>
+      <div class="opt-card" onclick="selectPleat(this,'Grommet / Eyelet')">
+        <div class="opt-art">
+          <img src="../images/pleat-styles/grommet-eyelet.png" alt="Grommet eyelet drapery">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Grommet / Eyelet</div><div class="opt-desc">Metal rings slide directly on rod</div></div>
+      </div>
+      <div class="opt-card" onclick="selectPleat(this,'Barrel Pleat')">
+        <div class="opt-art">
+          <img src="../images/pleat-styles/barrel-pleat.png" alt="Barrel pleat drapery">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Barrel Pleat</div><div class="opt-desc">Rounded cartridge-style, structured look</div></div>
+      </div>
+      <div class="opt-card" onclick="selectPleat(this,'Rod Pocket / Sheered Pocket')">
+        <div class="opt-art">
+          <img src="../images/pleat-styles/rod-pocket.jpg" alt="Rod pocket sheered pocket drapery">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Rod Pocket / Sheered Pocket</div><div class="opt-desc">Casual gathered sleeve at top</div></div>
+      </div>
+    </div>
+
+    <!-- PINCH PLEAT SUB-OPTIONS (shown only when Pinch Pleat selected) -->
+    <div id="pinch-subopts" style="display:none;margin-top:16px;padding:16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:12px">
+      <div style="font-size:12px;font-weight:600;color:#444;margin-bottom:14px">Choose your pinch pleat style</div>
+
+      <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Tack Top</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+        <div class="opt-card" id="pp-top-2" onclick="selectPinchDetail(this,'Pinch Pleat — 2-Prong Tack Top')">
+          <div class="opt-art">
+            <img src="../images/pleat-styles/pinch-2prong-tack-top.png" alt="2-prong tack top">
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">2-Prong Tack Top</div><div class="opt-desc">Classic 2-prong, tack at heading</div></div>
+        </div>
+        <div class="opt-card" id="pp-top-3" onclick="selectPinchDetail(this,'Pinch Pleat — 3-Prong Tack Top')">
+          <div class="opt-art">
+            <img src="../images/pleat-styles/pinch-3prong-tack-top.png" alt="3-prong tack top">
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">3-Prong Tack Top</div><div class="opt-desc">Fuller, richer triple pleat at heading</div></div>
+        </div>
+      </div>
+
+      <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Tack Bottom</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+        <div class="opt-card" id="pp-bot-2" onclick="selectPinchDetail(this,'Pinch Pleat — 2-Prong Tack Bottom')">
+          <div class="opt-art">
+            <img src="../images/pleat-styles/pinch-2prong-tack-bottom.png" alt="2-prong tack bottom">
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">2-Prong Tack Bottom</div><div class="opt-desc">2-prong, tack at base of pleat</div></div>
+        </div>
+        <div class="opt-card" id="pp-bot-3" onclick="selectPinchDetail(this,'Pinch Pleat — 3-Prong Tack Bottom')">
+          <div class="opt-art">
+            <img src="../images/pleat-styles/pinch-3prong-tack-bottom.png" alt="3-prong tack bottom pinch pleat drapery">
+          </div>
+          <div class="opt-label-bar"><div class="opt-name">3-Prong Tack Bottom</div><div class="opt-desc">Full triple pleat, tack at base</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ROD POCKET SUB-OPTIONS (shown only when Rod Pocket / Sheered Pocket selected) -->
+    <div id="rodpocket-subopts" style="display:none;margin-top:14px;padding:16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:12px">
+      <div style="font-size:12px;font-weight:700;color:#1a1a1a;margin-bottom:14px">Rod pocket details</div>
+
+      <!-- Casing size -->
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Casing (pocket) size</div>
+        <div style="font-size:11px;color:#888;margin-bottom:8px">The sleeve the rod slides through. Should match your rod diameter + clearance.</div>
+        <div class="opt-row" id="grp-rp-casing">
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">1"</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">1.5"</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-rp-casing')">2"</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">2.5"</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">3"</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">4"</button>
+        </div>
+      </div>
+
+      <!-- Header size -->
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Header size (flare above casing)</div>
+        <div style="font-size:11px;color:#888;margin-bottom:8px">The ruffle that fans above the rod. Leave at 0 for no header.</div>
+        <div class="opt-row" id="grp-rp-header">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-rp-header')">No header</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">1"</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">1.5"</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">2"</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">3"</button>
+        </div>
+      </div>
+
+      <!-- Placement -->
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Casing &amp; header placement</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px" id="grp-rp-placement">
+          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+            <input type="radio" name="rp-placement" value="header-casing-top-bottom" style="margin-top:2px;flex-shrink:0"> Header + casing top &amp; bottom
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+            <input type="radio" name="rp-placement" value="header-casing-top" style="margin-top:2px;flex-shrink:0" checked> Header + casing top only
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+            <input type="radio" name="rp-placement" value="casing-top-bottom" style="margin-top:2px;flex-shrink:0"> Casing top &amp; bottom (no header)
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+            <input type="radio" name="rp-placement" value="casing-top" style="margin-top:2px;flex-shrink:0"> Casing top only (no header)
+          </label>
+          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+            <input type="radio" name="rp-placement" value="casing-bottom" style="margin-top:2px;flex-shrink:0"> Casing bottom only (no header)
+          </label>
+        </div>
+      </div>
+
+      <!-- Fullness -->
+      <div>
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Fullness <span style="font-weight:400;color:var(--gold);text-transform:none">— 2.0× recommended</span></div>
+        <div style="font-size:11px;color:#888;margin-bottom:8px">Flat = 1:1, no gather. 2.0× = fabric is twice the window width — classic rod pocket look.</div>
+        <div class="opt-row" id="grp-rp-fullness">
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">Flat (1×)</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">1.5×</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()" style="border-color:var(--gold)">2.0× <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 5px;border-radius:4px;margin-left:3px;font-weight:700">REC</span></button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">2.5×</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">3.0×</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STANDARD FULLNESS (Pinch, Box, Goblet, Barrel — not Ripple/Grommet/Rod Pocket) -->
+    <div id="drape-fullness-std" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
+      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:4px">Fullness</div>
+      <div style="font-size:11px;color:#888;margin-bottom:10px;line-height:1.5">How full the panels are when closed. Higher fullness = more fabric = richer look.</div>
+      <div class="opt-row" id="grp-drape-fullness">
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-fullness');drapeFullnessHint('1.5');calcDrapePrice()">1.5×</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-fullness');drapeFullnessHint('2.0');calcDrapePrice()">2.0×</button>
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-fullness');drapeFullnessHint('2.5');calcDrapePrice()">2.5×</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-fullness');drapeFullnessHint('3.0');calcDrapePrice()">3.0×</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-fullness');drapeFullnessHint('3.5');calcDrapePrice()">3.5×</button>
+      </div>
+      <div id="drape-fullness-rec" style="display:none;margin-top:8px;font-size:12px;padding:8px 12px;border-radius:7px"></div>
+    </div>
+
+    <!-- RIPPLE FOLD OPTIONS (shown only when Ripple Fold selected) -->
+    <div id="drape-ripple-opts" style="display:none;margin-top:14px;padding:16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:12px">
+      <div style="font-size:12px;font-weight:700;color:#1a1a1a;margin-bottom:14px">Ripple fold options</div>
+
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px">Fullness %</div>
+        <div class="opt-row" id="grp-ripple-fullness">
+          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-fullness')">60%</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-fullness')">80%</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-fullness')">100%</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-fullness')">120%</button>
+        </div>
+        <div style="font-size:11px;color:#888;margin-top:5px">80% is standard. Higher % = more wave depth.</div>
+      </div>
+
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px">Hardware brand</div>
+        <div class="opt-row" id="grp-ripple-hw">
+          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-hw');drapeRippleHwHint('graber')">Graber</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-hw');drapeRippleHwHint('kirsch')">Kirsch</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-hw');drapeRippleHwHint('idk')">I don't know</button>
+        </div>
+        <div id="ripple-hw-note" style="font-size:11px;color:var(--gold);margin-top:6px">No problem — we'll use standard Kirsch hardware.</div>
+      </div>
+
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px">Do you need us to supply the snaps?</div>
+        <div class="opt-row" id="grp-ripple-snaps">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-snaps')">Yes — supply snaps</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-snaps')">No — I have snaps</button>
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px">Panel join type</div>
+        <div class="opt-row" id="grp-ripple-join">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-join')">Buttmaster</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-join')">Overlap</button>
+        </div>
+        <div style="font-size:11px;color:#888;margin-top:5px">Buttmaster: panels meet edge to edge. Overlap: panels cross at center seam.</div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label style="font-size:12px">Return size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
+          <input type="number" id="ripple-return" value="4" min="1" max="24" style="font-size:14px">
+        </div>
+        <div class="form-group">
+          <label style="font-size:12px">Overlap size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
+          <input type="number" id="ripple-overlap" value="4" min="0" max="12" style="font-size:14px">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STEP 2: FABRIC -->
+  <div class="step">
+    <div class="step-label">Step 2</div>
+    <div class="step-title">Fabric</div>
+    <div class="step-sub">We work with your fabric or help you choose from our selections.</div>
+    <div class="fabric-cards" id="drape-fabric-cards">
+      <div class="fabric-card" onclick="selectFabric('drape',this,'We supply the fabric')">
+        <h3>We supply the fabric</h3>
+        <p>Choose from our fabric library. Pick a color below for your estimate — we'll bring samples to confirm.</p>
+      </div>
+      <div class="fabric-card" onclick="selectFabric('drape',this,'Customer supplies fabric')">
+        <h3>I have my own fabric</h3>
+        <p>Ship your fabric to us in Huntingdon Valley, PA. We'll confirm yardage requirements before you order.</p>
+      </div>
+      <div class="fabric-card" onclick="selectFabric('drape',this,'Not sure — needs consultation')">
+        <h3>Not sure yet</h3>
+        <p>Book a free in-home consult. We'll guide you through fabric, lining, and style for your space.</p>
+      </div>
+    </div>
+
+    <!-- Fabric color + liner picker (shown when we supply fabric) -->
+    <div id="drape-fabric-detail" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
+      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Choose a fabric color <span style="font-weight:400;color:#999;text-transform:none">— est. $25/yard · swatches brought to your consultation</span></div>
+      <div class="opt-row" id="grp-drape-color" style="flex-wrap:wrap">
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FAFAFA;border:1px solid #ccc;flex-shrink:0"></span>White</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FFF3DC;border:1px solid #ddd;flex-shrink:0"></span>Ivory</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#D9CEBB;border:1px solid #ccc;flex-shrink:0"></span>Linen</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#B5A898;border:1px solid #ccc;flex-shrink:0"></span>Taupe</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#9E9E9E;border:1px solid #ccc;flex-shrink:0"></span>Gray</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#5A5A5A;border:1px solid #ccc;flex-shrink:0"></span>Charcoal</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A2744;flex-shrink:0"></span>Navy</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A1A1A;flex-shrink:0"></span>Black</button>
+      </div>
+      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:12px 0 8px">Lining <span style="font-weight:400;color:#999;text-transform:none">— est. $7/yard</span></div>
+      <div class="opt-row" id="grp-drape-liner">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-liner');calcDrapePrice()">No liner</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');calcDrapePrice()">Standard liner (+$9.25/yd)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');calcDrapePrice()">Blackout liner (+$9.25/yd)</button>
+      </div>
+      <div style="margin-top:8px;display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e8e4dc;border-radius:8px;background:#f9f7f4">
+        <input type="checkbox" id="d-interlining-check" onchange="calcDrapePrice()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0">
+        <label for="d-interlining-check" style="font-size:12px;font-weight:500;color:#444;cursor:pointer;line-height:1.4">Add interlining <span style="color:#888;font-weight:400">(+$7/yd — adds body, weight &amp; insulation; works with any liner)</span></label>
+      </div>
+      <div style="font-size:11px;color:#aaa;margin-top:7px;line-height:1.5">Colors and exact fabric options confirmed during your free in-home consultation. Final pricing confirmed at order.</div>
+    </div>
+  </div>
+
+  <!-- STEP 3: QUOTE FORM -->
+  <div class="step">
+    <div class="step-label">Step 3</div>
+    <div class="step-title">Review price &amp; request order</div>
+    <div class="step-sub">Enter your dimensions above to get an instant price estimate. Fill out the form and we'll confirm everything before fabrication.</div>
+    <div style="display:flex;align-items:flex-start;gap:10px;background:#fef9ec;border:1px solid #f0d070;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#7a5c00;line-height:1.5">
+      <span style="font-size:15px;flex-shrink:0">&#9888;</span>
+      <span><strong>Specialty shapes &amp; designs</strong> — arched windows, bay windows, or heavily trimmed panels require a custom quote. Use the <strong>Specialty ✦</strong> tab above or call <a href="tel:6097421720" style="color:#7a5c00;font-weight:600">(609) 742-1720</a> and we'll price it out together. Goblet &amp; Barrel pleat are instant-priced below at $130/width.</span>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px;margin-top:16px" id="drape-form">
+      <div class="form-row">
+        <div class="form-group"><label>Name *</label><input type="text" id="d-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="d-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="d-email" placeholder="jane@example.com"></div>
+      <div class="form-group"><label>Installation address</label><input type="text" id="d-address" placeholder="123 Main St, Philadelphia PA"></div>
+      <div class="form-group"><label>Approximate window width</label>
+        <select id="d-width">
+          <option>Not sure yet</option><option>Under 36"</option><option>36"–48"</option><option>48"–72"</option><option>72"–96"</option><option>96"–120"</option><option>120"+</option>
+        </select>
+      </div>
+      <div class="dim-box">
+        <div class="dim-box-label">Enter your exact measurements</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Width</label>
+            <input type="number" id="d-exact-width" placeholder="84" min="12" max="300" oninput="calcDrapePrice()">
+            <div class="dim-unit">inches</div>
+          </div>
+          <div class="form-group">
+            <label>Finished length</label>
+            <input type="number" id="d-exact-length" placeholder="96" min="12" max="240" oninput="calcDrapePrice()">
+            <div class="dim-unit">inches</div>
+          </div>
+        </div>
+        <div id="d-min-warn" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.5"></div>
+      </div>
+
+      <!-- DRAPERY PRICE ESTIMATE BOX -->
+      <div id="drape-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:18px 20px;margin-bottom:14px">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px">Fabrication estimate</div>
+        <div id="drape-price-rows"></div>
+        <div style="border-top:1px solid rgba(45,224,193,.3);margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline">
+          <span style="font-size:14px;font-weight:500;color:var(--cream)">Estimated total</span>
+          <span style="font-size:22px;font-weight:600;color:var(--gold)" id="drape-price-total">—</span>
+        </div>
+        <div style="font-size:10px;color:var(--text-faint);margin-top:8px;line-height:1.5" id="drape-price-note"></div>
+      </div>
+
+      <!-- CORNICE & VALANCE ADD-ONS -->
+      <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:10px">Add-ons (optional)</div>
+
+        <!-- Trim on drape panels -->
+        <div style="margin-bottom:12px">
+          <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Trim on panels <span style="font-weight:400;color:#999">— $15/linear ft</span></div>
+          <div style="font-size:11px;color:#888;margin-bottom:8px">Select which edges get trim. Mix and match.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
+            <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+              <input type="checkbox" class="drape-trim-check" data-loc="lead" onchange="calcDrapePrice();drapeShowTrimSupply()"> Lead edge only
+            </label>
+            <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+              <input type="checkbox" class="drape-trim-check" data-loc="lead-return" onchange="calcDrapePrice();drapeShowTrimSupply()"> Lead edge + return
+            </label>
+            <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+              <input type="checkbox" class="drape-trim-check" data-loc="top" onchange="calcDrapePrice();drapeShowTrimSupply()"> Top (above)
+            </label>
+            <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+              <input type="checkbox" class="drape-trim-check" data-loc="hem" onchange="calcDrapePrice();drapeShowTrimSupply()"> Hem (bottom)
+            </label>
+          </div>
+          <div class="opt-row" id="grp-drape-trim-supply" style="display:none">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-trim-supply')">We supply trim</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-drape-trim-supply')">I supply trim</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-drape-trim-supply')">Not sure</button>
+          </div>
+        </div>
+
+        <!-- Cornice -->
+        <div style="margin-bottom:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+            <span style="font-size:12px;font-weight:500;color:#333">Cornice <span style="font-weight:400;color:#999">— $50/linear ft, 4 ft min. (self-welt or trim same price)</span></span>
+            <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555;cursor:pointer">
+              <input type="checkbox" id="d-cornice-check" onchange="drapeToggleAddon('cornice',this.checked)"> Add
+            </label>
+          </div>
+          <div id="d-cornice-opts" style="display:none;background:#fafaf8;border-radius:8px;padding:12px">
+            <div class="form-row">
+              <div class="form-group">
+                <label style="font-size:12px">Cornice width (inches)</label>
+                <input type="number" id="d-cornice-width" placeholder="84" min="48" max="360" oninput="calcDrapePrice()" style="font-size:14px">
+                <div class="dim-unit">inches (4 ft / 48" min.)</div>
+              </div>
+            </div>
+            <div style="margin-top:10px">
+              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on cornice? <span style="font-weight:400;color:#999">+$15/ft (self-welt or applied trim — same price)</span></div>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer">
+                <input type="checkbox" id="d-cornice-trim-check" onchange="calcDrapePrice()"> Yes — add trim to cornice
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Valance -->
+        <div>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+            <span style="font-size:12px;font-weight:500;color:#333">Valance <span style="font-weight:400;color:#999">— $50/linear ft + fabric (self-welt or trim same price)</span></span>
+            <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555;cursor:pointer">
+              <input type="checkbox" id="d-valance-check" onchange="drapeToggleAddon('valance',this.checked)"> Add
+            </label>
+          </div>
+          <div id="d-valance-opts" style="display:none;background:#fafaf8;border-radius:8px;padding:12px">
+            <div class="form-row">
+              <div class="form-group">
+                <label style="font-size:12px">Valance width (inches)</label>
+                <input type="number" id="d-valance-width" placeholder="84" min="12" max="360" oninput="calcDrapePrice()" style="font-size:14px">
+                <div class="dim-unit">inches</div>
+              </div>
+            </div>
+            <div style="margin-top:10px">
+              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on valance? <span style="font-weight:400;color:#999">+$15/ft (self-welt or applied trim — same price)</span></div>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer">
+                <input type="checkbox" id="d-valance-trim-check" onchange="calcDrapePrice()"> Yes — add trim to valance
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Panel configuration -->
+      <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Panel configuration</div>
+        <div class="opt-row" id="grp-drape-panels">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-panels');drapeToggleSingle(false)">Pair</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-drape-panels');drapeToggleSingle(true)">Single panel</button>
+        </div>
+        <div id="drape-single-opts" style="display:none;margin-top:10px">
+          <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Panel position</div>
+          <div class="opt-row" id="grp-drape-side">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-side')">Left</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-drape-side')">Right</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-drape-side')">Center</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Returns & Overlaps -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Return size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
+          <input type="number" id="d-return" value="4" min="1" max="24" style="font-size:14px">
+        </div>
+        <div class="form-group">
+          <label>Overlap size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
+          <input type="number" id="d-overlap" value="4" min="0" max="12" style="font-size:14px">
+        </div>
+      </div>
+
+      <div class="form-group"><label>Notes — fabric preference, rod type, timeline, or anything else</label>
+        <textarea id="d-notes" style="min-height:90px" placeholder="e.g. Ripple fold panels, customer-supplied linen fabric, 3 windows in master bedroom..."></textarea>
+      </div>
+
+      <!-- CORNICE / VALANCE → CV TAB RECOMMENDATION -->
+      <div id="drape-cv-rec" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:10px;padding:14px 16px;margin-bottom:16px">
+        <div style="font-size:13px;font-weight:600;color:#7d5a00;margin-bottom:6px">⚠ Configure your cornice / valance before submitting</div>
+        <div style="font-size:12px;color:#7d5a00;line-height:1.6;margin-bottom:10px">You've added a cornice or valance to this drapery. For accurate sizing and pricing, please set up the full details in the <strong>Cornices &amp; Valances tab</strong> before checking out.</div>
+        <button onclick="(function(){var b=Array.from(document.querySelectorAll('.type-tab')).find(function(t){return(t.getAttribute('onclick')||'').indexOf(\"'cornval'\")!==-1;});if(b)switchTab('cornval',b);})()" style="font-size:12px;font-weight:600;background:#1C1510;color:var(--gold);border:none;padding:8px 16px;border-radius:8px;cursor:pointer">Go to Cornices &amp; Valances tab &rarr;</button>
+      </div>
+
+      <!-- HARDWARE QUESTION -->
+      <div style="border:1px solid #e8e8e4;border-radius:10px;padding:16px 18px;margin-bottom:16px">
+        <div style="font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:10px">Do you have your hardware (rod / track)?</div>
+        <div class="opt-row" id="grp-drape-hardware">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-hardware');drapeToggleHardware(false)">I have my own hardware</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-drape-hardware');drapeToggleHardware(true)">I need hardware</button>
+        </div>
+        <!-- Hardware sub-options — shown when "I need hardware" -->
+        <div id="drape-hardware-opts" style="display:none;margin-top:14px">
+          <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">What type of hardware are you looking for?</div>
+          <div class="opt-row" id="grp-drape-hw-type">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-hw-type')">Decorative rod &amp; rings</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-drape-hw-type')">Traverse / ripple fold track</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-drape-hw-type')">Motorized track</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-drape-hw-type')">Not sure — advise me</button>
+          </div>
+          <div style="margin-top:12px;background:var(--gold-mid);border:1px solid #e0d8c8;border-radius:8px;padding:12px 14px">
+            <div style="font-size:12px;color:#555;line-height:1.5;margin-bottom:10px">We supply and install decorative rods, traverse tracks, ripple fold systems, and motorized tracks — all brands.</div>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <a href="hardware.html" target="_blank" style="font-size:12px;font-weight:600;color:var(--espresso);background:var(--gold);padding:8px 14px;border-radius:8px;text-decoration:none;white-space:nowrap">Browse Hardware ↗</a>
+              <span style="font-size:11px;color:#888">Opens in a new tab — your drapery quote stays open here.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DELIVERY -->
+      <div class="delivery-section" style="margin-top:16px">
+        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+        <div class="opt-row" id="grp-del-drape">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-drape');document.getElementById('del-drape-s').style.display='block';document.getElementById('del-drape-p').style.display='none'">Ship to me</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-del-drape');document.getElementById('del-drape-s').style.display='none';document.getElementById('del-drape-p').style.display='block'">I'll pick up</button>
+        </div>
+        <div id="del-drape-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with your quote.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately.</div></div>
+        <div id="del-drape-p" class="delivery-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.</div>
+      </div>
+
+      <button onclick="reqMoreInfo('Custom Drapery')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Drapery →</button>
+        <button class="btn-gold" onclick="submitDrape()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Request Drapery Quote &rarr;</button>
+    </div>
+    <div class="success-box" id="drape-success">
+      <strong>Quote request sent!</strong><br>
+      Your email app opened with the details pre-filled. We'll follow up within a few hours.<br><br>
+      Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7 call or text.
+    </div>
+  </div>
+
+</div><!-- /drapes step-wrap -->
+</div><!-- /tab-drapes -->
+
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB: ROMAN SHADES
+════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-roman">
+<div style="height:320px;overflow:hidden;position:relative">
+  <img src="../images/thumbnails/roman-shades-hero.png" alt="Custom roman shades" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block">
+  <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(28,21,16,.75) 0%,rgba(28,21,16,.2) 60%,transparent 100%);display:flex;align-items:flex-end;padding:28px 32px">
+    <div>
+      <div style="font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px">Custom fabrication</div>
+      <div style="font-size:26px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;line-height:1.2">Roman Shades</div>
+      <div style="font-size:13px;color:var(--text-dark);margin-top:6px">Flat, pleated &amp; relaxed — handcrafted to your exact dimensions.</div>
+    </div>
+  </div>
+</div>
+<div class="step-wrap">
+
+  <!-- STEP 1: STYLE -->
+  <div class="step">
+    <div class="step-label">Step 1</div>
+    <div class="step-title">Choose your style</div>
+    <div class="step-sub">Roman shades fold up into clean horizontal pleats. Each style folds differently when raised.</div>
+    <div class="opt-cards" id="roman-style-cards">
+      <div class="opt-card" onclick="selectRomanStyle(this,'Flat Roman')">
+        <div class="opt-art">
+          <img src="../images/thumbnails/flat roman shade unlined.JPG" alt="Flat Roman shade">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Flat Roman</div><div class="opt-desc">Clean, minimal, no folds when down</div></div>
+      </div>
+      <div class="opt-card" onclick="selectRomanStyle(this,'Permanently Pleated Roman')">
+        <div class="opt-art">
+          <img src="../images/thumbnails/permanently-pleated-roman.png" alt="Permanently Pleated Roman shade">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Permanently Pleated Roman</div><div class="opt-desc">Cascading soft folds, classic look</div></div>
+      </div>
+      <div class="opt-card" onclick="selectRomanStyle(this,'Relaxed Roman')">
+        <div class="opt-art">
+          <img src="../images/thumbnails/RELAXED ROMAN 2.jpeg" alt="Relaxed Roman shade casual curved hem">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Relaxed Roman</div><div class="opt-desc">Casual curved hem, soft &amp; informal</div></div>
+      </div>
+      <div class="opt-card" onclick="selectRomanStyle(this,'Roman Valance')">
+        <div class="opt-art">
+          <img src="../images/thumbnails/roman-valance.png" alt="Roman Valance decorative top treatment">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Roman Valance</div><div class="opt-desc">Decorative top treatment — custom fold sizing</div></div>
+      </div>
+      <div class="opt-card" onclick="pbShowContact('Arch / Specialty Shape Roman Shade — custom arched, oval, or custom-shaped window')" style="cursor:pointer">
+        <div class="opt-art">
+          <img src="../images/thumbnails/specialty-roman-shade.jpg" alt="Specialty arch and oval roman shade">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Arch / Specialty Shape</div><div class="opt-desc">Custom arched, oval, or other shapes — always custom quote</div></div>
+      </div>
+      <div class="opt-card" onclick="window.location='norman-centerpiece-roman.html'" style="cursor:pointer">
+        <div class="opt-art" style="background:var(--espresso);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
+          <span style="font-size:13px;font-weight:700;color:var(--gold);letter-spacing:1px">NORMAN</span>
+          <span style="font-size:10px;color:var(--cream);opacity:.7">Centerpiece&trade; Roman</span>
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Norman Centerpiece&trade; Roman</div><div class="opt-desc">AeroLite cordless &middot; Day &amp; Night &middot; Instant estimate</div></div>
+      </div>
+      <div class="opt-card" onclick="window.location='wallace-woven.html#roman-woven-choice'" style="cursor:pointer">
+        <div class="opt-art" style="background:#1a2a1a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
+          <span style="font-size:13px;font-weight:700;color:var(--gold);letter-spacing:1px">NATURAL WOVEN</span>
+          <span style="font-size:10px;color:var(--cream);opacity:.7">Portfolio · Galaxy · Premier · Select</span>
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Roman Shade Woven Woods</div><div class="opt-desc">Bamboo, grass &amp; jute &middot; Portfolio, Galaxy, Walden Premier &amp; Select &middot; Instant quote</div></div>
+      </div>
+      <div class="opt-card" onclick="pbShowContact('Hunter Douglas Vignette® Roman Shades — free consultation &amp; custom quote')"  style="cursor:pointer">
+        <div class="opt-art" style="height:130px">
+          <img src="../images/thumbnails/vignette-dining-room.JPEG" alt="Hunter Douglas Vignette Roman Shades" style="object-position:center 30%">
+        </div>
+        <div class="opt-label-bar"><div class="opt-name">Vignette®</div><div class="opt-desc">Hunter Douglas — always custom quote</div></div>
+      </div>
+    </div>
+
+    <!-- TDBU toggle — only for Flat / Permanently Pleated Roman -->
+    <div id="roman-tdbu-wrap" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
+      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Top-Down / Bottom-Up operation?</div>
+      <div class="opt-row" id="grp-roman-tdbu">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-tdbu')">Standard</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-tdbu')">Yes — add TDBU</button>
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5">TDBU lets the shade open from the top or bottom — privacy with natural light.</div>
+    </div>
+
+    <!-- VIGNETTE NOTICE -->
+    <div id="vignette-notice" style="display:none;margin-top:14px;background:var(--espresso);border-radius:12px;padding:18px 20px">
+      <div style="font-size:10px;letter-spacing:2px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:8px">Hunter Douglas Vignette®</div>
+      <div style="font-size:13px;color:var(--cream);margin-bottom:6px;font-weight:500">Modern Roman Shades — always custom quoted</div>
+      <div style="font-size:12px;color:var(--text-dark);line-height:1.7">Vignette® Modern Roman Shades are a Hunter Douglas product and require a custom quote. We'll discuss fabric collections, lift system, and PowerView® motorization during your consultation.</div>
+    </div>
+
+    <!-- VALANCE CONFIG (shows when Roman Valance selected) -->
+    <div id="valance-config" style="display:none;margin-top:18px;background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:22px">
+      <div style="font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:4px">Roman Valance</div>
+      <div style="font-size:12px;color:#888;margin-bottom:18px">Custom decorative top treatment — tell us your specs and we'll quote it.</div>
+      <div class="form-row">
+        <div class="form-group"><label>Width (inches) *</label><input type="number" id="val-w" placeholder="e.g. 72" min="12" max="240" style="font-size:14px"></div>
+        <div class="form-group"><label>Height / drop (inches) *</label><input type="number" id="val-h" placeholder="e.g. 18" min="4" max="60" style="font-size:14px"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Number of folds</label><input type="number" id="val-folds" placeholder="e.g. 3" min="1" max="20" style="font-size:14px"></div>
+        <div class="form-group"><label>Fold section size (inches)</label><input type="number" id="val-fold-size" placeholder="e.g. 4" min="1" max="24" style="font-size:14px"></div>
+      </div>
+      <div style="background:#FBF7F0;border-radius:8px;padding:10px 13px;font-size:11px;color:#888;margin-bottom:16px">Fold section dimensions will be confirmed and refined during your consultation.</div>
+      <div class="form-row">
+        <div class="form-group"><label>Your name *</label><input type="text" id="val-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="val-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="val-email" placeholder="jane@example.com"></div>
+      <div class="form-group"><label>Notes</label><textarea id="val-notes" placeholder="Fabric preference, room details, timeline..." style="min-height:60px"></textarea></div>
+      <button onclick="reqMoreInfo('Custom Valance')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Valance →</button>
+        <button class="btn-gold" onclick="submitValance()" style="width:100%;padding:13px;font-size:14px;margin-top:4px">Request Valance Quote &rarr;</button>
+      <div id="valance-success" style="display:none;background:#EAF3DE;border-radius:10px;padding:18px;text-align:center;margin-top:10px">
+        <strong>Quote request sent!</strong><br><span style="font-size:13px;color:#3B6D11">We'll follow up with pricing. Urgent? <a href="tel:6097421720" style="color:#3B6D11">(609) 742-1720</a></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STEP 2: FABRIC -->
+  <div class="step" id="step-roman-2">
+    <div class="step-label">Step 2</div>
+    <div class="step-title">Fabric</div>
+    <div class="fabric-cards" id="roman-fabric-cards">
+      <div class="fabric-card" onclick="selectFabric('roman',this,'We supply the fabric')">
+        <h3>We supply the fabric</h3>
+        <p>Choose a color below for your estimate — we bring samples to your space to confirm.</p>
+      </div>
+      <div class="fabric-card" onclick="selectFabric('roman',this,'Customer supplies fabric')">
+        <h3>I have my own fabric</h3>
+        <p>Ship to us in Huntingdon Valley, PA. We'll confirm yardage before you send.</p>
+      </div>
+      <div class="fabric-card" onclick="selectFabric('roman',this,'Not sure — needs consultation')">
+        <h3>Not sure yet</h3>
+        <p>Book a free consult and we'll guide you through the options in your space.</p>
+      </div>
+    </div>
+
+    <!-- Fabric color + liner picker (shown when we supply fabric) -->
+    <div id="roman-fabric-detail" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
+      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Choose a fabric color <span style="font-weight:400;color:#999;text-transform:none">— est. $25/yard</span></div>
+      <div class="opt-row" id="grp-roman-color" style="flex-wrap:wrap">
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FAFAFA;border:1px solid #ccc;flex-shrink:0"></span>White</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FFF3DC;border:1px solid #ddd;flex-shrink:0"></span>Ivory</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#D9CEBB;border:1px solid #ccc;flex-shrink:0"></span>Linen</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#B5A898;border:1px solid #ccc;flex-shrink:0"></span>Taupe</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#9E9E9E;border:1px solid #ccc;flex-shrink:0"></span>Gray</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#5A5A5A;border:1px solid #ccc;flex-shrink:0"></span>Charcoal</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A2744;flex-shrink:0"></span>Navy</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A1A1A;flex-shrink:0"></span>Black</button>
+      </div>
+      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:12px 0 8px">Lining <span style="font-weight:400;color:#999;text-transform:none">— est. $7/yard</span></div>
+      <div class="opt-row" id="grp-roman-liner">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-liner');calcRoman()">No liner</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');calcRoman()">Standard liner (+$9.25/yd)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');calcRoman()">Blackout liner (+$9.25/yd)</button>
+      </div>
+      <div style="font-size:11px;color:#aaa;margin-top:7px;line-height:1.5">Colors confirmed during consultation. Final pricing at order.</div>
+    </div>
+  </div>
+
+  <!-- STEP 3: LINING -->
+  <div class="step" id="step-roman-3">
+    <div class="step-label">Step 3</div>
+    <div class="step-title">Lining</div>
+    <div class="opt-row" id="grp-roman-lining" style="margin-top:12px">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-lining');calcRoman()">Unlined</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-roman-lining');calcRoman()">Lined</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-roman-lining');calcRoman()">Blackout lined</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: OPERATION -->
+  <div class="step" id="step-roman-4">
+    <div class="step-label">Step 4</div>
+    <div class="step-title">Operation</div>
+    <div class="opt-row" id="grp-roman-op" style="margin-top:12px">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-op');romanToggleOp('manual')">Manual</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-roman-op');romanToggleOp('motorized')">Motorized</button>
+    </div>
+
+    <!-- Manual sub-options -->
+    <div id="roman-manual-opts" style="margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+      <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Lift type</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:7px 10px;background:rgba(45,224,193,.08);border:1px solid rgba(45,224,193,.2);border-radius:7px;font-size:11px;color:#0A4A42">
+        <span style="font-size:13px">⭐</span>We recommend <strong>Chain / Cord Loop</strong> for roman shades — smoother raise, holds position at any height.
+      </div>
+      <div class="opt-row" id="grp-roman-lift">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-lift');document.getElementById('roman-chain-len').style.display='none'">Cordless</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-lift');document.getElementById('roman-chain-len').style.display='block'">Chain / Cord Loop</button>
+      </div>
+      <!-- Chain length — visible when Chain selected -->
+      <div id="roman-chain-len" style="display:none;margin-top:10px;padding:10px 12px;background:#fff;border:1px solid #e8e8e4;border-radius:8px">
+        <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:6px">Chain length</div>
+        <div class="opt-row" id="grp-roman-clen">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-clen');document.getElementById('roman-clen-custom').style.display='none'">Default</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-roman-clen');document.getElementById('roman-clen-custom').style.display='flex'">Custom</button>
+        </div>
+        <div id="roman-clen-custom" style="display:none;align-items:center;gap:8px;margin-top:8px">
+          <input type="number" id="roman-clen-in" placeholder="e.g. 54" min="9" style="width:80px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px" oninput="romanChainCheck()">
+          <span style="font-size:13px;color:#666">inches</span>
+        </div>
+        <div id="roman-clen-warn" style="display:none;font-size:11px;color:#dc2626;background:#fee2e2;border-radius:6px;padding:6px 10px;margin-top:6px"></div>
+        <div style="font-size:11px;color:#888;margin-top:6px">Custom chain must be at least 75% of finished length for comfortable reach.</div>
+      </div>
+    </div>
+
+    <!-- Motorized sub-options -->
+    <div id="roman-motor-opts" style="display:none;margin-top:12px">
+      <div style="padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:6px">Motor brand preference</div>
+        <div style="font-size:11px;color:#666;margin-bottom:10px">We install all major brands. Final motor brand and cost confirmed at measurement visit.</div>
+        <div class="opt-row" id="grp-roman-motor-brand">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-motor-brand')">Lutron Serena</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand')">Somfy</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand')">Automate</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand')">Rollease Acmeda</button>
+        </div>
+        <div style="font-size:11px;color:#888;margin-top:8px">Motor cost approx. $95–$150/shade depending on brand and power type. Finalized at order.</div>
+      </div>
+    </div>
+
+    <!-- Control side — applies to both manual chain and motorized -->
+    <div style="margin-top:14px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Control side</div>
+      <div class="opt-row" id="grp-roman-control">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-control')">Left</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-control')">Right</button>
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:4px">Which side the chain, cord, or motor control is on when facing the window.</div>
+    </div>
+  </div>
+
+  <!-- STEP 5: DIMENSIONS + PRICE -->
+  <div class="step" id="step-roman-5">
+    <div class="step-label">Step 5</div>
+    <div class="step-title">Size &amp; instant price</div>
+    <div class="step-sub">Enter your window dimensions for an instant estimate. Roman shades are custom quoted — this gives you a starting figure.</div>
+
+    <div class="configurator" style="margin-top:16px">
+      <div>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="adjRomanQty(-1)">−</button>
+          <input class="qty-val" id="rn-qty" type="number" value="1" min="1" max="30" oninput="calcRoman()">
+          <span style="font-size:13px;color:#666">window(s)</span>
+        </div>
+        <div class="dim-box">
+          <div class="dim-box-label">Enter your window size</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Width</label>
+              <input type="number" id="rn-w" placeholder="36" oninput="calcRoman()">
+              <div class="dim-unit">inches</div>
+            </div>
+            <div class="form-group">
+              <label>Finished length</label>
+              <input type="number" id="rn-h" placeholder="48" oninput="calcRoman()">
+              <div class="dim-unit">inches</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Return size -->
+        <div style="margin-bottom:14px">
+          <label style="font-size:12px;font-weight:600;color:#333;display:block;margin-bottom:6px">Return size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
+          <input type="number" id="rn-return" value="4" min="1" max="12" style="width:120px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+        </div>
+
+        <!-- Mounting style: Waterfall / Off Back -->
+        <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
+          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Mounting style</div>
+          <div class="opt-row" id="grp-roman-mount-style">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-mount-style');romanToggleMountStyle('waterfall')">Waterfall</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-roman-mount-style');romanToggleMountStyle('offback')">Off Back</button>
+          </div>
+
+          <!-- WATERFALL sub-options: optional back valance -->
+          <div id="roman-waterfall-opts" style="margin-top:12px;padding:10px 12px;background:#fafaf8;border-radius:8px">
+            <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.3px;margin-bottom:7px">Back valance (optional)</div>
+            <div class="opt-row" id="grp-roman-back-valance">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-back-valance');romanToggleBackValance(false)">No back valance</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-roman-back-valance');romanToggleBackValance(true)">Add back valance</button>
+            </div>
+            <div id="roman-back-valance-opts" style="display:none;margin-top:10px">
+              <div class="form-row" style="margin-bottom:8px">
+                <div class="form-group">
+                  <label style="font-size:12px">Back valance height <span style="font-weight:400;color:#999">default 6"</span></label>
+                  <div class="opt-row" id="grp-rn-back-val-h" style="margin-top:6px;margin-bottom:6px">
+                    <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-back-val-h');rnToggleBackValCustom(false)">6"</button>
+                    <button class="opt-btn" onclick="selOpt(this,'grp-rn-back-val-h');rnToggleBackValCustom(true)">Custom</button>
+                  </div>
+                  <div id="rn-back-val-custom" style="display:none">
+                    <input type="number" id="rn-valance-back" value="6" min="2" max="24" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+                    <span style="font-size:12px;color:#888;margin-left:6px">inches</span>
+                  </div>
+                </div>
+              </div>
+              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Back valance fabric</div>
+              <div class="opt-row" id="grp-rn-back-val-fabric">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-back-val-fabric')">Same face fabric</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-rn-back-val-fabric')">Lined</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- OFF BACK sub-options: front valance (auto-shown) -->
+          <div id="roman-offback-opts" style="display:none;margin-top:12px;padding:10px 12px;background:#fafaf8;border-radius:8px">
+            <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.3px;margin-bottom:7px">Front valance <span style="font-weight:400;color:#888;text-transform:none">— covers the mounting board</span></div>
+            <div class="form-row" style="margin-bottom:8px">
+              <div class="form-group">
+                <label style="font-size:12px">Front valance height <span style="font-weight:400;color:#999">default 6"</span></label>
+                <div class="opt-row" id="grp-rn-front-val-h" style="margin-top:6px;margin-bottom:6px">
+                  <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-front-val-h');rnToggleFrontValCustom(false)">6"</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-rn-front-val-h');rnToggleFrontValCustom(true)">Custom</button>
+                </div>
+                <div id="rn-front-val-custom" style="display:none">
+                  <input type="number" id="rn-valance-front" value="6" min="2" max="24" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+                  <span style="font-size:12px;color:#888;margin-left:6px">inches</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUOTE FORM -->
+        <div id="roman-form" style="margin-top:4px">
+          <div class="form-row">
+            <div class="form-group"><label>Name *</label><input type="text" id="rn-name" placeholder="Jane Smith"></div>
+            <div class="form-group"><label>Phone *</label><input type="tel" id="rn-phone" placeholder="(215) 555-0100"></div>
+          </div>
+          <div class="form-group"><label>Email</label><input type="email" id="rn-email" placeholder="jane@example.com"></div>
+          <div class="form-group"><label>Installation address</label><input type="text" id="rn-address" placeholder="123 Main St, Philadelphia PA"></div>
+          <div class="form-group"><label>Notes</label><textarea id="rn-notes" placeholder="Room, fabric preference, timeline, any other details..." style="min-height:70px"></textarea></div>
+
+          <!-- TRIM ADD-ON -->
+          <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
+            <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Trim <span style="font-weight:400;color:#999">— $15/linear ft (self-welt or applied trim — same price)</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
+              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+                <input type="checkbox" class="rn-trim-check" data-loc="sides" onchange="calcRoman();rnShowTrimSupply()"> Both sides
+              </label>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+                <input type="checkbox" class="rn-trim-check" data-loc="top" onchange="calcRoman();rnShowTrimSupply()"> Top
+              </label>
+              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
+                <input type="checkbox" class="rn-trim-check" data-loc="bottom" onchange="calcRoman();rnShowTrimSupply()"> Bottom (hem)
+              </label>
+            </div>
+            <div id="grp-rn-trim-supply" style="display:none">
+              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim supply</div>
+              <div class="opt-row" id="grp-roman-trim-supply">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-trim-supply')">We supply trim</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-roman-trim-supply')">I supply trim</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-roman-trim-supply')">Not sure</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- DELIVERY -->
+          <div class="delivery-section" style="margin-top:16px">
+            <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+            <div class="opt-row" id="grp-del-roman">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-del-roman');document.getElementById('del-roman-s').style.display='block';document.getElementById('del-roman-p').style.display='none'">Ship to me</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-del-roman');document.getElementById('del-roman-s').style.display='none';document.getElementById('del-roman-p').style.display='block'">I'll pick up</button>
+            </div>
+            <div id="del-roman-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
+            <div id="del-roman-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+          </div>
+
+          <button onclick="reqMoreInfo('Custom Roman Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Shades →</button>
+        <button class="btn-gold" onclick="submitRoman()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Request Roman Shade Quote &rarr;</button>
+        </div>
+        <div class="success-box" id="roman-success">
+          <strong>Quote request sent!</strong><br>Your email app opened with the details. We'll follow up within a few hours.<br><br>
+          Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
+        </div>
+      </div>
+
+      <!-- PRICE BOX -->
+      <div class="price-box" id="roman-pricebox" style="display:none">
+        <div class="pb-title">Estimate</div>
+        <div class="pb-row"><span class="pb-key">Style</span><span class="pb-val" id="rn-pb-style">—</span></div>
+        <div class="pb-row"><span class="pb-key">Size</span><span class="pb-val" id="rn-pb-dims">—</span></div>
+        <div class="pb-row"><span class="pb-key">Qty</span><span class="pb-val" id="rn-pb-qty">1</span></div>
+        <div class="pb-row"><span class="pb-key">Motorization</span><span class="pb-val" id="rn-pb-motor">No</span></div>
+        <div class="pb-total-row">
+          <span class="pb-total-label">Est. total</span>
+          <span class="pb-total-val" id="rn-pb-total">—</span>
+        </div>
+        <div id="rn-pb-min-note" class="pb-note" style="display:none">&#9432; Minimum applies — small shades carry a $85 per-shade minimum.</div>
+        <div class="pb-note">Final price confirmed after consultation. Fabric, lining &amp; motor cost may vary.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /roman step-wrap -->
+</div><!-- /tab-roman -->
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB: CORNICES & VALANCES
+════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-cornval">
+
+  <!-- Hero photo — switches between cornice and valance -->
+  <div style="height:280px;overflow:hidden;position:relative;margin-bottom:0">
+    <img id="cv-hero-img" src="../images/thumbnails/specialty-soft-treatments.JPG" alt="Custom cornice" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;transition:opacity .3s">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(28,21,16,.85) 0%,rgba(28,21,16,.3) 60%,transparent 100%);display:flex;align-items:flex-end;padding:24px 28px">
+      <div>
+        <div id="cv-hero-label" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:6px">Custom fabrication</div>
+        <div id="cv-hero-title" style="font-size:26px;font-weight:600;color:var(--cream);letter-spacing:-0.4px">Cornices</div>
+        <div id="cv-hero-sub" style="font-size:13px;color:var(--text-dark);margin-top:4px">Fabric-wrapped wood box valances. $50/linear ft · 4 ft min.</div>
+      </div>
+    </div>
+  </div>
+
+<div class="step-wrap">
+
+  <!-- Type selector -->
+  <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">What are you making?</div>
+  <div class="opt-row" id="grp-cv-type" style="margin-bottom:20px">
+    <button class="opt-btn sel" onclick="selOpt(this,'grp-cv-type');cvSetType('cornice')">Cornice</button>
+    <button class="opt-btn" onclick="selOpt(this,'grp-cv-type');cvSetType('valance')">Valance</button>
+  </div>
+  <div id="cv-type-note" style="font-size:13px;color:#666;margin-bottom:20px;margin-top:-10px">Fabric-wrapped wood box valance. $50/linear ft · 4 ft minimum.</div>
+  <div style="background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:24px;margin-bottom:36px">
+    <div class="dim-box" style="margin-bottom:18px">
+      <div class="dim-box-label">Cornice dimensions</div>
+      <div class="form-row">
+        <div class="form-group"><label>Width</label><input type="number" id="cv-corn-w" min="12" max="300" placeholder="72" oninput="calcCornice()"><div class="dim-unit">inches (48" / 4 ft min.)</div></div>
+        <div class="form-group"><label>Height</label><input type="number" id="cv-corn-h" min="4" max="36" value="8" oninput="calcCornice()"><div class="dim-unit">inches</div></div>
+      </div>
+      <div style="margin-top:12px"><label style="font-size:12px;font-weight:600;color:#333;display:block;margin-bottom:5px">Return size <span style="font-weight:400;color:#999">default 4"</span></label>
+        <input type="number" id="cv-corn-return" value="4" min="1" max="18" oninput="calcCornice()" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+        <span style="font-size:12px;color:#888;margin-left:8px">inches</span></div>
+    </div>
+
+    <!-- Fabric direction -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:4px">Fabric direction</div>
+      <div style="font-size:11px;color:#888;margin-bottom:8px;line-height:1.5">Run vertically: standard cut, pattern runs up-down. Railroad: fabric turned 90° — pattern runs horizontally (great for stripes and horizontal designs).</div>
+      <div class="opt-row" id="grp-corn-direction">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-direction');calcCornice()">Run vertically (standard)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-corn-direction');calcCornice()">Railroad (horizontal)</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Finishing</div>
+      <!-- Cornice: self welt or trim (both options) -->
+      <div id="cv-cornice-finish">
+        <div class="opt-row" id="grp-corn-trim">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(false);calcCornice()">Self welt</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(false);calcCornice()">Double self welt</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(true);calcCornice()">Applied trim (+$15/ft)</button>
+        </div>
+        <div style="font-size:11px;color:#888;margin-top:4px">Self welt: single strip of shade fabric. Double self welt: two strips — fuller, more tailored look.</div>
+      </div>
+      <!-- Valance: trim only (always open the trim edge picker) -->
+      <div id="cv-valance-finish" style="display:none">
+        <div style="font-size:12px;color:#555;margin-bottom:8px">Applied trim &mdash; <span style="color:var(--gold);font-weight:600">+$15/linear ft</span></div>
+      </div>
+      <div id="corn-trim-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+        <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Which edges?</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-trim-edge" data-loc="top" onchange="calcCornice()"> Top</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-trim-edge" data-loc="bottom" onchange="calcCornice()"> Bottom</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-trim-edge" data-loc="sides" onchange="calcCornice()"> Both sides</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-trim-edge" data-loc="returns" onchange="calcCornice()"> Returns</label>
+        </div>
+        <div class="opt-row" id="grp-corn-trim-supply">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-trim-supply')">We supply trim</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim-supply')">I supply trim</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim-supply')">Not sure</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Who supplies the fabric?</div>
+      <div class="opt-row" id="grp-corn-fabric">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-fabric');calcCornice()">We supply fabric</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-corn-fabric');calcCornice()">I supply fabric</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-corn-fabric');calcCornice()">Not sure</button>
+      </div>
+    </div>
+
+    <!-- Fabric yardage estimate — standalone display -->
+    <div id="corn-yardage-display" style="display:none;margin-bottom:14px;padding:14px 16px;background:#FBF7F0;border:1.5px solid var(--gold);border-radius:10px">
+      <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:6px">&#129514; Estimated fabric needed</div>
+      <div id="corn-yardage-text" style="font-size:18px;font-weight:700;color:#1C1510;margin-bottom:4px"></div>
+      <div id="corn-yardage-sub" style="font-size:11px;color:#666;line-height:1.5"></div>
+    </div>
+
+    <div id="corn-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:16px 18px;margin-bottom:16px">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Estimate</div>
+      <div id="corn-price-rows"></div>
+      <div style="border-top:1px solid rgba(45,224,193,.3);margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-size:13px;color:var(--cream)">Estimated total</span>
+        <span style="font-size:20px;font-weight:600;color:var(--gold)" id="corn-price-total">—</span>
+      </div>
+      <div id="corn-fabric-note" style="font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:6px 9px;color:var(--cream);margin-top:8px;line-height:1.5"></div>
+      <div style="font-size:10px;color:var(--text-faint);margin-top:6px">$50/linear ft incl. ends · round up · 4 ft/$250 min · trim +$15/ft · fabric est. $30/yd · Final confirmed at order.</div>
+    </div>
+    <div id="corn-form">
+      <div class="form-row">
+        <div class="form-group"><label>Name *</label><input type="text" id="cn-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="cn-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="cn-email" placeholder="jane@example.com"></div>
+      <div class="form-group"><label>Notes</label><textarea id="cn-notes" placeholder="Room, fabric preference, timeline..." style="min-height:60px"></textarea></div>
+      <div class="delivery-section">
+        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+        <div class="opt-row" id="grp-del-corn">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-corn');document.getElementById('del-corn-s').style.display='block';document.getElementById('del-corn-p').style.display='none'">Ship to me</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-del-corn');document.getElementById('del-corn-s').style.display='none';document.getElementById('del-corn-p').style.display='block'">I'll pick up</button>
+        </div>
+        <div id="del-corn-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
+        <div id="del-corn-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:10px;background:#fef9ec;border:1px solid #f0d070;border-radius:8px;padding:10px 14px;margin-top:14px;margin-bottom:12px;font-size:12px;color:#7a5c00;line-height:1.5">
+        <span style="font-size:15px;flex-shrink:0">&#9888;</span>
+        <span><strong>Specialty shapes</strong> — angled cornices, rounded returns, or heavily carved / decorative valances require a custom quote. Call <a href="tel:6097421720" style="color:#7a5c00;font-weight:600">(609) 742-1720</a> or use the <strong>Specialty ✦</strong> tab above.</span>
+      </div>
+      <button class="btn-gold" onclick="submitCornice()" style="width:100%;padding:13px;font-size:14px;font-weight:600;margin-top:4px">Request cornice &amp; valance quote &rarr;</button>
+    </div>
+    <div class="success-box" id="corn-success"><strong>Quote sent!</strong> We'll follow up soon. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a></div>
+  </div>
+
+</div><!-- /cornval step-wrap -->
+</div><!-- /tab-cornval -->
+
+<!-- ══════════════════════════════════════════════════════════
+     TAB: WOVEN WOOD SHADES
+════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-woven">
+  <div class="step-wrap">
+    <div class="step">
+      <div class="step-label">Soft Treatment</div>
+      <div class="step-title">Natural Woven Wood Shades</div>
+      <div class="step-sub">Bamboo, jute, reeds, and grasses — available as roman shades, roller shades, sliding panels, and drapery. Choose a collection below to configure and get an instant quote.</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:40px">
+
+      <a href="wallace-woven.html#roman-woven-choice" style="text-decoration:none">
+        <div class="opt-card" style="border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s">
+          <div class="opt-art" style="height:140px;background:#F5ECD7">
+            <img src="../images/thumbnails/woven-wood-shades.png" alt="Wallace Walden Natural Woven" style="object-fit:cover;width:100%;height:100%">
+          </div>
+          <div class="opt-label-bar" style="padding:14px 16px">
+            <div class="opt-name">Wallace Walden — Premier &amp; Select</div>
+            <div class="opt-desc">Roman shades · panels · drapery · valances · 100+ patterns · instant quote</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="dynasty-woven-woods.html" style="text-decoration:none">
+        <div class="opt-card" style="border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s">
+          <div class="opt-art" style="height:140px;background:#EDE6D6">
+            <img src="../images/thumbnails/woven-wood-shades.png" alt="Wallace Dynasty Woven Wood" style="object-fit:cover;width:100%;height:100%;object-position:30% center">
+          </div>
+          <div class="opt-label-bar" style="padding:14px 16px">
+            <div class="opt-name">Wallace Dynasty</div>
+            <div class="opt-desc">48 patterns · 5 price groups · waterfall, flat fold, hobbled, TDBU · instant quote</div>
+          </div>
+        </div>
+      </a>
+
+      <a href="galaxy-woven-woods.html" style="text-decoration:none">
+        <div class="opt-card" style="border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s">
+          <div class="opt-art" style="height:140px;background:#E8E0CE">
+            <img src="../images/thumbnails/woven-wood-shades.png" alt="Wallace Galaxy Woven Wood" style="object-fit:cover;width:100%;height:100%;object-position:70% center">
+          </div>
+          <div class="opt-label-bar" style="padding:14px 16px">
+            <div class="opt-name">Wallace Galaxy</div>
+            <div class="opt-desc">73 patterns · 6 price groups · hobbled, TDBU, motorized, dual shade · instant quote</div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <div style="background:#fafaf8;border:1px solid #e8e4de;border-radius:12px;padding:18px 20px;font-size:13px;color:#555;line-height:1.7">
+      <strong style="color:#222">Not sure which collection?</strong> Premier &amp; Select have the widest fabric range. Dynasty and Galaxy are best for bold patterns and larger windows. Call Justin at <a href="tel:6097421720" style="color:var(--gold);font-weight:600">(609) 742-1720</a> — 24/7 — and we'll point you to the right collection for your space.
+    </div>
+  </div>
+</div><!-- /tab-woven -->
+
+<div style="display:none" id="tab-valances-removed"><!-- valance merged into tab-cornval --></div>
+<div style="display:none" id="__valance_placeholder">
+  <div style="font-size:22px">Valances</div>
+  <div style="font-size:13px;color:#666;margin-bottom:24px">Fabric soft top treatment. $50/linear ft + fabric.</div>
+  <div style="background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:24px;margin-bottom:32px">
+    <div class="dim-box" style="margin-bottom:18px">
+      <div class="dim-box-label">Valance dimensions</div>
+      <div class="form-row">
+        <div class="form-group"><label>Width</label><input type="number" id="cv-val-w" min="12" max="300" placeholder="72" oninput="calcValance()"><div class="dim-unit">inches</div></div>
+        <div class="form-group"><label>Height / drop</label><input type="number" id="cv-val-h" min="4" max="60" value="14" oninput="calcValance()"><div class="dim-unit">inches</div></div>
+      </div>
+      <div style="margin-top:12px"><label style="font-size:12px;font-weight:600;color:#333;display:block;margin-bottom:5px">Return size <span style="font-weight:400;color:#999">default 4"</span></label>
+        <input type="number" id="cv-val-return" value="4" min="1" max="18" oninput="calcValance()" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+        <span style="font-size:12px;color:#888;margin-left:8px">inches</span></div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Finishing</div>
+      <div class="opt-row" id="grp-val-trim">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-val-trim');valToggleTrim(false);calcValance()">Self welt (same fabric)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-val-trim');valToggleTrim(true);calcValance()">Applied trim (+$15/ft)</button>
+      </div>
+      <div id="val-trim-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+        <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Which edges?</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="val-trim-edge" data-loc="top" onchange="calcValance()"> Top</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="val-trim-edge" data-loc="bottom" onchange="calcValance()"> Bottom</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="val-trim-edge" data-loc="sides" onchange="calcValance()"> Both sides</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="val-trim-edge" data-loc="returns" onchange="calcValance()"> Returns</label>
+        </div>
+        <div class="opt-row" id="grp-val-trim-supply">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-val-trim-supply')">We supply trim</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-val-trim-supply')">I supply trim</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-val-trim-supply')">Not sure</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Fabric</div>
+      <div class="opt-row" id="grp-val-fabric">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-val-fabric');calcValance()">We supply fabric</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric');calcValance()">I supply fabric</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric');calcValance()">Not sure</button>
+      </div>
+    </div>
+    <div id="val-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:16px 18px;margin-bottom:16px">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Estimate</div>
+      <div id="val-price-rows"></div>
+      <div style="border-top:1px solid rgba(45,224,193,.3);margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-size:13px;color:var(--cream)">Estimated total</span>
+        <span style="font-size:20px;font-weight:600;color:var(--gold)" id="val-price-total">—</span>
+      </div>
+      <div id="val-fabric-note" style="font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:6px 9px;color:var(--cream);margin-top:8px;line-height:1.5"></div>
+      <div style="font-size:10px;color:var(--text-faint);margin-top:6px">$50/ft + fabric est. $30/yd · trim $15/ft · Final confirmed at order.</div>
+    </div>
+    <div id="val-form">
+      <div class="form-row">
+        <div class="form-group"><label>Name *</label><input type="text" id="vn-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="vn-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="vn-email" placeholder="jane@example.com"></div>
+      <div class="form-group"><label>Notes</label><textarea id="vn-notes" placeholder="Room, style preference, timeline..." style="min-height:60px"></textarea></div>
+      <div class="delivery-section">
+        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+        <div class="opt-row" id="grp-del-val">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-val');document.getElementById('del-val-s').style.display='block';document.getElementById('del-val-p').style.display='none'">Ship to me</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-del-val');document.getElementById('del-val-s').style.display='none';document.getElementById('del-val-p').style.display='block'">I'll pick up</button>
+        </div>
+        <div id="del-val-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
+        <div id="del-val-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+      </div>
+      <button class="btn-gold" onclick="submitValanceCv()" style="width:100%;padding:13px;font-size:14px;font-weight:600;margin-top:16px">Request valance quote &rarr;</button>
+    </div>
+    <div class="success-box" id="val-cv-success"><strong>Quote sent!</strong> We'll follow up soon. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a></div>
+  </div>
+
+</div><!-- /valances step-wrap -->
+
+
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div>
+    <h2>Not sure which treatment is right?</h2>
+    <p>We'll come to your home, measure every window, and walk you through the options — completely free.</p>
+  </div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<!-- QUICK QUOTE FORM -->
+<div class="section section-warm" style="padding-top:40px;padding-bottom:40px">
+  <div style="max-width:600px;margin:0 auto">
+    <div class="section-label">Get a quote</div>
+    <div class="section-title" style="margin-bottom:6px">Request a drapery or roman shade quote</div>
+    <div class="section-sub" style="margin-bottom:24px">All soft treatments are custom — no two alike. Tell Justin what you need and he'll follow up with pricing. Or call: <a href="tel:6097421720" style="color:var(--gold);text-decoration:none;font-weight:500">(609) 742-1720</a></div>
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="soft-quote-form" onsubmit="handleSoftQuote(event)">
+      <div class="form-row">
+        <div class="form-group"><label>Your name *</label><input type="text" name="name" placeholder="Jane Smith" required></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" name="phone" placeholder="(215) 555-0100" required></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="jane@example.com"></div>
+      <div class="form-group">
+        <label>What are you looking for?</label>
+        <select name="product" style="width:100%;padding:10px 12px;border:1px solid #e8e8e4;border-radius:8px;font-size:13px;font-family:var(--font);background:#fff;color:#333">
+          <option value="">Select...</option>
+          <option>Custom drapery panels</option>
+          <option>Roman shades</option>
+          <option>Both drapery and roman shades</option>
+          <option>Not sure — need a consultation</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Number of windows</label><input type="number" name="window_count" min="1" placeholder="3"></div>
+        <div class="form-group"><label>Timeline</label><input type="text" name="timeline" placeholder="e.g. within 2 weeks"></div>
+      </div>
+      <div class="form-group"><label>Notes</label><textarea name="notes" placeholder="Fabric preferences, room description, motorization interest..." rows="3"></textarea></div>
+      <div style="background:#FBF7F0;border:1px solid #e8e8e4;border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:12px;color:#888">
+        <strong style="color:#555">Secure checkout coming soon</strong> — soft treatments are ordered after a free in-home consult and fabric selection.<br>
+        Call Justin: <a href="tel:6097421720" style="color:var(--gold);font-weight:500;text-decoration:none">(609) 742-1720</a> &mdash; 24/7
+      </div>
+      <button type="submit" class="btn-gold" style="width:100%;padding:13px;font-size:14px">Send quote request &rarr;</button>
+    </form>
+    <div id="soft-quote-success" style="display:none;background:#EAF3DE;border-radius:12px;padding:24px;text-align:center;margin-top:8px">
+      <div style="font-size:18px;margin-bottom:8px">&#10003; Quote request sent!</div>
+      <p style="font-size:13px;color:#3B6D11;margin-bottom:12px">Justin will follow up within a few hours.</p>
+      <a href="tel:6097421720" style="display:inline-block;background:var(--espresso);color:var(--gold);font-size:15px;font-weight:700;padding:11px 22px;border-radius:8px;text-decoration:none">(609) 742-1720</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Soft treatments'); renderFooter(false);
+_initMeasureHelp(`
+  <div class="pb-help-heading">Drapery &amp; roman shade measuring</div>
+  <div class="pb-help-sub">Rod placement and panel sizing tips</div>
+  <div class="pb-help-section">
+    <h4>Rod placement</h4>
+    <ul>
+      <li>Mount rod <strong>4–8 inches above</strong> the window frame (higher = taller room feel).</li>
+      <li>Extend rod <strong>6–12 inches past</strong> each side of the frame so panels stack clear of glass.</li>
+      <li>Standard clearance between rod and ceiling: at least 2 inches.</li>
+    </ul>
+  </div>
+  <div class="pb-help-section">
+    <h4>Panel width</h4>
+    <ul>
+      <li>Each panel should be <strong>1.5× to 2.5×</strong> the width of the opening it covers (for fullness).</li>
+      <li>For a pair of panels covering one window: measure total rod width, divide by 2 per panel, then multiply by fullness factor.</li>
+    </ul>
+    <div class="pb-help-tip">Not sure? We measure for free during your in-home consult.</div>
+  </div>
+  <div class="pb-help-section">
+    <h4>Panel length</h4>
+    <ul>
+      <li><strong>Puddle:</strong> floor + 3–6 inches (romantic/formal)</li>
+      <li><strong>Brush:</strong> floor + 0.5 inch</li>
+      <li><strong>Float:</strong> floor – 0.5 inch (easiest to clean)</li>
+    </ul>
+  </div>
+`, '../pages/measure-drapes.html');
+// Auto-switch tabs based on URL ?tab= param — runs on load so everything is ready
+window.addEventListener('load', function() {
+  var tab = new URLSearchParams(window.location.search).get('tab');
+  if (!tab) return;
+  var btn = Array.from(document.querySelectorAll('.type-tab')).find(function(b) {
+    return (b.getAttribute('onclick') || '').indexOf("'" + tab + "'") !== -1;
+  });
+  if (btn) switchTab(tab, btn);
+});
+
+// ── Tab switcher ──────────────────────────────────────────
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.type-tab').forEach(b => b.classList.remove('on'));
+  document.getElementById('tab-' + id).classList.add('on');
+  btn.classList.add('on');
+}
+
+// ── Selection helpers ────────────────────────────────────
+var drapeState  = { pleat:'', fabric:'' };
+var romanState  = { style:'', fabric:'' };
+
+var _RIPPLE_STYLES    = ['Ripple Fold'];
+var _NO_FULLNESS      = ['Grommet / Eyelet']; // Rod Pocket has its own fullness section
+
+function selectPleat(el, val) {
+  document.querySelectorAll('#pleat-cards .opt-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  drapeState.pleat = val;
+
+  var subopts = document.getElementById('pinch-subopts');
+  if (subopts) {
+    subopts.style.display = val === 'Pinch Pleat' ? 'block' : 'none';
+    if (val !== 'Pinch Pleat') document.querySelectorAll('#pinch-subopts .opt-card').forEach(c => c.classList.remove('sel'));
+  }
+
+  var rpOpts = document.getElementById('rodpocket-subopts');
+  if (rpOpts) rpOpts.style.display = val === 'Rod Pocket / Sheered Pocket' ? 'block' : 'none';
+
+  var isRipple  = _RIPPLE_STYLES.indexOf(val) !== -1;
+  var isRodPocket = val === 'Rod Pocket / Sheered Pocket';
+  var noFull    = _NO_FULLNESS.indexOf(val) !== -1;
+  var stdFull   = document.getElementById('drape-fullness-std');
+  var rippleOpts= document.getElementById('drape-ripple-opts');
+  var fullRec   = document.getElementById('drape-fullness-rec');
+
+  // Hide standard fullness for ripple, grommet, and rod pocket (rod pocket has its own)
+  if (stdFull)    stdFull.style.display    = (!isRipple && !noFull && !isRodPocket) ? 'block' : 'none';
+  if (rippleOpts) rippleOpts.style.display = isRipple ? 'block' : 'none';
+  if (fullRec && (isRipple || isRodPocket)) { fullRec.style.display = 'none'; }
+}
+
+function drapeFullnessHint(val) {
+  var rec = document.getElementById('drape-fullness-rec');
+  if (!rec) return;
+  rec.style.display = 'block';
+  var f = parseFloat(val);
+  if (f <= 2.0) {
+    rec.style.cssText = 'display:block;margin-top:8px;font-size:12px;padding:8px 12px;border-radius:7px;background:#EAF3DE;color:#27500A';
+    rec.textContent = '✓ We recommend 2-prong tack top for ' + val + '× fullness.';
+  } else {
+    rec.style.cssText = 'display:block;margin-top:8px;font-size:12px;padding:8px 12px;border-radius:7px;background:#FBF7F0;color:#7A4F00';
+    rec.textContent = '✓ We recommend 3-prong tack top for ' + val + '× fullness — rich, full look.';
+  }
+}
+
+function drapeRippleHwHint(hw) {
+  var note = document.getElementById('ripple-hw-note');
+  if (!note) return;
+  var msgs = { graber: 'Graber ripple fold system selected.', kirsch: 'Kirsch ripple fold system selected.', idk: "No problem — we'll use standard Kirsch hardware." };
+  note.textContent = msgs[hw] || '';
+  note.style.color = hw === 'idk' ? 'var(--gold)' : '#555';
+}
+
+function selectPinchDetail(el, val) {
+  document.querySelectorAll('#pinch-subopts .opt-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  drapeState.pleat = val;
+}
+function selectRomanStyle(el, val) {
+  document.querySelectorAll('#roman-style-cards .opt-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  romanState.style = val;
+
+  var isVignette = val === 'Vignette®';
+  var isValance  = val === 'Roman Valance';
+  var hideSteps  = isVignette || isValance;
+  var tdbuStyles = ['Flat Roman', 'Permanently Pleated Roman'];
+
+  document.getElementById('vignette-notice').style.display = isVignette ? 'block' : 'none';
+  document.getElementById('valance-config').style.display  = isValance  ? 'block' : 'none';
+  document.getElementById('roman-tdbu-wrap').style.display = tdbuStyles.indexOf(val) !== -1 ? 'block' : 'none';
+
+  ['step-roman-2','step-roman-3','step-roman-4','step-roman-5'].forEach(function(id){
+    var s = document.getElementById(id);
+    if (s) s.style.display = hideSteps ? 'none' : '';
+  });
+
+  if (!hideSteps) { calcRoman(); }
+}
+
+function romanChainCheck() {
+  var len  = parseFloat(document.getElementById('roman-clen-in').value) || 0;
+  var h    = parseFloat(document.getElementById('rn-h').value) || 0;
+  var warn = document.getElementById('roman-clen-warn');
+  if (!warn) return;
+  if (!len || !h) { warn.style.display = 'none'; return; }
+  var minLen = Math.ceil(h * 0.75);
+  if (len < minLen) {
+    warn.style.display = 'block';
+    warn.textContent = '⚠ Minimum chain length is 75% of finished length — at least ' + minLen + '" for a ' + h + '" shade.';
+  } else { warn.style.display = 'none'; }
+}
+
+function romanToggleOp(type) {
+  document.getElementById('roman-manual-opts').style.display = type === 'manual'    ? 'block' : 'none';
+  document.getElementById('roman-motor-opts').style.display  = type === 'motorized' ? 'block' : 'none';
+}
+function selectFabric(tab, el, val) {
+  var container = tab === 'drape' ? '#drape-fabric-cards' : '#roman-fabric-cards';
+  document.querySelectorAll(container + ' .fabric-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  var weSupply = val === 'We supply the fabric';
+  if (tab === 'drape') {
+    drapeState.fabric = val;
+    var dp = document.getElementById('drape-fabric-detail');
+    if (dp) dp.style.display = weSupply ? 'block' : 'none';
+    calcDrapePrice();
+  } else {
+    romanState.fabric = val;
+    var rp = document.getElementById('roman-fabric-detail');
+    if (rp) rp.style.display = weSupply ? 'block' : 'none';
+    calcRoman();
+  }
+}
+
+// Helper: read shipping estimate from nearest delivery section ZIP input
+function _getShippingEst(containerEl) {
+  var el = containerEl ? containerEl.querySelector('.pb-ship-est .pb-zip-result strong') : null;
+  if (!el || !el.textContent) return 0;
+  var m = el.textContent.match(/\$(\d+)/);
+  return m ? parseInt(m[1]) : 0;
+}
+
+// ── Roman pricing ─────────────────────────────────────────
+var RN_MIN       = 85;       // minimum per shade regardless of sq ft
+var RN_TRIM_PER_FT = 15;
+
+// $40/sqft = cost $26 ÷ 0.65 margin. Same rate all styles — liner included in labor.
+var RN_RATES = {
+  'Flat Roman':               { unlined: 40, lined: 40 },
+  'Permanently Pleated Roman':{ unlined: 40, lined: 40 },
+  'Relaxed Roman':            { unlined: 40, lined: 40 },
+  'Roman Valance':            { unlined: 40, lined: 40 }
+};
+
+function rnGetRate() {
+  var style   = romanState.style || 'Flat Roman';
+  var lBtn    = document.querySelector('#grp-roman-lining .opt-btn.sel');
+  var lining  = lBtn ? lBtn.textContent.trim() : 'Unlined';
+  var isLined = lining !== 'Unlined';
+  var rates   = RN_RATES[style] || { unlined: 35, lined: 38 };
+  return isLined ? rates.lined : rates.unlined;
+}
+
+function adjRomanQty(d) {
+  var el = document.getElementById('rn-qty');
+  el.value = Math.max(1, (parseInt(el.value) || 1) + d);
+  calcRoman();
+}
+
+function calcRoman() {
+  var w   = parseFloat(document.getElementById('rn-w').value);
+  var h   = parseFloat(document.getElementById('rn-h').value);
+  var qty = parseInt(document.getElementById('rn-qty').value) || 1;
+  var box = document.getElementById('roman-pricebox');
+  if (!w || !h) { if(box) box.style.display = 'none'; return; }
+
+  var rate     = rnGetRate();
+  var sqft     = (w / 12) * (h / 12);
+  var perShade = Math.max(RN_MIN, sqft * rate);
+  var laborTotal = perShade * qty;
+
+  // Trim
+  var trimTotal = 0;
+  var trimChecks = document.querySelectorAll('.rn-trim-check:checked');
+  if (trimChecks.length) {
+    var trimFt = 0;
+    trimChecks.forEach(function(cb) {
+      var loc = cb.getAttribute('data-loc');
+      if (loc === 'sides')  trimFt += (h / 12) * 2 * qty;  // both sides
+      if (loc === 'top')    trimFt += (w / 12) * qty;
+      if (loc === 'bottom') trimFt += (w / 12) * qty;
+    });
+    trimTotal = Math.ceil(trimFt) * RN_TRIM_PER_FT;
+  }
+
+  // Fabric yardage estimate
+  var cutsPerShade = Math.max(1, Math.ceil(w / 54));
+  var yardsPerCut  = Math.ceil((h + 16) / 36 * 4) / 4;
+  var fabricYds    = cutsPerShade * yardsPerCut * qty;
+
+  // Fabric & liner cost if we supply
+  var fabricCost = 0; var linerCost = 0;
+  if (romanState.fabric === 'We supply the fabric') {
+    fabricCost = fabricYds * 25;
+    var linerBtn = document.querySelector('#grp-roman-liner .opt-btn.sel');
+    if (linerBtn && linerBtn.textContent.indexOf('liner') !== -1) {
+      linerCost = fabricYds * 7;
+    }
+  }
+
+  // Shipping estimate
+  var shipEst = _getShippingEst(document.getElementById('roman-form'));
+
+  var grandTotal = laborTotal + trimTotal + fabricCost + linerCost + shipEst;
+  if (box) box.style.display = 'block';
+  document.getElementById('rn-pb-style').textContent = (romanState.style || '—') + ' — $' + rate + '/sqft';
+  document.getElementById('rn-pb-dims').textContent  = w + '″ W × ' + h + '″ H';
+  document.getElementById('rn-pb-qty').textContent   = qty;
+  document.getElementById('rn-pb-motor').textContent = getOpt('grp-roman-op') || 'Manual';
+  // Add fabric/liner/shipping rows to price box
+  var extraRows = document.getElementById('rn-pb-extra-rows');
+  if (!extraRows) {
+    extraRows = document.createElement('div');
+    extraRows.id = 'rn-pb-extra-rows';
+    document.getElementById('rn-pb-min-note').before(extraRows);
+  }
+  var xRows = '';
+  if (fabricCost) xRows += '<div class="pb-row"><span class="pb-key">Fabric est. (' + fabricYds.toFixed(1) + ' yd × $25)</span><span class="pb-val">$' + fabricCost.toFixed(0) + '</span></div>';
+  if (linerCost)  xRows += '<div class="pb-row"><span class="pb-key">Liner est. (' + fabricYds.toFixed(1) + ' yd × $'+D_LINING_PER_YD+')</span><span class="pb-val">$' + linerCost.toFixed(0) + '</span></div>';
+  if (shipEst)    xRows += '<div class="pb-row"><span class="pb-key">Shipping est.</span><span class="pb-val">~$' + shipEst + '</span></div>';
+  extraRows.innerHTML = xRows;
+  document.getElementById('rn-pb-total').textContent = '$' + grandTotal.toFixed(0);
+  document.getElementById('rn-pb-min-note').style.display = perShade === RN_MIN ? 'block' : 'none';
+  // Fabric yardage note
+  var fabNote = document.getElementById('rn-pb-fabric-note');
+  if (!fabNote) {
+    fabNote = document.createElement('div');
+    fabNote.id = 'rn-pb-fabric-note';
+    fabNote.style.cssText = 'margin-top:8px;font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:7px 10px;color:var(--cream);line-height:1.5';
+    box.appendChild(fabNote);
+  }
+  fabNote.textContent = '🧵 Est. fabric needed: ~' + fabricYds.toFixed(2) + ' yards' + (cutsPerShade > 1 ? ' ('+cutsPerShade+' widths)' : '') + ' — pattern repeats will add more. Confirmed at order.';
+
+  // Line-by-line estimate panel
+  var rnLines = [
+    { label: 'Product',        value: (romanState.style || 'Roman Shade') },
+    { label: 'Size',           value: w + '″ W × ' + h + '″ finished length' },
+    { label: 'Quantity',       value: qty + ' shade(s)' },
+    { label: 'Fabric',         value: (romanState.fabric || '—') },
+    { label: 'Lining',         value: (getOpt('grp-roman-lining') || '—') },
+    { label: 'Operation',      value: (getOpt('grp-roman-op') || '—') },
+    { label: 'Mounting',       value: (getOpt('grp-roman-mount-style') || '—') }
+  ];
+  if (getOpt('grp-roman-op') === 'Motorized') rnLines.push({ label: 'Motor brand', value: getOpt('grp-roman-motor-brand') || 'TBD at order' });
+  if (trimTotal) rnLines.push({ label: 'Trim', value: '$' + trimTotal.toFixed(0) });
+  pbRenderEstimate('roman-pricebox', rnLines, grandTotal, '', function(checkout) {
+    pbCollectItem(romanState.style || 'Roman Shade', rnLines, grandTotal, getOpt('grp-roman-op')==='Motorized');
+    pbOpenCart();
+    if (checkout) setTimeout(function(){
+      var f=document.getElementById('pb-cart-foot'); if(f) f.style.display='block';
+    }, 150);
+  });
+}
+
+// ── DRAPERY PRICING CALCULATOR ───────────────────────────────
+// Cost basis: unlined $80/width, lined $90/width. Margin: 35%. Tariff: none.
+// Formula: customer price = cost ÷ 0.65
+var D_RATE_UNLINED = 123;   // per cut/width (cost $80 ÷ 0.65)
+var D_RATE_LINED   = 138;   // per cut/width (cost $90 ÷ 0.65)
+var D_MIN_WIDTHS   = 2;
+var D_FABRIC_WIDTH = 54;    // standard fabric width (inches)
+var D_LEN_SURCHARGE = 15;   // per width per 10" over 100" (cost $10 ÷ 0.65 ≈ $15)
+var D_FABRIC_PER_YD = 25;   // placeholder — fabric is custom per spec
+var D_LINING_PER_YD = 9.25; // cost $6/yd ÷ 0.65 margin. Note: +$75/bolt ship charged separately.
+var D_CORNICE_PER_FT = 38.50; // per linear ft (cost $25 ÷ 0.65)
+var D_CORNICE_MIN_FT = 4;
+var D_VALANCE_PER_FT = 38.50; // same as cornice
+var D_TRIM_PER_FT   = 15;
+
+function calcDrapePrice() {
+  var w = parseFloat(document.getElementById('d-exact-width').value);
+  var h = parseFloat(document.getElementById('d-exact-length').value);
+  var box = document.getElementById('drape-price-box');
+  if (!box) return;
+  if (!w || !h) { box.style.display = 'none'; return; }
+
+  // Minimum dimension guard
+  var minWarn = document.getElementById('d-min-warn');
+  if (minWarn) {
+    var tooNarrow = w > 0 && w < 24, tooShort = h > 0 && h < 24;
+    if (tooNarrow && tooShort) {
+      minWarn.textContent = '⚠ Both dimensions seem very small. Minimum panel width and height are typically 24″. Specialty panels smaller than this require a custom quote — call (609) 742-1720.';
+      minWarn.style.display = 'block';
+    } else if (tooNarrow) {
+      minWarn.textContent = '⚠ Very narrow panel — panels under 24″ wide may require specialty pricing. Call (609) 742-1720 to confirm.';
+      minWarn.style.display = 'block';
+    } else if (tooShort) {
+      minWarn.textContent = '⚠ Very short panel — finished lengths under 24″ may require specialty pricing. Call (609) 742-1720 to confirm.';
+      minWarn.style.display = 'block';
+    } else {
+      minWarn.style.display = 'none';
+    }
+  }
+
+  // Fullness factor
+  var isRipple   = drapeState.pleat === 'Ripple Fold';
+  var isRodPocket = drapeState.pleat === 'Rod Pocket / Sheered Pocket';
+  var fullness = 2.0;
+  if (isRipple) {
+    var rfBtn = document.querySelector('#grp-ripple-fullness .opt-btn.sel');
+    var rfPct = rfBtn ? parseFloat(rfBtn.textContent) : 80;
+    fullness = 1 + rfPct / 100;
+  } else if (isRodPocket) {
+    var rpBtn = document.querySelector('#grp-rp-fullness .opt-btn.sel');
+    var rpTxt = rpBtn ? rpBtn.textContent.trim() : '2.0';
+    fullness = rpTxt === 'Flat (1×)' ? 1.0 : (parseFloat(rpTxt) || 2.0);
+  } else {
+    var fBtn = document.querySelector('#grp-drape-fullness .opt-btn.sel');
+    fullness = fBtn ? (parseFloat(fBtn.textContent) || 2.0) : 2.0;
+  }
+
+  // Widths
+  var numWidths = Math.max(D_MIN_WIDTHS, Math.ceil((w * fullness) / D_FABRIC_WIDTH));
+
+  // Lining — read from inline liner picker (grp-drape-liner)
+  var lBtn = document.querySelector('#grp-drape-liner .opt-btn.sel');
+  var lining = lBtn ? lBtn.textContent.trim() : 'No liner';
+  var isLined = lining !== 'No liner';
+  var interCheck = document.getElementById('d-interlining-check');
+  var isInterlining = interCheck ? interCheck.checked : false;
+  // Goblet and Barrel pleat carry a premium — $130/width unlined, $140/width lined
+  var isSpecialtyPleat = drapeState.pleat === 'Goblet Pleat' || drapeState.pleat === 'Barrel Pleat';
+  var ratePerWidth = isSpecialtyPleat
+    ? (isLined ? 140 : 130)
+    : (isLined ? D_RATE_LINED : D_RATE_UNLINED);
+
+  // Length surcharge (over 100")
+  var lenSurcharge = h > 100 ? Math.ceil((h - 100) / 10) * D_LEN_SURCHARGE : 0;
+  var effectiveRate = ratePerWidth + lenSurcharge;
+  var laborTotal = numWidths * effectiveRate;
+
+  // Fabric & lining (if we supply)
+  var fabricCost = 0; var liningCost = 0; var yardsTotal = 0;
+  if (drapeState.fabric === 'We supply the fabric') {
+    yardsTotal = Math.ceil(((h + 16) / 36) * numWidths * 10) / 10;
+    fabricCost = yardsTotal * D_FABRIC_PER_YD;
+    if (isLined) liningCost = yardsTotal * D_LINING_PER_YD;
+    if (isInterlining) liningCost += yardsTotal * D_LINING_PER_YD; // interlining same rate as lining
+  }
+
+  // Cornice
+  var corniceTotal = 0;
+  var corniceCheck = document.getElementById('d-cornice-check');
+  if (corniceCheck && corniceCheck.checked) {
+    var cw = parseFloat(document.getElementById('d-cornice-width').value) || 0;
+    var cFt = Math.max(D_CORNICE_MIN_FT, cw / 12);
+    corniceTotal = Math.ceil(cFt) * D_CORNICE_PER_FT;
+    // Cornice trim
+    if (document.getElementById('d-cornice-trim-check') && document.getElementById('d-cornice-trim-check').checked) {
+      corniceTotal += Math.ceil(cFt) * D_TRIM_PER_FT;
+    }
+  }
+
+  // Valance
+  var valanceTotal = 0;
+  var valanceCheck = document.getElementById('d-valance-check');
+  if (valanceCheck && valanceCheck.checked) {
+    var vw = parseFloat(document.getElementById('d-valance-width').value) || 0;
+    var vFt = Math.max(1, vw / 12);
+    valanceTotal = Math.ceil(vFt) * D_VALANCE_PER_FT;
+    if (drapeState.fabric === 'We supply the fabric') {
+      var vYards = Math.ceil(vFt * 0.75); // rough valance yardage estimate
+      valanceTotal += vYards * D_FABRIC_PER_YD;
+    }
+    // Valance trim
+    if (document.getElementById('d-valance-trim-check') && document.getElementById('d-valance-trim-check').checked) {
+      valanceTotal += Math.ceil(vFt) * D_TRIM_PER_FT;
+    }
+  }
+
+  // Trim on drapes
+  var trimTotal = 0;
+  var trimChecks = document.querySelectorAll('.drape-trim-check:checked');
+  if (trimChecks.length) {
+    var trimFt = 0;
+    trimChecks.forEach(function(cb) {
+      var loc = cb.getAttribute('data-loc');
+      if (loc === 'lead')       trimFt += (h / 12) * (getOpt('grp-drape-panels') === 'Single panel' ? 1 : 2);
+      if (loc === 'lead-return')trimFt += ((h + 4) / 12) * (getOpt('grp-drape-panels') === 'Single panel' ? 1 : 2);
+      if (loc === 'top')        trimFt += w / 12;
+      if (loc === 'hem')        trimFt += w / 12;
+    });
+    trimTotal = Math.ceil(trimFt) * D_TRIM_PER_FT;
+  }
+
+  // Liner from drape liner picker (when we supply fabric)
+  var linerCost2 = 0;
+  if (drapeState.fabric === 'We supply the fabric') {
+    var dlBtn = document.querySelector('#grp-drape-liner .opt-btn.sel');
+    if (dlBtn && dlBtn.textContent.indexOf('liner') !== -1) {
+      linerCost2 = yardsTotal * D_LINING_PER_YD;
+    }
+    // Override liningCost with picker value (not from lining step)
+    liningCost = linerCost2;
+  }
+
+  // Shipping estimate
+  var dShipEst = _getShippingEst(document.getElementById('drape-form'));
+
+  var grandTotal = laborTotal + fabricCost + liningCost + corniceTotal + valanceTotal + trimTotal + dShipEst;
+
+  // Render
+  var rows = '';
+  var row = function(lbl, val) {
+    rows += '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-dark);padding:4px 0;border-bottom:.5px solid var(--border-dark)">' +
+      '<span>' + lbl + '</span><span style="color:var(--cream);font-weight:500">$' + val.toFixed(0) + '</span></div>';
+  };
+  row('Labor — ' + numWidths + ' widths × $' + effectiveRate + (lenSurcharge ? ' (incl. +$' + lenSurcharge + ' length)' : ''), laborTotal);
+  if (fabricCost)  row('Fabric est. (' + yardsTotal + ' yd × $25/yd)', fabricCost);
+  if (liningCost)  row('Liner est. (' + yardsTotal + ' yd × $'+D_LINING_PER_YD+'/yd)', liningCost);
+  if (trimTotal)   row('Trim', trimTotal);
+  if (corniceTotal)row('Cornice', corniceTotal);
+  if (valanceTotal)row('Valance', valanceTotal);
+  if (dShipEst)    row('Shipping est.', dShipEst);
+
+  document.getElementById('drape-price-rows').innerHTML = rows;
+  document.getElementById('drape-price-total').textContent = '$' + grandTotal.toFixed(0);
+  // Fabric yardage note for drapes
+  var dFabNote = document.getElementById('drape-fabric-yds-note');
+  if (!dFabNote) {
+    dFabNote = document.createElement('div');
+    dFabNote.id = 'drape-fabric-yds-note';
+    dFabNote.style.cssText = 'margin-top:8px;font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:7px 10px;color:var(--cream);line-height:1.5';
+    document.getElementById('drape-price-box').appendChild(dFabNote);
+  }
+  var dYardsPerWidth = Math.ceil((h + 16) / 36 * 4) / 4;
+  var dTotalYards    = Math.ceil(dYardsPerWidth * numWidths * 4) / 4;
+  var cornYds = 0;
+  if (document.getElementById('d-cornice-check') && document.getElementById('d-cornice-check').checked) {
+    var cw2 = parseFloat(document.getElementById('d-cornice-width').value) || 0;
+    cornYds = cw2 ? Math.ceil((cw2/36)*1.2*4)/4 : 0;
+  }
+  var valYds = 0;
+  if (document.getElementById('d-valance-check') && document.getElementById('d-valance-check').checked) {
+    var vw2 = parseFloat(document.getElementById('d-valance-width').value) || 0;
+    valYds = vw2 ? Math.ceil((vw2/36)*1.5*4)/4 : 0;
+  }
+  var totalFabYds = dTotalYards + cornYds + valYds;
+  dFabNote.textContent = '🧵 Est. fabric needed: ~'+totalFabYds.toFixed(2)+' yards (drapes: '+dTotalYards+
+    (cornYds?' · cornice: '+cornYds:'')+
+    (valYds?' · valance: '+valYds:'')+
+    ') — pattern repeats add more. Confirmed at order.';
+
+  document.getElementById('drape-price-note').textContent =
+    '$' + ratePerWidth + '/width ' + (isLined ? '(lined' + (isInterlining ? ' + interlining)' : ')') : '(unlined)') +
+    (lenSurcharge ? ', +$15/width per 10" over 100"' : '') +
+    (fabricCost ? '' : ' · Fabric & lining not included') +
+    ' · 2-width minimum · Final price confirmed at order.';
+  box.style.display = 'block';
+
+  // Shipping: drapes/romans $50 min; over 80" width = likely oversized
+  var dW = parseFloat(document.getElementById('d-exact-width').value) || 0;
+  var dShipMin = 50;
+  var dShipNote = dW > 80 ? 'Oversized (over 80") — heavy freight applies' : '$50 minimum (fabric shipments)';
+  dShipEst = Math.max(dShipMin, dShipEst);
+
+  // Line-by-line estimate panel
+  var drapeLines = [
+    { label: 'Product',     value: (drapeState.pleat || 'Custom Drapery') },
+    { label: 'Fabric',      value: (drapeState.fabric || '—') },
+    { label: 'Lining',      value: (lining || '—') },
+    { label: 'Widths',      value: numWidths + ' widths × $' + effectiveRate },
+    { label: 'Panels',      value: (panels || '—') + (panelSide !== '—' ? ' — ' + panelSide : '') }
+  ];
+  if (returnSz) drapeLines.push({ label: 'Return / Overlap', value: returnSz + '" / ' + overlapSz + '"' });
+  if (fabricCost) drapeLines.push({ label: 'Fabric est.', value: '~' + yardsTotal + ' yds × $25 (custom)' });
+  if (liningCost) drapeLines.push({ label: 'Liner est.', value: '~' + yardsTotal + ' yds × $7' });
+  if (dShipEst) drapeLines.push({ label: 'Shipping est.', value: '~$' + dShipEst + ' (' + dShipNote + ')' });
+  pbRenderEstimate('drape-price-box', drapeLines, grandTotal, '', function(checkout) {
+    pbCollectItem(drapeState.pleat || 'Custom Drapery', drapeLines, grandTotal, false);
+    pbOpenCart();
+    if (checkout) setTimeout(function(){
+      var f=document.getElementById('pb-cart-foot'); if(f) f.style.display='block';
+    }, 150);
+  });
+}
+
+function drapeToggleAddon(type, show) {
+  var el = document.getElementById('d-' + type + '-opts');
+  if (el) el.style.display = show ? 'block' : 'none';
+  // Show recommendation banner if either cornice or valance is checked
+  var corniceOn = document.getElementById('d-cornice-check') && document.getElementById('d-cornice-check').checked;
+  var valanceOn = document.getElementById('d-valance-check') && document.getElementById('d-valance-check').checked;
+  var rec = document.getElementById('drape-cv-rec');
+  if (rec) rec.style.display = (corniceOn || valanceOn) ? 'block' : 'none';
+  calcDrapePrice();
+}
+function drapeShowTrimSupply() {
+  var anyChecked = document.querySelectorAll('.drape-trim-check:checked').length > 0;
+  var row = document.getElementById('grp-drape-trim-supply');
+  if (row) row.style.display = anyChecked ? 'flex' : 'none';
+  calcDrapePrice();
+}
+
+function drapeToggleHardware(show) {
+  var el = document.getElementById('drape-hardware-opts');
+  if (el) el.style.display = show ? 'block' : 'none';
+}
+function drapeToggleSingle(show) {
+  var el = document.getElementById('drape-single-opts');
+  if (el) el.style.display = show ? 'block' : 'none';
+}
+// ── CORNICE & VALANCE PRICING ─────────────────────────────
+// Cost $25/linear ft incl. returns ÷ 0.65 margin = $38.50/ft
+var CV_PER_FT     = 38.50; // cost $25/LF ÷ 0.65
+var CV_MIN_FT     = 4;
+var CV_MIN_PRICE  = 154;   // 4 ft × $38.50
+var CV_TRIM_PER_FT= 15;
+var CV_FABRIC_YD  = 30;    // placeholder — fabric custom per spec
+
+function cvSetType(type) {
+  var isCorn = type === 'cornice';
+  var note = document.getElementById('cv-type-note');
+  if (note) note.textContent = isCorn
+    ? 'Fabric-wrapped wood box valance. $50/linear ft · 4 ft minimum.'
+    : 'Fabric soft top treatment. $50/linear ft + fabric.';
+
+  // Swap hero photo + labels
+  var img   = document.getElementById('cv-hero-img');
+  var title = document.getElementById('cv-hero-title');
+  var sub   = document.getElementById('cv-hero-sub');
+  if (img) {
+    img.style.opacity = '0';
+    setTimeout(function() {
+      img.src = isCorn
+        ? '../images/thumbnails/specialty-soft-treatments.JPG'
+        : '../images/thumbnails/specialty-valance.JPEG';
+      img.style.objectPosition = isCorn ? 'center 40%' : 'center 30%';
+      img.style.opacity = '1';
+    }, 150);
+  }
+  if (title) title.textContent = isCorn ? 'Cornices' : 'Valances';
+  if (sub)   sub.textContent   = isCorn
+    ? 'Fabric-wrapped wood box valances. $50/linear ft · 4 ft min.'
+    : 'Fabric soft top treatment. $50/linear ft + fabric.';
+  var cornFin = document.getElementById('cv-cornice-finish');
+  var valFin  = document.getElementById('cv-valance-finish');
+  var trimOpts= document.getElementById('corn-trim-opts');
+  if (cornFin) cornFin.style.display = isCorn ? 'block' : 'none';
+  if (valFin)  valFin.style.display  = isCorn ? 'none'  : 'block';
+  // For valance, always show trim edges; for cornice, respect the toggle
+  if (!isCorn && trimOpts) trimOpts.style.display = 'block';
+  if (isCorn  && trimOpts) { trimOpts.style.display = 'none'; }
+  calcCornice();
+}
+function cornToggleTrim(show) {
+  var el = document.getElementById('corn-trim-opts');
+  if (el) el.style.display = show ? 'block' : 'none';
+}
+function valToggleTrim(show) {
+  var el = document.getElementById('val-trim-opts');
+  if (el) el.style.display = show ? 'block' : 'none';
+}
+
+function _cvTrimFt(edgeClass, w, h, ret) {
+  var ft = 0;
+  document.querySelectorAll('.' + edgeClass + ':checked').forEach(function(cb) {
+    var loc = cb.getAttribute('data-loc');
+    if (loc === 'top')     ft += w / 12;
+    if (loc === 'bottom')  ft += w / 12;
+    if (loc === 'sides')   ft += (h / 12) * 2;
+    if (loc === 'returns') ft += (ret / 12) * 2;
+  });
+  return ft;
+}
+
+function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimGrp, fabricGrp, isCorn) {
+  var box = document.getElementById(boxId);
+  if (!box) return;
+  if (!w) { box.style.display = 'none'; return; }
+  // Total linear footage includes width + both end returns, always round UP to full foot
+  var rawFt   = (w + ret * 2) / 12;
+  var ft      = Math.max(CV_MIN_FT, Math.ceil(rawFt));
+  var labor   = Math.max(CV_MIN_PRICE, ft * CV_PER_FT);
+  var selTrimBtn = document.querySelector('#' + trimGrp + ' .opt-btn.sel');
+  var selTrimTxt = selTrimBtn ? selTrimBtn.textContent.trim() : '';
+  var hasTrim  = selTrimTxt.indexOf('Applied trim') !== -1;
+  var isDblWelt= selTrimTxt === 'Double self welt';
+  var isSelfWelt = selTrimTxt === 'Self welt' || isDblWelt;
+  var trimFt   = hasTrim ? _cvTrimFt(trimClass, w, h, ret) : 0;
+  var trimCost = Math.ceil(trimFt) * CV_TRIM_PER_FT;
+  var fabricSup = document.querySelector('#' + fabricGrp + ' .opt-btn.sel');
+  var weSupply  = fabricSup && fabricSup.textContent.trim() === 'We supply fabric';
+  var fabricCost = 0; var fabricYds = 0;
+  if (weSupply) {
+    // Cornice: wrap width + 2 returns + 2 depths (est 12" depth)
+    // Valance: width + 2 returns + 1.5x fullness
+    var perimInches = isCorn ? (w + ret*2 + 24) : (w + ret*2);
+    fabricYds = Math.ceil((perimInches * (h + 12)) / 1296 * 4) / 4;
+    fabricYds = Math.max(fabricYds, 1);
+    // Add welt fabric: self welt ~0.25 yd per 10ft of perimeter; double welt ~0.5 yd
+    if (isCorn && isSelfWelt) {
+      var weltPerim = (w + ret * 2) / 12;
+      var weltYds = Math.ceil(weltPerim * (isDblWelt ? 0.05 : 0.025) * 4) / 4;
+      fabricYds = Math.round((fabricYds + weltYds) * 4) / 4;
+    }
+    fabricCost = fabricYds * CV_FABRIC_YD;
+  }
+  var total = labor + trimCost + fabricCost;
+  var rows = '';
+  var row = function(lbl, val) {
+    rows += '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-dark);padding:3px 0;border-bottom:.5px solid var(--border-dark)"><span>' + lbl + '</span><span style="color:var(--cream);font-weight:500">$' + val.toFixed(0) + '</span></div>';
+  };
+  row(ft + ' ft × $' + CV_PER_FT + '/ft (incl. ends' + (labor === CV_MIN_PRICE ? ' · $250 min)' : ')'), labor);
+  if (trimCost) row('Trim (' + Math.ceil(trimFt) + ' ft × $' + CV_TRIM_PER_FT + ')', trimCost);
+  if (fabricCost) row('Fabric est. (' + fabricYds + ' yd × $' + CV_FABRIC_YD + ')', fabricCost);
+  document.getElementById(rowsId).innerHTML = rows;
+  document.getElementById(totalId).textContent = '$' + total.toFixed(0);
+  var noteEl = document.getElementById(noteId);
+  if (noteEl) noteEl.textContent = weSupply ? '🧵 Est. fabric: ~' + fabricYds + ' yards — pattern repeats add more. Confirmed at order.' : '';
+  box.style.display = 'block';
+}
+
+function calcCornice() {
+  var w   = parseFloat(document.getElementById('cv-corn-w').value) || 0;
+  var h   = parseFloat(document.getElementById('cv-corn-h').value) || 8;
+  var ret = parseFloat(document.getElementById('cv-corn-return').value) || 4;
+  _cvPriceBox('corn-price-box','corn-price-rows','corn-price-total','corn-fabric-note', w, h, ret, 'corn-trim-edge','grp-corn-trim','grp-corn-fabric', true);
+}
+function calcValance() {
+  var w   = parseFloat(document.getElementById('cv-val-w').value) || 0;
+  var h   = parseFloat(document.getElementById('cv-val-h').value) || 14;
+  var ret = parseFloat(document.getElementById('cv-val-return').value) || 4;
+  _cvPriceBox('val-price-box','val-price-rows','val-price-total','val-fabric-note', w, h, ret, 'val-trim-edge','grp-val-trim','grp-val-fabric', false);
+}
+
+function submitCornice() {
+  var name  = document.getElementById('cn-name').value.trim();
+  var phone = document.getElementById('cn-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  var w = document.getElementById('cv-corn-w').value || '—';
+  var h = document.getElementById('cv-corn-h').value || '—';
+  var ret = document.getElementById('cv-corn-return').value || '4';
+  var fin = getOpt('grp-corn-trim');
+  var fab = getOpt('grp-corn-fabric');
+  var est = document.getElementById('corn-price-total').textContent;
+  var body = 'CORNICE QUOTE REQUEST\n\nName: ' + name + '\nPhone: ' + phone +
+    '\nEmail: ' + (document.getElementById('cn-email').value.trim() || '—') + '\n\n' +
+    'Width: ' + w + '"  Height: ' + h + '"  Return: ' + ret + '"\n' +
+    'Finishing: ' + fin + '\nFabric: ' + fab + '\nEstimate: ' + est + '\n' +
+    pbInstallLine(document.getElementById('corn-form')) + '\n\n' +
+    'Notes:\n' + (document.getElementById('cn-notes').value.trim() || 'None');
+  window.location.href = 'mailto:justin@phillyblinds.com?subject=' +
+    encodeURIComponent('Cornice Quote — ' + name) + '&body=' + encodeURIComponent(body);
+  document.getElementById('corn-form').style.display = 'none';
+  document.getElementById('corn-success').style.display = 'block';
+}
+
+function submitValanceCv() {
+  var name  = document.getElementById('vn-name').value.trim();
+  var phone = document.getElementById('vn-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  var w = document.getElementById('cv-val-w').value || '—';
+  var h = document.getElementById('cv-val-h').value || '—';
+  var ret = document.getElementById('cv-val-return').value || '4';
+  var fin = getOpt('grp-val-trim');
+  var fab = getOpt('grp-val-fabric');
+  var est = document.getElementById('val-price-total').textContent;
+  var body = 'VALANCE QUOTE REQUEST\n\nName: ' + name + '\nPhone: ' + phone +
+    '\nEmail: ' + (document.getElementById('vn-email').value.trim() || '—') + '\n\n' +
+    'Width: ' + w + '"  Height: ' + h + '"  Return: ' + ret + '"\n' +
+    'Finishing: ' + fin + '\nFabric: ' + fab + '\nEstimate: ' + est + '\n\n' +
+    'Notes:\n' + (document.getElementById('vn-notes').value.trim() || 'None');
+  window.location.href = 'mailto:justin@phillyblinds.com?subject=' +
+    encodeURIComponent('Valance Quote — ' + name) + '&body=' + encodeURIComponent(body);
+  document.getElementById('val-form').style.display = 'none';
+  document.getElementById('val-cv-success').style.display = 'block';
+}
+
+function rnShowTrimSupply() {
+  var any = document.querySelectorAll('.rn-trim-check:checked').length > 0;
+  var el = document.getElementById('grp-rn-trim-supply');
+  if (el) el.style.display = any ? 'block' : 'none';
+}
+function romanToggleMountStyle(type) {
+  var wf = document.getElementById('roman-waterfall-opts');
+  var ob = document.getElementById('roman-offback-opts');
+  if (wf) wf.style.display = type === 'waterfall' ? 'block' : 'none';
+  if (ob) ob.style.display = type === 'offback'    ? 'block' : 'none';
+}
+function romanToggleBackValance(show) {
+  var el = document.getElementById('roman-back-valance-opts');
+  if (el) el.style.display = show ? 'block' : 'none';
+}
+function rnToggleBackValCustom(show) {
+  var el = document.getElementById('rn-back-val-custom');
+  if (el) el.style.display = show ? 'block' : 'none';
+}
+function rnToggleFrontValCustom(show) {
+  var el = document.getElementById('rn-front-val-custom');
+  if (el) el.style.display = show ? 'block' : 'none';
+}
+
+// ── SUBMIT: DRAPERY ───────────────────────────────────────
+function submitDrape() {
+  var name  = document.getElementById('d-name').value.trim();
+  var phone = document.getElementById('d-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  // Warn if cornice or valance is added but not yet configured in CV tab
+  var corniceOn = document.getElementById('d-cornice-check') && document.getElementById('d-cornice-check').checked;
+  var valanceOn = document.getElementById('d-valance-check') && document.getElementById('d-valance-check').checked;
+  if (corniceOn || valanceOn) {
+    var what = corniceOn && valanceOn ? 'cornice and valance' : corniceOn ? 'cornice' : 'valance';
+    var ok = confirm('You have a ' + what + ' added to this drapery.\n\nHave you already configured it in the Cornices & Valances tab?\n\nClick OK to submit anyway, or Cancel to go configure it first.');
+    if (!ok) {
+      var cvBtn = document.querySelector('.type-tab:nth-child(3)');
+      if (cvBtn) switchTab('cornval', cvBtn);
+      return;
+    }
+  }
+  var pleat      = drapeState.pleat  || getOpt('pleat-cards') || '—';
+  var fabric     = drapeState.fabric || '—';
+  var lining     = getOpt('grp-drape-liner') || 'No liner';
+  var interCb    = document.getElementById('d-interlining-check');
+  var interlining = interCb && interCb.checked;
+  var panels     = getOpt('grp-drape-panels');
+  var panelSide  = panels === 'Single panel' ? getOpt('grp-drape-side') : '—';
+  var returnSz   = document.getElementById('d-return').value || '4';
+  var overlapSz  = document.getElementById('d-overlap').value || '4';
+  // Fullness (standard pleat styles)
+  var fullness   = getOpt('grp-drape-fullness') || '—';
+  // Ripple fold specific
+  var isRipple   = pleat === 'Ripple Fold';
+  var rippleFull = isRipple ? getOpt('grp-ripple-fullness') : '—';
+  var rippleHw   = isRipple ? getOpt('grp-ripple-hw') : '—';
+  var rippleSnaps= isRipple ? getOpt('grp-ripple-snaps') : '—';
+  var rippleJoin = isRipple ? getOpt('grp-ripple-join') : '—';
+  var rippleRet  = isRipple ? (document.getElementById('ripple-return').value || '4') : '—';
+  var rippleOvlp = isRipple ? (document.getElementById('ripple-overlap').value || '4') : '—';
+  var hwNeed     = getOpt('grp-drape-hardware');
+  var hwType     = hwNeed === 'I need hardware' ? getOpt('grp-drape-hw-type') : 'N/A';
+  var delivery   = getOpt('grp-del-drape');
+  var body = 'DRAPERY QUOTE REQUEST\n\n'
+    + 'Name: ' + name + '\nPhone: ' + phone
+    + '\nEmail: ' + (document.getElementById('d-email').value.trim() || '—')
+    + '\nAddress: ' + (document.getElementById('d-address').value.trim() || '—') + '\n\n'
+    + 'Pleat style: ' + (drapeState.pleat || '—') + '\n'
+    + 'Fabric: ' + fabric + '\n'
+    + (fabric === 'We supply the fabric' ? 'Color: ' + (getOpt('grp-drape-color')||'—') + '  Liner: ' + lining + '\n' : '')
+    + 'Lining: ' + lining + (interlining ? ' + Interlining (+$7/yd)' : '') + '\n'
+    + 'Panels: ' + panels + (panelSide !== '—' ? ' — ' + panelSide : '') + '\n'
+    + (!isRipple && pleat !== 'Rod Pocket / Sheered Pocket' && fullness !== '—' ? 'Fullness: ' + fullness + '\n' : '')
+    + (pleat === 'Rod Pocket / Sheered Pocket' ? (function(){
+        var casing = getOpt('grp-rp-casing') || '—';
+        var header = getOpt('grp-rp-header') || 'No header';
+        var placement = (document.querySelector('input[name="rp-placement"]:checked') || {}).value || '—';
+        var rpFull = (function(){ var b=document.querySelector('#grp-rp-fullness .opt-btn.sel'); return b?b.textContent.trim():'2.0×'; })();
+        return 'Casing: ' + casing + '  Header: ' + header + '  Placement: ' + placement + '  Fullness: ' + rpFull + '\n';
+      }()) : '')
+    + (!isRipple ? 'Return: ' + returnSz + '"  Overlap: ' + overlapSz + '"\n' : '')
+    + (isRipple ? 'Ripple fullness: ' + rippleFull + '  Hardware: ' + rippleHw + '  Snaps: ' + rippleSnaps + '\n' +
+       'Join type: ' + rippleJoin + '  Return: ' + rippleRet + '"  Overlap: ' + rippleOvlp + '"\n' : '')
+    + (function(){
+        var trimSel = document.querySelectorAll('.drape-trim-check:checked');
+        if (!trimSel.length) return '';
+        var locs = Array.from(trimSel).map(function(c){return c.getAttribute('data-loc');}).join(', ');
+        var ts = getOpt('grp-drape-trim-supply');
+        return 'Trim locations: ' + locs + '  Supply: ' + (ts||'—') + '\n';
+      }())
+    + (document.getElementById('d-cornice-check') && document.getElementById('d-cornice-check').checked ?
+        'Cornice width: ' + (document.getElementById('d-cornice-width').value||'—') + '"' +
+        (document.getElementById('d-cornice-trim-check') && document.getElementById('d-cornice-trim-check').checked ? '  + trim\n' : '\n') : '')
+    + (document.getElementById('d-valance-check') && document.getElementById('d-valance-check').checked ?
+        'Valance width: ' + (document.getElementById('d-valance-width').value||'—') + '"' +
+        (document.getElementById('d-valance-trim-check') && document.getElementById('d-valance-trim-check').checked ? '  + trim\n' : '\n') : '')
+    + (document.getElementById('drape-price-total') && document.getElementById('drape-price-box').style.display !== 'none' ?
+        'Estimate: ' + document.getElementById('drape-price-total').textContent + '\n' : '')
+    + 'Hardware: ' + hwNeed + (hwType !== 'N/A' ? ' — ' + hwType : '') + '\n'
+    + 'Width range: ' + document.getElementById('d-width').value
+    + '\nExact width: ' + (document.getElementById('d-exact-width').value ? document.getElementById('d-exact-width').value + '"' : '—')
+    + '\nFinished length: ' + (document.getElementById('d-exact-length').value ? document.getElementById('d-exact-length').value + '"' : '—') + '\n'
+    + 'Delivery: ' + delivery + '\n'
+    + pbInstallLine(document.getElementById('drape-form')) + '\n\n'
+    + 'Notes:\n' + (document.getElementById('d-notes').value.trim() || 'None')
+    + (function(){ var fu = document.querySelector('#drape-form .pb-fu-wrap input[type="file"]'); var n = fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@phillyblinds.com)' : ''; return n; }());
+  window.location.href = 'mailto:justin@phillyblinds.com'
+    + '?subject=' + encodeURIComponent('Drapery Quote — ' + name)
+    + '&body=' + encodeURIComponent(body);
+  document.getElementById('drape-form').style.display = 'none';
+  document.getElementById('drape-success').style.display = 'block';
+}
+
+// ── SUBMIT: ROMAN VALANCE ─────────────────────────────────
+function submitValance() {
+  var name  = document.getElementById('val-name').value.trim();
+  var phone = document.getElementById('val-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  var body = 'ROMAN VALANCE QUOTE REQUEST\n\n'
+    + 'Name: ' + name + '\nPhone: ' + phone
+    + '\nEmail: ' + (document.getElementById('val-email').value.trim() || '—') + '\n\n'
+    + 'Width: ' + (document.getElementById('val-w').value || '—') + '"\n'
+    + 'Height / drop: ' + (document.getElementById('val-h').value || '—') + '"\n'
+    + 'Number of folds: ' + (document.getElementById('val-folds').value || '—') + '\n'
+    + 'Fold section size: ' + (document.getElementById('val-fold-size').value || '—') + '"\n\n'
+    + 'Notes:\n' + (document.getElementById('val-notes').value.trim() || 'None');
+  window.location.href = 'mailto:justin@phillyblinds.com'
+    + '?subject=' + encodeURIComponent('Roman Valance Quote — ' + name)
+    + '&body=' + encodeURIComponent(body);
+  document.getElementById('valance-success').style.display = 'block';
+}
+
+// ── SUBMIT: ROMAN SHADES ──────────────────────────────────
+function submitRoman() {
+  var name  = document.getElementById('rn-name').value.trim();
+  var phone = document.getElementById('rn-phone').value.trim();
+  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  var w        = document.getElementById('rn-w').value;
+  var h        = document.getElementById('rn-h').value;
+  var qty      = document.getElementById('rn-qty').value;
+  var tdbu        = getOpt('grp-roman-tdbu');
+  var op          = getOpt('grp-roman-op');
+  var isMotor     = op === 'Motorized';
+  var liftType    = !isMotor ? getOpt('grp-roman-lift') : '—';
+  var remotes     = isMotor ? getOpt('grp-roman-remotes') : '—';
+  var channel     = isMotor ? getOpt('grp-roman-channel') : '—';
+  var controlSide = getOpt('grp-roman-control');
+  var lining      = getOpt('grp-roman-lining');
+  var returnSz    = (document.getElementById('rn-return') || {}).value || '4';
+  var mountStyle  = getOpt('grp-roman-mount-style') || 'Waterfall';
+  var frontVal    = mountStyle === 'Off Back' ? ((document.getElementById('rn-valance-front') || {}).value || '6') : '—';
+  var backVal     = mountStyle === 'Off Back' ? getOpt('grp-roman-back-valance') : '—';
+  var backValSz   = backVal === 'Add back valance' ? ((document.getElementById('rn-valance-back') || {}).value || '4') : '—';
+  var delivery    = getOpt('grp-del-roman');
+  var body = 'ROMAN SHADE QUOTE REQUEST\n\n'
+    + 'Name: ' + name + '\nPhone: ' + phone
+    + '\nEmail: ' + (document.getElementById('rn-email').value.trim() || '—')
+    + '\nAddress: ' + (document.getElementById('rn-address').value.trim() || '—') + '\n\n'
+    + 'Style: ' + (romanState.style || '—') + '\n'
+    + 'TDBU: ' + tdbu + '\n'
+    + 'Fabric: ' + (romanState.fabric || '—') + '\n'
+    + (romanState.fabric === 'We supply the fabric' ? 'Color: ' + (getOpt('grp-roman-color')||'—') + '  Liner: ' + (getOpt('grp-roman-liner')||'No liner') + '\n' : '')
+    + 'Lining: ' + lining + '\n'
+    + 'Operation: ' + op + '\n'
+    + (isMotor
+        ? 'Remotes: ' + remotes + '\nChannel: ' + channel + '\n'
+        : 'Lift type: ' + liftType + '\n')
+    + 'Control side: ' + controlSide + '\n'
+    + 'Return: ' + returnSz + '"\n'
+    + 'Mounting: ' + mountStyle
+    + (mountStyle === 'Off Back' ? ' | Front valance: ' + frontVal + '" | Back valance: ' + (backVal === 'Add back valance' ? backValSz + '"' : 'No') : '') + '\n'
+    + 'Qty: ' + qty
+    + '\nWidth: ' + (w ? w + '"' : '—')
+    + '  Finished length: ' + (h ? h + '"' : '—') + '\n'
+    + 'Delivery: ' + delivery + '\n'
+    + pbInstallLine(document.getElementById('roman-form')) + '\n\n'
+    + 'Notes:\n' + (document.getElementById('rn-notes').value.trim() || 'None')
+    + (function(){
+        var trimSel = document.querySelectorAll('.rn-trim-check:checked');
+        if (!trimSel.length) return '';
+        var locs = Array.from(trimSel).map(function(c){return c.getAttribute('data-loc');}).join(', ');
+        return '\nTrim: ' + locs + '  Supply: ' + (getOpt('grp-roman-trim-supply')||'—');
+      }())
+    + (function(){
+        var el = document.getElementById('rn-pb-total');
+        var box = document.getElementById('roman-pricebox');
+        return (el && box && box.style.display !== 'none') ? '\nEstimate: ' + el.textContent : '';
+      }())
+    + (function(){ var fu = document.querySelector('#roman-form .pb-fu-wrap input[type="file"]'); var n = fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@phillyblinds.com)' : ''; return n; }());
+  window.location.href = 'mailto:justin@phillyblinds.com'
+    + '?subject=' + encodeURIComponent('Roman Shade Quote — ' + name)
+    + '&body=' + encodeURIComponent(body);
+  document.getElementById('roman-form').style.display = 'none';
+  document.getElementById('roman-success').style.display = 'block';
+}
+
+async function handleSoftQuote(e) {
+  e.preventDefault();
+  const form = document.getElementById('soft-quote-form');
+  const btn = form.querySelector('button[type="submit"]');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const resp = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+    if (resp.ok) {
+      form.style.display = 'none';
+      document.getElementById('soft-quote-success').style.display = 'block';
+    } else {
+      btn.disabled = false; btn.textContent = 'Send quote request →';
+      alert('Something went wrong. Please call (609) 742-1720 or email justin@phillyblinds.com');
+    }
+  } catch(err) {
+    btn.disabled = false; btn.textContent = 'Send quote request →';
+    alert('Connection error. Please call Justin at (609) 742-1720 — available 24/7.');
+  }
+}
+</script>
+</body>
+</html>
+

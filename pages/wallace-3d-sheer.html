@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configure Wallace 3D Dual Sheer Shades — 13 collections, 3D vane construction, continuous cord loop or battery motor. Custom quote. Serving Philadelphia area.">
+<title>Wallace 3D Dual Sheer Shades — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:linear-gradient(to right,rgba(28,21,16,.94) 35%,rgba(28,21,16,.55) 65%,rgba(28,21,16,.2) 100%),url('../images/thumbnails/specialty-soft-treatments.JPG') right center/cover no-repeat;padding:48px 28px 44px;min-height:260px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+.config-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden}
+.step-block.active{box-shadow:0 2px 18px rgba(200,151,63,.1);border-color:rgba(200,151,63,.3)}
+.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
+.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
+.step-head-val{font-size:12px;color:var(--gold);font-weight:500;max-width:200px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step-body{padding:4px 20px 20px;display:block}
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;text-align:center;transition:all .15s}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.opt-card.sel .opt-card-title{color:#7A4F00}
+.opt-card-desc{font-size:11px;color:#666;line-height:1.45}
+.opt-card.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
+/* Collection grid */
+.coll-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:8px}
+.coll-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:11px 13px;cursor:pointer;transition:all .15s;background:#fff}
+.coll-card:hover{border-color:var(--gold)}
+.coll-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.coll-name{font-size:13px;font-weight:600;color:#111;margin-bottom:3px}
+.coll-meta{font-size:10px;color:#888;line-height:1.4}
+.pg-badge{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;background:#f0ece4;color:#555;font-weight:600;margin-right:4px}
+.rd-badge{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;background:#fee2e2;color:#7f1d1d;font-weight:600;margin-right:4px}
+/* Color chips */
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:7px;margin-top:8px}
+.color-chip{border:1.5px solid #e8e8e4;border-radius:8px;padding:9px 11px;cursor:pointer;transition:all .15s;background:#fff;display:flex;align-items:center;gap:8px}
+.color-chip:hover{border-color:var(--gold)}
+.color-chip.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.chip-swatch{width:20px;height:20px;border-radius:4px;border:1px solid rgba(0,0,0,.08);flex-shrink:0}
+.chip-info{min-width:0}
+.chip-code{font-size:9px;color:#aaa;font-weight:600;letter-spacing:.4px}
+.chip-name{font-size:11px;color:#222;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* HW color circles */
+.hw-colors{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.hw-dot{width:32px;height:32px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:all .15s;position:relative}
+.hw-dot.sel{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,151,63,.3)}
+.hw-dot-label{font-size:9px;text-align:center;margin-top:3px;color:#555}
+.hw-col-item{display:flex;flex-direction:column;align-items:center}
+/* Dims */
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
+.dim-inputs{display:flex;gap:6px;align-items:center}
+.dim-whole{width:54px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
+.dim-frac{padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff;color:#333}
+.dim-unit{font-size:13px;color:#555;font-weight:500}
+/* Addon rows */
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
+.addon-row:hover{border-color:var(--gold)}
+.addon-row.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.addon-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
+.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#1C1510}
+.addon-name{font-size:13px;font-weight:500;color:#111}
+.addon-sub{font-size:11px;color:#666;margin-top:1px}
+.addon-price{font-size:12px;font-weight:600;color:var(--gold);flex-shrink:0}
+/* Messages */
+.msg-box{border-radius:8px;padding:9px 13px;font-size:12px;margin-top:8px;line-height:1.5}
+.msg-err{background:#FEE2E2;border:1px solid #EF4444;color:#7f1d1d}
+.msg-warn{background:#FFF3CD;border:1px solid #FFC107;color:#7d5a00}
+.msg-info{background:rgba(200,151,63,.08);border:1px solid rgba(200,151,63,.25);color:#7A4F00}
+.sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 5px}
+.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
+/* Del btns */
+.del-btns{display:flex;gap:8px;margin:8px 0 10px}
+.del-btn{flex:1;padding:8px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;background:#fff;transition:all .15s}
+.del-btn.sel{border-color:var(--gold);color:var(--gold);background:rgba(200,151,63,.05)}
+.del-note{font-size:11px;color:#555;line-height:1.6}
+/* Spec panel */
+.spec-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
+.sp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+.sp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
+.sp-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:7px;gap:8px;align-items:baseline}
+.sp-label{color:var(--text-muted);line-height:1.4}
+.sp-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0;max-width:160px;word-break:break-word}
+.sp-div{border:none;border-top:.5px solid var(--border-dark);margin:10px 0}
+.sp-note{font-size:10px;color:var(--text-dark);margin-top:10px;line-height:1.6}
+.sp-warn{font-size:10px;color:#FFC107;margin-top:6px;line-height:1.6}
+/* Form */
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);box-sizing:border-box}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center;margin-top:12px}
+.chain-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:7px;margin-top:6px}
+.chain-chip{border:1.5px solid #e8e8e4;border-radius:8px;padding:8px 10px;cursor:pointer;text-align:center;font-size:12px;font-weight:500;transition:all .15s;background:#fff;color:#333}
+.chain-chip:hover{border-color:var(--gold)}
+.chain-chip.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06);color:#7A4F00}
+.radio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.radio-chip{padding:7px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;background:#fff;color:#444}
+.radio-chip:hover{border-color:var(--gold)}
+.radio-chip.sel{border-color:var(--gold);background:rgba(200,151,63,.06);color:#7A4F00}
+.dims-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
+.dims-table th{text-align:left;font-weight:600;color:#555;padding:4px 6px;border-bottom:1px solid #e8e8e4}
+.dims-table td{padding:4px 6px;color:#333;border-bottom:.5px solid #f0f0ee}
+.dims-table tr:last-child td{border-bottom:none}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Shades &rsaquo; Wallace 3D Dual Sheer</div>
+  <h1>Wallace 3D Dual Sheer Shades</h1>
+  <p class="sub">Sheer Horizontals with 3D vane construction — translucent or room darkening. 13 collections, battery motor or cord loop, fabric headrail insert options.</p>
+  <div class="hero-pills">
+    <span class="hero-pill hero-pill-gold">13 collections</span>
+    <span class="hero-pill hero-pill-gold">3 price groups A·B·C</span>
+    <span class="hero-pill">2″ &amp; 3″ vanes</span>
+    <span class="hero-pill">Cord loop · Battery motor</span>
+    <span class="hero-pill">Room darkening available</span>
+  </div>
+</div>
+
+<div class="config-layout">
+<div><!-- left col -->
+
+<!-- STEP 1: COLLECTION -->
+<div class="step-block active" id="step1">
+  <div class="step-head" onclick="toggleStep('step1')">
+    <div class="step-num">1</div>
+    <div class="step-head-title">Collection</div>
+    <div class="step-head-val" id="s1val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="step-note" style="margin-bottom:8px">Choose collection first — it determines band size, light control, headrail options, and bottom rail type.</div>
+    <div class="coll-grid" id="coll-grid"><!-- filled by JS --></div>
+  </div>
+</div>
+
+<!-- STEP 2: COLOR -->
+<div class="step-block" id="step2">
+  <div class="step-head" onclick="toggleStep('step2')">
+    <div class="step-num">2</div>
+    <div class="step-head-title">Color</div>
+    <div class="step-head-val" id="s2val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="step-note" style="margin-bottom:8px">Colors shown for selected collection. Hardware color suggestion auto-fills from your selection.</div>
+    <div class="color-grid" id="color-grid"><!-- filled by JS --></div>
+  </div>
+</div>
+
+<!-- STEP 3: MOUNT & DIMENSIONS -->
+<div class="step-block" id="step3">
+  <div class="step-head" onclick="toggleStep('step3')">
+    <div class="step-num">3</div>
+    <div class="step-head-title">Mount &amp; Dimensions</div>
+    <div class="step-head-val" id="s3val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="sub-label" style="margin-top:4px">Mount type</div>
+    <div class="opt-grid" style="grid-template-columns:1fr 1fr;margin-top:6px">
+      <div class="opt-card sel" id="mc-inside" onclick="pickMount(this,'inside')"><div class="opt-card-title">Inside Mount</div><div class="opt-card-desc">Deductions applied at order</div></div>
+      <div class="opt-card" id="mc-outside" onclick="pickMount(this,'outside')"><div class="opt-card-title">Outside Mount</div><div class="opt-card-desc">No deductions</div></div>
+    </div>
+    <div class="dim-row" style="margin-top:14px">
+      <div>
+        <div class="dim-label">Width (inches)</div>
+        <div class="dim-inputs">
+          <input class="dim-whole" type="number" id="w-whole" min="12" max="110" placeholder="36" oninput="calcDims()">
+          <select class="dim-frac" id="w-frac" onchange="calcDims()">
+            <option value="0">0</option><option value="0.25">¼</option><option value="0.5">½</option><option value="0.75">¾</option>
+          </select>
+          <span class="dim-unit">″</span>
+        </div>
+      </div>
+      <div>
+        <div class="dim-label">Height (inches)</div>
+        <div class="dim-inputs">
+          <input class="dim-whole" type="number" id="h-whole" min="12" max="120" placeholder="72" oninput="calcDims()">
+          <select class="dim-frac" id="h-frac" onchange="calcDims()">
+            <option value="0">0</option><option value="0.25">¼</option><option value="0.5">½</option><option value="0.75">¾</option>
+          </select>
+          <span class="dim-unit">″</span>
+        </div>
+      </div>
+    </div>
+    <div id="dim-msg" class="msg-box" style="display:none"></div>
+    <div id="dim-deduct" style="display:none;margin-top:12px">
+      <div class="sub-label" style="margin-top:0">Finished dimensions (reference)</div>
+      <table class="dims-table">
+        <thead><tr><th>Part</th><th>Finished size</th></tr></thead>
+        <tbody id="dims-tbody"></tbody>
+      </table>
+      <div class="step-note">Measurements are reference only. Final deductions confirmed at production.</div>
+    </div>
+    <div class="step-note" style="margin-top:8px">3D shade height is ½″ less than ordered height (vanes fully open).</div>
+  </div>
+</div>
+
+<!-- STEP 4: CASSETTE -->
+<div class="step-block" id="step4">
+  <div class="step-head" onclick="toggleStep('step4')">
+    <div class="step-num">4</div>
+    <div class="step-head-title">Cassette Style</div>
+    <div class="step-head-val" id="s4val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:1fr 1fr">
+      <div class="opt-card sel" id="cas-round" onclick="pickCassette(this,'round')">
+        <div class="opt-card-title">Round Cassette</div>
+        <div class="opt-card-desc">3⅜″ deep × 3″ high · Standard · IM min 3¾″ depth</div>
+      </div>
+      <div class="opt-card" id="cas-square" onclick="pickCassette(this,'square')">
+        <div class="opt-card-title">Square Cassette</div>
+        <div class="opt-card-desc">3½″ deep × 3″ high · IM min 4″ depth</div>
+      </div>
+    </div>
+    <div class="sub-label">Hardware color</div>
+    <div class="hw-colors" id="hw-colors"><!-- filled by JS --></div>
+    <!-- Fabric headrail insert -->
+    <div id="fab-insert-section" style="display:none">
+      <div class="sub-label">Fabric Headrail Insert</div>
+      <div class="addon-row" id="fab-insert-row" onclick="toggleAddon(this,'fabInsert')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Add fabric headrail insert</div><div class="addon-sub">Matches shade fabric · +$30 per shade</div></div></div>
+        <div class="addon-price">+$30</div>
+      </div>
+    </div>
+    <div id="fab-insert-na" class="msg-info" style="display:none;margin-top:8px">Fabric headrail insert is not available for this collection.</div>
+  </div>
+</div>
+
+<!-- STEP 5: BOTTOM RAIL -->
+<div class="step-block" id="step5">
+  <div class="step-head" onclick="toggleStep('step5')">
+    <div class="step-num">5</div>
+    <div class="step-head-title">Bottom Rail</div>
+    <div class="step-head-val" id="s5val">—</div>
+  </div>
+  <div class="step-body">
+    <div id="bottomrail-content">
+      <!-- filled by JS when collection is set -->
+      <div class="step-note">Select your collection first.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 6: CONTROL -->
+<div class="step-block" id="step6">
+  <div class="step-head" onclick="toggleStep('step6')">
+    <div class="step-num">6</div>
+    <div class="step-head-title">Control</div>
+    <div class="step-head-val" id="s6val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:1fr 1fr">
+      <div class="opt-card" id="ctrl-ccl" onclick="pickControl(this,'ccl')">
+        <div class="opt-card-title">Continuous Cord Loop</div>
+        <div class="opt-card-desc">Standard · Metal bead chain · No width limit</div>
+      </div>
+      <div class="opt-card" id="ctrl-motor" onclick="pickControl(this,'motor')">
+        <div class="opt-card-title">Battery Motor</div>
+        <div class="opt-card-desc">Min 23″W · Max 100″W · Rechargeable Li-ion</div>
+      </div>
+    </div>
+    <div id="ctrl-msg" class="msg-box" style="display:none"></div>
+
+    <!-- CCL options -->
+    <div id="ccl-options" style="display:none;margin-top:14px">
+      <div class="sub-label" style="margin-top:0">Chain color</div>
+      <div class="chain-grid" id="chain-color-grid"><!-- filled by JS --></div>
+      <div class="sub-label">Stainless chain upgrade (optional)</div>
+      <div class="addon-row" id="stainless-chain-row" onclick="toggleAddon(this,'stainlessChain')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Stainless steel chain</div><div class="addon-sub">Replaces standard plastic chain · +$15</div></div></div>
+        <div class="addon-price">+$15</div>
+      </div>
+      <div id="stainless-options" style="display:none;margin-top:8px">
+        <div class="sub-label" style="margin-top:0">Stainless chain finish</div>
+        <div class="chain-grid" id="stainless-finish-grid"><!-- filled by JS --></div>
+      </div>
+      <div class="step-note" style="margin-top:6px" id="chain-length-note">Chain length calculated from shade height.</div>
+    </div>
+
+    <!-- Motor accessories -->
+    <div id="motor-options" style="display:none;margin-top:14px">
+      <div class="sub-label" style="margin-top:0">Motor base includes rechargeable battery. Select accessories:</div>
+      <div class="addon-row" id="acc-charger10" onclick="toggleAddon(this,'charger10')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">10 ft USB charger cable</div><div class="addon-sub">Standard charger</div></div></div>
+        <div class="addon-price">+$45</div>
+      </div>
+      <div class="addon-row" id="acc-charger16" onclick="toggleAddon(this,'charger16')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">16 ft USB charger cable</div><div class="addon-sub">Extended reach</div></div></div>
+        <div class="addon-price">+$45</div>
+      </div>
+      <div class="addon-row" id="acc-remote1" onclick="toggleAddon(this,'remote1')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Single remote</div></div></div>
+        <div class="addon-price">+$85</div>
+      </div>
+      <div class="addon-row" id="acc-remote15" onclick="toggleAddon(this,'remote15')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">15-channel remote</div></div></div>
+        <div class="addon-price">+$120</div>
+      </div>
+      <div class="addon-row" id="acc-hub" onclick="toggleAddon(this,'smartHub')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Smart Connector Hub (P-Box DD7006)</div><div class="addon-sub">Alexa · Google · SmartThings · Control4 · Crestron · Wi-Fi / Ethernet</div></div></div>
+        <div class="addon-price">+$350</div>
+      </div>
+      <div class="addon-row" id="acc-solar" onclick="toggleAddon(this,'solarPanel')">
+        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Solar panel charger</div><div class="addon-sub">Direct sunshine locations only</div></div></div>
+        <div class="addon-price">Add-on</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 7: MULTI-SHADE OPTIONS -->
+<div class="step-block" id="step7">
+  <div class="step-head" onclick="toggleStep('step7')">
+    <div class="step-num">7</div>
+    <div class="step-head-title">Multi-Shade Options</div>
+    <div class="step-head-val" id="s7val">Single shade</div>
+  </div>
+  <div class="step-body">
+    <div class="sub-label" style="margin-top:4px">Headrail type</div>
+    <div class="radio-row">
+      <div class="radio-chip sel" id="hr-single" onclick="pickHeadrail(this,'single')">Single shade</div>
+      <div class="radio-chip" id="hr-2on1" onclick="pickHeadrail(this,'2on1')">2-on-1 headrail</div>
+      <div class="radio-chip" id="hr-3on1" onclick="pickHeadrail(this,'3on1')">3-on-1 headrail</div>
+    </div>
+    <div id="multi-note" class="msg-info" style="display:none;margin-top:8px"></div>
+    <div id="multi-fields" style="display:none;margin-top:10px">
+      <div class="form-group">
+        <label>Individual shade widths (e.g. 24, 28)</label>
+        <input type="text" id="f-sub-widths" placeholder="e.g. 24, 28" oninput="checkMulti()">
+      </div>
+      <div id="multi-warn" class="msg-box" style="display:none"></div>
+    </div>
+    <div class="addon-row" id="sxs-row" onclick="toggleAddon(this,'sideBySide')" style="margin-top:10px">
+      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Side-by-side vane alignment requested</div><div class="addon-sub">Must order same style, color, height at same time. ¼″ tolerance only.</div></div></div>
+      <div class="addon-price">Free</div>
+    </div>
+    <div class="step-note" style="margin-top:6px">2-on-1 / 3-on-1 priced as separate shades. Max combined headrail: 110″. Fabric insert seam if combined over 106″.</div>
+  </div>
+</div>
+
+<!-- STEP 8: QUANTITY & DELIVERY -->
+<div class="step-block" id="step8">
+  <div class="step-head" onclick="toggleStep('step8')">
+    <div class="step-num">8</div>
+    <div class="step-head-title">Quantity &amp; Delivery</div>
+    <div class="step-head-val" id="s8val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Number of shades</label>
+        <input type="number" id="qty" value="1" min="1" max="50" oninput="updateSpec()">
+      </div>
+      <div class="form-group">
+        <label>Room / window label</label>
+        <input type="text" id="room-label" placeholder="e.g. Living room center">
+      </div>
+    </div>
+    <div style="margin-top:6px">
+      <div class="dim-label" style="margin-bottom:6px">Delivery or pickup?</div>
+      <div class="del-btns">
+        <button class="del-btn sel" onclick="pickDel(this,'ship')">Ship to me</button>
+        <button class="del-btn" onclick="pickDel(this,'pickup')">I'll pick up</button>
+      </div>
+      <div id="del-ship" class="del-note">Shipped via UPS/FedEx from Huntingdon Valley, PA. Tariffs additional. Shades 90″–99⅞″ add $40 oversize; 100″+ add $80 oversize per shade.</div>
+      <div id="del-pickup" class="del-note" style="display:none">Pickup in Huntingdon Valley, PA. Address confirmed after order.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 9: CONTACT & SUBMIT -->
+<div class="step-block" id="step9">
+  <div class="step-head" onclick="toggleStep('step9')">
+    <div class="step-num">9</div>
+    <div class="step-head-title">Your Info &amp; Submit</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row">
+      <div class="form-group"><label>Name *</label><input type="text" id="f-name" placeholder="Jane Smith"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="f-phone" placeholder="(215) 555-0100"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="jane@example.com"></div>
+    <div class="form-group"><label>Notes / questions</label><textarea id="f-notes" placeholder="Window details, cut-outs, vane alignment instructions, motor wiring, special requests..."></textarea></div>
+    <div id="form-err" class="msg-err" style="display:none">Please enter your name and phone number.</div>
+    <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:13px;font-size:14px">Request 3D Sheer Quote &rarr;</button>
+    <div class="success-box" id="success-box">
+      <strong>Quote request sent!</strong><br>We'll follow up within a few hours. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- /left col -->
+
+<!-- RIGHT: Spec summary panel -->
+<div>
+  <div class="spec-panel">
+    <div class="sp-title">Spec Summary</div>
+    <div id="sp-pending" class="sp-pending">Complete your selections to build your spec sheet.</div>
+    <div id="sp-detail" style="display:none">
+      <div class="sp-row"><span class="sp-label">Collection</span><span class="sp-val" id="sp-coll">—</span></div>
+      <div class="sp-row"><span class="sp-label">Price group</span><span class="sp-val" id="sp-pg">—</span></div>
+      <div class="sp-row"><span class="sp-label">Color</span><span class="sp-val" id="sp-color">—</span></div>
+      <div class="sp-row"><span class="sp-label">Band / light</span><span class="sp-val" id="sp-band">—</span></div>
+      <div class="sp-row"><span class="sp-label">Mount</span><span class="sp-val" id="sp-mount">—</span></div>
+      <div class="sp-row"><span class="sp-label">Ordered W × H</span><span class="sp-val" id="sp-size">—</span></div>
+      <div class="sp-row"><span class="sp-label">Cassette</span><span class="sp-val" id="sp-cassette">—</span></div>
+      <div class="sp-row"><span class="sp-label">Hardware color</span><span class="sp-val" id="sp-hwcolor">—</span></div>
+      <div class="sp-row"><span class="sp-label">Headrail insert</span><span class="sp-val" id="sp-insert">—</span></div>
+      <div class="sp-row"><span class="sp-label">Bottom rail</span><span class="sp-val" id="sp-rail">—</span></div>
+      <div class="sp-row"><span class="sp-label">Control</span><span class="sp-val" id="sp-ctrl">—</span></div>
+      <div class="sp-row"><span class="sp-label">Chain / motor accs</span><span class="sp-val" id="sp-accs">—</span></div>
+      <div class="sp-row"><span class="sp-label">Qty</span><span class="sp-val" id="sp-qty">—</span></div>
+      <div class="sp-div"></div>
+      <div class="sp-note">Pricing confirmed with current Wallace price book at quote. Not shown publicly.</div>
+      <div class="sp-div"></div>
+      <div class="sp-row"><span class="sp-label">Est. price</span><span class="sp-val" id="sp-price" style="font-size:15px;font-weight:600;color:var(--gold)">—</span></div>
+      <div id="sp-price-breakdown" style="font-size:10px;color:var(--text-faint);line-height:1.7;margin-top:4px"></div>
+      <div class="sp-note">MSRP estimate · confirmed at order · eff. 10/01/2024</div>
+      <div id="sp-warn-os" class="sp-warn" style="display:none">⚠ Width ≥90″ — oversize surcharge applies.</div>
+      <div id="sp-warn-seam" class="sp-warn" style="display:none">⚠ Combined headrail over 106″ — fabric insert will have a center seam.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<div class="cta-banner">
+  <div><h2>Questions about 3D Sheer Shades?</h2><p>Call Justin — we can guide you through collection, vane size, and control options.</p></div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Shades & blinds');
+renderFooter(false);
+
+// ═══════════════════════════════════════════════════════════
+// WALLACE 3D DUAL SHEER — DATA
+// Source: Wallace - Sheer 3D Horizontals.pdf (10/01/2024)
+// ═══════════════════════════════════════════════════════════
+// Collections: {name, group, band, lightControl, fabricInsert, bottomRail, minW, maxW, minH, maxH, colors:[{code,hwColor,label}]}
+const COLLECTIONS = [
+  {name:'Lux',      group:'A', band:'3"',    lc:'Translucent',    insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'LX-7511',hw:'White',label:'White'},{code:'LX-7512',hw:'Ivory',label:'Ivory'},{code:'LX-7513',hw:'Beige',label:'Beige'},{code:'LX-7514',hw:'Grey',label:'Grey'}]},
+  {name:'Natural',  group:'A', band:'3"',    lc:'Translucent',    insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'DNT-9001',hw:'Beige',label:'Beige 1'},{code:'DNT-9002',hw:'Beige',label:'Beige 2'},{code:'DNT-9003',hw:'Grey',label:'Grey 1'},{code:'DNT-9004',hw:'Grey',label:'Grey 2'}]},
+  {name:'Arcadia',  group:'B', band:'3⅛"',  lc:'Translucent',    insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'ARC-5451',hw:'White',label:'White 1'},{code:'ARC-5452',hw:'White',label:'White 2'},{code:'ARC-5453',hw:'Beige',label:'Beige'},{code:'ARC-5454',hw:'Ivory',label:'Ivory'},{code:'ARC-5455',hw:'Black',label:'Black'}]},
+  {name:'Bellus',   group:'B', band:'2"',    lc:'Translucent',    insert:false, rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'BLS-1851',hw:'White',label:'White 1'},{code:'BLS-1852',hw:'White',label:'White 2'},{code:'BLS-1853',hw:'Beige',label:'Beige'},{code:'BLS-1854',hw:'Grey',label:'Grey'}]},
+  {name:'Chagall',  group:'B', band:'3"',    lc:'Translucent',    insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'SGS-1111',hw:'White',label:'White 1'},{code:'SGS-1112',hw:'Ivory',label:'Ivory'},{code:'SGS-1113',hw:'Grey',label:'Grey'},{code:'SGS-1114',hw:'Beige',label:'Beige'},{code:'SGS-1115',hw:'Brown',label:'Brown'},{code:'SGS-1116',hw:'White',label:'White 2'}]},
+  {name:'Eco',      group:'B', band:'3"',    lc:'Translucent',    insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'ECO-1811',hw:'Grey',label:'Grey'},{code:'ECO-1812',hw:'Ivory',label:'Ivory'},{code:'ECO-1813',hw:'Beige',label:'Beige'}]},
+  {name:'Vivid',    group:'B', band:'3"',    lc:'Translucent',    insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'VVD-5901',hw:'White',label:'White 1'},{code:'VVD-5902',hw:'White',label:'White 2'},{code:'VVD-5903',hw:'Ivory',label:'Ivory'},{code:'VVD-5904',hw:'Beige',label:'Beige'},{code:'VVD-5907',hw:'Brown',label:'Brown'}]},
+  {name:'Fresh Band',group:'B',band:'3"',    lc:'Translucent',    insert:false, rail:'Deluxe',     minW:20, maxW:100, minH:20, maxH:120,
+   colors:[{code:'FRB-1371',hw:'Ivory',label:'Ivory 1'},{code:'FRB-1372',hw:'Ivory',label:'Ivory 2'},{code:'FRB-1373',hw:'Grey',label:'Grey'},{code:'FRB-1374',hw:'Brown',label:'Brown 1'},{code:'FRB-1375',hw:'Brown',label:'Brown 2'}]},
+  {name:'One Band', group:'B', band:'3"',    lc:'Translucent',    insert:false, rail:'Deluxe',     minW:20, maxW:100, minH:20, maxH:120,
+   colors:[{code:'BD-1151',hw:'White',label:'White'},{code:'BD-1152',hw:'Ivory',label:'Ivory'},{code:'BD-1153',hw:'Beige',label:'Beige'},{code:'BD-1154',hw:'Brown',label:'Brown 1'},{code:'BD-1155',hw:'Brown',label:'Brown 2'}]},
+  {name:'Blackout Ares',group:'C',band:'3"', lc:'Room Darkening', insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'ARB-1131',hw:'White',label:'White'},{code:'ARB-1132',hw:'Beige',label:'Beige'},{code:'ARB-1133',hw:'Brown',label:'Brown 1'},{code:'ARB-1134',hw:'Grey',label:'Grey'},{code:'ARB-1135',hw:'Ivory',label:'Ivory'},{code:'ARB-1136',hw:'Brown',label:'Brown 2'}]},
+  {name:'Chelsea',  group:'C', band:'3"',    lc:'Translucent',    insert:false, rail:'Deluxe',     minW:20, maxW:100, minH:20, maxH:120,
+   colors:[{code:'CS-1831',hw:'White',label:'White'},{code:'CS-1832',hw:'Ivory',label:'Ivory'},{code:'CS-1833',hw:'Beige',label:'Beige'},{code:'CS-1834',hw:'Brown',label:'Brown'},{code:'CS-1835',hw:'Grey',label:'Grey'}]},
+  {name:'Shiny',    group:'C', band:'3"',    lc:'Translucent',    insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'SNY-1841',hw:'White',label:'White'},{code:'SNY-1842',hw:'Ivory',label:'Ivory'},{code:'SNY-1843',hw:'Beige',label:'Beige 1'},{code:'SNY-1844',hw:'Beige',label:'Beige 2'},{code:'SNY-1845',hw:'Grey',label:'Grey'}]},
+  {name:'Sunlux',   group:'C', band:'2"',    lc:'Room Darkening', insert:false, rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+   colors:[{code:'SLX-1861',hw:'White',label:'White'},{code:'SLX-1862',hw:'Grey',label:'Grey'},{code:'SLX-1863',hw:'Beige',label:'Beige'},{code:'SLX-1864',hw:'Brown',label:'Brown 1'},{code:'SLX-1865',hw:'Brown',label:'Brown 2'}]}
+];
+
+// ═══════════════════════════════════════════════════════════
+// PRICE MATRIX — Wallace 3D Dual Sheer / Sheer 3D Horizontals
+// Source: Wallace - Sheer 3D Horizontals.pdf (10/01/2024)
+// Width cols: 24,32,36,44,52,60,68,76,84,92,100
+// Height rows: 40,50,60,70,80,90,100,110,120,125
+// ═══════════════════════════════════════════════════════════
+const PRICE_W=[24,32,36,44,52,60,68,76,84,92,100];
+const PRICE_H=[40,50,60,70,80,90,100,110,120,125];
+const PRICE_MATRIX={
+  A:[
+    [414,414,414,414,420,447,475,503,572,607,647],
+    [414,414,414,430,465,499,534,568,648,695,742],
+    [414,414,427,468,509,551,592,633,733,774,816],
+    [414,434,458,506,554,602,651,699,789,837,885],
+    [414,461,489,544,599,654,709,764,824,879,934],
+    [427,489,520,582,644,706,768,830,892,954,1016],
+    [447,516,551,620,689,757,826,895,964,1033,1102],
+    [468,544,582,658,733,809,885,961,1036,1112,1188],
+    [489,571,613,695,778,861,943,1026,1109,1191,1274],
+    [499,585,628,714,801,887,973,1059,1145,1231,1317]
+  ],
+  B:[
+    [465,465,465,465,472,507,543,578,654,697,744],
+    [465,465,465,485,529,573,618,662,750,807,863],
+    [465,465,481,534,587,640,693,746,855,908,961],
+    [465,490,520,582,644,706,768,830,932,994,1056],
+    [465,525,560,631,702,772,843,914,988,1059,1130],
+    [481,560,600,679,759,839,918,998,1077,1157,1236],
+    [507,596,640,728,816,905,993,1082,1170,1258,1347],
+    [534,631,679,777,874,971,1068,1166,1263,1360,1457],
+    [560,666,719,825,931,1037,1143,1249,1356,1462,1568],
+    [573,684,739,850,960,1071,1181,1291,1402,1512,1623]
+  ],
+  C:[
+    [522,522,522,522,532,577,622,667,752,805,863],
+    [522,522,522,549,605,662,718,775,875,943,1012],
+    [522,522,543,611,679,747,814,882,1006,1074,1141],
+    [522,554,594,673,752,831,911,990,1109,1188,1267],
+    [522,600,645,735,826,916,1007,1097,1192,1282,1373],
+    [543,645,696,798,899,1001,1103,1205,1307,1409,1510],
+    [577,690,747,860,973,1086,1199,1312,1425,1539,1652],
+    [611,735,798,922,1046,1171,1295,1420,1544,1669,1793],
+    [645,781,848,984,1120,1256,1392,1527,1663,1799,1935],
+    [662,803,874,1015,1157,1298,1440,1581,1723,1864,2005]
+  ]
+};
+
+function lookupPrice(w,h,group){
+  const tbl=PRICE_MATRIX[group]; if(!tbl) return null;
+  let wi=PRICE_W.findIndex(v=>w<=v); if(wi<0) wi=PRICE_W.length-1;
+  let hi=PRICE_H.findIndex(v=>h<=v); if(hi<0) hi=PRICE_H.length-1;
+  return(tbl[hi]&&tbl[hi][wi])||null;
+}
+
+function calcPrice(){
+  if(!S.coll||!S.w||!S.h) return null;
+  const base=lookupPrice(S.w,S.h,S.coll.group);
+  if(!base) return null;
+  let per=base;
+  // Surcharges
+  if(S.fabInsert) per+=30;           // fabric headrail insert
+  if(S.deluxeInsert) per+=40;        // Deluxe bottom rail
+  if(S.stainlessChain) per+=15;      // stainless chain upgrade
+  if(S.ctrl==='motor') per+=350;     // battery motor
+  if(S.charger10) per+=45;
+  if(S.charger16) per+=45;
+  if(S.remote1) per+=85;
+  if(S.remote15) per+=120;
+  if(S.smartHub) per+=350;
+  // Oversize
+  if(S.w>=100) per+=80;
+  else if(S.w>=90) per+=40;
+  // Shade minimum
+  const qty=S.qty||1;
+  let total=per*qty;
+  if(total<25) total=25;             // min 5 first shade
+  if(qty>1) total+=(qty-1)*8;        //  handling each additional
+  return{base,per,total,qty};
+}
+
+// Hardware color swatches
+const HW_COLORS = [
+  {name:'White',  hex:'#FFFFFF'},{name:'Ivory',hex:'#FFFFF0'},{name:'Beige',hex:'#D2B48C'},
+  {name:'Brown',  hex:'#6B3A2A'},{name:'Grey', hex:'#9E9E9E'},{name:'Black',hex:'#222222'}
+];
+// Swatch approximations for color chips (by label keyword)
+const CHIP_SWATCHES = {White:'#F8F8F8',Ivory:'#FFFFF0',Beige:'#D2B48C',Grey:'#A0A0A0',Brown:'#6B3A2A',Black:'#222222'};
+
+// Cord/chain length table [minH, maxH, chainLen]
+const CHAIN_TABLE = [
+  [20,22,12],[23,26,16],[27,29,20],[30,34,24],[35,37,28],[38,41,31],
+  [42,45,35],[46,49,39],[50,53,43],[54,57,47],[58,61,51],[62,65,55],
+  [66,69,59],[70,74,63],[75,78,67],[79,82,71],[83,86,75],[87,99,79]
+];
+function chainLen(h){
+  if(h>100) return 87;
+  const row=CHAIN_TABLE.find(r=>h>=r[0]&&h<=r[1]);
+  return row?row[2]:null;
+}
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+const S = {
+  coll:null, color:null, hwColor:null, mount:'inside',
+  w:0, h:0, cassette:'round', fabInsert:false,
+  rail:'Moon Shape', deluxeInsert:false,
+  ctrl:null, chainColor:'White', stainlessChain:false, stainlessFinish:'Stainless Steel',
+  charger10:false, charger16:false, remote1:false, remote15:false, smartHub:false, solarPanel:false,
+  headrail:'single', sideBySide:false, qty:1, del:'ship'
+};
+
+// ── BUILD COLLECTION GRID ─────────────────────────────────────────────────
+function buildCollGrid(){
+  const g=document.getElementById('coll-grid');
+  g.innerHTML=COLLECTIONS.map((c,i)=>`
+    <div class="coll-card" onclick="pickCollection(${i})">
+      <div class="coll-name">${c.name}</div>
+      <div class="coll-meta">
+        <span class="pg-badge">Group ${c.group}</span>
+        ${c.lc==='Room Darkening'?'<span class="rd-badge">Room Darkening</span>':''}
+        ${c.band} band · ${c.rail==='Deluxe'?'Deluxe bottom rail':c.rail}
+      </div>
+    </div>`).join('');
+}
+buildCollGrid();
+
+// Build HW color dots
+function buildHWColors(suggested){
+  const g=document.getElementById('hw-colors');
+  g.innerHTML=HW_COLORS.map(c=>`
+    <div class="hw-col-item">
+      <div class="hw-dot${c.name===suggested?' sel':''}" style="background:${c.hex};border-color:${c.name===suggested?'var(--gold)':'transparent'}"
+        onclick="pickHWColor(this,'${c.name}')" title="${c.name}"></div>
+      <div class="hw-dot-label">${c.name}</div>
+    </div>`).join('');
+  S.hwColor=suggested;
+}
+
+// ── STEP TOGGLES ──────────────────────────────────────────────────────────
+function toggleStep(id){const el=document.getElementById(id);el.classList.add('active');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),60);}
+function openStep(id){const el=document.getElementById(id);el.classList.add('active');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),80);}
+function markDone(id){document.getElementById(id).classList.add('done');}
+
+// ── STEP 1: COLLECTION ────────────────────────────────────────────────────
+function pickCollection(idx){
+  document.querySelectorAll('.coll-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('.coll-card')[idx].classList.add('sel');
+  S.coll=COLLECTIONS[idx];
+  document.getElementById('s1val').textContent=S.coll.name+' (Group '+S.coll.group+')';
+  markDone('step1');
+  // Build color grid
+  buildColorGrid();
+  // Update fabric insert visibility
+  updateFabInsert();
+  // Update bottom rail section
+  updateBottomRail();
+  // Re-validate dims
+  if(S.w&&S.h) calcDims();
+  updateSpec();
+  openStep('step2');
+}
+
+// ── STEP 2: COLOR ─────────────────────────────────────────────────────────
+function buildColorGrid(){
+  if(!S.coll) return;
+  const g=document.getElementById('color-grid');
+  g.innerHTML=S.coll.colors.map(c=>`
+    <div class="color-chip" onclick="pickColor(this,'${c.code}','${c.label}','${c.hw}')">
+      <div class="chip-swatch" style="background:${CHIP_SWATCHES[c.hw]||'#ccc'}"></div>
+      <div class="chip-info"><div class="chip-code">${c.code}</div><div class="chip-name">${c.label}</div></div>
+    </div>`).join('');
+  S.color=null;
+  document.getElementById('s2val').textContent='—';
+}
+
+function pickColor(el,code,label,hwSuggested){
+  document.querySelectorAll('.color-chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.color={code,label};
+  document.getElementById('s2val').textContent=label+' ('+code+')';
+  markDone('step2');
+  buildHWColors(hwSuggested);
+  updateSpec();
+  openStep('step3');
+}
+
+// ── STEP 3: MOUNT & DIMS ──────────────────────────────────────────────────
+function pickMount(el,key){
+  document.querySelectorAll('#step3 .opt-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.mount=key;
+  calcDims();
+}
+
+function calcDims(){
+  const wW=parseFloat(document.getElementById('w-whole').value)||0;
+  const wF=parseFloat(document.getElementById('w-frac').value)||0;
+  const hW=parseFloat(document.getElementById('h-whole').value)||0;
+  const hF=parseFloat(document.getElementById('h-frac').value)||0;
+  S.w=+(wW+wF).toFixed(3); S.h=+(hW+hF).toFixed(3);
+  const msg=document.getElementById('dim-msg');
+  const dd=document.getElementById('dim-deduct');
+  msg.style.display='none'; dd.style.display='none';
+  if(!S.w||!S.h) return;
+
+  // Validate against collection
+  const c=S.coll;
+  const minW=c?c.minW:12; const maxW=c?c.maxW:100;
+  const minH=c?c.minH:20; const maxH=c?c.maxH:120;
+
+  let err='';
+  if(S.w<minW||S.w>maxW) err='Width must be '+minW+'″–'+maxW+'″ for '+( c?c.name:'this collection')+'.';
+  else if(S.h<minH||S.h>maxH) err='Height must be '+minH+'″–'+maxH+'″ for '+(c?c.name:'this collection')+'.';
+  else if(S.ctrl==='motor'&&(S.w<23||S.w>100)) err='Motor control requires 23″–100″ width.';
+
+  if(err){msg.className='msg-box msg-err';msg.textContent=err;msg.style.display='block';return;}
+
+  const isIM=S.mount==='inside';
+  const isCCL=S.ctrl!=='motor';
+  // Cassette w = ordW - 1/4 (IM) or ordW (OM)
+  const casW=isIM?S.w-0.25:S.w;
+  // Tube w
+  const tubeW=isIM?(isCCL?S.w-0.875:S.w-1):(isCCL?S.w-0.625:S.w-0.75);
+  // Fabric w
+  const fabW=isIM?S.w-1.25:S.w-1;
+  // Bottom rail w
+  const railW=isIM?(isCCL?S.w-1:S.w-1.125):(isCCL?S.w-0.75:S.w-0.875);
+  // Shade height (open) = ordered H - 0.5
+  const shadeH=S.h-0.5;
+
+  document.getElementById('dims-tbody').innerHTML=[
+    ['Cassette width', fmtDim(casW)],
+    ['Tube width', fmtDim(tubeW)],
+    ['Fabric width', fmtDim(fabW)],
+    ['Bottom rail width', fmtDim(railW)],
+    ['Shade height (vanes open)', fmtDim(shadeH)]
+  ].map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>').join('');
+
+  dd.style.display='block';
+  document.getElementById('s3val').textContent=S.w+'″ × '+S.h+'″ '+S.mount;
+  markDone('step3');
+  updateChainNote();
+  updateSpec();
+}
+
+function fmtDim(v){
+  const whole=Math.floor(v);
+  const frac=+(v-whole).toFixed(3);
+  const fracs={0:'',0.125:'⅛″',0.25:'¼″',0.375:'⅜″',0.5:'½″',0.625:'⅝″',0.75:'¾″',0.875:'⅞″'};
+  return whole+(fracs[frac]||(' '+v+'″'))+(frac?'':'″');
+}
+
+// ── STEP 4: CASSETTE ─────────────────────────────────────────────────────
+function pickCassette(el,key){
+  document.querySelectorAll('#step4 .opt-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.cassette=key;
+  document.getElementById('s4val').textContent=(key==='round'?'Round':'Square')+' cassette · '+(S.hwColor||'—');
+  markDone('step4');
+  updateSpec();
+  calcDims();
+}
+
+function pickHWColor(el,name){
+  document.querySelectorAll('.hw-dot').forEach(d=>{d.classList.remove('sel');d.style.borderColor='transparent';});
+  el.classList.add('sel');
+  el.style.borderColor='var(--gold)';
+  S.hwColor=name;
+  document.getElementById('s4val').textContent=(S.cassette==='round'?'Round':'Square')+' · '+name;
+  updateSpec();
+}
+
+function updateFabInsert(){
+  const c=S.coll;
+  if(!c) return;
+  document.getElementById('fab-insert-section').style.display=c.insert?'block':'none';
+  document.getElementById('fab-insert-na').style.display=c.insert?'none':'block';
+  if(!c.insert){S.fabInsert=false;document.getElementById('fab-insert-row').classList.remove('sel');}
+}
+
+// ── STEP 5: BOTTOM RAIL ───────────────────────────────────────────────────
+function updateBottomRail(){
+  const c=S.coll;
+  if(!c){return;}
+  const sec=document.getElementById('bottomrail-content');
+  S.rail=c.rail;
+  if(c.rail==='Moon Shape'){
+    sec.innerHTML='<div class="msg-info" style="margin-top:4px">Moon Shape bottom bar — standard for '+c.name+'. No upgrade required.</div><div class="step-note" style="margin-top:6px">Moon Shape is the standard 3D sheer bottom rail.</div>';
+    S.deluxeInsert=false;
+    document.getElementById('s5val').textContent='Moon Shape (standard)';
+    markDone('step5');
+  } else {
+    sec.innerHTML=`
+      <div class="msg-info" style="margin-top:4px">${c.name} uses a Deluxe round bottom rail with fabric insert (+$40 per shade).</div>
+      <div class="addon-row sel" id="deluxe-rail-row" onclick="toggleAddon(this,'deluxeInsert')" style="margin-top:10px">
+        <div class="addon-left"><div class="addon-check" style="background:var(--gold);border-color:var(--gold);color:#1C1510">✓</div><div><div class="addon-name">Deluxe bottom rail with fabric insert</div><div class="addon-sub">Required for this collection · +$40</div></div></div>
+        <div class="addon-price">+$40</div>
+      </div>`;
+    S.deluxeInsert=true;
+    document.getElementById('s5val').textContent='Deluxe + fabric insert (+$40)';
+    markDone('step5');
+  }
+}
+
+// ── STEP 6: CONTROL ───────────────────────────────────────────────────────
+const CHAIN_COLORS=['White','Ivory','Beige','Brown','Grey','Black'];
+const STAINLESS_FINISHES=['Stainless Steel Metal','Oil-Rubbed Bronze Metal','Gun Metal'];
+
+function buildChainColorGrid(){
+  const g=document.getElementById('chain-color-grid');
+  g.innerHTML=CHAIN_COLORS.map(c=>`<div class="chain-chip${c===S.chainColor?' sel':''}" onclick="pickChainColor(this,'${c}')">${c}</div>`).join('');
+}
+function buildStainlessGrid(){
+  const g=document.getElementById('stainless-finish-grid');
+  g.innerHTML=STAINLESS_FINISHES.map(f=>`<div class="chain-chip${f===S.stainlessFinish?' sel':''}" onclick="pickStainlessFinish(this,'${f}')">${f}</div>`).join('');
+}
+buildChainColorGrid();
+buildStainlessGrid();
+
+function pickControl(el,key){
+  document.querySelectorAll('#step6 .opt-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.ctrl=key;
+  const note=document.getElementById('ctrl-msg');
+  note.style.display='none';
+  document.getElementById('ccl-options').style.display=key==='ccl'?'block':'none';
+  document.getElementById('motor-options').style.display=key==='motor'?'block':'none';
+  if(key==='motor'&&S.w&&(S.w<23||S.w>100)){
+    note.className='msg-box msg-err';
+    note.textContent='Battery motor requires 23″–100″ width. Current width: '+S.w+'″.';
+    note.style.display='block';
+  }
+  document.getElementById('s6val').textContent=key==='ccl'?'Continuous Cord Loop':'Battery Motor ($350)';
+  markDone('step6');
+  updateChainNote();
+  calcDims();
+  updateSpec();
+}
+
+function pickChainColor(el,name){
+  document.querySelectorAll('#chain-color-grid .chain-chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.chainColor=name;
+  updateSpec();
+}
+
+function pickStainlessFinish(el,name){
+  document.querySelectorAll('#stainless-finish-grid .chain-chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.stainlessFinish=name;
+  updateSpec();
+}
+
+function updateChainNote(){
+  if(!S.h||S.ctrl!=='ccl') return;
+  const len=chainLen(S.h);
+  const note=document.getElementById('chain-length-note');
+  if(note) note.textContent='Chain length for '+S.h+'″ shade height: ~'+( len||'custom')+'″ chain.';
+}
+
+// ── STEP 7: MULTI-SHADE ────────────────────────────────────────────────────
+function pickHeadrail(el,key){
+  document.querySelectorAll('.radio-chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.headrail=key;
+  const mf=document.getElementById('multi-fields');
+  const mn=document.getElementById('multi-note');
+  mf.style.display=key==='single'?'none':'block';
+  if(key!=='single'){
+    mn.style.display='block';
+    mn.textContent=key==='2on1'?'2-on-1: two shades share one headrail. Enter each shade width in the field below. Priced as two separate shades.':'3-on-1: three shades share one headrail. Enter each shade width below. Priced as three separate shades.';
+    checkMulti();
+  } else {
+    mn.style.display='none';
+  }
+  document.getElementById('s7val').textContent=key==='single'?'Single shade':key==='2on1'?'2-on-1 headrail':'3-on-1 headrail';
+  updateSpec();
+}
+
+function checkMulti(){
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const warn=document.getElementById('multi-warn');
+  warn.style.display='none';
+  if(!raw) return;
+  const parts=raw.split(/[\s,]+/).map(Number).filter(Boolean);
+  const total=parts.reduce((a,b)=>a+b,0);
+  if(total>110){warn.className='msg-box msg-err';warn.textContent='Combined headrail width '+total+'″ exceeds 110″ maximum.';warn.style.display='block';}
+  else if(total>106){warn.className='msg-box msg-warn';warn.textContent='Combined width '+total+'″ exceeds 106″ — fabric headrail insert will have a center seam.';warn.style.display='block';}
+  updateSpec();
+}
+
+// ── ACCESSORIES ────────────────────────────────────────────────────────────
+function toggleAddon(el,key){
+  if(!el.classList.contains('addon-row')) return;
+  el.classList.toggle('sel');
+  S[key]=el.classList.contains('sel');
+  const check=el.querySelector('.addon-check');
+  if(check){check.style.background=S[key]?'var(--gold)':'';check.style.borderColor=S[key]?'var(--gold)':'#ccc';check.style.color=S[key]?'#1C1510':'transparent';}
+  if(key==='stainlessChain'){
+    document.getElementById('stainless-options').style.display=S[key]?'block':'none';
+  }
+  updateSpec();
+}
+
+// ── DELIVERY ───────────────────────────────────────────────────────────────
+function pickDel(btn,key){
+  document.querySelectorAll('.del-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  S.del=key;
+  document.getElementById('del-ship').style.display=key==='ship'?'block':'none';
+  document.getElementById('del-pickup').style.display=key==='pickup'?'block':'none';
+}
+
+// ── SPEC PANEL ─────────────────────────────────────────────────────────────
+function updateSpec(){
+  const ready=S.coll&&S.color&&S.w&&S.h&&S.ctrl;
+  document.getElementById('sp-pending').style.display=ready?'none':'block';
+  document.getElementById('sp-detail').style.display=ready?'block':'none';
+  if(!ready) return;
+
+  document.getElementById('sp-coll').textContent=S.coll.name;
+  document.getElementById('sp-pg').textContent='Group '+S.coll.group;
+  document.getElementById('sp-color').textContent=(S.color.label||'—')+' ('+S.color.code+')';
+  document.getElementById('sp-band').textContent=S.coll.band+' · '+S.coll.lc;
+  document.getElementById('sp-mount').textContent=S.mount==='inside'?'Inside Mount':'Outside Mount';
+  document.getElementById('sp-size').textContent=S.w+'″ × '+S.h+'″';
+  document.getElementById('sp-cassette').textContent=(S.cassette==='round'?'Round':'Square')+' cassette';
+  document.getElementById('sp-hwcolor').textContent=S.hwColor||'—';
+  document.getElementById('sp-insert').textContent=S.fabInsert?'Yes (+$30)':'No';
+  document.getElementById('sp-rail').textContent=S.rail+(S.deluxeInsert?' + fabric insert (+$40)':'');
+
+  let ctrlStr=S.ctrl==='ccl'?'Continuous Cord Loop — '+S.chainColor+(S.stainlessChain?' ('+S.stainlessFinish+', +$15)':''):'Battery Motor';
+  document.getElementById('sp-ctrl').textContent=ctrlStr;
+
+  // Accessories summary
+  const accs=[];
+  if(S.ctrl==='motor'){
+    if(S.charger10) accs.push('10ft charger');
+    if(S.charger16) accs.push('16ft charger');
+    if(S.remote1) accs.push('Single remote');
+    if(S.remote15) accs.push('15-ch remote');
+    if(S.smartHub) accs.push('Smart Hub DD7006');
+    if(S.solarPanel) accs.push('Solar panel');
+  }
+  document.getElementById('sp-accs').textContent=accs.length?accs.join(', '):'—';
+
+  const qty=parseInt(document.getElementById('qty').value)||1;
+  S.qty=qty;
+  document.getElementById('sp-qty').textContent=qty+' shade'+(qty>1?'s':'');
+  document.getElementById('s8val').textContent=qty+' shade'+(qty>1?'s':'')+' · '+(S.del==='ship'?'Ship':'Pickup');
+
+  // Oversize warning
+  document.getElementById('sp-warn-os').style.display=S.w>=90?'block':'none';
+
+  // Height >120 warning
+  if(S.h>120){
+    const oNote=document.getElementById('sp-warn-os');
+    if(S.w<90){oNote.className='sp-warn';oNote.style.display='block';oNote.textContent='⚠ Height '+S.h+'″ exceeds 120″ — confirm with us before ordering (PDF has conflicting max-height signals at 120″–130″).';}
+    else{oNote.textContent='⚠ Width ≥90″ oversize applies. Height '+S.h+'″ > 120″ — confirm before ordering.';}
+  }
+
+  // Live price estimate
+  const pr=calcPrice();
+  const spPrice=document.getElementById('sp-price');
+  const spBreak=document.getElementById('sp-price-breakdown');
+  if(pr&&spPrice){
+    spPrice.textContent='~$'+Math.round(pr.per).toLocaleString()+'/shade';
+    if(spBreak) spBreak.textContent='Base $'+pr.base+(pr.per>pr.base?' + surcharges $'+(pr.per-pr.base):'')+(pr.qty>1?' | '+pr.qty+' shades, total ~$'+Math.round(pr.total).toLocaleString():'');
+  } else if(spPrice){
+    spPrice.textContent='--';
+    if(spBreak) spBreak.textContent='';
+  }
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'ESTIMATED PRICE (MSRP — confirmed at order):',
+    (()=>{const pr=calcPrice();if(!pr)return 'Not calculated';
+      return 'Base: $'+pr.base+' (Group '+(coll?coll.group:'?')+') + surcharges $'+(pr.per-pr.base)+' = $'+pr.per+'/shade | '+pr.qty+' shade'+(pr.qty>1?'s':'')+' total: ~$'+Math.round(pr.total).toLocaleString();
+    })(),
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++Math.round(pr.total).toLocaleString()+' total';
+    const lines=['Base: 
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace price book. Not shown publicly per policy.'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++pr.base+'/shade (Group '+S.coll.group+')'];
+    if(S.fabInsert) lines.push('Fabric headrail insert: +$30');
+    if(S.deluxeInsert) lines.push('Deluxe bottom rail: +$40');
+    if(S.stainlessChain) lines.push('Stainless chain: +$15');
+    if(S.ctrl==='motor') lines.push('Battery motor: +$350');
+    if(S.charger10) lines.push('10ft charger: +$45');
+    if(S.charger16) lines.push('16ft charger: +$45');
+    if(S.remote1) lines.push('Single remote: +$85');
+    if(S.remote15) lines.push('15-ch remote: +$120');
+    if(S.smartHub) lines.push('Smart Hub: +$350');
+    if(S.w>=100) lines.push('Oversize (≥100″): +$80');
+    else if(S.w>=90) lines.push('Oversize (90″–99 7/8″): +$40');
+    if(pr.qty>1) lines.push('Handling ('+(pr.qty-1)+' additional): +
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace price book. Not shown publicly per policy.'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++(pr.qty-1)*8);
+    spBreak.textContent=lines.join(' · ');
+  } else if(spPrice){
+    spPrice.textContent='—';
+    if(spBreak) spBreak.textContent='';
+  }
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace price book. Not shown publicly per policy.'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++pr.base+'/shade (Group '+S.coll.group+') · Total est: ~
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++Math.round(pr.total).toLocaleString()+' total';
+    const lines=['Base: 
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace price book. Not shown publicly per policy.'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++pr.base+'/shade (Group '+S.coll.group+')'];
+    if(S.fabInsert) lines.push('Fabric headrail insert: +$30');
+    if(S.deluxeInsert) lines.push('Deluxe bottom rail: +$40');
+    if(S.stainlessChain) lines.push('Stainless chain: +$15');
+    if(S.ctrl==='motor') lines.push('Battery motor: +$350');
+    if(S.charger10) lines.push('10ft charger: +$45');
+    if(S.charger16) lines.push('16ft charger: +$45');
+    if(S.remote1) lines.push('Single remote: +$85');
+    if(S.remote15) lines.push('15-ch remote: +$120');
+    if(S.smartHub) lines.push('Smart Hub: +$350');
+    if(S.w>=100) lines.push('Oversize (≥100″): +$80');
+    else if(S.w>=90) lines.push('Oversize (90″–99 7/8″): +$40');
+    if(pr.qty>1) lines.push('Handling ('+(pr.qty-1)+' additional): +
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace price book. Not shown publicly per policy.'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++(pr.qty-1)*8);
+    spBreak.textContent=lines.join(' · ');
+  } else if(spPrice){
+    spPrice.textContent='—';
+    if(spBreak) spBreak.textContent='';
+  }
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace price book. Not shown publicly per policy.'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++Math.round(pr.total)+' for '+pr.qty+' shade'+(pr.qty>1?'s':'');})(),
+    'Source: Wallace Sheer 3D Horizontals price book eff. 10/01/2024'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++Math.round(pr.total).toLocaleString()+' total';
+    const lines=['Base: 
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace price book. Not shown publicly per policy.'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++pr.base+'/shade (Group '+S.coll.group+')'];
+    if(S.fabInsert) lines.push('Fabric headrail insert: +$30');
+    if(S.deluxeInsert) lines.push('Deluxe bottom rail: +$40');
+    if(S.stainlessChain) lines.push('Stainless chain: +$15');
+    if(S.ctrl==='motor') lines.push('Battery motor: +$350');
+    if(S.charger10) lines.push('10ft charger: +$45');
+    if(S.charger16) lines.push('16ft charger: +$45');
+    if(S.remote1) lines.push('Single remote: +$85');
+    if(S.remote15) lines.push('15-ch remote: +$120');
+    if(S.smartHub) lines.push('Smart Hub: +$350');
+    if(S.w>=100) lines.push('Oversize (≥100″): +$80');
+    else if(S.w>=90) lines.push('Oversize (90″–99 7/8″): +$40');
+    if(pr.qty>1) lines.push('Handling ('+(pr.qty-1)+' additional): +
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace price book. Not shown publicly per policy.'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
++(pr.qty-1)*8);
+    spBreak.textContent=lines.join(' · ');
+  } else if(spPrice){
+    spPrice.textContent='—';
+    if(spBreak) spBreak.textContent='';
+  }
+
+  // Seam warning
+  const raw=document.getElementById('f-sub-widths').value.trim();
+  const parts=raw?raw.split(/[\s,]+/).map(Number).filter(Boolean):[];
+  const total=parts.reduce((a,b)=>a+b,0);
+  document.getElementById('sp-warn-seam').style.display=(total>106)?'block':'none';
+}
+
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrl=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor ($350/motor)';
+  const chainInfo=S.ctrl==='ccl'?('Chain color: '+S.chainColor+(S.stainlessChain?'\nStainless chain finish: '+S.stainlessFinish+' (+$15)':'')):'';
+  const chainLenInfo=S.ctrl==='ccl'&&S.h?'Calculated chain length: ~'+chainLen(S.h)+'″':'';
+  const motorAccs=[];
+  if(S.charger10) motorAccs.push('10ft USB charger (+$45)');
+  if(S.charger16) motorAccs.push('16ft USB charger (+$45)');
+  if(S.remote1) motorAccs.push('Single remote (+$85)');
+  if(S.remote15) motorAccs.push('15-ch remote (+$120)');
+  if(S.smartHub) motorAccs.push('Smart Connector Hub DD7006 (+$350)');
+  if(S.solarPanel) motorAccs.push('Solar panel charger');
+  const multiInfo=S.headrail==='single'?'Single shade':S.headrail+' headrail\nSub-shade widths: '+document.getElementById('f-sub-widths').value;
+
+  const lines=[
+    'WALLACE 3D DUAL SHEER SHADES — QUOTE REQUEST',
+    '(Sheer 3D Horizontals / Commerce Window Fashions)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace 3D Dual Sheer Shades / Sheer 3D Horizontals',
+    'Collection: '+(coll?coll.name:'—'),
+    'Price Group: '+(coll?'Group '+coll.group:'—'),
+    'Band size: '+(coll?coll.band:'—'),
+    'Light control: '+(coll?coll.lc:'—'),
+    'Color: '+(S.color?S.color.label+' ('+S.color.code+')':'—'),
+    '',
+    'DIMENSIONS:',
+    'Mount type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Ordered width: '+S.w+'″',
+    'Ordered height: '+S.h+'″',
+    'Finished shade height (vanes open): '+(S.h?S.h-0.5+'″':'—'),
+    '',
+    'HARDWARE:',
+    'Cassette style: '+(S.cassette==='round'?'Round (3⅜″ D × 3″ H)':'Square (3½″ D × 3″ H)'),
+    'Hardware color: '+(S.hwColor||'—'),
+    'Fabric headrail insert: '+(S.fabInsert?'Yes (+$30)':'No'),
+    'Bottom rail: '+S.rail+(S.deluxeInsert?' + fabric insert (+$40)':''),
+    '',
+    'CONTROL:',
+    ctrl,
+    chainInfo,
+    chainLenInfo,
+    S.ctrl==='motor'&&motorAccs.length?'Motor accessories:\n  '+motorAccs.join('\n  '):'',
+    '',
+    'HEADRAIL:',
+    multiInfo,
+    S.sideBySide?'Side-by-side vane alignment requested (¼″ tolerance, same height/color/style required)':'',
+    '',
+    'QUANTITY & DELIVERY:',
+    'Quantity: '+qty+' shade'+(qty>1?'s':''),
+    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace price book. Not shown publicly per policy.'
+  ].filter(l=>l!==null&&l!==undefined&&l!=='');
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init defaults
+document.getElementById('mc-inside').classList.add('sel');
+</script>
+</body>
+</html>

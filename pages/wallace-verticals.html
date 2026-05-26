@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configure Wallace Vertical Blinds — PVC, fabric free-hang, fabric channel panel. 36 patterns, 8 price groups. Custom quote. Philadelphia area.">
+<title>Wallace Vertical Blinds — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:linear-gradient(to right,rgba(28,21,16,.94) 35%,rgba(28,21,16,.55) 65%,rgba(28,21,16,.2) 100%),url('../images/thumbnails/verticals.png') right center/cover no-repeat;padding:48px 28px 44px;min-height:260px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+/* Layout */
+.config-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+/* Step blocks */
+.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden}
+.step-block.active{box-shadow:0 2px 18px rgba(200,151,63,.1);border-color:rgba(200,151,63,.3)}
+.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
+.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
+.step-head-val{font-size:12px;color:var(--gold);font-weight:500;max-width:200px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step-body{padding:4px 20px 20px;display:block}
+/* Opt cards */
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;text-align:center;transition:all .15s}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.opt-card.sel .opt-card-title{color:#7A4F00}
+.opt-card-desc{font-size:11px;color:#666;line-height:1.45}
+.opt-card.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
+/* Pattern grid */
+.pg-filter-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;margin-top:8px}
+.pgf-btn{padding:5px 13px;border-radius:20px;border:1px solid #ddd;background:#fff;color:#555;font-size:12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.pgf-btn:hover,.pgf-btn.active{background:var(--gold);color:var(--espresso);border-color:var(--gold);font-weight:600}
+.type-filter-row{display:flex;gap:6px;margin-bottom:14px}
+.typef-btn{padding:5px 14px;border-radius:20px;border:1px solid #ddd;background:#fff;color:#555;font-size:12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.typef-btn:hover,.typef-btn.active{background:var(--espresso);color:var(--gold);border-color:var(--espresso);font-weight:600}
+.pattern-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.pattern-grid-header{grid-column:1/-1;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#888;margin:10px 0 4px;display:flex;align-items:center;gap:8px}
+.pattern-grid-header span{font-size:9px;padding:1px 6px;border-radius:4px;background:#f0ece4;color:#777;font-weight:500}
+.pattern-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:11px 12px;cursor:pointer;transition:all .15s;background:#fff}
+.pattern-card:hover{border-color:var(--gold)}
+.pattern-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.pattern-card.hidden{display:none}
+.pattern-name{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.pattern-meta{font-size:10px;color:#888;line-height:1.4}
+.pg-badge{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;background:#f0ece4;color:#555;font-weight:600;margin-right:3px}
+.type-badge-pvc{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;background:#e0f0ff;color:#1a4a7f;font-weight:600}
+.type-badge-fh{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;background:#e0ffe8;color:#1a5c2a;font-weight:600}
+.type-badge-fhcp{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;background:#f0e0ff;color:#4a1a7f;font-weight:600}
+/* Dims */
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
+.dim-inputs{display:flex;gap:6px;align-items:center}
+.dim-whole{width:60px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
+.dim-frac{padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff;color:#333}
+.dim-unit{font-size:13px;color:#555;font-weight:500}
+/* Addon rows */
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
+.addon-row:hover{border-color:var(--gold)}
+.addon-row.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.addon-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
+.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#1C1510}
+.addon-name{font-size:13px;font-weight:500;color:#111}
+.addon-sub{font-size:11px;color:#666;margin-top:1px}
+.addon-price{font-size:12px;font-weight:600;color:var(--gold);flex-shrink:0}
+/* Radio rows */
+.radio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.radio-chip{padding:7px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;background:#fff;color:#444}
+.radio-chip:hover{border-color:var(--gold)}
+.radio-chip.sel{border-color:var(--gold);background:rgba(200,151,63,.06);color:#7A4F00}
+/* Messages */
+.msg-box{border-radius:8px;padding:9px 13px;font-size:12px;margin-top:8px;line-height:1.5}
+.msg-err{background:#FEE2E2;border:1px solid #EF4444;color:#7f1d1d}
+.msg-warn{background:#FFF3CD;border:1px solid #FFC107;color:#7d5a00}
+.msg-info{background:rgba(200,151,63,.08);border:1px solid rgba(200,151,63,.25);color:#7A4F00}
+.sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 5px}
+.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
+/* Del */
+.del-btns{display:flex;gap:8px;margin:8px 0 10px}
+.del-btn{flex:1;padding:8px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;background:#fff;transition:all .15s}
+.del-btn.sel{border-color:var(--gold);color:var(--gold);background:rgba(200,151,63,.05)}
+.del-note{font-size:11px;color:#555;line-height:1.6}
+/* Qty addon */
+.qty-input{width:70px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center;display:inline-block}
+/* Spec panel */
+.spec-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
+.sp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+.sp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
+.sp-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:7px;gap:8px;align-items:baseline}
+.sp-label{color:var(--text-muted);line-height:1.4;flex-shrink:0}
+.sp-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word;max-width:170px}
+.sp-div{border:none;border-top:.5px solid var(--border-dark);margin:10px 0}
+.sp-note{font-size:10px;color:var(--text-dark);margin-top:10px;line-height:1.6}
+.sp-warn{font-size:10px;color:#FFC107;margin-top:5px;line-height:1.5}
+.sp-stat{font-size:10px;color:var(--gold);margin-top:5px;line-height:1.5}
+/* Form */
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);box-sizing:border-box}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center;margin-top:12px}
+.split-info{background:rgba(200,151,63,.08);border:1px solid rgba(200,151,63,.2);border-radius:8px;padding:12px 14px;font-size:11px;color:#7A4F00;line-height:1.6;margin-top:8px}
+.qty-row-inline{display:flex;align-items:center;gap:10px;margin-top:6px}
+.qty-row-inline label{font-size:12px;color:#444;font-weight:500}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="shades.html">Shades &amp; blinds</a> &rsaquo; Wallace Vertical Blinds</div>
+  <h1>Wallace Vertical Blinds</h1>
+  <p class="sub">PVC, fabric free-hang, and fabric channel panel verticals. 36 patterns across 8 price groups. Full draw, stack, and track configuration — custom quote built here.</p>
+  <div class="hero-pills">
+    <span class="hero-pill hero-pill-gold">36 patterns</span>
+    <span class="hero-pill hero-pill-gold">Price groups 0–7</span>
+    <span class="hero-pill">PVC · Fabric · Channel panel</span>
+    <span class="hero-pill">Up to 240″ wide</span>
+    <span class="hero-pill">Cord loop · Auto wand</span>
+  </div>
+</div>
+
+<div class="config-layout">
+<div><!-- left col -->
+
+<!-- STEP 1: PATTERN -->
+<div class="step-block active" id="step1">
+  <div class="step-head" onclick="toggleStep('step1')">
+    <div class="step-num">1</div>
+    <div class="step-head-title">Pattern</div>
+    <div class="step-head-val" id="s1val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="type-filter-row" id="grp-type-filter">
+      <button class="typef-btn active" onclick="setTypeFilter('all',this)">All</button>
+      <button class="typef-btn" onclick="setTypeFilter('pvc',this)">PVC</button>
+      <button class="typef-btn" onclick="setTypeFilter('fhcp',this)">Fabric</button>
+    </div>
+    <div class="pg-filter-row" id="grp-pg-filter">
+      <button class="pgf-btn active" onclick="setPgFilter('all',this)">All Groups</button>
+      <button class="pgf-btn" onclick="setPgFilter(0,this)">Standard</button>
+      <button class="pgf-btn" onclick="setPgFilter(1,this)">Group 1</button>
+      <button class="pgf-btn" onclick="setPgFilter(2,this)">Group 2</button>
+      <button class="pgf-btn" onclick="setPgFilter(3,this)">Group 3</button>
+      <button class="pgf-btn" onclick="setPgFilter(4,this)">Group 4</button>
+      <button class="pgf-btn" onclick="setPgFilter(5,this)">Group 5</button>
+      <button class="pgf-btn" onclick="setPgFilter(6,this)">Group 6</button>
+      <button class="pgf-btn" onclick="setPgFilter(7,this)">Group 7</button>
+    </div>
+    <div class="pattern-grid" id="pattern-grid"><!-- filled by JS --></div>
+  </div>
+</div>
+
+<!-- STEP 2: VANE TYPE & COLOR -->
+<div class="step-block" id="step2">
+  <div class="step-head" onclick="toggleStep('step2')">
+    <div class="step-num">2</div>
+    <div class="step-head-title">Vane Type &amp; Color</div>
+    <div class="step-head-val" id="s2val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="sub-label" style="margin-top:4px">Vane type</div>
+    <div class="opt-grid" id="vane-type-grid"><!-- filled by JS when pattern selected --></div>
+    <div id="vane-type-note" class="msg-info" style="display:none;margin-top:8px"></div>
+    <div id="color-section" style="display:none;margin-top:12px">
+      <div class="form-group" style="margin-bottom:0">
+        <label>Color name or code</label>
+        <input type="text" id="f-color" placeholder="e.g. White, Ivory, Beige — enter from Wallace sample card" oninput="updateSpec()">
+      </div>
+      <div class="step-note">Color codes are on Wallace sample cards. Enter the color name or code exactly as shown.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: DIMENSIONS -->
+<div class="step-block" id="step3">
+  <div class="step-head" onclick="toggleStep('step3')">
+    <div class="step-num">3</div>
+    <div class="step-head-title">Dimensions</div>
+    <div class="step-head-val" id="s3val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="dim-row">
+      <div>
+        <div class="dim-label">Width (inches)</div>
+        <div class="dim-inputs">
+          <input class="dim-whole" type="number" id="w-whole" min="12" max="240" placeholder="72" oninput="calcDims()">
+          <select class="dim-frac" id="w-frac" onchange="calcDims()">
+            <option value="0">0</option><option value="0.25">¼</option><option value="0.5">½</option><option value="0.75">¾</option>
+          </select>
+          <span class="dim-unit">″</span>
+        </div>
+      </div>
+      <div>
+        <div class="dim-label">Height / Drop (inches)</div>
+        <div class="dim-inputs">
+          <input class="dim-whole" type="number" id="h-whole" min="24" max="240" placeholder="84" oninput="calcDims()">
+          <select class="dim-frac" id="h-frac" onchange="calcDims()">
+            <option value="0">0</option><option value="0.25">¼</option><option value="0.5">½</option><option value="0.75">¾</option>
+          </select>
+          <span class="dim-unit">″</span>
+        </div>
+      </div>
+    </div>
+    <div id="dim-msg" class="msg-box" style="display:none"></div>
+    <div id="split-info" class="split-info" style="display:none"></div>
+    <div id="oversize-warn" class="msg-warn" style="display:none"></div>
+    <div id="vane-stats" class="msg-info" style="display:none"></div>
+    <div class="step-note" style="margin-top:8px">Min 12″ wide. Max 240″ wide (over 193″ = split into 2 blinds, priced separately). 92″+ width or height requires common carrier freight — estimated at quote.</div>
+  </div>
+</div>
+
+<!-- STEP 4: MOUNT / BRACKET -->
+<div class="step-block" id="step4">
+  <div class="step-head" onclick="toggleStep('step4')">
+    <div class="step-num">4</div>
+    <div class="step-head-title">Mount / Bracket</div>
+    <div class="step-head-val" id="s4val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">
+      <div class="opt-card" onclick="pickOpt(this,'mount','ceiling','Ceiling mount')"><div class="opt-card-title">Ceiling Mount</div><div class="opt-card-desc">Standard flush ceiling bracket</div></div>
+      <div class="opt-card" onclick="pickOpt(this,'mount','outside','Outside bracket')"><div class="opt-card-title">Outside Bracket</div><div class="opt-card-desc">Wall mount above window</div></div>
+      <div class="opt-card" onclick="pickOpt(this,'mount','extension','Extension bracket')"><div class="opt-card-title">Extension Bracket</div><div class="opt-card-desc">Projects track away from wall</div></div>
+      <div class="opt-card" onclick="pickOpt(this,'mount','inside','Inside bracket')"><div class="opt-card-title">Inside Bracket</div><div class="opt-card-desc">Inside window opening</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5: DRAW / STACK / CONTROL -->
+<div class="step-block" id="step5">
+  <div class="step-head" onclick="toggleStep('step5')">
+    <div class="step-num">5</div>
+    <div class="step-head-title">Draw, Stack &amp; Control Side</div>
+    <div class="step-head-val" id="s5val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="sub-label" style="margin-top:4px">Draw type</div>
+    <div class="opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(160px,1fr))">
+      <div class="opt-card" id="draw-oneway" onclick="pickDraw(this,'oneway','One-way draw')">
+        <div class="opt-card-title">One-Way Draw</div>
+        <div class="opt-card-desc">All vanes stack to one side</div>
+      </div>
+      <div class="opt-card" id="draw-split" onclick="pickDraw(this,'split','Split draw')">
+        <div class="opt-card-title">Split Draw</div>
+        <div class="opt-card-desc">Vanes meet in the center and stack both sides</div>
+      </div>
+    </div>
+    <!-- Stack options (surcharges — noted internally) -->
+    <div class="sub-label">Additional stack / draw options</div>
+    <div class="addon-row" id="addon-centerstk" onclick="toggleAddon(this,'centerStack')">
+      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Center stack</div><div class="addon-sub">Vanes center-stack regardless of draw side</div></div></div>
+      <div class="addon-price">Surcharge</div>
+    </div>
+    <div class="addon-row" id="addon-offcenter" onclick="toggleAddon(this,'offCenter')">
+      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Off-center draw</div><div class="addon-sub">Draw point offset from center</div></div></div>
+      <div class="addon-price">Surcharge</div>
+    </div>
+    <div class="addon-row" id="addon-opstack" onclick="toggleAddon(this,'oppositeStack')">
+      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Opposite stack / controls</div><div class="addon-sub">Stack and control on opposite sides</div></div></div>
+      <div class="addon-price">Surcharge</div>
+    </div>
+    <!-- Stack side (one-way only) -->
+    <div id="stack-side-section" style="display:none;margin-top:12px">
+      <div class="sub-label" style="margin-top:0">Stack side (one-way draw)</div>
+      <div class="radio-row">
+        <div class="radio-chip" onclick="pickSide(this,'stack','left')">Stack Left</div>
+        <div class="radio-chip" onclick="pickSide(this,'stack','right')">Stack Right</div>
+      </div>
+    </div>
+    <!-- Control side (always) -->
+    <div style="margin-top:12px">
+      <div class="sub-label" style="margin-top:0">Control side</div>
+      <div class="radio-row" id="ctrl-side-row">
+        <div class="radio-chip" onclick="pickSide(this,'ctrl','left')">Control Left</div>
+        <div class="radio-chip" onclick="pickSide(this,'ctrl','right')">Control Right</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 6: TILT CHAIN -->
+<div class="step-block" id="step6">
+  <div class="step-head" onclick="toggleStep('step6')">
+    <div class="step-num">6</div>
+    <div class="step-head-title">Tilt Chain</div>
+    <div class="step-head-val" id="s6val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:1fr 1fr">
+      <div class="opt-card" onclick="pickOpt(this,'tiltChain','vinyl','Vinyl / plastic chain')">
+        <div class="opt-card-title">Vinyl / Plastic Chain</div>
+        <div class="opt-card-desc">Standard · No added cost</div>
+      </div>
+      <div class="opt-card" onclick="pickOpt(this,'tiltChain','metal','Metal chain')">
+        <div class="opt-card-title">Metal Chain</div>
+        <div class="opt-card-desc">Upgraded tilt control · No added cost</div>
+      </div>
+    </div>
+    <div class="step-note" style="margin-top:6px">Both options included at no additional charge.</div>
+  </div>
+</div>
+
+<!-- STEP 7: TRACK -->
+<div class="step-block" id="step7">
+  <div class="step-head" onclick="toggleStep('step7')">
+    <div class="step-num">7</div>
+    <div class="step-head-title">Track Option</div>
+    <div class="step-head-val" id="s7val">Regular track</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(160px,1fr))">
+      <div class="opt-card sel" onclick="pickOpt(this,'track','regular','Regular track')">
+        <div class="opt-card-title">Regular Track</div>
+        <div class="opt-card-desc">Decomatic 3.5″ headrail · Included</div>
+      </div>
+      <div class="opt-card" onclick="pickOpt(this,'track','replacement','Replacement track')">
+        <div class="opt-card-title">Replacement Track Only</div>
+        <div class="opt-card-desc">Track only (no vanes) · Priced by width</div>
+      </div>
+      <div class="opt-card" onclick="pickOpt(this,'track','topbottom','Top &amp; bottom track')">
+        <div class="opt-card-title">Top &amp; Bottom Track</div>
+        <div class="opt-card-desc">Rotate &amp; traverse · Both rails</div>
+      </div>
+    </div>
+    <div class="step-note" style="margin-top:6px">All Wallace verticals use the Decomatic 3.5″ track system. Replacement track is for existing installs.</div>
+  </div>
+</div>
+
+<!-- STEP 8: VALANCE -->
+<div class="step-block" id="step8">
+  <div class="step-head" onclick="toggleStep('step8')">
+    <div class="step-num">8</div>
+    <div class="step-head-title">Valance</div>
+    <div class="step-head-val" id="s8val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr))">
+      <div class="opt-card sel" onclick="pickOpt(this,'valance','regular','Regular valance')"><div class="opt-card-title">Regular</div><div class="opt-card-desc">Standard fabric valance</div></div>
+      <div class="opt-card" onclick="pickOpt(this,'valance','deluxe','Deluxe valance')"><div class="opt-card-title">Deluxe</div><div class="opt-card-desc">Upgraded profile</div></div>
+      <div class="opt-card" onclick="pickOpt(this,'valance','single','Single valance')"><div class="opt-card-title">Single</div><div class="opt-card-desc">Single-layer valance</div></div>
+      <div class="opt-card" onclick="pickOpt(this,'valance','laser','Laser trim valance')"><div class="opt-card-title">Laser Trim</div><div class="opt-card-desc">Precision-cut edge detail</div></div>
+      <div class="opt-card" onclick="pickOpt(this,'valance','none','No valance')"><div class="opt-card-title">No Valance</div><div class="opt-card-desc">Track exposed at top</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 9: ACCESSORIES -->
+<div class="step-block" id="step9">
+  <div class="step-head" onclick="toggleStep('step9')">
+    <div class="step-num">9</div>
+    <div class="step-head-title">Accessories</div>
+    <div class="step-head-val" id="s9val">Optional</div>
+  </div>
+  <div class="step-body">
+    <div class="addon-row" id="acc-wand" onclick="toggleAddon(this,'autoWand')">
+      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Auto Wand</div><div class="addon-sub">Automatic wand control — no charge</div></div></div>
+      <div class="addon-price">Free</div>
+    </div>
+    <!-- Verticlips -->
+    <div class="addon-row" id="acc-vclip-row" onclick="toggleAddon(this,'verticlips')">
+      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Verticlips</div><div class="addon-sub">Hold-down clips for vane bottoms</div></div></div>
+      <div class="addon-price">$6 ea</div>
+    </div>
+    <div id="vclip-qty-row" style="display:none;margin-top:6px;padding-left:14px">
+      <div class="qty-row-inline"><label>How many Verticlips?</label><input class="qty-input" type="number" id="vclip-qty" value="2" min="1" oninput="updateSpec()"></div>
+    </div>
+    <!-- Hinged valance corners -->
+    <div class="addon-row" id="acc-hvc-row" onclick="toggleAddon(this,'hingedCorners')">
+      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Hinged valance corners</div><div class="addon-sub">L-shaped corner returns for valance</div></div></div>
+      <div class="addon-price">$6 ea</div>
+    </div>
+    <div id="hvc-qty-row" style="display:none;margin-top:6px;padding-left:14px">
+      <div class="qty-row-inline"><label>How many hinged corners?</label><input class="qty-input" type="number" id="hvc-qty" value="2" min="1" oninput="updateSpec()"></div>
+    </div>
+    <!-- T-handles -->
+    <div class="addon-row" id="acc-thandle-row" onclick="toggleAddon(this,'tHandles')">
+      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">T-handles</div><div class="addon-sub">Alternate tilt grip</div></div></div>
+      <div class="addon-price">$8.25 ea</div>
+    </div>
+    <div id="th-qty-row" style="display:none;margin-top:6px;padding-left:14px">
+      <div class="qty-row-inline"><label>How many T-handles?</label><input class="qty-input" type="number" id="th-qty" value="1" min="1" oninput="updateSpec()"></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 10: QUANTITY & DELIVERY -->
+<div class="step-block" id="step10">
+  <div class="step-head" onclick="toggleStep('step10')">
+    <div class="step-num">10</div>
+    <div class="step-head-title">Quantity &amp; Delivery</div>
+    <div class="step-head-val" id="s10val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Number of vertical blinds</label>
+        <input type="number" id="qty" value="1" min="1" max="50" oninput="updateSpec()">
+      </div>
+      <div class="form-group">
+        <label>Room / sidemark</label>
+        <input type="text" id="room-label" placeholder="e.g. Living room sliding door">
+      </div>
+    </div>
+    <div>
+      <div class="dim-label" style="margin-bottom:6px">Delivery or pickup?</div>
+      <div class="del-btns">
+        <button class="del-btn sel" onclick="pickDel(this,'ship')">Ship to me</button>
+        <button class="del-btn" onclick="pickDel(this,'pickup')">I'll pick up</button>
+      </div>
+      <div id="del-ship" class="del-note">Shipped via UPS/FedEx from Huntingdon Valley, PA. Tariffs additional. Verticals 92″+ in width or height must ship common carrier — freight confirmed at quote.</div>
+      <div id="del-pickup" class="del-note" style="display:none">Pickup in Huntingdon Valley, PA. Address confirmed after order.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 11: CONTACT & SUBMIT -->
+<div class="step-block" id="step11">
+  <div class="step-head" onclick="toggleStep('step11')">
+    <div class="step-num">11</div>
+    <div class="step-head-title">Your Info &amp; Submit</div>
+  </div>
+  <div class="step-body">
+    <div class="form-row">
+      <div class="form-group"><label>Name *</label><input type="text" id="f-name" placeholder="Jane Smith"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="f-phone" placeholder="(215) 555-0100"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="jane@example.com"></div>
+    <div class="form-group"><label>Notes / questions</label><textarea id="f-notes" placeholder="Window details, existing hardware, motor request, wiring, color confirmation, installer notes…"></textarea></div>
+    <div id="form-err" class="msg-err" style="display:none">Please enter your name and phone number.</div>
+    <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:13px;font-size:14px">Request Wallace Verticals Quote &rarr;</button>
+    <div class="success-box" id="success-box">
+      <strong>Quote request sent!</strong><br>We'll follow up within a few hours. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- /left col -->
+
+<!-- RIGHT: Spec summary panel -->
+<div>
+  <div class="spec-panel">
+    <div class="sp-title">Spec Summary</div>
+    <div id="sp-pending" class="sp-pending">Complete your selections to build a spec sheet.</div>
+    <div id="sp-detail" style="display:none">
+      <div class="sp-row"><span class="sp-label">Pattern</span><span class="sp-val" id="sp-pattern">—</span></div>
+      <div class="sp-row"><span class="sp-label">Price group</span><span class="sp-val" id="sp-pg">—</span></div>
+      <div class="sp-row"><span class="sp-label">Vane type</span><span class="sp-val" id="sp-vtype">—</span></div>
+      <div class="sp-row"><span class="sp-label">Color</span><span class="sp-val" id="sp-color">—</span></div>
+      <div class="sp-row"><span class="sp-label">Size</span><span class="sp-val" id="sp-size">—</span></div>
+      <div class="sp-row"><span class="sp-label">Mount</span><span class="sp-val" id="sp-mount">—</span></div>
+      <div class="sp-row"><span class="sp-label">Draw</span><span class="sp-val" id="sp-draw">—</span></div>
+      <div class="sp-row"><span class="sp-label">Control side</span><span class="sp-val" id="sp-ctrl">—</span></div>
+      <div class="sp-row"><span class="sp-label">Stack side</span><span class="sp-val" id="sp-stack">—</span></div>
+      <div class="sp-row"><span class="sp-label">Chain</span><span class="sp-val" id="sp-chain">—</span></div>
+      <div class="sp-row"><span class="sp-label">Track</span><span class="sp-val" id="sp-track">—</span></div>
+      <div class="sp-row"><span class="sp-label">Valance</span><span class="sp-val" id="sp-valance">—</span></div>
+      <div class="sp-row"><span class="sp-label">Qty</span><span class="sp-val" id="sp-qty">—</span></div>
+      <div class="sp-div"></div>
+      <div class="sp-stat" id="sp-vane-count" style="display:none"></div>
+      <div class="sp-stat" id="sp-stack-est" style="display:none"></div>
+      <div class="sp-warn" id="sp-warn-os" style="display:none">⚠ 92″+ — common carrier freight, confirmed at quote.</div>
+      <div class="sp-warn" id="sp-warn-split" style="display:none">⚠ Over 193″ — priced as 2 blinds.</div>
+      <div class="sp-note">Pricing confirmed with current Wallace price book. Not shown publicly per owner policy.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<div class="cta-banner">
+  <div><h2>Questions about Wallace Verticals?</h2><p>Call Justin — we stock Wallace samples and can match your opening exactly.</p></div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free consultation</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Shades & blinds');
+renderFooter(false);
+
+// ═══════════════════════════════════════════════════════════
+// WALLACE VERTICAL BLINDS — DATA
+// Source: Wallace - Verticals.pdf (March 1, 2026)
+// Types: 'pvc' = PVC only | 'fh' = fabric free-hang only | 'fhcp' = FH or channel panel
+// ═══════════════════════════════════════════════════════════
+const PATTERNS = [
+  {name:'Allure',           type:'pvc',  pg:3},
+  {name:'Allwood',          type:'pvc',  pg:3},
+  {name:'Altima',           type:'pvc',  pg:3},
+  {name:'Beckley',          type:'pvc',  pg:4},
+  {name:'Berks',            type:'fhcp', pg:6, notes:'5% Openness solar'},
+  {name:'Cadiz',            type:'pvc',  pg:3},
+  {name:'Cambria',          type:'fhcp', pg:4},
+  {name:'Channel Panel 3.5"',type:'pvc', pg:4, notes:'Channel panel track pattern'},
+  {name:'Chester',          type:'fhcp', pg:7, notes:'5% Openness solar'},
+  {name:'Corly',            type:'pvc',  pg:2},
+  {name:'Emerson',          type:'pvc',  pg:4},
+  {name:'Franklin',         type:'fhcp', pg:4},
+  {name:'Fresno',           type:'pvc',  pg:4},
+  {name:'Hampton',          type:'pvc',  pg:4},
+  {name:'Hampton S',        type:'pvc',  pg:5},
+  {name:'Lancaster',        type:'fhcp', pg:4},
+  {name:'Lehigh',           type:'fhcp', pg:3},
+  {name:'Leno',             type:'pvc',  pg:4},
+  {name:'Maestro',          type:'pvc',  pg:0},
+  {name:'Mayfair',          type:'pvc',  pg:1},
+  {name:'Montgomery',       type:'fhcp', pg:7, notes:'5% Openness solar'},
+  {name:'Ovation',          type:'pvc',  pg:1},
+  {name:'Penland',          type:'pvc',  pg:2},
+  {name:'Perforated',       type:'pvc',  pg:4},
+  {name:'Pinnacle',         type:'pvc',  pg:2},
+  {name:'Ridgeway II',      type:'pvc',  pg:1},
+  {name:'Rustic Wood',      type:'pvc',  pg:3},
+  {name:'Shannon',          type:'pvc',  pg:4},
+  {name:'Standard II',      type:'pvc',  pg:0},
+  {name:'Trends Solid',     type:'pvc',  pg:4},
+  {name:'Trends Stain',     type:'pvc',  pg:4},
+  {name:'Tropics',          type:'pvc',  pg:4},
+  {name:'Vogue',            type:'pvc',  pg:4},
+  {name:'Waterford',        type:'pvc',  pg:4},
+  {name:'Waterford S',      type:'pvc',  pg:5},
+  {name:'Westmorland',      type:'fhcp', pg:5}
+];
+
+// ── STATE ──────────────────────────────────────────────────────────────────
+const S = {
+  patternIdx:null, vaneType:null,
+  w:0, h:0,
+  mount:null, draw:null, stackSide:null, ctrlSide:null,
+  centerStack:false, offCenter:false, oppositeStack:false,
+  tiltChain:null, track:'regular', valance:'regular',
+  autoWand:false, verticlips:false, hingedCorners:false, tHandles:false,
+  qty:1, del:'ship'
+};
+
+// ── FILTER STATE ──────────────────────────────────────────────────────────
+let _typeFilter='all', _pgFilter='all';
+
+function setTypeFilter(t,btn){
+  _typeFilter=t;
+  document.querySelectorAll('#grp-type-filter .typef-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildPatternGrid();
+}
+function setPgFilter(pg,btn){
+  _pgFilter=pg;
+  document.querySelectorAll('#grp-pg-filter .pgf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  buildPatternGrid();
+}
+
+// ── BUILD PATTERN GRID (grouped by price group) ───────────────────────────
+function buildPatternGrid(){
+  const g=document.getElementById('pattern-grid');
+  // filter first
+  const visible=PATTERNS.map((p,i)=>({...p,idx:i})).filter(p=>{
+    if(_typeFilter!=='all'&&p.type!==_typeFilter)return false;
+    if(_pgFilter!=='all'&&p.pg!==_pgFilter)return false;
+    return true;
+  });
+  if(!visible.length){g.innerHTML='<div style="grid-column:1/-1;font-size:13px;color:#999;padding:12px 0">No patterns match the selected filters.</div>';return;}
+
+  // group by pg
+  const groups={};
+  visible.forEach(p=>{
+    if(!groups[p.pg])groups[p.pg]=[];
+    groups[p.pg].push(p);
+  });
+
+  const pgLabel=pg=>pg===0?'Standard — Group 0':'Price Group '+pg;
+  const typeCount=pg=>{
+    const arr=groups[pg];
+    const pvc=arr.filter(p=>p.type==='pvc').length;
+    const fab=arr.filter(p=>p.type==='fhcp'||p.type==='fh').length;
+    const parts=[];
+    if(pvc)parts.push(pvc+' PVC');
+    if(fab)parts.push(fab+' Fabric');
+    return parts.join(' · ');
+  };
+
+  let html='';
+  Object.keys(groups).sort((a,b)=>+a-+b).forEach(pg=>{
+    html+=`<div class="pattern-grid-header">${pgLabel(+pg)}<span>${typeCount(+pg)}</span></div>`;
+    groups[pg].forEach(p=>{
+      const tb=p.type==='pvc'?'type-badge-pvc':p.type==='fh'?'type-badge-fh':'type-badge-fhcp';
+      const tl=p.type==='pvc'?'PVC':p.type==='fh'?'Fabric':'Fabric';
+      html+=`<div class="pattern-card" data-idx="${p.idx}" onclick="pickPattern(${p.idx})">
+        <div class="pattern-name">${p.name}</div>
+        <div class="pattern-meta"><span class="${tb}">${tl}</span>${p.notes?'<br><span style="color:#aaa;font-size:9px">'+p.notes+'</span>':''}</div>
+      </div>`;
+    });
+  });
+  g.innerHTML=html;
+  // re-apply selected state
+  if(S.patternIdx!==null){
+    const sel=g.querySelector(`[data-idx="${S.patternIdx}"]`);
+    if(sel)sel.classList.add('sel');
+  }
+}
+buildPatternGrid();
+
+// ── STEP UTILS ─────────────────────────────────────────────────────────────
+function toggleStep(id){const el=document.getElementById(id);el.classList.add('active');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),60);}
+function openStep(id){const el=document.getElementById(id);el.classList.add('active');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),80);}
+function markDone(id){document.getElementById(id).classList.add('done');}
+
+// ── STEP 1: PATTERN ────────────────────────────────────────────────────────
+function pickPattern(idx){
+  document.querySelectorAll('.pattern-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('.pattern-card')[idx].classList.add('sel');
+  S.patternIdx=idx;
+  const p=PATTERNS[idx];
+  document.getElementById('s1val').textContent=p.name+' (Group '+p.pg+')';
+  markDone('step1');
+  buildVaneTypeGrid(p);
+  // Reset vane type on pattern change
+  S.vaneType=null;
+  document.getElementById('color-section').style.display='none';
+  document.getElementById('s2val').textContent='—';
+  document.getElementById('step2').classList.remove('done');
+  updateSpec();
+  openStep('step2');
+}
+
+function buildVaneTypeGrid(p){
+  const g=document.getElementById('vane-type-grid');
+  const note=document.getElementById('vane-type-note');
+  if(p.type==='pvc'){
+    g.innerHTML=`<div class="opt-card sel" onclick="pickVane(this,'pvc')"><div class="opt-card-title">PVC / Vinyl</div><div class="opt-card-desc">Standard vinyl vane</div></div>`;
+    note.style.display='none';
+    // Auto-select PVC
+    S.vaneType='pvc';
+    document.getElementById('color-section').style.display='block';
+    document.getElementById('s2val').textContent='PVC / Vinyl';
+    markDone('step2');
+  } else if(p.type==='fh'){
+    g.innerHTML=`<div class="opt-card sel" onclick="pickVane(this,'fh')"><div class="opt-card-title">Fabric Free-Hang</div><div class="opt-card-desc">Sewn-in weights included</div></div>`;
+    note.style.display='block';
+    note.textContent='This pattern is fabric free-hang only. Includes sewn-in weights.';
+    S.vaneType='fh';
+    document.getElementById('color-section').style.display='block';
+    document.getElementById('s2val').textContent='Fabric Free-Hang';
+    markDone('step2');
+  } else {
+    // fhcp
+    g.innerHTML=`
+      <div class="opt-card" onclick="pickVane(this,'fh')"><div class="opt-card-title">Fabric Free-Hang</div><div class="opt-card-desc">Vanes hang free · Sewn-in weights</div></div>
+      <div class="opt-card" onclick="pickVane(this,'cp')"><div class="opt-card-title">Fabric in Channel Panel</div><div class="opt-card-desc">Fabric inserted into 3.5″ PVC channel · Surcharge applies</div></div>`;
+    note.style.display='block';
+    note.textContent='Choose: free-hang fabric vanes or insert fabric into 3.5″ channel panel (channel panel surcharge added at quote).';
+    S.vaneType=null;
+    document.getElementById('color-section').style.display='none';
+  }
+}
+
+function pickVane(el,type){
+  document.querySelectorAll('#vane-type-grid .opt-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.vaneType=type;
+  const labels={pvc:'PVC / Vinyl',fh:'Fabric Free-Hang',cp:'Fabric → Channel Panel'};
+  document.getElementById('s2val').textContent=labels[type];
+  markDone('step2');
+  document.getElementById('color-section').style.display='block';
+  const vnote=document.getElementById('vane-type-note');
+  if(type==='cp'){vnote.style.display='block';vnote.textContent='Channel panel surcharge added at quote. Fabric inserted into 3.5″ PVC channel. Clearly labeled in your quote email.';}
+  else if(type==='fh'){vnote.style.display='block';vnote.textContent='Fabric free-hang vanes include sewn-in weights.';}
+  else vnote.style.display='none';
+  updateSpec();
+}
+
+// ── STEP 3: DIMENSIONS ────────────────────────────────────────────────────
+function calcDims(){
+  const wW=parseFloat(document.getElementById('w-whole').value)||0;
+  const wF=parseFloat(document.getElementById('w-frac').value)||0;
+  const hW=parseFloat(document.getElementById('h-whole').value)||0;
+  const hF=parseFloat(document.getElementById('h-frac').value)||0;
+  S.w=+(wW+wF).toFixed(3); S.h=+(hW+hF).toFixed(3);
+
+  const dimMsg=document.getElementById('dim-msg');
+  const splitInfo=document.getElementById('split-info');
+  const osWarn=document.getElementById('oversize-warn');
+  const vaneStats=document.getElementById('vane-stats');
+  dimMsg.style.display='none'; splitInfo.style.display='none'; osWarn.style.display='none'; vaneStats.style.display='none';
+
+  if(!S.w||!S.h) return;
+
+  if(S.w>240){dimMsg.className='msg-box msg-err';dimMsg.textContent='Maximum width is 240″. Please split into multiple openings.';dimMsg.style.display='block';return;}
+
+  // Split logic: over 193" → 2 blinds
+  if(S.w>193){
+    const half=Math.ceil(S.w/2*4)/4; // round up to nearest 1/4"
+    splitInfo.innerHTML='Width '+S.w+'″ exceeds 193″ max chart width. This will be priced as <strong>2 separate blinds</strong>, each approximately '+half+'″ wide. Enter total width — your quote will specify both blinds.';
+    splitInfo.style.display='block';
+  }
+
+  // Oversize warning
+  if(S.w>=92||S.h>=92){
+    osWarn.textContent='⚠ Width or height is 92″ or greater — this vertical requires common carrier shipping. True freight cost confirmed at quote (Wallace will contact with options for multiple units).';
+    osWarn.style.display='block';
+  }
+
+  // Vane count estimation (3.5" vane system)
+  const vaneCount=Math.ceil(S.w/3.5);
+  const stackOneWay=Math.round(vaneCount*0.25*10)/10; // approx 1/4 of vane pitch
+  const stackSplit=Math.round(stackOneWay/2*10)/10;
+  vaneStats.innerHTML='Est. vanes: ~'+vaneCount+' · One-way stack: ~'+stackOneWay+'″ · Split-draw each side: ~'+stackSplit+'″ (reference only)';
+  vaneStats.style.display='block';
+
+  document.getElementById('s3val').textContent=S.w+'″ × '+S.h+'″';
+  markDone('step3');
+  updateSpec();
+}
+
+// ── GENERIC OPT PICKER ────────────────────────────────────────────────────
+function pickOpt(el,key,val,label){
+  const parent=el.closest('.step-body')||el.parentElement;
+  parent.querySelectorAll('.opt-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S[key]=val;
+  const stepMap={mount:'s4val',tiltChain:'s6val',track:'s7val',valance:'s8val'};
+  if(stepMap[key]) document.getElementById(stepMap[key]).textContent=label;
+  const doneMap={mount:'step4',tiltChain:'step6',track:'step7',valance:'step8'};
+  if(doneMap[key]) markDone(doneMap[key]);
+  updateSpec();
+}
+
+// ── DRAW ─────────────────────────────────────────────────────────────────
+function pickDraw(el,key,label){
+  document.querySelectorAll('#step5 #draw-oneway,#step5 #draw-split').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.draw=key;
+  document.getElementById('stack-side-section').style.display=key==='oneway'?'block':'none';
+  if(key==='split') {S.stackSide='split';}
+  buildStep5Val();
+  markDone('step5');
+  updateSpec();
+}
+
+function pickSide(el,type,val){
+  const rowId=type==='stack'?'stack-side-section':'ctrl-side-row';
+  const row=document.getElementById(rowId)||el.closest('.radio-row')||el.parentElement;
+  row.querySelectorAll('.radio-chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  if(type==='stack') S.stackSide=val; else S.ctrlSide=val;
+  buildStep5Val();
+  markDone('step5');
+  updateSpec();
+}
+
+function buildStep5Val(){
+  const parts=[];
+  if(S.draw) parts.push(S.draw==='oneway'?'One-way':'Split draw');
+  if(S.ctrlSide) parts.push('Ctrl: '+S.ctrlSide);
+  if(S.stackSide&&S.stackSide!=='split') parts.push('Stack: '+S.stackSide);
+  document.getElementById('s5val').textContent=parts.join(' · ')||'—';
+}
+
+// ── ADDONS ────────────────────────────────────────────────────────────────
+function toggleAddon(el,key){
+  if(!el.classList.contains('addon-row')) return;
+  el.classList.toggle('sel');
+  S[key]=el.classList.contains('sel');
+  const check=el.querySelector('.addon-check');
+  if(check){check.style.background=S[key]?'var(--gold)':'';check.style.borderColor=S[key]?'var(--gold)':'#ccc';check.style.color=S[key]?'#1C1510':'transparent';}
+  // Show/hide quantity rows
+  if(key==='verticlips') document.getElementById('vclip-qty-row').style.display=S[key]?'block':'none';
+  if(key==='hingedCorners') document.getElementById('hvc-qty-row').style.display=S[key]?'block':'none';
+  if(key==='tHandles') document.getElementById('th-qty-row').style.display=S[key]?'block':'none';
+  updateSpec();
+}
+
+// ── DELIVERY ─────────────────────────────────────────────────────────────
+function pickDel(btn,key){
+  document.querySelectorAll('.del-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel'); S.del=key;
+  document.getElementById('del-ship').style.display=key==='ship'?'block':'none';
+  document.getElementById('del-pickup').style.display=key==='pickup'?'block':'none';
+}
+
+// ── SPEC PANEL ────────────────────────────────────────────────────────────
+function updateSpec(){
+  const p=S.patternIdx!==null?PATTERNS[S.patternIdx]:null;
+  const ready=p&&S.vaneType&&S.w&&S.h;
+  document.getElementById('sp-pending').style.display=ready?'none':'block';
+  document.getElementById('sp-detail').style.display=ready?'block':'none';
+  if(!ready) return;
+
+  document.getElementById('sp-pattern').textContent=p.name;
+  document.getElementById('sp-pg').textContent='Group '+p.pg+(p.notes?' — '+p.notes:'');
+  document.getElementById('sp-vtype').textContent=({pvc:'PVC / Vinyl',fh:'Fabric Free-Hang (incl. sewn-in weights)',cp:'Fabric in 3.5″ Channel Panel (+ CP surcharge)'})[S.vaneType];
+  document.getElementById('sp-color').textContent=document.getElementById('f-color').value.trim()||'—';
+  document.getElementById('sp-size').textContent=S.w+'″ W × '+S.h+'″ H';
+  document.getElementById('sp-mount').textContent=({ceiling:'Ceiling mount',outside:'Outside bracket',extension:'Extension bracket',inside:'Inside bracket'})[S.mount]||'—';
+  const drawStr=(S.draw==='oneway'?'One-way':S.draw==='split'?'Split draw':'—')+(S.centerStack?' + Center stack':'')+(S.offCenter?' + Off-center draw':'')+(S.oppositeStack?' + Opposite stack/ctrl':'');
+  document.getElementById('sp-draw').textContent=drawStr||'—';
+  document.getElementById('sp-ctrl').textContent=S.ctrlSide?S.ctrlSide.charAt(0).toUpperCase()+S.ctrlSide.slice(1):'—';
+  document.getElementById('sp-stack').textContent=S.draw==='split'?'Split (both sides)':S.stackSide?(S.stackSide.charAt(0).toUpperCase()+S.stackSide.slice(1)):'—';
+  document.getElementById('sp-chain').textContent=({vinyl:'Vinyl / plastic',metal:'Metal'})[S.tiltChain]||'—';
+  document.getElementById('sp-track').textContent=({regular:'Regular (Decomatic 3.5″)',replacement:'Replacement track only',topbottom:'Top &amp; bottom track (rotate &amp; traverse)'})[S.track]||'Regular';
+  document.getElementById('sp-valance').textContent=({regular:'Regular',deluxe:'Deluxe',single:'Single',laser:'Laser trim',none:'No valance'})[S.valance]||'—';
+  const qty=parseInt(document.getElementById('qty').value)||1;
+  S.qty=qty;
+  document.getElementById('sp-qty').textContent=qty+' blind'+(qty>1?'s':'');
+  document.getElementById('s10val').textContent=qty+' blind'+(qty>1?'s':'')+' · '+(S.del==='ship'?'Ship':'Pickup');
+
+  // Vane count stats
+  if(S.w){
+    const vc=Math.ceil(S.w/3.5);
+    const so=Math.round(vc*0.25*10)/10;
+    document.getElementById('sp-vane-count').textContent='~'+vc+' vanes';
+    document.getElementById('sp-stack-est').textContent='Stack est: '+(S.draw==='split'?'~'+Math.round(so/2*10)/10+'″/side (split)':'~'+so+'″ (one-way)');
+    document.getElementById('sp-vane-count').style.display='block';
+    document.getElementById('sp-stack-est').style.display='block';
+  }
+
+  document.getElementById('sp-warn-os').style.display=(S.w>=92||S.h>=92)?'block':'none';
+  document.getElementById('sp-warn-split').style.display=S.w>193?'block':'none';
+}
+
+// ── SUBMIT ────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const p=S.patternIdx!==null?PATTERNS[S.patternIdx]:null;
+  if(!p||!S.vaneType){err.style.display='block';err.textContent='Please select a pattern and vane type.';return;}
+
+  const qty=S.qty||1;
+  const vaneLabel={pvc:'PVC / Vinyl',fh:'Fabric Free-Hang (sewn-in weights included)',cp:'Fabric inserted into 3.5″ Channel Panel (channel panel surcharge applies)'}[S.vaneType];
+  const drawLabel=(S.draw==='oneway'?'One-way draw':S.draw==='split'?'Split draw':'Not specified')+(S.centerStack?' + Center stack (surcharge)':'')+(S.offCenter?' + Off-center draw (surcharge)':'')+(S.oppositeStack?' + Opposite stack/controls (surcharge)':'');
+  const accs=[];
+  if(S.autoWand) accs.push('Auto Wand (no charge)');
+  if(S.verticlips){const n=parseInt(document.getElementById('vclip-qty').value)||2;accs.push('Verticlips × '+n+' ($6 ea)');}
+  if(S.hingedCorners){const n=parseInt(document.getElementById('hvc-qty').value)||2;accs.push('Hinged valance corners × '+n+' ($6 ea)');}
+  if(S.tHandles){const n=parseInt(document.getElementById('th-qty').value)||1;accs.push('T-handles × '+n+' ($8.25 ea)');}
+  const vc=Math.ceil(S.w/3.5);
+  const so=Math.round(vc*0.25*10)/10;
+  const stackEst=S.draw==='split'?'~'+Math.round(so/2*10)/10+'″ per side':'~'+so+'″ (one-way)';
+  const splitNote=S.w>193?'\n⚠ Width '+S.w+'″ exceeds 193″ — will be priced as 2 blinds (~'+Math.ceil(S.w/2*4/4)+'″ each).':'';
+  const oversizeNote=(S.w>=92||S.h>=92)?'\n⚠ 92″+ dimension — common carrier required, true freight confirmed at quote.':'';
+
+  const lines=[
+    'WALLACE VERTICAL BLINDS — QUOTE REQUEST',
+    '(Wallace Vertical Price Book, March 1 2026)',
+    '',
+    'PRODUCT SPECIFICATIONS:',
+    'Product: Wallace Vertical Blinds',
+    'Pattern: '+p.name,
+    'Price Group: Group '+p.pg+(p.notes?' ('+p.notes+')':''),
+    'Vane type: '+vaneLabel,
+    'Color code / name: '+(document.getElementById('f-color').value.trim()||'—'),
+    '',
+    'DIMENSIONS:',
+    'Width: '+S.w+'″',
+    'Height / drop: '+S.h+'″',
+    splitNote,
+    oversizeNote,
+    '',
+    'MOUNTING:',
+    'Mount / bracket: '+({ceiling:'Ceiling mount',outside:'Outside bracket',extension:'Extension bracket',inside:'Inside bracket'}[S.mount]||'—'),
+    '',
+    'DRAW & STACK:',
+    drawLabel,
+    'Control side: '+(S.ctrlSide||'—'),
+    'Stack side: '+(S.draw==='split'?'Split (both sides)':S.stackSide||'—'),
+    'Estimated vane count: ~'+vc+' vanes',
+    'Estimated stack width: '+stackEst,
+    '',
+    'TILT CHAIN:',
+    ({vinyl:'Vinyl / plastic chain',metal:'Metal chain'}[S.tiltChain]||'—'),
+    '',
+    'TRACK:',
+    ({regular:'Regular Decomatic 3.5″ track (included)',replacement:'Replacement 3.5″ track only (priced by width)',topbottom:'Top & bottom track / rotate & traverse'}[S.track]||'Regular'),
+    '',
+    'VALANCE:',
+    ({regular:'Regular valance',deluxe:'Deluxe valance',single:'Single valance',laser:'Laser trim valance',none:'No valance'}[S.valance]||'—'),
+    '',
+    'ACCESSORIES:',
+    accs.length?accs.join('\n'):'None',
+    '',
+    'ORDER DETAILS:',
+    'Quantity: '+qty+' vertical blind'+(qty>1?'s':''),
+    'Room / sidemark: '+(document.getElementById('room-label').value.trim()||'—'),
+    'Delivery: '+(S.del==='ship'?'Ship (UPS/FedEx from Huntingdon Valley PA)':'Will pick up'),
+    '',
+    'NOTES:',
+    document.getElementById('f-notes').value.trim()||'None',
+    '',
+    'FREIGHT NOTE:',
+    'First blind: $25. Each additional (under 92″): $15. 92″+ height or width: common carrier, true freight confirmed.',
+    '',
+    'CUSTOMER:',
+    'Name: '+name,
+    'Phone: '+phone,
+    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '',
+    'Pricing confirmed with current Wallace Vertical price book. Not shown publicly per owner policy.'
+  ].filter(l=>l!==null&&l!==undefined);
+
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Wallace Verticals Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  document.getElementById('success-box').style.display='block';
+}
+
+// Init: pre-select defaults
+document.querySelector('#step7 .opt-card.sel')&&null; // track already sel
+document.getElementById('mc-inside')&&null;
+</script>
+</body>
+</html>

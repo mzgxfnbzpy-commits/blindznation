@@ -1,0 +1,903 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Complete guide to measuring windows for plantation shutters. Inside mount, outside mount, and special shape rules. Includes measuring diagrams.">
+<meta property="og:title" content="How to Measure for Shutters | Philly Blinds">
+<meta property="og:description" content="Complete guide to measuring windows for plantation shutters. Inside mount, outside mount, and special shape rules. Includes measuring diagrams.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/measure-shutters.html">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Measure for Shutters | Philly Blinds">
+<meta name="twitter:description" content="Complete guide to measuring windows for plantation shutters. Inside mount, outside mount, and special shape rules. Includes measuring diagrams.">
+<title>How to Measure for Shutters — Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:44px 28px 38px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:16px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.breadcrumb a:hover{color:var(--cream)}
+.hero-eyebrow{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:10px}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.5px;margin-bottom:12px;line-height:1.25}
+.hero-sub{font-size:13px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:20px}
+.hero-trust{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hero-phone{font-size:16px;font-weight:500;color:var(--gold);text-decoration:none}
+.hero-phone-note{font-size:11px;color:var(--text-faint)}
+.shutters-notice{display:inline-flex;align-items:center;gap:8px;background:rgba(45,224,193,0.12);border:1px solid rgba(45,224,193,0.3);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--gold);margin-bottom:18px}
+
+.persistent-strip{background:var(--espresso-mid);border-bottom:1px solid var(--border-dark);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:58px;z-index:90}
+.ps-text{font-size:12px;color:var(--text-dark)}
+.ps-text strong{color:var(--cream)}
+.ps-right{display:flex;align-items:center;gap:8px}
+.ps-phone{font-size:15px;font-weight:500;color:var(--gold);text-decoration:none;white-space:nowrap}
+.ps-badge{background:var(--gold);color:var(--espresso);font-size:9px;font-weight:600;padding:2px 6px;border-radius:6px}
+
+.tab-nav-wrap{background:var(--espresso-mid);border-bottom:1px solid var(--border-dark);padding:0 28px}
+.tab-nav{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{background:none;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,0.5);font-size:13px;font-family:var(--font);font-weight:400;padding:17px 20px;cursor:pointer;white-space:nowrap;transition:color 0.15s,border-color 0.15s;letter-spacing:0.2px}
+.tab-btn:hover{color:#fff}
+.tab-btn.active{color:#fff;font-weight:600;border-bottom-color:var(--gold)}
+
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.measure-wrap{max-width:860px;margin:0 auto}
+.intro-text{font-size:13px;color:#444;line-height:1.75;margin-bottom:22px;max-width:640px}
+
+.warning-card{border-radius:10px;padding:16px 20px;margin-bottom:22px;display:flex;gap:14px;align-items:flex-start}
+.warning-card.danger{background:#FEF2F2;border:1px solid #FCA5A5}
+.warning-card.caution{background:#FFFBEB;border:1px solid #FCD34D}
+.warning-card.info{background:#EFF6FF;border:1px solid #93C5FD}
+.wc-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.wc-body h4{font-size:13px;font-weight:600;margin-bottom:4px}
+.warning-card.danger .wc-body h4{color:#B91C1C}
+.warning-card.caution .wc-body h4{color:#92400E}
+.warning-card.info .wc-body h4{color:#1E40AF}
+.wc-body p{font-size:12px;line-height:1.6;color:#555}
+.warning-card.danger .wc-body p{color:#7F1D1D}
+.warning-card.caution .wc-body p{color:#78350F}
+.warning-card.info .wc-body p{color:#1E3A5F}
+
+.diagram-row{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;margin:26px 0}
+.diagram-box{background:var(--gold-mid);border:1px solid #B0EDE6;border-radius:12px;padding:20px;flex-shrink:0}
+.diagram-box svg{display:block}
+.diagram-notes{flex:1;min-width:220px}
+
+.step-list{list-style:none;counter-reset:steps;margin:0 0 22px;padding:0}
+.step-list li{counter-increment:steps;display:flex;gap:13px;align-items:flex-start;margin-bottom:14px;font-size:13px;color:#333;line-height:1.6}
+.step-list li::before{content:counter(steps);background:var(--espresso);color:var(--gold);font-size:11px;font-weight:600;min-width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-list li strong{color:#111}
+
+.pro-tips{background:var(--espresso-mid);border:0.5px solid var(--border-dark);border-radius:10px;padding:16px 20px;margin-top:22px}
+.pro-tips h4{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
+.pro-tips ul{list-style:none;margin:0;padding:0}
+.pro-tips ul li{font-size:12px;color:var(--text-dark);padding:5px 0;padding-left:14px;position:relative;line-height:1.6}
+.pro-tips ul li::before{content:"—";position:absolute;left:0;color:var(--text-faint)}
+
+.rec-card{background:var(--espresso);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:22px}
+.rec-card p{font-size:13px;color:var(--text-dark);line-height:1.6}
+.rec-card strong{color:var(--gold)}
+
+.section-divider{border:none;border-top:1px solid #e8e8e4;margin:28px 0}
+.key-chip{background:var(--espresso);color:var(--gold);font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;flex-shrink:0;margin-top:1px;letter-spacing:0.3px}
+
+.frame-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:22px}
+.frame-card{border-radius:10px;padding:16px;border:1px solid #e8e8e4;background:#fff}
+.frame-card h5{font-size:13px;font-weight:600;color:#111;margin-bottom:5px}
+.frame-card p{font-size:11px;color:#666;line-height:1.6;margin-bottom:8px}
+.frame-depth{font-size:11px;font-weight:600;color:var(--gold);background:var(--espresso);padding:3px 9px;border-radius:6px;display:inline-block}
+
+.measure-table-wrap{overflow-x:auto;margin-bottom:22px;border-radius:10px;overflow:hidden;border:1px solid #B0EDE6}
+.measure-table{width:100%;border-collapse:collapse;font-size:13px}
+.measure-table thead th{background:var(--espresso);color:var(--cream);padding:11px 18px;text-align:left;font-weight:500;font-size:11px;letter-spacing:0.5px}
+.measure-table tbody tr:nth-child(odd){background:var(--gold-mid)}
+.measure-table tbody tr:nth-child(even){background:#fff}
+.measure-table td{padding:10px 18px;border-bottom:1px solid #B0EDE6;color:#333;font-size:12px}
+.measure-table tbody tr:last-child td{border-bottom:none}
+.measure-table td:first-child{font-weight:600;color:#111}
+
+.tab-call-strip{background:var(--espresso);border-radius:12px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:32px}
+.tcs-left h4{font-size:14px;font-weight:500;color:var(--cream);margin-bottom:4px}
+.tcs-left p{font-size:12px;color:var(--text-dark);line-height:1.5}
+.tcs-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.tcs-phone{font-size:22px;font-weight:500;color:var(--gold);text-decoration:none;white-space:nowrap}
+.tcs-badge{font-size:10px;color:var(--text-faint)}
+
+@media(max-width:640px){
+  .persistent-strip{padding:10px 16px}
+  .tab-nav-wrap{padding:0 16px}
+  .diagram-row{flex-direction:column}
+  .tab-call-strip{flex-direction:column;text-align:center}
+  .tcs-right{align-items:center}
+  .page-hero h1{font-size:24px}
+}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="measure.html">How to measure</a> &rsaquo; Shutters</div>
+  <div class="hero-eyebrow">Measurement guide</div>
+  <h1>How to Measure for Plantation Shutters</h1>
+  <div class="shutters-notice">Shutters use 3&times;3 measuring rules — different from shades and blinds.</div>
+  <p class="hero-sub">Shutters require 3 width measurements and 3 height measurements per window. This guide walks you through inside mount, outside mount, depth requirements, and frame style options.</p>
+  <div class="hero-trust">
+    <div>
+      <a class="hero-phone" href="tel:6097421720">(609) 742-1720</a>
+      <div class="hero-phone-note">Call or text 24/7 &mdash; we measure for free during an in-home visit</div>
+    </div>
+  </div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;height:170px;gap:3px;overflow:hidden">
+  <img src="../images/portfolio/CIRCLE_SHUTTER.JPEG" alt="Circle arch plantation shutter" style="width:100%;height:100%;object-fit:cover;display:block">
+  <img src="../images/portfolio/IMG_3447.JPEG" alt="Plantation shutter installation" style="width:100%;height:100%;object-fit:cover;display:block">
+  <img src="../images/portfolio/IMG_3452.JPEG" alt="Shutter detail" style="width:100%;height:100%;object-fit:cover;display:block">
+</div>
+
+<div class="persistent-strip">
+  <div class="ps-text"><strong>Prefer we handle it?</strong> Free in-home measuring on every shutter order</div>
+  <div class="ps-right">
+    <a class="ps-phone" href="tel:6097421720">(609) 742-1720</a>
+    <span class="ps-badge">24/7</span>
+  </div>
+</div>
+
+<div class="tab-nav-wrap">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('inside')">Inside Mount</button>
+    <button class="tab-btn" onclick="showTab('outside')">Outside Mount</button>
+    <button class="tab-btn" onclick="showTab('lines')">Norman Lines &amp; Sizes</button>
+    <button class="tab-btn" onclick="showTab('frames')">Frame Styles &amp; Depth</button>
+    <button class="tab-btn" onclick="showTab('tips')">Tips &amp; Troubleshooting</button>
+  </div>
+</div>
+
+
+<!-- ================================================================
+     TAB 1 — INSIDE MOUNT
+================================================================ -->
+<div class="tab-panel active" id="tab-inside">
+<div class="section section-warm">
+<div class="measure-wrap">
+
+  <div class="section-label">Tab 1 of 5</div>
+  <div class="section-title" style="margin-bottom:14px">Inside Mount</div>
+
+  <p class="intro-text">An inside mount shutter sits <strong>within</strong> the window frame. It gives the cleanest, most built-in look. Because shutters are rigid panels, the frame depth requirement is higher than for shades — and the 3&times;3 measuring rule is critical to get right.</p>
+
+  <div class="warning-card danger">
+    <div class="wc-icon">&#9888;&#65039;</div>
+    <div class="wc-body">
+      <h4>Minimum depth: 1-3/4&rdquo; — but 2-1/2&rdquo; or more preferred</h4>
+      <p>Your window frame must have at least <strong>1-3/4 inches of unobstructed depth</strong> for an inside mount shutter. Norman recommends 2-1/2&rdquo;+ for most frame styles. Measure depth from the face of the window casing straight back. Handles, cranks, locks, or sensors that project into the opening must be accounted for — the shutter panel must not contact them when open or closed.</p>
+    </div>
+  </div>
+
+  <div class="warning-card caution">
+    <div class="wc-icon">&#128064;</div>
+    <div class="wc-body">
+      <h4>Always measure 3 widths &times; 3 heights — never just one</h4>
+      <p>Windows are rarely perfectly square. The opening at the top may be narrower than at the bottom. Using only one measurement and ordering to that size will result in a shutter that either doesn't fit or gaps visibly. Always take all 6 measurements and use the smallest width and smallest height.</p>
+    </div>
+  </div>
+
+  <!-- DIAGRAM -->
+  <div class="diagram-row">
+    <div class="diagram-box">
+      <!--
+        SVG: Shutter Inside Mount — 3W × 3H
+        ViewBox 260 × 270. Frame with 2-panel split and louver lines.
+        W1/W2/W3 horizontal arrows with chip labels.
+        H1 (left, outside frame), H2 (center, dashed), H3 (right, outside frame).
+      -->
+      <svg width="260" height="270" viewBox="0 0 260 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shutter inside mount: measure width at top (W1) middle (W2) bottom (W3), and height at left (H1) center (H2) right (H3)">
+        <defs>
+          <marker id="sh-al" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M8,0 L0,4 L8,8 Z" fill="#2DE0C1"/></marker>
+          <marker id="sh-ar" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2DE0C1"/></marker>
+          <marker id="sh-au" viewBox="0 0 8 8" refX="4" refY="7" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,8 L4,0 L8,8 Z" fill="#2DE0C1"/></marker>
+          <marker id="sh-ad" viewBox="0 0 8 8" refX="4" refY="1" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L4,8 L8,0 Z" fill="#2DE0C1"/></marker>
+        </defs>
+        <!-- Wall surround -->
+        <rect x="0" y="0" width="260" height="270" fill="#F9F6F0"/>
+        <!-- Window frame (outer casing) -->
+        <rect x="28" y="20" width="170" height="210" rx="2" fill="#8B7355"/>
+        <rect x="28" y="20" width="170" height="210" rx="2" fill="none" stroke="#6B5535" stroke-width="1.5"/>
+        <!-- Window opening (glass) -->
+        <rect x="48" y="38" width="130" height="174" rx="1" fill="#D9EEF7"/>
+        <!-- Frame inner edge guides (dashed reference) -->
+        <line x1="48" y1="38" x2="48" y2="212" stroke="#2DE0C1" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.4"/>
+        <line x1="178" y1="38" x2="178" y2="212" stroke="#2DE0C1" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.4"/>
+        <line x1="48" y1="38" x2="178" y2="38" stroke="#2DE0C1" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.4"/>
+        <line x1="48" y1="212" x2="178" y2="212" stroke="#2DE0C1" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.4"/>
+        <!-- Shutter center panel divider -->
+        <line x1="113" y1="38" x2="113" y2="212" stroke="#8B7355" stroke-width="2.5"/>
+        <!-- Louver lines — left panel -->
+        <line x1="50" y1="62" x2="111" y2="62" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="50" y1="80" x2="111" y2="80" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="50" y1="98" x2="111" y2="98" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="50" y1="152" x2="111" y2="152" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="50" y1="170" x2="111" y2="170" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="50" y1="188" x2="111" y2="188" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <!-- Louver lines — right panel -->
+        <line x1="115" y1="62" x2="176" y2="62" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="115" y1="80" x2="176" y2="80" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="115" y1="98" x2="176" y2="98" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="115" y1="152" x2="176" y2="152" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="115" y1="170" x2="176" y2="170" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <line x1="115" y1="188" x2="176" y2="188" stroke="#B0C8D8" stroke-width="0.6" opacity="0.8"/>
+        <!-- ── W1: top width ── -->
+        <line x1="48" y1="54" x2="178" y2="54" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-al)" marker-end="url(#sh-ar)"/>
+        <line x1="48" y1="48" x2="48" y2="60" stroke="#2DE0C1" stroke-width="1.5"/>
+        <line x1="178" y1="48" x2="178" y2="60" stroke="#2DE0C1" stroke-width="1.5"/>
+        <rect x="99" y="46" width="28" height="15" rx="3" fill="#1C1510"/>
+        <text x="113" y="57" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">W1</text>
+        <!-- ── W2: middle width ── -->
+        <line x1="48" y1="125" x2="178" y2="125" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-al)" marker-end="url(#sh-ar)"/>
+        <line x1="48" y1="119" x2="48" y2="131" stroke="#2DE0C1" stroke-width="1.5"/>
+        <line x1="178" y1="119" x2="178" y2="131" stroke="#2DE0C1" stroke-width="1.5"/>
+        <rect x="99" y="117" width="28" height="15" rx="3" fill="#1C1510"/>
+        <text x="113" y="128" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">W2</text>
+        <!-- ── W3: bottom width ── -->
+        <line x1="48" y1="196" x2="178" y2="196" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-al)" marker-end="url(#sh-ar)"/>
+        <line x1="48" y1="190" x2="48" y2="202" stroke="#2DE0C1" stroke-width="1.5"/>
+        <line x1="178" y1="190" x2="178" y2="202" stroke="#2DE0C1" stroke-width="1.5"/>
+        <rect x="99" y="188" width="28" height="15" rx="3" fill="#1C1510"/>
+        <text x="113" y="199" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">W3</text>
+        <!-- ── H1: left height (outside frame) ── -->
+        <line x1="12" y1="38" x2="12" y2="212" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-au)" marker-end="url(#sh-ad)"/>
+        <line x1="6" y1="38" x2="18" y2="38" stroke="#2DE0C1" stroke-width="1.5"/>
+        <line x1="6" y1="212" x2="18" y2="212" stroke="#2DE0C1" stroke-width="1.5"/>
+        <rect x="0" y="117" width="28" height="15" rx="3" fill="#1C1510"/>
+        <text x="14" y="128" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">H1</text>
+        <!-- ── H2: center height (dashed — through opening) ── -->
+        <line x1="113" y1="38" x2="113" y2="212" stroke="#2DE0C1" stroke-width="1.3" stroke-dasharray="5 3" opacity="0.55" marker-start="url(#sh-au)" marker-end="url(#sh-ad)"/>
+        <line x1="107" y1="38" x2="119" y2="38" stroke="#2DE0C1" stroke-width="1.2" opacity="0.55"/>
+        <line x1="107" y1="212" x2="119" y2="212" stroke="#2DE0C1" stroke-width="1.2" opacity="0.55"/>
+        <rect x="99" y="152" width="28" height="15" rx="3" fill="#1C1510"/>
+        <text x="113" y="163" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">H2</text>
+        <!-- ── H3: right height (outside frame) ── -->
+        <line x1="248" y1="38" x2="248" y2="212" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-au)" marker-end="url(#sh-ad)"/>
+        <line x1="242" y1="38" x2="254" y2="38" stroke="#2DE0C1" stroke-width="1.5"/>
+        <line x1="242" y1="212" x2="254" y2="212" stroke="#2DE0C1" stroke-width="1.5"/>
+        <rect x="234" y="117" width="28" height="15" rx="3" fill="#1C1510"/>
+        <text x="248" y="128" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">H3</text>
+        <!-- Caption -->
+        <text x="113" y="254" text-anchor="middle" fill="#7A6A58" font-size="9" font-family="system-ui,sans-serif">3 widths &amp; 3 heights — use the smallest of each</text>
+      </svg>
+    </div>
+    <div class="diagram-notes">
+      <div style="font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">3 widths &times; 3 heights</div>
+      <div style="font-size:12px;color:#444;line-height:1.7;margin-bottom:14px">
+        <strong>W1</strong> — Width at the top of the opening<br>
+        <strong>W2</strong> — Width at the middle of the opening<br>
+        <strong>W3</strong> — Width at the bottom of the opening<br><br>
+        <strong>H1</strong> — Height on the left side<br>
+        <strong>H2</strong> — Height in the center<br>
+        <strong>H3</strong> — Height on the right side
+      </div>
+      <div style="font-size:11px;color:#888;line-height:1.7;background:#fff;border:1px solid #B0EDE6;border-radius:8px;padding:10px 12px">
+        <strong style="color:#555">Order using:</strong> the <em>smallest</em> of W1/W2/W3 and the <em>smallest</em> of H1/H2/H3. Submit those numbers &mdash; we apply all deductions.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title" style="font-size:15px;margin-bottom:12px">Step-by-step</div>
+  <ol class="step-list">
+    <li><strong>Measure width at the top</strong> — place your tape measure inside the frame at the top of the opening, wall-to-wall. Record as W1 to the nearest 1/8&rdquo;.</li>
+    <li><strong>Measure width at the middle</strong> — repeat at the midpoint height of the opening. Record as W2.</li>
+    <li><strong>Measure width at the bottom</strong> — repeat near the bottom of the opening. Record as W3.</li>
+    <li><strong>Measure height on the left</strong> — top of opening to bottom, along the left side. Record as H1.</li>
+    <li><strong>Measure height in the center</strong> — same, at the center. Record as H2.</li>
+    <li><strong>Measure height on the right</strong> — same, along the right side. Record as H3.</li>
+    <li><strong>Record the smallest width</strong> — compare W1, W2, W3 and use the smallest. This is your order width.</li>
+    <li><strong>Record the smallest height</strong> — compare H1, H2, H3 and use the smallest. This is your order height.</li>
+    <li><strong>Check frame depth</strong> — measure from the face of the casing straight back. Must be at least 1-3/4&rdquo;, ideally 2-1/2&rdquo; or more.</li>
+  </ol>
+
+  <div class="rec-card">
+    <p>Norman applies a <strong>deduction automatically</strong> based on your frame style so the shutter panels close and tilt without binding against the frame. You order the exact opening size — we handle the deductions.</p>
+  </div>
+
+  <div class="pro-tips">
+    <h4>Pro tips</h4>
+    <ul>
+      <li>Always measure in inches — Norman orders in fractions to the nearest 1/8&rdquo;</li>
+      <li>Remove any existing treatments before measuring so nothing interferes</li>
+      <li>Measure each window separately — even windows that look identical are rarely the same size</li>
+      <li>If your window has a sill that projects inward, note its depth — it may affect the frame style</li>
+      <li>Window stools (the horizontal board at the bottom) need a notch cut in the frame — note this on your order</li>
+    </ul>
+  </div>
+
+  <div class="tab-call-strip">
+    <div class="tcs-left">
+      <h4>We measure for free</h4>
+      <p>Every shutter order includes a free in-home measuring visit. We take all 6 measurements per window, verify depth, confirm frame style, and handle the ordering. You don't need to measure anything.</p>
+    </div>
+    <div class="tcs-right">
+      <a class="tcs-phone" href="tel:6097421720">(609) 742-1720</a>
+      <div class="tcs-badge">Call or text 24/7</div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+<!-- ================================================================
+     TAB 2 — OUTSIDE MOUNT
+================================================================ -->
+<div class="tab-panel" id="tab-outside">
+<div class="section section-white">
+<div class="measure-wrap">
+
+  <div class="section-label">Tab 2 of 5</div>
+  <div class="section-title" style="margin-bottom:14px">Outside Mount</div>
+
+  <p class="intro-text">An <strong>outside mount</strong> shutter is attached to the wall or face of the window casing — the frame surrounds the opening from the outside rather than sitting inside it. Outside mount is required when frame depth is insufficient for inside mount, or when you want to make a window appear larger.</p>
+
+  <div class="warning-card info">
+    <div class="wc-icon">&#8505;&#65039;</div>
+    <div class="wc-body">
+      <h4>Outside mount gives you more flexibility — but placement matters</h4>
+      <p>You decide how much overlap to add on each side and how far above the opening to mount the top frame. A minimum of 1-1/2&rdquo; overlap on each side is standard. Mounting higher can make the window look taller — we'll advise on placement during the in-home visit.</p>
+    </div>
+  </div>
+
+  <div class="diagram-row">
+    <div class="diagram-box">
+      <svg width="260" height="280" viewBox="0 0 260 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Outside mount diagram showing measurements extending beyond the window frame">
+        <defs>
+          <marker id="om-al" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M8,0 L0,4 L8,8 Z" fill="#2DE0C1"/></marker>
+          <marker id="om-ar" viewBox="0 0 8 8" refX="1" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2DE0C1"/></marker>
+          <marker id="om-au" viewBox="0 0 8 8" refX="4" refY="7" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,8 L4,0 L8,8 Z" fill="#2DE0C1"/></marker>
+          <marker id="om-ad" viewBox="0 0 8 8" refX="4" refY="1" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L4,8 L8,0 Z" fill="#2DE0C1"/></marker>
+        </defs>
+        <rect x="0" y="0" width="260" height="280" fill="#F9F6F0"/>
+        <!-- Wall area -->
+        <rect x="0" y="0" width="260" height="280" fill="#E8E0D4"/>
+        <!-- Window casing -->
+        <rect x="55" y="55" width="150" height="170" rx="2" fill="#8B7355" stroke="#6B5535" stroke-width="1.5"/>
+        <!-- Glass -->
+        <rect x="73" y="73" width="114" height="134" fill="#D9EEF7"/>
+        <!-- Outside frame of shutter (larger than opening) -->
+        <rect x="34" y="34" width="192" height="212" rx="2" fill="none" stroke="#2DE0C1" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <!-- Overlap annotations -->
+        <text x="44" y="143" text-anchor="middle" font-size="9" fill="#2DE0C1" font-weight="600" transform="rotate(-90,44,143)">overlap</text>
+        <text x="216" y="143" text-anchor="middle" font-size="9" fill="#2DE0C1" font-weight="600" transform="rotate(90,216,143)">overlap</text>
+        <!-- Width arrow (outside frame) -->
+        <line x1="34" y1="260" x2="226" y2="260" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#om-al)" marker-end="url(#om-ar)"/>
+        <text x="130" y="272" text-anchor="middle" font-size="10" fill="#2DE0C1" font-weight="600">Order Width</text>
+        <!-- Height arrow -->
+        <line x1="14" y1="34" x2="14" y2="246" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#om-au)" marker-end="url(#om-ad)"/>
+        <text x="10" y="143" text-anchor="middle" font-size="10" fill="#2DE0C1" font-weight="600" transform="rotate(-90,10,143)">Order Height</text>
+      </svg>
+    </div>
+    <div class="diagram-notes">
+      <div style="font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">How to measure outside mount</div>
+      <div style="font-size:12px;color:#444;line-height:1.7;margin-bottom:12px">
+        For outside mount you provide the <strong>overall finished size</strong> of the shutter — including any overlap you want on each side and above/below.
+      </div>
+      <div style="background:#EFF6FF;border:1px solid #93C5FD;border-radius:8px;padding:10px 14px;font-size:12px;color:#1E3A5F;line-height:1.6;margin-bottom:10px">
+        <strong>Typical overlap:</strong><br>
+        1-1/2&rdquo; to 2&rdquo; on each side<br>
+        1-1/2&rdquo; above and below
+      </div>
+      <div style="font-size:12px;color:#444;line-height:1.7">Example: opening is 30&rdquo; W &times; 48&rdquo; H. Add 1-1/2&rdquo; each side = 33&rdquo; W. Add 1-1/2&rdquo; top and bottom = 51&rdquo; H.</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="font-size:15px;margin-bottom:12px">Step-by-step</div>
+  <ol class="step-list">
+    <li><strong>Measure the actual window opening</strong> — width and height of the glass area you want to cover, wall-to-wall at the casing edges.</li>
+    <li><strong>Add overlap for width</strong> — add 1-1/2&rdquo; to 2&rdquo; on each side (total 3&rdquo; to 4&rdquo; added to the width).</li>
+    <li><strong>Add overlap for height</strong> — add 1-1/2&rdquo; to 2&rdquo; above and below (total 3&rdquo; to 4&rdquo; added to the height).</li>
+    <li><strong>Check for obstructions</strong> — verify that trim, baseboards, handles, or adjacent walls don't prevent the shutter from mounting at your chosen size.</li>
+    <li><strong>Confirm mount surface</strong> — outside mount requires a flat, level surface for the frame to attach. Uneven walls or trim may need shims.</li>
+  </ol>
+
+  <div class="pro-tips">
+    <h4>Outside mount tips</h4>
+    <ul>
+      <li>More overlap = better light block but more wall coverage — 1-1/2&rdquo; is a good minimum</li>
+      <li>If mounting above window trim, mark the top and bottom of your intended frame position on the wall first</li>
+      <li>For very tall windows, consider a mid-rail divider — allows top and bottom panels to operate independently</li>
+      <li>Note any electrical outlets, switches, or vents near the window before finalizing size</li>
+    </ul>
+  </div>
+
+  <div class="tab-call-strip">
+    <div class="tcs-left">
+      <h4>Not sure which mount type?</h4>
+      <p>We'll check depth, assess your trim, and recommend the right approach during the free in-home visit. No guessing required.</p>
+    </div>
+    <div class="tcs-right">
+      <a class="tcs-phone" href="tel:6097421720">(609) 742-1720</a>
+      <div class="tcs-badge">Call or text 24/7</div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+<!-- ================================================================
+     TAB 3 — NORMAN LINES & SIZES
+================================================================ -->
+<div class="tab-panel" id="tab-lines">
+<div class="section section-warm">
+<div class="measure-wrap">
+
+  <div class="section-label">Tab 3 of 5</div>
+  <div class="section-title" style="margin-bottom:6px">Norman Shutter Lines &amp; Size Reference</div>
+  <p class="intro-text">Norman offers three shutter lines — Normandy, Woodlore, and Woodlore Plus. Your choice determines material, available colors, louver sizes, and the maximum panel width we can order. All three use the same 3&times;3 measuring method.</p>
+
+  <!-- LINE COMPARISON -->
+  <div class="section-title" style="font-size:15px;margin-bottom:12px">The three lines at a glance</div>
+  <div class="measure-table-wrap">
+    <table class="measure-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Normandy®</th>
+          <th>Woodlore®</th>
+          <th>Woodlore® Plus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Material</td>
+          <td>Hardwood (paint) or Phoenix wood (stain)</td>
+          <td>Composite wood + polypropylene coating</td>
+          <td>Composite frame + ABS louvers</td>
+        </tr>
+        <tr>
+          <td>Colors</td>
+          <td>24 paint &middot; 18 stain &middot; 6 OSMO</td>
+          <td>6 solid colors</td>
+          <td>24 solid colors</td>
+        </tr>
+        <tr>
+          <td>Louver sizes</td>
+          <td>1&frac78;&Prime; &middot; 2&frac12;&Prime; &middot; 3&Prime; &middot; 3&frac12;&Prime; &middot; 4&frac12;&Prime;</td>
+          <td>1&frac78;&Prime; &middot; 2&frac12;&Prime; &middot; 3&Prime; &middot; 3&frac12;&Prime; &middot; 4&frac12;&Prime;</td>
+          <td>1&frac78;&Prime; &middot; 2&frac12;&Prime; &middot; 3&Prime; &middot; 3&frac12;&Prime; &middot; 4&frac12;&Prime;</td>
+        </tr>
+        <tr>
+          <td>Max panel height</td>
+          <td>132&Prime;</td>
+          <td>120&Prime;</td>
+          <td>120&Prime;</td>
+        </tr>
+        <tr>
+          <td>Divider rail required</td>
+          <td>Over 78&Prime; height</td>
+          <td>Over 74&Prime; height</td>
+          <td>Over 78&Prime; height</td>
+        </tr>
+        <tr>
+          <td>InvisibleTilt&trade;</td>
+          <td>Yes (not 1&frac78;&Prime;)</td>
+          <td>Yes (not 1&frac78;&Prime;)</td>
+          <td>Yes (not 1&frac78;&Prime;)</td>
+        </tr>
+        <tr>
+          <td>Waterproof option</td>
+          <td>No</td>
+          <td>No</td>
+          <td>Yes &mdash; stainless hardware</td>
+        </tr>
+        <tr>
+          <td>Specialty shapes</td>
+          <td>Yes</td>
+          <td>Limited</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td>Best for</td>
+          <td>Premium look, widest color/size range</td>
+          <td>Budget-friendly, durable everyday use</td>
+          <td>Bathrooms, high humidity, custom colors</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- LOUVER & MAX PANEL WIDTH TABLE -->
+  <div class="section-title" style="font-size:15px;margin-bottom:6px">Maximum panel width by louver size</div>
+  <p class="intro-text" style="margin-bottom:16px">Each louver size has a structural maximum width per panel. Wide windows use multiple panels — we split the opening evenly for balanced proportions. Measure your opening width and use this table to understand how many panels you'll need.</p>
+
+  <div class="measure-table-wrap">
+    <table class="measure-table">
+      <thead>
+        <tr>
+          <th>Louver Size</th>
+          <th>Normandy® max/panel</th>
+          <th>Woodlore® max/panel</th>
+          <th>Woodlore® Plus max/panel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1&frac78;&Prime;</td><td>30&Prime;</td><td>24&Prime;</td><td>24&Prime;</td></tr>
+        <tr><td>2&frac12;&Prime;</td><td>36&Prime;</td><td>30&Prime;</td><td>36&Prime;</td></tr>
+        <tr><td>3&Prime;</td><td>36&Prime;</td><td>36&Prime;</td><td>36&Prime;</td></tr>
+        <tr><td>3&frac12;&Prime;</td><td>42&Prime;</td><td>36&Prime;</td><td>36&Prime;</td></tr>
+        <tr><td>4&frac12;&Prime;</td><td>42&Prime;</td><td>36&Prime;</td><td>36&Prime;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warning-card info">
+    <div class="wc-icon">&#8505;&#65039;</div>
+    <div class="wc-body">
+      <h4>How to use this table</h4>
+      <p>Example: your opening is 72&Prime; wide. On Normandy with 3&Prime; louvers, max panel is 36&Prime; — so you need 2 panels (2 &times; 36&Prime;). On Woodlore with 2&frac12;&Prime; louvers, max is 30&Prime; — so you need 3 panels. We size panels evenly for the best look. Odd widths are rounded to the nearest 1/8&Prime;.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- DIVIDER RAIL -->
+  <div class="section-title" style="font-size:15px;margin-bottom:12px">Divider rails</div>
+  <div class="diagram-row" style="align-items:flex-start">
+    <div class="diagram-box" style="min-width:180px">
+      <svg width="180" height="260" viewBox="0 0 180 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Shutter with divider rail splitting upper and lower louver sections">
+        <defs>
+          <marker id="dr-au" viewBox="0 0 8 8" refX="4" refY="7" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,8 L4,0 L8,8 Z" fill="#2DE0C1"/></marker>
+          <marker id="dr-ad" viewBox="0 0 8 8" refX="4" refY="1" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L4,8 L8,0 Z" fill="#2DE0C1"/></marker>
+        </defs>
+        <rect x="0" y="0" width="180" height="260" fill="#F9F6F0"/>
+        <!-- Window/wall surround -->
+        <rect x="20" y="16" width="120" height="218" rx="2" fill="#8B7355" stroke="#6B5535" stroke-width="1.5"/>
+        <!-- Glass bg -->
+        <rect x="34" y="29" width="92" height="192" fill="#D9EEF7"/>
+        <!-- Upper section louvers -->
+        <line x1="36" y1="50" x2="124" y2="50" stroke="#B0C8D8" stroke-width="0.8"/>
+        <line x1="36" y1="66" x2="124" y2="66" stroke="#B0C8D8" stroke-width="0.8"/>
+        <line x1="36" y1="82" x2="124" y2="82" stroke="#B0C8D8" stroke-width="0.8"/>
+        <line x1="36" y1="98" x2="124" y2="98" stroke="#B0C8D8" stroke-width="0.8"/>
+        <!-- Divider rail bar -->
+        <rect x="34" y="118" width="92" height="7" rx="2" fill="#8B7355" stroke="#6B5535" stroke-width="1"/>
+        <!-- Lower section louvers -->
+        <line x1="36" y1="140" x2="124" y2="140" stroke="#B0C8D8" stroke-width="0.8"/>
+        <line x1="36" y1="156" x2="124" y2="156" stroke="#B0C8D8" stroke-width="0.8"/>
+        <line x1="36" y1="172" x2="124" y2="172" stroke="#B0C8D8" stroke-width="0.8"/>
+        <line x1="36" y1="188" x2="124" y2="188" stroke="#B0C8D8" stroke-width="0.8"/>
+        <!-- Divider rail label -->
+        <line x1="130" y1="121" x2="156" y2="121" stroke="#2DE0C1" stroke-width="1.2"/>
+        <text x="158" y="124" font-size="9" fill="#2DE0C1" font-weight="600">Rail</text>
+        <!-- Height arrows -->
+        <line x1="10" y1="29" x2="10" y2="221" stroke="#2DE0C1" stroke-width="1.5" marker-start="url(#dr-au)" marker-end="url(#dr-ad)"/>
+        <!-- Height thresholds label -->
+        <text x="90" y="246" text-anchor="middle" font-size="9" fill="#7A6A58" font-family="system-ui,sans-serif">Required when H &gt; threshold</text>
+      </svg>
+    </div>
+    <div class="diagram-notes">
+      <p style="font-size:13px;color:#444;line-height:1.7;margin-bottom:14px">A divider rail is a horizontal structural bar that splits the shutter panel into an upper and lower section. Louvers above and below the rail can be tilted independently — open the top for light, close the bottom for privacy.</p>
+
+      <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:12px 16px;margin-bottom:12px">
+        <div style="font-size:11px;font-weight:700;color:#B91C1C;letter-spacing:.5px;margin-bottom:8px">DIVIDER RAIL IS REQUIRED WHEN:</div>
+        <div style="font-size:12px;color:#7F1D1D;line-height:1.8">
+          <strong>Normandy®</strong> panel height &gt; 78&Prime;<br>
+          <strong>Woodlore®</strong> panel height &gt; 74&Prime;<br>
+          <strong>Woodlore® Plus</strong> panel height &gt; 78&Prime;
+        </div>
+      </div>
+
+      <div style="font-size:12px;color:#444;line-height:1.7">
+        <strong>Standard divider rail:</strong> 3&Prime; wide<br>
+        <strong>Custom sizes:</strong> available on request<br>
+        <strong>Section length per rail:</strong> max 48&Prime;<br>
+        <strong>Horizontal T-post</strong> (double-hung windows) uses a Chamfer T-post by default; custom width up to 7&frac12;&Prime; available.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- TILT ROD / INVISIBLETILT -->
+  <div class="section-title" style="font-size:15px;margin-bottom:12px">Tilt rod options</div>
+  <div class="frame-grid">
+    <div class="frame-card">
+      <h5>Standard tilt rod <span style="font-weight:400;color:#999;font-size:11px">(center, front)</span></h5>
+      <p>A visible rod runs vertically down the center of the panel. Tilting the rod rotates all louvers simultaneously. Simple and reliable. Available on all lines and all louver sizes.</p>
+      <div class="frame-depth">No surcharge</div>
+    </div>
+    <div class="frame-card">
+      <h5>Offset tilt rod <span style="font-weight:400;color:#999;font-size:11px">(near hinge)</span></h5>
+      <p>Same function as standard tilt rod but positioned near the hinge side of the panel — out of the center sight line. Preferred when two panels meet and a centered rod would look odd.</p>
+      <div class="frame-depth">No surcharge</div>
+    </div>
+    <div class="frame-card">
+      <h5>InvisibleTilt&trade; <span style="font-weight:400;color:#999;font-size:11px">(hidden in stile)</span></h5>
+      <p>The tilt mechanism is embedded inside the stile — no visible rod at all. Clean, minimalist look. <strong>Not available with 1&frac78;&Prime; louvers.</strong> Requires 2&frac12;&Prime; or larger louver on all three Norman lines. Surcharge applies.</p>
+      <div class="frame-depth" style="background:#B91C1C;color:#fff">Surcharge &middot; Not for 1&frac78;&Prime; louvers</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- COLORS OVERVIEW -->
+  <div class="section-title" style="font-size:15px;margin-bottom:12px">Color finishes</div>
+  <div class="measure-table-wrap">
+    <table class="measure-table">
+      <thead>
+        <tr><th>Line</th><th>Finish Type</th><th>Count</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Normandy®</td><td>Paint</td><td>24 colors</td><td>3 colors carry a surcharge (Gray Black, Classic Black, Chateau Brown)</td></tr>
+        <tr><td>Normandy®</td><td>Stain</td><td>18 colors</td><td>Matte Black (246) carries a surcharge. Not available with Astragal stile.</td></tr>
+        <tr><td>Normandy®</td><td>OSMO (oil-wax)</td><td>6 colors</td><td>Natural oil-wax finish. Not available with Astragal stile.</td></tr>
+        <tr><td>Woodlore®</td><td>Solid</td><td>6 colors</td><td>No surcharge colors</td></tr>
+        <tr><td>Woodlore® Plus</td><td>Solid</td><td>24 colors</td><td>No surcharge colors; custom colors available on request</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pro-tips">
+    <h4>Which line should you choose?</h4>
+    <ul>
+      <li><strong>Want the widest panels or tallest shutters?</strong> Choose Normandy — it allows up to 42&Prime; per panel and 132&Prime; height</li>
+      <li><strong>Bathroom, laundry, or high-humidity room?</strong> Choose Woodlore Plus with the waterproof option (stainless steel hardware + full ABS construction)</li>
+      <li><strong>Want the largest color selection?</strong> Normandy has 48 options across paint, stain, and OSMO finishes</li>
+      <li><strong>Budget-conscious but want quality?</strong> Woodlore is Norman&apos;s most popular line and holds up well in everyday residential use</li>
+      <li><strong>Arch or specialty-shaped window?</strong> Normandy or Woodlore Plus — Woodlore has limited specialty shape availability</li>
+    </ul>
+  </div>
+
+  <div class="tab-call-strip">
+    <div class="tcs-left">
+      <h4>We&apos;ll bring samples to your home</h4>
+      <p>Choosing between lines is easier in person. We bring louver samples, color chips, and frame profiles to every free in-home visit so you can see the actual product next to your window and trim.</p>
+    </div>
+    <div class="tcs-right">
+      <a class="tcs-phone" href="tel:6097421720">(609) 742-1720</a>
+      <div class="tcs-badge">Call or text 24/7</div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+<!-- ================================================================
+     TAB 4 — FRAME STYLES & DEPTH
+================================================================ -->
+<div class="tab-panel" id="tab-frames">
+<div class="section section-warm">
+<div class="measure-wrap">
+
+  <div class="section-label">Tab 4 of 5</div>
+  <div class="section-title" style="margin-bottom:6px">Frame Styles &amp; Depth Requirements</div>
+  <p class="intro-text" style="margin-bottom:20px">Each Norman frame style has different depth requirements and visual profiles. The frame you choose affects both how the shutter looks and whether inside mount is possible for your window.</p>
+
+  <div class="frame-grid">
+    <div class="frame-card">
+      <h5>L-Frame</h5>
+      <p>The standard frame. The L-profile rests against the window face and the wall. Clean, minimal look. Works well on most standard windows.</p>
+      <div class="frame-depth">Min depth: 1-3/4&rdquo;</div>
+    </div>
+    <div class="frame-card">
+      <h5>Z-Frame</h5>
+      <p>A Z-shaped profile that creates a small reveal at the face of the casing. Adds dimension. Popular for a slightly more architectural look.</p>
+      <div class="frame-depth">Min depth: 2-1/4&rdquo;</div>
+    </div>
+    <div class="frame-card">
+      <h5>Deco-Frame</h5>
+      <p>A wider decorative frame with more visual presence. Best on larger windows where the frame becomes part of the design statement.</p>
+      <div class="frame-depth">Min depth: 2-1/2&rdquo;</div>
+    </div>
+    <div class="frame-card">
+      <h5>Contour-Frame</h5>
+      <p>Designed to follow arched or specialty-shaped windows. Used when the window opening is not a standard rectangle.</p>
+      <div class="frame-depth">Min depth: 2-1/2&rdquo;</div>
+    </div>
+    <div class="frame-card">
+      <h5>No Frame (Frameless)</h5>
+      <p>Shutter panels are mounted directly to the window casing without a surrounding frame. Requires a very square, flat casing.</p>
+      <div class="frame-depth">Min depth: 1-3/8&rdquo;</div>
+    </div>
+    <div class="frame-card">
+      <h5>Bypass &amp; Bifold Track</h5>
+      <p>Used for wide openings like closets or patio doors. Panels slide or fold rather than swing open.</p>
+      <div class="frame-depth">Track type determines depth</div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="section-title" style="font-size:15px;margin-bottom:12px">Depth quick reference</div>
+  <div class="measure-table-wrap">
+    <table class="measure-table">
+      <thead>
+        <tr><th>Frame Style</th><th>Min Inside Mount Depth</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>L-Frame</td><td>1-3/4&rdquo;</td><td>Most common, works on nearly all standard windows</td></tr>
+        <tr><td>Z-Frame</td><td>2-1/4&rdquo;</td><td>Slight reveal at casing face; slightly more depth needed</td></tr>
+        <tr><td>Deco-Frame</td><td>2-1/2&rdquo;</td><td>Wider visual frame; requires more depth</td></tr>
+        <tr><td>Contour-Frame</td><td>2-1/2&rdquo;</td><td>Used for arched or shaped windows</td></tr>
+        <tr><td>Frameless</td><td>1-3/8&rdquo;</td><td>Requires a very level, flat casing surface</td></tr>
+        <tr><td>Outside Mount (any frame)</td><td>No depth min</td><td>Mounts to wall surface — depth irrelevant</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warning-card caution">
+    <div class="wc-icon">&#128064;</div>
+    <div class="wc-body">
+      <h4>Check for window cranks, handles, and locks</h4>
+      <p>Casement and awning windows have cranks and handles that project inward. Even if your frame has enough depth, these obstructions may prevent the shutter from operating correctly in the closed position. We verify this on every in-home visit — don't guess.</p>
+    </div>
+  </div>
+
+  <div class="pro-tips">
+    <h4>Frame selection tips</h4>
+    <ul>
+      <li>When in doubt, L-Frame is the safest choice — minimal depth requirement and clean look</li>
+      <li>If you have existing wood trim you want to cover, discuss with us — the frame can be sized to overlap or butt against it</li>
+      <li>Norman frames are available in painted (white and colors) and wood stain finishes to match your interior</li>
+      <li>Arched windows with a shutter below and a fixed arch louver above use a specialty contour frame — these are always custom measured</li>
+    </ul>
+  </div>
+
+  <div class="tab-call-strip">
+    <div class="tcs-left">
+      <h4>Not sure which frame works for your window?</h4>
+      <p>We bring frame samples to every in-home visit and can assess depth and recommend the right style on the spot.</p>
+    </div>
+    <div class="tcs-right">
+      <a class="tcs-phone" href="tel:6097421720">(609) 742-1720</a>
+      <div class="tcs-badge">Call or text 24/7</div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+<!-- ================================================================
+     TAB 4 — TIPS & TROUBLESHOOTING
+================================================================ -->
+<div class="tab-panel" id="tab-tips">
+<div class="section section-white">
+<div class="measure-wrap">
+
+  <div class="section-label">Tab 5 of 5</div>
+  <div class="section-title" style="margin-bottom:14px">Tips &amp; Troubleshooting</div>
+
+  <p class="intro-text">Common questions and problems when measuring for shutters — and how to handle them.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:22px">
+
+    <div class="warning-card info" style="margin-bottom:0">
+      <div class="wc-icon">📐</div>
+      <div class="wc-body">
+        <h4>My three widths are all different — which do I use?</h4>
+        <p>Always use the smallest of the three. The shutter panel must fit through the narrowest point of the opening. If the difference is more than 1/2&rdquo;, the window frame may need remediation before installation — call us.</p>
+      </div>
+    </div>
+
+    <div class="warning-card info" style="margin-bottom:0">
+      <div class="wc-icon">📏</div>
+      <div class="wc-body">
+        <h4>My window has a sloped or angled sill</h4>
+        <p>Sloped sills require a sill angle cut on the bottom frame. Note the angle and direction during measuring. We handle this during the in-home visit — it's a common situation in older homes.</p>
+      </div>
+    </div>
+
+    <div class="warning-card info" style="margin-bottom:0">
+      <div class="wc-icon">🔩</div>
+      <div class="wc-body">
+        <h4>My window has a window stool (interior sill board)</h4>
+        <p>If a horizontal board (stool) sits at the bottom inside the frame, the shutter frame needs a notch or filler to sit flat. Note the stool projection depth when measuring — usually 3/4&rdquo; to 1-1/2&rdquo;.</p>
+      </div>
+    </div>
+
+    <div class="warning-card info" style="margin-bottom:0">
+      <div class="wc-icon">🪟</div>
+      <div class="wc-body">
+        <h4>My window is very wide — do I need multiple panels?</h4>
+        <p>Norman shutters over approximately 18&rdquo;–24&rdquo; per panel width typically use two or more panels per opening, hinged to each other or to the frame. Wide openings can have 3, 4, or more panels. We size the panels for even visual balance.</p>
+      </div>
+    </div>
+
+    <div class="warning-card caution" style="margin-bottom:0">
+      <div class="wc-icon">&#9888;&#65039;</div>
+      <div class="wc-body">
+        <h4>My measurements are slightly different each time I measure</h4>
+        <p>This is normal — tape measures flex. Always measure three times per dimension and use the smallest reading. For shutter orders, Norman deducts a small amount automatically so the panel fits the opening without binding.</p>
+      </div>
+    </div>
+
+    <div class="warning-card caution" style="margin-bottom:0">
+      <div class="wc-icon">&#9888;&#65039;</div>
+      <div class="wc-body">
+        <h4>My window has an existing treatment I need to remove first</h4>
+        <p>Yes — remove all existing blinds, shades, or shutters before measuring. Old hardware left in place will give you inaccurate depth readings and may interfere with the new frame installation.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pro-tips">
+    <h4>General shutter measuring rules</h4>
+    <ul>
+      <li>Norman builds shutters in fractions — record all measurements to the nearest 1/8&rdquo;</li>
+      <li>Measure every window individually — identical-looking windows in the same room are rarely the same size</li>
+      <li>Photo your window from straight-on and at an angle before your in-home visit — it helps us plan faster</li>
+      <li>If depth is right at the minimum, tell us — we may recommend an outside mount to be safe</li>
+      <li>For corner windows or windows set close together, measure the gap between frames too — clearance for hinges matters</li>
+    </ul>
+  </div>
+
+  <div class="tab-call-strip">
+    <div class="tcs-left">
+      <h4>Still not sure? We've seen it all.</h4>
+      <p>Call or text any time — odd windows, historic frames, angled sills, arched tops. We measure and install shutters on difficult windows every week.</p>
+    </div>
+    <div class="tcs-right">
+      <a class="tcs-phone" href="tel:6097421720">(609) 742-1720</a>
+      <div class="tcs-badge">Call or text 24/7</div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div>
+    <h2>Ready to order shutters or have questions?</h2>
+    <p>We measure, quote, and install Norman plantation shutters across Philadelphia and surrounding areas. Every order includes a free in-home measurement.</p>
+  </div>
+  <div class="cta-banner-btns">
+    <a class="btn-dark" href="tel:6097421720">(609) 742-1720 &middot; 24/7</a>
+    <a class="btn-outline" href="consult.html">Book free in-home measurement</a>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>
+  renderNav('How to measure');
+  renderFooter(false);
+
+  function showTab(tabId) {
+    var panels = document.querySelectorAll('.tab-panel');
+    for (var i = 0; i < panels.length; i++) {
+      panels[i].classList.remove('active');
+    }
+    var target = document.getElementById('tab-' + tabId);
+    if (target) { target.classList.add('active'); }
+
+    var btns = document.querySelectorAll('.tab-btn');
+    for (var j = 0; j < btns.length; j++) {
+      var onc = btns[j].getAttribute('onclick') || '';
+      if (onc === "showTab('" + tabId + "')") {
+        btns[j].classList.add('active');
+      } else {
+        btns[j].classList.remove('active');
+      }
+    }
+
+    var navWrap = document.querySelector('.tab-nav-wrap');
+    if (navWrap) {
+      navWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+</script>
+</body>
+</html>
+

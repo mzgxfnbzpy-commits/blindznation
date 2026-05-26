@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configure Wallace Walden Natural Woven shades — Roman shades, sliding panels, and natural draperies. Custom quote for Philadelphia area.">
+<title>Wallace Natural Woven | Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:44px 28px 40px}
+.breadcrumb{font-size:11px;color:rgba(255,255,255,.45);margin-bottom:14px}
+.breadcrumb a{color:rgba(255,255,255,.55);text-decoration:none}
+.breadcrumb a:hover{color:#93c5fd}
+.page-hero h1{font-size:32px;font-weight:500;color:var(--cream);letter-spacing:-.5px;margin-bottom:10px}
+.page-hero .sub{font-size:14px;color:rgba(255,255,255,.8);line-height:1.7;max-width:520px;margin-bottom:20px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7)}
+.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+
+.config-wrap{max-width:820px;margin:0 auto;padding:32px 20px 72px}
+
+/* Step bubbles */
+.step-hd{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.step-num-circle{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font)}
+.step-title{font-size:18px;font-weight:500;color:#111;letter-spacing:-.3px;margin:0}
+.step-block{border:1.5px solid #e8e4de;border-radius:12px;padding:20px;margin-bottom:16px;background:#fff}
+.step-block.done{border-color:#c8e6c9;background:#f9fdf9}
+.step-sub{font-size:13px;color:#666;line-height:1.6;margin-bottom:16px}
+
+/* Choice cards */
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+@media(max-width:540px){.choice-grid{grid-template-columns:1fr}}
+.choice-card{background:#fff;border:1.5px solid #e8e4de;border-radius:12px;padding:18px;cursor:pointer;transition:.15s}
+.choice-card:hover{border-color:var(--gold)}
+.choice-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.choice-card-title{font-size:14px;font-weight:600;color:#111;margin-bottom:4px}
+.choice-card-sub{font-size:11px;color:#666;line-height:1.5}
+.choice-badge{display:inline-block;background:var(--gold);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase}
+
+/* Opt pills */
+.opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.opt-pill{padding:8px 16px;border:1.5px solid #e0dbd2;border-radius:24px;font-size:12px;color:#333;cursor:pointer;transition:.15s;background:#fff;white-space:nowrap}
+.opt-pill:hover{border-color:var(--gold)}
+.opt-pill.sel{border:2px solid var(--gold);color:var(--espresso);font-weight:500;background:var(--gold-mid)}
+.opt-pill.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
+
+/* Fabric grid */
+.fabric-search{width:100%;padding:9px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;margin-bottom:12px;font-family:var(--font)}
+.fabric-search:focus{outline:none;border-color:var(--gold)}
+.fabric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;max-height:340px;overflow-y:auto;margin-bottom:12px;padding-right:4px}
+.fabric-card{border:1.5px solid #e8e4de;border-radius:8px;padding:10px 12px;cursor:pointer;transition:.15s;background:#fff}
+.fabric-card:hover{border-color:var(--gold)}
+.fabric-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.fabric-card.hidden{display:none}
+.fabric-code{font-size:10px;color:#999;margin-bottom:2px;font-family:monospace}
+.fabric-name{font-size:12px;font-weight:500;color:#222}
+.fabric-group{font-size:10px;color:var(--gold);font-weight:600;margin-top:3px}
+.fabric-flags{display:flex;gap:4px;margin-top:4px;flex-wrap:wrap}
+.fabric-flag{font-size:9px;padding:1px 5px;border-radius:4px;background:#f0ece4;color:#666}
+.fabric-flag.warn{background:#fff3cd;color:#7a5900}
+
+/* Input rows */
+.inp-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+@media(max-width:540px){.inp-row{grid-template-columns:1fr}}
+.inp-group{display:flex;flex-direction:column;gap:4px}
+.inp-label{font-size:12px;font-weight:500;color:#444}
+.inp-field{padding:9px 13px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);color:#222;background:#fff;transition:.15s}
+.inp-field:focus{outline:none;border-color:var(--gold)}
+.inp-hint{font-size:11px;color:#888;line-height:1.4}
+textarea.inp-field{resize:vertical;min-height:80px}
+
+/* Warnings & banners */
+.warn-box{background:#fff8e8;border:1px solid #f0d070;border-radius:8px;padding:12px 14px;font-size:12px;color:#7a5a00;line-height:1.6;margin-bottom:12px;display:none}
+.warn-box.show{display:block}
+.warn-box strong{color:#5a3a00}
+.info-box{background:var(--gold-mid);border:1px solid rgba(200,151,63,.25);border-radius:8px;padding:12px 14px;font-size:12px;color:#555;line-height:1.6;margin-bottom:12px}
+.info-box strong{color:var(--espresso)}
+.err-box{background:#fff0f0;border:1px solid #f5c6c6;border-radius:8px;padding:12px 14px;font-size:12px;color:#c00;line-height:1.6;margin-bottom:12px;display:none}
+.err-box.show{display:block}
+
+/* Section separator */
+.divider{height:1px;background:#e8e4de;margin:18px 0}
+
+/* Delivery opts */
+.delivery-section{background:#f0ece4;border-radius:12px;padding:18px;margin-bottom:16px}
+.delivery-opt{background:#fff;border:1.5px solid #e0dbd2;border-radius:10px;padding:13px;margin-bottom:8px;cursor:pointer;transition:.15s}
+.delivery-opt:hover{border-color:var(--gold)}
+.delivery-opt.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.delivery-opt-title{font-size:13px;font-weight:600;color:#111;margin-bottom:2px}
+.delivery-opt-sub{font-size:11px;color:#777;line-height:1.5}
+
+/* Buttons */
+.btn-row{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap}
+.btn-submit{background:var(--espresso);color:var(--cream);border:none;padding:14px 36px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font);transition:.15s}
+.btn-submit:hover{background:#2c221a}
+
+/* Success */
+.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center}
+.success-box h3{font-size:20px;margin-bottom:8px}
+
+/* Anchor scroll offset so sticky nav doesn't cover target */
+#roman-woven-choice,#roller-woven-choice{scroll-margin-top:80px}
+
+/* Sliding panel auto-calc display */
+.panel-calc{background:#f5f0e8;border-radius:8px;padding:12px 14px;font-size:12px;color:#555;margin-top:8px;display:none}
+.panel-calc strong{color:#111}
+
+/* Stack depth display */
+.stack-display{background:#f5f0e8;border-radius:8px;padding:10px 14px;font-size:12px;color:#555;margin-top:8px;display:none}
+
+/* Selected fabric summary */
+.fabric-summary{background:var(--gold-mid);border:1px solid rgba(200,151,63,.3);border-radius:8px;padding:10px 14px;font-size:12px;color:#333;margin-bottom:12px;display:none}
+.fabric-summary strong{color:var(--espresso)}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<section class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="shades.html">Shades &amp; Blinds</a> &rsaquo; Wallace Natural Woven</div>
+  <h1>Natural Woven Shades</h1>
+  <p class="sub">Roller shades and Roman shades in bamboo, grass, jute, and textured natural weaves. Five collections — Portfolio, Galaxy, Dynasty, Walden Premier, and Walden Select. Configure and get an instant quote below.</p>
+  <div class="hero-pills">
+    <span class="hero-pill hero-pill-gold">Roller Shades</span>
+    <span class="hero-pill hero-pill-gold">Roman Shades</span>
+    <span class="hero-pill">Portfolio</span>
+    <span class="hero-pill">Galaxy</span>
+    <span class="hero-pill">Dynasty</span>
+    <span class="hero-pill">Walden Premier &amp; Select</span>
+    <span class="hero-pill">Instant quote</span>
+  </div>
+</section>
+
+<div class="config-wrap">
+  <div class="success-box" id="success-box">
+    <h3>Quote request sent!</h3>
+    <p>We've received your Wallace Natural Woven configuration and will follow up within 1 business day.<br><strong>Questions? Call or text (609) 742-1720 anytime.</strong></p>
+  </div>
+
+  <!-- ── ROMAN WOVEN CHOICE ANCHOR ── -->
+  <div id="roman-woven-choice" style="height:0;overflow:hidden;margin:0;padding:0"></div>
+
+  <!-- ── STYLE CHOOSER ── -->
+  <div class="step-block" id="s0">
+    <div class="step-hd"><div class="step-num-circle" style="background:var(--gold);color:var(--espresso)">→</div><h2 class="step-title" style="font-size:16px">What type of shade?</h2></div>
+    <div class="choice-grid">
+      <div class="choice-card" id="style-roller" onclick="pickStyle('roller',this)">
+        <div class="choice-badge">Natural Woven</div>
+        <div class="choice-card-title">Roller Shade</div>
+        <div class="choice-card-sub">Portfolio Natural Woven Roller Shades — natural &amp; woven fabrics on a roller. Motorized, chain, or cordless.</div>
+      </div>
+      <div class="choice-card" id="style-roman" onclick="pickStyle('roman',this)">
+        <div class="choice-card-title">Roman Shade / Panels / Drapery</div>
+        <div class="choice-card-sub">Five collections: Portfolio, Galaxy, Dynasty, Walden Premier, and Walden Select. Roman shades, sliding panels, and natural draperies.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ROLLER WOVEN ANCHOR ── -->
+  <div id="roller-woven-choice" style="height:0;overflow:hidden;margin:0;padding:0"></div>
+
+  <!-- ── ROLLER QUOTE SECTION ── -->
+  <div id="roller-section" style="display:none">
+    <div class="info-box" style="margin-bottom:16px"><strong>Portfolio Natural Woven Roller Shades</strong> — Natural woven &amp; solar fabrics on a roller. Bamboo, grass, jute, and textured weaves. Motorized or manual.</div>
+
+    <div class="step-block">
+      <div class="step-hd"><div class="step-num-circle">1</div><h2 class="step-title">Fabric preference</h2></div>
+      <div class="step-sub">Describe the look, color, or pattern you have in mind. We&rsquo;ll match you with the best options from the collection.</div>
+      <div class="inp-row">
+        <div class="inp-group">
+          <label class="inp-label">Pattern / style preference</label>
+          <input class="inp-field" type="text" id="r-pattern" placeholder="e.g. Bamboo Natural, Seagrass Ivory, light weave…">
+        </div>
+        <div class="inp-group">
+          <label class="inp-label">Color preference</label>
+          <input class="inp-field" type="text" id="r-color" placeholder="e.g. natural, wheat, dark brown…">
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-hd"><div class="step-num-circle">2</div><h2 class="step-title">Dimensions</h2></div>
+      <div class="inp-row">
+        <div class="inp-group">
+          <label class="inp-label">Width (inches)</label>
+          <input class="inp-field" type="number" id="r-w" min="12" max="120" step="0.125" placeholder="e.g. 36">
+        </div>
+        <div class="inp-group">
+          <label class="inp-label">Height (inches)</label>
+          <input class="inp-field" type="number" id="r-h" min="12" max="108" step="0.125" placeholder="e.g. 72">
+        </div>
+      </div>
+      <div class="inp-row">
+        <div class="inp-group">
+          <label class="inp-label">Quantity</label>
+          <input class="inp-field" type="number" id="r-qty" min="1" max="50" value="1">
+        </div>
+        <div class="inp-group">
+          <label class="inp-label">Room / window label</label>
+          <input class="inp-field" type="text" id="r-room" placeholder="e.g. Living Room — Left">
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-hd"><div class="step-num-circle">3</div><h2 class="step-title">Mount &amp; control</h2></div>
+      <label class="inp-label" style="display:block;margin-bottom:6px">Mount type</label>
+      <div class="opt-row" id="r-mount-opts">
+        <div class="opt-pill" onclick="rPill(this,'r-mount-opts');rS.mount='Inside Mount'">Inside Mount</div>
+        <div class="opt-pill" onclick="rPill(this,'r-mount-opts');rS.mount='Outside Mount'">Outside Mount</div>
+      </div>
+      <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:12px">Control method</label>
+      <div class="opt-row" id="r-ctrl-opts">
+        <div class="opt-pill" onclick="rPill(this,'r-ctrl-opts');rS.ctrl='Chain'">Chain (manual)</div>
+        <div class="opt-pill" onclick="rPill(this,'r-ctrl-opts');rS.ctrl='Cordless'">Cordless</div>
+        <div class="opt-pill" onclick="rPill(this,'r-ctrl-opts');rS.ctrl='Motorized'">Motorized</div>
+      </div>
+      <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:12px">Light control / liner</label>
+      <div class="opt-row" id="r-liner-opts">
+        <div class="opt-pill" onclick="rPill(this,'r-liner-opts');rS.liner='Open weave (no liner)'">Open weave — no liner</div>
+        <div class="opt-pill" onclick="rPill(this,'r-liner-opts');rS.liner='Light filtering liner'">Light filtering liner</div>
+        <div class="opt-pill" onclick="rPill(this,'r-liner-opts');rS.liner='Privacy liner'">Privacy liner</div>
+        <div class="opt-pill" onclick="rPill(this,'r-liner-opts');rS.liner='Blackout liner'">Blackout liner</div>
+      </div>
+      <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:12px">Cassette color</label>
+      <div class="opt-row" id="r-cass-opts">
+        <div class="opt-pill" onclick="rPill(this,'r-cass-opts');rS.cass='White'">White</div>
+        <div class="opt-pill" onclick="rPill(this,'r-cass-opts');rS.cass='Cream'">Cream</div>
+        <div class="opt-pill" onclick="rPill(this,'r-cass-opts');rS.cass='Brown'">Brown</div>
+        <div class="opt-pill" onclick="rPill(this,'r-cass-opts');rS.cass='Black'">Black</div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-hd"><div class="step-num-circle">4</div><h2 class="step-title">Delivery &amp; contact</h2></div>
+      <div class="delivery-section">
+        <div class="delivery-opt" id="r-del-install" onclick="rPill(this,'r-del-grp');rS.delivery='Professional Installation'">
+          <div class="delivery-opt-title">Professional Installation (Philadelphia / South Jersey)</div>
+          <div class="delivery-opt-sub">We measure, supply, and install.</div>
+        </div>
+        <div class="delivery-opt" id="r-del-ship" onclick="rPill(this,'r-del-grp');rS.delivery='Ship to Me'">
+          <div class="delivery-opt-title">Ship to Me</div>
+          <div class="delivery-opt-sub">Shipped from manufacturer. Freight quoted at order. Tariffs and duties may apply.</div>
+        </div>
+        <div class="delivery-opt" id="r-del-pickup" onclick="rPill(this,'r-del-grp');rS.delivery='Pick Up'">
+          <div class="delivery-opt-title">Pick Up</div>
+          <div class="delivery-opt-sub">Huntingdon Valley, PA 19006 — address provided after confirmation.</div>
+        </div>
+      </div>
+      <div class="inp-row" style="margin-top:12px">
+        <div class="inp-group">
+          <label class="inp-label">Your Name *</label>
+          <input class="inp-field" type="text" id="r-name" placeholder="Full name">
+        </div>
+        <div class="inp-group">
+          <label class="inp-label">Phone / Email *</label>
+          <input class="inp-field" type="text" id="r-contact" placeholder="Best way to reach you">
+        </div>
+      </div>
+      <div class="inp-group" style="margin-bottom:12px">
+        <label class="inp-label">Project Address / City</label>
+        <input class="inp-field" type="text" id="r-address" placeholder="City, State">
+      </div>
+      <div class="inp-group" style="margin-bottom:16px">
+        <label class="inp-label">Notes / questions</label>
+        <textarea class="inp-field" id="r-notes" placeholder="Pattern preferences, timeline, any special requirements…"></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn-submit" onclick="submitRollerQuote()">Send Quote Request →</button>
+      </div>
+    </div>
+  </div><!-- /#roller-section -->
+
+  <!-- ── ROMAN SECTION (existing flow) ── -->
+  <div id="roman-section" style="display:none">
+
+  <!-- Natural material warning -->
+  <div class="info-box" style="margin-bottom:16px">
+    <strong>Natural Woven Materials:</strong> Bamboo, grass, jute, and woven fabrics have normal variation in color, texture, and weave pattern — this is characteristic of the material, not a defect. Edge binding may be required or recommended for select fabrics.
+  </div>
+
+  <!-- ── STEP 1: COLLECTION ── -->
+  <div class="step-block" id="s1">
+    <div class="step-hd"><div class="step-num-circle">1</div><h2 class="step-title">Choose a Collection</h2></div>
+    <div class="choice-grid">
+      <div class="choice-card" onclick="pickCollection('portfolio',this)">
+        <div class="choice-badge">Natural Woven</div>
+        <div class="choice-card-title">Portfolio Natural Woven Shades</div>
+        <div class="choice-card-sub">Classic natural woven Roman shades in bamboo, grass, and jute. ZH- fabric codes. Privacy and blackout liner options. Cordless, clutch, Pro Wand, and motorized. Sliding panels and draperies available.</div>
+      </div>
+      <div class="choice-card" onclick="pickCollection('galaxy',this)">
+        <div class="choice-card-title">Galaxy Natural Woven Shades</div>
+        <div class="choice-card-sub">Natural woven Roman shades with flat, waterfall, and hobbled styles. Pattern-specific motor and size limits. Privacy and blackout liner options. Roman shades only in this line.</div>
+      </div>
+    </div>
+    <div class="choice-grid" style="margin-top:0">
+      <div class="choice-card" onclick="pickCollection('premier',this)">
+        <div class="choice-badge">Premium</div>
+        <div class="choice-card-title">Walden Premier Natural Woven Shades</div>
+        <div class="choice-card-sub">47 natural woven fabrics. Narrow Twill, Wide Twill &amp; Ramie edge binding. 3 liner types. Power Lift motor available. TDBU max 60"W × 72"H. Sliding panels &amp; draperies available.</div>
+      </div>
+      <div class="choice-card" onclick="pickCollection('select',this)">
+        <div class="choice-card-title">Walden Select Natural Woven Shades</div>
+        <div class="choice-card-sub">56 natural woven fabrics with WS fabric codes. Ramie edge binding only. TDBU for all fabrics (max 70"W × 96"H). 3 liner types. Sliding panels &amp; draperies available.</div>
+      </div>
+    </div>
+    <div class="choice-grid" style="margin-top:0">
+      <div class="choice-card" onclick="window.location='dynasty-woven-woods.html'">
+        <div class="choice-card-title">Dynasty Natural Woven Shades</div>
+        <div class="choice-card-sub">48 patterns across 5 price groups. Roman shades, sliding panels, and draperies. Fabric and blackout liner options. Opens full Dynasty configurator.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: PRODUCT TYPE ── -->
+  <div class="step-block" id="s2" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">2</div><h2 class="step-title">Choose Product Type</h2></div>
+    <div class="choice-grid">
+      <div class="choice-card" onclick="pickType('roman',this)">
+        <div class="choice-card-title">Roman / Woven Shade</div>
+        <div class="choice-card-sub">Standard (6" valance) or Waterfall. Cordless, TDBU, clutch, Pro Wand, or motorized. Twin shade / movable liner available.</div>
+      </div>
+      <div class="choice-card" id="s2-panel-card" onclick="pickType('panel',this)">
+        <div class="choice-card-title">Sliding Panel</div>
+        <div class="choice-card-sub">Large window / sliding door system. 48"–192"W × 24"–120"H. Aluminum track in White or Silver. One-way or center opening.</div>
+      </div>
+    </div>
+    <div class="choice-grid" id="s2-extra-row">
+      <div class="choice-card" id="s2-drapery-card" onclick="pickType('drapery',this)">
+        <div class="choice-card-title">Natural Drapery</div>
+        <div class="choice-card-sub">Wave tape heading on included decorative traversing track. 48"–192"W × 24"–96"H. Edge binding required. One-way or split draw.</div>
+      </div>
+      <div class="choice-card" id="s2-valance-card" onclick="pickType('valance',this)">
+        <div class="choice-card-title">Valance Only</div>
+        <div class="choice-card-sub">All fabrics available. Max 96"W. Max valance length 18".</div>
+      </div>
+    </div>
+    <div class="info-box" id="s2-roman-only-note" style="display:none"><strong>Galaxy and Portfolio collections</strong> are available for Roman shades only in this configurator. For sliding panels and draperies, contact us directly.</div>
+  </div>
+
+  <!-- ── STEP 3: QUANTITY + ROOM ── -->
+  <div class="step-block" id="s3" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">3</div><h2 class="step-title">Quantity &amp; Room</h2></div>
+    <div class="inp-row">
+      <div class="inp-group">
+        <label class="inp-label">Number of units / openings</label>
+        <input class="inp-field" type="number" id="qty" min="1" max="50" value="1" oninput="S.qty=+this.value">
+      </div>
+      <div class="inp-group">
+        <label class="inp-label">Room / window label</label>
+        <input class="inp-field" type="text" id="roomLabel" placeholder="e.g. Living Room — Left Window" oninput="S.roomLabel=this.value">
+      </div>
+    </div>
+    <!-- Mount type -->
+    <label class="inp-label" style="display:block;margin-bottom:6px">Mount type</label>
+    <div class="opt-row" id="mount-opts">
+      <div class="opt-pill" onclick="pickMount('inside',this)">Inside Mount</div>
+      <div class="opt-pill" onclick="pickMount('outside',this)">Outside / Face Mount</div>
+      <div class="opt-pill" id="mount-ceiling" onclick="pickMount('ceiling',this)">Ceiling Mount</div>
+    </div>
+    <div class="warn-box" id="warn-im-deduction">Inside mount: deduct ¼" from width, ½" from height. Enter your <em>opening</em> measurements — we handle the deduction.</div>
+    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(4)">Next →</button></div>
+  </div>
+
+  <!-- ── STEP 4: DIMENSIONS ── -->
+  <div class="step-block" id="s4" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">4</div><h2 class="step-title">Dimensions</h2></div>
+    <div class="info-box" id="size-limits-info"></div>
+    <div class="inp-row">
+      <div class="inp-group">
+        <label class="inp-label">Width (inches)</label>
+        <input class="inp-field" type="number" id="w" min="1" max="192" step="0.125" placeholder="e.g. 48" oninput="dimChanged()">
+        <span class="inp-hint" id="w-hint"></span>
+      </div>
+      <div class="inp-group">
+        <label class="inp-label">Height / Length (inches)</label>
+        <input class="inp-field" type="number" id="h" min="1" max="120" step="0.125" placeholder="e.g. 72" oninput="dimChanged()">
+        <span class="inp-hint" id="h-hint"></span>
+      </div>
+    </div>
+    <div class="err-box" id="dim-err"></div>
+    <div class="warn-box show" id="warn-splice" style="display:none">Track lengths over 94" will be <strong>spliced</strong>. This is standard; splice is concealed within the track.</div>
+    <!-- Sliding panel auto-config -->
+    <div class="panel-calc" id="panel-calc">
+      <strong>Estimated panel configuration:</strong> <span id="panel-calc-text"></span>
+    </div>
+    <!-- Drapery stack depth -->
+    <div class="stack-display" id="stack-display">
+      <strong>Estimated stack depth:</strong> <span id="stack-text"></span>
+    </div>
+    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(5)">Next →</button></div>
+  </div>
+
+  <!-- ── STEP 5: FABRIC ── -->
+  <div class="step-block" id="s5" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">5</div><h2 class="step-title">Fabric / Pattern</h2></div>
+    <div class="info-box" id="fabric-collection-note"></div>
+    <input class="fabric-search" type="text" id="fabric-search" placeholder="Search fabric name or code…" oninput="filterFabrics(this.value)">
+    <div class="fabric-grid" id="fabric-grid"></div>
+    <div class="fabric-summary" id="fabric-summary"></div>
+    <div class="warn-box" id="warn-eb-required">This fabric requires edge binding. Ordering without it voids the fraying warranty.</div>
+    <div class="warn-box" id="warn-panel-ineligible">This fabric is not available for Sliding Panels in this collection.</div>
+    <div class="warn-box" id="warn-drape-ineligible">This fabric is not available for Natural Draperies in this collection.</div>
+    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(6)">Next →</button></div>
+  </div>
+
+  <!-- ── STEP 6: STYLE / OPENING ── -->
+  <div class="step-block" id="s6" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">6</div><h2 class="step-title" id="s6-title">Shade Style</h2></div>
+
+    <!-- Roman shade style -->
+    <div id="roman-style-opts" style="display:none">
+      <label class="inp-label" style="display:block;margin-bottom:6px">Shade style</label>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="pickShadeStyle('standard',this)">Standard (6" front valance)</div>
+        <div class="opt-pill" onclick="pickShadeStyle('waterfall',this)">Waterfall (no valance — shade falls from front)</div>
+        <div class="opt-pill" id="hobbled-style-pill" style="display:none" onclick="pickShadeStyle('hobbled',this)">Hobbled (permanent soft cascading folds)</div>
+      </div>
+      <div class="info-box" id="hobbled-note" style="display:none;margin-top:8px">Hobbled style: the shade has permanent soft folds sewn in. Not available with TDBU or Pro Wand.</div>
+      <div class="divider"></div>
+      <label class="inp-label" style="display:block;margin-bottom:6px">Multiple shades on one headrail?</label>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="pickMulti('none',this)">Single shade</div>
+        <div class="opt-pill" onclick="pickMulti('2on1',this)">2-on-1 headrail</div>
+        <div class="opt-pill" id="multi-3on1" onclick="pickMulti('3on1',this)">3-on-1 headrail</div>
+      </div>
+      <div class="warn-box show" id="warn-multi-width">Total width of all shades on one headrail cannot exceed 108". Common valance is made in sections if wider than 96".</div>
+      <div class="divider"></div>
+      <label class="inp-label" style="display:block;margin-bottom:6px">Twin shade / movable liner?</label>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="pickTwin(false,this)">No — single layer</div>
+        <div class="opt-pill" id="twin-yes" onclick="pickTwin(true,this)">Yes — woven shade + separate movable liner behind</div>
+      </div>
+      <div class="info-box" id="twin-info" style="display:none">Twin shade uses two controls. Controls recommended on the same side. Cordless, clutch, or remote motor controls are compatible.</div>
+    </div>
+
+    <!-- Sliding panel / drapery opening style -->
+    <div id="opening-style-opts" style="display:none">
+      <label class="inp-label" style="display:block;margin-bottom:6px">Opening direction</label>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="pickOpening('one-left',this)">One-way → Stack Left</div>
+        <div class="opt-pill" onclick="pickOpening('one-right',this)">One-way → Stack Right</div>
+        <div class="opt-pill" onclick="pickOpening('center',this)">Center Opening / Split Draw</div>
+      </div>
+      <!-- Panel-only extras -->
+      <div id="panel-extras" style="display:none">
+        <div class="divider"></div>
+        <label class="inp-label" style="display:block;margin-bottom:6px">Track color</label>
+        <div class="opt-row">
+          <div class="opt-pill" onclick="S.trackColor='white';togglePill(this,'tc')">White</div>
+          <div class="opt-pill" onclick="S.trackColor='silver';togglePill(this,'tc')">Silver</div>
+        </div>
+        <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">Bracket type</label>
+        <div class="opt-row">
+          <div class="opt-pill" onclick="S.bracketType='top';togglePill(this,'bt')">Top Mount</div>
+          <div class="opt-pill" onclick="S.bracketType='face';togglePill(this,'bt')">Face Mount</div>
+        </div>
+        <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">8" Valance board?</label>
+        <div class="opt-row">
+          <div class="opt-pill" onclick="S.valanceBoard=false;togglePill(this,'vb')">No valance board</div>
+          <div class="opt-pill" onclick="S.valanceBoard=true;togglePill(this,'vb')">Add 8" valance board</div>
+        </div>
+        <div class="panel-calc show" id="panel-calc-s6" style="display:none"><strong>Track configuration:</strong> <span id="panel-calc-s6-text"></span></div>
+      </div>
+      <!-- Drapery-only extras -->
+      <div id="drapery-extras" style="display:none">
+        <div class="divider"></div>
+        <label class="inp-label" style="display:block;margin-bottom:6px">Track profile</label>
+        <div class="opt-row">
+          <div class="opt-pill" onclick="S.trackProfile='round';togglePill(this,'tp')">Round 1⅜"</div>
+          <div class="opt-pill" onclick="S.trackProfile='rect';togglePill(this,'tp')">Rectangular 1⅜"</div>
+        </div>
+        <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">Track color</label>
+        <div class="opt-row" id="drape-track-colors">
+          <div class="opt-pill" onclick="S.trackColor='anthracite';togglePill(this,'dtc')">Anthracite</div>
+          <div class="opt-pill" onclick="S.trackColor='black';togglePill(this,'dtc')">Black</div>
+          <div class="opt-pill" onclick="S.trackColor='bronze';togglePill(this,'dtc')">Bronze</div>
+          <div class="opt-pill" onclick="S.trackColor='champagne';togglePill(this,'dtc')">Champagne</div>
+          <div class="opt-pill" onclick="S.trackColor='silver';togglePill(this,'dtc')">Silver</div>
+          <div class="opt-pill" onclick="S.trackColor='white';togglePill(this,'dtc')">White</div>
+        </div>
+        <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">Track mount</label>
+        <div class="opt-row">
+          <div class="opt-pill" onclick="S.wallOrCeiling='wall';togglePill(this,'woc')">Wall mount (adj. 3½"–5")</div>
+          <div class="opt-pill" onclick="S.wallOrCeiling='ceiling';togglePill(this,'woc')">Ceiling mount</div>
+        </div>
+        <div class="stack-display show" id="drape-stack" style="display:none"><strong>Stack depth:</strong> <span id="drape-stack-text"></span>. For split draw, divide by 2.</div>
+        <div class="info-box" style="margin-top:8px">48" color-coordinated aluminum baton included. Two batons provided for split draw. Track spliced when over 94". Edge binding required on all four sides — included in price.</div>
+      </div>
+    </div>
+
+    <!-- Valance only -->
+    <div id="valance-only-opts" style="display:none">
+      <div class="info-box">Valance max width 96". Max valance length 18". Available for all fabrics in both collections.</div>
+    </div>
+
+    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(7)">Next →</button></div>
+  </div>
+
+  <!-- ── STEP 7: CONTROL ── -->
+  <div class="step-block" id="s7" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">7</div><h2 class="step-title" id="s7-title">Control System</h2></div>
+    <div class="err-box" id="ctrl-err"></div>
+    <div id="roman-controls" style="display:none">
+      <div class="opt-row" id="ctrl-opts">
+        <div class="opt-pill" id="ctrl-cordless" onclick="pickControl('cordless',this)">Cordless</div>
+        <div class="opt-pill" id="ctrl-tdbu" onclick="pickControl('tdbu',this)">Cordless TDBU</div>
+        <div class="opt-pill" id="ctrl-twin-ctrl" style="display:none" onclick="pickControl('twin',this)">Cordless Twin (movable liner)</div>
+        <div class="opt-pill" id="ctrl-clutch" onclick="pickControl('clutch',this)">Clutch / Loop</div>
+        <div class="opt-pill" id="ctrl-prowand" onclick="pickControl('prowand',this)">Pro Wand</div>
+        <div class="opt-pill" id="ctrl-motorLI" onclick="pickControl('motorLI',this)">Remote Motor — Lithium Ion</div>
+        <div class="opt-pill" id="ctrl-motorDC" onclick="pickControl('motorDC',this)">Remote Motor — DC</div>
+        <div class="opt-pill" id="ctrl-motorAC" onclick="pickControl('motorAC',this)">Remote Motor — AC</div>
+        <div class="opt-pill" id="ctrl-motorPL" onclick="pickControl('motorPL',this)">Power Lift Motor (Premier only)</div>
+      </div>
+      <div class="info-box" id="ctrl-limit-info" style="display:none"></div>
+      <div class="warn-box" id="warn-motor-sqft">This fabric's motor square footage limit may be exceeded. Verify pattern eligibility before ordering. Power Lift motor has no sq ft restriction.</div>
+      <div class="warn-box" id="warn-tdbu-returns">Inside mount TDBU cannot be ordered with returns.</div>
+    </div>
+    <div id="panel-ctrl-note" style="display:none">
+      <div class="info-box">Sliding panels operate with a clear acrylic wand. No additional control selection needed.</div>
+    </div>
+    <div id="drape-ctrl-note" style="display:none">
+      <div class="info-box">Natural draperies operate via included 48" color-coordinated aluminum baton (two batons for split draw).</div>
+    </div>
+    <div id="valance-ctrl-note" style="display:none">
+      <div class="info-box">Valance only — no operating control.</div>
+    </div>
+    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(8)">Next →</button></div>
+  </div>
+
+  <!-- ── STEP 8: LINER ── -->
+  <div class="step-block" id="s8" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">8</div><h2 class="step-title">Liner</h2></div>
+    <div class="info-box">If lined, the valance is lined with the same liner. Light-filtering liners are the same color on both sides. Black-out liners are off-white on the street side.</div>
+    <label class="inp-label" style="display:block;margin-bottom:6px">Liner type</label>
+    <div class="opt-row">
+      <div class="opt-pill" onclick="pickLiner('none',this)">No liner</div>
+      <div class="opt-pill" onclick="pickLiner('lf',this)">Light-Filtering</div>
+      <div class="opt-pill" onclick="pickLiner('bo',this)">Black-Out</div>
+      <div class="opt-pill" id="liner-twin-opt" onclick="pickLiner('twin',this)" style="display:none">Twin / Movable Liner</div>
+    </div>
+    <div id="liner-color-section" style="display:none;margin-top:12px">
+      <label class="inp-label" style="display:block;margin-bottom:6px">Liner color</label>
+      <div class="opt-row" id="liner-color-opts"></div>
+      <div class="warn-box" id="warn-black-seam">Black light-filtering liner wider than 53" will be <strong>seamed</strong>. This is standard and does not affect function.</div>
+    </div>
+    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(9)">Next →</button></div>
+  </div>
+
+  <!-- ── STEP 9: EDGE BINDING ── -->
+  <div class="step-block" id="s9" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">9</div><h2 class="step-title">Edge Binding</h2></div>
+    <div class="info-box">Edge binding is sewn down both sides of the shade and valance (not the bottom). About ½" shows on the face. No additional charge on Roman shades. Draperies include edge binding on all four sides.</div>
+    <div class="warn-box show" id="warn-eb-req-step9">This fabric <strong>requires</strong> edge binding — ordering without it voids the fraying warranty.</div>
+    <div class="warn-box" id="warn-cutout-eb">Edge binding cannot be combined with cutouts.</div>
+    <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">Edge binding choice</label>
+    <div class="opt-row" id="eb-type-opts"></div>
+    <div id="eb-color-section" style="display:none;margin-top:10px">
+      <label class="inp-label" style="display:block;margin-bottom:6px">Edge binding color</label>
+      <div class="opt-row" id="eb-color-opts"></div>
+    </div>
+    <div class="warn-box" id="warn-edge-seal">This fabric gets <strong>Edge Seal</strong> applied if no edge binding is selected, to protect cut edges.</div>
+    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(10)">Next →</button></div>
+  </div>
+
+  <!-- ── STEP 10: SPECIAL OPTIONS ── -->
+  <div class="step-block" id="s10" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">10</div><h2 class="step-title">Special Options</h2></div>
+    <div id="roman-specials" style="display:none">
+      <label class="inp-label" style="display:block;margin-bottom:6px">Cutouts</label>
+      <div class="inp-row" style="max-width:340px">
+        <div class="inp-group">
+          <label class="inp-label">Number of cutouts</label>
+          <input class="inp-field" type="number" id="cutouts" min="0" max="10" value="0" oninput="S.cutouts=+this.value;updateCutoutWarn()">
+          <span class="inp-hint">Cutouts are not available with edge binding.</span>
+        </div>
+      </div>
+      <div class="warn-box" id="warn-cutout-conflict">Cannot combine cutouts with edge binding. Please remove edge binding or set cutouts to 0.</div>
+      <div class="divider"></div>
+      <label class="inp-label" style="display:block;margin-bottom:6px">Hold-down brackets</label>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="S.holdDown=false;togglePill(this,'hd')">No hold-down</div>
+        <div class="opt-pill" onclick="S.holdDown=true;togglePill(this,'hd')">Add hold-down brackets</div>
+      </div>
+      <div class="divider"></div>
+      <label class="inp-label" style="display:block;margin-bottom:6px">Spacer blocks</label>
+      <div class="opt-row">
+        <div class="opt-pill" onclick="S.spacer=false;togglePill(this,'sp')">No spacer blocks</div>
+        <div class="opt-pill" onclick="S.spacer=true;togglePill(this,'sp')">Add spacer blocks (for handles/cranks)</div>
+      </div>
+      <div class="divider"></div>
+      <label class="inp-label" style="display:block;margin-bottom:6px">Fabric valance returns</label>
+      <div class="opt-row">
+        <div class="opt-pill" id="ret-none" onclick="pickReturns('none',this)">No returns</div>
+        <div class="opt-pill" id="ret-add" onclick="pickReturns('yes',this)">Add fabric valance returns</div>
+      </div>
+      <div class="warn-box" id="warn-tdbu-ret">Cordless TDBU inside mount cannot be ordered with returns.</div>
+    </div>
+    <div id="panel-specials" style="display:none">
+      <div class="info-box">Sliding panels can include free-floating configuration or reverse stacking. Please note any special requirements in the notes field.</div>
+    </div>
+    <div id="valance-specials" style="display:none">
+      <div class="info-box">Valance only — no additional special options.</div>
+    </div>
+    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(11)">Next →</button></div>
+  </div>
+
+  <!-- ── STEP 11: MOTORIZATION ── -->
+  <div class="step-block" id="s11" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">11</div><h2 class="step-title">Motorization &amp; Accessories</h2></div>
+    <div id="motor-eligible" style="display:none">
+      <div class="info-box">Wallace motorization systems. <strong>Do not combine with Norman motor rules.</strong> Chargers are not included with motorized shades — specify charger quantity in notes.</div>
+      <label class="inp-label" style="display:block;margin-bottom:6px">Motor accessories (select all that apply)</label>
+      <div class="opt-row" style="flex-wrap:wrap">
+        <div class="opt-pill" onclick="toggleMotorAcc(this,'remote15ch')">15-Channel Handheld Remote</div>
+        <div class="opt-pill" onclick="toggleMotorAcc(this,'wallswitch')">15-Channel Wall Switch</div>
+        <div class="opt-pill" onclick="toggleMotorAcc(this,'prohub')">Pro Hub (Wi-Fi / Smart Home)</div>
+        <div class="opt-pill" onclick="toggleMotorAcc(this,'lipack')">Rechargeable LI Battery Pack</div>
+        <div class="opt-pill" onclick="toggleMotorAcc(this,'plugadapter')">Plug-In Power Adapter</div>
+        <div class="opt-pill" onclick="toggleMotorAcc(this,'cable6')">6" Extension Cable</div>
+        <div class="opt-pill" onclick="toggleMotorAcc(this,'cable48')">48" Extension Cable</div>
+        <div class="opt-pill" onclick="toggleMotorAcc(this,'cable96')">96" Extension Cable</div>
+        <div class="opt-pill" onclick="toggleMotorAcc(this,'charger')">Charger (16.5')</div>
+      </div>
+      <div class="info-box" style="margin-top:10px">Pro Hub connects via 2.4 GHz Wi-Fi or ethernet — works with Connector+ App, Amazon Alexa, Control4, Google Home, IFTTT, RTI, Samsung SmartThings, and Siri Shortcuts.</div>
+    </div>
+    <div id="motor-not-eligible">
+      <div class="info-box">No motorization selection needed for this configuration.</div>
+    </div>
+    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(12)">Next →</button></div>
+  </div>
+
+  <!-- ── STEP 12: DELIVERY + CONTACT ── -->
+  <div class="step-block" id="s12" style="display:none">
+    <div class="step-hd"><div class="step-num-circle">12</div><h2 class="step-title">Delivery &amp; Contact</h2></div>
+
+    <div class="delivery-section">
+      <div class="delivery-opt" id="del-install" onclick="pickDel('install')">
+        <div class="delivery-opt-title">Professional Installation (Philadelphia / South Jersey)</div>
+        <div class="delivery-opt-sub">We measure, supply, and install. Freight from manufacturer to our shop; we deliver and install.</div>
+      </div>
+      <div class="delivery-opt" id="del-ship" onclick="pickDel('ship')">
+        <div class="delivery-opt-title">Ship to Me</div>
+        <div class="delivery-opt-sub">Shipped from manufacturer. Sliding panels: $40 freight Continental US / $150 AK-HI. Natural draperies ≤94": $30 / &gt;94": $100 / AK-HI: $150. Roman shades: freight quoted at order. Tariffs and duties may apply.</div>
+      </div>
+      <div class="delivery-opt" id="del-pickup" onclick="pickDel('pickup')">
+        <div class="delivery-opt-title">Pick Up</div>
+        <div class="delivery-opt-sub">Pick up at our location. Address provided after order confirmation: Huntingdon Valley, PA 19006.</div>
+      </div>
+    </div>
+
+    <div class="inp-row">
+      <div class="inp-group">
+        <label class="inp-label">Your Name *</label>
+        <input class="inp-field" type="text" id="q-name" placeholder="Full name">
+      </div>
+      <div class="inp-group">
+        <label class="inp-label">Phone / Email *</label>
+        <input class="inp-field" type="text" id="q-contact" placeholder="Best way to reach you">
+      </div>
+    </div>
+    <div class="inp-group" style="margin-bottom:12px">
+      <label class="inp-label">Project Address / City</label>
+      <input class="inp-field" type="text" id="q-address" placeholder="City, State (or full address)">
+    </div>
+    <div class="inp-group" style="margin-bottom:16px">
+      <label class="inp-label">Notes / Special Requests</label>
+      <textarea class="inp-field" id="q-notes" placeholder="Charger quantities, cutout locations, custom color preferences, special freight instructions, etc."></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn-submit" onclick="submitQuote()">Send Quote Request →</button>
+    </div>
+  </div>
+
+  </div><!-- /#roman-section -->
+</div><!-- end config-wrap -->
+
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Natural Woven Shades');
+renderFooter(false);
+
+// Anchor-based auto-selection: #roman-woven-choice or #roller-woven-choice
+(function(){
+  var hash = window.location.hash;
+  if(hash === '#roman-woven-choice' || hash === '#roller-woven-choice') {
+    var style = hash === '#roller-woven-choice' ? 'roller' : 'roman';
+    window.addEventListener('load', function(){
+      setTimeout(function(){
+        var card = document.getElementById('style-' + style);
+        if(card) pickStyle(style, card);
+        var anchor = document.getElementById(hash.slice(1));
+        if(anchor) anchor.scrollIntoView({behavior:'smooth', block:'start'});
+      }, 250);
+    });
+  }
+})();
+
+/* ─────────────────────────────────────────────
+   PORTFOLIO NATURAL WOVEN pattern data
+   NOTE: ZH- codes and price groups need
+   verification from Portfolio PDF.
+   Sliding panels and draperies available.
+───────────────────────────────────────────── */
+const PORT_LINERS = {
+  lf: [{code:'LF-BG', name:'Beige'},{code:'LF-WH', name:'White'},{code:'LF-IV', name:'Ivory'},{code:'LF-GY', name:'Gray'}],
+  bo: [{code:'BO-BG', name:'Beige'},{code:'BO-WH', name:'White'},{code:'BO-CH', name:'Chocolate'}]
+};
+const PORT_EB_COLORS = ['Natural','Wheat','Camel','Onyx','Pearl','Stone','Ivory','White'];
+// Portfolio patterns — ZH- codes placeholder, verify from PDF
+const PORT_PATTERNS = [
+  'Abaca Grain','Antilles Natural','Bamboo Tokyo','Bontae Wheat','Briar Bone',
+  'Buckeye Flax','Burma Grass','Camelot Straw','Cebu Seagrass','Celeste Ivory',
+  'Cezanne Fog','Charade Natural','Chimayo Cotton','Cocoa Beach Tortoiseshell',
+  'Cora Natural','Delray Natural','Dune Wheat','Fuji Natural','Grassy Knoll Natural',
+  'Hatteras Natural','Java Cocoa','Kauai Natural','Kilauea Bark','Kona Coffee',
+  'La Palma Natural','Lagos Seagrass','Lahinch Dune','Lomas Natural','Maui Driftwood',
+  'Mayan Weave','Mykonos Natural','Nantucket Natural','Nassau Natural','Nepal Stone',
+  'Outer Banks Natural','Palapa Wheat','Palmetto Natural','Papyrus Natural',
+  'Pashmina Ivory','Prairie Natural','Richmond Natural','Sahara Gold','Samoa Natural',
+  'Savanna Natural','Seagrass Ivory','Serpentine Natural','Shoji Wheat','Siena Natural',
+  'Singapore Natural','Sonoma Dusk','Tivoli Wheat','Toscana Natural','Vail Natural',
+  'Waikiki Natural','Waterfall Birch','Whistler Natural','Yucatan Natural'
+].map((n,i)=>({
+  code:'ZH-'+(101+i).toString().padStart(3,'0'), // placeholder — verify from PDF
+  name:n, group:'TBD', // verify price group from PDF
+  cordlessTDBU:true, slidingPanel:true, naturalDrapery:true,
+  edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false,
+  motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''
+}));
+
+/* ─────────────────────────────────────────────
+   GALAXY WOVEN pattern data
+   NOTE: G- codes and price groups need
+   verification from Galaxy PDF.
+   Roman shades only. Hobbled style available.
+   Pattern-specific motor/size limits apply.
+───────────────────────────────────────────── */
+const GAL_LINERS = {
+  lf: [{code:'LF-BG',name:'Beige'},{code:'LF-WH',name:'White'},{code:'LF-IV',name:'Ivory'},{code:'LF-GY',name:'Gray'}],
+  bo: [{code:'BO-BG',name:'Beige'},{code:'BO-WH',name:'White'}]
+};
+const GAL_EB_COLORS = ['Natural','Wheat','Camel','Onyx','Pearl','Stone','Ivory'];
+// Galaxy patterns — G- codes placeholder, verify from Galaxy PDF
+const GAL_PATTERNS = [
+  'Arusha Wheat','Aurora Grain','Bali Gold','Borneo Bark','Bounty Natural',
+  'Canton Ivory','Capetown Natural','Caribe Natural','Ceylon Ivory','Congo Natural',
+  'Delhi Wheat','Driftwood Sandy','Dublin Natural','Essex Natural','Finca Wheat',
+  'Flores Natural','Galaxy Gold','Galaxy Natural','Galaxy White','Geneva Linen',
+  'Havana Natural','Hong Kong Natural','Honolulu Natural','Ibiza Natural','Indigo Sky',
+  'Jakarta Natural','Java Natural','Juniper Wheat','Kenya Natural','Kingston Natural',
+  'Lagos Natural','Lucerne Natural','Manila Natural','Maui Natural','Milan Linen',
+  'Monaco Linen','Nassau Wheat','Nepal Natural','Oslo Ivory','Pacific Natural',
+  'Palermo Natural','Panama Natural','Perth Natural','Porto Natural','Prague Natural',
+  'Queensland Natural','Rio Natural','Roma Natural','Samoa Wheat','Santiago Natural',
+  'Seoul Natural','Shanghai Natural','Sofia Natural','Sydney Natural','Tahiti Natural',
+  'Taipei Natural','Tokyo Natural','Trinidad Natural','Tuscan Natural','Valencia Natural'
+].map((n,i)=>({
+  code:'G-'+(101+i).toString().padStart(3,'0'), // placeholder — verify from Galaxy PDF
+  name:n, group:'TBD', // verify price group from Galaxy 2025 PDF
+  cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true,
+  edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false,
+  motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:'' // verify per-pattern from PDF
+}));
+
+/* ─────────────────────────────────────────────
+   WALDEN PREMIER pattern data
+   Source: 2026 Walden Premier PDF pages 4-5
+   All 47 patterns verified: real E-codes, groups
+   A-F, per-pattern cordlessTDBU/slidingPanel/
+   naturalDrapery flags, motor sq ft, coordEB.
+   Max width: 96" for all patterns.
+───────────────────────────────────────────── */
+const WP_LINERS = {
+  lf: [
+    {code:'NK-L', name:'Beige'}, {code:'NB-L', name:'Black', note:'seam>53'},
+    {code:'NC-L', name:'Chocolate'}, {code:'NG-L', name:'Gray'},
+    {code:'W4-L', name:'White'}
+  ],
+  bo: [
+    {code:'K3-D', name:'Beige'}, {code:'C2-D', name:'Chocolate'}, {code:'W4-D', name:'White'}
+  ]
+};
+const WP_EB = {
+  narrow: ['N3 Beige','N10 Black','N4 Chocolate','N5 Copper','N8 Cream','N6 Desert Sand','N2 Light Beige','N15 Natural','N11 Sienna','N1 White'],
+  wide:   ['W3 Beige','W10 Black','W4 Chocolate','W5 Copper','W8 Cream','W6 Desert Sand','W2 Light Beige','W15 Natural','W11 Sienna','W1 White'],
+  ramie:  ['NL4 Brown','NL35 Camel','NL88 Cedar','NL1 Chalk','NL3 Graphite','NL2 Linen','NL7 Midnight','NL6 Navy','NL71 Stone','NL33 Titanium']
+};
+// Premier patterns — verified from 2026 Walden Premier PDF pages 4-5
+const WP_PATTERNS = [
+  {code:'E-M01',  name:'Aires White',        group:'F', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-87K',  name:'Alder Oak',          group:'B', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-232W', name:'Andell Linen',       group:'F', edgeBindingRequired:true,  cordlessTDBU:true,  slidingPanel:false, naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:'Stone',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-432',  name:'Artisan Weave',      group:'E', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:false, naturalDrapery:false, motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Stone',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-416-3',name:'Aspen Ebony',        group:'C', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Brown',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-082',  name:'Aspen Walnut',       group:'C', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Brown',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-416-4',name:'Aspen White',        group:'C', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-234G', name:'Avon Dawn',          group:'F', edgeBindingRequired:true,  cordlessTDBU:true,  slidingPanel:false, naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:'Stone',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-234W', name:'Avon Lace',          group:'F', edgeBindingRequired:true,  cordlessTDBU:true,  slidingPanel:false, naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-R26',  name:'Bamboo Forest',      group:'B', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-365',  name:'Barcelona Café',     group:'B', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:54, motorMaxWithLiner:44, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-861',  name:'Bora Bora',          group:'B', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:50, motorMaxWithLiner:42, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-430',  name:'Capri Natural',      group:'D', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-233B', name:'Castelo Black',      group:'D', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:false, naturalDrapery:true,  motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Midnight', edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-233P', name:'Castelo White',      group:'D', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:false, naturalDrapery:true,  motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-389',  name:'Catalina',           group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:'Linen',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-E11',  name:'Devon Ivory',        group:'A', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:56, motorMaxWithLiner:45, coordEB:'Linen',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-E06',  name:'Devon Maple',        group:'A', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:56, motorMaxWithLiner:45, coordEB:'Cedar',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-E02',  name:'Devon White',        group:'A', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:56, motorMaxWithLiner:45, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-68N',  name:'Driftwood Natural',  group:'B', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Linen',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-055',  name:'Java Cocoa',         group:'B', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:54, motorMaxWithLiner:44, coordEB:'Brown',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-B01',  name:'Mandalay Umber',     group:'C', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:33, motorMaxWithLiner:30, coordEB:'Brown',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-801',  name:'Mykonos Dunes',      group:'F', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-390',  name:'Natural Jute',       group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-803',  name:'Navarre White Sand', group:'F', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-P01',  name:'Orleans Macaroon',   group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:false, naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-403-B',name:'Penang Oak',         group:'A', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:56, motorMaxWithLiner:45, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-427',  name:'Prairie Golden',     group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-828',  name:'Prairie Snow',       group:'F', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-428',  name:'Prairie White',      group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-M04',  name:'Remi Breeze',        group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Stone',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-233W', name:'Rhone Blanc',        group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:false, naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-001',  name:'Sakura Oregano',     group:'C', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:54, motorMaxWithLiner:44, coordEB:'Cedar',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-352',  name:'Savanna Husk',       group:'C', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-U01',  name:'Saybrook Stone',     group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:56, motorMaxWithLiner:45, coordEB:'Cedar',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-U03',  name:'Seaside White',      group:'F', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:56, motorMaxWithLiner:45, coordEB:'Stone',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-370',  name:'Sierra Sand',        group:'D', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:false, naturalDrapery:false, motorMaxNoLiner:50, motorMaxWithLiner:42, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-438',  name:'Sunshade Brown',     group:'A', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:54, motorMaxWithLiner:48, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-10H',  name:'Sunshade White',     group:'C', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-394',  name:'Tamarind Sunset',    group:'B', edgeBindingRequired:false, cordlessTDBU:false, slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Camel',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-805',  name:'Telluride Frost',    group:'D', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-806',  name:'Telluride Thunder',  group:'D', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:true,  motorMaxNoLiner:44, motorMaxWithLiner:38, coordEB:'Stone',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-2203', name:'Twyla Cascade',      group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:56, motorMaxWithLiner:45, coordEB:'Stone',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-2201', name:'Twyla Cotton',       group:'E', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:56, motorMaxWithLiner:45, coordEB:'Chalk',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-2104', name:'Zahra Dark Olive',   group:'F', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Cedar',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-2103', name:'Zahra Sepia',        group:'F', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Cedar',    edgeBindingRecommended:false, edgeSeal:false},
+  {code:'E-2102', name:'Zahra Sorbet',       group:'F', edgeBindingRequired:false, cordlessTDBU:true,  slidingPanel:true,  naturalDrapery:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Stone',    edgeBindingRecommended:false, edgeSeal:false},
+];
+
+/* ─────────────────────────────────────────────
+   WALDEN SELECT pattern data — complete from PDF
+───────────────────────────────────────────── */
+const WS_LINERS = {
+  lf: [
+    {code:'LF82', name:'Beige'}, {code:'LF10', name:'Black', note:'seam>53'},
+    {code:'LF1',  name:'Bright White'}, {code:'LF5',  name:'Ivory'},
+    {code:'LF58', name:'Gray'}, {code:'LF62', name:'Soft White'}
+  ],
+  bo: [
+    {code:'BO03', name:'Beige'}, {code:'BO09', name:'Espresso'}, {code:'BO01', name:'White'}
+  ]
+};
+const WS_EB_COLORS = ['EB09 Camel','EB78 Navy','EB15 Olive','EB10 Onyx','EB62 Pearl','EB105 Stone','EB58 Titanium','EB82 Wheat'];
+// Select patterns — complete with WS codes and price groups
+// edgeBindingRequired/Recommended/edgeSeal flags default to false — verify [1][2][3] marks from PDF pages 4-5
+const WS_PATTERNS = [
+  {code:'WS-F132',name:'Alisia Antique White',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:true,coordEB:'Wheat'},
+  {code:'WS-F111',name:'Alisia Chiffon',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-F122',name:'Alisia Morning',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-V043',name:'Andros Birch',group:'E',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-V049',name:'Andros Harbor',group:'E',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1922',name:'Antilles Mist',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1903',name:'Antilles Sand',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1905',name:'Antilles Seagrass',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-5322',name:'Cala Platinum',group:'B',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-5302',name:'Cala Titanium',group:'B',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0390',name:'Camden Natural',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0392',name:'Camden Snow',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-W116',name:'Chelsea Lace',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-W118',name:'Chelsea Taupe',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1322',name:'Como Charcoal',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1302',name:'Como Ecru',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1323',name:'Como Gray',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1388',name:'Como Midnight',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1303',name:'Como Umber',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-A904',name:'Fay Black',group:'E',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-A133',name:'Fay Snow',group:'E',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-D601',name:'Fay Tan',group:'E',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0389',name:'Halifax Natural',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0427',name:'Harbor Golden',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0428',name:'Harbor White',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-E402',name:'Lou Coconut',group:'C',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-E302',name:'Lou Contrast',group:'C',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-E401',name:'Lou Cotton',group:'C',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-E501',name:'Lou Driftwood',group:'C',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0702',name:'Malvern Chalk',group:'B',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0722',name:'Malvern Gray',group:'B',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0721',name:'Malvern Light Gray',group:'B',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0723',name:'Malvern Platinum',group:'B',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0812',name:'Metro Caramel',group:'C',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0802',name:'Metro Chalk',group:'C',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0822',name:'Metro Smoke',group:'C',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1806',name:'Montana Inkwash',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1888',name:'Montana Mineral',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1605',name:'Nantucket Sea Mist',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0522',name:'Osaka Granite',group:'B',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0502',name:'Osaka Snow',group:'B',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1516',name:'Parchment Husk',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1201',name:'Peri Mist',group:'E',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1517',name:'Portland Inkwash',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1522',name:'Portland Sky',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0602',name:'Pudong White',group:'A',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1101',name:'Selene Natural',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1102',name:'Selene White',group:'E',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0004',name:'Soft Jute Beige',group:'F',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0022',name:'Soft Jute Gray',group:'F',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0001',name:'Soft Jute White',group:'F',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-1504',name:'Sonoma Dusk',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-9077',name:'Terra Oak',group:'C',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0833',name:'Tortola Natural',group:'D',naturalDrapery:true,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0288',name:'Umbria Ink',group:'C',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0222',name:'Umbria Mist',group:'C',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''},
+  {code:'WS-0219',name:'Umbria Sepia',group:'C',naturalDrapery:false,slidingPanel:true,edgeBindingRequired:false,edgeBindingRecommended:false,edgeSeal:false,coordEB:''}
+];
+
+/* ── Control size limits ── */
+const CTRL_LIMITS = {
+  cordless: {minW:15, maxW:96, minH:18, maxH:96},
+  tdbu:     {minW:18, maxW_premier:60, maxW_select:70, minH:18, maxH_premier:72, maxH_select:96},
+  clutch:   {minW:14, maxW:96, minH:18, maxH:108},
+  prowand:  {minW:23, maxW:96, minH:18, maxH:108},
+  motorLI:  {minW:23, maxW:96, minH:18, maxH:108},
+  motorDC:  {minW:17.375, maxW:96, minH:18, maxH:108},
+  motorAC:  {minW:20, maxW:96, minH:18, maxH:108},
+  motorPL:  {minW:29.5, maxW:96, minH:18, maxH:108} // Premier only
+};
+
+/* ── Sliding panel configuration ── */
+function getPanelConfig(w, opening) {
+  if (w <= 84)  return opening==='center' ? {panels:4,channels:'3-channel or 2-channel narrow'} : {panels:3,channels:'3-channel'};
+  if (w <= 120) return opening==='center' ? {panels:4,channels:'3-channel or 2-channel narrow'} : {panels:4,channels:'4-channel'};
+  if (w <= 144) return opening==='center' ? {panels:6,channels:'3-channel'} : {panels:5,channels:'5-channel'};
+  return opening==='center' ? {panels:8,channels:'4-channel'} : {panels:5,channels:'5-channel'};
+}
+
+/* ── Drapery stack depth ── */
+const STACK_MAP = {48:13,60:16.25,72:19.5,84:22.75,96:26,108:29.25,120:32.5,132:35.75,144:39,156:42.25,168:45.5,180:48.75,192:52};
+function getStack(w) {
+  const keys = Object.keys(STACK_MAP).map(Number).sort((a,b)=>a-b);
+  for (const k of keys) if (w <= k) return STACK_MAP[k];
+  return STACK_MAP[192];
+}
+
+/* ── State ── */
+const S = {
+  collection:'', productType:'', qty:1, roomLabel:'',
+  mountType:'', w:0, h:0, pattern:null,
+  shadeStyle:'', multi:'none', twin:false,
+  openingStyle:'', trackColor:'', bracketType:'',
+  valanceBoard:false, trackProfile:'', wallOrCeiling:'',
+  control:'', liner:'none', linerColor:'',
+  ebType:'none', ebColor:'', returns:'none',
+  cutouts:0, holdDown:false, spacer:false,
+  motorAccs:[], delivery:'', warnings:[]
+};
+
+function $ (id) { return document.getElementById(id); }
+function show(id){var e=$( id);if(e)e.style.display='';}
+function hide(id){var e=$(id);if(e)e.style.display='none';}
+function showb(id){var e=$(id);if(e){e.style.display='block';}}
+function hideb(id){var e=$(id);if(e)e.style.display='none';}
+
+function togglePill(el, grp) {
+  el.closest('.opt-row,.step-block').querySelectorAll('.opt-pill').forEach(function(p){
+    if(p.dataset.group===grp||!grp) p.classList.remove('sel');
+  });
+  if(grp) el.closest('.step-block, .config-wrap').querySelectorAll('.opt-pill').forEach(function(p){
+    if(p.getAttribute('onclick')&&p.getAttribute('onclick').includes(grp)) p.classList.remove('sel');
+  });
+  el.classList.add('sel');
+}
+
+/* ── Step navigation ── */
+function goS(n) {
+  // Validate current step before moving forward
+  if(n===5 && S.productType==='drapery' && S.collection==='select') {
+    // will filter fabric grid on show
+  }
+  $('s'+n).style.display='block';
+  $('s'+n).scrollIntoView({behavior:'smooth',block:'start'});
+  if(n===5) buildFabricGrid();
+  if(n===7) updateControls();
+  if(n===8) buildLinerOpts();
+  if(n===9) buildEBOpts();
+  if(n===10) updateSpecials();
+  if(n===11) updateMotor();
+}
+
+/* ── Style picker (Roller vs Roman) ── */
+var rS = { mount:'', ctrl:'', liner:'', cass:'', delivery:'' };
+
+function pickStyle(s, el) {
+  document.querySelectorAll('#s0 .choice-card').forEach(function(c){c.classList.remove('sel');});
+  if(el) el.classList.add('sel');
+  document.getElementById('roller-section').style.display = s==='roller' ? 'block' : 'none';
+  document.getElementById('roman-section').style.display  = s==='roman'  ? 'block' : 'none';
+  if(s==='roman') setTimeout(function(){
+    document.getElementById('roman-section').scrollIntoView({behavior:'smooth',block:'start'});
+  },80);
+  if(s==='roller') setTimeout(function(){
+    document.getElementById('roller-section').scrollIntoView({behavior:'smooth',block:'start'});
+  },80);
+}
+
+function rPill(el, grpId) {
+  // For opt-pill groups, remove sel from siblings; for delivery-opt groups remove sel
+  if(grpId==='r-del-grp') {
+    ['r-del-install','r-del-ship','r-del-pickup'].forEach(function(id){
+      var e=document.getElementById(id); if(e) e.classList.remove('sel');
+    });
+    el.classList.add('sel');
+  } else {
+    var grp = document.getElementById(grpId);
+    if(grp) grp.querySelectorAll('.opt-pill').forEach(function(p){p.classList.remove('sel');});
+    el.classList.add('sel');
+  }
+}
+
+function submitRollerQuote() {
+  var name = (document.getElementById('r-name')||{}).value||'';
+  var contact = (document.getElementById('r-contact')||{}).value||'';
+  name = name.trim(); contact = contact.trim();
+  if(!name||!contact){ alert('Please enter your name and contact info.'); return; }
+
+  var body =
+    'Wallace Portfolio Natural Woven Rollers — Quote Request\n'
+    +'=====================================================\n\n'
+    +'PRODUCT: Roller Shade — Wallace Portfolio Natural Woven Rollers\n\n'
+    +'FABRIC PREFERENCE\n'
+    +'  Pattern / style : '+((document.getElementById('r-pattern')||{}).value||'—')+'\n'
+    +'  Color           : '+((document.getElementById('r-color')||{}).value||'—')+'\n\n'
+    +'DIMENSIONS\n'
+    +'  Width  : '+((document.getElementById('r-w')||{}).value||'—')+' in\n'
+    +'  Height : '+((document.getElementById('r-h')||{}).value||'—')+' in\n'
+    +'  Qty    : '+((document.getElementById('r-qty')||{}).value||'1')+'\n'
+    +'  Room   : '+((document.getElementById('r-room')||{}).value||'—')+'\n\n'
+    +'OPTIONS\n'
+    +'  Mount          : '+(rS.mount||'—')+'\n'
+    +'  Control        : '+(rS.ctrl||'—')+'\n'
+    +'  Light / liner  : '+(rS.liner||'—')+'\n'
+    +'  Cassette color : '+(rS.cass||'—')+'\n\n'
+    +'DELIVERY: '+(rS.delivery||'—')+'\n\n'
+    +'CONTACT\n'
+    +'  Name    : '+name+'\n'
+    +'  Contact : '+contact+'\n'
+    +'  Address : '+((document.getElementById('r-address')||{}).value||'—')+'\n'
+    +'  Notes   : '+((document.getElementById('r-notes')||{}).value||'—');
+
+  window.location.href = 'mailto:justin@phillyblinds.com'
+    +'?subject='+encodeURIComponent('Natural Woven Roller Shades Quote — '+name)
+    +'&body='+encodeURIComponent(body);
+
+  document.getElementById('success-box').style.display = 'block';
+  document.getElementById('roller-section').style.display = 'none';
+  document.getElementById('s0').style.display = 'none';
+}
+
+/* ── Step 1: Collection ── */
+function pickCollection(c, el) {
+  S.collection = c;
+  _s6setup = false;
+  document.querySelectorAll('#s1 .choice-card').forEach(function(cc){cc.classList.remove('sel');});
+  el.classList.add('sel');
+  // Portfolio and Galaxy are Roman-shade-only in this flow
+  var romanOnly = (c === 'portfolio' || c === 'galaxy');
+  $('s2-panel-card').style.display    = romanOnly ? 'none' : '';
+  $('s2-drapery-card').style.display  = romanOnly ? 'none' : '';
+  $('s2-valance-card').style.display  = romanOnly ? 'none' : '';
+  $('s2-extra-row').style.display     = romanOnly ? 'none' : '';
+  $('s2-roman-only-note').style.display = romanOnly ? 'block' : 'none';
+  // Galaxy supports hobbled style
+  $('hobbled-style-pill').style.display = (c === 'galaxy') ? '' : 'none';
+  $('hobbled-note').style.display = 'none';
+  $('s2').style.display='block';
+  $('s2').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ── Step 2: Product type ── */
+function pickType(t, el) {
+  S.productType = t;
+  _s6setup = false; // reset so step 6 re-renders for new product type
+  document.querySelectorAll('#s2 .choice-card').forEach(function(cc){cc.classList.remove('sel');});
+  el.classList.add('sel');
+  // Ceiling mount only for panels/draperies
+  $('mount-ceiling').style.display = (t==='roman'||t==='valance') ? 'none' : '';
+  $('s3').style.display='block';
+  $('s3').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ── Step 3: Mount ── */
+function pickMount(m, el) {
+  S.mountType = m;
+  document.querySelectorAll('#mount-opts .opt-pill').forEach(function(p){p.classList.remove('sel');});
+  el.classList.add('sel');
+  $('warn-im-deduction').style.display = m==='inside' ? 'block' : 'none';
+}
+
+/* ── Step 4: Dimensions ── */
+function dimChanged() {
+  var w = parseFloat($('w').value)||0, h = parseFloat($('h').value)||0;
+  S.w=w; S.h=h;
+  // Size limits by product type
+  var limits = {
+    roman: {minW:14,maxW:96,minH:18,maxH:108},
+    panel: {minW:48,maxW:192,minH:24,maxH:120},
+    drapery:{minW:48,maxW:192,minH:24,maxH:96},
+    valance:{minW:1,maxW:96,minH:1,maxH:18}
+  }[S.productType]||{};
+  var $si = $('size-limits-info');
+  $si.innerHTML = {
+    roman:'Max 96" W × 108" H for most controls. Cordless max 96"H. All controls min 18"H.',
+    panel:'Min 48"W × 24"H &nbsp;|&nbsp; Max 192"W × 120"H. Tracks over 94" spliced.',
+    drapery:'Min 48"W × 24"H &nbsp;|&nbsp; Max 192"W × 96"H. Tracks over 94" spliced.',
+    valance:'Max 96"W × 18"H.'
+  }[S.productType]||'';
+  var errs=[];
+  if(w&&h){
+    if(w<limits.minW) errs.push('Width below minimum '+limits.minW+'".');
+    if(w>limits.maxW) errs.push('Width exceeds maximum '+limits.maxW+'".');
+    if(h<limits.minH) errs.push('Height below minimum '+limits.minH+'".');
+    if(h>limits.maxH) errs.push('Height exceeds maximum '+limits.maxH+'".');
+  }
+  var $e=$('dim-err'); $e.textContent=errs.join(' '); $e.style.display=errs.length?'block':'none';
+  // Splice warning
+  var spliceW = (S.productType==='panel'||S.productType==='drapery') && w>94;
+  $('warn-splice').style.display = spliceW?'block':'none';
+  // Panel config
+  if(S.productType==='panel'&&w&&h&&S.openingStyle){
+    var cfg=getPanelConfig(w,S.openingStyle);
+    $('panel-calc').style.display='block';
+    $('panel-calc-text').textContent=cfg.panels+' panels, '+cfg.channels+' track';
+  } else $('panel-calc').style.display='none';
+  // Drapery stack
+  if(S.productType==='drapery'&&w){
+    var st=getStack(w);
+    $('stack-display').style.display='block';
+    $('stack-text').textContent=st+'" (÷2 for split draw)';
+  } else $('stack-display').style.display='none';
+}
+
+/* ── Step 5: Fabric grid ── */
+function getPatterns() {
+  if(S.collection==='portfolio') return PORT_PATTERNS;
+  if(S.collection==='galaxy')    return GAL_PATTERNS;
+  if(S.collection==='premier')   return WP_PATTERNS;
+  return WS_PATTERNS;
+}
+function buildFabricGrid() {
+  var patterns = getPatterns();
+  var grid = $('fabric-grid');
+  grid.innerHTML = '';
+  var collNotes = {
+    portfolio:'<strong>Wallace Portfolio Natural Woven</strong> — ZH- fabric codes. Codes require PDF verification before ordering.',
+    galaxy:'<strong>Wallace Galaxy Woven</strong> — G- fabric codes. Hobbled style available. Motor/size limits are pattern-specific — verify from PDF.',
+    premier:'<strong>Walden Premier</strong> — 47 fabrics. E- codes require PDF verification.',
+    select:'<strong>Walden Select</strong> — 56 fabrics with WS- fabric codes.'
+  };
+  $('fabric-collection-note').innerHTML = collNotes[S.collection]||'';
+  patterns.forEach(function(p){
+    var el=document.createElement('div');
+    el.className='fabric-card';
+    el.setAttribute('data-name',p.name.toLowerCase());
+    el.setAttribute('data-code',(p.code||'').toLowerCase());
+    // Check eligibility for selected product type
+    var ineligible=false;
+    if(S.productType==='panel' && p.slidingPanel===false) ineligible=true;
+    if(S.productType==='drapery' && p.naturalDrapery===false) ineligible=true;
+    if(ineligible) {el.style.opacity='0.4'; el.style.pointerEvents='none';}
+    var flags='';
+    if(p.edgeBindingRequired) flags+='<span class="fabric-flag warn">EB Required</span>';
+    if(p.edgeSeal) flags+='<span class="fabric-flag">Edge Seal</span>';
+    if(p.naturalDrapery===false) flags+='<span class="fabric-flag">No Drapery</span>';
+    el.innerHTML='<div class="fabric-code">'+p.code+'</div>'
+      +'<div class="fabric-name">'+p.name+'</div>'
+      +'<div class="fabric-group">Group '+(p.group||'?')+'</div>'
+      +(flags?'<div class="fabric-flags">'+flags+'</div>':'');
+    el.onclick=function(){selectFabric(p,this);};
+    grid.appendChild(el);
+  });
+}
+function filterFabrics(q) {
+  q=q.toLowerCase();
+  document.querySelectorAll('.fabric-card').forEach(function(c){
+    var match=!q||c.getAttribute('data-name').includes(q)||c.getAttribute('data-code').includes(q);
+    c.classList.toggle('hidden',!match);
+  });
+}
+function selectFabric(p, el) {
+  document.querySelectorAll('.fabric-card').forEach(function(c){c.classList.remove('sel');});
+  el.classList.add('sel');
+  S.pattern=p;
+  var $fs=$('fabric-summary');
+  $fs.style.display='block';
+  $fs.innerHTML='<strong>'+p.name+'</strong> &nbsp;|&nbsp; '+p.code+' &nbsp;|&nbsp; Group '+(p.group||'?')
+    +(p.coordEB?'<br>Coordinated edge binding: '+p.coordEB:'');
+  $('warn-eb-required').style.display=p.edgeBindingRequired?'block':'none';
+  $('warn-panel-ineligible').style.display=(S.productType==='panel'&&p.slidingPanel===false)?'block':'none';
+  $('warn-drape-ineligible').style.display=(S.productType==='drapery'&&p.naturalDrapery===false)?'block':'none';
+}
+
+/* ── Step 6: Style ── */
+function pickShadeStyle(st, el) {
+  S.shadeStyle=st;
+  document.querySelectorAll('#roman-style-opts .opt-row:first-of-type .opt-pill').forEach(function(p){p.classList.remove('sel');});
+  el.classList.add('sel');
+  // Waterfall and Hobbled: block 3-on-1, TDBU, Pro Wand
+  if(st==='waterfall'||st==='hobbled'){
+    $('multi-3on1').classList.add('disabled');
+    $('twin-yes').classList.add('disabled');
+  } else {
+    $('multi-3on1').classList.remove('disabled');
+    $('twin-yes').classList.remove('disabled');
+  }
+  $('hobbled-note').style.display = st==='hobbled' ? 'block' : 'none';
+}
+function pickMulti(m, el) {
+  S.multi=m;
+  document.querySelectorAll('#roman-style-opts .opt-row:nth-of-type(2) .opt-pill').forEach(function(p){p.classList.remove('sel');});
+  el.classList.add('sel');
+  $('warn-multi-width').style.display=(m==='2on1'||m==='3on1')?'block':'none';
+  if(m==='3on1') $('twin-yes').classList.add('disabled');
+  else if(S.shadeStyle!=='waterfall') $('twin-yes').classList.remove('disabled');
+}
+function pickTwin(yes, el) {
+  S.twin=yes;
+  document.querySelectorAll('#roman-style-opts .opt-row:nth-of-type(3) .opt-pill').forEach(function(p){p.classList.remove('sel');});
+  el.classList.add('sel');
+  $('twin-info').style.display=yes?'block':'none';
+}
+function pickOpening(o, el) {
+  S.openingStyle=o;
+  document.querySelectorAll('#opening-style-opts .opt-row .opt-pill').forEach(function(p){p.classList.remove('sel');});
+  el.classList.add('sel');
+  // Update panel config display
+  if(S.productType==='panel'&&S.w){
+    var cfg=getPanelConfig(S.w,o);
+    $('panel-calc-s6').style.display='block';
+    $('panel-calc-s6-text').textContent=cfg.panels+' panels, '+cfg.channels+' track';
+  }
+  // Drapery stack
+  if(S.productType==='drapery'&&S.w){
+    var st=getStack(S.w);
+    $('drape-stack').style.display='block';
+    $('drape-stack-text').textContent=st+'" '+(o==='center'?'(÷2 for split draw ≈ '+Math.round(st/2*4)/4+'")':'');
+  }
+}
+
+// Show correct style section in step 6
+(function setupS6(){
+  document.addEventListener('DOMContentLoaded',function(){});
+})();
+
+// Called when step 6 shown
+var _s6setup=false;
+var _origGoS=goS;
+goS=function(n){
+  _origGoS(n);
+  if(n===6&&!_s6setup){
+    _s6setup=true;
+    hideb('roman-style-opts'); hideb('opening-style-opts'); hideb('valance-only-opts');
+    hideb('panel-extras'); hideb('drapery-extras');
+    if(S.productType==='roman'){
+      $('s6-title').textContent='Shade Style';
+      showb('roman-style-opts');
+    } else if(S.productType==='panel'){
+      $('s6-title').textContent='Panel Opening';
+      showb('opening-style-opts');
+      showb('panel-extras');
+    } else if(S.productType==='drapery'){
+      $('s6-title').textContent='Drapery Opening';
+      showb('opening-style-opts');
+      showb('drapery-extras');
+    } else {
+      $('s6-title').textContent='Valance Options';
+      showb('valance-only-opts');
+    }
+  }
+};
+
+/* ── Step 7: Controls ── */
+function updateControls() {
+  hideb('roman-controls'); hideb('panel-ctrl-note'); hideb('drape-ctrl-note'); hideb('valance-ctrl-note');
+  if(S.productType==='roman'){
+    showb('roman-controls');
+    // Power Lift: Premier only
+    $('ctrl-motorPL').style.display = S.collection==='premier' ? '' : 'none';
+    // TDBU: disabled if waterfall, hobbled, twin, 3on1
+    var tdbBlock=(S.shadeStyle==='waterfall'||S.shadeStyle==='hobbled'||S.twin||S.multi==='3on1');
+    $('ctrl-tdbu').classList.toggle('disabled', tdbBlock);
+    // Pro Wand: disabled if waterfall, hobbled, or twin
+    var pwBlock=(S.shadeStyle==='waterfall'||S.shadeStyle==='hobbled'||S.twin);
+    $('ctrl-prowand').classList.toggle('disabled', pwBlock);
+    // Twin control option (show only if twin shade enabled)
+    $('ctrl-twin-ctrl').style.display = S.twin ? '' : 'none';
+  } else if(S.productType==='panel') showb('panel-ctrl-note');
+  else if(S.productType==='drapery') showb('drape-ctrl-note');
+  else showb('valance-ctrl-note');
+}
+function pickControl(c, el) {
+  S.control=c;
+  document.querySelectorAll('#ctrl-opts .opt-pill').forEach(function(p){p.classList.remove('sel');});
+  el.classList.add('sel');
+  var w=S.w, h=S.h, lm=CTRL_LIMITS[c]||{};
+  var errs=[];
+  var isTdbu = c==='tdbu';
+  var isPremier = S.collection==='premier';
+  var maxW = isTdbu ? (S.collection==='select'?lm.maxW_select:lm.maxW_premier) : lm.maxW;
+  var maxH = isTdbu ? (isPremier?lm.maxH_premier:lm.maxH_select) : lm.maxH;
+  if(w&&lm.minW&&w<lm.minW) errs.push('Min width for '+c+' is '+lm.minW+'".');
+  if(w&&maxW&&w>maxW) errs.push('Max width for '+c+' is '+maxW+'".');
+  if(h&&lm.minH&&h<lm.minH) errs.push('Min height for '+c+' is '+lm.minH+'".');
+  if(h&&maxH&&h>maxH) errs.push('Max height for '+c+' is '+maxH+'" for '+S.collection+' TDBU.');
+  var $ce=$('ctrl-err'); $ce.innerHTML=errs.join('<br>'); $ce.style.display=errs.length?'block':'none';
+  // Limit info
+  var $cli=$('ctrl-limit-info');
+  if(c&&lm.minW){
+    var dispMaxW = isTdbu?(S.collection==='select'?lm.maxW_select:lm.maxW_premier):lm.maxW;
+    var dispMaxH = isTdbu?(isPremier?lm.maxH_premier:lm.maxH_select):lm.maxH;
+    $cli.innerHTML='<strong>'+c.replace('motor','Remote Motor — ')+':</strong> Min '+lm.minW+'"W × '+lm.minH+'"H &nbsp;|&nbsp; Max '+dispMaxW+'"W × '+dispMaxH+'"H.';
+    $cli.style.display='block';
+  } else $cli.style.display='none';
+  // Motor sqft warning (Premier pattern-specific)
+  var motorTypes=['motorLI','motorDC','motorAC','prowand'];
+  if(motorTypes.includes(c)&&S.collection==='premier'&&S.pattern&&w&&h){
+    var sqft=w*h/144;
+    var limit=S.liner==='none'?(S.pattern.motorMaxNoLiner||64):(S.pattern.motorMaxWithLiner||64);
+    $('warn-motor-sqft').style.display=(sqft>limit&&c!=='motorPL')?'block':'none';
+  } else $('warn-motor-sqft').style.display='none';
+  // TDBU inside mount + returns warning
+  $('warn-tdbu-returns').style.display=(c==='tdbu'&&S.mountType==='inside')?'block':'none';
+}
+
+/* ── Step 8: Liners ── */
+function getLiners() {
+  if(S.collection==='portfolio') return PORT_LINERS;
+  if(S.collection==='galaxy')    return GAL_LINERS;
+  if(S.collection==='premier')   return WP_LINERS;
+  return WS_LINERS;
+}
+function buildLinerOpts() {
+  $('liner-twin-opt').style.display = S.twin ? '' : 'none';
+}
+function pickLiner(type, el) {
+  S.liner=type;
+  document.querySelectorAll('#s8 .opt-row .opt-pill').forEach(function(p){p.classList.remove('sel');});
+  el.classList.add('sel');
+  if(type==='none'||type==='twin'){
+    hideb('liner-color-section');
+  } else {
+    showb('liner-color-section');
+    var liners = getLiners()[type]||[];
+    var $opts=$('liner-color-opts'); $opts.innerHTML='';
+    liners.forEach(function(l){
+      var p=document.createElement('div');
+      p.className='opt-pill';
+      p.textContent=l.name+' ('+l.code+')';
+      p.onclick=function(){
+        S.linerColor=l.code+' '+l.name;
+        document.querySelectorAll('#liner-color-opts .opt-pill').forEach(function(x){x.classList.remove('sel');});
+        this.classList.add('sel');
+        $('warn-black-seam').style.display=(l.note==='seam>53'&&S.w>53)?'block':'none';
+      };
+      $opts.appendChild(p);
+    });
+  }
+}
+
+/* ── Step 9: Edge binding ── */
+function buildEBOpts() {
+  var $eto=$('eb-type-opts'); $eto.innerHTML='';
+  $('warn-eb-req-step9').style.display=(S.pattern&&S.pattern.edgeBindingRequired)?'block':'none';
+  $('warn-edge-seal').style.display='none';
+
+  function addEBType(label, key) {
+    var p=document.createElement('div');
+    p.className='opt-pill';
+    if(S.pattern&&S.pattern.edgeBindingRequired&&key==='none') p.classList.add('disabled');
+    p.textContent=label;
+    p.onclick=function(){
+      S.ebType=key;
+      document.querySelectorAll('#eb-type-opts .opt-pill').forEach(function(x){x.classList.remove('sel');});
+      this.classList.add('sel');
+      if(key==='none'){
+        hideb('eb-color-section');
+        $('warn-edge-seal').style.display=(S.pattern&&S.pattern.edgeSeal)?'block':'none';
+        $('warn-cutout-eb').style.display='none';
+      } else {
+        showb('eb-color-section');
+        $('warn-edge-seal').style.display='none';
+        buildEBColors(key);
+        $('warn-cutout-eb').style.display=(S.cutouts>0)?'block':'none';
+      }
+    };
+    $eto.appendChild(p);
+  }
+
+  addEBType('No edge binding','none');
+  if(S.collection==='premier'){
+    addEBType('Narrow Twill Tape','narrow');
+    addEBType('Wide Twill Tape','wide');
+    addEBType('Ramie Binding','ramie');
+  } else {
+    addEBType('Ramie Binding','ramie');
+  }
+}
+function getEBColors(type) {
+  if(S.collection==='select') return WS_EB_COLORS;
+  if(S.collection==='portfolio') return PORT_EB_COLORS;
+  if(S.collection==='galaxy') return GAL_EB_COLORS;
+  return WP_EB[type]||[];
+}
+function buildEBColors(type) {
+  var colors = getEBColors(type);
+  var $ec=$('eb-color-opts'); $ec.innerHTML='';
+  colors.forEach(function(c){
+    var p=document.createElement('div');
+    p.className='opt-pill'; p.textContent=c;
+    p.onclick=function(){
+      S.ebColor=c;
+      document.querySelectorAll('#eb-color-opts .opt-pill').forEach(function(x){x.classList.remove('sel');});
+      this.classList.add('sel');
+    };
+    $ec.appendChild(p);
+  });
+}
+
+/* ── Step 10: Specials ── */
+function updateSpecials() {
+  hideb('roman-specials'); hideb('panel-specials'); hideb('valance-specials');
+  if(S.productType==='roman') showb('roman-specials');
+  else if(S.productType==='panel') showb('panel-specials');
+  else showb('valance-specials');
+}
+function pickReturns(r, el) {
+  S.returns=r;
+  document.querySelectorAll('#s10 .opt-row .opt-pill[id^="ret"]').forEach(function(p){p.classList.remove('sel');});
+  el.classList.add('sel');
+  $('warn-tdbu-ret').style.display=(r==='yes'&&S.control==='tdbu'&&S.mountType==='inside')?'block':'none';
+}
+function updateCutoutWarn() {
+  $('warn-cutout-conflict').style.display=(S.cutouts>0&&S.ebType!=='none')?'block':'none';
+  $('warn-cutout-eb').style.display=(S.cutouts>0&&S.ebType!=='none')?'block':'none';
+}
+
+/* ── Step 11: Motor ── */
+function updateMotor() {
+  var motors=['motorLI','motorDC','motorAC','motorPL','prowand'];
+  if(motors.includes(S.control)){
+    showb('motor-eligible');
+    hideb('motor-not-eligible');
+  } else {
+    hideb('motor-eligible');
+    showb('motor-not-eligible');
+  }
+}
+function toggleMotorAcc(el, key) {
+  el.classList.toggle('sel');
+  var idx=S.motorAccs.indexOf(key);
+  if(idx>=0) S.motorAccs.splice(idx,1); else S.motorAccs.push(key);
+}
+
+/* ── Delivery ── */
+function pickDel(opt) {
+  S.delivery=opt;
+  ['install','ship','pickup'].forEach(function(o){
+    $('del-'+o).classList.toggle('sel', o===opt);
+  });
+}
+
+/* ── Submit ── */
+function submitQuote() {
+  var name=$('q-name').value.trim(), contact=$('q-contact').value.trim();
+  if(!name||!contact){alert('Please enter your name and contact info.'); return;}
+  if(!S.pattern){alert('Please select a fabric pattern.'); return;}
+
+  var collMap = {portfolio:'Wallace Portfolio Natural Woven',galaxy:'Wallace Galaxy Woven',premier:'Walden Premier',select:'Walden Select'};
+  var coll = collMap[S.collection]||S.collection;
+  var prod = {roman:'Roman Shade',panel:'Sliding Panel',drapery:'Natural Drapery',valance:'Valance Only'}[S.productType]||'';
+  var bodyLines=[
+    '=== WALLACE NATURAL WOVEN QUOTE REQUEST ===',
+    '',
+    'CONTACT',
+    'Name: '+name,
+    'Phone/Email: '+contact,
+    'Location: '+($('q-address').value||'Not provided'),
+    '',
+    'PRODUCT CONFIGURATION',
+    'Collection: Wallace '+coll,
+    'Product Type: '+prod,
+    'Room / Label: '+(S.roomLabel||'Not specified'),
+    'Quantity: '+S.qty,
+    'Mount Type: '+S.mountType,
+    'Width: '+S.w+'"',
+    'Height: '+S.h+'"',
+    '',
+    'FABRIC',
+    'Fabric Name: '+S.pattern.name,
+    'Fabric Code: '+S.pattern.code,
+    'Price Group: '+(S.pattern.group||'TBD — verify from PDF'),
+    'Natural Drapery Eligible: '+(S.pattern.naturalDrapery!==false?'Yes':'No'),
+    'Sliding Panel Eligible: '+(S.pattern.slidingPanel!==false?'Yes':'No'),
+    '',
+    'STYLE & OPTIONS',
+    'Shade Style: '+(S.shadeStyle||prod),
+    'Multi-Shade Headrail: '+(S.multi==='none'?'Single':S.multi),
+    'Twin Shade / Movable Liner: '+(S.twin?'Yes':'No'),
+    'Opening Style: '+(S.openingStyle||'N/A'),
+    'Track Color: '+(S.trackColor||'N/A'),
+    'Track Profile: '+(S.trackProfile||'N/A'),
+    'Wall or Ceiling Mount: '+(S.wallOrCeiling||S.mountType),
+    'Valance Board: '+(S.valanceBoard?'Yes':'No'),
+    '',
+    'CONTROL',
+    'Control System: '+(S.control||'N/A'),
+    '',
+    'LINER',
+    'Liner Type: '+S.liner,
+    'Liner Color: '+(S.linerColor||'N/A'),
+    '',
+    'EDGE BINDING',
+    'Edge Binding Type: '+S.ebType,
+    'Edge Binding Color: '+(S.ebColor||'N/A'),
+    '',
+    'SPECIAL OPTIONS',
+    'Cutouts: '+S.cutouts,
+    'Hold-Down Brackets: '+(S.holdDown?'Yes':'No'),
+    'Spacer Blocks: '+(S.spacer?'Yes':'No'),
+    'Fabric Valance Returns: '+(S.returns==='yes'?'Yes':'No'),
+    '',
+    'MOTOR / ACCESSORIES',
+    'Motor: '+(S.control.includes('motor')||S.control==='prowand'?S.control:'None'),
+    'Motor Accessories: '+(S.motorAccs.length?S.motorAccs.join(', '):'None'),
+    '',
+    'DELIVERY / SERVICE',
+    'Preference: '+(S.delivery==='install'?'Professional Installation':S.delivery==='ship'?'Ship to Customer':'Pick Up'),
+    '',
+    'NOTES',
+    $('q-notes').value||'None',
+    '',
+    '--- Sent from phillyblinds.com/pages/wallace-woven.html ---'
+  ];
+
+  var subj='Wallace '+coll+' Quote — '+prod+' — '+name;
+  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(bodyLines.join('\n'));
+
+  $('success-box').style.display='block';
+  $('success-box').scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.step-block').forEach(function(b){b.style.display='none';});
+}
+</script>
+</body>
+</html>

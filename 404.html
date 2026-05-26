@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Page Not Found | Philly Blinds</title>
+<link rel="stylesheet" href="css/global.css">
+<style>
+.notfound-wrap{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:60px 28px;text-align:center}
+.notfound-inner{max-width:500px}
+.notfound-code{font-size:72px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:12px;opacity:0.8}
+.notfound-title{font-size:24px;font-weight:600;color:var(--espresso);margin-bottom:14px}
+.notfound-sub{font-size:15px;color:#666;line-height:1.7;margin-bottom:32px}
+.notfound-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.notfound-links a{padding:11px 22px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;transition:opacity 0.15s}
+.notfound-links .btn-primary{background:var(--espresso);color:var(--cream)}
+.notfound-links .btn-secondary{background:var(--gold-mid);color:var(--espresso);border:1px solid #E8DCC8}
+.notfound-links a:hover{opacity:0.85}
+.notfound-phone{margin-top:28px;font-size:13px;color:#888}
+.notfound-phone a{color:var(--gold);font-weight:500;text-decoration:none}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="notfound-wrap">
+  <div class="notfound-inner">
+    <div class="notfound-code">404</div>
+    <h1 class="notfound-title">Page not found</h1>
+    <p class="notfound-sub">The page you're looking for doesn't exist or may have moved. Try one of the links below, or call us directly — we're available 24/7.</p>
+    <div class="notfound-links">
+      <a href="index.html" class="btn-primary">Back to home</a>
+      <a href="pages/shades.html" class="btn-secondary">Browse shades</a>
+      <a href="pages/consult.html" class="btn-secondary">Book a consultation</a>
+    </div>
+    <p class="notfound-phone">Need help? Call or text <a href="tel:6097421720">(609) 742-1720</a></p>
+  </div>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="js/shared.js"></script>
+<script>renderNav('home'); renderFooter(true);</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+# ── Vercel & build output ──────────────────────────────────────────────────────
+.vercel
+.next
+dist/
+build/
+
+# ── Node modules ───────────────────────────────────────────────────────────────
+node_modules/
+package-lock.json
+
+# ── Claude Code internal ───────────────────────────────────────────────────────
+.claude/
+
+# ── Temp / dev scripts (never deploy) ─────────────────────────────────────────
+*.mjs
+*.cjs
+patch_*.js
+read_*.js
+extract_*.js
+select_pdf_out.txt
+tmp_pdf/
+tmp/
+
+# ── Internal pricing & wholesale docs (stay local only) ───────────────────────
+pdfs/wholesale-pricing/
+
+# ── Large scan/preview folders (local reference only) ─────────────────────────
+pdfs/scan/
+pdfs/scan2/
+pdfs/*.png
+
+# ── OS files ───────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini

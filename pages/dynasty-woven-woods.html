@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Wallace Dynasty Woven Wood Shades — 48 patterns, 5 price groups, Waterfall, Flat Fold, Hobbled, Cordless, TDBU, Motorized. Custom quote. Philadelphia area.">
+<title>Dynasty Woven Wood Shades — Wallace | Philly Blinds</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:linear-gradient(to right,rgba(28,21,16,.95) 40%,rgba(28,21,16,.6) 70%,rgba(28,21,16,.3) 100%),url('../images/thumbnails/woven-wood-shades.png') right center/cover no-repeat;padding:48px 28px 44px;min-height:280px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-.4px;margin-bottom:8px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:16px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+.config-layout{display:grid;grid-template-columns:1fr 308px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden}
+.step-block.active{box-shadow:0 2px 18px rgba(200,151,63,.1);border-color:rgba(200,151,63,.3)}
+.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
+.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
+.step-head-val{font-size:12px;color:var(--gold);font-weight:500;max-width:180px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step-body{padding:4px 20px 20px;display:block}
+.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
+.step-warn{background:#FEF3CD;border:1px solid #FBBF24;border-radius:8px;padding:9px 13px;font-size:12px;color:#92400E;margin-top:8px;display:none}
+.step-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-top:8px;display:none}
+.step-warn.show,.step-err.show{display:block}
+.group-head{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--gold);margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid #f0ece4}
+.pattern-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin-bottom:4px}
+.pat-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:8px 10px;cursor:pointer;transition:all .15s}
+.pat-card:hover{border-color:var(--gold)}
+.pat-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.pat-num{font-size:9px;color:#999;margin-bottom:2px}
+.pat-name{font-size:11px;font-weight:500;color:#222;line-height:1.3}
+.opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+@media(max-width:480px){.opt-grid-2{grid-template-columns:1fr}}
+.opt-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+@media(max-width:560px){.opt-grid-3{grid-template-columns:1fr 1fr}}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;transition:all .15s;text-align:center}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.opt-card.disabled{opacity:.38;pointer-events:none}
+.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.opt-card.sel .opt-card-title{color:#7A4F00}
+.opt-card-desc{font-size:10px;color:#666;line-height:1.4}
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
+.dim-inputs{display:flex;gap:6px;align-items:center}
+.dim-whole{width:60px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
+.dim-frac{padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff}
+.computed-box{background:#F9F7F4;border:1px solid #e4e0d8;border-radius:8px;padding:10px 14px;margin-top:10px}
+.cv-row{display:flex;justify-content:space-between;font-size:12px;padding:2px 0}
+.cv-key{color:#777}.cv-val{font-weight:500;color:#111}
+.sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 6px}
+.liner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:8px}
+.liner-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:10px 12px;cursor:pointer;transition:all .15s}
+.liner-card:hover{border-color:var(--gold)}
+.liner-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.liner-title{font-size:12px;font-weight:600;color:#222;margin-bottom:4px}
+.liner-sub{font-size:10px;color:#777;line-height:1.4}
+.color-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.clr-btn{padding:5px 12px;border:1.5px solid #e8e8e4;border-radius:6px;font-size:11px;cursor:pointer;background:#fff;transition:all .12s}
+.clr-btn:hover{border-color:var(--gold)}
+.clr-btn.sel{border-color:var(--gold);background:rgba(200,151,63,.08);color:#7A4F00;font-weight:500}
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
+.addon-row:hover{border-color:var(--gold)}
+.addon-row.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
+.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#1C1510}
+.addon-name{font-size:13px;font-weight:500;color:#111;flex:1}
+.addon-sub{font-size:11px;color:#666;margin-top:1px}
+.addon-price{font-size:12px;font-weight:600;color:var(--gold);flex-shrink:0}
+.spinner-row{display:flex;align-items:center;gap:9px;margin-top:8px}
+.spin-btn{width:32px;height:32px;border:1px solid #ddd;border-radius:7px;background:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.spin-btn:hover{border-color:var(--gold)}
+.spin-num{width:44px;text-align:center;border:1px solid #ddd;border-radius:7px;font-size:14px;padding:5px}
+.spin-label{font-size:12px;color:#666}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
+.form-group input,.form-group textarea{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:inherit;box-sizing:border-box}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.delivery-wrap{background:#F9F7F4;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px;margin-bottom:14px}
+.del-btns{display:flex;gap:8px;margin:8px 0 10px}
+.del-btn{flex:1;padding:8px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;background:#fff;transition:all .15s}
+.del-btn.sel{border-color:var(--gold);color:var(--gold);background:rgba(200,151,63,.05)}
+.del-note{font-size:11px;color:#555;line-height:1.6}
+.submit-btn{width:100%;padding:14px;background:var(--gold);color:#1C1510;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:2px}
+.submit-btn:hover{opacity:.88}
+.form-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-bottom:10px;display:none}
+.success-box{background:#EEFBE8;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;display:none}
+.success-box h3{font-size:15px;font-weight:600;color:#14532d;margin-bottom:6px}
+.success-box p{font-size:13px;color:#166534;line-height:1.6}
+.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
+.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+.qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
+.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
+.qrow-label{color:var(--text-muted)}
+.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0}
+.qrow-surcharge{color:#FCA044}
+.qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
+.qtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700}
+.qtotal-label{color:var(--cream)}.qtotal-val{color:var(--gold)}
+.qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
+.mo-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
+.mo-card{border:1.5px solid #e8e8e4;border-radius:8px;padding:8px 10px;cursor:pointer;transition:all .12s}
+.mo-card:hover{border-color:var(--gold)}
+.mo-card.sel{border-color:var(--gold);background:rgba(200,151,63,.06)}
+.mo-name{font-size:12px;font-weight:500;color:#222;margin-bottom:2px}
+.mo-price{font-size:11px;color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="shades.html">Shades &amp; Blinds</a> &rsaquo; Dynasty Woven Wood Shades</div>
+    <h1>Dynasty™<br>Woven Wood Shades</h1>
+    <p class="sub">Wallace Blinds handcrafted natural woven shades. 48 patterns across 5 price groups — bamboo, jute, grass, and braid weaves. Waterfall, Flat Fold, Hobbled, Cordless TDBU, and Motorized options.</p>
+    <div class="hero-pills">
+      <span class="hero-pill hero-pill-gold">Estimated pricing</span>
+      <span class="hero-pill">48 patterns</span>
+      <span class="hero-pill">5 price groups</span>
+      <span class="hero-pill">Motorization available</span>
+      <span class="hero-pill">WALLACE BLINDS</span>
+    </div>
+  </div>
+</div>
+
+<div class="config-layout">
+<div>
+
+<!-- STEP 1: PATTERN -->
+<div class="step-block active" id="step1">
+  <div class="step-head" onclick="toggleStep('step1')">
+    <div class="step-num">1</div>
+    <div class="step-head-title">Pattern &amp; Collection</div>
+    <div class="step-head-val" id="s1val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="step-note" style="margin-bottom:8px">This is a Wallace Blinds product — separate from Norman woven shades. All patterns support Hobbled shade and Edge Binding.</div>
+
+    <div class="group-head">Price Group 1 — Bamboo</div>
+    <div class="pattern-grid">
+      <div class="pat-card" onclick="pickPattern('B3201','Cortina Latte',1,this)"><div class="pat-num">B3201</div><div class="pat-name">Cortina Latte</div></div>
+      <div class="pat-card" onclick="pickPattern('B3202','Cortina Shale',1,this)"><div class="pat-num">B3202</div><div class="pat-name">Cortina Shale</div></div>
+      <div class="pat-card" onclick="pickPattern('B3205','Beijin Smoke',1,this)"><div class="pat-num">B3205</div><div class="pat-name">Beijin Smoke</div></div>
+      <div class="pat-card" onclick="pickPattern('B3206','Beijin Storm',1,this)"><div class="pat-num">B3206</div><div class="pat-name">Beijin Storm</div></div>
+      <div class="pat-card" onclick="pickPattern('B3211','Yunnan Cloud',1,this)"><div class="pat-num">B3211</div><div class="pat-name">Yunnan Cloud</div></div>
+      <div class="pat-card" onclick="pickPattern('B3212','Yunnan Stone',1,this)"><div class="pat-num">B3212</div><div class="pat-name">Yunnan Stone</div></div>
+    </div>
+
+    <div class="group-head">Price Group 2 — Bamboo / Grass</div>
+    <div class="pattern-grid">
+      <div class="pat-card" onclick="pickPattern('B3311','Lhasa Noir',2,this)"><div class="pat-num">B3311</div><div class="pat-name">Lhasa Noir</div></div>
+      <div class="pat-card" onclick="pickPattern('B3312','Lhasa White Sand',2,this)"><div class="pat-num">B3312</div><div class="pat-name">Lhasa White Sand</div></div>
+      <div class="pat-card" onclick="pickPattern('B3321','Meteor Shadow',2,this)"><div class="pat-num">B3321</div><div class="pat-name">Meteor Shadow</div></div>
+      <div class="pat-card" onclick="pickPattern('B3322','Meteor Leaf',2,this)"><div class="pat-num">B3322</div><div class="pat-name">Meteor Leaf</div></div>
+      <div class="pat-card" onclick="pickPattern('B3323','Meteor Snow',2,this)"><div class="pat-num">B3323</div><div class="pat-name">Meteor Snow</div></div>
+      <div class="pat-card" onclick="pickPattern('B3331','Techno Haze',2,this)"><div class="pat-num">B3331</div><div class="pat-name">Techno Haze</div></div>
+      <div class="pat-card" onclick="pickPattern('B3332','Techno Cinder',2,this)"><div class="pat-num">B3332</div><div class="pat-name">Techno Cinder</div></div>
+      <div class="pat-card" onclick="pickPattern('B3341','Prarie Taupe',2,this)"><div class="pat-num">B3341</div><div class="pat-name">Prarie Taupe</div></div>
+      <div class="pat-card" onclick="pickPattern('B3342','Prarie Snow',2,this)"><div class="pat-num">B3342</div><div class="pat-name">Prarie Snow</div></div>
+      <div class="pat-card" onclick="pickPattern('B3351','Ningxia White',2,this)"><div class="pat-num">B3351</div><div class="pat-name">Ningxia White</div></div>
+      <div class="pat-card" onclick="pickPattern('B3352','Ningxia Taupe',2,this)"><div class="pat-num">B3352</div><div class="pat-name">Ningxia Taupe</div></div>
+      <div class="pat-card" onclick="pickPattern('B3353','Ningxia Graystone',2,this)"><div class="pat-num">B3353</div><div class="pat-name">Ningxia Graystone</div></div>
+    </div>
+
+    <div class="group-head">Price Group 3 — Bamboo / Jute</div>
+    <div class="pattern-grid">
+      <div class="pat-card" onclick="pickPattern('BJ3405','Hampton Natural',3,this)"><div class="pat-num">BJ3405</div><div class="pat-name">Hampton Natural</div></div>
+      <div class="pat-card" onclick="pickPattern('BJ3406','Hampton Bisque',3,this)"><div class="pat-num">BJ3406</div><div class="pat-name">Hampton Bisque</div></div>
+      <div class="pat-card" onclick="pickPattern('BJ3407','Hampton Slate',3,this)"><div class="pat-num">BJ3407</div><div class="pat-name">Hampton Slate</div></div>
+      <div class="pat-card" onclick="pickPattern('BJ3415','Tibet Sterling',3,this)"><div class="pat-num">BJ3415</div><div class="pat-name">Tibet Sterling</div></div>
+      <div class="pat-card" onclick="pickPattern('BJ3416','Tibet Flax',3,this)"><div class="pat-num">BJ3416</div><div class="pat-name">Tibet Flax</div></div>
+    </div>
+
+    <div class="group-head">Price Group 4 — Bamboo / Jute / Seagrass</div>
+    <div class="pattern-grid">
+      <div class="pat-card" onclick="pickPattern('BP3501','Sand Dune Marble',4,this)"><div class="pat-num">BP3501</div><div class="pat-name">Sand Dune Marble</div></div>
+      <div class="pat-card" onclick="pickPattern('BP3502','Sand Dune White',4,this)"><div class="pat-num">BP3502</div><div class="pat-name">Sand Dune White</div></div>
+      <div class="pat-card" onclick="pickPattern('BP3503','Sand Dune Taupe',4,this)"><div class="pat-num">BP3503</div><div class="pat-name">Sand Dune Taupe</div></div>
+      <div class="pat-card" onclick="pickPattern('BP3504','Sand Dune Gray',4,this)"><div class="pat-num">BP3504</div><div class="pat-name">Sand Dune Gray</div></div>
+      <div class="pat-card" onclick="pickPattern('BP3505','Chelsea Stone',4,this)"><div class="pat-num">BP3505</div><div class="pat-name">Chelsea Stone</div></div>
+      <div class="pat-card" onclick="pickPattern('BP3506','Chelsea Sand',4,this)"><div class="pat-num">BP3506</div><div class="pat-name">Chelsea Sand</div></div>
+      <div class="pat-card" onclick="pickPattern('BP3511','Seawave Bark',4,this)"><div class="pat-num">BP3511</div><div class="pat-name">Seawave Bark</div></div>
+      <div class="pat-card" onclick="pickPattern('BP3512','Seawave Mushroom',4,this)"><div class="pat-num">BP3512</div><div class="pat-name">Seawave Mushroom</div></div>
+      <div class="pat-card" onclick="pickPattern('BP3513','Seawave Slate',4,this)"><div class="pat-num">BP3513</div><div class="pat-name">Seawave Slate</div></div>
+      <div class="pat-card" onclick="pickPattern('J3515','Havana Hemp',4,this)"><div class="pat-num">J3515</div><div class="pat-name">Havana Hemp</div></div>
+      <div class="pat-card" onclick="pickPattern('J3516','Havana Pearl',4,this)"><div class="pat-num">J3516</div><div class="pat-name">Havana Pearl</div></div>
+      <div class="pat-card" onclick="pickPattern('J3517','Havana Café',4,this)"><div class="pat-num">J3517</div><div class="pat-name">Havana Café</div></div>
+      <div class="pat-card" onclick="pickPattern('J3518','Havana Silver',4,this)"><div class="pat-num">J3518</div><div class="pat-name">Havana Silver</div></div>
+    </div>
+
+    <div class="group-head">Price Group 5 — Jute / Seagrass / Braid</div>
+    <div class="pattern-grid">
+      <div class="pat-card" onclick="pickPattern('BJ3611','Classic Braid Natural',5,this)"><div class="pat-num">BJ3611</div><div class="pat-name">Classic Braid Natural</div></div>
+      <div class="pat-card" onclick="pickPattern('BJ3612','Classic Braid Silver',5,this)"><div class="pat-num">BJ3612</div><div class="pat-name">Classic Braid Silver</div></div>
+      <div class="pat-card" onclick="pickPattern('BJ3613','Classic Braid Chestnut',5,this)"><div class="pat-num">BJ3613</div><div class="pat-name">Classic Braid Chestnut</div></div>
+      <div class="pat-card" onclick="pickPattern('J3601','Crosswave Sandle',5,this)"><div class="pat-num">J3601</div><div class="pat-name">Crosswave Sandle</div></div>
+      <div class="pat-card" onclick="pickPattern('J3602','Crosswave Sand',5,this)"><div class="pat-num">J3602</div><div class="pat-name">Crosswave Sand</div></div>
+      <div class="pat-card" onclick="pickPattern('J3603','Senegal Ivory',5,this)"><div class="pat-num">J3603</div><div class="pat-name">Senegal Ivory</div></div>
+      <div class="pat-card" onclick="pickPattern('J3604','Senegal Dune',5,this)"><div class="pat-num">J3604</div><div class="pat-name">Senegal Dune</div></div>
+      <div class="pat-card" onclick="pickPattern('J3605','Senegal Toast',5,this)"><div class="pat-num">J3605</div><div class="pat-name">Senegal Toast</div></div>
+      <div class="pat-card" onclick="pickPattern('J3606','Senegal Silver',5,this)"><div class="pat-num">J3606</div><div class="pat-name">Senegal Silver</div></div>
+      <div class="pat-card" onclick="pickPattern('J3607','Comoros Pale Gray',5,this)"><div class="pat-num">J3607</div><div class="pat-name">Comoros Pale Gray</div></div>
+      <div class="pat-card" onclick="pickPattern('J3608','Comoros Natural',5,this)"><div class="pat-num">J3608</div><div class="pat-name">Comoros Natural</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: STYLE + MOUNT -->
+<div class="step-block" id="step2">
+  <div class="step-head" onclick="toggleStep('step2')">
+    <div class="step-num">2</div>
+    <div class="step-head-title">Shade Style &amp; Mount</div>
+    <div class="step-head-val" id="s2val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid-3">
+      <div class="opt-card" id="sc-waterfall" onclick="pickStyle(this,'Waterfall')">
+        <div class="opt-card-title">Waterfall</div>
+        <div class="opt-card-desc">4&Prime; back valance · no front valance · rolls up in soft folds</div>
+      </div>
+      <div class="opt-card" id="sc-flatfold" onclick="pickStyle(this,'Flat Fold')">
+        <div class="opt-card-title">Flat Fold</div>
+        <div class="opt-card-desc">6&Prime; front valance · crisp horizontal folds</div>
+      </div>
+      <div class="opt-card" id="sc-hobbled" onclick="pickStyle(this,'Hobbled')">
+        <div class="opt-card-title">Hobbled <span style="font-size:10px;color:#e67e22">+30%</span></div>
+        <div class="opt-card-desc">6&Prime; front valance · continuous soft folds when raised · 30% surcharge</div>
+      </div>
+    </div>
+    <div id="style-warn" class="step-warn"></div>
+
+    <div class="sub-label" style="margin-top:16px">Mount Type</div>
+    <div class="opt-grid-2">
+      <div class="opt-card" onclick="pickMount(this,'Inside Mount')">
+        <div class="opt-card-title">Inside Mount</div>
+        <div class="opt-card-desc">Flush inside window frame · deductions taken by Wallace</div>
+      </div>
+      <div class="opt-card" onclick="pickMount(this,'Outside Mount')">
+        <div class="opt-card-title">Outside Mount</div>
+        <div class="opt-card-desc">Mounts above &amp; beyond frame · L-shaped side returns included at no charge</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: DIMENSIONS -->
+<div class="step-block" id="step3">
+  <div class="step-head" onclick="toggleStep('step3')">
+    <div class="step-num">3</div>
+    <div class="step-head-title">Dimensions</div>
+    <div class="step-head-val" id="s3val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="dim-row">
+      <div>
+        <div class="dim-label">Width (inches)</div>
+        <div class="dim-inputs">
+          <input class="dim-whole" type="number" id="w-whole" min="18" max="120" placeholder="36" oninput="calcPrice()">
+          <select class="dim-frac" id="w-frac" onchange="calcPrice()">
+            <option value="0">0</option><option value="0.125">1/8</option><option value="0.25">1/4</option>
+            <option value="0.375">3/8</option><option value="0.5">1/2</option><option value="0.625">5/8</option>
+            <option value="0.75">3/4</option><option value="0.875">7/8</option>
+          </select>
+          <span style="font-size:13px;font-weight:500;color:#555">&Prime;</span>
+        </div>
+      </div>
+      <div>
+        <div class="dim-label">Height (inches)</div>
+        <div class="dim-inputs">
+          <input class="dim-whole" type="number" id="h-whole" min="24" max="120" placeholder="72" oninput="calcPrice()">
+          <select class="dim-frac" id="h-frac" onchange="calcPrice()">
+            <option value="0">0</option><option value="0.125">1/8</option><option value="0.25">1/4</option>
+            <option value="0.375">3/8</option><option value="0.5">1/2</option><option value="0.625">5/8</option>
+            <option value="0.75">3/4</option><option value="0.875">7/8</option>
+          </select>
+          <span style="font-size:13px;font-weight:500;color:#555">&Prime;</span>
+        </div>
+      </div>
+    </div>
+    <div id="dim-err" class="step-err"></div>
+    <div id="dim-warn" class="step-warn"></div>
+    <div class="computed-box" id="size-box" style="display:none">
+      <div class="cv-row"><span class="cv-key">Entered size</span><span class="cv-val" id="cv-size">—</span></div>
+      <div class="cv-row"><span class="cv-key">Pricing bracket</span><span class="cv-val" id="cv-bracket">—</span></div>
+      <div class="cv-row"><span class="cv-key">Base price (before surcharges)</span><span class="cv-val" id="cv-base">—</span></div>
+    </div>
+
+    <div class="sub-label" style="margin-top:14px">Quantity</div>
+    <div class="spinner-row">
+      <button class="spin-btn" onclick="adjQty(-1)">−</button>
+      <input class="spin-num" type="number" id="qty" value="1" min="1" max="99" oninput="calcPrice()">
+      <button class="spin-btn" onclick="adjQty(1)">+</button>
+      <span class="spin-label">shade(s) at this size</span>
+    </div>
+    <div class="step-note">Shade W 18–96&Prime; &middot; H 24–96&Prime; for all standard styles. Sizes beyond 96&Prime; require custom review. For 2-on-1 headrail, price each shade separately and add to your notes.</div>
+  </div>
+</div>
+
+<!-- STEP 4: LIFT / CONTROL -->
+<div class="step-block" id="step4">
+  <div class="step-head" onclick="toggleStep('step4')">
+    <div class="step-num">4</div>
+    <div class="step-head-title">Lift / Control</div>
+    <div class="step-head-val" id="s4val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid-3">
+      <div class="opt-card" id="lc-loop" onclick="pickLift(this,'Loop Chain')">
+        <div class="opt-card-title">Loop Chain</div>
+        <div class="opt-card-desc">Stainless or bronze metal chain · 1.5&Prime; slim or 2.5&Prime; regular clutch headrail · Waterfall &amp; Flat Fold only</div>
+      </div>
+      <div class="opt-card" id="lc-cordless" onclick="pickLift(this,'Cordless')">
+        <div class="opt-card-title">Cordless <span style="font-size:9px;background:#27500A;color:#fff;padding:1px 5px;border-radius:4px">CERTIFIED</span></div>
+        <div class="opt-card-desc">Child &amp; pet safe · Waterfall &amp; Flat Fold only · 1.5&Prime; headrail</div>
+      </div>
+      <div class="opt-card" id="lc-tdbu" onclick="pickLift(this,'Cordless TDBU')">
+        <div class="opt-card-title">Cordless TDBU</div>
+        <div class="opt-card-desc">Top-down bottom-up · Flat Fold only · max 72&Prime; × 72&Prime; · pattern restrictions apply</div>
+      </div>
+      <div class="opt-card" id="lc-motor" onclick="pickLift(this,'Motorized')">
+        <div class="opt-card-title">Motorized <span style="font-size:9px;background:#27500A;color:#fff;padding:1px 5px;border-radius:4px">CERTIFIED</span></div>
+        <div class="opt-card-desc">Rollease Acmeda Automate motor · rechargeable Li-ion · Waterfall &amp; Flat Fold only · min 26&Prime; × 36&Prime;</div>
+      </div>
+      <div class="opt-card" id="lc-dual" onclick="pickLift(this,'Dual Shade')">
+        <div class="opt-card-title">Dual Shade</div>
+        <div class="opt-card-desc">Front woven + back liner · 3.5&Prime; headrail · Waterfall &amp; Flat Fold only · requires Privacy or Blackout liner</div>
+      </div>
+    </div>
+    <div id="lift-err" class="step-err"></div>
+    <div id="lift-warn" class="step-warn"></div>
+
+    <!-- Slim clutch note (shown after pattern + size are known) -->
+    <div id="clutch-note" class="step-note" style="display:none"></div>
+
+    <!-- Motor accessories (shown when motorized selected) -->
+    <div id="motor-section" style="display:none">
+      <div class="sub-label" style="margin-top:14px">Motorization accessories <span style="font-weight:400;color:#999">(add what you need)</span></div>
+      <div id="motor-acc-grid" class="mo-grid">
+        <div class="mo-card" id="ma-remote" onclick="toggleMotorAcc('remote',this)">
+          <div class="mo-name">Paradigm Remote</div>
+          <div class="mo-price">$68 &middot; RF 15-channel</div>
+        </div>
+        <div class="mo-card" id="ma-charger" onclick="toggleMotorAcc('charger',this)">
+          <div class="mo-name">Li-Ion Charger 1.8M</div>
+          <div class="mo-price">$52</div>
+        </div>
+        <div class="mo-card" id="ma-ext" onclick="toggleMotorAcc('ext',this)">
+          <div class="mo-name">Extension Cable 1.2M</div>
+          <div class="mo-price">$21</div>
+        </div>
+        <div class="mo-card" id="ma-solar" onclick="toggleMotorAcc('solar',this)">
+          <div class="mo-name">Solar Panel V1</div>
+          <div class="mo-price">$130</div>
+        </div>
+        <div class="mo-card" id="ma-hub" onclick="toggleMotorAcc('hub',this)">
+          <div class="mo-name">Pulse 2 Hub</div>
+          <div class="mo-price">$416 &middot; ships separately</div>
+        </div>
+      </div>
+      <div class="step-note">Motor (Automate™ Li-ion, 25mm/1.1Nm): $515. Motor price is added automatically when Motorized is selected. Accessories above are optional add-ons. Charger quantity ordered separately per shade.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5: LINER -->
+<div class="step-block" id="step5">
+  <div class="step-head" onclick="toggleStep('step5')">
+    <div class="step-num">5</div>
+    <div class="step-head-title">Liner</div>
+    <div class="step-head-val" id="s5val">No liner</div>
+  </div>
+  <div class="step-body">
+    <div class="liner-grid">
+      <div class="liner-card sel" id="ln-none" onclick="pickLiner('none',this)">
+        <div class="liner-title">No liner</div>
+        <div class="liner-sub">Natural woven only</div>
+      </div>
+      <div class="liner-card" id="ln-privacy" onclick="pickLiner('privacy',this)">
+        <div class="liner-title">Privacy Liner</div>
+        <div class="liner-sub">Light filtering · exterior side off-white</div>
+      </div>
+      <div class="liner-card" id="ln-blackout" onclick="pickLiner('blackout',this)">
+        <div class="liner-title">Blackout Liner</div>
+        <div class="liner-sub">Room darkening · exterior side off-white</div>
+      </div>
+    </div>
+    <div id="liner-color-wrap" style="display:none">
+      <div class="sub-label">Liner color</div>
+      <div class="color-row" id="liner-colors">
+        <button class="clr-btn" onclick="pickLinerColor('White','2294',this)">White</button>
+        <button class="clr-btn" onclick="pickLinerColor('Natural','2277',this)">Natural</button>
+        <button class="clr-btn" onclick="pickLinerColor('Cream','2290',this)">Cream</button>
+        <button class="clr-btn" onclick="pickLinerColor('Teak','2291',this)">Teak</button>
+        <button class="clr-btn" onclick="pickLinerColor('Gray','2273',this)">Gray</button>
+      </div>
+    </div>
+    <div id="liner-warn" class="step-warn"></div>
+    <div class="step-note">If liner is added to a Hobbled shade, the liner surcharge is also subject to the 30% hobbled surcharge. Liner will have a horizontal seam for clean folding on Dual Shade. BO liner code suffix: P = Privacy, BO = Blackout.</div>
+  </div>
+</div>
+
+<!-- STEP 6: EDGE BINDING + VALANCE -->
+<div class="step-block" id="step6">
+  <div class="step-head" onclick="toggleStep('step6')">
+    <div class="step-num">6</div>
+    <div class="step-head-title">Edge Binding &amp; Valance</div>
+    <div class="step-head-val" id="s6val">None</div>
+  </div>
+  <div class="step-body">
+    <div class="sub-label">Edge Binding <span style="font-weight:400;color:#999">(optional — twill sewn on all edges)</span></div>
+    <div class="opt-grid-3">
+      <div class="opt-card sel" id="eb-none" onclick="pickEB(this,'none')">
+        <div class="opt-card-title">No edge binding</div>
+      </div>
+      <div class="opt-card" id="eb-half" onclick="pickEB(this,'0.5')">
+        <div class="opt-card-title">½&Prime; Twill</div>
+        <div class="opt-card-desc">Color-coordinated thread &middot; sewn L/R/bottom + L/R valance</div>
+      </div>
+      <div class="opt-card" id="eb-1half" onclick="pickEB(this,'1.5')">
+        <div class="opt-card-title">1½&Prime; Twill</div>
+        <div class="opt-card-desc">Mitered corners &middot; color-coordinated thread</div>
+      </div>
+    </div>
+    <div id="eb-warn" class="step-warn"></div>
+
+    <div class="sub-label" style="margin-top:14px">Hobble Valance <span style="font-weight:400;color:#999">(optional — replaces standard valance)</span></div>
+    <div id="valance-note" class="step-note" style="margin-bottom:6px">Standard valance is included. Upgrade to hobble valance for a textured layered look. 38mm wood headrail. Each fold is 6&Prime;.</div>
+    <div class="opt-grid-3">
+      <div class="opt-card sel" id="val-std" onclick="pickValance(this,'Standard (included)')">
+        <div class="opt-card-title">Standard Valance</div>
+        <div class="opt-card-desc">Included with shade</div>
+      </div>
+      <div class="opt-card" id="val-12" onclick="pickValance(this,'12&quot; Double Hobble Valance')">
+        <div class="opt-card-title">12&Prime; Double Hobble</div>
+        <div class="opt-card-desc">Upgrade valance · 2 folds</div>
+      </div>
+      <div class="opt-card" id="val-18" onclick="pickValance(this,'18&quot; Triple Hobble Valance')">
+        <div class="opt-card-title">18&Prime; Triple Hobble</div>
+        <div class="opt-card-desc">Upgrade valance · 3 folds</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 7: HARDWARE OPTIONS -->
+<div class="step-block" id="step7">
+  <div class="step-head" onclick="toggleStep('step7')">
+    <div class="step-num">7</div>
+    <div class="step-head-title">Hardware Options</div>
+    <div class="step-head-val" id="s7val">Standard</div>
+  </div>
+  <div class="step-body">
+    <div class="step-note" style="margin-bottom:10px">All items below are at no charge unless noted. Outside mount shades always include L-shaped side returns.</div>
+    <div class="addon-row" id="hw-holddown" onclick="toggleHW(this,'Hold Down Clips')">
+      <div style="display:flex;align-items:center;gap:10px;flex:1">
+        <div class="addon-check">✓</div>
+        <div><div class="addon-name">Hold Down Clips</div><div class="addon-sub">Keeps shade flush · Note: if selected with edge binding, bottom edge binding is omitted</div></div>
+      </div>
+      <div class="addon-price">No charge</div>
+    </div>
+    <div class="addon-row" id="hw-ext-bracket" onclick="toggleHW(this,'Extension Brackets')">
+      <div style="display:flex;align-items:center;gap:10px;flex:1">
+        <div class="addon-check">✓</div>
+        <div><div class="addon-name">Extension Brackets</div><div class="addon-sub">3-1/8&Prime; bracket for extra projection · useful over deep trim</div></div>
+      </div>
+      <div class="addon-price">No charge</div>
+    </div>
+    <div class="addon-row" id="hw-im-returns" onclick="toggleHW(this,'Inside Mount Side Returns (optional)')">
+      <div style="display:flex;align-items:center;gap:10px;flex:1">
+        <div class="addon-check">✓</div>
+        <div><div class="addon-name">Inside Mount Side Returns</div><div class="addon-sub">Optional for IM shades · made from same woven material</div></div>
+      </div>
+      <div class="addon-price">No charge</div>
+    </div>
+    <div class="addon-row" id="hw-cutout" onclick="toggleHW(this,'Cut Out Required')">
+      <div style="display:flex;align-items:center;gap:10px;flex:1">
+        <div class="addon-check">✓</div>
+        <div><div class="addon-name">Cut Out Required</div><div class="addon-sub">Notch from any corner or edge · describe in notes</div></div>
+      </div>
+      <div class="addon-price">No charge</div>
+    </div>
+    <div class="addon-row" id="hw-2on1" onclick="toggleHW(this,'2-on-1 Headrail')">
+      <div style="display:flex;align-items:center;gap:10px;flex:1">
+        <div class="addon-check">✓</div>
+        <div><div class="addon-name">2-on-1 Headrail</div><div class="addon-sub">Two shades on one headrail · Flat Fold &amp; Waterfall only · not with Hobble or 3-on-1 · price each shade separately</div></div>
+      </div>
+      <div class="addon-price">No charge</div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 8: DELIVERY -->
+<div class="step-block" id="step8">
+  <div class="step-head" onclick="toggleStep('step8')">
+    <div class="step-num">8</div>
+    <div class="step-head-title">Delivery or Pickup</div>
+    <div class="step-head-val" id="s8val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="delivery-wrap">
+      <div class="del-btns">
+        <button class="del-btn" onclick="pickDel(this,'ship')">Ship to me</button>
+        <button class="del-btn" onclick="pickDel(this,'pickup')">I'll pick up</button>
+      </div>
+      <div id="del-ship" class="del-note" style="display:none">
+        Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<br>
+        Freight: <strong>$25 first shade + $8 each additional</strong>.<br>
+        Shades 90&Prime; or greater in any dimension: <strong>$80 oversize surcharge per shade</strong>.
+        <div style="font-size:10px;color:#888;margin-top:4px;font-style:italic">Note: tariffs, duties, and applicable import fees are additional and will be disclosed in your final quote.</div>
+      </div>
+      <div id="del-pickup" class="del-note" style="display:none">
+        Pickup at <strong>527 Hoyt Rd, Huntingdon Valley PA 19006</strong> after order confirmation. We'll contact you with a ready date.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 9: CONTACT + SUBMIT -->
+<div class="step-block" id="step9">
+  <div class="step-head" onclick="toggleStep('step9')">
+    <div class="step-num">9</div>
+    <div class="step-head-title">Your Info &amp; Submit</div>
+    <div class="step-head-val" id="s9val">—</div>
+  </div>
+  <div class="step-body">
+    <div class="form-err" id="form-err">Please fill in your name and phone number.</div>
+    <div class="form-row">
+      <div class="form-group"><label>Your name *</label><input type="text" id="f-name" placeholder="Jane Smith"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="f-phone" placeholder="(215) 555-0100"></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="jane@example.com"></div>
+    <div class="form-group"><label>Room / window label</label><input type="text" id="f-room" placeholder="e.g. Living room patio door"></div>
+    <div class="form-group"><label>Special instructions / cut-out details / notes</label><textarea id="f-notes" placeholder="Describe any cut-outs, 2-on-1 details, side-by-side notes, or questions..."></textarea></div>
+    <button class="submit-btn" onclick="submitQuote()">Send Dynasty Woven Quote Request &rarr;</button>
+    <div class="success-box" id="success-box">
+      <h3>Quote request sent!</h3>
+      <p>We'll review your spec and follow up with a confirmed price using the current Wallace price book. For anything urgent, call <strong>(609) 742-1720</strong> — available 24/7.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /left -->
+
+<!-- QUOTE PANEL -->
+<div>
+  <div class="quote-panel">
+    <div class="qp-title">Your Estimate</div>
+    <div class="qp-pending" id="qp-pending">Complete the steps on the left to see your price estimate.</div>
+    <div id="qp-detail" style="display:none">
+      <div class="qrow"><span class="qrow-label">Product</span><span class="qrow-val">Dynasty Woven Woods</span></div>
+      <div class="qrow"><span class="qrow-label">Pattern</span><span class="qrow-val" id="qr-pat">—</span></div>
+      <div class="qrow"><span class="qrow-label">Price Group</span><span class="qrow-val" id="qr-grp">—</span></div>
+      <div class="qrow"><span class="qrow-label">Style</span><span class="qrow-val" id="qr-style">—</span></div>
+      <div class="qrow"><span class="qrow-label">Mount</span><span class="qrow-val" id="qr-mount">—</span></div>
+      <div class="qrow"><span class="qrow-label">Size</span><span class="qrow-val" id="qr-size">—</span></div>
+      <div class="qrow"><span class="qrow-label">Lift</span><span class="qrow-val" id="qr-lift">—</span></div>
+      <div class="qrow"><span class="qrow-label">Liner</span><span class="qrow-val" id="qr-liner">—</span></div>
+      <div class="qdiv"></div>
+      <div class="qrow"><span class="qrow-label">Base price</span><span class="qrow-val" id="qr-base">—</span></div>
+      <div class="qrow qrow-surcharge" id="qr-lift-row" style="display:none"><span class="qrow-label" id="qr-lift-lbl">Control surcharge</span><span class="qrow-val" id="qr-lift-s">—</span></div>
+      <div class="qrow qrow-surcharge" id="qr-hob-row" style="display:none"><span class="qrow-label">Hobbled +30%</span><span class="qrow-val" id="qr-hob-s">—</span></div>
+      <div class="qrow qrow-surcharge" id="qr-liner-row" style="display:none"><span class="qrow-label">Liner surcharge</span><span class="qrow-val" id="qr-liner-s">—</span></div>
+      <div class="qrow qrow-surcharge" id="qr-lhob-row" style="display:none"><span class="qrow-label">Liner hobbled +30%</span><span class="qrow-val" id="qr-lhob-s">—</span></div>
+      <div class="qrow qrow-surcharge" id="qr-eb-row" style="display:none"><span class="qrow-label">Edge binding</span><span class="qrow-val" id="qr-eb-s">—</span></div>
+      <div class="qrow qrow-surcharge" id="qr-val-row" style="display:none"><span class="qrow-label">Hobble valance</span><span class="qrow-val" id="qr-val-s">—</span></div>
+      <div class="qrow qrow-surcharge" id="qr-mot-row" style="display:none"><span class="qrow-label">Motor + accessories</span><span class="qrow-val" id="qr-mot-s">—</span></div>
+      <div class="qrow" id="qr-qty-row"><span class="qrow-label">Quantity</span><span class="qrow-val" id="qr-qty">1</span></div>
+      <div class="qrow qrow-surcharge" id="qr-fr-row" style="display:none"><span class="qrow-label">Freight (est.)</span><span class="qrow-val" id="qr-fr-s">—</span></div>
+      <div class="qdiv"></div>
+      <div class="qtotal"><span class="qtotal-label">Estimated Total</span><span class="qtotal-val" id="qr-total">—</span></div>
+      <div class="qnote">Estimated retail pricing. Final price confirmed with current Wallace Blinds price book before order. Prices subject to change.</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Shades & Blinds');
+renderFooter(false);
+
+// ── PRICING DATA ─────────────────────────────────────────────────────────────
+const W=[24,30,36,42,48,60,72,84,96];
+const H=[36,42,48,54,60,66,72,78,84,90,96,102,108,114,120];
+
+const BASE={
+1:[[272,317,359,406,454,555,700,806,1015],[281,329,373,423,473,579,729,840,1054],[291,341,388,440,492,603,758,874,1092],[321,377,429,488,546,668,834,962,1192],[331,389,444,505,565,692,863,996,1231],[340,401,458,522,584,716,892,1029,1269],[363,429,492,561,629,773,960,1109,1360],[373,441,507,578,649,797,989,1142,1398],[383,454,521,595,668,821,1018,1176,1437],[413,490,563,643,721,886,1094,1264,1536],[422,502,577,659,740,911,1123,1298,1575],[432,514,592,676,760,935,1152,1332,1613],[455,542,626,716,805,991,1220,1411,1704],[464,554,640,733,824,1015,1249,1445,1742],[474,566,655,750,843,1039,1278,1478,1781]],
+2:[[309,358,407,462,517,635,796,919,1144],[322,374,427,485,543,668,835,964,1196],[335,391,446,508,569,700,874,1010,1249],[370,432,494,563,630,775,962,1111,1363],[383,448,514,585,656,808,1001,1157,1416],[396,465,533,608,682,840,1040,1203,1468],[422,497,572,654,734,906,1118,1294,1572],[435,513,592,677,760,938,1157,1339,1624],[448,530,612,699,786,971,1197,1385,1676],[483,571,659,754,848,1046,1284,1486,1791],[496,588,679,777,874,1078,1324,1532,1843],[509,604,699,800,900,1111,1363,1578,1895],[535,637,738,845,952,1176,1441,1669,1999],[548,653,757,868,978,1209,1480,1714,2051],[561,669,777,891,1004,1241,1519,1760,2104]],
+3:[[334,389,443,505,565,693,866,999,1237],[351,410,468,535,599,736,917,1058,1305],[368,431,494,564,632,778,968,1118,1372],[404,473,543,621,695,854,1057,1221,1489],[421,495,568,650,729,896,1108,1280,1557],[437,516,593,680,763,939,1159,1339,1624],[464,549,633,726,815,1004,1237,1431,1729],[481,570,658,755,849,1047,1288,1490,1797],[498,591,684,785,883,1089,1339,1549,1865],[533,633,733,841,946,1165,1428,1653,1981],[550,655,758,871,979,1208,1479,1712,2049],[567,676,783,900,1013,1250,1530,1771,2117],[593,709,823,946,1066,1315,1608,1863,2222],[610,730,848,976,1099,1358,1659,1922,2289],[627,751,873,1005,1133,1400,1710,1981,2357]],
+4:[[365,426,488,557,624,767,955,1103,1355],[387,454,521,596,669,823,1022,1181,1444],[409,482,555,635,713,879,1089,1258,1533],[446,526,605,694,778,958,1181,1365,1654],[468,554,639,733,823,1014,1248,1443,1743],[490,582,672,771,867,1069,1315,1521,1832],[518,616,713,819,922,1138,1397,1617,1942],[540,644,747,858,966,1193,1464,1695,2031],[562,671,780,897,1011,1249,1530,1773,2120],[599,716,831,955,1076,1328,1623,1880,2241],[622,743,864,994,1121,1384,1690,1958,2330],[644,771,898,1033,1165,1439,1757,2036,2419],[671,805,939,1081,1220,1508,1839,2131,2528],[693,833,972,1120,1264,1563,1905,2209,2617],[716,861,1005,1159,1309,1619,1972,2287,2706]],
+5:[[441,522,603,692,778,960,1185,1371,1662],[473,562,650,747,841,1038,1280,1482,1789],[505,601,698,802,904,1117,1375,1593,1915],[551,658,764,878,989,1222,1498,1735,2076],[583,697,811,933,1052,1301,1593,1845,2203],[615,737,858,989,1116,1380,1687,1956,2329],[652,783,914,1054,1190,1473,1799,2086,2478],[684,823,962,1109,1253,1552,1894,2197,2605],[715,862,1009,1165,1316,1631,1989,2307,2731],[762,919,1075,1240,1402,1735,2112,2450,2892],[794,958,1122,1296,1465,1814,2206,2560,3018],[825,998,1170,1351,1528,1893,2301,2671,3145],[863,1045,1226,1416,1602,1986,2413,2801,3294],[894,1084,1273,1471,1666,2065,2508,2912,3420],[926,1124,1320,1527,1729,2144,2602,3022,3547]]
+};
+const ADD6={1:[7,9,11,13,14,18,22,25,29],2:[8,10,11,13,15,19,23,26,30],3:[10,13,15,18,21,26,31,36,41],4:[13,16,19,22,26,32,38,45,51],5:[19,23,29,33,38,47,57,66,76]};
+
+// Loop surcharge [by W cols 24,36,48,60,72,84,96]
+const LOOP_W=[24,36,48,60,72,84,96];
+const LOOP_S=[136,156,171,187,202,230,242];
+// Cordless surcharge same W cols
+const CORD_S=[121,142,162,223,263,289,297];
+// TDBU surcharge: widths 18-24, 24⅛-36, 36⅛-48, 48⅛-60, 60⅛-72 → N/A for >72
+const TDBU_BREAKS=[24,36,48,60,72];
+const TDBU_S=[156,188,218,271,323];
+
+// Privacy liner [H rows][W cols 24,30,36,42,48,60,72,84,96]
+const PRIV=[[56,62,70,77,97,128,145,163,179],[61,67,76,84,107,140,158,178,197],[65,73,82,91,115,151,172,194,215],[68,77,88,98,125,162,186,210,233],[74,83,94,105,134,173,199,226,251],[77,87,100,112,142,184,213,241,269],[81,93,106,119,151,196,226,257,287],[109,126,142,158,214,272,311,351,391],[113,132,149,166,226,285,328,370,413],[119,138,156,174,236,299,344,389,435],[124,143,163,182,248,312,360,408,457],[128,148,170,190,259,327,378,429,479],[132,154,176,198,270,340,394,448,500],[138,160,183,206,281,354,411,467,523],[142,166,190,214,292,368,427,486,544]];
+const BO=[[66,77,86,96,119,155,178,200,223],[72,84,94,106,130,170,196,221,247],[77,91,103,116,142,185,213,242,271],[83,97,110,125,154,199,232,262,294],[88,104,118,134,166,214,249,283,318],[94,112,126,144,178,229,266,304,341],[99,118,135,153,189,244,285,325,365],[128,150,172,194,261,329,382,435,486],[134,158,181,204,275,347,403,459,515],[141,165,190,214,289,366,424,484,544],[147,173,198,225,303,384,446,509,571],[152,179,208,236,317,401,468,534,600],[158,188,216,246,331,419,489,558,628],[164,195,225,256,345,436,509,584,657],[170,202,234,266,360,454,531,609,685]];
+// Dual shade liner surcharge
+const PRIV_DUAL=[[159,173,187,204,244,298,332,363,393],[162,177,192,210,252,308,343,375,408],[166,181,197,216,259,317,354,388,422],[169,186,202,222,266,326,365,401,437],[173,190,207,228,274,335,376,413,451],[176,194,212,234,281,345,387,426,468],[180,199,218,240,289,354,398,439,485],[237,260,283,309,414,502,560,615,670],[241,265,289,316,424,514,574,632,689],[245,270,295,323,434,526,589,648,708],[249,275,301,330,443,537,603,665,727],[253,280,307,337,453,550,617,682,746],[257,285,312,344,462,562,632,698,773],[261,290,319,351,472,574,646,715,799],[265,295,324,358,481,585,660,737,824]];
+const BO_DUAL=[[177,195,213,234,275,338,378,417,455],[182,201,221,244,286,352,395,436,477],[188,208,229,253,298,366,412,456,500],[193,215,237,261,309,380,429,476,522],[198,221,246,271,320,394,446,495,545],[203,228,252,280,331,408,463,515,567],[208,234,260,289,343,422,480,535,590],[273,304,335,371,483,588,664,737,809],[279,312,345,381,496,606,685,761,838],[285,319,354,392,511,623,707,786,866],[292,327,363,402,525,641,728,812,895],[297,335,372,413,540,659,749,836,924],[304,342,381,424,554,677,771,862,952],[309,350,390,435,568,695,793,887,981],[316,357,399,445,582,713,814,912,1010]];
+
+// Edge binding [by length cols: 36,48,60,72,84,96,108,120]
+const EB_L=[36,48,60,72,84,96,108,120];
+const EB_HALF_FF=[56,64,72,80,91,104,119,131];
+const EB_HALF_HOB=[73,83,93,104,119,135,155,171];
+const EB_15_FF=[114,130,148,166,191,226,259,292];
+const EB_15_HOB=[148,170,192,215,249,294,337,379];
+
+// Valance surcharge [W cols: 24,36,48,60,72,84,96]
+const VAL_W=[24,36,48,60,72,84,96];
+const VAL={
+  1:{std:[0,0,0,0,0,0,0],'12"':[96,122,155,185,220,251,279],'18"':[122,160,204,247,293,335,374]},
+  2:{std:[0,0,0,0,0,0,0],'12"':[104,135,171,206,245,281,313],'18"':[135,178,231,280,333,382,428]},
+  3:{std:[0,0,0,0,0,0,0],'12"':[123,165,215,261,312,358,400],'18"':[168,229,298,363,432,497,559]},
+  4:{std:[0,0,0,0,0,0,0],'12"':[139,190,248,302,360,414,465],'18"':[195,270,352,431,513,591,666]},
+  5:{std:[0,0,0,0,0,0,0],'12"':[152,210,275,336,401,462,519],'18"':[218,304,398,487,581,671,757]}
+};
+
+// TDBU availability (group 1 & 2 = N/A; group 3,4,5 = available up to chart limits)
+// Pattern-specific TDBU max: [no_liner_maxW, no_liner_maxH, liner_maxW, liner_maxH]
+const TDBU_LIMITS={
+  'BJ3405':[60,72,60,60],'BJ3406':[60,72,60,60],'BJ3407':[60,72,60,60],
+  'BJ3415':[72,72,60,72],'BJ3416':[72,72,60,72],
+  'BP3511':[72,72,60,60],'BP3512':[72,72,60,60],'BP3513':[72,72,60,60],
+  'BP3501':[72,72,72,72],'BP3502':[72,72,72,72],'BP3503':[72,72,72,72],'BP3504':[72,72,72,72],
+  'BP3505':[72,72,60,60],'BP3506':[72,72,60,60],
+  'J3515':[72,72,72,72],'J3516':[72,72,72,72],'J3517':[72,72,72,72],'J3518':[72,72,72,72],
+  'J3601':[72,72,72,72],'J3602':[72,72,72,72],'J3603':[72,72,72,72],'J3604':[72,72,72,72],
+  'J3605':[72,72,72,72],'J3606':[72,72,72,72],'J3607':[72,72,72,72],'J3608':[72,72,72,72],
+  'BJ3611':[72,72,60,72],'BJ3612':[72,72,60,72],'BJ3613':[72,72,60,72]
+};
+
+// Slim clutch: B3311/B3312 ≤60×60 slim; rest ≤72×72 slim
+const SLIM60=['B3311','B3312'];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+const S={
+  patNum:'',patName:'',grp:0,
+  style:'',mount:'',
+  w:0,h:0,qty:1,
+  lift:'',linerType:'none',linerColor:'',linerCode:'',
+  eb:'none',valance:'Standard (included)',
+  hw:[],
+  motorAcc:{},
+  del:'',
+  valid:false
+};
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function toggleStep(id){const el=document.getElementById(id);el.classList.add('active');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),60);}
+function openStep(id){const el=document.getElementById(id);el.classList.add('active');setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'start'}),80);}
+function markDone(id){document.getElementById(id).classList.add('done');}
+function showEl(id,show){const e=document.getElementById(id);if(e)e.style.display=show?'block':'none';}
+function showFlex(id,show){const e=document.getElementById(id);if(e)e.style.display=show?'flex':'none';}
+function setText(id,v){const e=document.getElementById(id);if(e)e.textContent=v||'—';}
+
+function lookup(table,val,cols){
+  // find smallest col >= val
+  for(let i=0;i<cols.length;i++) if(cols[i]>=val) return i;
+  return cols.length-1;
+}
+
+function getBasePrice(grp,w,h){
+  if(!grp||!w||!h) return null;
+  const wi=lookup(BASE[grp][0],w,W); // width index in W array
+  if(W[wi]<w) return null;
+  // find height row
+  const hi=H.findIndex(r=>r>=h);
+  if(hi>=0){
+    return BASE[grp][hi][wi];
+  }
+  // above 120": 120 price + extra 6" increments
+  const base120=BASE[grp][14][wi];
+  const extraH=h-120;
+  const n6=Math.ceil(extraH/6);
+  return base120+n6*ADD6[grp][wi];
+}
+
+function getLiftSurcharge(){
+  if(!S.lift||!S.w) return 0;
+  const wi=lookup(LOOP_W,S.w,LOOP_W);
+  if(S.lift==='Loop Chain') return LOOP_S[wi];
+  if(S.lift==='Cordless') return CORD_S[wi];
+  if(S.lift==='Cordless TDBU'){
+    const ti=TDBU_BREAKS.findIndex(b=>S.w<=b);
+    return ti>=0?TDBU_S[ti]:0;
+  }
+  if(S.lift==='Motorized') return 515; // motor price
+  return 0;
+}
+
+function getLinerSurcharge(base){
+  if(S.linerType==='none') return 0;
+  if(!S.w||!S.h) return 0;
+  const wi=W.findIndex(c=>c>=S.w); if(wi<0) return 0;
+  const hi=H.findIndex(r=>r>=S.h); if(hi<0) return 0;
+  const isDual=S.lift==='Dual Shade';
+  if(S.linerType==='privacy') return isDual?PRIV_DUAL[hi][wi]:PRIV[hi][wi];
+  if(S.linerType==='blackout') return isDual?BO_DUAL[hi][wi]:BO[hi][wi];
+  return 0;
+}
+
+function getEBSurcharge(){
+  if(S.eb==='none') return 0;
+  if(!S.h) return 0;
+  const li=EB_L.findIndex(l=>l>=S.h); const idx=li>=0?li:EB_L.length-1;
+  const isHob=(S.style==='Hobbled');
+  if(S.eb==='0.5') return isHob?EB_HALF_HOB[idx]:EB_HALF_FF[idx];
+  if(S.eb==='1.5') return isHob?EB_15_HOB[idx]:EB_15_FF[idx];
+  return 0;
+}
+
+function getValanceSurcharge(){
+  if(S.valance==='Standard (included)'||!S.w||!S.grp) return 0;
+  const vi=VAL_W.findIndex(c=>c>=S.w); const idx=vi>=0?vi:VAL_W.length-1;
+  const key=S.valance.includes('12')? '"12"' :'"18"';
+  const arr=VAL[S.grp][key.replace(/"/g,'')+'\"'];
+  // map key
+  const map12=VAL[S.grp]['12"'];
+  const map18=VAL[S.grp]['18"'];
+  if(S.valance.includes('12')) return map12?map12[idx]:0;
+  if(S.valance.includes('18')) return map18?map18[idx]:0;
+  return 0;
+}
+
+function getMotorAccTotal(){
+  const prices={remote:68,charger:52,ext:21,solar:130,hub:416};
+  return Object.keys(S.motorAcc).filter(k=>S.motorAcc[k]).reduce((t,k)=>t+(prices[k]||0),0);
+}
+
+function getFreight(){
+  if(S.del!=='ship') return 0;
+  const qty=S.qty||1;
+  const oversize=(S.w>=90||S.h>=90);
+  let f=25+(qty-1)*8;
+  if(oversize) f+=80*qty;
+  return f;
+}
+
+// ── CALC + RENDER ─────────────────────────────────────────────────────────────
+function calcPrice(){
+  const wW=parseFloat(document.getElementById('w-whole').value)||0;
+  const wF=parseFloat(document.getElementById('w-frac').value)||0;
+  const hW=parseFloat(document.getElementById('h-whole').value)||0;
+  const hF=parseFloat(document.getElementById('h-frac').value)||0;
+  S.w=wW+wF; S.h=hW+hF;
+  const qty=parseInt(document.getElementById('qty').value)||1;
+  S.qty=qty;
+
+  const dimErr=document.getElementById('dim-err');
+  const dimWarn=document.getElementById('dim-warn');
+  const sizeBox=document.getElementById('size-box');
+  dimErr.classList.remove('show'); dimWarn.classList.remove('show'); sizeBox.style.display='none';
+
+  if(!S.w||!S.h){updateQuote();return;}
+
+  if(S.w<18){dimErr.textContent='Minimum width is 18″.';dimErr.classList.add('show');updateQuote();return;}
+  if(S.h<24){dimErr.textContent='Minimum height is 24″.';dimErr.classList.add('show');updateQuote();return;}
+
+  if(S.w>96||S.h>96){
+    dimWarn.textContent='⚠ Standard max is 96″×96″. Sizes beyond this may require custom review. An estimate is shown but confirm with us before ordering.';
+    dimWarn.classList.add('show');
+  }
+
+  if(S.grp){
+    const wi=W.findIndex(c=>c>=S.w);
+    const hi=H.findIndex(r=>r>=S.h);
+    const wCol=wi>=0?W[wi]:'>96"';
+    const hRow=hi>=0?H[hi]:(H[14]+' + extra');
+    const base=getBasePrice(S.grp,S.w,S.h);
+    sizeBox.style.display='block';
+    document.getElementById('cv-size').textContent=S.w+'″ W × '+S.h+'″ H';
+    document.getElementById('cv-bracket').textContent=wCol+'″ × '+hRow+'″';
+    document.getElementById('cv-base').textContent=base?'$'+base:'Group not selected';
+    document.getElementById('s3val').textContent=S.w+'″ × '+S.h+'″';
+    markDone('step3');
+  }
+
+  // Slim clutch note
+  if(S.patNum&&S.w&&S.h){
+    const isB3312=SLIM60.includes(S.patNum);
+    const slimMax=isB3312?60:72;
+    const usesSlim=(S.w<=slimMax&&S.h<=slimMax);
+    const clutchNote=document.getElementById('clutch-note');
+    clutchNote.textContent=usesSlim?
+      `Headrail: 1.5″ slim clutch (shade ≤${slimMax}″×${slimMax}″). Fits better in tight inside mount applications.`:
+      `Headrail: 2.5″ regular clutch (shade >${slimMax}″×${slimMax}″ for ${isB3312?'Lhasa patterns':'this pattern'}).`;
+    clutchNote.style.display='block';
+  }
+
+  // TDBU validation
+  validateLift();
+  updateQuote();
+}
+
+function validateLift(){
+  const e=document.getElementById('lift-err');
+  const w=document.getElementById('lift-warn');
+  e.classList.remove('show'); w.classList.remove('show');
+  if(!S.lift) return;
+
+  const hobbled=S.style==='Hobbled';
+  if(hobbled&&(S.lift==='Cordless'||S.lift==='Motorized'||S.lift==='Dual Shade')){
+    e.textContent=`⚠ ${S.lift} is not available with Hobbled shade style. Please choose Loop Chain, or change the shade style.`;
+    e.classList.add('show'); return;
+  }
+  if(hobbled&&S.lift==='Cordless TDBU'){
+    e.textContent='⚠ Cordless TDBU is not available with Hobbled shade.';
+    e.classList.add('show'); return;
+  }
+
+  if(S.lift==='Cordless TDBU'){
+    if(S.style&&S.style!=='Flat Fold'){
+      e.textContent='⚠ Cordless TDBU is only available in Flat Fold style.';
+      e.classList.add('show'); return;
+    }
+    if(S.w>72||S.h>72){
+      e.textContent='⚠ Cordless TDBU maximum is 72″ × 72″. Your dimensions exceed this limit.';
+      e.classList.add('show'); return;
+    }
+    // Check pattern TDBU availability
+    if(S.patNum&&S.grp<=2){
+      e.textContent='⚠ Price Group 1 and 2 patterns (bamboo) are NOT available in Cordless TDBU due to weight.';
+      e.classList.add('show'); return;
+    }
+    if(S.patNum&&TDBU_LIMITS[S.patNum]){
+      const lim=TDBU_LIMITS[S.patNum];
+      const hasLiner=S.linerType!=='none';
+      const maxW=hasLiner?lim[2]:lim[0];
+      const maxH=hasLiner?lim[3]:lim[1];
+      if(S.w>maxW||S.h>maxH){
+        w.textContent=`⚠ ${S.patName} TDBU limit${hasLiner?' (with liner)':''}: max ${maxW}″ W × ${maxH}″ H. Your size exceeds this.`;
+        w.classList.add('show');
+      }
+    }
+  }
+
+  if(S.lift==='Dual Shade'&&hobbled){
+    e.textContent='⚠ Dual Shade is not available with Hobbled style.';
+    e.classList.add('show'); return;
+  }
+
+  if(S.lift==='Motorized'){
+    if(S.style==='Hobbled'){e.textContent='⚠ Motorized is not available with Hobbled style.';e.classList.add('show');return;}
+    if(S.w>0&&S.w<26){e.textContent='⚠ Motorized minimum width is 26″.';e.classList.add('show');return;}
+    if(S.h>0&&S.h<36){e.textContent='⚠ Motorized minimum height is 36″.';e.classList.add('show');return;}
+    if(S.w>96||S.h>96){w.textContent='⚠ Motorized max width/height: refer to motorization chart. Confirm with installer.';w.classList.add('show');}
+  }
+}
+
+function updateQuote(){
+  const base=getBasePrice(S.grp,S.w,S.h);
+  const ready=S.patNum&&S.style&&S.mount&&S.w&&S.h&&S.lift;
+  if(!ready){showEl('qp-pending',true);showEl('qp-detail',false);return;}
+  if(!base){showEl('qp-pending',true);showEl('qp-detail',false);return;}
+
+  showEl('qp-pending',false);showEl('qp-detail',true);
+
+  setText('qr-pat',S.patNum+' '+S.patName);
+  setText('qr-grp','Group '+S.grp);
+  setText('qr-style',S.style);
+  setText('qr-mount',S.mount);
+  setText('qr-size',S.w+'″ × '+S.h+'″');
+  setText('qr-lift',S.lift);
+  setText('qr-liner',S.linerType==='none'?'None':capitalize(S.linerType)+' ('+S.linerColor+' '+S.linerCode+')');
+  setText('qr-qty',S.qty+' shade'+(S.qty>1?'s':''));
+  setText('qr-base','$'+base+' each');
+
+  const liftS=getLiftSurcharge();
+  const hobMult=S.style==='Hobbled'?0.3:0;
+  const hobAmt=Math.round(base*hobMult);
+  const linerS=getLinerSurcharge(base);
+  const linerHobAmt=S.style==='Hobbled'?Math.round(linerS*0.3):0;
+  const ebS=getEBSurcharge();
+  const valS=getValanceSurcharge();
+  const motorS=S.lift==='Motorized'?getMotorAccTotal():0;
+  const freight=getFreight();
+
+  showFlex('qr-lift-row',liftS>0);
+  if(liftS>0){setText('qr-lift-lbl',S.lift+' surcharge');setText('qr-lift-s','$'+liftS+' each');}
+  showFlex('qr-hob-row',hobAmt>0);
+  if(hobAmt>0) setText('qr-hob-s','+$'+hobAmt+' each');
+  showFlex('qr-liner-row',linerS>0);
+  if(linerS>0) setText('qr-liner-s','$'+linerS+' each');
+  showFlex('qr-lhob-row',linerHobAmt>0);
+  if(linerHobAmt>0) setText('qr-lhob-s','+$'+linerHobAmt+' each');
+  showFlex('qr-eb-row',ebS>0);
+  if(ebS>0) setText('qr-eb-s','$'+ebS+' each');
+  showFlex('qr-val-row',valS>0);
+  if(valS>0) setText('qr-val-s','$'+valS+' each');
+  showFlex('qr-mot-row',motorS>0);
+  if(motorS>0) setText('qr-mot-s','$515 motor + $'+motorS+' acc. each');
+  showFlex('qr-fr-row',S.del==='ship');
+  if(S.del==='ship') setText('qr-fr-s','$'+getFreight()+' (est.)');
+
+  const perShade=base+liftS+hobAmt+linerS+linerHobAmt+ebS+valS+(S.lift==='Motorized'?515+motorS:0);
+  const total=perShade*S.qty+freight;
+  setText('qr-total','$'+Math.round(total).toLocaleString());
+}
+
+function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+// ── PICKERS ───────────────────────────────────────────────────────────────────
+function pickPattern(num,name,grp,el){
+  document.querySelectorAll('.pat-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.patNum=num; S.patName=name; S.grp=grp;
+  document.getElementById('s1val').textContent=num+' '+name+' (Grp '+grp+')';
+  markDone('step1');
+  // Update disabled states for TDBU based on group
+  const tdbuCard=document.getElementById('lc-tdbu');
+  if(grp<=2){tdbuCard.classList.add('disabled');}
+  else{tdbuCard.classList.remove('disabled');}
+  validateLift(); calcPrice(); updateQuote();
+}
+
+function pickStyle(el,style){
+  document.querySelectorAll('#step2 .opt-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.style=style;
+  const warn=document.getElementById('style-warn');
+  if(style==='Hobbled'){
+    warn.textContent='⚠ Hobbled shade carries a 30% surcharge on base price. Not available with Cordless, Motorized, Dual Shade, or TDBU.';
+    warn.classList.add('show');
+    // Disable incompatible lift options
+    ['lc-cordless','lc-tdbu','lc-motor','lc-dual'].forEach(id=>{
+      const e=document.getElementById(id);
+      if(e)e.classList.add('disabled');
+    });
+    if(S.lift&&['Cordless','Cordless TDBU','Motorized','Dual Shade'].includes(S.lift)){
+      S.lift='';document.getElementById('s4val').textContent='—';
+    }
+  } else {
+    warn.classList.remove('show');
+    ['lc-cordless','lc-motor','lc-dual'].forEach(id=>{
+      const e=document.getElementById(id); if(e)e.classList.remove('disabled');
+    });
+    if(S.grp>2){const e=document.getElementById('lc-tdbu');if(e)e.classList.remove('disabled');}
+  }
+  updateStyleVal();
+  validateLift(); calcPrice(); updateQuote();
+}
+
+function pickMount(el,mount){
+  document.querySelectorAll('#step2 .opt-card').forEach(c=>{
+    if(c.closest('#step2')) c.classList.remove('sel');
+  });
+  // re-apply style selection
+  if(S.style){
+    const ids={Waterfall:'sc-waterfall','Flat Fold':'sc-flatfold',Hobbled:'sc-hobbled'};
+    const sid=ids[S.style]; if(sid){const e=document.getElementById(sid);if(e)e.classList.add('sel');}
+  }
+  el.classList.add('sel');
+  S.mount=mount;
+  updateStyleVal();
+  updateQuote();
+}
+
+function updateStyleVal(){
+  if(S.style&&S.mount){
+    document.getElementById('s2val').textContent=S.style+' · '+S.mount;
+    markDone('step2');
+  }
+}
+
+function pickLift(el,lift){
+  document.querySelectorAll('#step4 .opt-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.lift=lift;
+  document.getElementById('s4val').textContent=lift;
+  showEl('motor-section',lift==='Motorized');
+  markDone('step4');
+  // Dual shade requires liner
+  if(lift==='Dual Shade'&&S.linerType==='none'){
+    document.getElementById('liner-warn').textContent='⚠ Dual Shade requires a Privacy or Blackout liner. Please select one in Step 5.';
+    document.getElementById('liner-warn').classList.add('show');
+  } else {
+    document.getElementById('liner-warn').classList.remove('show');
+  }
+  validateLift(); calcPrice(); updateQuote();
+}
+
+function toggleMotorAcc(key,el){
+  S.motorAcc[key]=!S.motorAcc[key];
+  el.classList.toggle('sel',S.motorAcc[key]);
+  updateQuote();
+}
+
+function pickLiner(type,el){
+  document.querySelectorAll('.liner-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.linerType=type;
+  S.linerColor=''; S.linerCode='';
+  const wrap=document.getElementById('liner-color-wrap');
+  wrap.style.display=(type!=='none')?'block':'none';
+  if(type!=='none'){
+    document.querySelectorAll('#liner-colors .clr-btn').forEach(b=>b.classList.remove('sel'));
+  }
+  document.getElementById('s5val').textContent=type==='none'?'No liner':capitalize(type)+' liner';
+  markDone('step5');
+  // Update liner code suffix in color buttons based on type
+  document.querySelectorAll('#liner-colors .clr-btn').forEach(b=>{
+    b.onclick=function(){
+      const parts=b.getAttribute('onclick').match(/pickLinerColor\('([^']+)','([^']+)'/);
+      if(parts) pickLinerColor(parts[1],parts[2],this);
+    };
+  });
+  validateLift(); calcPrice(); updateQuote();
+}
+
+function pickLinerColor(color,codeBase,el){
+  document.querySelectorAll('#liner-colors .clr-btn').forEach(b=>b.classList.remove('sel'));
+  el.classList.add('sel');
+  const suffix=S.linerType==='blackout'?'BO':'P';
+  S.linerColor=color;
+  S.linerCode=codeBase+suffix;
+  document.getElementById('s5val').textContent=capitalize(S.linerType)+' — '+color+' ('+S.linerCode+')';
+  updateQuote();
+}
+
+function pickEB(el,type){
+  document.querySelectorAll('#step6 .opt-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.eb=type;
+  updateEBVal();
+  // Hold down + EB warning
+  const hasHoldDown=S.hw.includes('Hold Down Clips');
+  const warn=document.getElementById('eb-warn');
+  if(hasHoldDown&&type!=='none'){
+    warn.textContent='⚠ When Hold Down Clips are selected with edge binding, there is NO bottom edge binding.';
+    warn.classList.add('show');
+  } else warn.classList.remove('show');
+  updateQuote();
+}
+
+function pickValance(el,val){
+  // Only update valance cards within step6
+  document.querySelectorAll('#step6 .opt-card').forEach((c,i)=>{
+    if(i>=3) c.classList.remove('sel'); // 0,1,2 are EB cards; 3,4,5 are valance
+  });
+  el.classList.add('sel');
+  S.valance=val;
+  updateEBVal();
+  updateQuote();
+}
+
+function updateEBVal(){
+  const eb=S.eb==='none'?'No EB':(S.eb==='0.5'?'½″ EB':'1½″ EB');
+  const val=S.valance==='Standard (included)'?'Std valance':S.valance.replace('Valance','val.');
+  document.getElementById('s6val').textContent=eb+' · '+val;
+  markDone('step6');
+}
+
+function toggleHW(el,label){
+  el.classList.toggle('sel');
+  const check=el.querySelector('.addon-check');
+  const isOn=el.classList.contains('sel');
+  check.style.color=isOn?'#1C1510':'transparent';
+  if(isOn){if(!S.hw.includes(label))S.hw.push(label);}
+  else{S.hw=S.hw.filter(v=>v!==label);}
+  // Hold down + EB conflict warning
+  const ebWarn=document.getElementById('eb-warn');
+  if(S.hw.includes('Hold Down Clips')&&S.eb!=='none'){
+    ebWarn.textContent='⚠ When Hold Down Clips are selected with edge binding, there is NO bottom edge binding.';
+    ebWarn.classList.add('show');
+  } else ebWarn.classList.remove('show');
+  document.getElementById('s7val').textContent=S.hw.length?S.hw.length+' option'+(S.hw.length>1?'s':''):'Standard';
+  markDone('step7');
+  updateQuote();
+}
+
+function adjQty(d){
+  const el=document.getElementById('qty');
+  el.value=Math.max(1,Math.min(99,(parseInt(el.value)||1)+d));
+  S.qty=parseInt(el.value);
+  calcPrice();
+}
+
+function pickDel(btn,key){
+  document.querySelectorAll('.del-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  S.del=key;
+  showEl('del-ship',key==='ship');
+  showEl('del-pickup',key==='pickup');
+  document.getElementById('s8val').textContent=key==='ship'?'Ship to me':'Pick up';
+  markDone('step8');
+  updateQuote();
+}
+
+// ── SUBMIT ────────────────────────────────────────────────────────────────────
+function submitQuote(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const err=document.getElementById('form-err');
+  if(!name||!phone){err.style.display='block';return;}
+  err.style.display='none';
+
+  const base=getBasePrice(S.grp,S.w,S.h)||0;
+  const liftS=getLiftSurcharge();
+  const hobAmt=S.style==='Hobbled'?Math.round(base*0.3):0;
+  const linerS=getLinerSurcharge(base);
+  const linerHobAmt=S.style==='Hobbled'?Math.round(linerS*0.3):0;
+  const ebS=getEBSurcharge();
+  const valS=getValanceSurcharge();
+  const motorAcc=S.lift==='Motorized'?getMotorAccTotal():0;
+  const perShade=base+liftS+hobAmt+linerS+linerHobAmt+ebS+valS+(S.lift==='Motorized'?515+motorAcc:0);
+  const total=perShade*S.qty+getFreight();
+
+  const accList=Object.keys(S.motorAcc).filter(k=>S.motorAcc[k]).join(', ')||'None';
+  const hwList=S.hw.join(', ')||'None';
+
+  const lines=[
+    'DYNASTY WOVEN WOOD SHADES — QUOTE REQUEST',
+    '',
+    'PRODUCT',
+    '  Product: Wallace Dynasty Woven Wood Shades',
+    '  Pattern: '+S.patNum+' '+S.patName,
+    '  Price Group: '+S.grp,
+    '  Style: '+S.style,
+    '  Mount: '+S.mount,
+    '',
+    'DIMENSIONS & QUANTITY',
+    '  Width: '+S.w+'″',
+    '  Height: '+S.h+'″',
+    '  Quantity: '+S.qty,
+    '',
+    'LIFT / CONTROL',
+    '  Control: '+S.lift,
+    '  Headrail: '+(S.lift==='Dual Shade'?'3.5″':S.lift==='Motorized'?'1.5″ (Automate 25mm motor)':'Slim 1.5″ or 2.5″ regular (see clutch chart)'),
+    '',
+    'LINER',
+    '  Liner type: '+(S.linerType==='none'?'None':capitalize(S.linerType)),
+    '  Liner color: '+(S.linerColor||'N/A'),
+    '  Liner code: '+(S.linerCode||'N/A'),
+    '',
+    'UPGRADES',
+    '  Edge binding: '+S.eb+(S.eb!=='none'?'″ twill':''),
+    '  Valance: '+S.valance,
+    '',
+    'HARDWARE OPTIONS',
+    '  '+hwList,
+    '',
+    'MOTORIZATION ACCESSORIES',
+    '  '+(S.lift==='Motorized'?'Motor: Automate™ Li-ion $515\n  Accessories: '+accList:'N/A'),
+    '',
+    'PRICING ESTIMATE (retail — confirm with current Wallace price book)',
+    '  Base price: $'+base+' per shade',
+    '  Lift surcharge: $'+liftS,
+    '  Hobbled surcharge (30%): $'+hobAmt,
+    '  Liner surcharge: $'+linerS,
+    '  Liner hobbled surcharge: $'+linerHobAmt,
+    '  Edge binding: $'+ebS,
+    '  Valance upgrade: $'+valS,
+    '  Motor + accessories: $'+(S.lift==='Motorized'?515+motorAcc:0),
+    '  Qty: '+S.qty,
+    '  Freight (est.): $'+getFreight(),
+    '  ESTIMATED TOTAL: $'+Math.round(total).toLocaleString(),
+    '',
+    'DELIVERY',
+    '  '+(S.del==='ship'?'Ship to me (UPS/FedEx from Huntingdon Valley PA)':'Pickup at 527 Hoyt Rd, Huntingdon Valley PA 19006'),
+    '',
+    'CUSTOMER',
+    '  Name: '+name,
+    '  Phone: '+phone,
+    '  Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    '  Room/location: '+(document.getElementById('f-room').value.trim()||'Not provided'),
+    '  Notes: '+(document.getElementById('f-notes').value.trim()||'None'),
+    '',
+    'NOTE: Estimated retail pricing only. Final price confirmed with current Wallace Blinds price book before order.'
+  ];
+
+  const body=encodeURIComponent(lines.join('\n'));
+  const subject=encodeURIComponent('Dynasty Woven Quote — '+S.patName+' (Grp '+S.grp+') — '+name);
+  window.location.href='mailto:justin@phillyblinds.com?subject='+subject+'&body='+body;
+  document.getElementById('success-box').style.display='block';
+  markDone('step9');
+}
+</script>
+</body>
+</html>

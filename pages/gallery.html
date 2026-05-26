@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Browse our portfolio of custom window treatments — draperies, roman shades, roller shades, shutters and more. Real installations across Philadelphia and South Jersey.">
+<meta property="og:title" content="Installation Gallery | Philly Blinds">
+<meta property="og:description" content="Browse our portfolio of custom window treatments — draperies, roman shades, roller shades, shutters and more. Real installations across Philadelphia and South Jersey.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blindznation.com/pages/gallery.html">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Installation Gallery | Philly Blinds">
+<meta name="twitter:description" content="Browse our portfolio of custom window treatments — draperies, roman shades, roller shades, shutters and more. Real installations across Philadelphia and South Jersey.">
+<title>Our Work — Philly Blinds Gallery</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:var(--espresso);padding:40px 28px 36px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}.breadcrumb a:hover{color:var(--gold)}
+.page-hero h1{font-size:28px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px}
+.page-hero p{font-size:13px;color:var(--text-dark);line-height:1.7;max-width:480px}
+.tab-bar{display:flex;gap:0;background:var(--gold-mid);border-bottom:1px solid #e8e8e4;padding:0 24px;overflow-x:auto}
+.gtab{padding:12px 18px;font-size:13px;cursor:pointer;color:#666;border-bottom:2px solid transparent;white-space:nowrap}
+.gtab.on{color:#111;border-bottom-color:var(--gold);font-weight:500}
+.section{padding:28px 24px;background:var(--gold-mid)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px}
+.pcard{border-radius:10px;overflow:hidden;cursor:pointer;border:1px solid #e8e8e4;transition:border-color 0.15s;background:#fff}
+.pcard:hover{border-color:var(--gold)}
+.pthumb{aspect-ratio:4/3;overflow:hidden}
+.pthumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.2s}
+.pcard:hover .pthumb img{transform:scale(1.05)}
+.vthumb{height:118px;display:flex;align-items:center;justify-content:center;position:relative}
+.play-btn{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;position:absolute}
+.vtag{position:absolute;bottom:6px;right:7px;font-size:10px;font-weight:500;padding:2px 7px;border-radius:8px}
+.motor-badge{position:absolute;top:6px;left:7px;font-size:10px;font-weight:500;padding:2px 7px;border-radius:8px;background:#E6F1FB;color:#0C447C}
+.vbody{padding:9px 10px 10px}
+.vname{font-size:12px;font-weight:500;color:#111;line-height:1.3}
+.panel{display:none}.panel.active{display:block}
+.empty-note{color:#999;font-size:13px;font-style:italic;padding:32px 0;text-align:center}
+</style>
+</head>
+<body>
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> › Our work</div>
+  <h1>Our work</h1>
+  <p>Real installations — browse by product type. Every photo and video is a completed job by Philly Blinds.</p>
+</div>
+
+<div class="tab-bar">
+  <div class="gtab on" onclick="showG('drapes',this)">Custom draperies (64)</div>
+  <div class="gtab" onclick="showG('roman',this)">Roman shades (15)</div>
+  <div class="gtab" onclick="showG('roller',this)">Roller shades (16)</div>
+  <div class="gtab" onclick="showG('specialty',this)">Shutters &amp; specialty</div>
+  <div class="gtab" onclick="showG('upholstery',this)">Upholstery (54)</div>
+  <div class="gtab" onclick="showG('recent',this)">Recent work (677)</div>
+  <div class="gtab" onclick="showG('videos',this)">Videos (16)</div>
+</div>
+
+<div class="section">
+  <div id="panel-drapes" class="panel active">
+    <div class="pgrid" id="grid-drapes"></div>
+  </div>
+  <div id="panel-roman" class="panel">
+    <div class="pgrid" id="grid-roman"></div>
+  </div>
+  <div id="panel-roller" class="panel">
+    <div class="pgrid" id="grid-roller"></div>
+  </div>
+  <div id="panel-specialty" class="panel">
+    <div class="pgrid" id="grid-specialty"></div>
+  </div>
+  <div id="panel-upholstery" class="panel">
+    <div class="pgrid" id="grid-upholstery"></div>
+  </div>
+  <div id="panel-recent" class="panel">
+    <div style="font-size:12px;color:#888;margin-bottom:16px">677 photos from recent installations — mix of drapery, shades, shutters and more.</div>
+    <div class="pgrid" id="grid-recent"></div>
+  </div>
+  <div id="panel-videos" class="panel">
+    <div class="pgrid" id="grid-videos"></div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lb-wrap" id="lightbox">
+  <div class="lb-box">
+    <img id="lb-img" class="lb-img" src="" alt="" style="display:none">
+    <div id="lb-screen" style="display:none;background:#111;height:200px;align-items:center;justify-content:center;color:#fff;font-size:13px"></div>
+    <div class="lb-foot">
+      <div class="lb-nav">
+        <button onclick="navLB(-1)">← Prev</button>
+        <button onclick="navLB(1)">Next →</button>
+      </div>
+      <span class="lb-count" id="lb-count"></span>
+      <a class="nav-cta" href="consult.html" style="font-size:11px;padding:7px 12px">Request this style →</a>
+      <button class="lb-close" onclick="closeLB()">✕</button>
+    </div>
+  </div>
+</div>
+
+<div class="cta-banner" style="margin-top:0">
+  <div><h2>See something you like?</h2><p>Call or text us — we'll make it happen for your home.</p></div>
+  <a class="btn-dark" href="tel:6097421720">(609) 742-1720 · 24/7</a>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../js/shared.js"></script>
+<script>
+renderNav('Our work'); renderFooter(false);
+
+const base='../';
+const drapeFiles=['IMG_4927.JPEG','IMG_2861.JPEG','IMG_3018.JPEG','IMG_3023.JPEG','IMG_3032.JPEG','IMG_3034.JPEG','IMG_3367.JPEG','IMG_3575.JPEG','IMG_3578.JPEG','IMG_3615.JPEG','IMG_3616.JPEG','IMG_4767.JPEG','IMG_4791.JPEG','IMG_4792.JPEG','IMG_4920.JPEG','IMG_4922.JPEG','IMG_4924.JPEG','IMG_4925.JPEG','IMG_2716.JPEG','IMG_2723.JPEG','IMG_2726.JPEG','IMG_2732.JPEG','IMG_2733.JPEG','IMG_2747.JPEG','IMG_2754.JPEG','IMG_2806.JPEG','IMG_2850.JPEG','IMG_2851.JPEG','IMG_2853.JPEG','IMG_2854.JPEG','IMG_2684.JPEG','IMG_1959.JPEG','IMG_1962.JPEG','IMG_1965.JPEG','IMG_1966.JPEG','IMG_2014.JPEG','IMG_2016.JPEG','IMG_2017.JPEG','IMG_2019.JPEG','IMG_2020.JPEG','IMG_2022.JPEG','IMG_2681.JPEG','0BD8C37F-98A4-4B7D-9703-B72D4FC1AE31.JPG','1AAF691A-868D-4B47-B05A-79582C62D55C.jpg','05F1958F-2CF3-4A9D-83A3-2D84A050AA54.JPG','5A65FBE6-7AB9-4535-8D62-64482C37378D.jpg','5CA381D9-4644-42EA-8977-14BCEE517279.JPEG','6AB7DA55-1C77-45B6-874D-1C48DC0DE414.JPEG','8A171BD2-2D59-4D91-8055-76B9EEF0D9B3.JPEG','09F3C90B-FC44-42D9-A881-B976E9F35567.JPEG','624C1D52-5E26-40F4-A216-96525F35677A.jpg','844F7124-DA35-4094-974E-9A2B1B795040.JPG','42544ACF-F287-4F3F-810B-B98A92843CBB.JPG','1044365A-6787-4095-90B3-4F82011BBA3C.JPG','64507409-6249-4D66-8BBD-DE1A62796429.JPEG','74313161-6696-4E7C-A596-3CC597861783.JPG','A4EC67A6-44DF-47F3-83D2-B414652EA94F.JPG','B80FD70C-AFA3-4D5A-8003-3E7D6C2EC6B0-1.JPG','C25AC8C2-D5E1-430E-992C-A4732D98E1FA.JPEG','41231734-8063-434D-A4B9-FB33AE52C342.JPG','PINCH_PLEAT_2PRONG.JPEG','PINCH_PLEAT_TRAVERSE.JPEG'];
+const romanFiles=['CB132874-2AF3-4EEA-B87F-B1587D04A309.JPG','IMG_0592.JPEG','IMG_0599.JPEG','IMG_0603.JPEG','IMG_0604.JPEG','IMG_0699.JPEG','IMG_0732.JPEG','448E74BE-9249-43A5-94DB-F3092460702C.JPG','506E0E70-EFA5-4132-880C-9B678A67B9FF.JPEG','5048388E-1B01-4F2A-B6CC-9450F9EB3388.JPG','60217592364__67DA8A85-9CCF-42C0-B741-F0F3C33FDB36.JPG','ROMAN_FLAT_UNLINED.JPG','ROMAN_TDBU.JPEG','ROMAN_TRIM.JPG','ROMAN_TRIM_GREEK.JPG'];
+const rollerFiles=['u3916193617_custom_roller_shades_high_end_in_hpuse_motorized__5be2f23c-3f34-47dc-86d1-3cbbbda7fc96_0.png','u3916193617_custom_roller_shades_high_end_in_hpuse_motorized__5be2f23c-3f34-47dc-86d1-3cbbbda7fc96_1.png','u3916193617_custom_roller_shades_high_end_in_hpuse_motorized__5be2f23c-3f34-47dc-86d1-3cbbbda7fc96_2.png','u3916193617_custom_roller_shades_high_end_in_hpuse_motorized__5be2f23c-3f34-47dc-86d1-3cbbbda7fc96_3.png','DUAL_ROLLER_SHADES.JPG','ROLLER_METAL_VALANCE.JPEG','IMG_5442.JPEG','IMG_5277.JPEG','IMG_5278.JPEG','IMG_5279.JPEG','IMG_5280.JPEG','IMG_5281.JPEG','IMG_5282.JPEG','IMG_5283.JPEG','IMG_5284.JPEG','IMG_5285.JPEG'];
+const specialtyFiles=['CIRCLE_SHUTTER.JPEG','HOURGLASS_SHEERS.JPEG','CUSTOM_UPHOLSTERY.JPEG','DECORATIVE_ARCH_DRAPES.JPG','VALANCE_SWAGS_JABOTS.JPEG'];
+const videos=[
+  {file:'Cellular_shades.MP4',name:'Motorized cellular shades',cat:'Cellular',motor:true,color:'#EAF3DE',stroke:'#3B6D11'},
+  {file:'Manual_Roller_Shade.MP4',name:'Motorized roller shade',cat:'Roller',motor:true,color:'#E6F1FB',stroke:'#185FA5'},
+  {file:'Roller_shades__2_.MP4',name:'Motorized roller shades',cat:'Roller',motor:true,color:'#B5D4F4',stroke:'#0C447C'},
+  {file:'roller_shades__3_.MP4',name:'Motorized roller shades',cat:'Roller',motor:true,color:'#85B7EB',stroke:'#042C53'},
+  {file:'roller_shades__4_.MP4',name:'Motorized roller shades',cat:'Roller',motor:true,color:'#378ADD',stroke:'#042C53'},
+  {file:'Roller_shades.mp4',name:'Motorized roller shades',cat:'Roller',motor:true,color:'#B5D4F4',stroke:'#185FA5'},
+  {file:'Roller_shades_Magnetic_on_Garage_door.mp4',name:'Roller shades — garage door',cat:'Specialty',motor:true,color:'#D3D1C7',stroke:'#5F5E5A'},
+  {file:'Manual_Silhouette.MP4',name:'Manual Silhouette shading',cat:'Premium',motor:false,color:'#EEEDFE',stroke:'#534AB7'},
+  {file:'roman_shade.MOV',name:'Motorized Roman shade',cat:'Roman',motor:true,color:'#FBEAF0',stroke:'#D4537E'},
+  {file:'shutter.MP4',name:'Motorized plantation shutters',cat:'Shutters',motor:true,color:'#FAECE7',stroke:'#D85A30'},
+  {file:'Zebra_Banded_Shade.mp4',name:'Motorized zebra banded shade',cat:'Zebra',motor:true,color:'#EEEDFE',stroke:'#7F77DD'},
+  {file:'custom_drapes.MOV',name:'Motorized custom drapes',cat:'Drapes',motor:true,color:'#FBEAF0',stroke:'#993556'},
+  {file:'drapes.MP4',name:'Motorized drapes',cat:'Drapes',motor:true,color:'#F4C0D1',stroke:'#72243E'},
+  {file:'triangle_drapes.MP4',name:'Motorized triangle drapes',cat:'Drapes',motor:true,color:'#ED93B1',stroke:'#993556'},
+  {file:'IMG_1649.MP4',name:'2-prong tack top pinch pleat',cat:'Drapes',motor:false,color:'#F5ECD7',stroke:'#8B6A3E'},
+  {file:'IMG_1387.MOV',name:'Custom roller shades — bedroom install',cat:'Roller',motor:false,color:'#E6F1FB',stroke:'#185FA5'},
+];
+
+let currentList=[];let currentIdx=0;let currentType='photo';
+
+function buildPhotoGrid(containerId, files, imgPath){
+  const g=document.getElementById(containerId);
+  g.innerHTML=files.map((f,i)=>`<div class="pcard" data-idx="${i}" data-grid="${containerId}" onclick="openPhoto(${i},'${containerId}')"><div class="pthumb"><img src="${imgPath}${f}" loading="lazy" alt="" onerror="this.closest('.pcard').remove()"></div></div>`).join('');
+}
+
+function buildVideoGrid(){
+  const g=document.getElementById('grid-videos');
+  g.innerHTML=videos.map((v,i)=>`
+    <div class="pcard" onclick="openVideo(${i})">
+      <div class="vthumb" style="background:${v.color}">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="5" y="8" width="38" height="26" rx="2" fill="${v.color}" stroke="${v.stroke}" stroke-width="1"/><line x1="5" y1="14" x2="43" y2="14" stroke="${v.stroke}" stroke-width="0.7" opacity="0.4"/><line x1="5" y1="21" x2="43" y2="21" stroke="${v.stroke}" stroke-width="0.7" opacity="0.4"/><line x1="5" y1="28" x2="43" y2="28" stroke="${v.stroke}" stroke-width="0.7" opacity="0.4"/></svg>
+        <div class="play-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M3 1.5l7 4-7 4V1.5z" fill="#1C1510"/></svg></div>
+        <div class="vtag" style="background:${v.color};color:${v.stroke}">${v.cat}</div>
+        ${v.motor?'<div class="motor-badge">Motorized</div>':'<div class="motor-badge" style="background:#F1EFE8;color:#444">Manual</div>'}
+      </div>
+      <div class="vbody"><div class="vname">${v.name}</div></div>
+    </div>`).join('');
+}
+
+let photoLists={};
+function openPhoto(i, gridId){
+  if(!photoLists[gridId]){
+    photoLists['grid-drapes']=drapeFiles.map(f=>'../images/portfolio/'+f);
+    photoLists['grid-roman']=romanFiles.map(f=>'../images/portfolio/'+f);
+    photoLists['grid-roller']=rollerFiles.map(f=>'../images/portfolio/'+f);
+    photoLists['grid-specialty']=specialtyFiles.map(f=>'../images/portfolio/'+f);
+    photoLists['grid-upholstery']=upholsteryFiles.map(f=>'../images/upholstery/'+f);
+    photoLists['grid-recent']=recentFiles.map(f=>'../images/portfolio/'+f);
+  }
+  currentList=photoLists[gridId]; currentIdx=i; currentType='photo';
+  document.getElementById('lb-img').style.display='block';
+  document.getElementById('lb-screen').style.display='none';
+  document.getElementById('lb-img').src=currentList[i];
+  document.getElementById('lb-count').textContent=(i+1)+' / '+currentList.length;
+  document.getElementById('lightbox').classList.add('open');
+}
+function openVideo(i){
+  currentList=videos; currentIdx=i; currentType='video';
+  const v=videos[i];
+  document.getElementById('lb-img').style.display='none';
+  const scr=document.getElementById('lb-screen');
+  scr.style.display='flex'; scr.style.flexDirection='column'; scr.style.alignItems='center'; scr.style.justifyContent='center'; scr.style.gap='8px';
+  scr.style.background=v.color;
+  scr.innerHTML=`<svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.2)"/><path d="M18 14l18 10-18 10V14z" fill="${v.stroke}"/></svg><div style="font-size:12px;color:${v.stroke};font-weight:500">${v.name}</div><div style="font-size:11px;color:${v.stroke};opacity:0.7">Video plays on live site</div>`;
+  document.getElementById('lb-count').textContent=(i+1)+' / '+videos.length;
+  document.getElementById('lightbox').classList.add('open');
+}
+function navLB(d){
+  const len=currentList.length;
+  currentIdx=(currentIdx+d+len)%len;
+  currentType==='photo'?openPhoto(currentIdx,Object.keys(photoLists).find(k=>photoLists[k]===currentList)):openVideo(currentIdx);
+}
+function closeLB(){document.getElementById('lightbox').classList.remove('open')}
+
+function showG(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.gtab').forEach(t=>t.classList.remove('on'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('on');
+}
+
+const upholsteryFiles=[
+  'IMG_2161.JPEG','IMG_2162.JPEG','IMG_2163.JPEG','IMG_2164.JPEG','IMG_2165.JPEG','IMG_2165-1.JPEG','IMG_2165-2.JPEG',
+  'IMG_2166.JPEG','IMG_2166-1.JPEG','IMG_2166-2.JPEG','IMG_2167.JPEG','IMG_2167-1.JPEG','IMG_2168.JPEG','IMG_2168-1.JPEG',
+  'IMG_2169.JPEG','IMG_2169-1.JPEG','IMG_2170.JPEG','IMG_2170-1.JPEG','IMG_2171.JPEG','IMG_2172.JPEG','IMG_2172-1.JPEG',
+  'IMG_2173.JPEG','IMG_2173-1.JPEG','IMG_2174.JPEG','IMG_2174-1.JPEG','IMG_2175.JPEG','IMG_2175-1.JPEG',
+  'IMG_2176.JPEG','IMG_2176-1.JPEG','IMG_2178.JPEG',
+  'CUSTOM WALL UPHOLSTERY.JPEG','WALL UPHOLSTERY 3.JPG','CUSTOM UPHOLSERY 2.JPEG',
+  'HEADBOARD UPHOLSTERY.JPG','HEADBOARD AND FOOT BOARD UPHOLSTERY.JPEG',
+  'UPHOLSTERY.JPEG','UPHOLSTERY 3.JPEG','UPHOLSTERY 4.JPEG','UPHOLSTERY 5.JPEG','UPHOLSTERY 6.JPEG',
+  'UPHOLSTERY BENCH.JPEG','custom cushion upholstery.JPEG',
+  'IMG_5580.JPEG','IMG_5581.JPEG','IMG_5582.JPEG','IMG_5583.JPEG','IMG_5584.JPEG','IMG_5585.JPEG',
+  'IMG_5586.JPEG','IMG_5587.JPEG','IMG_5588.JPEG','IMG_5589.JPEG','IMG_5590.JPEG','IMG_5591.JPEG'
+];
+
+const recentFiles=['1777683037171_image.png','IMG_1347.JPEG','IMG_1364.JPEG','IMG_1365.JPEG','IMG_1366.JPEG','IMG_1367.JPEG','IMG_1368.JPEG','IMG_1373.JPEG','IMG_1374.JPEG','IMG_1375.JPEG','IMG_1376.JPEG','IMG_1377.JPEG','IMG_1378.JPEG','IMG_1379.JPEG','IMG_1380.JPEG','IMG_1381.JPEG','IMG_1382.JPEG','IMG_1383.JPEG','IMG_1387.JPEG','IMG_1389.JPEG','IMG_1390.JPEG','IMG_1391.JPEG','IMG_1394.JPEG','IMG_1395.JPEG','IMG_1405.JPEG','IMG_1406.JPEG','IMG_1407.PNG','IMG_1409.JPEG','IMG_1410.JPEG','IMG_1414.JPEG','IMG_1416.JPEG','IMG_1418.JPEG','IMG_1419.JPEG','IMG_1421.JPEG','IMG_1422.JPEG','IMG_1423.JPEG','IMG_1425.JPEG','IMG_1426.JPEG','IMG_1427.JPEG','IMG_1428.JPEG','IMG_1429.JPEG','IMG_1431.JPEG','IMG_1432.JPEG','IMG_1433.JPEG','IMG_1434.JPEG','IMG_1435.JPEG','IMG_1436.JPEG','IMG_1437.JPEG','IMG_1438.JPEG','IMG_1440.JPEG','IMG_1441.JPEG','IMG_1442.JPEG','IMG_1443.JPEG','IMG_1444.JPEG','IMG_1445.JPEG','IMG_1446.JPEG','IMG_1447.JPEG','IMG_1450.JPEG','IMG_1451.JPEG','IMG_1456.JPEG','IMG_1457.JPEG','IMG_1458.JPEG','IMG_1466.JPEG','IMG_1468.JPEG','IMG_1471.JPEG','IMG_1472.JPEG','IMG_1477.JPEG','IMG_1478.JPEG','IMG_1481.JPEG','IMG_1482.JPEG','IMG_1483.JPEG','IMG_1485.JPEG','IMG_1486.JPEG','IMG_1487.JPEG','IMG_1488.JPEG','IMG_1489.JPEG','IMG_1490.JPEG','IMG_1491.JPEG','IMG_1498.JPEG','IMG_1502.JPEG','IMG_1503.JPEG','IMG_1512.JPEG','IMG_1514.JPEG','IMG_1515.JPEG','IMG_1516.JPEG','IMG_1517.JPEG','IMG_1612.JPEG','IMG_1617.JPEG','IMG_1618.JPEG','IMG_1621.JPEG','IMG_1622.JPEG','IMG_1623.JPEG','IMG_1624.JPEG','IMG_1625.JPEG','IMG_1626.JPEG','IMG_1627.JPEG','IMG_1628.JPEG','IMG_1629.JPEG','IMG_1630.JPEG','IMG_1631.JPEG','IMG_1637.JPEG','IMG_1640.JPEG','IMG_1641.JPEG','IMG_1642.JPEG','IMG_1644.JPEG','IMG_1645.JPEG','IMG_1646.JPEG','IMG_1647.JPEG','IMG_1650.JPEG','IMG_1651.JPEG','IMG_1664.JPEG','IMG_1665.JPEG','IMG_1666.JPEG','IMG_1667.JPEG','IMG_1670.JPEG','IMG_1671.JPEG','IMG_1705.JPEG','IMG_1706.JPEG','IMG_1707.JPEG','IMG_1708.JPEG','IMG_1709.JPEG','IMG_1710.JPEG','IMG_1711.JPEG','IMG_1712.JPEG','IMG_1713.JPEG','IMG_1724.JPEG','IMG_1749.JPEG','IMG_1750.JPEG','IMG_1754.JPEG','IMG_1785.JPEG','IMG_1786.JPEG','IMG_1787.JPEG','IMG_1795.JPEG','IMG_1796.JPEG','IMG_1797.JPEG','IMG_1798.JPEG','IMG_1799.JPEG','IMG_1800.JPEG','IMG_1801.JPEG','IMG_1809.JPEG','IMG_1810.JPEG','IMG_1811.JPEG','IMG_1812.JPEG','IMG_1813.JPEG','IMG_1814.JPEG','IMG_1815.JPEG','IMG_1816.JPEG','IMG_1817.JPEG','IMG_1818.JPEG','IMG_1819.JPEG','IMG_1820.JPEG','IMG_1821.JPEG','IMG_1828.JPEG','IMG_1829.JPEG','IMG_1830.JPEG','IMG_1831.JPEG','IMG_1834.JPEG','IMG_1835.JPEG','IMG_1836.JPEG','IMG_1837.JPEG','IMG_1838.JPEG','IMG_1840.JPEG','IMG_1841.JPEG','IMG_1842.JPEG','IMG_1849.JPEG','IMG_1850.JPEG','IMG_1851.JPEG','IMG_1857.JPEG','IMG_1858.JPEG','IMG_1859.JPEG','IMG_1860.JPEG','IMG_1861.JPEG','IMG_1862.JPEG','IMG_1863.JPEG','IMG_1864.JPEG','IMG_1865.JPEG','IMG_1866.JPEG','IMG_1870.JPEG','IMG_1871.JPEG','IMG_1883.JPEG','IMG_1892.JPEG','IMG_1894.JPEG','IMG_1895.JPEG','IMG_1901.JPEG','IMG_1902.JPEG','IMG_1903.JPEG','IMG_1904.JPEG','IMG_1905.JPEG','IMG_1906.JPEG','IMG_1907.JPEG','IMG_1908.JPEG','IMG_1909.JPEG','IMG_1910.JPEG','IMG_1911.JPEG','IMG_1913.JPEG','IMG_1916.JPEG','IMG_1917.JPEG','IMG_1918.JPEG','IMG_1919.JPEG','IMG_1920.JPEG','IMG_1921.JPEG','IMG_1922.JPEG','IMG_1923.JPEG','IMG_1925.JPEG','IMG_1926.JPEG','IMG_1927.JPEG','IMG_1928.JPEG','IMG_1929.JPEG','IMG_1930.JPEG','IMG_1931.JPEG','IMG_1932.JPEG','IMG_1933.JPEG','IMG_1934.JPEG','IMG_1936.JPEG','IMG_1941.JPEG','IMG_1942.JPEG','IMG_1943.JPEG','IMG_1958.JPEG','IMG_1960.JPEG','IMG_1961.JPEG','IMG_1963.JPEG','IMG_1969.JPEG','IMG_1977.JPEG','IMG_1980.JPEG','IMG_1984.JPEG','IMG_1985.JPEG','IMG_1986.JPEG','IMG_1987.JPEG','IMG_1989.JPEG','IMG_1991.JPEG','IMG_1992.JPEG','IMG_1994.JPEG','IMG_1995.JPEG','IMG_1996.JPEG','IMG_1997.JPEG','IMG_2004.JPEG','IMG_2012.JPEG','IMG_2013.JPEG','IMG_2015.JPEG','IMG_2018.JPEG','IMG_2021.JPEG','IMG_2023.JPEG','IMG_2027.JPEG','IMG_2028.JPEG','IMG_2029.JPEG','IMG_2063.JPEG','IMG_2068.JPEG','IMG_2070.JPEG','IMG_2071.JPEG','IMG_2072.JPEG','IMG_2073.JPEG','IMG_2075.JPEG','IMG_2076.JPEG','IMG_2077.JPEG','IMG_2084.JPEG','IMG_2085.JPEG','IMG_2088.JPEG','IMG_2089.JPEG','IMG_2093.JPEG','IMG_2095.JPEG','IMG_2096.JPEG','IMG_2097.JPEG','IMG_2098.JPEG','IMG_2099.JPEG','IMG_2100.JPEG','IMG_2103.JPEG','IMG_2107.JPEG','IMG_2110.JPEG','IMG_2114.JPEG','IMG_2140.JPEG','IMG_2141.JPEG','IMG_2142.JPEG','IMG_2143.JPEG','IMG_2144.JPEG','IMG_2145.JPEG','IMG_2155.JPEG','IMG_2156.JPEG','IMG_2159.JPEG','IMG_2160.JPEG','IMG_2168.JPEG','IMG_2169.JPEG','IMG_2170.JPEG','IMG_2177.JPEG','IMG_2178.JPEG','IMG_2181.JPEG','IMG_2182.JPEG','IMG_2184.JPEG','IMG_2188.JPEG','IMG_2191.JPEG','IMG_2203.JPEG','IMG_2204.JPEG','IMG_2205.JPEG','IMG_2206.JPEG','IMG_2207.JPEG','IMG_2208.JPEG','IMG_2209.JPEG','IMG_2216.JPEG','IMG_2217.JPEG','IMG_2218.JPEG','IMG_2219.JPEG','IMG_2220.JPEG','IMG_2221.JPEG','IMG_2222.JPEG','IMG_2229.PNG','IMG_2237.JPEG','IMG_2239.JPEG','IMG_2244.JPEG','IMG_2246.JPEG','IMG_2247.JPEG','IMG_2248.JPEG','IMG_2249.JPEG','IMG_2250.JPEG','IMG_2252.JPEG','IMG_2258.JPEG','IMG_2267.JPEG','IMG_2268.JPEG','IMG_2269.JPEG','IMG_2272.JPEG','IMG_2279.JPEG','IMG_2281.JPEG','IMG_2308.JPEG','IMG_2321.JPEG','IMG_2322.JPEG','IMG_2330.JPEG','IMG_2334.JPEG','IMG_2335.JPEG','IMG_2336.JPEG','IMG_2339.JPEG','IMG_2339.jpg','IMG_2340.JPEG','IMG_2341.JPEG','IMG_2342.JPEG','IMG_2346.JPEG','IMG_2347.JPEG','IMG_2348.JPEG','IMG_2349.JPEG','IMG_2350.JPEG','IMG_2351.JPEG','IMG_2352.JPEG','IMG_2353.JPEG','IMG_2354.JPEG','IMG_2359.JPEG','IMG_2365.JPEG','IMG_2366.JPEG','IMG_2367.JPEG','IMG_2368.JPEG','IMG_2369.JPEG','IMG_2370.JPEG','IMG_2371.JPEG','IMG_2372.JPEG','IMG_2373.JPEG','IMG_2375.JPEG','IMG_2376.JPEG','IMG_2378.JPEG','IMG_2394.JPEG','IMG_2395.JPEG','IMG_2396.JPEG','IMG_2397.JPEG','IMG_2398.JPEG','IMG_2401.JPEG','IMG_2402.JPEG','IMG_2403.JPEG','IMG_2404.JPEG','IMG_2417.JPEG','IMG_2418.JPEG','IMG_2419.JPEG','IMG_2421.JPEG','IMG_2424.JPEG','IMG_2482.JPEG','IMG_2486.JPEG','IMG_2487.JPEG','IMG_2509.JPEG','IMG_2510.JPEG','IMG_2511.JPEG','IMG_2512.JPEG','IMG_2513.JPEG','IMG_2540.JPEG','IMG_2541.JPEG','IMG_2553.JPEG','IMG_2570.JPEG','IMG_2571.JPEG','IMG_2572.JPEG','IMG_2577.JPEG','IMG_2578.JPEG','IMG_2579.JPEG','IMG_2592.JPEG','IMG_2594.JPEG','IMG_2595.JPEG','IMG_2596.JPEG','IMG_2597.JPEG','IMG_2600.JPEG','IMG_2601.JPEG','IMG_2603.JPEG','IMG_2607.JPEG','IMG_2608.JPEG','IMG_2609.JPEG','IMG_2610.JPEG','IMG_2611.JPEG','IMG_2614.JPEG','IMG_2615.JPEG','IMG_2621.JPEG','IMG_2622.JPEG','IMG_2646.jpeg','IMG_2655.JPEG','IMG_2656.JPEG','IMG_2663.JPEG','IMG_2664.JPEG','IMG_2665.JPEG','IMG_2666.JPEG','IMG_2667.JPEG','IMG_2668.JPEG','IMG_2669.JPEG','IMG_2670.JPEG','IMG_2671.JPEG','IMG_2674.JPEG','IMG_2675.JPEG','IMG_2678.JPEG','IMG_2688.JPEG','IMG_2699.JPEG','IMG_2700.JPEG','IMG_2702.JPEG','IMG_2703.JPEG','IMG_2707.JPEG','IMG_2708.JPEG','IMG_2709.JPEG','IMG_2710.JPEG','IMG_2711.JPEG','IMG_2712.JPEG','IMG_2713.JPEG','IMG_2715.JPEG','IMG_2718.JPEG','IMG_2722.JPEG','IMG_2724.JPEG','IMG_2727.JPEG','IMG_2729.JPEG','IMG_2731.JPEG','IMG_2743.JPEG','IMG_2744.JPEG','IMG_2746.JPEG','IMG_2748.JPEG','IMG_2749.JPEG','IMG_2751.JPEG','IMG_2752.JPEG','IMG_2755.JPEG','IMG_2757.JPEG','IMG_2785.JPEG','IMG_2786.JPEG','IMG_2787.JPEG','IMG_2789.JPEG','IMG_2790.JPEG','IMG_2791.JPEG','IMG_2792.JPEG','IMG_2797.JPEG','IMG_2807.JPEG','IMG_2808.JPEG','IMG_2812.JPEG','IMG_2826.JPEG','IMG_2828.JPEG','IMG_2846.JPEG','IMG_2849.JPEG','IMG_2855.JPEG','IMG_2856.JPEG','IMG_2857.JPEG','IMG_2858.JPEG','IMG_2860.JPEG','IMG_2866.JPEG','IMG_2867.JPEG','IMG_2870.JPEG','IMG_2894.JPEG','IMG_2896.JPEG','IMG_2897.JPEG','IMG_2898.JPEG','IMG_2903.JPEG','IMG_2904.JPEG','IMG_2911.JPEG','IMG_2912.JPEG','IMG_2913.JPEG','IMG_2914.JPEG','IMG_2918.JPEG','IMG_2936.JPEG','IMG_2937.JPEG','IMG_2938.JPEG','IMG_2939.JPEG','IMG_2940.JPEG','IMG_2941.JPEG','IMG_2942.JPEG','IMG_2944.JPEG','IMG_2956.JPEG','IMG_2957.JPEG','IMG_2958.JPEG','IMG_2987.JPEG','IMG_2988.JPEG','IMG_2992.JPEG','IMG_2993.JPEG','IMG_2994.JPEG','IMG_2995.JPEG','IMG_2996.JPEG','IMG_3016.JPEG','IMG_3017.JPEG','IMG_3019.JPEG','IMG_3020.JPEG','IMG_3021.JPEG','IMG_3033.JPEG','IMG_3035.JPEG','IMG_3036.JPEG','IMG_3037.JPEG','IMG_3038.JPEG','IMG_3039.JPEG','IMG_3040.JPEG','IMG_3041.JPEG','IMG_3042.JPEG','IMG_3043.JPEG','IMG_3044.JPEG','IMG_3045.JPEG','IMG_3067.JPEG','IMG_3068.JPEG','IMG_3069.JPEG','IMG_3070.JPEG','IMG_3071.JPEG','IMG_3072.JPEG','IMG_3073.JPEG','IMG_3074.JPEG','IMG_3076.JPEG','IMG_3077.JPEG','IMG_3085.JPEG','IMG_3091.JPEG','IMG_3304.JPEG','IMG_3311.JPEG','IMG_3365.JPEG','IMG_3366.JPEG','IMG_3368.JPEG','IMG_3369.JPEG','IMG_3447.JPEG','IMG_3448.JPEG','IMG_3449.JPEG','IMG_3452.JPEG','IMG_3454.JPEG','IMG_3456.JPEG','IMG_3457.JPEG','IMG_3485.JPEG','IMG_3486.JPEG','IMG_3487.JPEG','IMG_3516.JPEG','IMG_3517.JPEG','IMG_3577.JPEG','IMG_3609.JPEG','IMG_3610.JPEG','IMG_3614.JPEG','IMG_3623.JPEG','IMG_3629.JPEG','IMG_3631.JPEG','IMG_3635.JPEG','IMG_3638.JPEG','IMG_3641.JPEG','IMG_3642.JPEG','IMG_3643.JPEG','IMG_3644.JPEG','IMG_3645.JPEG','IMG_3646.JPEG','IMG_3647.JPEG','IMG_3648.JPEG','IMG_3649.JPEG','IMG_3650.JPEG','IMG_3651.JPEG','IMG_3652.JPEG','IMG_3653.JPEG','IMG_3654.JPEG','IMG_3655.JPEG','IMG_3656.JPEG','IMG_3657.JPEG','IMG_3658.JPEG','IMG_3659.JPEG','IMG_3660.JPEG','IMG_3667.JPEG','IMG_3750.JPEG','IMG_3808.JPEG','IMG_3809.JPEG','IMG_3852.JPEG','IMG_3986.JPEG','IMG_3988.JPEG','IMG_3989.JPEG','IMG_410762F7-1355-4C47-9D04-4F63CE5FA88C.jpeg','IMG_4169.JPG','IMG_4232.JPEG','IMG_4248.JPEG','IMG_4321.JPEG','IMG_4376.JPEG','IMG_4384.JPEG','IMG_4417.JPEG','IMG_4418.JPEG','IMG_4702.JPEG','IMG_4703.JPEG','IMG_4705.JPEG','IMG_4742.JPEG','IMG_4757.JPEG','IMG_4765.JPEG','IMG_4768.JPEG','IMG_4769.JPEG','IMG_4770.JPEG','IMG_4789.JPEG','IMG_4790.JPEG','IMG_4793.JPEG','IMG_4794.JPEG','IMG_4834.JPEG','IMG_4926.JPEG','IMG_4928.JPEG','IMG_4929.JPEG','IMG_4930.JPEG','IMG_4931.JPEG','IMG_4963.JPEG','IMG_4964.JPEG','IMG_4965.JPEG','IMG_4966.JPEG','IMG_4967.JPEG','IMG_4968.JPEG','IMG_4969.JPEG','IMG_4970.JPEG','IMG_4971.JPEG','IMG_4972.JPEG','IMG_4973.JPEG','IMG_4974.JPEG','IMG_4975.JPEG','IMG_4976.JPEG','IMG_4977.JPEG','IMG_4979.JPEG','IMG_4980.JPEG','IMG_4981.JPEG','IMG_4982.JPEG','IMG_4995.JPG','IMG_4996.JPEG','IMG_4997.JPEG','IMG_4998.JPEG','IMG_5006.JPEG','IMG_5007.JPEG','IMG_5082.JPEG','IMG_5225.JPEG','IMG_5277.JPEG','IMG_5278.JPEG','IMG_5279.JPEG','IMG_5280.JPEG','IMG_5281.JPEG','IMG_5282.JPEG','IMG_5283.JPEG','IMG_5284.JPEG','IMG_5285.JPEG','IMG_5434.JPEG','IMG_5435.JPEG','IMG_5440.JPEG','IMG_5441.JPEG','IMG_5442.JPEG','IMG_5445.JPEG','IMG_5446.JPEG','IMG_5448.JPEG','IMG_5479.JPEG','IMG_5561.JPEG','IMG_5562.JPEG','IMG_5568.JPEG','IMG_5569.JPEG','IMG_5570.JPEG','IMG_5574.JPEG','IMG_5575.JPEG','IMG_5576.JPEG','IMG_5577.JPEG','IMG_5580.JPEG','IMG_5581.JPEG','IMG_5582.JPEG','IMG_5584.JPEG','IMG_5585.JPEG','IMG_5586.JPEG','IMG_5587.JPEG','IMG_5588.JPEG','IMG_5589.JPEG','IMG_5590.JPEG','IMG_5591.JPEG','IMG_5791.JPEG','IMG_5795.JPEG','IMG_5796.JPEG'];
+
+buildPhotoGrid('grid-drapes', drapeFiles, '../images/portfolio/');
+buildPhotoGrid('grid-roman', romanFiles, '../images/portfolio/');
+buildPhotoGrid('grid-roller', rollerFiles, '../images/portfolio/');
+buildPhotoGrid('grid-specialty', specialtyFiles, '../images/portfolio/');
+buildPhotoGrid('grid-upholstery', upholsteryFiles, '../images/upholstery/');
+buildPhotoGrid('grid-recent', recentFiles, '../images/portfolio/');
+buildVideoGrid();
+</script>
+</body>
+</html>
+
