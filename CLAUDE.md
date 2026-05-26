@@ -104,7 +104,7 @@ On LIVE — ALL product card clicks and configure buttons must call `pbShowConta
 
 | Item | Value | Status |
 |------|-------|--------|
-| GitHub repo | TBD — create blindznation-specific repo | ❌ Not yet |
+| GitHub repo | github.com/mzgxfnbzpy-commits/blindznation | ✅ Live |
 | Vercel | TBD — blindznation.vercel.app or custom | ❌ Not yet |
 | Local files | C:\Users\Blind\Desktop\BUSINESS\Important PB\AI claude\blindznation | ✅ |
 | Domain | blindznation.com | ❌ Not yet configured |
@@ -158,7 +158,7 @@ Everything below is IDENTICAL to phillyblinds unless explicitly listed as differ
 | Item | Phillyblinds | Blindznation |
 |------|-------------|--------------|
 | Domain | phillyblinds.com | blindznation.com |
-| GitHub repo | mzgxfnbzpy-commits/phillyblinds | TBD |
+| GitHub repo | mzgxfnbzpy-commits/phillyblinds | mzgxfnbzpy-commits/blindznation |
 | Vercel URL | phillyblinds.vercel.app | TBD |
 | Brand colors | Espresso #1C1510 + Gold #C8973F | TBD (placeholder navy/crimson) |
 | Contact email | blindznation@gmail.com | TBD |
