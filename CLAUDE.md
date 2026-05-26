@@ -39,10 +39,48 @@ Check phillyblinds's `CLAUDE.md` for the authoritative spec. The product audits 
 
 ## HOW ALL AGENTS STAY IN SYNC
 
+### Contact info (always use exactly for this brand)
+- **Phone:** (609) 742-1720 — call or text 24/7
+- **Email:** justin@blindznation.com
+- **Domain:** blindznation.com
+
 ### The three agents on this project:
 1. **Claude.ai chat** — Design decisions, new page specs, content, review
 2. **Claude Code (PowerShell)** — Builds and edits actual files in this blindznation folder
 3. **GitHub** — blindznation's own separate repo. Single source of truth for blindznation.
+
+### Branch structure
+```
+dev    → all work happens here. Safe to push anytime.
+main   → LIVE website. Only merge from dev when user says "confirmed push to live".
+```
+
+### ⚠️ NEVER auto-push to main. Always ask first.
+Claude Code must say: **"Ready to push to live — confirm?"**
+User must reply: "confirmed" or "yes push live"
+
+```powershell
+# Start every session:
+cd "C:\Users\Blind\Desktop\BUSINESS\Important PB\AI claude\blindznation"
+git checkout dev
+git pull
+
+# End of session (safe, not live):
+git add . && git commit -m "what changed" && git push origin dev
+
+# Merge to LIVE (only after confirmation):
+git checkout main && git merge dev && git push origin main && git checkout dev
+```
+
+### LIVE vs TEST behavior
+| Feature | TEST (dev) | LIVE (main) |
+|---------|-----------|-------------|
+| Configurators | Full | Contact popup only |
+| Pricing | Visible | Hidden |
+| Gallery, About, Measure guides | Full | Full |
+| Phone number | Everywhere | Everywhere |
+
+On LIVE — ALL product card clicks and configure buttons must call `pbShowContact()` instead of opening configurators. **This feature is still to be built.**
 
 ### The golden rules:
 - **GitHub is always the master for blindznation.** Before starting: `git pull`
@@ -50,19 +88,6 @@ Check phillyblinds's `CLAUDE.md` for the authoritative spec. The product audits 
 - **Never copy files from phillyblinds by hand and overwrite.** Apply changes surgically.
 - **Never push blindznation changes to the phillyblinds GitHub repo.**
 - **Vercel auto-deploys** every push to blindznation's GitHub. Live site updates in ~30 seconds.
-
-### Start of every Claude Code session — run this first:
-```powershell
-cd "C:\Users\Blind\Desktop\BUSINESS\Important PB\AI claude\blindznation"
-git pull
-```
-
-### End of every Claude Code session — run this:
-```powershell
-git add .
-git commit -m "describe what was built"
-git push
-```
 
 ---
 
