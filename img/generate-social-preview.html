@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Social Preview Generator — Blindznation</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #333; display: flex; flex-direction: column; align-items: center; padding: 24px; font-family: system-ui, sans-serif; min-height: 100vh; }
+h1 { color: #ccc; font-size: 16px; font-weight: 400; margin-bottom: 16px; }
+canvas { box-shadow: 0 8px 40px rgba(0,0,0,0.6); max-width: 100%; }
+.actions { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; justify-content: center; }
+button { padding: 12px 28px; border: none; border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; }
+.btn-dl { background: #C8973F; color: #1C1510; }
+.btn-dl:hover { opacity: 0.88; }
+.note { color: #888; font-size: 12px; margin-top: 14px; text-align: center; line-height: 1.7; max-width: 620px; }
+em { color: #C8973F; font-style: normal; }
+</style>
+</head>
+<body>
+<h1>Blindznation — Social Preview Image (1200 × 630 px)</h1>
+<canvas id="c" width="1200" height="630"></canvas>
+<div class="actions">
+  <button class="btn-dl" onclick="dl()">Download PNG</button>
+</div>
+<p class="note">
+  Save the downloaded file as <em>social-preview.png</em> and place it in <em>blindznation/img/</em>.<br>
+  Then update the og:image reference in shared.js from <em>.svg</em> to <em>.png</em> for full Facebook/Twitter support.
+</p>
+
+<script>
+const c = document.getElementById('c');
+const ctx = c.getContext('2d');
+const W = 1200, H = 630;
+
+function drawCurve(tx, ty, scale, alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.strokeStyle = '#2DE0C1';
+  ctx.lineWidth = 22 * scale;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.beginPath();
+  const p = (x, y) => [tx + x * scale, ty + y * scale];
+  const s = p(20,130);
+  ctx.moveTo(s[0], s[1]);
+  ctx.bezierCurveTo(...p(60,140), ...p(120,50), ...p(200,20));
+  ctx.bezierCurveTo(...p(230,8),  ...p(255,12), ...p(265,30));
+  ctx.bezierCurveTo(...p(275,48), ...p(260,68), ...p(238,62));
+  ctx.bezierCurveTo(...p(220,58), ...p(215,68), ...p(240,72));
+  ctx.bezierCurveTo(...p(260,76), ...p(270,90), ...p(250,110));
+  ctx.bezierCurveTo(...p(230,130),...p(200,128),...p(180,115));
+  ctx.stroke();
+  ctx.restore();
+}
+
+function render() {
+  // Background
+  ctx.fillStyle = '#1C1510';
+  ctx.fillRect(0, 0, W, H);
+
+  // Left gold bar
+  ctx.fillStyle = '#C8973F';
+  ctx.fillRect(0, 0, 8, H);
+
+  // Decorative teal curves
+  drawCurve(790, 80, 2.4, 0.14);
+  drawCurve(860, 310, 1.5, 0.08);
+
+  // "Blindz" — bold system sans
+  ctx.fillStyle = '#F5ECD7';
+  ctx.font = '700 100px system-ui,-apple-system,Arial,sans-serif';
+  ctx.fillText('Blindz', 80, 218);
+
+  // "nation" — gold italic serif
+  ctx.fillStyle = '#C8973F';
+  ctx.font = 'italic 400 100px Georgia,"Times New Roman",serif';
+  ctx.fillText('nation', 80, 318);
+
+  // Gold rule
+  ctx.fillStyle = '#C8973F';
+  ctx.fillRect(80, 348, 280, 4);
+
+  // Subtitle
+  ctx.fillStyle = '#A89880';
+  ctx.font = '400 30px system-ui,-apple-system,Arial,sans-serif';
+  ctx.fillText('Custom Window Treatments', 80, 403);
+
+  // Service areas
+  ctx.fillStyle = '#6A5A4A';
+  ctx.font = '400 23px system-ui,-apple-system,Arial,sans-serif';
+  ctx.fillText('Salt Lake City  ·  Philadelphia  ·  Nationwide', 80, 452);
+
+  // Company
+  ctx.fillStyle = '#4A3A2A';
+  ctx.font = '400 19px system-ui,-apple-system,Arial,sans-serif';
+  ctx.fillText('Michael J. Healy Installations LLC', 80, 494);
+
+  // Phone
+  ctx.fillStyle = '#C8973F';
+  ctx.font = '600 30px system-ui,-apple-system,Arial,sans-serif';
+  ctx.fillText('(609) 742-1720  ·  24/7', 80, 550);
+
+  // URL
+  ctx.fillStyle = '#5A4A3A';
+  ctx.font = '400 21px system-ui,-apple-system,Arial,sans-serif';
+  ctx.fillText('blindznation.com', 80, 594);
+
+  // Bottom gradient bar
+  const grad = ctx.createLinearGradient(0, 0, W, 0);
+  grad.addColorStop(0,    '#C8973F');
+  grad.addColorStop(0.55, 'rgba(45,224,193,0.5)');
+  grad.addColorStop(1,    'rgba(28,21,16,0)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 618, W, 8);
+}
+
+render();
+
+function dl() {
+  const a = document.createElement('a');
+  a.download = 'social-preview.png';
+  a.href = c.toDataURL('image/png');
+  a.click();
+}
+</script>
+</body>
+</html>
