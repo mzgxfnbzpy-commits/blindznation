@@ -1,12 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{"type": "host", "value": "www.blindznation.com"}],
-      "destination": "https://blindznation.com/:path*",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
