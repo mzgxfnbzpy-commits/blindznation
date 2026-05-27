@@ -2,18 +2,6 @@
 // Blindznation — Shared Components
 // ============================================================
 
-// LIVE MODE — intercept all product/configurator clicks site-wide → contact popup
-window.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll(
-    '.product-card, .btn-configure, .btn-price, .opt-btn, [onclick*="setProd"], [onclick*="selSystem"], [onclick*="pickType"], .configure-btn, .price-btn, .check-out-btn, .btn-gold:not(.pb-cp-action)'
-  ).forEach(function(el) {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      pbShowContact('Get a custom quote — call, text, or email us');
-    }, true);
-  });
-});
 
 function _injectHead(isHome) {
   const prefix = isHome ? '' : '../';
@@ -31,7 +19,7 @@ function _injectHead(isHome) {
   // Theme color (mobile browser chrome)
   if (!document.querySelector('meta[name="theme-color"]')) {
     const m = document.createElement('meta');
-    m.name = 'theme-color'; m.content = '#1C1510';
+    m.name = 'theme-color'; m.content = '#111110';
     document.head.appendChild(m);
   }
 
@@ -131,7 +119,7 @@ function renderNav(activePage) {
     <div class="nav-main">
       <a class="nav-logo" href="${root}">
         <svg width="28" height="16" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:7px;flex-shrink:0">
-          <path d="M20 130 C60 140, 120 50, 200 20 C230 8, 255 12, 265 30 C275 48, 260 68, 238 62 C220 58, 215 68, 240 72 C260 76, 270 90, 250 110 C230 130, 200 128, 180 115" stroke="#2DE0C1" stroke-width="22" fill="none" stroke-linecap="round"/>
+          <path d="M20 130 C60 140, 120 50, 200 20 C230 8, 255 12, 265 30 C275 48, 260 68, 238 62 C220 58, 215 68, 240 72 C260 76, 270 90, 250 110 C230 130, 200 128, 180 115" stroke="#C9A96E" stroke-width="22" fill="none" stroke-linecap="round"/>
         </svg>Blind<em>znation</em>
       </a>
       <div class="nav-links">
@@ -179,7 +167,7 @@ function renderFooter(isHome) {
       <div class="footer-col">
         <div class="footer-logo">
           <svg width="22" height="13" viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:6px;flex-shrink:0">
-            <path d="M20 130 C60 140, 120 50, 200 20 C230 8, 255 12, 265 30 C275 48, 260 68, 238 62 C220 58, 215 68, 240 72 C260 76, 270 90, 250 110 C230 130, 200 128, 180 115" stroke="#2DE0C1" stroke-width="22" fill="none" stroke-linecap="round"/>
+            <path d="M20 130 C60 140, 120 50, 200 20 C230 8, 255 12, 265 30 C275 48, 260 68, 238 62 C220 58, 215 68, 240 72 C260 76, 270 90, 250 110 C230 130, 200 128, 180 115" stroke="#C9A96E" stroke-width="22" fill="none" stroke-linecap="round"/>
           </svg>Blind<em>znation</em>
         </div>
         <div class="footer-brand-alt">Philly Blinds</div>
@@ -1082,7 +1070,7 @@ function _initShippingEstimators() {
         var dataEl = el.closest('[data-ship-oversized]');
         if (dataEl) isOversized = dataEl.getAttribute('data-ship-oversized') === 'true';
         var est = _calcShipping(zip, { softGoods: isSoft, oversized: isOversized, minShip: isSoft ? 50 : 0 });
-        if (est) result.innerHTML = '<strong style="color:#1C1510">~$'+est.low+' – $'+est.high+'</strong> <span style="font-size:11px;color:#888">('+est.region+')</span>';
+        if (est) result.innerHTML = '<strong style="color:#111110">~$'+est.low+' – $'+est.high+'</strong> <span style="font-size:11px;color:#888">('+est.region+')</span>';
         // Note: pickup from SLC/Huntingdon Valley still incurs shipping charges
         if (result.innerHTML) result.innerHTML += '<div style="font-size:10px;color:#999;margin-top:3px">Note: Pickup still incurs freight — product ships to you first.</div>';
       } else {
@@ -1093,7 +1081,7 @@ function _initShippingEstimators() {
 }
 
 // ============================================================
-// CONTACT / CONSULTATION PANEL
+// CONTACT / CONSULTATION PANEL — Blindznation
 // ============================================================
 function _initContactPanel() {
   if (document.getElementById('pb-contact-overlay')) return;
@@ -1104,11 +1092,11 @@ function _initContactPanel() {
     '.pb-cp{background:#fff;border-radius:16px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:28px 24px;position:relative}' +
     '.pb-cp-close{position:absolute;top:14px;right:14px;background:none;border:none;font-size:24px;cursor:pointer;color:#aaa;line-height:1;font-family:inherit}.pb-cp-close:hover{color:#333}' +
     '.pb-cp-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);background:var(--espresso);padding:4px 10px;border-radius:20px;margin-bottom:12px}' +
-    '.pb-cp-title{font-size:20px;font-weight:700;color:#1C1510;margin-bottom:6px;line-height:1.2}' +
+    '.pb-cp-title{font-size:20px;font-weight:700;color:#111110;margin-bottom:6px;line-height:1.2}' +
     '.pb-cp-note{font-size:13px;color:#666;line-height:1.6;margin-bottom:18px}' +
-    '.pb-cp-phone-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#1C1510;color:#2DE0C1;text-decoration:none;font-size:22px;font-weight:700;padding:14px;border-radius:10px;margin-bottom:8px;transition:opacity .15s}.pb-cp-phone-btn:hover{opacity:.85}' +
+    '.pb-cp-phone-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#111110;color:#C9A96E;text-decoration:none;font-size:22px;font-weight:700;padding:14px;border-radius:10px;margin-bottom:8px;transition:opacity .15s}.pb-cp-phone-btn:hover{opacity:.85}' +
     '.pb-cp-sub{text-align:center;font-size:11px;color:#888;margin-bottom:10px}' +
-    '.pb-cp-email-link{display:block;text-align:center;font-size:14px;color:#1C1510;font-weight:600;text-decoration:none;margin-bottom:18px}.pb-cp-email-link:hover{text-decoration:underline}' +
+    '.pb-cp-email-link{display:block;text-align:center;font-size:14px;color:#111110;font-weight:600;text-decoration:none;margin-bottom:18px}.pb-cp-email-link:hover{text-decoration:underline}' +
     '.pb-cp-or{text-align:center;font-size:12px;color:#bbb;margin-bottom:14px;display:flex;align-items:center;gap:8px}.pb-cp-or::before,.pb-cp-or::after{content:"";flex:1;height:1px;background:#e8e8e4}';
   document.head.appendChild(s);
   var ov = document.createElement('div');
@@ -1120,15 +1108,15 @@ function _initContactPanel() {
       '<div class="pb-cp-badge">Free &middot; No obligation</div>' +
       '<div class="pb-cp-title">Free Consultation &amp; Custom Quote</div>' +
       '<div class="pb-cp-note" id="pb-cp-hint">Tell us what you need &mdash; we\'ll measure, advise, and quote at no charge.</div>' +
-      '<div style="font-size:13px;font-weight:700;color:#1C1510;margin-bottom:10px;text-align:center">Justin Healy &nbsp;&middot;&nbsp; Blindznation</div>' +
+      '<div style="font-size:13px;font-weight:700;color:#111110;margin-bottom:10px;text-align:center">Justin Healy &nbsp;&middot;&nbsp; Blindznation</div>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:6px">' +
-        '<a href="tel:6097421720" class="pb-cp-action" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#1C1510;color:#2DE0C1;text-decoration:none;font-size:12px;font-weight:700;padding:12px 8px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">&#128222;<span>Call now</span></a>' +
-        '<a href="sms:6097421720" class="pb-cp-action" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#1C1510;color:#2DE0C1;text-decoration:none;font-size:12px;font-weight:700;padding:12px 8px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">&#128172;<span>Text now</span></a>' +
-        '<a href="mailto:justin@blindznation.com" class="pb-cp-action" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#1C1510;color:#2DE0C1;text-decoration:none;font-size:12px;font-weight:700;padding:12px 8px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">&#9993;&#65039;<span>Email</span></a>' +
+        '<a href="tel:6097421720" class="pb-cp-action" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#111110;color:#C9A96E;text-decoration:none;font-size:12px;font-weight:700;padding:12px 8px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">&#128222;<span>Call now</span></a>' +
+        '<a href="sms:6097421720" class="pb-cp-action" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#111110;color:#C9A96E;text-decoration:none;font-size:12px;font-weight:700;padding:12px 8px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">&#128172;<span>Text now</span></a>' +
+        '<a href="mailto:justin@blindznation.com" class="pb-cp-action" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:#111110;color:#C9A96E;text-decoration:none;font-size:12px;font-weight:700;padding:12px 8px;border-radius:10px;transition:opacity .15s" onmouseover="this.style.opacity=\'.82\'" onmouseout="this.style.opacity=\'1\'">&#9993;&#65039;<span>Email</span></a>' +
       '</div>' +
       '<div style="text-align:center;font-size:11px;color:#999;margin-bottom:14px">(609) 742-1720 &nbsp;&middot;&nbsp; justin@blindznation.com &nbsp;&middot;&nbsp; 24/7</div>' +
       '<div style="border:1.5px solid #e5f7f4;border-radius:9px;padding:11px 13px;margin-bottom:14px;background:#f4fdfb">' +
-        '<div style="font-size:11px;font-weight:700;color:#1C1510;margin-bottom:5px">&#128206; Attach photos, PDFs, or measurements <span style="font-weight:400;color:#888">(optional)</span></div>' +
+        '<div style="font-size:11px;font-weight:700;color:#111110;margin-bottom:5px">&#128206; Attach photos, PDFs, or measurements <span style="font-weight:400;color:#888">(optional)</span></div>' +
         '<input type="file" id="pb-cp-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" style="width:100%;font-size:12px;color:#555;font-family:inherit;cursor:pointer" onchange="pbCpShowFiles()">' +
         '<div id="pb-cp-file-names" style="font-size:11px;color:#555;margin-top:5px;line-height:1.7"></div>' +
         '<div style="font-size:10px;color:#aaa;margin-top:3px">Window photos, room photos, inspiration, spec sheets — email to justin@blindznation.com or attach here.</div>' +
@@ -1150,7 +1138,7 @@ function _initContactPanel() {
       '</div>' +
       '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Notes</label>' +
         '<textarea id="pb-cp-notes" rows="2" placeholder="Window sizes, room, timeline, questions..." style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit;resize:vertical"></textarea></div>' +
-      '<button onclick="pbSubmitContact()" style="width:100%;background:#1C1510;color:#2DE0C1;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">Request free consultation &#8594;</button>' +
+      '<button onclick="pbSubmitContact()" style="width:100%;background:#111110;color:#C9A96E;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">Request free consultation &#8594;</button>' +
       '<div id="pb-cp-sent" style="display:none;text-align:center;padding:16px;background:#EAF3DE;border-radius:10px;margin-top:10px;font-size:13px;color:#27500A">' +
         '<strong>Request sent!</strong> Justin will be in touch soon.<br>' +
         'Urgent? <a href="tel:6097421720" style="color:#27500A;font-weight:700">(609) 742-1720</a>' +
@@ -1158,45 +1146,57 @@ function _initContactPanel() {
     '</div>';
   document.body.appendChild(ov);
 }
-function pbShowContact(productHint) {
-  _initContactPanel();
-  var hint = document.getElementById('pb-cp-hint');
-  var prod = document.getElementById('pb-cp-product');
-  var sent = document.getElementById('pb-cp-sent');
-  if (productHint && hint) hint.textContent = productHint + ' — we\'ll measure, advise, and quote at no charge.';
-  if (productHint && prod)  prod.value = productHint;
-  if (sent) sent.style.display = 'none';
-  document.getElementById('pb-contact-overlay').classList.add('open');
+function pbShowContact(title) {
+  var t = title || 'Get a Free Quote';
+  var uid = 'bzcp-' + Date.now();
+  var html =
+    '<div id="' + uid + '" style="position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto" onclick="if(event.target===this)document.getElementById(\'' + uid + '\').remove()">' +
+      '<div style="background:#fff;border-radius:16px;max-width:460px;width:100%;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.3);margin:auto">' +
+        '<div style="background:#111110;padding:18px 22px;display:flex;justify-content:space-between;align-items:center">' +
+          '<div style="color:#FAF8F3;font-size:15px;font-weight:600">' + t + '</div>' +
+          '<button onclick="document.getElementById(\'' + uid + '\').remove()" style="background:none;border:none;color:#9A8E7A;font-size:24px;cursor:pointer;line-height:1;padding:0 0 0 12px">×</button>' +
+        '</div>' +
+        '<div style="padding:22px">' +
+          '<p style="font-size:13px;color:#666;margin:0 0 16px;line-height:1.6">We handle every order personally — call or text Justin for pricing, samples, and installation.</p>' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px">' +
+            '<a href="tel:6097421720" style="display:flex;flex-direction:column;align-items:center;gap:4px;background:#111110;color:#C9A96E;padding:12px 6px;border-radius:10px;text-decoration:none;font-size:12px;font-weight:700;text-align:center">📞<span>Call now</span><span style="font-size:10px;font-weight:400;color:#9A8E7A">(609) 742-1720</span></a>' +
+            '<a href="sms:6097421720" style="display:flex;flex-direction:column;align-items:center;gap:4px;background:#111110;color:#C9A96E;padding:12px 6px;border-radius:10px;text-decoration:none;font-size:12px;font-weight:700;text-align:center">💬<span>Text us</span><span style="font-size:10px;font-weight:400;color:#9A8E7A">24/7</span></a>' +
+            '<a href="mailto:justin@blindznation.com" style="display:flex;flex-direction:column;align-items:center;gap:4px;background:#111110;color:#C9A96E;padding:12px 6px;border-radius:10px;text-decoration:none;font-size:12px;font-weight:700;text-align:center">✉️<span>Email</span><span style="font-size:10px;font-weight:400;color:#9A8E7A">Same day reply</span></a>' +
+          '</div>' +
+          '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><div style="flex:1;height:1px;background:#eee"></div><span style="font-size:11px;color:#bbb">or send us a message</span><div style="flex:1;height:1px;background:#eee"></div></div>' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">' +
+            '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Your name *</label><input id="' + uid + '-name" type="text" placeholder="Jane Smith" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
+            '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone *</label><input id="' + uid + '-phone" type="tel" placeholder="(215) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
+          '</div>' +
+          '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Message / notes</label><textarea id="' + uid + '-msg" rows="3" placeholder="What are you looking for? Window sizes, room, timeline, questions..." style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea></div>' +
+          '<div style="border:1.5px dashed #C9A96E;border-radius:9px;padding:12px 14px;margin-bottom:14px;background:#FAF7EF">' +
+            '<div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">📎 Attach photos, PDFs, or measurements <span style="font-weight:400;color:#999">(optional)</span></div>' +
+            '<input type="file" id="' + uid + '-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" style="width:100%;font-size:12px;color:#555;font-family:inherit;cursor:pointer" onchange="(function(i,d){var n=Array.from(i.files).map(function(f){return\'📄 \'+f.name}).join(\'<br>\');d.innerHTML=n})(this,document.getElementById(\'' + uid + '-fnames\'))">' +
+            '<div id="' + uid + '-fnames" style="font-size:11px;color:#666;margin-top:5px;line-height:1.7"></div>' +
+            '<div style="font-size:10px;color:#aaa;margin-top:4px">Window photos, room photos, inspiration images — email to justin@blindznation.com or attach here.</div>' +
+          '</div>' +
+          '<button onclick="(function(){'  +
+            'var n=document.getElementById(\'' + uid + '-name\').value.trim();' +
+            'var p=document.getElementById(\'' + uid + '-phone\').value.trim();' +
+            'if(!n||!p){alert(\'Please enter your name and phone number.\');return;}' +
+            'var m=document.getElementById(\'' + uid + '-msg\').value;' +
+            'var fi=document.getElementById(\'' + uid + '-files\');' +
+            'var fn=fi&&fi.files.length?\'\\n\\nFiles: \'+Array.from(fi.files).map(function(f){return f.name}).join(\', \')+\'\\n(Please email to justin@blindznation.com)\':\'\';\'' +
+            'var subj=\'Quote Request — \'+n;' +
+            'var body=\'QUOTE REQUEST\\n\\nName: \'+n+\'\\nPhone: \'+p+\'\\n\\nMessage:\\n\'+(m||\'(none)\')+fn;' +
+            'window.location.href=\'mailto:justin@blindznation.com?subject=\'+encodeURIComponent(subj)+\'&body=\'+encodeURIComponent(body);' +
+            'document.getElementById(\'' + uid + '\').remove();' +
+          '})()" style="width:100%;background:#111110;color:#C9A96E;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">Send request →</button>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  var el = document.createElement('div');
+  el.innerHTML = html;
+  document.body.appendChild(el.firstChild);
 }
 function pbCloseContact() {
   var ov = document.getElementById('pb-contact-overlay');
   if (ov) ov.classList.remove('open');
-}
-function pbCpShowFiles() {
-  var inp = document.getElementById('pb-cp-files');
-  var disp = document.getElementById('pb-cp-file-names');
-  if (!inp || !disp) return;
-  var names = Array.from(inp.files).map(function(f){ return '📄 '+f.name; }).join('<br>');
-  disp.innerHTML = names;
-}
-function pbSubmitContact() {
-  var name  = (document.getElementById('pb-cp-name')      || {}).value || '';
-  var phone = (document.getElementById('pb-cp-phone-inp') || {}).value || '';
-  if (!name.trim() || !phone.trim()) { alert('Please enter your name and phone number.'); return; }
-  var prod  = (document.getElementById('pb-cp-product') || {}).value || '';
-  var notes = (document.getElementById('pb-cp-notes')   || {}).value || '';
-  var filesEl = document.getElementById('pb-cp-files');
-  var fileNames = filesEl && filesEl.files.length ?
-    '\n\nFiles to send: '+Array.from(filesEl.files).map(function(f){return f.name;}).join(', ')+
-    '\n(Please email these to justin@blindznation.com)' : '';
-  var w = (document.getElementById('pb-cp-width')  || {}).value || '';
-  var h = (document.getElementById('pb-cp-height') || {}).value || '';
-  var dims = (w || h) ? '\nApprox. size: '+(w?w+'"W ':'')+' '+(h?h+'"H':'') : '';
-  var body  = 'CONSULTATION REQUEST\n\nName: '+name+'\nPhone: '+phone+
-    '\n\nInterested in: '+(prod||'—')+dims+'\n\nNotes:\n'+(notes||'None')+fileNames;
-  window.location.href='mailto:justin@blindznation.com?subject='+
-    encodeURIComponent('Free Consultation — '+name)+'&body='+encodeURIComponent(body);
-  document.getElementById('pb-cp-sent').style.display='block';
 }
 
 // ---- MEASURE HELP MODAL ----
@@ -1372,4 +1372,28 @@ function reqMoreInfo(product) {
   var body = 'Hi, I would like to request more information about ' + (product || 'your products') + '.\n\nName:\nPhone:\nBest time to call:';
   window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
 }
+
+// LIVE MODE — intercept product selections site-wide → contact form popup
+document.addEventListener('DOMContentLoaded', function() {
+  var BLOCK = [
+    '.product-card', 'a.product-card',
+    '[onclick*="selectProduct"]', '[onclick*="selectBlindsType"]', '[onclick*="selectVerticalsType"]',
+    '[onclick*="selectPleat"]', '[onclick*="selectRomanStyle"]', '[onclick*="selectPinchDetail"]',
+    '[onclick*="selLine"]',
+    '[onclick*="setProd"]', '[onclick*="selSystem"]', '[onclick*="pickType"]',
+    '[onclick*="setType"]', '[onclick*="selCollection"]', '[onclick*="selProduct"]',
+    '[onclick*="openConfig"]', '.configure-btn', '.btn-configure'
+  ];
+  BLOCK.forEach(function(sel) {
+    document.querySelectorAll(sel).forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var nameEl = el.querySelector('.product-name, .opt-name, h3, h4');
+        var label = nameEl ? nameEl.textContent.trim() : el.textContent.trim().split('\n')[0].trim();
+        pbShowContact(label ? 'Get a Quote — ' + label : 'Get a Free Quote');
+      }, true);
+    });
+  });
+});
 
