@@ -1,19 +1,8 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-# Internal / developer folders
-Disallow: /.claude/
-Disallow: /.vercel/
-Disallow: /.well-known/
-Disallow: /node_modules/
-Disallow: /scripts/
-Disallow: /api/
-Disallow: /admin/
-Disallow: /dashboard/
+Disallow: /404.html
+Disallow: /blindznation_execution_plan.html
+Disallow: /google09bbbc86851ec4cd.html
 
-# PDF scan images and internal pricing docs (not deployed, but block as defense-in-depth)
-Disallow: /pdfs/wholesale-pricing/
-Disallow: /pdfs/scan/
-Disallow: /pdfs/scan2/
-
-Sitemap: https://phillyblinds.com/sitemap.xml
+Sitemap: https://blindznation.com/sitemap.xml

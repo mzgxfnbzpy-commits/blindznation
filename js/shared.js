@@ -31,6 +31,25 @@ function _injectHead(isHome) {
     document.head.appendChild(l);
   }
 
+  // Default og:image / twitter:image (pages set their own to override)
+  if (!document.querySelector('meta[property="og:image"]')) {
+    const i = document.createElement('meta');
+    i.setAttribute('property', 'og:image');
+    i.content = 'https://blindznation.com/img/social-preview.jpg';
+    document.head.appendChild(i);
+  }
+  if (!document.querySelector('meta[name="twitter:image"]')) {
+    const i = document.createElement('meta');
+    i.name = 'twitter:image';
+    i.content = 'https://blindznation.com/img/social-preview.jpg';
+    document.head.appendChild(i);
+  }
+  if (!document.querySelector('meta[property="og:image:width"]')) {
+    const iw = document.createElement('meta'); iw.setAttribute('property','og:image:width'); iw.content = '1200';
+    const ih = document.createElement('meta'); ih.setAttribute('property','og:image:height'); ih.content = '630';
+    document.head.appendChild(iw); document.head.appendChild(ih);
+  }
+
   // Local Business JSON-LD schema
   if (!document.querySelector('script[data-pb-schema]')) {
     const s = document.createElement('script');
@@ -85,6 +104,82 @@ function _injectHead(isHome) {
       "sameAs": []
     });
     document.head.appendChild(s);
+  }
+
+  // Organization schema
+  if (!document.querySelector('script[data-bz-org-schema]')) {
+    const o = document.createElement('script');
+    o.type = 'application/ld+json';
+    o.setAttribute('data-bz-org-schema', '1');
+    o.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://blindznation.com/#organization",
+      "name": "Blindznation",
+      "legalName": "Michael J. Healy Installations LLC",
+      "url": "https://blindznation.com",
+      "logo": "https://blindznation.com/img/social-preview.jpg",
+      "telephone": "+16097421720",
+      "email": "justin@blindznation.com",
+      "foundingDate": "2014",
+      "areaServed": [
+        {"@type": "State", "name": "Utah"},
+        {"@type": "State", "name": "Pennsylvania"},
+        {"@type": "Country", "name": "United States"}
+      ],
+      "knowsAbout": [
+        "Custom Window Treatments",
+        "Roller Shades",
+        "Cellular Shades",
+        "Roman Shades",
+        "Plantation Shutters",
+        "Custom Drapery",
+        "Woven Wood Shades",
+        "Motorized Window Treatments",
+        "Drapery Hardware"
+      ]
+    });
+    document.head.appendChild(o);
+  }
+
+  // Service schema (Salt Lake City area)
+  if (!document.querySelector('script[data-bz-service-schema]')) {
+    const sv = document.createElement('script');
+    sv.type = 'application/ld+json';
+    sv.setAttribute('data-bz-service-schema', '1');
+    sv.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Custom Window Treatment Fabrication and Installation",
+      "provider": {"@id": "https://blindznation.com/#business"},
+      "serviceType": "Window Treatment Installation",
+      "areaServed": [
+        {"@type": "City", "name": "Salt Lake City", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "Midvale", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "Murray", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "Sandy", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "South Jordan", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "West Jordan", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "Draper", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "Orem", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "Provo", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "Park City", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "Alta", "containedInPlace": {"@type": "State", "name": "Utah"}},
+        {"@type": "City", "name": "Philadelphia", "containedInPlace": {"@type": "State", "name": "Pennsylvania"}}
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Window Treatment Services",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Roller Shades — Salt Lake City"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Roman Shades — Salt Lake City"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Plantation Shutters — Salt Lake City"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Drapery — Salt Lake City"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Motorized Window Treatments — Salt Lake City"}}
+        ]
+      }
+    });
+    document.head.appendChild(sv);
   }
 }
 
