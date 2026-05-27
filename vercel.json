@@ -1,9 +1,9 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "has": [{"type": "host", "value": "www.blindznation.com"}],
-      "destination": "https://blindznation.com/$1",
+      "destination": "https://blindznation.com/:path*",
       "permanent": true
     }
   ],
