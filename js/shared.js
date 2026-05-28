@@ -35,13 +35,13 @@ function _injectHead(isHome) {
   if (!document.querySelector('meta[property="og:image"]')) {
     const i = document.createElement('meta');
     i.setAttribute('property', 'og:image');
-    i.content = 'https://blindznation.com/img/social-preview.svg';
+    i.content = 'https://blindznation.com/img/social-preview.png';
     document.head.appendChild(i);
   }
   if (!document.querySelector('meta[name="twitter:image"]')) {
     const i = document.createElement('meta');
     i.name = 'twitter:image';
-    i.content = 'https://blindznation.com/img/social-preview.svg';
+    i.content = 'https://blindznation.com/img/social-preview.png';
     document.head.appendChild(i);
   }
   if (!document.querySelector('meta[property="og:image:width"]')) {
@@ -118,7 +118,7 @@ function _injectHead(isHome) {
       "name": "Blindznation",
       "legalName": "Michael J. Healy Installations LLC",
       "url": "https://blindznation.com",
-      "logo": "https://blindznation.com/img/social-preview.svg",
+      "logo": "https://blindznation.com/img/social-preview.png",
       "telephone": "+16097421720",
       "email": "justin@blindznation.com",
       "foundingDate": "2014",
@@ -1492,5 +1492,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
 
 
