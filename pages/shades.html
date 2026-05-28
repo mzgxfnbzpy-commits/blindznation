@@ -1603,7 +1603,7 @@
       <div class="hd-info-text">Silhouette, Pirouette, Vignette® and Luminette® are precision Hunter Douglas systems. Every job is custom measured and quoted. Call or text Justin anytime — or fill out the form below and we'll follow up within a few hours.</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;margin-bottom:4px">
         <a href="tel:6097421720" style="display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:var(--espresso);font-size:14px;font-weight:700;padding:11px 18px;border-radius:8px;text-decoration:none">&#128222; (609) 742-1720</a>
-        <a href="mailto:justin@phillyblinds.com" style="display:inline-flex;align-items:center;font-size:13px;color:var(--gold);padding:11px 0;text-decoration:none;font-weight:500">justin@phillyblinds.com</a>
+        <a href="mailto:justin@blindznation.com" style="display:inline-flex;align-items:center;font-size:13px;color:var(--gold);padding:11px 0;text-decoration:none;font-weight:500">justin@blindznation.com</a>
       </div>
     </div>
     <div class="form-group">
@@ -3397,7 +3397,7 @@ function submitShadeForm() {
     '\nDelivery: ' + delivery + '\n\n' +
     'Notes:\n' + (notes || '(none)');
 
-  window.location.href = 'mailto:justin@phillyblinds.com' +
+  window.location.href = 'mailto:justin@blindznation.com' +
     '?subject=' + encodeURIComponent('Shade Quote — ' + name) +
     '&body='    + encodeURIComponent(body);
 
@@ -3441,8 +3441,8 @@ function submitPBForm() {
     'Delivery:       ' + delivery                + '\n\n' +
     'Fabric notes:\n' + (notes || '(none)') +
     pbInstallLine(document.getElementById('brand-pb-content')) +
-    (function(){ var fu = document.querySelector('#brand-pb-content .pb-fu-wrap input[type="file"]'); return fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@phillyblinds.com)' : ''; }());
-  window.location.href = 'mailto:justin@phillyblinds.com' +
+    (function(){ var fu = document.querySelector('#brand-pb-content .pb-fu-wrap input[type="file"]'); return fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@blindznation.com)' : ''; }());
+  window.location.href = 'mailto:justin@blindznation.com' +
     '?subject=' + encodeURIComponent('Custom Roller Shade Request — ' + name) +
     '&body='    + encodeURIComponent(body);
   document.getElementById('pb-success').classList.add('show');
@@ -3472,7 +3472,7 @@ function submitQuoteForm() {
     'Windows: ' + wincount + '\n\n' +
     'Delivery: ' + delivery + '\n\n' +
     'Notes:\n' + (notes || '(none)');
-  window.location.href = 'mailto:justin@phillyblinds.com' +
+  window.location.href = 'mailto:justin@blindznation.com' +
     '?subject=' + encodeURIComponent('Hunter Douglas Quote — ' + name) +
     '&body='    + encodeURIComponent(body);
   const s = document.getElementById('hd-success');
@@ -4294,7 +4294,7 @@ function submitRWBForm() {
     + 'Slat size: ' + slat + '\nFinish: ' + finish + '\nOperating system: ' + op
     + '\nMount: ' + mount + '\nWidth: ' + (w||'—') + '"\nHeight: ' + (h||'—') + '"\nQty: ' + qty
     + '\nDelivery: ' + del + '\n\nNotes: ' + (notes||'None');
-  window.location.href = 'mailto:justin@phillyblinds.com?subject=' + encodeURIComponent('Real Wood Blinds Quote — ' + name)
+  window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Real Wood Blinds Quote — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('rwb-success').style.display = 'block';
 }
@@ -4317,7 +4317,7 @@ function submitFWBForm() {
     + 'Slat size: ' + slat + '\nColor family: ' + color + '\nOperating system: ' + op
     + '\nMount: ' + mount + '\nWidth: ' + (w||'—') + '"\nHeight: ' + (h||'—') + '"\nQty: ' + qty
     + '\nDelivery: ' + del + '\n\nNotes: ' + (notes||'None');
-  window.location.href = 'mailto:justin@phillyblinds.com?subject=' + encodeURIComponent('Norman Faux Wood Blinds Quote — ' + name)
+  window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Norman Faux Wood Blinds Quote — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('fwb-success').style.display = 'block';
 }
@@ -5495,7 +5495,7 @@ function rnSubmitForm() {
     'Delivery:       ' + delivery             + '\n\n' +
     'Notes:\n' + (notes || '(none)');
 
-  window.location.href = 'mailto:justin@phillyblinds.com' +
+  window.location.href = 'mailto:justin@blindznation.com' +
     '?subject=' + encodeURIComponent('Norman Soluna Quote — ' + name) +
     '&body='    + encodeURIComponent(body);
 
@@ -5554,7 +5554,7 @@ function submitExteriorForm() {
     'Fabric: '      + gExt('ext-grp-fabric')   + '\n' +
     'Delivery: '    + delivery                  + '\n\n' +
     'Notes:\n' + (document.getElementById('ext-notes').value.trim() || 'None');
-  window.location.href = 'mailto:justin@phillyblinds.com' +
+  window.location.href = 'mailto:justin@blindznation.com' +
     '?subject=' + encodeURIComponent('Exterior Roller Shade Quote — ' + name) +
     '&body=' + encodeURIComponent(body);
   document.getElementById('ext-success').classList.add('show');
@@ -5574,7 +5574,7 @@ async function handleQuickQuote(e) {
     } else {
       btn.disabled = false;
       btn.textContent = 'Send quote request →';
-      alert('Something went wrong. Please call (609) 742-1720 or email justin@phillyblinds.com');
+      alert('Something went wrong. Please call (609) 742-1720 or email justin@blindznation.com');
     }
   } catch(err) {
     btn.disabled = false;
@@ -5603,7 +5603,7 @@ function submitCart() {
     '\n\nITEMS:\n\n' + lines +
     (notes ? '\n\nNOTES:\n' + notes : '');
 
-  window.location.href = 'mailto:justin@phillyblinds.com' +
+  window.location.href = 'mailto:justin@blindznation.com' +
     '?subject=' + encodeURIComponent('Shade Quote Request — ' + name) +
     '&body='    + encodeURIComponent(body);
 
@@ -5764,7 +5764,7 @@ function submitPSForm() {
     + 'Estimated price: ' + price + ' per shade\n\n'
     + 'Notes: ' + (notes||'none');
 
-  window.location.href = 'mailto:justin@phillyblinds.com'
+  window.location.href = 'mailto:justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Norman PerfectSheer Quote — ' + w + '"×' + h + '" ' + color + ' — ' + name)
     + '&body=' + encodeURIComponent(body);
 

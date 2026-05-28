@@ -531,7 +531,7 @@
         <div style="font-size:10px;color:#888;margin-top:4px;font-style:italic">Note: tariffs, duties, and applicable import fees are additional and will be disclosed in your final quote.</div>
       </div>
       <div id="del-pickup" class="del-note" style="display:none">
-        Pickup at <strong>527 Hoyt Rd, Huntingdon Valley PA 19006</strong> after order confirmation. We'll contact you with a ready date.
+        Pickup in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation. We'll contact you with a ready date.
       </div>
     </div>
   </div>
@@ -1189,7 +1189,7 @@ function submitQuote(){
     '  ESTIMATED TOTAL: $'+Math.round(total).toLocaleString(),
     '',
     'DELIVERY',
-    '  '+(S.del==='ship'?'Ship to me (UPS/FedEx from Huntingdon Valley PA)':'Pickup at 527 Hoyt Rd, Huntingdon Valley PA 19006'),
+    '  '+(S.del==='ship'?'Ship to me (UPS/FedEx from Huntingdon Valley PA)':'Will pick up (Huntingdon Valley, PA — address after order)'),
     '',
     'CUSTOMER',
     '  Name: '+name,
@@ -1203,7 +1203,7 @@ function submitQuote(){
 
   const body=encodeURIComponent(lines.join('\n'));
   const subject=encodeURIComponent('Dynasty Woven Quote — '+S.patName+' (Grp '+S.grp+') — '+name);
-  window.location.href='mailto:justin@phillyblinds.com?subject='+subject+'&body='+body;
+  window.location.href='mailto:justin@blindznation.com?subject='+subject+'&body='+body;
   document.getElementById('success-box').style.display='block';
   markDone('step9');
 }

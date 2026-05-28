@@ -1030,11 +1030,11 @@ function submitQ(){
   ]:['CONTROL',document.querySelector('#grp-ctrl-2d .opt-btn.sel')?.textContent.trim()||'—']).concat([
     '','OPTIONS','Side-by-side matching: '+sbs,'Delivery: '+del,
     '','NOTES',document.getElementById('q-notes').value||'None','',
-    '--- Sent from phillyblinds.com/pages/wallace-banded-shades.html ---'
+    '--- Sent from blindznation.com/pages/wallace-banded-shades.html ---'
   ]).join('\n');
 
   var subj='Wallace '+(S.prod==='dual'?'Dual Sheer':'Banded 2D')+' Quote — '+S.w+'"x'+S.h+'" — '+name;
-  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
   document.getElementById('step8-body').querySelectorAll(':not(#success-box)').forEach(function(el){el.style.display='none';});
   document.getElementById('success-box').style.display='block';
 }

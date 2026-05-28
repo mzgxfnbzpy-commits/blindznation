@@ -990,7 +990,7 @@ function submitWoodQuote(){
   if(!name||!phone){alert('Please enter your name and phone number.');return;}
   var notes=document.getElementById('wd-q-notes').value.trim();
   var sys=SS.system==='traverse'?'Select Wood Traverse':'Select Wood Stationary Pole';
-  var body='SELECT WOOD HARDWARE QUOTE REQUEST\n\nType: '+sys+'\nName: '+name+'\nPhone: '+phone+'\n\nProject notes:\n'+(notes||'None')+'\n\n--- phillyblinds.com/pages/select-rods.html ---';
+  var body='SELECT WOOD HARDWARE QUOTE REQUEST\n\nType: '+sys+'\nName: '+name+'\nPhone: '+phone+'\n\nProject notes:\n'+(notes||'None')+'\n\n--- blindznation.com/pages/select-rods.html ---';
   window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Select Wood Quote — '+name)+'&body='+encodeURIComponent(body);
   document.getElementById('wd-q-form').style.display='none';
   document.getElementById('wd-q-success').style.display='block';

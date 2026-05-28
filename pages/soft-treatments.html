@@ -111,9 +111,9 @@
 
 <!-- TYPE TABS -->
 <div class="type-tabs" id="type-tabs">
-  <button class="type-tab on" onclick="switchTab('drapes',this)">Custom Drapery <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;vertical-align:middle">INSTANT PRICE</span></button>
-  <button class="type-tab" onclick="switchTab('roman',this)">Roman Shades <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;vertical-align:middle">INSTANT PRICE</span></button>
-  <button class="type-tab" onclick="switchTab('cornval',this)">Cornices &amp; Valances <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;vertical-align:middle">INSTANT PRICE</span></button>
+  <button class="type-tab on" onclick="switchTab('drapes',this)">Custom Drapery <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;vertical-align:middle">QUOTE</span></button>
+  <button class="type-tab" onclick="switchTab('roman',this)">Roman Shades <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;vertical-align:middle">QUOTE</span></button>
+  <button class="type-tab" onclick="switchTab('cornval',this)">Cornices &amp; Valances <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:8px;font-weight:700;margin-left:4px;vertical-align:middle">QUOTE</span></button>
   <button class="type-tab" onclick="switchTab('woven',this)">Woven Wood</button>
   <button class="type-tab" style="color:var(--gold)" onclick="pbShowContact('Specialty Soft Treatments — Custom Fabrication')">Specialty ✦</button>
 </div>
@@ -371,7 +371,7 @@
 
     <!-- Fabric color + liner picker (shown when we supply fabric) -->
     <div id="drape-fabric-detail" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Choose a fabric color <span style="font-weight:400;color:#999;text-transform:none">— est. $25/yard · swatches brought to your consultation</span></div>
+      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Choose a fabric color <span style="font-weight:400;color:#999;text-transform:none">— swatches brought to your free consultation</span></div>
       <div class="opt-row" id="grp-drape-color" style="flex-wrap:wrap">
         <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FAFAFA;border:1px solid #ccc;flex-shrink:0"></span>White</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FFF3DC;border:1px solid #ddd;flex-shrink:0"></span>Ivory</button>
@@ -382,15 +382,15 @@
         <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A2744;flex-shrink:0"></span>Navy</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A1A1A;flex-shrink:0"></span>Black</button>
       </div>
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:12px 0 8px">Lining <span style="font-weight:400;color:#999;text-transform:none">— est. $7/yard</span></div>
+      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:12px 0 8px">Lining</div>
       <div class="opt-row" id="grp-drape-liner">
         <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-liner');calcDrapePrice()">No liner</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');calcDrapePrice()">Standard liner (+$9.25/yd)</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');calcDrapePrice()">Blackout liner (+$9.25/yd)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');calcDrapePrice()">Standard liner</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');calcDrapePrice()">Blackout liner</button>
       </div>
       <div style="margin-top:8px;display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e8e4dc;border-radius:8px;background:#f9f7f4">
         <input type="checkbox" id="d-interlining-check" onchange="calcDrapePrice()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0">
-        <label for="d-interlining-check" style="font-size:12px;font-weight:500;color:#444;cursor:pointer;line-height:1.4">Add interlining <span style="color:#888;font-weight:400">(+$7/yd — adds body, weight &amp; insulation; works with any liner)</span></label>
+        <label for="d-interlining-check" style="font-size:12px;font-weight:500;color:#444;cursor:pointer;line-height:1.4">Add interlining <span style="color:#888;font-weight:400">(adds body, weight &amp; insulation; works with any liner)</span></label>
       </div>
       <div style="font-size:11px;color:#aaa;margin-top:7px;line-height:1.5">Colors and exact fabric options confirmed during your free in-home consultation. Final pricing confirmed at order.</div>
     </div>
@@ -400,10 +400,10 @@
   <div class="step">
     <div class="step-label">Step 3</div>
     <div class="step-title">Review price &amp; request order</div>
-    <div class="step-sub">Enter your dimensions above to get an instant price estimate. Fill out the form and we'll confirm everything before fabrication.</div>
+    <div class="step-sub">Enter your dimensions and we'll send you a custom quote. Fill out the form and we'll confirm everything before fabrication.</div>
     <div style="display:flex;align-items:flex-start;gap:10px;background:#fef9ec;border:1px solid #f0d070;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#7a5c00;line-height:1.5">
       <span style="font-size:15px;flex-shrink:0">&#9888;</span>
-      <span><strong>Specialty shapes &amp; designs</strong> — arched windows, bay windows, or heavily trimmed panels require a custom quote. Use the <strong>Specialty ✦</strong> tab above or call <a href="tel:6097421720" style="color:#7a5c00;font-weight:600">(609) 742-1720</a> and we'll price it out together. Goblet &amp; Barrel pleat are instant-priced below at $130/width.</span>
+      <span><strong>Specialty shapes &amp; designs</strong> — arched windows, bay windows, or heavily trimmed panels require a custom quote. Use the <strong>Specialty ✦</strong> tab above or call <a href="tel:6097421720" style="color:#7a5c00;font-weight:600">(609) 742-1720</a> and we'll price it out together.</span>
     </div>
 
     <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px;margin-top:16px" id="drape-form">
@@ -437,12 +437,8 @@
 
       <!-- DRAPERY PRICE ESTIMATE BOX -->
       <div id="drape-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:18px 20px;margin-bottom:14px">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px">Fabrication estimate</div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px">Your configuration</div>
         <div id="drape-price-rows"></div>
-        <div style="border-top:1px solid rgba(45,224,193,.3);margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline">
-          <span style="font-size:14px;font-weight:500;color:var(--cream)">Estimated total</span>
-          <span style="font-size:22px;font-weight:600;color:var(--gold)" id="drape-price-total">—</span>
-        </div>
         <div style="font-size:10px;color:var(--text-faint);margin-top:8px;line-height:1.5" id="drape-price-note"></div>
       </div>
 
@@ -452,7 +448,7 @@
 
         <!-- Trim on drape panels -->
         <div style="margin-bottom:12px">
-          <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Trim on panels <span style="font-weight:400;color:#999">— $15/linear ft</span></div>
+          <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Trim on panels</div>
           <div style="font-size:11px;color:#888;margin-bottom:8px">Select which edges get trim. Mix and match.</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
             <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
@@ -478,7 +474,7 @@
         <!-- Cornice -->
         <div style="margin-bottom:12px">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:12px;font-weight:500;color:#333">Cornice <span style="font-weight:400;color:#999">— $50/linear ft, 4 ft min. (self-welt or trim same price)</span></span>
+            <span style="font-size:12px;font-weight:500;color:#333">Cornice <span style="font-weight:400;color:#999">(self-welt or trim included)</span></span>
             <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555;cursor:pointer">
               <input type="checkbox" id="d-cornice-check" onchange="drapeToggleAddon('cornice',this.checked)"> Add
             </label>
@@ -492,7 +488,7 @@
               </div>
             </div>
             <div style="margin-top:10px">
-              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on cornice? <span style="font-weight:400;color:#999">+$15/ft (self-welt or applied trim — same price)</span></div>
+              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on cornice?</div>
               <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer">
                 <input type="checkbox" id="d-cornice-trim-check" onchange="calcDrapePrice()"> Yes — add trim to cornice
               </label>
@@ -503,7 +499,7 @@
         <!-- Valance -->
         <div>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:12px;font-weight:500;color:#333">Valance <span style="font-weight:400;color:#999">— $50/linear ft + fabric (self-welt or trim same price)</span></span>
+            <span style="font-size:12px;font-weight:500;color:#333">Valance <span style="font-weight:400;color:#999">(self-welt or trim included)</span></span>
             <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555;cursor:pointer">
               <input type="checkbox" id="d-valance-check" onchange="drapeToggleAddon('valance',this.checked)"> Add
             </label>
@@ -517,7 +513,7 @@
               </div>
             </div>
             <div style="margin-top:10px">
-              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on valance? <span style="font-weight:400;color:#999">+$15/ft (self-welt or applied trim — same price)</span></div>
+              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on valance?</div>
               <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer">
                 <input type="checkbox" id="d-valance-trim-check" onchange="calcDrapePrice()"> Yes — add trim to valance
               </label>
@@ -756,7 +752,7 @@
 
     <!-- Fabric color + liner picker (shown when we supply fabric) -->
     <div id="roman-fabric-detail" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Choose a fabric color <span style="font-weight:400;color:#999;text-transform:none">— est. $25/yard</span></div>
+      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Choose a fabric color</div>
       <div class="opt-row" id="grp-roman-color" style="flex-wrap:wrap">
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FAFAFA;border:1px solid #ccc;flex-shrink:0"></span>White</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FFF3DC;border:1px solid #ddd;flex-shrink:0"></span>Ivory</button>
@@ -767,11 +763,11 @@
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A2744;flex-shrink:0"></span>Navy</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A1A1A;flex-shrink:0"></span>Black</button>
       </div>
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:12px 0 8px">Lining <span style="font-weight:400;color:#999;text-transform:none">— est. $7/yard</span></div>
+      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:12px 0 8px">Lining</div>
       <div class="opt-row" id="grp-roman-liner">
         <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-liner');calcRoman()">No liner</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');calcRoman()">Standard liner (+$9.25/yd)</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');calcRoman()">Blackout liner (+$9.25/yd)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');calcRoman()">Standard liner</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');calcRoman()">Blackout liner</button>
       </div>
       <div style="font-size:11px;color:#aaa;margin-top:7px;line-height:1.5">Colors confirmed during consultation. Final pricing at order.</div>
     </div>
@@ -834,7 +830,7 @@
           <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand')">Automate</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand')">Rollease Acmeda</button>
         </div>
-        <div style="font-size:11px;color:#888;margin-top:8px">Motor cost approx. $95–$150/shade depending on brand and power type. Finalized at order.</div>
+        <div style="font-size:11px;color:#888;margin-top:8px">Motor brand and options confirmed at order.</div>
       </div>
     </div>
 
@@ -852,7 +848,7 @@
   <!-- STEP 5: DIMENSIONS + PRICE -->
   <div class="step" id="step-roman-5">
     <div class="step-label">Step 5</div>
-    <div class="step-title">Size &amp; instant price</div>
+    <div class="step-title">Size &amp; details</div>
     <div class="step-sub">Enter your window dimensions for an instant estimate. Roman shades are custom quoted — this gives you a starting figure.</div>
 
     <div class="configurator" style="margin-top:16px">
@@ -952,7 +948,7 @@
 
           <!-- TRIM ADD-ON -->
           <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
-            <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Trim <span style="font-weight:400;color:#999">— $15/linear ft (self-welt or applied trim — same price)</span></div>
+            <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Trim on cornice</div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
               <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
                 <input type="checkbox" class="rn-trim-check" data-loc="sides" onchange="calcRoman();rnShowTrimSupply()"> Both sides
@@ -996,17 +992,13 @@
 
       <!-- PRICE BOX -->
       <div class="price-box" id="roman-pricebox" style="display:none">
-        <div class="pb-title">Estimate</div>
+        <div class="pb-title">Your configuration</div>
         <div class="pb-row"><span class="pb-key">Style</span><span class="pb-val" id="rn-pb-style">—</span></div>
         <div class="pb-row"><span class="pb-key">Size</span><span class="pb-val" id="rn-pb-dims">—</span></div>
         <div class="pb-row"><span class="pb-key">Qty</span><span class="pb-val" id="rn-pb-qty">1</span></div>
         <div class="pb-row"><span class="pb-key">Motorization</span><span class="pb-val" id="rn-pb-motor">No</span></div>
-        <div class="pb-total-row">
-          <span class="pb-total-label">Est. total</span>
-          <span class="pb-total-val" id="rn-pb-total">—</span>
-        </div>
-        <div id="rn-pb-min-note" class="pb-note" style="display:none">&#9432; Minimum applies — small shades carry a $85 per-shade minimum.</div>
-        <div class="pb-note">Final price confirmed after consultation. Fabric, lining &amp; motor cost may vary.</div>
+        <div id="rn-pb-min-note" style="display:none"></div>
+        <div class="pb-note">All pricing confirmed at order — submit your configuration for a custom quote.</div>
       </div>
     </div>
   </div>
@@ -1026,7 +1018,7 @@
       <div>
         <div id="cv-hero-label" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:6px">Custom fabrication</div>
         <div id="cv-hero-title" style="font-size:26px;font-weight:600;color:var(--cream);letter-spacing:-0.4px">Cornices</div>
-        <div id="cv-hero-sub" style="font-size:13px;color:var(--text-dark);margin-top:4px">Fabric-wrapped wood box valances. $50/linear ft · 4 ft min.</div>
+        <div id="cv-hero-sub" style="font-size:13px;color:var(--text-dark);margin-top:4px">Fabric-wrapped wood box valances. Custom quoted.</div>
       </div>
     </div>
   </div>
@@ -1039,7 +1031,7 @@
     <button class="opt-btn sel" onclick="selOpt(this,'grp-cv-type');cvSetType('cornice')">Cornice</button>
     <button class="opt-btn" onclick="selOpt(this,'grp-cv-type');cvSetType('valance')">Valance</button>
   </div>
-  <div id="cv-type-note" style="font-size:13px;color:#666;margin-bottom:20px;margin-top:-10px">Fabric-wrapped wood box valance. $50/linear ft · 4 ft minimum.</div>
+  <div id="cv-type-note" style="font-size:13px;color:#666;margin-bottom:20px;margin-top:-10px">Fabric-wrapped wood box valance. Custom quoted — submit for pricing.</div>
   <div style="background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:24px;margin-bottom:36px">
     <div class="dim-box" style="margin-bottom:18px">
       <div class="dim-box-label">Cornice dimensions</div>
@@ -1069,13 +1061,13 @@
         <div class="opt-row" id="grp-corn-trim">
           <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(false);calcCornice()">Self welt</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(false);calcCornice()">Double self welt</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(true);calcCornice()">Applied trim (+$15/ft)</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(true);calcCornice()">Applied trim</button>
         </div>
         <div style="font-size:11px;color:#888;margin-top:4px">Self welt: single strip of shade fabric. Double self welt: two strips — fuller, more tailored look.</div>
       </div>
       <!-- Valance: trim only (always open the trim edge picker) -->
       <div id="cv-valance-finish" style="display:none">
-        <div style="font-size:12px;color:#555;margin-bottom:8px">Applied trim &mdash; <span style="color:var(--gold);font-weight:600">+$15/linear ft</span></div>
+        <div style="font-size:12px;color:#555;margin-bottom:8px">Applied trim options:</div>
       </div>
       <div id="corn-trim-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
         <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Which edges?</div>
@@ -1109,14 +1101,11 @@
     </div>
 
     <div id="corn-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:16px 18px;margin-bottom:16px">
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Estimate</div>
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Your configuration</div>
       <div id="corn-price-rows"></div>
-      <div style="border-top:1px solid rgba(45,224,193,.3);margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline">
-        <span style="font-size:13px;color:var(--cream)">Estimated total</span>
-        <span style="font-size:20px;font-weight:600;color:var(--gold)" id="corn-price-total">—</span>
-      </div>
+      <span id="corn-price-total" style="display:none"></span>
       <div id="corn-fabric-note" style="font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:6px 9px;color:var(--cream);margin-top:8px;line-height:1.5"></div>
-      <div style="font-size:10px;color:var(--text-faint);margin-top:6px">$50/linear ft incl. ends · round up · 4 ft/$250 min · trim +$15/ft · fabric est. $30/yd · Final confirmed at order.</div>
+      <div style="font-size:10px;color:var(--text-faint);margin-top:6px">Pricing confirmed at order. Fabric and trim options confirmed during consultation.</div>
     </div>
     <div id="corn-form">
       <div class="form-row">
@@ -1206,7 +1195,7 @@
 <div style="display:none" id="tab-valances-removed"><!-- valance merged into tab-cornval --></div>
 <div style="display:none" id="__valance_placeholder">
   <div style="font-size:22px">Valances</div>
-  <div style="font-size:13px;color:#666;margin-bottom:24px">Fabric soft top treatment. $50/linear ft + fabric.</div>
+  <div style="font-size:13px;color:#666;margin-bottom:24px">Fabric soft top treatment. Custom quoted.</div>
   <div style="background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:24px;margin-bottom:32px">
     <div class="dim-box" style="margin-bottom:18px">
       <div class="dim-box-label">Valance dimensions</div>
@@ -1222,7 +1211,7 @@
       <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Finishing</div>
       <div class="opt-row" id="grp-val-trim">
         <button class="opt-btn sel" onclick="selOpt(this,'grp-val-trim');valToggleTrim(false);calcValance()">Self welt (same fabric)</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-val-trim');valToggleTrim(true);calcValance()">Applied trim (+$15/ft)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-val-trim');valToggleTrim(true);calcValance()">Applied trim</button>
       </div>
       <div id="val-trim-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
         <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Which edges?</div>
@@ -1248,14 +1237,11 @@
       </div>
     </div>
     <div id="val-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:16px 18px;margin-bottom:16px">
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Estimate</div>
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Your configuration</div>
       <div id="val-price-rows"></div>
-      <div style="border-top:1px solid rgba(45,224,193,.3);margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline">
-        <span style="font-size:13px;color:var(--cream)">Estimated total</span>
-        <span style="font-size:20px;font-weight:600;color:var(--gold)" id="val-price-total">—</span>
-      </div>
+      <span id="val-price-total" style="display:none"></span>
       <div id="val-fabric-note" style="font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:6px 9px;color:var(--cream);margin-top:8px;line-height:1.5"></div>
-      <div style="font-size:10px;color:var(--text-faint);margin-top:6px">$50/ft + fabric est. $30/yd · trim $15/ft · Final confirmed at order.</div>
+      <div style="font-size:10px;color:var(--text-faint);margin-top:6px">Pricing confirmed at order. Fabric options confirmed during consultation.</div>
     </div>
     <div id="val-form">
       <div class="form-row">
@@ -1584,7 +1570,7 @@ function calcRoman() {
 
   var grandTotal = laborTotal + trimTotal + fabricCost + linerCost + shipEst;
   if (box) box.style.display = 'block';
-  document.getElementById('rn-pb-style').textContent = (romanState.style || '—') + ' — $' + rate + '/sqft';
+  document.getElementById('rn-pb-style').textContent = romanState.style || '—';
   document.getElementById('rn-pb-dims').textContent  = w + '″ W × ' + h + '″ H';
   document.getElementById('rn-pb-qty').textContent   = qty;
   document.getElementById('rn-pb-motor').textContent = getOpt('grp-roman-op') || 'Manual';
@@ -1595,13 +1581,8 @@ function calcRoman() {
     extraRows.id = 'rn-pb-extra-rows';
     document.getElementById('rn-pb-min-note').before(extraRows);
   }
-  var xRows = '';
-  if (fabricCost) xRows += '<div class="pb-row"><span class="pb-key">Fabric est. (' + fabricYds.toFixed(1) + ' yd × $25)</span><span class="pb-val">$' + fabricCost.toFixed(0) + '</span></div>';
-  if (linerCost)  xRows += '<div class="pb-row"><span class="pb-key">Liner est. (' + fabricYds.toFixed(1) + ' yd × $'+D_LINING_PER_YD+')</span><span class="pb-val">$' + linerCost.toFixed(0) + '</span></div>';
-  if (shipEst)    xRows += '<div class="pb-row"><span class="pb-key">Shipping est.</span><span class="pb-val">~$' + shipEst + '</span></div>';
-  extraRows.innerHTML = xRows;
-  document.getElementById('rn-pb-total').textContent = '$' + grandTotal.toFixed(0);
-  document.getElementById('rn-pb-min-note').style.display = perShade === RN_MIN ? 'block' : 'none';
+  extraRows.innerHTML = '';
+  document.getElementById('rn-pb-min-note').style.display = 'none';
   // Fabric yardage note
   var fabNote = document.getElementById('rn-pb-fabric-note');
   if (!fabNote) {
@@ -1623,7 +1604,7 @@ function calcRoman() {
     { label: 'Mounting',       value: (getOpt('grp-roman-mount-style') || '—') }
   ];
   if (getOpt('grp-roman-op') === 'Motorized') rnLines.push({ label: 'Motor brand', value: getOpt('grp-roman-motor-brand') || 'TBD at order' });
-  if (trimTotal) rnLines.push({ label: 'Trim', value: '$' + trimTotal.toFixed(0) });
+  if (trimTotal) rnLines.push({ label: 'Trim', value: getOpt('grp-roman-trim') || 'Selected' });
   pbRenderEstimate('roman-pricebox', rnLines, grandTotal, '', function(checkout) {
     pbCollectItem(romanState.style || 'Roman Shade', rnLines, grandTotal, getOpt('grp-roman-op')==='Motorized');
     pbOpenCart();
@@ -1794,8 +1775,7 @@ function calcDrapePrice() {
   if (valanceTotal)row('Valance', valanceTotal);
   if (dShipEst)    row('Shipping est.', dShipEst);
 
-  document.getElementById('drape-price-rows').innerHTML = rows;
-  document.getElementById('drape-price-total').textContent = '$' + grandTotal.toFixed(0);
+  document.getElementById('drape-price-rows').innerHTML = '';
   // Fabric yardage note for drapes
   var dFabNote = document.getElementById('drape-fabric-yds-note');
   if (!dFabNote) {
@@ -1822,11 +1802,7 @@ function calcDrapePrice() {
     (valYds?' · valance: '+valYds:'')+
     ') — pattern repeats add more. Confirmed at order.';
 
-  document.getElementById('drape-price-note').textContent =
-    '$' + ratePerWidth + '/width ' + (isLined ? '(lined' + (isInterlining ? ' + interlining)' : ')') : '(unlined)') +
-    (lenSurcharge ? ', +$15/width per 10" over 100"' : '') +
-    (fabricCost ? '' : ' · Fabric & lining not included') +
-    ' · 2-width minimum · Final price confirmed at order.';
+  document.getElementById('drape-price-note').textContent = 'Pricing confirmed at order. Fill out the form to request your custom quote.';
   box.style.display = 'block';
 
   // Shipping: drapes/romans $50 min; over 80" width = likely oversized
@@ -1840,13 +1816,12 @@ function calcDrapePrice() {
     { label: 'Product',     value: (drapeState.pleat || 'Custom Drapery') },
     { label: 'Fabric',      value: (drapeState.fabric || '—') },
     { label: 'Lining',      value: (lining || '—') },
-    { label: 'Widths',      value: numWidths + ' widths × $' + effectiveRate },
+    { label: 'Widths',      value: numWidths + ' widths' },
     { label: 'Panels',      value: (panels || '—') + (panelSide !== '—' ? ' — ' + panelSide : '') }
   ];
   if (returnSz) drapeLines.push({ label: 'Return / Overlap', value: returnSz + '" / ' + overlapSz + '"' });
-  if (fabricCost) drapeLines.push({ label: 'Fabric est.', value: '~' + yardsTotal + ' yds × $25 (custom)' });
-  if (liningCost) drapeLines.push({ label: 'Liner est.', value: '~' + yardsTotal + ' yds × $7' });
-  if (dShipEst) drapeLines.push({ label: 'Shipping est.', value: '~$' + dShipEst + ' (' + dShipNote + ')' });
+  if (fabricCost) drapeLines.push({ label: 'Fabric', value: '~' + yardsTotal + ' yds (est.)' });
+  if (isInterlining) drapeLines.push({ label: 'Interlining', value: 'Yes' });
   pbRenderEstimate('drape-price-box', drapeLines, grandTotal, '', function(checkout) {
     pbCollectItem(drapeState.pleat || 'Custom Drapery', drapeLines, grandTotal, false);
     pbOpenCart();
@@ -1893,8 +1868,8 @@ function cvSetType(type) {
   var isCorn = type === 'cornice';
   var note = document.getElementById('cv-type-note');
   if (note) note.textContent = isCorn
-    ? 'Fabric-wrapped wood box valance. $50/linear ft · 4 ft minimum.'
-    : 'Fabric soft top treatment. $50/linear ft + fabric.';
+    ? 'Fabric-wrapped wood box valance. Custom quoted — submit for pricing.'
+    : 'Fabric soft top treatment. Custom quoted.';
 
   // Swap hero photo + labels
   var img   = document.getElementById('cv-hero-img');
@@ -1912,8 +1887,8 @@ function cvSetType(type) {
   }
   if (title) title.textContent = isCorn ? 'Cornices' : 'Valances';
   if (sub)   sub.textContent   = isCorn
-    ? 'Fabric-wrapped wood box valances. $50/linear ft · 4 ft min.'
-    : 'Fabric soft top treatment. $50/linear ft + fabric.';
+    ? 'Fabric-wrapped wood box valances. Custom quoted.'
+    : 'Fabric soft top treatment. Custom quoted.';
   var cornFin = document.getElementById('cv-cornice-finish');
   var valFin  = document.getElementById('cv-valance-finish');
   var trimOpts= document.getElementById('corn-trim-opts');
@@ -1979,16 +1954,12 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
   }
   var total = labor + trimCost + fabricCost;
   var rows = '';
-  var row = function(lbl, val) {
-    rows += '<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-dark);padding:3px 0;border-bottom:.5px solid var(--border-dark)"><span>' + lbl + '</span><span style="color:var(--cream);font-weight:500">$' + val.toFixed(0) + '</span></div>';
-  };
-  row(ft + ' ft × $' + CV_PER_FT + '/ft (incl. ends' + (labor === CV_MIN_PRICE ? ' · $250 min)' : ')'), labor);
-  if (trimCost) row('Trim (' + Math.ceil(trimFt) + ' ft × $' + CV_TRIM_PER_FT + ')', trimCost);
-  if (fabricCost) row('Fabric est. (' + fabricYds + ' yd × $' + CV_FABRIC_YD + ')', fabricCost);
+  rows += '<div style="font-size:12px;color:var(--text-dark);padding:4px 0">' + ft + ' linear ft (incl. ends)</div>';
+  if (hasTrim) rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">' + selTrimTxt + '</div>';
+  if (fabricCost) rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">We supply fabric (~' + fabricYds + ' yds est.)</div>';
   document.getElementById(rowsId).innerHTML = rows;
-  document.getElementById(totalId).textContent = '$' + total.toFixed(0);
   var noteEl = document.getElementById(noteId);
-  if (noteEl) noteEl.textContent = weSupply ? '🧵 Est. fabric: ~' + fabricYds + ' yards — pattern repeats add more. Confirmed at order.' : '';
+  if (noteEl) noteEl.textContent = 'Pricing confirmed at order.';
   box.style.display = 'block';
 }
 
@@ -2005,47 +1976,58 @@ function calcValance() {
   _cvPriceBox('val-price-box','val-price-rows','val-price-total','val-fabric-note', w, h, ret, 'val-trim-edge','grp-val-trim','grp-val-fabric', false);
 }
 
-function submitCornice() {
-  var name  = document.getElementById('cn-name').value.trim();
-  var phone = document.getElementById('cn-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
-  var w = document.getElementById('cv-corn-w').value || '—';
-  var h = document.getElementById('cv-corn-h').value || '—';
-  var ret = document.getElementById('cv-corn-return').value || '4';
-  var fin = getOpt('grp-corn-trim');
-  var fab = getOpt('grp-corn-fabric');
-  var est = document.getElementById('corn-price-total').textContent;
-  var body = 'CORNICE QUOTE REQUEST\n\nName: ' + name + '\nPhone: ' + phone +
-    '\nEmail: ' + (document.getElementById('cn-email').value.trim() || '—') + '\n\n' +
-    'Width: ' + w + '"  Height: ' + h + '"  Return: ' + ret + '"\n' +
-    'Finishing: ' + fin + '\nFabric: ' + fab + '\nEstimate: ' + est + '\n' +
-    pbInstallLine(document.getElementById('corn-form')) + '\n\n' +
-    'Notes:\n' + (document.getElementById('cn-notes').value.trim() || 'None');
-  window.location.href = 'mailto:justin@phillyblinds.com?subject=' +
-    encodeURIComponent('Cornice Quote — ' + name) + '&body=' + encodeURIComponent(body);
-  document.getElementById('corn-form').style.display = 'none';
-  document.getElementById('corn-success').style.display = 'block';
+async function _stApiSubmit(formId, successId, name, email, phone, product, selections, notes) {
+  var formEl = formId ? document.getElementById(formId) : null;
+  var successEl = successId ? document.getElementById(successId) : null;
+  var btn = formEl ? (formEl.querySelector('.btn-gold') || formEl.querySelector('button[onclick]')) : null;
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+  try {
+    var resp = await fetch('/api/quote', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, phone: phone, product: product, selections: selections, notes: notes })
+    });
+    var data = {}; try { data = await resp.json(); } catch(e) {}
+    if (!resp.ok) throw new Error(data.error || 'Server error');
+    if (formEl) formEl.style.display = 'none';
+    if (successEl) successEl.style.display = 'block';
+  } catch(err) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Send Quote Request →'; }
+    alert((err.message && err.message.length < 200 ? err.message + '\n\n' : '') +
+      'Please email us at justin@blindznation.com or call (609) 742-1720.');
+  }
 }
 
-function submitValanceCv() {
+async function submitCornice() {
+  var name  = document.getElementById('cn-name').value.trim();
+  var email = document.getElementById('cn-email').value.trim();
+  var phone = document.getElementById('cn-phone').value.trim();
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+  var selections = [
+    { label: 'Width',        value: (document.getElementById('cv-corn-w').value||'—') + '"' },
+    { label: 'Height',       value: (document.getElementById('cv-corn-h').value||'—') + '"' },
+    { label: 'Return depth', value: (document.getElementById('cv-corn-return').value||'4') + '"' },
+    { label: 'Finishing',    value: getOpt('grp-corn-trim') || '—' },
+    { label: 'Fabric',       value: getOpt('grp-corn-fabric') || '—' },
+    { label: 'Installation', value: pbInstallRequested(document.getElementById('corn-form')) ? 'Requested' : 'Not requested' }
+  ];
+  await _stApiSubmit('corn-form', 'corn-success', name, email, phone, 'Cornice', selections, document.getElementById('cn-notes').value.trim());
+}
+
+async function submitValanceCv() {
   var name  = document.getElementById('vn-name').value.trim();
+  var email = document.getElementById('vn-email').value.trim();
   var phone = document.getElementById('vn-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
-  var w = document.getElementById('cv-val-w').value || '—';
-  var h = document.getElementById('cv-val-h').value || '—';
-  var ret = document.getElementById('cv-val-return').value || '4';
-  var fin = getOpt('grp-val-trim');
-  var fab = getOpt('grp-val-fabric');
-  var est = document.getElementById('val-price-total').textContent;
-  var body = 'VALANCE QUOTE REQUEST\n\nName: ' + name + '\nPhone: ' + phone +
-    '\nEmail: ' + (document.getElementById('vn-email').value.trim() || '—') + '\n\n' +
-    'Width: ' + w + '"  Height: ' + h + '"  Return: ' + ret + '"\n' +
-    'Finishing: ' + fin + '\nFabric: ' + fab + '\nEstimate: ' + est + '\n\n' +
-    'Notes:\n' + (document.getElementById('vn-notes').value.trim() || 'None');
-  window.location.href = 'mailto:justin@phillyblinds.com?subject=' +
-    encodeURIComponent('Valance Quote — ' + name) + '&body=' + encodeURIComponent(body);
-  document.getElementById('val-form').style.display = 'none';
-  document.getElementById('val-cv-success').style.display = 'block';
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+  var selections = [
+    { label: 'Width',        value: (document.getElementById('cv-val-w').value||'—') + '"' },
+    { label: 'Height',       value: (document.getElementById('cv-val-h').value||'—') + '"' },
+    { label: 'Return depth', value: (document.getElementById('cv-val-return').value||'4') + '"' },
+    { label: 'Finishing',    value: getOpt('grp-val-trim') || '—' },
+    { label: 'Fabric',       value: getOpt('grp-val-fabric') || '—' }
+  ];
+  await _stApiSubmit('val-form', 'val-cv-success', name, email, phone, 'Valance', selections, document.getElementById('vn-notes').value.trim());
 }
 
 function rnShowTrimSupply() {
@@ -2118,7 +2100,7 @@ function submitDrape() {
     + 'Pleat style: ' + (drapeState.pleat || '—') + '\n'
     + 'Fabric: ' + fabric + '\n'
     + (fabric === 'We supply the fabric' ? 'Color: ' + (getOpt('grp-drape-color')||'—') + '  Liner: ' + lining + '\n' : '')
-    + 'Lining: ' + lining + (interlining ? ' + Interlining (+$7/yd)' : '') + '\n'
+    + 'Lining: ' + lining + (interlining ? ' + Interlining' : '') + '\n'
     + 'Panels: ' + panels + (panelSide !== '—' ? ' — ' + panelSide : '') + '\n'
     + (!isRipple && pleat !== 'Rod Pocket / Sheered Pocket' && fullness !== '—' ? 'Fullness: ' + fullness + '\n' : '')
     + (pleat === 'Rod Pocket / Sheered Pocket' ? (function(){
@@ -2153,38 +2135,48 @@ function submitDrape() {
     + 'Delivery: ' + delivery + '\n'
     + pbInstallLine(document.getElementById('drape-form')) + '\n\n'
     + 'Notes:\n' + (document.getElementById('d-notes').value.trim() || 'None')
-    + (function(){ var fu = document.querySelector('#drape-form .pb-fu-wrap input[type="file"]'); var n = fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@phillyblinds.com)' : ''; return n; }());
-  window.location.href = 'mailto:justin@phillyblinds.com'
-    + '?subject=' + encodeURIComponent('Drapery Quote — ' + name)
-    + '&body=' + encodeURIComponent(body);
-  document.getElementById('drape-form').style.display = 'none';
-  document.getElementById('drape-success').style.display = 'block';
+    + (function(){ var fu = document.querySelector('#drape-form .pb-fu-wrap input[type="file"]'); var n = fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@blindznation.com)' : ''; return n; }());
+  var email = document.getElementById('d-email').value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+  var drapeSelections = [
+    { label: 'Pleat style', value: drapeState.pleat || '—' },
+    { label: 'Fabric', value: drapeState.fabric || '—' },
+    { label: 'Lining', value: lining + (interlining ? ' + Interlining' : '') },
+    { label: 'Panels', value: panels + (panelSide !== '—' ? ' — ' + panelSide : '') },
+    { label: 'Width', value: (document.getElementById('d-exact-width').value || '—') + '"' },
+    { label: 'Finished length', value: (document.getElementById('d-exact-length').value || '—') + '"' },
+    { label: 'Hardware', value: hwNeed + (hwType !== 'N/A' ? ' — ' + hwType : '') },
+    { label: 'Delivery', value: delivery }
+  ];
+  var drapeNotes = document.getElementById('d-notes').value.trim();
+  if (pbInstallRequested(document.getElementById('drape-form'))) drapeSelections.push({ label: 'Installation', value: 'Requested' });
+  await _stApiSubmit('drape-form', 'drape-success', name, email, phone, 'Custom Drapery', drapeSelections, drapeNotes);
 }
 
 // ── SUBMIT: ROMAN VALANCE ─────────────────────────────────
-function submitValance() {
+async function submitValance() {
   var name  = document.getElementById('val-name').value.trim();
+  var email = document.getElementById('val-email').value.trim();
   var phone = document.getElementById('val-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
-  var body = 'ROMAN VALANCE QUOTE REQUEST\n\n'
-    + 'Name: ' + name + '\nPhone: ' + phone
-    + '\nEmail: ' + (document.getElementById('val-email').value.trim() || '—') + '\n\n'
-    + 'Width: ' + (document.getElementById('val-w').value || '—') + '"\n'
-    + 'Height / drop: ' + (document.getElementById('val-h').value || '—') + '"\n'
-    + 'Number of folds: ' + (document.getElementById('val-folds').value || '—') + '\n'
-    + 'Fold section size: ' + (document.getElementById('val-fold-size').value || '—') + '"\n\n'
-    + 'Notes:\n' + (document.getElementById('val-notes').value.trim() || 'None');
-  window.location.href = 'mailto:justin@phillyblinds.com'
-    + '?subject=' + encodeURIComponent('Roman Valance Quote — ' + name)
-    + '&body=' + encodeURIComponent(body);
-  document.getElementById('valance-success').style.display = 'block';
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+  var selections = [
+    { label: 'Width',             value: (document.getElementById('val-w').value || '—') + '"' },
+    { label: 'Height / drop',     value: (document.getElementById('val-h').value || '—') + '"' },
+    { label: 'Number of folds',   value: document.getElementById('val-folds').value || '—' },
+    { label: 'Fold section size', value: (document.getElementById('val-fold-size').value || '—') + '"' }
+  ];
+  await _stApiSubmit(null, 'valance-success', name, email, phone, 'Roman Valance',
+    selections, document.getElementById('val-notes').value.trim());
 }
 
 // ── SUBMIT: ROMAN SHADES ──────────────────────────────────
-function submitRoman() {
+async function submitRoman() {
   var name  = document.getElementById('rn-name').value.trim();
+  var email = document.getElementById('rn-email').value.trim();
   var phone = document.getElementById('rn-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
   var w        = document.getElementById('rn-w').value;
   var h        = document.getElementById('rn-h').value;
   var qty      = document.getElementById('rn-qty').value;
@@ -2231,37 +2223,40 @@ function submitRoman() {
         var locs = Array.from(trimSel).map(function(c){return c.getAttribute('data-loc');}).join(', ');
         return '\nTrim: ' + locs + '  Supply: ' + (getOpt('grp-roman-trim-supply')||'—');
       }())
-    + (function(){
-        var el = document.getElementById('rn-pb-total');
-        var box = document.getElementById('roman-pricebox');
-        return (el && box && box.style.display !== 'none') ? '\nEstimate: ' + el.textContent : '';
-      }())
-    + (function(){ var fu = document.querySelector('#roman-form .pb-fu-wrap input[type="file"]'); var n = fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@phillyblinds.com)' : ''; return n; }());
-  window.location.href = 'mailto:justin@phillyblinds.com'
-    + '?subject=' + encodeURIComponent('Roman Shade Quote — ' + name)
-    + '&body=' + encodeURIComponent(body);
-  document.getElementById('roman-form').style.display = 'none';
-  document.getElementById('roman-success').style.display = 'block';
+  var romanSelections = [
+    { label: 'Style',        value: romanState.style || '—' },
+    { label: 'TDBU',         value: getOpt('grp-roman-tdbu') || '—' },
+    { label: 'Fabric',       value: romanState.fabric || '—' },
+    { label: 'Lining',       value: getOpt('grp-roman-lining') || '—' },
+    { label: 'Operation',    value: op },
+    { label: 'Control side', value: controlSide },
+    { label: 'Mounting',     value: mountStyle },
+    { label: 'Quantity',     value: qty },
+    { label: 'Width',        value: (document.getElementById('rn-w').value||'—') + '"' },
+    { label: 'Finished length', value: (document.getElementById('rn-h').value||'—') + '"' },
+    { label: 'Delivery',     value: delivery }
+  ];
+  if (pbInstallRequested(document.getElementById('roman-form'))) romanSelections.push({ label: 'Installation', value: 'Requested' });
+  await _stApiSubmit('roman-form', 'roman-success', name, email, phone, 'Custom Roman Shade',
+    romanSelections, document.getElementById('rn-notes').value.trim());
 }
 
 async function handleSoftQuote(e) {
   e.preventDefault();
   const form = document.getElementById('soft-quote-form');
-  const btn = form.querySelector('button[type="submit"]');
-  btn.disabled = true; btn.textContent = 'Sending…';
-  try {
-    const resp = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-    if (resp.ok) {
-      form.style.display = 'none';
-      document.getElementById('soft-quote-success').style.display = 'block';
-    } else {
-      btn.disabled = false; btn.textContent = 'Send quote request →';
-      alert('Something went wrong. Please call (609) 742-1720 or email justin@phillyblinds.com');
-    }
-  } catch(err) {
-    btn.disabled = false; btn.textContent = 'Send quote request →';
-    alert('Connection error. Please call Justin at (609) 742-1720 — available 24/7.');
-  }
+  const data = new FormData(form);
+  const name  = (data.get('name') || '').trim();
+  const email = (data.get('email') || '').trim();
+  const phone = (data.get('phone') || '').trim();
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+  const selections = [
+    { label: 'Product',  value: data.get('product') || 'Not specified' },
+    { label: 'Windows',  value: data.get('window_count') || 'Not specified' },
+    { label: 'Timeline', value: data.get('timeline') || 'Not specified' }
+  ];
+  await _stApiSubmit('soft-quote-form', 'soft-quote-success', name, email, phone,
+    'Soft Treatments', selections, data.get('notes') || '');
 }
 </script>
 </body>

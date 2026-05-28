@@ -1364,7 +1364,7 @@ function _initChatbot() {
   const widget = document.createElement('div');
   widget.id = 'pb-chat';
   widget.innerHTML = `
-    <button class="pb-chat-bubble" id="pb-chat-bubble" aria-label="Chat with Philly Blinds support">
+    <button class="pb-chat-bubble" id="pb-chat-bubble" aria-label="Chat with Blindznation support">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
       </svg>
@@ -1373,9 +1373,9 @@ function _initChatbot() {
     <div class="pb-chat-panel" id="pb-chat-panel" hidden>
       <div class="pb-chat-header">
         <div class="pb-chat-header-info">
-          <div class="pb-chat-avatar">PB</div>
+          <div class="pb-chat-avatar">BZ</div>
           <div>
-            <div class="pb-chat-name">Philly Blinds Support</div>
+            <div class="pb-chat-name">Blindznation Support</div>
             <div class="pb-chat-status">&#9679; Online now</div>
           </div>
         </div>
@@ -1407,7 +1407,7 @@ function _initChatbot() {
     return div;
   }
 
-  addMsg('Hi! I\'m the Philly Blinds assistant. Ask me about shades, drapery, shutters, motorization, or pricing — or tap Talk to Justin above to reach a real person right away.', 'bot');
+  addMsg('Hi! I\'m the Blindznation assistant. Ask me about shades, drapery, shutters, motorization, or pricing — or tap Talk to Justin above to reach a real person right away.', 'bot');
 
   bubble.addEventListener('click', function() {
     if (panel.hasAttribute('hidden')) {

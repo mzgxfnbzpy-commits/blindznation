@@ -1083,7 +1083,7 @@ function submitDrpForm() {
   for(var i=1;i<=qty;i++){ var wEl=document.getElementById('w-w'+i),hEl=document.getElementById('w-h'+i); if(wEl&&hEl&&wEl.value&&hEl.value) dims.push('Win '+i+': '+wEl.value+'"W x '+hEl.value+'"H'); }
   var hwSection = _drpHwAddon ? '\nHARDWARE ADD-ON\nType: '+_drpHwType+'\nBrand: '+(document.getElementById('d-hw-brand')?document.getElementById('d-hw-brand').value||'—':'—')+'\nDiameter: '+getOpt('d-hw-diameter')+'\nFinish: '+getOpt('d-hw-finish')+'\nFinial: '+getOpt('d-hw-finial') : '';
   var body = 'CUSTOM DRAPERY QUOTE REQUEST\n─────────────────────────────\nName:  '+name+'\nPhone: '+phone+'\nEmail: '+(email||'—')+'\n\nDRAPERY\nStyle:       '+(_selStyle||'—')+'\nFabric path: '+(_selFabric||'—')+'\n\nWINDOWS\nMount: '+getOpt('mount-type')+'\n'+(dims.length?dims.join('\n'):'Dimensions: not yet provided')+hwSection+'\n\nDelivery: '+(delBtn?delBtn.textContent.trim():'Ship to me')+'\n\nNOTES\n'+(notes||'(none)');
-  window.location.href = 'mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Drapery Quote — '+name)+'&body='+encodeURIComponent(body);
+  window.location.href = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Drapery Quote — '+name)+'&body='+encodeURIComponent(body);
   document.getElementById('drp-contact-section').style.display = 'none';
   var s = document.getElementById('drp-form-success'); s.style.display = 'block'; s.scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -1179,7 +1179,7 @@ function submitHwForm() {
   var brandEl = document.getElementById('hw-brand');
   var drpAddonSection = _hwDrpAddon ? '\nDRAPERY ADD-ON\nStyle: '+getOpt('hw-drp-style') : '';
   var body = 'DRAPERY HARDWARE QUOTE REQUEST\n─────────────────────────────\nName:  '+name+'\nPhone: '+phone+'\nEmail: '+(email||'—')+'\n\nHARDWARE\nType:         '+(_hwType||'—')+'\nBrand:        '+(brandEl&&brandEl.value?brandEl.value:'—')+'\nDiameter:     '+getOpt('hw-diameter')+'\nFinish:       '+getOpt('hw-finish')+'\nFinial:       '+getOpt('hw-finial')+'\nRings:        '+getOpt('hw-rings')+'\nMotorization: '+(_hwMotorOn?'Yes (see notes)':'No')+'\n\nWINDOWS\nMount: '+getOpt('hw-mount-type')+'\n'+(dims.length?dims.join('\n'):'Dimensions: not yet provided')+drpAddonSection+'\n\nDelivery: '+(delBtn?delBtn.textContent.trim():'Ship to me')+'\n\nNOTES\n'+(notes||'(none)');
-  window.location.href = 'mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Hardware Quote — '+name)+'&body='+encodeURIComponent(body);
+  window.location.href = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Hardware Quote — '+name)+'&body='+encodeURIComponent(body);
   document.getElementById('hw-contact-section').style.display = 'none';
   var s = document.getElementById('hw-form-success'); s.style.display = 'block'; s.scrollIntoView({behavior:'smooth',block:'start'});
 }

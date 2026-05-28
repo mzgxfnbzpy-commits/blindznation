@@ -1224,14 +1224,14 @@ function submitQuote() {
     'ADDITIONAL NOTES',
     notes||'None',
     '',
-    '--- Sent from phillyblinds.com/pages/paris-texas-rods.html ---',
+    '--- Sent from blindznation.com/pages/paris-texas-rods.html ---',
     '--- Pricing based on June 2, 2025 Suggested Retail Price List ---',
     '--- All prices subject to tariff surcharge (6% adjustment eff. June 2025 + existing 10% surcharge since 2019) ---',
     '--- Freight/packaging fees confirmed at quote. Li-ion battery orders: +$25 shipping surcharge. FOB Dallas TX. ---'
   ].join('\n');
 
   const subject='Paris Texas Hardware Quote — '+typeLabel()+' — '+name;
-  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
   document.getElementById('success-box').style.display='block';
   document.getElementById('step-bar').style.display='none';
@@ -1248,9 +1248,9 @@ function submitUnsure() {
     '=== PARIS TEXAS HARDWARE HELP REQUEST ===','',
     'Name: '+name,'Contact: '+contact,'Window sizes: '+(size||'Not provided'),
     'Delivery: '+(S.delivery||'Not selected'),'','PROJECT DETAILS',notes||'No details provided',
-    '','--- Sent from phillyblinds.com/pages/paris-texas-rods.html ---'
+    '','--- Sent from blindznation.com/pages/paris-texas-rods.html ---'
   ].join('\n');
-  window.location.href='mailto:justin@phillyblinds.com?subject='+encodeURIComponent('Paris Texas Help — '+name)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Paris Texas Help — '+name)+'&body='+encodeURIComponent(body);
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
   document.getElementById('success-box').style.display='block';
   document.getElementById('step-bar').style.display='none';
