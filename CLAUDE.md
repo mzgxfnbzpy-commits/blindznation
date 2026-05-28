@@ -105,31 +105,41 @@ On LIVE — ALL product card clicks and configure buttons must call `pbShowConta
 | Item | Value | Status |
 |------|-------|--------|
 | GitHub repo | github.com/mzgxfnbzpy-commits/blindznation | ✅ Live |
-| Vercel | TBD — blindznation.vercel.app or custom | ❌ Not yet |
+| Vercel project | blindz-nations/blindznation (prj_8hEaQMSC6Zs5jGZdqI6xiPnihwZQ) | ✅ Live |
 | Local files | C:\Users\Blind\Desktop\BUSINESS\Important PB\AI claude\blindznation | ✅ |
-| Domain | blindznation.com | ❌ Not yet configured |
-| Business email | TBD — different from phillyblinds | ❌ TBD |
-| Form backend | mailto → blindznation email (TBD) | ❌ TBD |
+| Domain | blindznation.com → Vercel (apex A record 216.198.79.1) | ✅ Live |
+| www redirect | www.blindznation.com → 308 → blindznation.com (Vercel platform-level domain redirect, NOT vercel.json) | ✅ Live |
+| Google Search Console | blindznation.com verified (HTML file method) | ✅ Verified |
+| Business email | justin@blindznation.com | ✅ Set |
+| Quote form backend | mailto:blindznation@gmail.com (all quote forms) | ✅ Active |
+| Chatbot API key | ANTHROPIC_API_KEY needed in Vercel env vars | ❌ Not set |
+
+### Domain redirect note
+The www → apex redirect is configured as a **Vercel platform-level domain redirect**, not via vercel.json.
+The `has: [{type: "host"}]` condition in vercel.json does not fire reliably for static sites.
+To change the redirect: use the Vercel API PATCH endpoint:
+```
+PATCH /v9/projects/prj_8hEaQMSC6Zs5jGZdqI6xiPnihwZQ/domains/www.blindznation.com
+{"redirect": "blindznation.com", "redirectStatusCode": 308}
+```
 
 ---
 
 ## DESIGN SYSTEM — BLINDZNATION SPECIFIC
 
 > ⚠️ These tokens are DIFFERENT from phillyblinds. Do NOT use phillyblinds's espresso/gold palette here.
-> Colors below are PLACEHOLDERS — owner must confirm final palette before finalizing design.
 
 ```css
-/* BLINDZNATION BRAND TOKENS — currently set as placeholders in css/global.css */
-/* Look for the "BLINDZNATION OVERRIDES" block at the top of global.css */
---bz-primary:    #1A1A2E   /* placeholder: deep navy — nav, dark sections */
---bz-accent:     #E94560   /* placeholder: crimson/red — CTAs, accents */
---bz-light:      #F0F0F0   /* placeholder: light background */
---bz-cream:      #FFFFFF   /* placeholder: headings on dark */
+/* BLINDZNATION BRAND TOKENS — confirmed and live in css/global.css */
+--espresso:      #111110   /* onyx — nav, dark sections (replaces phillyblinds espresso brown) */
+--gold:          #C9A96E   /* champagne gold — CTAs, accents (replaces phillyblinds gold) */
+/* Cream, card bg, footer, border, text tones follow same variable names as phillyblinds */
+/* but are set to warm ivory/onyx variants in the blindznation css/global.css */
 Font: system sans-serif — no external fonts
 Border radius: 8px buttons, 12px cards
 ```
 
-**When owner confirms colors:** Update the `:root` block at the top of `css/global.css` in this project only.
+theme-color meta: `#111110` (onyx)
 
 Every page MUST include:
 ```html
@@ -159,13 +169,13 @@ Everything below is IDENTICAL to phillyblinds unless explicitly listed as differ
 |------|-------------|--------------|
 | Domain | phillyblinds.com | blindznation.com |
 | GitHub repo | mzgxfnbzpy-commits/phillyblinds | mzgxfnbzpy-commits/blindznation |
-| Vercel URL | phillyblinds.vercel.app | TBD |
-| Brand colors | Espresso #1C1510 + Gold #C8973F | TBD (placeholder navy/crimson) |
-| Contact email | blindznation@gmail.com | TBD |
+| Vercel URL | phillyblinds.vercel.app | blindznation.vercel.app |
+| Brand colors | Espresso #1C1510 + Gold #C8973F | Onyx #111110 + Champagne Gold #C9A96E |
+| Contact email | blindznation@gmail.com (Justin) | justin@blindznation.com |
 | Nav logo text | Philly Blinds (active) · Blindznation | Blindznation (active) · Philly Blinds |
 | Footer brand | Philly Blinds primary | Blindznation primary |
 | JSON-LD schema | phillyblinds.com | blindznation.com |
-| theme-color meta | #1C1510 (espresso) | TBD (update with final color) |
+| theme-color meta | #1C1510 (espresso) | #111110 (onyx) |
 
 ---
 
@@ -173,7 +183,7 @@ Everything below is IDENTICAL to phillyblinds unless explicitly listed as differ
 
 These rules are IDENTICAL between both projects. Do not deviate:
 
-- All quote forms → mailto: blindznation contact email (TBD — update when confirmed)
+- All quote forms → mailto:blindznation@gmail.com
 - Every quote form MUST have delivery/pickup section above submit button
 - Pickup address disclosed AFTER order only
 - Norman brand → Norman Motorization ONLY (no Somfy/Lutron/Rollease on Norman pages)
@@ -214,19 +224,26 @@ When a product spec changes (Norman discontinued fabric, price update, new confi
 
 ## SITE MAP
 
-All 48 pages are ported from phillyblinds. See phillyblinds CLAUDE.md for full page status.
-Brand references updated in shared.js and global.css. Content is identical to phillyblinds.
+All 50+ pages ported from phillyblinds. See phillyblinds CLAUDE.md for full page status.
+Blindznation has the same pages as phillyblinds with brand references updated.
+
+### SEO STATUS (May 2026)
+- ✅ Google Search Console verified (HTML file method at /google09bbbc86851ec4cd.html)
+- ✅ sitemap.xml at blindznation.com/sitemap.xml — all 49 URLs use blindznation.com canonical
+- ✅ robots.txt with sitemap pointer
+- ✅ All pages have og:url, og:title, og:description, og:type, og:site_name
+- ✅ JSON-LD LocalBusiness + Organization + Service schema in shared.js (blindznation.com URLs)
+- ✅ canonical tags injected by shared.js pointing to blindznation.com
+- ✅ www.blindznation.com → 308 → blindznation.com (Vercel platform redirect)
+- ✅ Service areas: Salt Lake City/UT + Philadelphia/PA in schema and copy
+- ⬜ Sitemaps not yet submitted to Google Search Console (must be done manually)
 
 ### Still needed:
-- [ ] Owner confirms blindznation brand colors → update `:root` in css/global.css
-- [ ] Owner confirms blindznation contact email → update shared.js + all quote forms
-- [ ] Create GitHub repo for blindznation
-- [ ] Create Vercel project for blindznation
-- [ ] Configure blindznation.com domain in Vercel
-- [ ] Update JSON-LD schema URL in shared.js (search: blindznation.com — already updated)
-- [ ] Set ANTHROPIC_API_KEY in Vercel env vars for chatbot
+- [ ] Set ANTHROPIC_API_KEY in Vercel env vars to enable chatbot
+- [ ] Submit sitemap in Google Search Console: https://blindznation.com/sitemap.xml
+- [ ] Upload real swatch photos / hero photos when available
 
 ---
 
-*Last updated: May 2026 — initial port from phillyblinds*
-*Agent: Claude Code — full site copied, brand references updated in shared.js and global.css*
+*Last updated: May 2026*
+*Agent: Claude Code — SEO audit complete, all redirects live, Google verified, OG tags complete*
