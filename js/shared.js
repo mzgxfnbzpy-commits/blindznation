@@ -374,7 +374,7 @@ function _updateCartBadge() {
 function _pbCartToast(name) {
   var t = document.getElementById('pb-cart-toast');
   if (!t) return;
-  t.textContent = '✓ ' + name + ' added to cart';
+  t.textContent = '✓ ' + name + ' added to quote list';
   t.classList.add('show');
   setTimeout(function(){ t.classList.remove('show'); }, 2600);
 }
@@ -405,7 +405,7 @@ function _renderCartBody() {
   _updateCartBadge();
   var foot = document.getElementById('pb-cart-foot');
   if (!cart.length) {
-    body.innerHTML = '<div class="pb-cart-empty"><div class="pb-cart-empty-icon">🛍️</div>Your cart is empty.<br><span style="font-size:12px">Configure a product and click Add to Cart.</span></div>';
+    body.innerHTML = '<div class="pb-cart-empty"><div class="pb-cart-empty-icon">📋</div>Your quote list is empty.<br><span style="font-size:12px">Configure a product and click "Add to Quote List."</span></div>';
     if (foot) foot.style.display = 'none';
     return;
   }
@@ -438,22 +438,16 @@ function _renderCartBody() {
 var PB_CHECKOUT_URL = '#checkout';
 
 function pbGoCheckout() {
-  if (PB_CHECKOUT_URL === '#checkout') {
-    var cart = pbGetCart();
-    if (!cart.length) return;
-    var lines = cart.map(function(item, i) {
-      var s = (i+1) + '. ' + (item.product || 'Item');
-      if (item.qty > 1) s += ' \xd7' + item.qty;
-      if (item.specs) s += ' — ' + item.specs;
-      return s;
-    }).join('\n');
-    window.location.href = 'mailto:justin@blindznation.com' +
-      '?subject=' + encodeURIComponent('Order Inquiry') +
-      '&body=' + encodeURIComponent('Hi, I\'d like to place an order for:\n\n' + lines + '\n\nPlease contact me to complete my purchase.');
-    return;
-  }
-  sessionStorage.setItem('pb_checkout_cart', JSON.stringify(pbGetCart()));
-  window.location.href = PB_CHECKOUT_URL;
+  var cart = pbGetCart();
+  if (!cart.length) return;
+  var lines = cart.map(function(item, i) {
+    var label = 'Item ' + (i + 1) + (item.product ? ': ' + item.product : '');
+    if (item.qty > 1) label += ' \xd7' + item.qty;
+    return { label: label, value: item.specs || '' };
+  });
+  var productName = cart.length === 1 ? (cart[0].product || 'Custom Window Treatment') : cart.length + ' items';
+  pbCloseCart();
+  pbShowQuoteModal(lines, productName);
 }
 
 // ── Inject cart DOM ─────────────────────────────────────────
@@ -476,15 +470,15 @@ function _initCart() {
   drawer.id = 'pb-cart-drawer'; drawer.className = 'pb-cart-drawer';
   drawer.innerHTML =
     '<div class="pb-cart-drawer-head">' +
-      '<div><div class="pb-cart-drawer-title">Your cart</div></div>' +
+      '<div><div class="pb-cart-drawer-title">Your quote list</div></div>' +
       '<button class="pb-cart-close" onclick="pbCloseCart()">×</button>' +
     '</div>' +
     '<div class="pb-cart-body" id="pb-cart-body"></div>' +
     '<div id="pb-cart-foot" style="padding:16px;border-top:1px solid #e8e8e4;display:none">' +
       '<button class="btn-gold" style="width:100%;padding:13px;font-size:15px;font-weight:600;margin-bottom:8px" ' +
-        'onclick="pbGoCheckout()">Check out now →</button>' +
-      '<div style="text-align:center;font-size:11px;color:#aaa;margin-bottom:12px">Secure checkout &bull; All major cards accepted</div>' +
-      '<button onclick="pbClearCart()" style="display:block;width:100%;background:none;border:none;font-size:11px;color:#ccc;cursor:pointer;font-family:inherit">Clear cart</button>' +
+        'onclick="pbGoCheckout()">Request Quotes for All Items →</button>' +
+      '<div style="text-align:center;font-size:11px;color:#aaa;margin-bottom:12px">We\'ll reply by email &bull; No payment required now</div>' +
+      '<button onclick="pbClearCart()" style="display:block;width:100%;background:none;border:none;font-size:11px;color:#ccc;cursor:pointer;font-family:inherit">Clear quote list</button>' +
     '</div>';
   document.body.appendChild(drawer);
 
@@ -655,11 +649,8 @@ function pbRenderEstimate(priceBoxId, lines, subtotal, conflictMsg, onCheckout) 
     priceBox.after(panel);
   }
 
-  var tariffAmt = subtotal ? Math.round(subtotal * PB_TARIFF_RATE) : 0;
-  var total = subtotal ? subtotal + tariffAmt : 0;
   var hasConflict = conflictMsg && conflictMsg.trim().length > 0;
 
-  // Build line-by-line HTML
   var linesHtml = lines.map(function(l) {
     return '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:6px 0;border-bottom:1px solid #f5f5f3">' +
       '<span style="font-size:12px;color:#666;flex-shrink:0">' + l.label + '</span>' +
@@ -667,200 +658,201 @@ function pbRenderEstimate(priceBoxId, lines, subtotal, conflictMsg, onCheckout) 
       '</div>';
   }).join('');
 
-  var tariffLine = PB_TARIFF_RATE > 0
-    ? '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f5f3"><span style="font-size:12px;color:#666">Tariff (' + Math.round(PB_TARIFF_RATE*100) + '%)</span><span style="font-size:12px;font-weight:500;color:#b45309">+$' + tariffAmt.toFixed(0) + '</span></div>'
-    : '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f5f3"><span style="font-size:12px;color:#999">Tariff</span><span style="font-size:11px;color:#aaa">None on this product</span></div>';
-
   var conflictHtml = hasConflict
-    ? '<div style="background:#FEE2E2;border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:12px;color:#991B1B;line-height:1.5">⚠ ' + conflictMsg + '</div>'
+    ? '<div style="background:#FEE2E2;border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:12px;color:#991B1B;line-height:1.5">&#9888; ' + conflictMsg + '</div>'
     : '';
 
-  var totalColor = hasConflict ? '#aaa' : 'var(--espresso)';
-  var totalHtml = subtotal
-    ? '<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0 4px"><span style="font-size:13px;font-weight:600;color:#1a1a1a">Estimated total</span><span style="font-size:20px;font-weight:700;color:' + totalColor + '">$' + total.toFixed(0) + '</span></div>'
-    : '<div style="font-size:13px;color:#888;padding:8px 0">Enter dimensions above to see estimate.</div>';
-
-  // Store order data on panel for checkout modal
-  panel._pbOrderData = { lines: lines, total: subtotal, product: lines.length ? lines[0].value : '' };
+  // Store selections on panel for quote modal
+  panel._pbLines      = lines;
+  panel._pbProduct    = lines.length ? lines[0].value : '';
   panel._pbOnCheckout = onCheckout || null;
 
   panel.innerHTML =
     '<div style="padding:16px 18px">' +
       '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Your selection</div>' +
       linesHtml +
-      (subtotal ? tariffLine : '') +
-      totalHtml +
-      '<div style="font-size:10px;color:#aaa;margin-bottom:6px">Estimate only. Shipping and final pricing confirmed at order review.</div>' +
+      '<div style="font-size:11px;color:#aaa;margin:10px 0 10px;line-height:1.5">Pricing is custom-quoted for every order. Submit your configuration and we\'ll send you a full quote.</div>' +
       conflictHtml +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-        '<button onclick="pbEstimateAddCart(\'' + priceBoxId + '\')" style="padding:11px;border:1.5px solid #e8e8e4;border-radius:8px;background:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;color:#333">Add to Cart</button>' +
-        '<button onclick="pbEstimateCheckoutNew(\'' + priceBoxId + '\')" ' +
+        '<button onclick="pbEstimateAddCart(\'' + priceBoxId + '\')" style="padding:11px;border:1.5px solid #e8e8e4;border-radius:8px;background:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;color:#333">Add to Quote List</button>' +
+        '<button onclick="pbOpenQuoteFromPanel(\'' + priceBoxId + '\')" ' +
           (hasConflict ? 'disabled style="padding:11px;border-radius:8px;background:#e5e5e5;font-size:13px;font-weight:700;cursor:not-allowed;font-family:inherit;color:#aaa;border:none"' :
                          'style="padding:11px;border-radius:8px;background:var(--espresso);color:var(--gold);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;border:none"') +
-          '>Check Out Now &#8594;</button>' +
+          '>Request a Quote &#8594;</button>' +
       '</div>' +
     '</div>';
 }
 
-function pbEstimateAddCart(priceBoxId) {
-  var panel = document.getElementById(priceBoxId + '-checkout-panel');
-  if (panel && panel._pbOnCheckout) panel._pbOnCheckout(false);
-  else pbOpenCart();
-}
-
-function pbEstimateCheckout(priceBoxId) {
-  var panel = document.getElementById(priceBoxId + '-checkout-panel');
-  if (panel && panel._pbOnCheckout) panel._pbOnCheckout(true);
-}
-function pbEstimateCheckoutNew(priceBoxId) {
+function pbOpenQuoteFromPanel(priceBoxId) {
   var panel = document.getElementById(priceBoxId + '-checkout-panel');
   if (!panel) return;
-  if (panel._pbOrderData) {
-    pbShowCheckout(panel._pbOrderData);
-  } else if (panel._pbOnCheckout) {
-    panel._pbOnCheckout(true);
+  pbShowQuoteModal(panel._pbLines || [], panel._pbProduct || '');
+}
+
+function pbEstimateAddCart(priceBoxId) {
+  var panel = document.getElementById(priceBoxId + '-checkout-panel');
+  if (panel && panel._pbOnCheckout) {
+    panel._pbOnCheckout(false);
+  } else if (panel && panel._pbLines) {
+    var product = panel._pbProduct || 'Item';
+    var specs = (panel._pbLines || []).map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
+    pbAddToCart({ product: product, specs: specs, qty: 1 });
+  } else {
+    pbOpenCart();
   }
 }
+
+function pbEstimateCheckout(priceBoxId) { pbOpenQuoteFromPanel(priceBoxId); }
+function pbEstimateCheckoutNew(priceBoxId) { pbOpenQuoteFromPanel(priceBoxId); }
 
 function pbCollectItem(productName, lines, total, motorized) {
   var specs = lines.map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
   pbAddToCartWithMotor({ product: productName, specs: specs, qty: 1 }, !!motorized);
 }
 
-// ── FULL CHECKOUT MODAL ─────────────────────────────────────────
-// Flow: Options → estimate → "Check Out Now" → this modal (contact + billing last)
-var _pbCheckoutOrder = null;
+// ── QUOTE REQUEST MODAL ─────────────────────────────────────────
+var _pbQuoteLines   = [];
+var _pbQuoteProduct = '';
 
-function pbInitCheckoutModal() {
-  if (document.getElementById('pb-checkout-overlay')) return;
+function pbShowQuoteModal(lines, productName) {
+  _pbQuoteLines   = Array.isArray(lines) ? lines : [];
+  _pbQuoteProduct = productName || (_pbQuoteLines.length ? _pbQuoteLines[0].value : 'Custom Window Treatment');
 
-  var s = document.createElement('style');
-  s.textContent =
-    '.pb-co2{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:800;align-items:center;justify-content:center;padding:12px}' +
-    '.pb-co2.open{display:flex}' +
-    '.pb-checkout-modal{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:94vh;overflow-y:auto;display:flex;flex-direction:column}' +
-    '.pb-chk-head{background:var(--espresso);padding:20px 22px;border-radius:16px 16px 0 0;display:flex;align-items:center;justify-content:space-between}' +
-    '.pb-chk-title{font-size:16px;font-weight:700;color:var(--cream)}' +
-    '.pb-chk-close{background:none;border:none;color:var(--text-muted);font-size:22px;cursor:pointer;line-height:1;font-family:inherit}.pb-chk-close:hover{color:var(--cream)}' +
-    '.pb-chk-body{padding:20px 22px;flex:1}' +
-    '.pb-chk-section{margin-bottom:20px}' +
-    '.pb-chk-section-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}' +
-    '.pb-chk-line{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-bottom:1px solid #f0f0ec}' +
-    '.pb-chk-line:last-child{border-bottom:none}' +
-    '.pb-chk-label{color:#666}.pb-chk-value{font-weight:500;color:#1a1a1a;text-align:right;max-width:60%}' +
-    '.pb-chk-total{display:flex;justify-content:space-between;font-size:18px;font-weight:700;padding:12px 0;border-top:2px solid var(--espresso);margin-top:8px}' +
-    '.pb-chk-notice{background:#FBF7F0;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 13px;font-size:12px;color:#7A5A28;line-height:1.6;margin-bottom:16px}' +
-    '.pb-chk-field{margin-bottom:12px}' +
-    '.pb-chk-field label{font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px}' +
-    '.pb-chk-field input,.pb-chk-field select{width:100%;padding:10px 12px;border:1px solid #e8e8e4;border-radius:8px;font-size:14px;font-family:inherit;color:#1a1a1a}' +
-    '.pb-chk-field input:focus{border-color:var(--gold);outline:none}' +
-    '.pb-pay-notice{background:var(--espresso);border-radius:10px;padding:14px 16px;margin-bottom:16px}' +
-    '.pb-pay-notice-title{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}' +
-    '.pb-pay-notice-body{font-size:12px;color:var(--text-dark);line-height:1.6}' +
-    '.pb-chk-submit{width:100%;background:var(--espresso);color:var(--gold);border:none;border-radius:10px;padding:15px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.3px}' +
-    '.pb-chk-submit:hover{opacity:.9}' +
-    '.pb-chk-sent{display:none;text-align:center;padding:24px;background:#EAF3DE;border-radius:10px;margin-top:10px}';
-  document.head.appendChild(s);
+  var existing = document.getElementById('pb-quote-overlay');
+  if (existing) existing.remove();
+
+  if (!document.getElementById('pb-quote-style')) {
+    var s = document.createElement('style');
+    s.id = 'pb-quote-style';
+    s.textContent =
+      '.pb-qm{display:flex;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:900;align-items:center;justify-content:center;padding:12px;overflow-y:auto}' +
+      '.pb-qm-card{background:#fff;border-radius:16px;width:100%;max-width:520px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);margin:auto}' +
+      '.pb-qm-head{background:var(--espresso);padding:18px 22px;display:flex;justify-content:space-between;align-items:center}' +
+      '.pb-qm-title{color:var(--cream);font-size:15px;font-weight:700}' +
+      '.pb-qm-close{background:none;border:none;color:#9A8570;font-size:22px;cursor:pointer;line-height:1;padding:0;font-family:inherit}.pb-qm-close:hover{color:var(--cream)}' +
+      '.pb-qm-body{padding:20px 22px;max-height:80vh;overflow-y:auto}' +
+      '.pb-qm-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}' +
+      '.pb-qm-field{margin-bottom:12px}.pb-qm-field label{font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px}' +
+      '.pb-qm-field input,.pb-qm-field textarea{width:100%;padding:10px 12px;border:1px solid #e8e8e4;border-radius:8px;font-size:14px;font-family:inherit;color:#1a1a1a;box-sizing:border-box}' +
+      '.pb-qm-field input:focus,.pb-qm-field textarea:focus{border-color:var(--gold);outline:none}' +
+      '.pb-qm-submit{width:100%;background:var(--espresso);color:var(--gold);border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}' +
+      '.pb-qm-submit:hover{opacity:.9}.pb-qm-submit:disabled{opacity:.5;cursor:not-allowed}' +
+      '.pb-qm-err{display:none;background:#FEE2E2;border-radius:8px;padding:10px 13px;font-size:12px;color:#991B1B;margin-bottom:12px;line-height:1.5}' +
+      '.pb-qm-ok{display:none;text-align:center;padding:10px 4px}';
+    document.head.appendChild(s);
+  }
+
+  var selectionsHtml = _pbQuoteLines.map(function(l) {
+    return '<div style="display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid #f0f0ec;font-size:12px">' +
+      '<span style="color:#888;flex-shrink:0">' + l.label + '</span>' +
+      '<span style="font-weight:500;color:#333;text-align:right;max-width:60%">' + l.value + '</span>' +
+      '</div>';
+  }).join('');
 
   var ov = document.createElement('div');
-  ov.id = 'pb-checkout-overlay';
-  ov.className = 'pb-co2';
-  ov.addEventListener('click', function(e){ if(e.target===ov) pbCloseCheckout(); });
+  ov.id = 'pb-quote-overlay';
+  ov.className = 'pb-qm';
+  ov.addEventListener('click', function(e){ if(e.target===ov) ov.remove(); });
   ov.innerHTML =
-    '<div class="pb-checkout-modal">' +
-      '<div class="pb-chk-head">' +
-        '<div class="pb-chk-title">&#128274; Secure Checkout</div>' +
-        '<button class="pb-chk-close" onclick="pbCloseCheckout()">&#215;</button>' +
+    '<div class="pb-qm-card">' +
+      '<div class="pb-qm-head">' +
+        '<div class="pb-qm-title">Request a Free Quote</div>' +
+        '<button class="pb-qm-close" onclick="document.getElementById(\'pb-quote-overlay\').remove()">&#215;</button>' +
       '</div>' +
-      '<div class="pb-chk-body">' +
-        // Order summary
-        '<div class="pb-chk-section">' +
-          '<div class="pb-chk-section-title">Order summary</div>' +
-          '<div id="pb-chk-lines"></div>' +
-          '<div class="pb-chk-total"><span>Estimated total</span><span id="pb-chk-total" style="color:var(--espresso)">—</span></div>' +
+      '<div class="pb-qm-body">' +
+        (selectionsHtml
+          ? '<div class="pb-qm-lbl">Your Configuration</div>' +
+            '<div style="background:#f9f9f7;border-radius:8px;padding:10px 14px;margin-bottom:18px">' + selectionsHtml + '</div>'
+          : '') +
+        '<div class="pb-qm-lbl">Your Information</div>' +
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
+          '<div class="pb-qm-field"><label>First name *</label><input id="pbq-fname" type="text" placeholder="Jane" autocomplete="given-name"></div>' +
+          '<div class="pb-qm-field"><label>Last name *</label><input id="pbq-lname" type="text" placeholder="Smith" autocomplete="family-name"></div>' +
         '</div>' +
-        // Shipping notice
-        '<div class="pb-chk-notice">' +
-          '&#128667; <strong>Shipping &amp; pricing subject to final confirmation.</strong> Freight charges may be adjusted based on actual package dimensions and weight. We will contact you before any changes are made.' +
-        '</div>' +
-        // Contact info
-        '<div class="pb-chk-section">' +
-          '<div class="pb-chk-section-title">Your information</div>' +
-          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-            '<div class="pb-chk-field"><label>First name *</label><input id="pb-chk-fname" type="text" placeholder="Jane"></div>' +
-            '<div class="pb-chk-field"><label>Last name *</label><input id="pb-chk-lname" type="text" placeholder="Smith"></div>' +
-          '</div>' +
-          '<div class="pb-chk-field"><label>Phone *</label><input id="pb-chk-phone" type="tel" placeholder="(215) 555-0100"></div>' +
-          '<div class="pb-chk-field"><label>Email *</label><input id="pb-chk-email" type="email" placeholder="jane@example.com"></div>' +
-          '<div class="pb-chk-field"><label>Shipping address *</label><input id="pb-chk-addr" type="text" placeholder="123 Main St, Philadelphia PA 19103"></div>' +
-          '<div class="pb-chk-field"><label>Notes / special instructions</label><input id="pb-chk-notes" type="text" placeholder="Room name, timeline, questions..."></div>' +
-        '</div>' +
-        // Payment notice
-        '<div class="pb-pay-notice">' +
-          '<div class="pb-pay-notice-title">&#128274; Payment authorization</div>' +
-          '<div class="pb-pay-notice-body">Your card will <strong style="color:var(--cream)">not be charged</strong> until we review and approve your order. A payment link will be sent to your email once we confirm availability, final pricing, and shipping. If anything changes, we contact you first — always.</div>' +
-        '</div>' +
-        '<button class="pb-chk-submit" onclick="pbSubmitCheckout()">Place Order Request &#8594;</button>' +
-        '<div class="pb-chk-sent" id="pb-chk-sent">' +
-          '<div style="font-size:24px;margin-bottom:10px">&#10003;</div>' +
-          '<div style="font-size:16px;font-weight:700;color:#27500A;margin-bottom:8px">Order request received!</div>' +
-          '<div style="font-size:13px;color:#3B6D11;margin-bottom:14px">Justin will review your order, confirm final pricing and shipping, then send a secure payment link to your email. Expect to hear from us within a few hours.</div>' +
-          '<a href="tel:6097421720" style="display:inline-block;background:var(--espresso);color:var(--gold);font-size:14px;font-weight:700;padding:11px 22px;border-radius:8px;text-decoration:none">&#128222; (609) 742-1720</a>' +
+        '<div class="pb-qm-field"><label>Email address *</label><input id="pbq-email" type="email" placeholder="jane@example.com" autocomplete="email"></div>' +
+        '<div class="pb-qm-field"><label>Phone number <span style="font-weight:400;color:#888">(preferred — we\'ll call or text you)</span></label><input id="pbq-phone" type="tel" placeholder="(215) 555-0100" autocomplete="tel"></div>' +
+        '<div class="pb-qm-field"><label>Notes / questions <span style="font-weight:400;color:#888">(optional)</span></label><textarea id="pbq-notes" rows="3" placeholder="Number of windows, room, timeline, questions..."></textarea></div>' +
+        '<div class="pb-qm-err" id="pbq-err"></div>' +
+        '<button class="pb-qm-submit" id="pbq-submit" onclick="pbSubmitQuote()">Submit Quote Request &#8594;</button>' +
+        '<div style="text-align:center;font-size:11px;color:#aaa;margin-top:8px">We\'ll respond by email and phone — no spam, ever.</div>' +
+        '<div class="pb-qm-ok" id="pbq-ok">' +
+          '<div style="font-size:36px;margin-bottom:8px">&#10003;</div>' +
+          '<div style="font-size:17px;font-weight:700;color:var(--espresso);margin-bottom:8px">Quote request received!</div>' +
+          '<div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:16px">Our team has all your details and is putting together your custom quote. You\'ll hear from us by email and phone — typically within a few hours.<br><br><strong>We will not send marketing emails or spam your contact info.</strong></div>' +
+          '<a href="tel:6097421720" style="display:inline-block;background:var(--espresso);color:var(--gold);font-size:14px;font-weight:700;padding:12px 24px;border-radius:8px;text-decoration:none">&#128222; (609) 742-1720 &nbsp;&mdash;&nbsp; 24/7</a>' +
         '</div>' +
       '</div>' +
     '</div>';
   document.body.appendChild(ov);
+  setTimeout(function(){ var f=document.getElementById('pbq-fname'); if(f) f.focus(); }, 80);
 }
 
-function pbShowCheckout(order) {
-  pbInitCheckoutModal();
-  _pbCheckoutOrder = order;
-  var linesHtml = (order.lines || []).map(function(l) {
-    return '<div class="pb-chk-line"><span class="pb-chk-label">' + l.label + '</span><span class="pb-chk-value">' + l.value + '</span></div>';
-  }).join('');
-  document.getElementById('pb-chk-lines').innerHTML = linesHtml;
-  document.getElementById('pb-chk-total').textContent = order.total ? '$' + Number(order.total).toFixed(0) + ' est.' : '—';
-  document.getElementById('pb-chk-sent').style.display = 'none';
-  document.querySelector('.pb-chk-submit').style.display = 'block';
-  document.getElementById('pb-checkout-overlay').classList.add('open');
-}
+async function pbSubmitQuote() {
+  var fname  = (document.getElementById('pbq-fname') ||{}).value || '';
+  var lname  = (document.getElementById('pbq-lname') ||{}).value || '';
+  var email  = (document.getElementById('pbq-email') ||{}).value || '';
+  var phone  = (document.getElementById('pbq-phone') ||{}).value || '';
+  var notes  = (document.getElementById('pbq-notes') ||{}).value || '';
+  var errEl  = document.getElementById('pbq-err');
+  var submit = document.getElementById('pbq-submit');
+  var name   = (fname.trim() + ' ' + lname.trim()).trim();
 
-function pbCloseCheckout() {
-  var ov = document.getElementById('pb-checkout-overlay');
-  if (ov) ov.classList.remove('open');
-}
-
-function pbSubmitCheckout() {
-  var fname = (document.getElementById('pb-chk-fname')||{}).value || '';
-  var lname = (document.getElementById('pb-chk-lname')||{}).value || '';
-  var phone = (document.getElementById('pb-chk-phone')||{}).value || '';
-  var email = (document.getElementById('pb-chk-email')||{}).value || '';
-  var addr  = (document.getElementById('pb-chk-addr') ||{}).value || '';
-  if (!fname.trim() || !phone.trim() || !email.trim() || !addr.trim()) {
-    alert('Please fill in your name, phone, email, and shipping address.');
+  if (!name) {
+    if (errEl) { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; }
     return;
   }
-  var order = _pbCheckoutOrder || {};
-  var lines = (order.lines || []).map(function(l){ return l.label + ': ' + l.value; }).join('\n');
-  var notes = (document.getElementById('pb-chk-notes')||{}).value || '';
-  var body = 'ORDER REQUEST\n' +
-    '===========================\n' +
-    'Name:    ' + fname + ' ' + lname + '\n' +
-    'Phone:   ' + phone + '\n' +
-    'Email:   ' + email + '\n' +
-    'Address: ' + addr + '\n\n' +
-    'PRODUCT:\n' + (order.product || '—') + '\n\n' +
-    'SELECTIONS:\n' + lines + '\n\n' +
-    'Estimated total: $' + (order.total ? Number(order.total).toFixed(0) : '—') + '\n\n' +
-    'Notes: ' + (notes || 'None') + '\n\n' +
-    'NOTE: Card NOT yet charged — awaiting order review and approval.';
-  window.location.href = 'mailto:justin@blindznation.com' +
-    '?subject=' + encodeURIComponent('Order Request — ' + fname + ' ' + lname) +
-    '&body=' + encodeURIComponent(body);
-  document.querySelector('.pb-chk-submit').style.display = 'none';
-  document.getElementById('pb-chk-sent').style.display = 'block';
-  // Also add to cart for tracking
-  pbAddToCart({ product: order.product || 'Order', specs: lines, qty: 1, cartId: Date.now()+'-order' });
+  if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+    if (errEl) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; }
+    return;
+  }
+  if (errEl) errEl.style.display = 'none';
+  if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
+
+  try {
+    var resp = await fetch('/api/quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name,
+        email: email.trim(),
+        phone: phone.trim(),
+        product: _pbQuoteProduct,
+        selections: _pbQuoteLines,
+        notes: notes.trim()
+      })
+    });
+    var data = {};
+    try { data = await resp.json(); } catch(e) {}
+    if (!resp.ok) throw new Error(data.error || 'Server error ' + resp.status);
+
+    // Show success state
+    var body = document.querySelector('.pb-qm-body');
+    if (body) {
+      body.querySelectorAll('.pb-qm-lbl, .pb-qm-field, #pbq-err, #pbq-submit').forEach(function(el){ el.style.display='none'; });
+      var sub = body.querySelector('[style*="We\'ll respond"]');
+      if (sub) sub.style.display = 'none';
+    }
+    var ok = document.getElementById('pbq-ok');
+    if (ok) ok.style.display = 'block';
+
+  } catch(err) {
+    console.error('Quote error:', err.message);
+    if (errEl) {
+      errEl.innerHTML = (err.message && err.message.length < 200 ? err.message + '<br>' : '') +
+        'You can also email us at <a href="mailto:justin@blindznation.com" style="color:#991B1B">justin@blindznation.com</a> or call <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a>.';
+      errEl.style.display = 'block';
+    }
+    if (submit) { submit.disabled = false; submit.textContent = 'Submit Quote Request →'; }
+  }
+}
+
+// Backward-compat aliases
+function pbShowCheckout(order) {
+  pbShowQuoteModal(order ? order.lines : [], order ? order.product : '');
+}
+function pbCloseCheckout() {
+  var ov = document.getElementById('pb-quote-overlay');
+  if (ov) ov.remove();
 }
 
 // ============================================================
