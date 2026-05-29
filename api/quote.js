@@ -8,8 +8,11 @@
 // Domain verification: resend.com → Domains → Add blindznation.com → add the DNS records.
 
 const TEAM_EMAILS = [
-  'justin@blindznation.com',
-  'blindznation@gmail.com'
+  'justin@phillyblinds.com',
+  'sarah@phillyblinds.com',
+  'mike@phillyblinds.com',
+  'tarin@phillyblinds.com',
+  'justin@blindznation.com'
 ];
 const FROM_QUOTES  = process.env.RESEND_FROM || 'Blindznation Quotes <noreply@blindznation.com>';
 const FROM_CONFIRM = process.env.RESEND_FROM || 'Blindznation <noreply@blindznation.com>';

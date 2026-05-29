@@ -825,21 +825,37 @@ async function pbSubmitQuote() {
     try { data = await resp.json(); } catch(e) {}
     if (!resp.ok) throw new Error(data.error || 'Server error ' + resp.status);
 
-    // Show success state
-    var body = document.querySelector('.pb-qm-body');
-    if (body) {
-      body.querySelectorAll('.pb-qm-lbl, .pb-qm-field, #pbq-err, #pbq-submit').forEach(function(el){ el.style.display='none'; });
-      var sub = body.querySelector('[style*="We\'ll respond"]');
-      if (sub) sub.style.display = 'none';
+    // Show success state — hide all form children except ok/err divs
+    var qbody = document.querySelector('.pb-qm-body');
+    if (qbody) {
+      Array.from(qbody.children).forEach(function(el) {
+        if (el.id !== 'pbq-ok' && el.id !== 'pbq-err') el.style.display = 'none';
+      });
     }
     var ok = document.getElementById('pbq-ok');
     if (ok) ok.style.display = 'block';
 
   } catch(err) {
     console.error('Quote error:', err.message);
+
+    // Build emergency mailto so the customer can still send their quote
+    var mailLines = ['QUOTE REQUEST', ''];
+    mailLines.push('Name: ' + name, 'Email: ' + email.trim());
+    if (phone.trim()) mailLines.push('Phone: ' + phone.trim());
+    mailLines.push('', 'Product: ' + (_pbQuoteProduct || 'Custom Window Treatment'));
+    if (_pbQuoteLines && _pbQuoteLines.length) {
+      mailLines.push('', 'Configuration:');
+      _pbQuoteLines.forEach(function(l){ mailLines.push('  ' + l.label + ': ' + l.value); });
+    }
+    if (notes.trim()) mailLines.push('', 'Notes:', notes.trim());
+    var mailHref = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Quote Request — ' + name) +
+      '&body=' + encodeURIComponent(mailLines.join('\n'));
+
     if (errEl) {
-      errEl.innerHTML = (err.message && err.message.length < 200 ? err.message + '<br>' : '') +
-        'You can also email us at <a href="mailto:justin@blindznation.com" style="color:#991B1B">justin@blindznation.com</a> or call <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a>.';
+      errEl.innerHTML =
+        '<strong>There was an issue submitting the form.</strong><br>' +
+        '<a href="' + mailHref + '" style="color:#991B1B;font-weight:700;text-decoration:underline">Click here to email your quote directly →</a><br>' +
+        'Or call/text <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a> — available 24/7.';
       errEl.style.display = 'block';
     }
     if (submit) { submit.disabled = false; submit.textContent = 'Submit Quote Request →'; }
@@ -895,7 +911,7 @@ function normanMotorSection(containerId, productName, onChange) {
   var html =
     '<div class="pb-norman-motor" style="margin-top:12px;padding:16px 18px;background:var(--espresso-mid);border-radius:12px;border:0.5px solid var(--border-dark)">' +
       '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">&#9889; Norman Smart Motorization</div>' +
-      (isSmartDrape ? '<div style="font-size:11px;background:#2a1c0e;border:1px solid #7a5020;border-radius:7px;padding:8px 12px;color:#e8b060;margin-bottom:12px;line-height:1.5">SmartDrape motor: $642 per shade (Norman Smart). DC Low Voltage is not available for SmartDrape.</div>' : '') +
+      (isSmartDrape ? '<div style="font-size:11px;background:#2a1c0e;border:1px solid #7a5020;border-radius:7px;padding:8px 12px;color:#e8b060;margin-bottom:12px;line-height:1.5">SmartDrape: Norman Smart motorization only. DC Low Voltage is not available for SmartDrape.</div>' : '') +
 
       // Power source
       '<div style="margin-bottom:12px">' +
@@ -946,8 +962,8 @@ function normanMotorSection(containerId, productName, onChange) {
         '</div>' +
         '<div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;margin-top:10px">Remote type</div>' +
         '<div class="opt-row" id="nm-grp-remote-type">' +
-          '<button class="opt-btn sel" onclick="selOpt(this,\'nm-grp-remote-type\')" style="color:#333">Basic Remote — $75</button>' +
-          '<button class="opt-btn" onclick="selOpt(this,\'nm-grp-remote-type\')" style="color:#333">SmartDial G2 — $268</button>' +
+          '<button class="opt-btn sel" onclick="selOpt(this,\'nm-grp-remote-type\')" style="color:#333">Basic Remote</button>' +
+          '<button class="opt-btn" onclick="selOpt(this,\'nm-grp-remote-type\')" style="color:#333">SmartDial G2</button>' +
         '</div>' +
         '<div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;margin-top:10px">Channel assignment</div>' +
         '<div class="opt-row" id="nm-grp-channel">' +
