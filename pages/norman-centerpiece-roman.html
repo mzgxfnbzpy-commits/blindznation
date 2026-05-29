@@ -177,7 +177,7 @@
           <div class="product-card" id="type-dn" onclick="setType('dn',this)">
             <h3>Day &amp; Night</h3>
             <p>Two shades in one headrail &mdash; Roman shade in front, roller shade behind. Privacy by day, room darkening by night.</p>
-            <span class="product-badge">+$425</span>
+            <span class="product-badge">Premium</span>
           </div>
         </div>
       </div>
@@ -220,7 +220,7 @@
           <div class="opt-row" id="grp-lift">
             <button class="opt-btn" onclick="setLift('aerolite',this)">AeroLite&trade; Cordless</button>
             <button class="opt-btn" onclick="setLift('ccl',this)">Continuous Cord Loop</button>
-            <button class="opt-btn" onclick="setLift('smartrelease',this)">SmartRelease&trade; <span style="font-size:10px;opacity:.7">+$89</span></button>
+            <button class="opt-btn" onclick="setLift('smartrelease',this)">SmartRelease&trade;</button>
             <button class="opt-btn" onclick="setLift('motor',this)">Motorized</button>
           </div>
         </div>
@@ -432,28 +432,28 @@
         <div class="acc-item">
           <input type="checkbox" class="acc-check" id="acc-holddown" onchange="updateAcc()">
           <div>
-            <div class="acc-label">Magnetic hold-down <span style="color:var(--gold);font-weight:600">+$28/shade</span></div>
+            <div class="acc-label">Magnetic hold-down</div>
             <div class="acc-sub">Keeps shade taut at the bottom &mdash; required for door applications.</div>
           </div>
         </div>
         <div class="acc-item">
           <input type="checkbox" class="acc-check" id="acc-pole" onchange="updateAcc()">
           <div>
-            <div class="acc-label">Pole attachment <span style="color:var(--gold);font-weight:600">+$40</span></div>
+            <div class="acc-label">Pole attachment</div>
             <div class="acc-sub">Mounts shade from a decorative rod with a fabric hem pocket.</div>
           </div>
         </div>
         <div class="acc-item">
           <input type="checkbox" class="acc-check" id="acc-cordless-pole" onchange="updateAcc()">
           <div>
-            <div class="acc-label">Cordless operating pole <span style="color:var(--gold);font-weight:600">+$89</span></div>
+            <div class="acc-label">Cordless operating pole</div>
             <div class="acc-sub">Extends reach for high-mounted cordless shades.</div>
           </div>
         </div>
         <div class="acc-item">
           <div style="display:flex;align-items:center;gap:10px">
             <div style="flex:1">
-              <div class="acc-label">Shims <span style="color:var(--gold);font-weight:600">+$7 each</span></div>
+              <div class="acc-label">Shims</div>
               <div class="acc-sub">For uneven window frames or to create a level mounting surface.</div>
             </div>
             <div style="display:flex;align-items:center;gap:8px">
@@ -504,7 +504,7 @@
           <div class="delivery-title">How would you like to receive your order?</div>
           <div class="del-opt sel" id="del-ship" onclick="setDelivery('ship')">
             <div class="del-opt-title">Ship to me</div>
-            <div class="del-opt-sub">UPS or FedEx from Huntingdon Valley, PA. Freight: $25 first shade + $11 each additional.<br><em style="font-size:10px;color:#999">Tariffs, duties, and import fees are additional and itemized separately.</em></div>
+            <div class="del-opt-sub">UPS or FedEx from Huntingdon Valley, PA. Freight confirmed at order.</div>
           </div>
           <div class="del-opt" id="del-pickup" onclick="setDelivery('pickup')">
             <div class="del-opt-title">Pick up</div>
@@ -567,18 +567,15 @@
       <div class="spec-row"><span class="spec-key">Delivery</span><span class="spec-val" id="sp-delivery">Ship to me</span></div>
       <div class="spec-divider"></div>
       <div class="price-estimate">
-        <div class="price-est-label">Estimated price</div>
-        <div class="price-line"><span class="price-line-key">Base (per shade)</span><span class="price-line-val" id="pr-base">&mdash;</span></div>
-        <div class="price-line" id="pr-lining-row" style="display:none"><span class="price-line-key">Blackout lining (+10%)</span><span class="price-line-val" id="pr-lining">&mdash;</span></div>
-        <div class="price-line" id="pr-soft-row" style="display:none"><span class="price-line-key">Soft Fold (+30%)</span><span class="price-line-val" id="pr-soft">&mdash;</span></div>
-        <div class="price-line" id="pr-banding-row" style="display:none"><span class="price-line-key">Banding</span><span class="price-line-val" id="pr-banding">&mdash;</span></div>
-        <div class="price-line" id="pr-sr-row" style="display:none"><span class="price-line-key">SmartRelease&trade;</span><span class="price-line-val">+$89/shade</span></div>
-        <div class="price-line" id="pr-dn-row" style="display:none"><span class="price-line-key">Day &amp; Night</span><span class="price-line-val">+$425/shade</span></div>
-        <div class="price-line" id="pr-valance-row" style="display:none"><span class="price-line-key">Valance</span><span class="price-line-val" id="pr-valance">&mdash;</span></div>
-        <div class="price-line" id="pr-acc-row" style="display:none"><span class="price-line-key">Accessories</span><span class="price-line-val" id="pr-acc">&mdash;</span></div>
-        <div class="price-line" id="pr-freight-row" style="display:none"><span class="price-line-key">Freight est.</span><span class="price-line-val" id="pr-freight">&mdash;</span></div>
-        <div class="price-total-line"><span>Est. total</span><span id="pr-total">&mdash;</span></div>
-        <div class="price-note">MSRP estimate &middot; <strong>PDF CONFIRM</strong> on fabric prices &middot; final confirmed at order &middot; min $85/shade</div>
+        <div class="price-note">All pricing confirmed at quote. Submit your configuration for a custom quote from our team.</div>
+        <span id="pr-base" style="display:none"></span><span id="pr-lining" style="display:none"></span>
+        <span id="pr-soft" style="display:none"></span><span id="pr-banding" style="display:none"></span>
+        <span id="pr-valance" style="display:none"></span><span id="pr-acc" style="display:none"></span>
+        <span id="pr-freight" style="display:none"></span><span id="pr-total" style="display:none"></span>
+        <span id="pr-lining-row" style="display:none"></span><span id="pr-soft-row" style="display:none"></span>
+        <span id="pr-banding-row" style="display:none"></span><span id="pr-sr-row" style="display:none"></span>
+        <span id="pr-dn-row" style="display:none"></span><span id="pr-valance-row" style="display:none"></span>
+        <span id="pr-acc-row" style="display:none"></span><span id="pr-freight-row" style="display:none"></span>
       </div>
     </div>
     <div style="margin-top:14px;padding:14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;font-size:12px;color:#555;line-height:1.7">
@@ -784,11 +781,11 @@ function setLift(lift, el) {
   var notes = {
     'aerolite':       'Min 20″W · max 96″W · max 40 sqft. No cords — child-safe.',
     'ccl':            'Min 12″W. 1½″ headrail: max 50″W / 33 sqft. 2″ headrail: max 96″W / 64 sqft. Child-safe tensioner required.',
-    'smartrelease':   'Min 12″W · max 96″W · max 52 sqft. SmartRelease™ provides controlled descent. +$89.',
+    'smartrelease':   'Min 12″W · max 96″W · max 52 sqft. SmartRelease™ provides controlled descent.',
     'motor':          'Norman motorization only. Power source confirmed at measurement visit.',
     'cordless-dn':    'D&N Cordless: min 20″W · max 96″W · max 40 sqft. Height must not exceed 3× width.',
     'ccl-dn':         'D&N CCL: min 12″W · max 96″W · max 64 sqft. Height must not exceed 3× width.',
-    'smartrelease-dn':'D&N SmartRelease™: min 12″W · max 96″W · max 52 sqft. Height must not exceed 3× width. +$89.',
+    'smartrelease-dn':'D&N SmartRelease™: min 12″W · max 96″W · max 52 sqft. Height must not exceed 3× width.',
     'motor-dn':       'D&N Motorized: Norman motorization. Height must not exceed 3× width.'
   };
   if (notes[lift]) { noteEl.textContent = notes[lift]; noteEl.style.display = ''; }
@@ -1158,7 +1155,7 @@ function submitQuote() {
   var motorLabel={smart:'Norman Smart Motor',autowand:'AutoWand™',automate:'Automate Home by Norman'}[S.motor]||'—';
   var _powerBtn=document.querySelector('#grp-power .opt-btn.sel');
   var power=_powerBtn?_powerBtn.textContent.trim():'Rechargeable battery';
-  var accList=[(S.holddown?'Magnetic hold-down (+$28/shade)':''),(S.pole?'Pole attachment (+$40)':''),(S.cordlessPole?'Cordless operating pole (+$89)':''),((S.shims||0)>0?S.shims+' shim(s) (+$'+(S.shims*7)+')':'')].filter(Boolean).join(', ')||'None';
+  var accList=[(S.holddown?'Magnetic hold-down':''),(S.pole?'Pole attachment':''),(S.cordlessPole?'Cordless operating pole':''),((S.shims||0)>0?S.shims+' shim(s)':'')].filter(Boolean).join(', ')||'None';
   var bandDesc=S.banding==='none'?'None':S.banding==='ribbon'?'Ribbon banding (+15%) — color: '+(S.ribbonColor?S.ribbonColor.name+' '+S.ribbonColor.code:'TBD'):'Edge banding/Border (+30%) — base: '+(S.edgeBase?S.edgeBase.name+' '+S.edgeBase.code:'—')+' / border: '+(S.edgeBorder?S.edgeBorder.name+' '+S.edgeBorder.code:'—');
   var body=[
     '=== NORMAN CENTERPIECE™ ROMAN SHADE QUOTE ===','',

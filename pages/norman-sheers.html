@@ -870,52 +870,52 @@ function calcPrice(){
 // ═══════════════════════════════════════════════════════════
 function getOpt(id){var e=document.getElementById(id);return e?e.textContent.trim():'';}
 
-function submitQuote(){
+async function submitQuote(){
   var name=document.getElementById('q-name').value.trim();
+  var email=document.getElementById('q-email').value.trim();
   var phone=document.getElementById('q-phone').value.trim();
   var err=document.getElementById('q-err');
-  if(!name||!phone){err.style.display='block';return;}
+  if(!name){err.textContent='Please enter your name.';err.style.display='block';return;}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Please enter a valid email address.';err.style.display='block';return;}
   err.style.display='none';
   var stackLabels={'left':'Left Stack','right':'Right Stack','center':'Traveling Center Stack','copen':'Center Opening'};
   var mountLabels={'wall':'Wall Mount (L bracket)','ceiling':'Ceiling Mount','pocket':'Ceiling Pocket Mount'};
   var isSBS=document.getElementById('sbs-check')&&document.getElementById('sbs-check').checked;
   var joints=S.w<=97.625?0:S.w<=189.625?1:2;
-  var body=[
-    'NORMAN SMARTDRAPE™ SPECIFICATION REQUEST','',
-    '── CUSTOMER ──',
-    'Name: '+name,'Phone: '+phone,
-    'Email: '+(document.getElementById('q-email').value.trim()||'—'),'',
-    '── SPECIFICATION ──',
-    'Product: Norman SmartDrape™ (valance-free headrail, outside mount only)',
-    'Operation: '+(S.op==='wand'?'Wand Tilt':'Motorized — Norman Smart'),
-    'Stack: '+(stackLabels[S.stack]||S.stack),
-    'Side by side: '+(isSBS?'Yes — two independently operated shades':'No'),
-    'Mount: '+(mountLabels[S.mount]||S.mount),
-    S.isDoor?'Patio door/slider application: YES — overlap ≥4" width, ≥3" height, ½" floor clearance':'',
-    'Track width (order width): '+(S.w||'—')+'″',
-    'Height: '+(S.h||'—')+'″',
-    'SmartJoints required: '+(joints===0?'None':joints===1?'1 SmartJoint™':'2 SmartJoints™'),
-    'Area: '+((S.w&&S.h)?((S.w/12)*(S.h/12)).toFixed(1)+' sq ft':'—'),
-    'Quantity: '+S.qty,'',
-    '── FABRIC ──',
-    'Light control: '+(S.opacity==='lf'?'Light Filtering':'Room Darkening (+20% surcharge)'),
-    'Collection: '+(S.fabric?S.fabric.coll:'—'),
-    'Color: '+(S.fabric?S.fabric.name:'—'),
-    'Fabric code: '+(S.fabric?S.fabric.code:'—'),
-    'Default hardware color (from fabric): '+(S.fabric?S.fabric.hw:'—'),
-    'Hardware color override: '+(S.hw&&S.hw!==( S.fabric?S.fabric.hw:'')?S.hw:'None (using fabric default)'),'',
-    '── ACCESSORIES ──',
-    S.accs.length>0?S.accs.join('\n'):'None','',
-    '── DELIVERY ──',
-    S.delivery==='ship'?'Ship to me (UPS/FedEx from Huntingdon Valley, PA)':'Will pick up (Huntingdon Valley, PA)','',
-    '── NOTES ──',
-    document.getElementById('q-notes').value.trim()||'None'
-  ].filter(function(l){return l!==undefined&&l!==null;}).join('\n');
-
-  window.location.href='mailto:justin@blindznation.com'
-    +'?subject='+encodeURIComponent('Norman SmartDrape™ Spec — '+name)
-    +'&body='+encodeURIComponent(body);
-  document.getElementById('quote-success').style.display='block';
+  var selections=[
+    {label:'Product',value:'Norman SmartDrape™'},
+    {label:'Operation',value:S.op==='wand'?'Wand Tilt':'Motorized — Norman Smart'},
+    {label:'Stack',value:stackLabels[S.stack]||S.stack},
+    {label:'Side by side',value:isSBS?'Yes':'No'},
+    {label:'Mount',value:mountLabels[S.mount]||S.mount},
+    {label:'Track width',value:(S.w||'—')+'″'},
+    {label:'Height',value:(S.h||'—')+'″'},
+    {label:'SmartJoints',value:joints===0?'None':joints===1?'1 SmartJoint™':'2 SmartJoints™'},
+    {label:'Quantity',value:String(S.qty)},
+    {label:'Light control',value:S.opacity==='lf'?'Light Filtering':'Room Darkening'},
+    {label:'Collection',value:S.fabric?S.fabric.coll:'—'},
+    {label:'Color',value:S.fabric?S.fabric.name:'—'},
+    {label:'Fabric code',value:S.fabric?S.fabric.code:'—'},
+    {label:'Hardware color',value:S.hw&&S.hw!==(S.fabric?S.fabric.hw:'')?S.hw:'Fabric default'},
+    {label:'Accessories',value:S.accs.length>0?S.accs.join(', '):'None'},
+    {label:'Delivery',value:S.delivery==='ship'?'Ship to me':'Will pick up (Huntingdon Valley, PA)'}
+  ];
+  if(S.isDoor) selections.push({label:'Application',value:'Patio door/slider'});
+  var notes=document.getElementById('q-notes').value.trim();
+  var btn=document.querySelector('#quote-form .btn-gold');
+  if(btn){btn.disabled=true;btn.textContent='Sending…';}
+  try{
+    var resp=await fetch('/api/quote',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:name,email:email,phone:phone,product:'Norman SmartDrape™',selections:selections,notes:notes})});
+    var data={};try{data=await resp.json();}catch(e){}
+    if(!resp.ok) throw new Error(data.error||'Server error');
+    document.getElementById('quote-success').style.display='block';
+    var form=document.getElementById('quote-form'); if(form) form.style.display='none';
+  }catch(err2){
+    if(btn){btn.disabled=false;btn.textContent='Submit SmartDrape™ Specification & Request Quote →';}
+    err.innerHTML=(err2.message&&err2.message.length<200?err2.message+'<br>':'')+'Please email <a href="mailto:justin@blindznation.com">justin@blindznation.com</a> or call (609) 742-1720.';
+    err.style.display='block';
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
