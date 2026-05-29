@@ -1477,60 +1477,8 @@ function reqMoreInfo(product) {
   window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
 }
 
-// LIVE MODE — only active on blindznation.com (not on Vercel preview or local dev)
-// On live: every product card, configure button, and nav CTA → pbShowContact popup
-// On dev/preview: full configurators work normally
-(function() {
-  var isLive = window.location.hostname === 'blindznation.com';
-  if (!isLive) return;
-
-  document.addEventListener('DOMContentLoaded', function() {
-
-    // 1. Product cards (.pcard) on home/category pages — block navigation, show popup
-    document.addEventListener('click', function(e) {
-      var card = e.target.closest('.pcard');
-      if (!card) return;
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      var nameEl = card.querySelector('.pcard-name');
-      var label = nameEl ? nameEl.textContent.trim() : 'this product';
-      pbShowContact('Get a Quote — ' + label);
-    }, true);
-
-    // 2. Category quick-nav links that go to configurator pages — swap to popup
-    document.querySelectorAll('a[href*="pages/"]').forEach(function(a) {
-      var skip = /consult|gallery|about|installation|measure|privacy|product-specs|fabric-calc/;
-      if (skip.test(a.href)) return;
-      a.addEventListener('click', function(e) {
-        // Only intercept if it looks like a product/configurator page link
-        if (!a.closest('.cat-grid-wrap') && !a.closest('.pcard-grid') && !a.closest('[class*="cat-"]')) return;
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        var label = a.textContent.trim().split('\n')[0].trim();
-        pbShowContact(label ? 'Get a Quote — ' + label : 'Get a Free Quote');
-      }, true);
-    });
-
-    // 3. Any .btn-configure, .configure-btn, or [onclick*="Config"] buttons in pages
-    var BLOCK_SEL = [
-      '.configure-btn', '.btn-configure', '.btn-gold[href*="pages/"]',
-      '[onclick*="openConfig"]', '[onclick*="selectProduct"]', '[onclick*="selLine"]',
-      '[onclick*="setProd"]', '[onclick*="setType"]', '[onclick*="selProduct"]'
-    ];
-    BLOCK_SEL.forEach(function(sel) {
-      document.querySelectorAll(sel).forEach(function(el) {
-        el.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopImmediatePropagation();
-          var nameEl = el.querySelector('.pcard-name, h3, h4, .opt-name');
-          var label = nameEl ? nameEl.textContent.trim() : el.textContent.trim().split('\n')[0].trim();
-          pbShowContact(label ? 'Get a Quote — ' + label : 'Get a Free Quote');
-        }, true);
-      });
-    });
-
-  });
-})();
+// Live-mode contact interception removed — full configurators now run on all environments.
+// Pricing is hidden globally via pbRenderEstimate() and page-level edits.
 
 
 
