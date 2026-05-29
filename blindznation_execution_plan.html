@@ -5,79 +5,128 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blindznation — Execution Plan</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0F3460; color: #f0f0f0; margin: 0; padding: 32px; }
-  h1 { color: #E94560; font-size: 28px; margin-bottom: 4px; }
-  .sub { color: #aaa; font-size: 14px; margin-bottom: 32px; }
-  .section { background: #1A1A2E; border-radius: 12px; padding: 24px; margin-bottom: 24px; border-left: 4px solid #E94560; }
-  h2 { color: #E94560; font-size: 16px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
-  .task { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.04); }
-  .task:hover { background: rgba(255,255,255,0.07); }
-  .cb { width: 20px; height: 20px; border: 2px solid #E94560; border-radius: 4px; flex-shrink: 0; cursor: pointer; margin-top: 1px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-  .cb.done { background: #E94560; }
-  .label { flex: 1; font-size: 14px; line-height: 1.5; }
-  .label.done-text { text-decoration: line-through; color: #666; }
-  .badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle; }
-  .badge-done { background: #1a4a1a; color: #4caf50; }
-  .badge-todo { background: #4a1a1a; color: #E94560; }
-  .badge-tbd { background: #2a2a1a; color: #ffc107; }
-  .note { font-size: 12px; color: #888; margin-top: 4px; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #111110; color: #f0ece4; margin: 0; padding: 32px; min-height: 100vh; }
+  h1 { color: #C9A96E; font-size: 26px; margin-bottom: 4px; letter-spacing: -.5px; }
+  .sub { color: #6A5A4A; font-size: 13px; margin-bottom: 32px; }
+  .phase { background: #1a1918; border-radius: 14px; padding: 22px 24px; margin-bottom: 20px; border-left: 4px solid #C9A96E; }
+  .phase-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #C9A96E; margin-bottom: 14px; }
+  .task { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 9px; padding: 10px 12px; border-radius: 9px; background: rgba(255,255,255,0.03); }
+  .task:hover { background: rgba(255,255,255,0.055); }
+  .cb { width: 19px; height: 19px; border-radius: 4px; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+  .cb-done { background: #2a5a2a; color: #5ecf5e; border: 1.5px solid #3a7a3a; }
+  .cb-todo { border: 1.5px solid #C9A96E; color: transparent; cursor: pointer; }
+  .cb-todo:hover { background: rgba(201,169,110,.12); }
+  .cb-block { background: #5a2a2a; color: #cf5e5e; border: 1.5px solid #7a3a3a; }
+  .label { flex: 1; font-size: 13px; line-height: 1.55; }
+  .done-text { text-decoration: line-through; color: #4a3a2a; }
+  .note { font-size: 11px; color: #5A4A3A; margin-top: 3px; line-height: 1.5; }
+  .badge { display: inline-block; font-size: 9px; padding: 1px 7px; border-radius: 8px; font-weight: 700; letter-spacing: .8px; margin-left: 7px; vertical-align: middle; text-transform: uppercase; }
+  .b-done   { background: #1a3a1a; color: #5ecf5e; }
+  .b-todo   { background: #3a1a00; color: #C9A96E; }
+  .b-block  { background: #3a1a1a; color: #cf5e5e; }
+  .b-low    { background: #2a2a1a; color: #bbb; }
+  .section-divider { border: none; border-top: 1px solid #2a2520; margin: 28px 0; }
+  .rules { background: #1a1918; border-radius: 14px; padding: 20px 24px; border-left: 4px solid #333; font-size: 13px; line-height: 1.9; color: #8a7a6a; }
+  .rules strong { color: #C9A96E; }
+  .stats { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+  .stat { background: #1a1918; border-radius: 10px; padding: 14px 18px; flex: 1; min-width: 110px; }
+  .stat-n { font-size: 24px; font-weight: 500; color: #C9A96E; }
+  .stat-l { font-size: 10px; color: #5A4A3A; margin-top: 2px; letter-spacing: .5px; }
+  a.site-link { color: #C9A96E; text-decoration: none; font-size: 12px; }
+  a.site-link:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
+
 <h1>Blindznation — Execution Plan</h1>
 <div class="sub">Sister brand to Philly Blinds &nbsp;·&nbsp; Michael J. Healy Installations LLC &nbsp;·&nbsp; Last updated: May 2026</div>
 
-<div class="section">
-  <h2>Phase 1 — Project Setup</h2>
-  <div class="task"><div class="cb done">✓</div><div class="label done-text">Create blindznation project folder<span class="badge badge-done">DONE</span></div></div>
-  <div class="task"><div class="cb done">✓</div><div class="label done-text">Write CLAUDE.md with project rules and sync protocol<span class="badge badge-done">DONE</span></div></div>
-  <div class="task"><div class="cb done">✓</div><div class="label done-text">Copy all 48 pages from phillyblinds<span class="badge badge-done">DONE</span></div></div>
-  <div class="task"><div class="cb done">✓</div><div class="label done-text">Update shared.js — brand name, nav, footer, JSON-LD schema, email<span class="badge badge-done">DONE</span></div></div>
-  <div class="task"><div class="cb done">✓</div><div class="label done-text">Update global.css — placeholder color palette for blindznation<span class="badge badge-done">DONE</span></div></div>
-  <div class="task"><div class="cb done">✓</div><div class="label done-text">Update index.html + 31 sub-pages — meta tags, og:url, og:site_name<span class="badge badge-done">DONE</span></div></div>
-  <div class="task"><div class="cb done">✓</div><div class="label done-text">Git initialized + initial commit (1,080 files)<span class="badge badge-done">DONE</span></div></div>
-  <div class="task"><div class="cb done">✓</div><div class="label done-text">Desktop shortcuts created (Site + Execution Plan)<span class="badge badge-done">DONE</span></div></div>
+<div class="stats">
+  <div class="stat"><div class="stat-n">✅</div><div class="stat-l">LIVE at blindznation.com</div></div>
+  <div class="stat"><div class="stat-n">48</div><div class="stat-l">Pages deployed</div></div>
+  <div class="stat"><div class="stat-n">✅</div><div class="stat-l">GSC verified</div></div>
+  <div class="stat"><div class="stat-n">✅</div><div class="stat-l">Sitemap submitted</div></div>
 </div>
 
-<div class="section">
-  <h2>Phase 2 — Brand Finalization</h2>
-  <div class="task"><div class="cb"></div><div class="label">Owner confirms final blindznation brand colors<span class="badge badge-tbd">TBD</span><div class="note">Update :root block in css/global.css and theme-color in shared.js</div></div></div>
-  <div class="task"><div class="cb"></div><div class="label">Owner confirms blindznation contact email<span class="badge badge-tbd">TBD</span><div class="note">Replace blindznation@gmail.com placeholder in shared.js with final email</div></div></div>
-  <div class="task"><div class="cb"></div><div class="label">Create new favicon for blindznation brand<span class="badge badge-todo">TODO</span><div class="note">favicon.svg currently copies phillyblinds design</div></div></div>
+<!-- PHASE 1 -->
+<div class="phase">
+  <div class="phase-label">Phase 1 — Project Setup</div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Create blindznation project folder &amp; CLAUDE.md<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Port all 48 pages from phillyblinds<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Update shared.js — brand, nav, footer, schema, email<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Confirm brand colors: Onyx #111110 + Champagne Gold #C9A96E<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">GitHub repo live: github.com/mzgxfnbzpy-commits/blindznation<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Vercel project live: blindznation.vercel.app<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Domain blindznation.com → Vercel (apex A record)<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">www.blindznation.com → 308 redirect via Vercel platform<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Contact email confirmed: justin@blindznation.com<span class="badge b-done">DONE</span></div></div>
 </div>
 
-<div class="section">
-  <h2>Phase 3 — Infrastructure</h2>
-  <div class="task"><div class="cb"></div><div class="label">Create GitHub repo for blindznation<span class="badge badge-todo">TODO</span><div class="note">gh repo create — separate from phillyblinds repo</div></div></div>
-  <div class="task"><div class="cb"></div><div class="label">Push to GitHub<span class="badge badge-todo">TODO</span><div class="note">git remote add origin [new repo URL] &amp;&amp; git push -u origin main</div></div></div>
-  <div class="task"><div class="cb"></div><div class="label">Create Vercel project for blindznation<span class="badge badge-todo">TODO</span><div class="note">Import from blindznation GitHub repo — separate from phillyblinds Vercel project</div></div></div>
-  <div class="task"><div class="cb"></div><div class="label">Set ANTHROPIC_API_KEY in blindznation Vercel env vars<span class="badge badge-todo">TODO</span><div class="note">Required for AI chatbot widget to function</div></div></div>
-  <div class="task"><div class="cb"></div><div class="label">Configure blindznation.com domain in Vercel<span class="badge badge-todo">TODO</span><div class="note">Point domain DNS to Vercel after purchasing blindznation.com</div></div></div>
+<!-- PHASE 2 -->
+<div class="phase">
+  <div class="phase-label">Phase 2 — SEO</div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">sitemap.xml rebuilt — 49 URLs, blindznation.com canonical<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">robots.txt with sitemap pointer<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Google Search Console verified (HTML file method)<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Sitemap submitted to Google Search Console<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">All 48 pages: og:url, og:title, og:description, og:site_name, og:image<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">All 48 pages: twitter:card, twitter:image, twitter:title<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">canonical tags injected by shared.js (blindznation.com)<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">JSON-LD: LocalBusiness + Organization + Service schema in shared.js<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">All meta descriptions trimmed to ≤165 chars (48 pages)<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Lazy loading (loading="lazy") on all product images<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Social preview PNG (1200×630) generated and live at /img/social-preview.png<span class="badge b-done">DONE</span></div></div>
 </div>
 
-<div class="section">
-  <h2>Phase 4 — Content Customization</h2>
-  <div class="task"><div class="cb"></div><div class="label">Update sitemap.xml with blindznation.com URLs<span class="badge badge-todo">TODO</span></div></div>
-  <div class="task"><div class="cb"></div><div class="label">Update robots.txt Sitemap URL to blindznation.com<span class="badge badge-todo">TODO</span></div></div>
-  <div class="task"><div class="cb"></div><div class="label">Review about.html for any Philly Blinds-specific text<span class="badge badge-todo">TODO</span></div></div>
-  <div class="task"><div class="cb"></div><div class="label">Confirm all mailto: links use correct blindznation email<span class="badge badge-todo">TODO</span><div class="note">Run grep across all pages when email is confirmed</div></div></div>
+<!-- PHASE 3 -->
+<div class="phase">
+  <div class="phase-label">Phase 3 — Bug Fixes (May 2026)</div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">All 78 form submit emails fixed: phillyblinds.com → blindznation.com<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">"Sent from phillyblinds.com" in email body footers — fixed (10 pages)<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Chatbot: "Philly Blinds Support" → "Blindznation Support", avatar PB → BZ<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">privacy.html: "doing business as Philly Blinds" → Blindznation<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">installation.html: contact bar, form option, email display corrected<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">about.html: image alt text + brand order (Blindznation primary)<span class="badge b-done">DONE</span></div></div>
+  <div class="task"><div class="cb cb-done">✓</div><div class="label done-text">Pickup address (527 Hoyt Rd) removed from public UI — dynasty + shutters<span class="badge b-done">DONE</span></div></div>
 </div>
 
-<div class="section">
-  <h2>Sync Rules (never break)</h2>
-  <div style="font-size:13px;line-height:1.8;color:#ccc;">
-    <p>1. <strong style="color:#E94560">phillyblinds is the MASTER</strong> — all product spec changes happen there first</p>
-    <p>2. Always open a <strong>separate Claude Code session</strong> from the blindznation folder</p>
-    <p>3. Each project has its own GitHub repo and Vercel deployment</p>
-    <p>4. When a spec changes in phillyblinds, flag it: "→ also apply to blindznation"</p>
-  </div>
+<!-- PHASE 4 — REMAINING -->
+<div class="phase">
+  <div class="phase-label">Phase 4 — Remaining To-Do</div>
+
+  <div class="task"><div class="cb cb-block">!</div><div class="label">Set ANTHROPIC_API_KEY in Vercel env vars<span class="badge b-block">BLOCKED</span><div class="note">Chatbot widget is built and in the UI — it will fail silently until the API key is added.<br>Vercel → blindznation project → Settings → Environment Variables → ANTHROPIC_API_KEY</div></div></div>
+
+  <div class="task"><div class="cb cb-todo"></div><div class="label">Create Blindznation favicon (distinct from Philly Blinds)<span class="badge b-todo">TODO</span><div class="note">Current favicon.svg is a copy of the phillyblinds design. Make a "BZ" mark using the onyx + champagne gold palette.</div></div></div>
+
+  <div class="task"><div class="cb cb-todo"></div><div class="label">Build LIVE mode: all product cards → pbShowContact() popup<span class="badge b-todo">TODO</span><div class="note">Per CLAUDE.md: on main branch, product card clicks and configure buttons must call pbShowContact() instead of opening configurators. Not yet built. This is the "contact popup only" feature for the live site.</div></div></div>
+
+  <div class="task"><div class="cb cb-todo"></div><div class="label">Upload real swatch / hero photos<span class="badge b-low">LOW</span><div class="note">All product pages currently use placeholder images from phillyblinds. Upload real blindznation-specific photos when available.</div></div></div>
+
+  <div class="task"><div class="cb cb-todo"></div><div class="label">Set up Stripe payment flow<span class="badge b-low">LOW</span><div class="note">Manual auth/capture only — no auto-charge. Button label = "Submit Order for Review". See payment_flow.md in memory.</div></div></div>
+
+  <div class="task"><div class="cb cb-todo"></div><div class="label">Monitor Google Search Console indexing<span class="badge b-low">LOW</span><div class="note">Sitemap submitted. Check GSC in 3–7 days for Coverage and Page Experience data. blindznation.com/sitemap.xml</div></div></div>
+
+  <div class="task"><div class="cb cb-todo"></div><div class="label">Apply any new product spec changes from phillyblinds<span class="badge b-low">LOW</span><div class="note">phillyblinds is the MASTER. Any new configurator rules, fabric additions, or price changes go to phillyblinds first, then sync to blindznation in a separate session.</div></div></div>
+</div>
+
+<hr class="section-divider">
+
+<!-- RULES -->
+<div class="rules">
+  <strong>Branch rules:</strong> All work on <code>dev</code>. Only merge to <code>main</code> after saying "confirmed push to live."<br>
+  <strong>Email:</strong> All quote forms → justin@blindznation.com<br>
+  <strong>Master:</strong> phillyblinds is master — spec changes go there first, then port here.<br>
+  <strong>Never:</strong> cross-write between phillyblinds and blindznation folders.<br>
+  <strong>Live URL:</strong> <a class="site-link" href="https://blindznation.com" target="_blank">blindznation.com</a> &nbsp;·&nbsp;
+  <strong>Repo:</strong> <a class="site-link" href="https://github.com/mzgxfnbzpy-commits/blindznation" target="_blank">github.com/mzgxfnbzpy-commits/blindznation</a>
 </div>
 
 <script>
-document.querySelectorAll('.cb').forEach(function(cb) {
+document.querySelectorAll('.cb-todo').forEach(function(cb) {
   cb.addEventListener('click', function() {
-    if (this.classList.contains('done')) return;
-    this.classList.add('done');
+    this.classList.remove('cb-todo');
+    this.classList.add('cb-done');
     this.textContent = '✓';
     var label = this.nextElementSibling;
     if (label) label.classList.add('done-text');
