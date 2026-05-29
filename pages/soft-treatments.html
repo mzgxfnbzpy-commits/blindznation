@@ -2055,7 +2055,7 @@ function rnToggleFrontValCustom(show) {
 }
 
 // ── SUBMIT: DRAPERY ───────────────────────────────────────
-function submitDrape() {
+async function submitDrape() {
   var name  = document.getElementById('d-name').value.trim();
   var phone = document.getElementById('d-phone').value.trim();
   if (!name || !phone) { alert('Please enter your name and phone number.'); return; }

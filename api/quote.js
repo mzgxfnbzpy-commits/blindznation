@@ -1,18 +1,18 @@
 // Blindznation — Quote Request API
 // POST /api/quote
-// Setup: add RESEND_API_KEY to Vercel env vars.
-// Resend domain verification required for noreply@blindznation.com:
-//   resend.com → Domains → Add blindznation.com → add the DNS records shown.
+// Required Vercel env vars:
+//   RESEND_API_KEY  — from resend.com (free account)
+//   RESEND_FROM     — verified sender, e.g. "Blindznation <noreply@blindznation.com>"
+//                     If domain not yet verified, use any @resend.dev address as temp:
+//                     "Blindznation <onboarding@resend.dev>"
+// Domain verification: resend.com → Domains → Add blindznation.com → add the DNS records.
 
 const TEAM_EMAILS = [
-  'justin@phillyblinds.com',
-  'sarah@phillyblinds.com',
-  'mike@phillyblinds.com',
-  'tarin@phillyblinds.com',
-  'justin@blindznation.com'
+  'justin@blindznation.com',
+  'blindznation@gmail.com'
 ];
-const FROM_QUOTES  = 'Blindznation Quotes <noreply@blindznation.com>';
-const FROM_CONFIRM = 'Blindznation <noreply@blindznation.com>';
+const FROM_QUOTES  = process.env.RESEND_FROM || 'Blindznation Quotes <noreply@blindznation.com>';
+const FROM_CONFIRM = process.env.RESEND_FROM || 'Blindznation <noreply@blindznation.com>';
 const PHONE        = '(609) 742-1720';
 const BRAND        = 'Blindznation';
 const SITE_URL     = 'blindznation.com';
