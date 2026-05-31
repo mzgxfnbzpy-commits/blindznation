@@ -112,7 +112,7 @@ module.exports = async function handler(req, res) {
 
     <div style="border-top:1px solid #e8e8e4;padding-top:14px;font-size:11px;color:#bbb">
       Submitted via ${SITE_URL} &nbsp;·&nbsp; Reply-To: <a href="mailto:${safeEmail}" style="color:#bbb">${safeEmail}</a>
-      ${sourceUrl ? `&nbsp;·&nbsp; Page: <a href="${sourceUrl}" style="color:#bbb">${sourceUrl}</a>` : ''}
+      ${sourceUrl ? `&nbsp;·&nbsp; Page: <a href="${String(sourceUrl).replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}" style="color:#bbb">${String(sourceUrl).replace(/</g,'&lt;').replace(/>/g,'&gt;')}</a>` : ''}
     </div>
   </div>
 </div></body></html>`;

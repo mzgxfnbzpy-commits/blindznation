@@ -824,7 +824,7 @@ function updateSpec(){
   document.getElementById('sp-ctrl').textContent=S.ctrlSide?S.ctrlSide.charAt(0).toUpperCase()+S.ctrlSide.slice(1):'—';
   document.getElementById('sp-stack').textContent=S.draw==='split'?'Split (both sides)':S.stackSide?(S.stackSide.charAt(0).toUpperCase()+S.stackSide.slice(1)):'—';
   document.getElementById('sp-chain').textContent=({vinyl:'Vinyl / plastic',metal:'Metal'})[S.tiltChain]||'—';
-  document.getElementById('sp-track').textContent=({regular:'Regular (Decomatic 3.5″)',replacement:'Replacement track only',topbottom:'Top &amp; bottom track (rotate &amp; traverse)'})[S.track]||'Regular';
+  document.getElementById('sp-track').textContent=({regular:'Regular (Decomatic 3.5″)',replacement:'Replacement track only',topbottom:'Top & bottom track (rotate & traverse)'})[S.track]||'Regular';
   document.getElementById('sp-valance').textContent=({regular:'Regular',deluxe:'Deluxe',single:'Single',laser:'Laser trim',none:'No valance'})[S.valance]||'—';
   const qty=parseInt(document.getElementById('qty').value)||1;
   S.qty=qty;

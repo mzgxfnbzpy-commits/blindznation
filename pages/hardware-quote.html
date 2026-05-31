@@ -434,8 +434,8 @@ function buildDiameterStep(code,type){
   $('s2-title').textContent = type==='Traverse'||type==='Motorized' ? 'Configuration' : 'Diameter';
   if(code==='pt'){
     body.innerHTML='<div class="opt-grid-2">' +
-      optCard('158','1⅝&Prime; Metal Pole','Most popular — works with all PT finials','pickDia',code) +
-      optCard('178','1⅞&Prime; Metal Pole','Larger statement look — heavier drapes','pickDia',code) +
+      optCard('158','1⅛&Prime; Metal Pole','Most popular — works with all PT finials','pickDia',code) +
+      optCard('178','1⅜&Prime; Metal Pole','Larger statement look — heavier drapes','pickDia',code) +
     '</div>';
   } else if(code==='sm'){
     body.innerHTML='<div class="opt-grid-2">' +
@@ -562,22 +562,22 @@ function pickOtherLen(){
 // ── STEP 4: FINISH ────────────────────────────────────────────────────────────
 const PT_FINISHES=[
   {code:'AM',name:'Amulet',hex:'#4a3728'},
-  {code:'AND',name:'Andros',hex:'#6b5a4e'},
+  {code:'AND',name:'Andiron',hex:'#6b5a4e'},
   {code:'AGL',name:'Antique Gold Leaf',hex:'#b8960c'},
   {code:'BK',name:'Black',hex:'#222222'},
-  {code:'CO',name:'Coliseum',hex:'#8a7968'},
-  {code:'DC',name:'Deep Choc.',hex:'#3d1c08'},
+  {code:'CO',name:'Concrete',hex:'#8a7968'},
+  {code:'DC',name:'Dark Chocolate',hex:'#3d1c08'},
   {code:'FO',name:'Fossil',hex:'#7a6e5f'},
   {code:'GG',name:'Glam Gold',hex:'#c9a227'},
   {code:'JA',name:'Java',hex:'#2c1a0e'},
-  {code:'LU',name:'Lumiere',hex:'#d4c04a'},
+  {code:'LU',name:'Luminous',hex:'#d4c04a'},
   {code:'MA',name:'Manor',hex:'#5c4a3a'},
   {code:'MYS',name:'Mystic',hex:'#4a4560'},
   {code:'NAB',name:'New Age Bronze',hex:'#6e4e2e'},
   {code:'PAL',name:'Palma',hex:'#8b7355'},
   {code:'SH',name:'Shimmer',hex:'#c8c8c8'},
   {code:'SM',name:'Silver Maple',hex:'#a0a0a0'},
-  {code:'STA',name:'Starfield',hex:'#1a1a2e'},
+  {code:'STA',name:'Stardust',hex:'#1a1a2e'},
   {code:'TRU',name:'Truffle',hex:'#5c3d2e'},
   {code:'URB',name:'Urban Bronze',hex:'#4a3520'},
   {code:'PPM',name:'PTH Perfect Match™',hex:'#f0ece6'}
@@ -965,7 +965,7 @@ function submitForm(){
     'HARDWARE SPECS',
     'Brand: '+S.brandLabel,
     'Diameter/Type: '+(S.diameter||'—'),
-    'Length: '+(S.length?(typeof S.length==='number'?S.length+'ft or '+S.length*12+'":'+S.length):S.length):'TBD'),
+    'Length: '+(S.length?(typeof S.length==='number'?S.length+'ft or '+S.length*12+'"':S.length):'TBD'),
     'Finish: '+(S.finishLabel||'TBD'),
     'Finials: '+(!S.finialKey||S.finialKey==='none'?'None':S.finialKey+' × '+S.finialQty+' pair(s)'),
     'French Returns: '+(S.frenchReturn?'Yes':'No'),

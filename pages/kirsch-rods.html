@@ -1425,7 +1425,7 @@ function updateStep5() {
     show('sz-traverse');
     const info = document.getElementById('traverse-limits-info');
     if (S.traverseSystem === 'estate' || S.collection !== 'arch') {
-      const estPrice = S.collection === 'wt' ? ' <strong>1⅜" = $42/ft · 2" = $48/ft</strong> (manual). AMP™ motorization +$621.' : '';
+      const estPrice = S.collection === 'wt' ? ' AMP™ motorization available — pricing confirmed at quote.' : '';
       info.innerHTML = '<strong>Estate™ Traverse Rod:</strong> Min 18" · Max 192" (16ft) · Max 64 lbs / 4 lbs per ft. Tracks over 8ft: splice + keystone included. AMP™ available (max 16ft motorized, cannot curve when motorized). Pleated or Ripplefold™ headers.' + estPrice + (S.collection === 'wt' ? ' <strong>Note:</strong> Unfinished finish not available on Estate™ Traverse Rods.' : '');
       // Show DM Estate dia picker
       const dmED = document.getElementById('dm-estate-dia');
