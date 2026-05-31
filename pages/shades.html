@@ -40,8 +40,8 @@
 .treatment-section-header p{font-size:16px;color:var(--espresso);opacity:0.65;margin-bottom:0;line-height:1.6}
 .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
 .product-card{background:#fff;border:1px solid #e8e8e4;border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color 0.15s,box-shadow 0.15s,transform 0.15s;text-decoration:none;display:block}
-.product-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(45,224,193,0.15);transform:translateY(-2px)}
-.product-card.selected{border:2px solid var(--gold);box-shadow:0 4px 20px rgba(45,224,193,0.2)}
+.product-card:hover{border-color:var(--gold);box-shadow:0 4px 20px rgba(201,169,110,0.15);transform:translateY(-2px)}
+.product-card.selected{border:2px solid var(--gold);box-shadow:0 4px 20px rgba(201,169,110,0.2)}
 .product-img{height:140px;display:flex;align-items:center;justify-content:center;position:relative}
 .product-img-photo{height:160px;overflow:hidden;position:relative}
 .product-img-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s}
@@ -146,13 +146,13 @@
 .brand-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .brand-btn{flex:1;min-width:140px;background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:12px 14px;cursor:pointer;text-align:left;transition:border-color 0.15s,box-shadow 0.15s;font-family:var(--font)}
 .rt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;padding:18px 16px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s;text-decoration:none;display:block}
-.rt-card:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(45,224,193,.15);transform:translateY(-2px)}
+.rt-card:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(201,169,110,.15);transform:translateY(-2px)}
 .rt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .rt-card-icon{font-size:22px;margin-bottom:8px}
 .rt-card-name{font-size:14px;font-weight:600;color:#111;margin-bottom:4px}
 .rt-card-desc{font-size:11px;color:#666;line-height:1.5}
-.brand-btn:hover{border-color:var(--gold);box-shadow:0 2px 8px rgba(45,224,193,0.1)}
-.brand-btn.sel{border:2px solid var(--gold);background:var(--gold-mid);box-shadow:0 2px 12px rgba(45,224,193,0.18)}
+.brand-btn:hover{border-color:var(--gold);box-shadow:0 2px 8px rgba(201,169,110,0.1)}
+.brand-btn.sel{border:2px solid var(--gold);background:var(--gold-mid);box-shadow:0 2px 12px rgba(201,169,110,0.18)}
 .brand-btn.disabled{opacity:0.4;pointer-events:none;cursor:not-allowed}
 .brand-btn-name{display:block;font-size:13px;font-weight:600;color:#111;margin-bottom:2px}
 .brand-btn.sel .brand-btn-name{color:var(--espresso)}
@@ -170,7 +170,7 @@
 .rn-fabric-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
 @media(max-width:520px){.rn-fabric-cards{grid-template-columns:1fr}}
 .rn-fabric-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:12px 14px;cursor:pointer;text-align:left;transition:border-color 0.15s,box-shadow 0.15s;font-family:var(--font);width:100%}
-.rn-fabric-card:hover{border-color:var(--gold);box-shadow:0 2px 8px rgba(45,224,193,0.12)}
+.rn-fabric-card:hover{border-color:var(--gold);box-shadow:0 2px 8px rgba(201,169,110,0.12)}
 .rn-fabric-card.rn-fc-sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .rn-fc-name{font-size:13px;font-weight:600;color:#111;margin-bottom:3px}
 .rn-fabric-card.rn-fc-sel .rn-fc-name{color:#0D4A42}
@@ -1455,7 +1455,7 @@
       <div id="pb-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:18px 20px;margin-top:14px">
         <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px">Instant price estimate</div>
         <div id="pb-price-rows"></div>
-        <div style="border-top:1px solid rgba(45,224,193,.3);margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline">
+        <div style="border-top:1px solid rgba(201,169,110,.3);margin-top:10px;padding-top:10px;display:flex;justify-content:space-between;align-items:baseline">
           <span style="font-size:14px;font-weight:500;color:var(--cream)">Estimated total</span>
           <span style="font-size:22px;font-weight:600;color:var(--gold)" id="pb-price-total">—</span>
         </div>

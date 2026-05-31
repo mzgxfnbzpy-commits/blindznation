@@ -1124,7 +1124,7 @@ function _initFileUploads() {
 // ---- SHIPPING ESTIMATOR ----
 function _calcShipping(zip, opts) {
   opts = opts || {};
-  var p = parseInt(String(zip).replace(/D/g,"").padStart(5,"0").substring(0,3));
+  var p = parseInt(String(zip).replace(/\D/g,"").padStart(5,"0").substring(0,3));
   if (isNaN(p)) return null;
   var zone = 6;
   if      ((p>=70&&p<=89)||(p>=190&&p<=199))                              zone=1;
@@ -1233,6 +1233,8 @@ function _initContactPanel() {
         '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone *</label>' +
           '<input id="pb-cp-phone-inp" type="tel" placeholder="(215) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
       '</div>' +
+      '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Email</label>' +
+        '<input id="pb-cp-email" type="email" placeholder="jane@example.com" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
       '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">What are you interested in?</label>' +
         '<input id="pb-cp-product" type="text" placeholder="e.g. Pirouette shadings, specialty shutters, oversized shade..." style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">' +
@@ -1262,6 +1264,7 @@ function pbCpShowFiles() {
 async function pbSubmitContact() {
   var name    = (document.getElementById('pb-cp-name') || {}).value || '';
   var phone   = (document.getElementById('pb-cp-phone-inp') || {}).value || '';
+  var email   = (document.getElementById('pb-cp-email') || {}).value || '';
   var product = (document.getElementById('pb-cp-product') || {}).value || '';
   var width   = (document.getElementById('pb-cp-width') || {}).value || '';
   var height  = (document.getElementById('pb-cp-height') || {}).value || '';
@@ -1277,7 +1280,7 @@ async function pbSubmitContact() {
     var resp = await fetch('/api/quote', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name.trim(), phone: phone.trim(), product: product || 'Free Consultation Request', selections: selections, notes: notes.trim() })
+      body: JSON.stringify({ name: name.trim(), email: email.trim() || undefined, phone: phone.trim(), product: product || 'Free Consultation Request', selections: selections, notes: notes.trim() })
     });
     var data = {};
     try { data = await resp.json(); } catch(ex) {}
@@ -1326,7 +1329,7 @@ function pbShowContact(title) {
             'if(!n||!p){alert(\'Please enter your name and phone number.\');return;}' +
             'var m=document.getElementById(\'' + uid + '-msg\').value;' +
             'var fi=document.getElementById(\'' + uid + '-files\');' +
-            'var fn=fi&&fi.files.length?\'\\n\\nFiles: \'+Array.from(fi.files).map(function(f){return f.name}).join(\', \')+\'\\n(Please email to justin@blindznation.com)\':\'\';\'' +
+            'var fn=fi&&fi.files.length?\'\\n\\nFiles: \'+Array.from(fi.files).map(function(f){return f.name}).join(\', \')+\'\\n(Please email to justin@blindznation.com)\':\'\';' +
             'var subj=\'Quote Request — \'+n;' +
             'var body=\'QUOTE REQUEST\\n\\nName: \'+n+\'\\nPhone: \'+p+\'\\n\\nMessage:\\n\'+(m||\'(none)\')+fn;' +
             'window.location.href=\'mailto:justin@blindznation.com?subject=\'+encodeURIComponent(subj)+\'&body=\'+encodeURIComponent(body);' +

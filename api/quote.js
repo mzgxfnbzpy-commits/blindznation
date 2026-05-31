@@ -61,7 +61,7 @@ module.exports = async function handler(req, res) {
   }
 
   const safeName    = String(name).trim().replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const safeEmail   = String(email).trim().replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const safeEmail   = String(email || '').trim().replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const safePhone   = phone ? String(phone).trim().replace(/</g,'&lt;') : null;
   const safeProduct = product ? String(product).trim().replace(/</g,'&lt;') : 'Custom Window Treatment';
   const safeNotes   = notes ? String(notes).trim().replace(/</g,'&lt;').replace(/\n/g,'<br>') : null;

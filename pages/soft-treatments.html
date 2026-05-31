@@ -28,7 +28,7 @@
 .page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:22px}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border-dark);color:var(--text-faint)}
-.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.3);color:var(--gold)}
+.hero-pill-gold{background:rgba(201,169,110,.12);border-color:rgba(201,169,110,.3);color:var(--gold)}
 
 /* ── TYPE TABS ── */
 .type-tabs{display:flex;gap:0;background:var(--espresso-mid);border-bottom:1px solid var(--border-dark);padding:0 28px;position:sticky;top:56px;z-index:90}
@@ -47,8 +47,8 @@
 /* ── OPTION CARDS (style, pleat) ── */
 .opt-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-top:16px}
 .opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s}
-.opt-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(45,224,193,.12)}
-.opt-card.sel{border:2px solid var(--gold);box-shadow:0 2px 16px rgba(45,224,193,.2)}
+.opt-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(201,169,110,.12)}
+.opt-card.sel{border:2px solid var(--gold);box-shadow:0 2px 16px rgba(201,169,110,.2)}
 .opt-card.sel .opt-label-bar{background:var(--gold)}
 .opt-card.sel .opt-name,.opt-card.sel .opt-desc{color:var(--espresso)}
 .opt-art{height:160px;overflow:hidden;background:#F8F4EE;display:flex;align-items:center;justify-content:center;position:relative}
@@ -796,7 +796,7 @@
     <!-- Manual sub-options -->
     <div id="roman-manual-opts" style="margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
       <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Lift type</div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:7px 10px;background:rgba(45,224,193,.08);border:1px solid rgba(45,224,193,.2);border-radius:7px;font-size:11px;color:#0A4A42">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:7px 10px;background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.2);border-radius:7px;font-size:11px;color:#0A4A42">
         <span style="font-size:13px">⭐</span>We recommend <strong>Chain / Cord Loop</strong> for roman shades — smoother raise, holds position at any height.
       </div>
       <div class="opt-row" id="grp-roman-lift">
@@ -1104,7 +1104,7 @@
       <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Your configuration</div>
       <div id="corn-price-rows"></div>
       <span id="corn-price-total" style="display:none"></span>
-      <div id="corn-fabric-note" style="font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:6px 9px;color:var(--cream);margin-top:8px;line-height:1.5"></div>
+      <div id="corn-fabric-note" style="font-size:11px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.2);border-radius:7px;padding:6px 9px;color:var(--cream);margin-top:8px;line-height:1.5"></div>
       <div style="font-size:10px;color:var(--text-faint);margin-top:6px">Pricing confirmed at order. Fabric and trim options confirmed during consultation.</div>
     </div>
     <div id="corn-form">
@@ -1240,7 +1240,7 @@
       <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Your configuration</div>
       <div id="val-price-rows"></div>
       <span id="val-price-total" style="display:none"></span>
-      <div id="val-fabric-note" style="font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:6px 9px;color:var(--cream);margin-top:8px;line-height:1.5"></div>
+      <div id="val-fabric-note" style="font-size:11px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.2);border-radius:7px;padding:6px 9px;color:var(--cream);margin-top:8px;line-height:1.5"></div>
       <div style="font-size:10px;color:var(--text-faint);margin-top:6px">Pricing confirmed at order. Fabric options confirmed during consultation.</div>
     </div>
     <div id="val-form">
@@ -1588,7 +1588,7 @@ function calcRoman() {
   if (!fabNote) {
     fabNote = document.createElement('div');
     fabNote.id = 'rn-pb-fabric-note';
-    fabNote.style.cssText = 'margin-top:8px;font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:7px 10px;color:var(--cream);line-height:1.5';
+    fabNote.style.cssText = 'margin-top:8px;font-size:11px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.2);border-radius:7px;padding:7px 10px;color:var(--cream);line-height:1.5';
     box.appendChild(fabNote);
   }
   fabNote.textContent = '🧵 Est. fabric needed: ~' + fabricYds.toFixed(2) + ' yards' + (cutsPerShade > 1 ? ' ('+cutsPerShade+' widths)' : '') + ' — pattern repeats will add more. Confirmed at order.';
@@ -1781,7 +1781,7 @@ function calcDrapePrice() {
   if (!dFabNote) {
     dFabNote = document.createElement('div');
     dFabNote.id = 'drape-fabric-yds-note';
-    dFabNote.style.cssText = 'margin-top:8px;font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:7px 10px;color:var(--cream);line-height:1.5';
+    dFabNote.style.cssText = 'margin-top:8px;font-size:11px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.2);border-radius:7px;padding:7px 10px;color:var(--cream);line-height:1.5';
     document.getElementById('drape-price-box').appendChild(dFabNote);
   }
   var dYardsPerWidth = Math.ceil((h + 16) / 36 * 4) / 4;

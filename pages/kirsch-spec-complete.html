@@ -35,7 +35,7 @@
 .page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:600px;margin-bottom:20px}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
-.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.3);color:var(--gold)}
+.hero-pill-gold{background:rgba(201,169,110,.12);border-color:rgba(201,169,110,.3);color:var(--gold)}
 
 /* Content layout */
 .content-wrap{max-width:1100px;margin:0 auto;padding:32px 28px 60px}
@@ -66,7 +66,7 @@
 .rule-ok{background:#DCFCE7;border:1px solid #86EFAC;color:#14532d}
 .rule-warn{background:#FFF3CD;border:1px solid #FFC107;color:#7d5a00}
 .rule-block{background:#FEE2E2;border:1px solid #EF4444;color:#7f1d1d}
-.rule-info{background:rgba(45,224,193,.08);border:1px solid rgba(45,224,193,.25);color:#0A4A42}
+.rule-info{background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.25);color:#0A4A42}
 .rule-title{font-weight:700;margin-bottom:3px}
 
 /* Subsection */
@@ -97,7 +97,7 @@
 .c-na{color:#ccc;font-size:12px}
 
 /* Info/warn boxes */
-.info-box{background:rgba(45,224,193,.08);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#0A4A42;margin:10px 0;line-height:1.6}
+.info-box{background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#0A4A42;margin:10px 0;line-height:1.6}
 .warn-box{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:10px 14px;font-size:12px;color:#7d5a00;margin:10px 0;line-height:1.6}
 .err-box{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:10px 14px;font-size:12px;color:#7f1d1d;margin:10px 0;line-height:1.6}
 
@@ -365,7 +365,7 @@
           <strong>Pleated + Ripplefold™:</strong> Both compatible</div>
         </div>
 
-        <div style="border:2px solid var(--gold);border-radius:10px;padding:14px;background:rgba(45,224,193,.03)">
+        <div style="border:2px solid var(--gold);border-radius:10px;padding:14px;background:rgba(201,169,110,.03)">
           <div style="font-size:13px;font-weight:700;color:#111;margin-bottom:6px">94003 — Recommended for Most Jobs <span style="font-size:9px;background:#059669;color:#fff;padding:1px 6px;border-radius:4px;margin-left:4px">RECOMMENDED</span></div>
           <div style="font-size:11px;color:#555;line-height:1.7">Most versatile standard residential track. Wall, ceiling, or recessed mount. Can be curved for bay windows (manual only). No AMP motorization.<br>
           <strong>Colors:</strong> White #94373025 · Gray #94373090 · Bronze #94373064 · Black #94373059<br>
@@ -920,9 +920,9 @@ function selDel(m) {
   _delivery = m;
   var ship = document.getElementById('del-ship'), pick = document.getElementById('del-pickup');
   ship.style.border = m==='ship' ? '2px solid var(--gold)' : '1.5px solid #e8e8e4';
-  ship.style.background = m==='ship' ? 'rgba(45,224,193,.05)' : '';
+  ship.style.background = m==='ship' ? 'rgba(201,169,110,.05)' : '';
   pick.style.border = m==='pickup' ? '2px solid var(--gold)' : '1.5px solid #e8e8e4';
-  pick.style.background = m==='pickup' ? 'rgba(45,224,193,.05)' : '';
+  pick.style.background = m==='pickup' ? 'rgba(201,169,110,.05)' : '';
   document.getElementById('del-ship-note').style.display = m==='ship' ? 'block' : 'none';
   document.getElementById('del-pickup-note').style.display = m==='pickup' ? 'block' : 'none';
 }
