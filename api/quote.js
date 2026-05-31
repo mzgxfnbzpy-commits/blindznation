@@ -14,8 +14,9 @@ const TEAM_EMAILS = [
   'tarin@phillyblinds.com',
   'justin@blindznation.com'
 ];
-const FROM_QUOTES  = process.env.RESEND_FROM || 'Blindznation Quotes <noreply@blindznation.com>';
-const FROM_CONFIRM = process.env.RESEND_FROM || 'Blindznation <noreply@blindznation.com>';
+const _rawFrom    = (process.env.RESEND_FROM || 'Blindznation <noreply@blindznation.com>').trim().replace(/^["']|["']$/g, '');
+const FROM_QUOTES  = _rawFrom;
+const FROM_CONFIRM = _rawFrom;
 const PHONE        = '(609) 742-1720';
 const BRAND        = 'Blindznation';
 const SITE_URL     = 'blindznation.com';
