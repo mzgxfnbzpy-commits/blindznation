@@ -2765,12 +2765,8 @@ function rtSelect(type) {
     if (el) el.classList.toggle('sel', id === 'rt-' + type);
   });
   if (type === 'basic') {
-    // Show brand chooser with pb pre-selected
-    document.getElementById('brand-chooser').style.display = '';
     selectBrand('pb');
   } else if (type === 'norman') {
-    // Show brand chooser with Norman pre-selected
-    document.getElementById('brand-chooser').style.display = '';
     selectBrand('norman');
   }
   // Woven Wood is an <a> tag — navigates directly, no JS needed
