@@ -251,6 +251,7 @@ function renderNav(activePage) {
   _injectHead(isHome);
   _initCart();
   _initMotorModal();
+  _initContactPanel();
   _initChatbot();
   _initMobileBar(consultHref);
 }
