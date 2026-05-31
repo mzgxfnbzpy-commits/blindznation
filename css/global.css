@@ -73,9 +73,9 @@ html { scroll-padding-top: 96px; }
   justify-content: space-between;
   border-bottom: 2px solid rgba(201,169,110,0.12);
 }
-.nav-logo { font-size: 22px; font-weight: 500; color: #fff; letter-spacing: -0.4px; text-decoration: none; display: flex; align-items: center; }
+.nav-logo { font-size: 24px; font-weight: 500; color: #fff; letter-spacing: -0.4px; text-decoration: none; display: flex; align-items: center; }
 .nav-logo em { color: var(--gold); font-style: normal; }
-.nav-links { display: flex; gap: 24px; font-size: 13px; }
+.nav-links { display: flex; gap: 24px; font-size: 15px; }
 .nav-links a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; font-weight: 400; }
 .nav-links a:hover { color: #fff; }
 .nav-links a.active { color: var(--gold); font-weight: 500; position: relative; }
