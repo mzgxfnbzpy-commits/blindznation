@@ -7,10 +7,12 @@
 //                     "Blindznation <onboarding@resend.dev>"
 // Domain verification: resend.com → Domains → Add blindznation.com → add the DNS records.
 
-// TEMP: Resend free plan only allows sending to the account email (blindznation@gmail.com)
-// until a domain is verified. Switch back to full team list once domain verification completes.
 const TEAM_EMAILS = [
-  'blindznation@gmail.com'
+  'justin@phillyblinds.com',
+  'sarah@phillyblinds.com',
+  'mike@phillyblinds.com',
+  'tarin@phillyblinds.com',
+  'justin@blindznation.com'
 ];
 const FROM_QUOTES  = process.env.RESEND_FROM || 'Blindznation Quotes <noreply@blindznation.com>';
 const FROM_CONFIRM = process.env.RESEND_FROM || 'Blindznation <noreply@blindznation.com>';
