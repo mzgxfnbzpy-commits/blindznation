@@ -818,7 +818,8 @@ async function pbSubmitQuote() {
         phone: phone.trim(),
         product: _pbQuoteProduct,
         selections: _pbQuoteLines,
-        notes: notes.trim()
+        notes: notes.trim(),
+        sourceUrl: window.location.href
       })
     });
     var data = {};
