@@ -83,6 +83,7 @@ git checkout main && git merge dev && git push origin main && git checkout dev
 On LIVE — ALL product card clicks and configure buttons must call `pbShowContact()` instead of opening configurators. **This feature is still to be built.**
 
 ### The golden rules:
+- **EVERY change made to phillyblinds MUST also be applied here** — same session or immediately after. This is a standing instruction from Justin. Only swap brand-specific values (email, domain, brand name, CSS colors). Everything else is identical.
 - **GitHub is always the master for blindznation.** Before starting: `git pull`
 - **Claude Code owns the files.** All edits happen through Claude Code in PowerShell.
 - **Never copy files from phillyblinds by hand and overwrite.** Apply changes surgically.

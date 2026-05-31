@@ -27,9 +27,16 @@ const ALLOWED_ORIGINS = [
   'https://blindznation.vercel.app'
 ];
 
+function isAllowedOrigin(origin) {
+  if (!origin) return true;
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  if (/^https:\/\/[a-z0-9-]+-[a-z0-9]+-[a-z0-9]+\.vercel\.app$/.test(origin)) return true;
+  return false;
+}
+
 module.exports = async function handler(req, res) {
   const origin = req.headers.origin || '';
-  const corsOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  const corsOrigin = isAllowedOrigin(origin) ? (origin || ALLOWED_ORIGINS[0]) : ALLOWED_ORIGINS[0];
   res.setHeader('Access-Control-Allow-Origin', corsOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -182,8 +189,10 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('[quote] Send error:', err.message);
+    const resendDetail = err.message && err.message.length < 400 ? err.message : '';
     return res.status(500).json({
-      error: `We had a technical issue sending your request. Please email us directly at ${EMAIL_DIRECT} or call ${PHONE}.`
+      error: `Email send failed. ${resendDetail}`,
+      fallback: `Please email ${EMAIL_DIRECT} or call ${PHONE}.`
     });
   }
 };
