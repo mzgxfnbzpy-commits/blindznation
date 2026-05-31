@@ -817,3 +817,66 @@ html, body { overflow-x: hidden; }
 .step-head-title { font-size: 15px !important; font-weight: 500; }
 .opt-card-title { font-size: 14px !important; font-weight: 500; }
 .brand-name { font-size: 18px !important; }
+
+/* ============================================================
+   CANONICAL QUOTE FORM — consistent submit button + success box
+   ============================================================ */
+.submit-btn {
+  display: block !important;
+  width: 100% !important;
+  background: var(--gold) !important;
+  color: var(--espresso) !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 15px 20px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: -.1px !important;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: opacity .15s;
+  margin-top: 12px;
+  text-align: center;
+}
+.submit-btn:hover { opacity: .88 !important; }
+.submit-btn:disabled { opacity: .4 !important; cursor: not-allowed !important; }
+
+.success-box, .success-state {
+  background: #EEFBE8 !important;
+  border: 1px solid #86EFAC !important;
+  border-radius: 12px !important;
+  padding: 22px !important;
+  text-align: center !important;
+  margin-top: 16px;
+}
+.success-box h3, .success-state h3 {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #14532d !important;
+  margin-bottom: 8px !important;
+}
+.success-box p, .success-state p {
+  font-size: 14px !important;
+  color: #166534 !important;
+  line-height: 1.6 !important;
+}
+
+.form-group label {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #444 !important;
+  display: block;
+  margin-bottom: 4px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  font-size: 14px !important;
+  padding: 9px 12px !important;
+  border: 1px solid #ddd !important;
+  border-radius: 8px !important;
+  font-family: var(--font) !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+.form-group textarea { resize: vertical; min-height: 72px; }
