@@ -21,19 +21,29 @@ const BRAND        = 'Blindznation';
 const SITE_URL     = 'blindznation.com';
 const EMAIL_DIRECT = 'justin@blindznation.com';
 
+const ALLOWED_ORIGINS = [
+  'https://blindznation.com',
+  'https://www.blindznation.com',
+  'https://blindznation.vercel.app'
+];
+
 module.exports = async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin || '';
+  const corsOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  res.setHeader('Access-Control-Allow-Origin', corsOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Vary', 'Origin');
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  const bodyStr = JSON.stringify(req.body || {});
+  if (bodyStr.length > 20000) return res.status(413).json({ error: 'Request too large.' });
 
   const { name, email, phone, product, selections, notes } = req.body || {};
 
   if (!name || !name.trim()) return res.status(400).json({ error: 'Name is required.' });
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-    return res.status(400).json({ error: 'A valid email address is required.' });
-  }
+  const hasValidEmail = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -44,7 +54,7 @@ module.exports = async function handler(req, res) {
   }
 
   const safeName    = String(name).trim().replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const safeEmail   = String(email).trim();
+  const safeEmail   = String(email).trim().replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const safePhone   = phone ? String(phone).trim().replace(/</g,'&lt;') : null;
   const safeProduct = product ? String(product).trim().replace(/</g,'&lt;') : 'Custom Window Treatment';
   const safeNotes   = notes ? String(notes).trim().replace(/</g,'&lt;').replace(/\n/g,'<br>') : null;
@@ -154,17 +164,19 @@ module.exports = async function handler(req, res) {
     await sendEmail({
       from: FROM_QUOTES,
       to: TEAM_EMAILS,
-      reply_to: safeEmail,
+      reply_to: hasValidEmail ? safeEmail : undefined,
       subject: `📋 Quote Request — ${safeName} — ${safeProduct} — ${dateStr}`,
       html: teamHtml
     });
 
-    await sendEmail({
-      from: FROM_CONFIRM,
-      to: [safeEmail],
-      subject: `We received your quote request — ${BRAND}`,
-      html: customerHtml
-    });
+    if (hasValidEmail) {
+      await sendEmail({
+        from: FROM_CONFIRM,
+        to: [safeEmail],
+        subject: `We received your quote request — ${BRAND}`,
+        html: customerHtml
+      });
+    }
 
     return res.status(200).json({ ok: true });
   } catch (err) {

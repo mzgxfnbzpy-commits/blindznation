@@ -227,7 +227,7 @@ function renderNav(activePage) {
       </div>
       <div class="nav-right">
         <button class="nav-cart-btn" onclick="pbOpenCart()" aria-label="Open cart">
-          🛒 Cart<span class="nav-cart-count" id="pb-nav-cart-count" style="display:none">0</span>
+          📋 Quote List<span class="nav-cart-count" id="pb-nav-cart-count" style="display:none">0</span>
         </button>
         <a class="nav-phone" href="tel:6097421720">
           📞 (609) 742-1720 <span class="badge-24">24/7</span>
@@ -614,7 +614,7 @@ function _initMotorModal() {
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">' +
         '<button onclick="document.getElementById(\'pb-motor-overlay\').classList.remove(\'open\')" ' +
           'style="padding:11px;border:1.5px solid #e8e8e4;border-radius:8px;background:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Cancel</button>' +
-        '<button onclick="_pmmConfirm()" class="btn-gold" style="padding:11px;font-size:14px">Add to cart →</button>' +
+        '<button onclick="_pmmConfirm()" class="btn-gold" style="padding:11px;font-size:14px">Add to Quote List →</button>' +
       '</div>' +
     '</div>';
   document.body.appendChild(ov);
@@ -634,7 +634,7 @@ var PB_TARIFF_RATE = 0; // default 0 — set per product when tariffs apply
  * @param {Array}  lines        — [{label, value}] list of selected options
  * @param {number} subtotal     — calculated price before tariff
  * @param {string} conflictMsg  — non-empty string = show error, block checkout
- * @param {Function} onCheckout — called when user clicks Check Out Now (after validation)
+ * @param {Function} onCheckout — called when user clicks 'Request a Quote' (after validation)
  */
 function pbRenderEstimate(priceBoxId, lines, subtotal, conflictMsg, onCheckout) {
   var priceBox = document.getElementById(priceBoxId);
@@ -1250,6 +1250,46 @@ function _initContactPanel() {
     '</div>';
   document.body.appendChild(ov);
 }
+
+function pbCpShowFiles() {
+  var el = document.getElementById('pb-cp-file-names');
+  var fi = document.getElementById('pb-cp-files');
+  if (!el || !fi) return;
+  el.innerHTML = Array.from(fi.files).map(function(f) { return '📄 ' + f.name; }).join('<br>');
+}
+
+async function pbSubmitContact() {
+  var name    = (document.getElementById('pb-cp-name') || {}).value || '';
+  var phone   = (document.getElementById('pb-cp-phone-inp') || {}).value || '';
+  var product = (document.getElementById('pb-cp-product') || {}).value || '';
+  var width   = (document.getElementById('pb-cp-width') || {}).value || '';
+  var height  = (document.getElementById('pb-cp-height') || {}).value || '';
+  var notes   = (document.getElementById('pb-cp-notes') || {}).value || '';
+  var btn     = document.querySelector('[onclick="pbSubmitContact()"]');
+  if (!name.trim()) { alert('Please enter your name.'); return; }
+  if (!phone.trim()) { alert('Please enter your phone number.'); return; }
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+  var selections = [];
+  if (product) selections.push({ label: 'Interested in', value: product });
+  if (width || height) selections.push({ label: 'Approx. dimensions', value: (width ? width + '″W' : '') + (width && height ? ' × ' : '') + (height ? height + '″H' : '') });
+  try {
+    var resp = await fetch('/api/quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name.trim(), phone: phone.trim(), product: product || 'Free Consultation Request', selections: selections, notes: notes.trim() })
+    });
+    var data = {};
+    try { data = await resp.json(); } catch(ex) {}
+    if (!resp.ok) throw new Error(data.error || 'Server error');
+    var sent = document.getElementById('pb-cp-sent');
+    if (sent) sent.style.display = 'block';
+    if (btn) btn.style.display = 'none';
+  } catch(err) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Request free consultation →'; }
+    alert('Something went wrong. Please call (609) 742-1720 or email justin@blindznation.com');
+  }
+}
+
 function pbShowContact(title) {
   var t = title || 'Get a Free Quote';
   var uid = 'bzcp-' + Date.now();

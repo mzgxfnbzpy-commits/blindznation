@@ -111,7 +111,7 @@ On LIVE — ALL product card clicks and configure buttons must call `pbShowConta
 | www redirect | www.blindznation.com → 308 → blindznation.com (Vercel platform-level domain redirect, NOT vercel.json) | ✅ Live |
 | Google Search Console | blindznation.com verified (HTML file method) | ✅ Verified |
 | Business email | justin@blindznation.com | ✅ Set |
-| Quote form backend | mailto:blindznation@gmail.com (all quote forms) | ✅ Active |
+| Quote form backend | POST /api/quote → Resend → TEAM_EMAILS | ✅ Active |
 | Chatbot API key | ANTHROPIC_API_KEY needed in Vercel env vars | ❌ Not set |
 
 ### Domain redirect note
@@ -171,7 +171,7 @@ Everything below is IDENTICAL to phillyblinds unless explicitly listed as differ
 | GitHub repo | mzgxfnbzpy-commits/phillyblinds | mzgxfnbzpy-commits/blindznation |
 | Vercel URL | phillyblinds.vercel.app | blindznation.vercel.app |
 | Brand colors | Espresso #1C1510 + Gold #C8973F | Onyx #111110 + Champagne Gold #C9A96E |
-| Contact email | blindznation@gmail.com (Justin) | justin@blindznation.com |
+| Contact email | justin@blindznation.com | ✅ Active |
 | Nav logo text | Philly Blinds (active) · Blindznation | Blindznation (active) · Philly Blinds |
 | Footer brand | Philly Blinds primary | Blindznation primary |
 | JSON-LD schema | phillyblinds.com | blindznation.com |
@@ -183,7 +183,7 @@ Everything below is IDENTICAL to phillyblinds unless explicitly listed as differ
 
 These rules are IDENTICAL between both projects. Do not deviate:
 
-- All quote forms → mailto:blindznation@gmail.com
+- All quote forms → POST /api/quote (Resend API → TEAM_EMAILS: justin/sarah/mike/tarin @phillyblinds.com + justin@blindznation.com)
 - Every quote form MUST have delivery/pickup section above submit button
 - Pickup address disclosed AFTER order only
 - Norman brand → Norman Motorization ONLY (no Somfy/Lutron/Rollease on Norman pages)
