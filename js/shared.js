@@ -6,6 +6,19 @@
 function _injectHead(isHome) {
   const prefix = isHome ? '' : '../';
 
+  // Google Analytics — G-CBQP5S8CN6
+  if (!document.querySelector('script[data-ga]')) {
+    const gs = document.createElement('script');
+    gs.async = true;
+    gs.src = 'https://www.googletagmanager.com/gtag/js?id=G-CBQP5S8CN6';
+    gs.setAttribute('data-ga', '1');
+    document.head.appendChild(gs);
+    const gi = document.createElement('script');
+    gi.setAttribute('data-ga', '1');
+    gi.textContent = 'window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-CBQP5S8CN6");';
+    document.head.appendChild(gi);
+  }
+
   // Canonical — derived from og:url already set per-page
   if (!document.querySelector('link[rel="canonical"]')) {
     const og = document.querySelector('meta[property="og:url"]');
