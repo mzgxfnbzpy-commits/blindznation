@@ -921,10 +921,39 @@ function submitForm(){
     ($('f-notes').value||'None')
   ].join('\n');
 
-  const subj='SmartPrivacy Faux Wood Blinds Quote — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
-  $('success-box').style.display='block';
-  errEl.style.display='none';
+  const submitBtn = document.querySelector('[onclick*="submitForm"]') || document.querySelector('.btn-gold[type="button"]');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+  const selections = [
+    { label: 'Product', value: 'Norman SmartPrivacy® Faux Wood Blinds' },
+    { label: 'Slat size', value: slatLabel },
+    { label: 'Color', value: S.color + (S.isPrinted ? ' [Printed — +20%]' : '') },
+    { label: 'Mount type', value: S.mount === 'inside' ? 'Inside Mount' : 'Outside Mount' },
+    { label: 'Dimensions', value: S.w + '″ W × ' + S.h + '″ H' },
+    { label: 'Valance', value: valLabel },
+    { label: 'Quantity', value: String(S.qty) },
+    { label: 'Side mount brackets', value: S.sideMt ? 'Yes' : 'No' },
+    { label: 'Hold down brackets', value: (S.hdb || S.w <= 30) ? 'Yes (auto ≤30″)' : 'No' },
+    { label: 'Shims', value: S.shims > 0 ? S.shims + ' shims' : 'None' },
+    { label: 'Wand location', value: S.w < 15 ? 'Center (auto)' : S.wandLoc },
+    { label: 'Delivery', value: S.delivery === 'ship' ? 'Ship to me (UPS/FedEx)' : 'Customer pickup' },
+    { label: 'Estimated total', value: '$' + total + ' (MSRP estimate — confirmed at order)' },
+  ];
+
+  fetch('/api/quote', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email: email || undefined, phone: phone || undefined,
+      product: 'Norman SmartPrivacy® Faux Wood Blinds',
+      selections, notes: ($('f-notes').value || '').trim(),
+      sourceUrl: window.location.href })
+  }).then(r => r.json().catch(() => ({}))).then(data => {
+    if (data && data.ok === false) throw new Error(data.error || 'Server error');
+    $('success-box').style.display = 'block';
+    errEl.style.display = 'none';
+  }).catch(() => {
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request Quote →'; }
+    alert('Something went wrong. Please call (609) 742-1720 or email justin@blindznation.com');
+  });
 }
 
 // Init — apply default 2" slat color filter on page load
