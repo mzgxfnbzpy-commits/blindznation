@@ -194,6 +194,27 @@ function _injectHead(isHome) {
     });
     document.head.appendChild(sv);
   }
+
+  // Breadcrumb schema — auto-generated from og:url on every inner page
+  if (!document.querySelector('script[data-bz-breadcrumb]')) {
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogUrl && ogTitle && ogUrl.content !== 'https://blindznation.com/') {
+      const pageTitle = ogTitle.content.replace(/\s*[—–-]\s*Blindznation\s*$/i, '').trim();
+      const bc = document.createElement('script');
+      bc.type = 'application/ld+json';
+      bc.setAttribute('data-bz-breadcrumb', '1');
+      bc.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Blindznation","item":"https://blindznation.com/"},
+          {"@type":"ListItem","position":2,"name":pageTitle,"item":ogUrl.content}
+        ]
+      });
+      document.head.appendChild(bc);
+    }
+  }
 }
 
 function renderNav(activePage) {
@@ -222,7 +243,7 @@ function renderNav(activePage) {
       <div class="nav-brand-row">
         <a class="nav-brand-active" href="${root}">Blindznation</a>
         <span class="nav-brand-sep">·</span>
-        <span class="nav-brand-other">Philly Blinds</span>
+        <a class="nav-brand-other" href="https://www.phillyblinds.com" target="_blank" rel="noopener">Philly Blinds</a>
       </div>
     </div>
     <div class="nav-main">
