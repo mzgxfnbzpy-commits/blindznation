@@ -2,6 +2,9 @@
 // Blindznation — Shared Components
 // ============================================================
 
+// ─── SECURITY — form load timestamp (bot timing check) ───────────────────────
+var _formLoadTime = Date.now();
+
 
 function _injectHead(isHome) {
   const prefix = isHome ? '' : '../';
@@ -854,7 +857,9 @@ async function pbSubmitQuote() {
         product: _pbQuoteProduct,
         selections: _pbQuoteLines,
         notes: notes.trim(),
-        sourceUrl: window.location.href
+        sourceUrl: window.location.href,
+        _hp: '',
+        _t: Date.now() - _formLoadTime
       })
     });
     var data = {};

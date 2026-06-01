@@ -1097,67 +1097,52 @@ function updateQuote(){
 }
 
 /* ─── SUBMIT ─────────────────────────────────────────────── */
-function submitQuote(){
+async function submitQuote(){
   const name  = qs('field-name').value.trim();
   const phone = qs('field-phone').value.trim();
   const email = qs('field-email').value.trim();
   if(!name||!phone||!email){ alert('Please fill in your name, phone, and email.'); return; }
   if(!S.line){ alert('Please select a shutter line first.'); return; }
-
+  const btn = document.querySelector('[onclick*="submitQuote"]');
+  if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
   const dimsText = S.dims.map((d,i)=>
-    `  Opening ${i+1} (${d.label||''}): ${d.w||'?'}″ W × ${d.h||'?'}″ H`
-  ).join('\n');
-
-  const body = [
-    '=== NORMAN SHUTTER QUOTE REQUEST ===',
-    '',
-    'CUSTOMER',
-    '  Name:   ' + name,
-    '  Phone:  ' + phone,
-    '  Email:  ' + email,
-    '  City:   ' + (qs('field-zip').value||'not provided'),
-    '',
-    'SHUTTER SPEC',
-    '  Line:          ' + S.line,
-    '  # Openings:    ' + S.count,
-    '  Opening type:  ' + S.opentype,
-    '  Mount:         ' + S.mount,
-    '',
-    'OPENING DIMENSIONS',
-    dimsText,
-    '',
-    'PANEL CONFIGURATION',
-    '  Layout:        ' + S.layout,
-    '  T-post (vert): ' + (S.tpostV||'None'),
-    '  T-post (horiz):' + (S.tpostH||'None'),
-    '',
-    'OPTIONS',
-    '  Louver size:   ' + S.louver,
-    '  Tilt type:     ' + S.tilt,
-    '  Frame style:   ' + S.frame,
-    '  Divider rail:  ' + S.divider,
-    '  Color/Finish:  ' + (S.colorType ? S.colorType+' — ' : '') + S.color,
-    '',
-    'SPECIALTY OPTIONS',
-    '  ' + (S.specs.length ? S.specs.join('\n  ') : 'None selected'),
-    '',
-    'DELIVERY',
-    '  ' + (S.delivery||'Not specified'),
-    '',
-    'ROOM / NOTES',
-    '  Room:    ' + (qs('field-room').value||'Not provided'),
-    '  Notes:   ' + (qs('field-notes').value||'None'),
-    '',
-    '=== END OF REQUEST ==='
-  ].join('\n');
-
-  const subject = 'Norman Shutter Quote — ' + S.line + ' — ' + S.count + ' opening' + (S.count!==1?'s':'') + ' — ' + name;
-  window.location.href = 'mailto:justin@blindznation.com'
-    + '?subject=' + encodeURIComponent(subject)
-    + '&body=' + encodeURIComponent(body);
-
-  qs('success-box').classList.add('show');
-  markDone(16);
+    `Opening ${i+1}${d.label?' ('+d.label+')':''}: ${d.w||'?'}″ W × ${d.h||'?'}″ H`
+  ).join('; ');
+  const selections = [
+    { label:'Line', value:S.line },
+    { label:'Openings', value:S.count+' opening'+(S.count!==1?'s':'') },
+    { label:'Opening type', value:S.opentype||'—' },
+    { label:'Mount', value:S.mount||'—' },
+    { label:'Dimensions', value:dimsText||'—' },
+    { label:'Panel layout', value:S.layout||'—' },
+    { label:'Louver size', value:S.louver||'—' },
+    { label:'Tilt type', value:S.tilt||'—' },
+    { label:'Frame style', value:S.frame||'—' },
+    { label:'Divider rail', value:S.divider||'None' },
+    { label:'T-post vertical', value:S.tpostV||'None' },
+    { label:'T-post horizontal', value:S.tpostH||'None' },
+    { label:'Color / Finish', value:(S.colorType?S.colorType+' — ':'')+S.color },
+    { label:'Specialty options', value:S.specs&&S.specs.length?S.specs.join(', '):'None' },
+    { label:'Delivery', value:S.delivery||'Not specified' },
+    { label:'Room', value:qs('field-room').value||'—' },
+    { label:'City / ZIP', value:qs('field-zip').value||'—' },
+  ];
+  try {
+    const resp = await fetch('/api/quote', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ name, email, phone,
+        product:'Norman Plantation Shutters — '+S.line,
+        selections, notes:qs('field-notes').value.trim()||'',
+        sourceUrl:window.location.href })
+    });
+    const data = await resp.json().catch(()=>({}));
+    if(!resp.ok) throw new Error(data.error||'Server error');
+    qs('success-box').classList.add('show');
+    markDone(16);
+  } catch(err) {
+    if(btn){ btn.disabled=false; btn.textContent='Request Quote →'; }
+    alert('Something went wrong. Please call (609) 742-1720 or email justin@blindznation.com');
+  }
 }
 
 /* ─── OPT HELPER ────────────────────────────────────────── */
