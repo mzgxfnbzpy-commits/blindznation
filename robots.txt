@@ -4,5 +4,10 @@ Allow: /
 Disallow: /404.html
 Disallow: /blindznation_execution_plan.html
 Disallow: /google09bbbc86851ec4cd.html
+Disallow: /AGENT_LOG.md
+Disallow: /.claude/
+Disallow: /.vercel/
+Disallow: /api/
+Disallow: /node_modules/
 
 Sitemap: https://blindznation.com/sitemap.xml
