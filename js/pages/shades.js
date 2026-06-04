@@ -335,8 +335,24 @@ function rtSelect(type) {
   });
   if (type === 'basic') {
     selectBrand('pb');
+    setTimeout(function() {
+      var el = document.getElementById('brand-pb-content');
+      if (!el) return;
+      var nav = document.getElementById('site-nav');
+      var off = nav ? nav.offsetHeight + 16 : 90;
+      var top = el.getBoundingClientRect().top + window.scrollY - off;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }, 80);
   } else if (type === 'norman') {
     selectBrand('norman');
+    setTimeout(function() {
+      var el = document.getElementById('brand-norman-content');
+      if (!el) return;
+      var nav = document.getElementById('site-nav');
+      var off = nav ? nav.offsetHeight + 16 : 90;
+      var top = el.getBoundingClientRect().top + window.scrollY - off;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    }, 80);
   }
   // Woven Wood is an <a> tag — navigates directly, no JS needed
 }
