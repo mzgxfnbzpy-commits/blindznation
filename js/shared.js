@@ -1670,18 +1670,20 @@ function reqMoreInfo(product) {
     });
   }
 
-  // ── 2. Intercept product card / configure-btn clicks on landing pages ────────
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('a.pcard, .brand-card, .product-card, a.configure-btn').forEach(function (el) {
-      var href = (el.getAttribute('href') || '').split('/').pop().replace(/\.html.*/i, '').toLowerCase();
-      if (CONF_PAGES.indexOf(href) === -1) return;
-      el.addEventListener('click', function (e) {
-        e.preventDefault();
-        var title = (el.querySelector('.pcard-name,.pc-name,.brand-name') || {}).textContent || 'Get a Free Quote';
-        pbShowContact(title.trim());
-      });
-    });
-  });
+  // ── 2. Intercept ALL anchor clicks to configurator pages ──────────────────────
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    if (link.closest('#site-nav, #site-footer, .breadcrumb')) return;
+    var raw  = link.getAttribute('href') || '';
+    if (raw.charAt(0) === '#') return;
+    var slug = raw.split('/').pop().replace(/\.html.*/i, '').toLowerCase();
+    if (CONF_PAGES.indexOf(slug) === -1) return;
+    e.preventDefault();
+    var nameEl = link.querySelector('.pcard-name,.pc-name,.brand-name,.opt-card-b-name');
+    var title  = nameEl ? nameEl.textContent.trim() : (link.textContent.trim().slice(0, 60) || 'Get a Free Quote');
+    pbShowContact(title || 'Get a Free Quote');
+  }, true);
 }());
 
 
