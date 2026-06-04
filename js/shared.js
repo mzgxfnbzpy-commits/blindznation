@@ -1605,8 +1605,84 @@ function reqMoreInfo(product) {
   window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
 }
 
-// Live-mode contact interception removed — full configurators now run on all environments.
-// Pricing is hidden globally via pbRenderEstimate() and page-level edits.
+// ── LIVE SITE — CONTACT-FIRST MODE ───────────────────────────────────────────
+// On blindznation.com, configurator pages are replaced with a contact panel
+// and product card links are intercepted to show the contact popup instead.
+(function () {
+  if (window.location.hostname !== 'blindznation.com' && window.location.hostname !== 'www.blindznation.com') return;
+
+  var CONF_PAGES = [
+    'shades','shutters','soft-treatments','hardware','norman-sheers',
+    'faux-wood-blinds','soluna-roller-shades','norman-centerpiece-roman',
+    'select-rods','kirsch-rods','paris-texas-rods','orion-rods','finial-company',
+    'hardware-quote','synchrony-verticals','city-lights-aluminum-blinds',
+    'wallace-3d-sheer','galaxy-woven-woods','dynasty-woven-woods',
+    'portfolio-dual-sheer','wallace-portfolio-roman',
+    'wallace-portfolio-natural-shades','wallace-natural-roller-shades',
+    'wallace-banded-shades','wallace-woven','wallace-verticals',
+    'kirsch-spec-complete','kirsch-estate-traverse','kirsch-2in-estate-traverse',
+    'walden-premier-woven','walden-select-woven','wallace-dynasty-woven',
+    'woven-wood-shades','sheer-shades','upholstery'
+  ];
+
+  var slug = window.location.pathname.split('/').pop().replace(/\.html$/i, '').toLowerCase();
+  var isConfPage = CONF_PAGES.indexOf(slug) !== -1;
+
+  // ── 1. Full-page block for configurator pages ──────────────────────────────
+  if (isConfPage) {
+    document.addEventListener('DOMContentLoaded', function () {
+      var s = document.createElement('style');
+      s.textContent =
+        '#pb-live-block{background:#F8F6F2;padding:60px 24px 80px;text-align:center;min-height:50vh;display:flex;flex-direction:column;align-items:center;justify-content:center}' +
+        '#pb-live-block h2{font-size:26px;font-weight:600;color:#111110;margin-bottom:10px;letter-spacing:-.3px;line-height:1.2}' +
+        '#pb-live-block .plb-sub{font-size:15px;color:#555;max-width:440px;line-height:1.7;margin:0 auto 28px}' +
+        '.plb-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}' +
+        '.plb-btn{display:inline-flex;flex-direction:column;align-items:center;gap:3px;background:#111110;color:#C9A96E;padding:14px 22px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:700;min-width:100px}' +
+        '.plb-btn:hover{opacity:.85}' +
+        '.plb-btn small{font-size:10px;font-weight:400;color:#888}';
+      document.head.appendChild(s);
+
+      var nav    = document.getElementById('site-nav');
+      var footer = document.getElementById('site-footer');
+      var nodes  = [];
+      var cur    = nav ? nav.nextSibling : document.body.firstChild;
+      while (cur && cur !== footer) { nodes.push(cur); cur = cur.nextSibling; }
+      nodes.forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
+
+      var block = document.createElement('div');
+      block.id  = 'pb-live-block';
+      block.innerHTML =
+        '<div style="font-size:38px;margin-bottom:14px">&#127695;</div>' +
+        '<h2>Get a Free Custom Quote</h2>' +
+        '<p class="plb-sub">We handle every order personally. Call or text Justin for pricing, fabric samples, and a free in-home consultation.</p>' +
+        '<div class="plb-btns">' +
+          '<a href="tel:6097421720" class="plb-btn">&#128222; Call now<small>(609) 742-1720</small></a>' +
+          '<a href="sms:6097421720" class="plb-btn">&#128172; Text us<small>24/7</small></a>' +
+          '<a href="mailto:justin@blindznation.com" class="plb-btn">&#9993;&#65039; Email<small>Same day reply</small></a>' +
+        '</div>' +
+        '<a href="consult.html" style="font-size:13px;color:#C9A96E;font-weight:600;text-decoration:none">Book a free in-home consultation &#8594;</a>';
+
+      if (nav && nav.parentNode) {
+        nav.parentNode.insertBefore(block, nav.nextSibling);
+      } else {
+        document.body.insertBefore(block, footer || null);
+      }
+    });
+  }
+
+  // ── 2. Intercept product card / configure-btn clicks on landing pages ────────
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('a.pcard, .brand-card, .product-card, a.configure-btn').forEach(function (el) {
+      var href = (el.getAttribute('href') || '').split('/').pop().replace(/\.html.*/i, '').toLowerCase();
+      if (CONF_PAGES.indexOf(href) === -1) return;
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        var title = (el.querySelector('.pcard-name,.pc-name,.brand-name') || {}).textContent || 'Get a Free Quote';
+        pbShowContact(title.trim());
+      });
+    });
+  });
+}());
 
 
 
