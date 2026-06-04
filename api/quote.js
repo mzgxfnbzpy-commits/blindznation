@@ -41,12 +41,19 @@ function _checkRate(ip) {
   const now = Date.now();
   const WINDOW = 10 * 60 * 1000;
   const LIMIT  = 5;
-  const entry  = _rateMap.get(ip);
+  if (_rateMap.size > 500) {
+    for (const [k, v] of _rateMap) { if (now - v.t > WINDOW * 2) _rateMap.delete(k); }
+  }
+  const entry = _rateMap.get(ip);
   if (!entry || now - entry.t > WINDOW) { _rateMap.set(ip, { t: now, n: 1 }); return true; }
   if (entry.n >= LIMIT) return false;
   entry.n++;
   return true;
 }
+
+// ── Per-field length limits ───────────────────────────────────────────────────
+const FIELD_LIMITS = { name: 200, email: 254, phone: 30, product: 200, notes: 5000, sourceUrl: 500 };
+function _truncate(val, key) { return val ? String(val).slice(0, FIELD_LIMITS[key]) : val; }
 
 module.exports = async function handler(req, res) {
   const origin = req.headers.origin || '';
@@ -64,12 +71,21 @@ module.exports = async function handler(req, res) {
 
   const { _hp, _t } = req.body || {};
   if (_hp && _hp.trim().length > 0) return res.status(200).json({ ok: true }); // honeypot — silent reject
-  if (typeof _t === 'number' && _t < 2000) return res.status(200).json({ ok: true }); // too fast — bot
+  if (typeof _t !== 'number' || _t < 2000) return res.status(200).json({ ok: true }); // too fast or missing _t — bot
 
   const bodyStr = JSON.stringify(req.body || {});
   if (bodyStr.length > 20000) return res.status(413).json({ error: 'Request too large.' });
 
-  const { name, email, phone, product, selections, notes, sourceUrl } = req.body || {};
+  const _b = req.body || {};
+  const name       = _truncate(_b.name,      'name');
+  const email      = _truncate(_b.email,     'email');
+  const phone      = _truncate(_b.phone,     'phone');
+  const product    = _truncate(_b.product,   'product');
+  const notes      = _truncate(_b.notes,     'notes');
+  const _rawSourceUrl = _truncate(_b.sourceUrl, 'sourceUrl');
+  const sourceUrl = (_rawSourceUrl && /^https?:\/\//i.test(_rawSourceUrl.trim())) ? _rawSourceUrl : null;
+  const selections = Array.isArray(_b.selections) ? _b.selections.slice(0, 60) : [];
+  const estimate   = _b.estimate;
 
   if (!name || !name.trim()) return res.status(400).json({ error: 'Name is required.' });
   const hasValidEmail = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
@@ -96,9 +112,9 @@ module.exports = async function handler(req, res) {
     hour: 'numeric', minute: '2-digit', hour12: true
   });
 
-  const rows = (Array.isArray(selections) ? selections : []).map(function(s) {
-    var lbl = String(s.label || '').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    var val = String(s.value || '').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const rows = selections.map(function(s) {
+    var lbl = String(s.label || '').slice(0, 100).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    var val = String(s.value || '').slice(0, 500).replace(/</g,'&lt;').replace(/>/g,'&gt;');
     return '<tr><td style="padding:6px 14px 6px 0;color:#666;font-size:13px;white-space:nowrap;vertical-align:top">' + lbl + '</td>' +
             '<td style="padding:6px 0;font-weight:600;font-size:13px;color:#1a1a1a">' + val + '</td></tr>';
   }).join('');
@@ -127,6 +143,12 @@ module.exports = async function handler(req, res) {
     ${rows ? `<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:8px">Full Configuration</div>
     <div style="border:1px solid #e8e8e4;border-radius:8px;overflow:hidden;margin-bottom:18px">
       <table style="border-collapse:collapse;width:100%">${rows}</table>
+    </div>` : ''}
+
+    ${estimate ? `<div style="background:#FBF7F0;border:1.5px solid #C9A96E;border-radius:10px;padding:16px 18px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center">
+      <div><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#C9A96E">Customer's Estimate</div>
+      <div style="font-size:11px;color:#aaa;margin-top:3px">Estimate only — confirm final price before invoicing</div></div>
+      <div style="font-size:26px;font-weight:700;color:#111110">${String(estimate).replace(/</g,'&lt;')}</div>
     </div>` : ''}
 
     ${safeNotes ? `<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:8px">Customer Notes</div>
@@ -211,9 +233,8 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('[quote] Send error:', err.message);
-    const resendDetail = err.message && err.message.length < 400 ? err.message : '';
     return res.status(500).json({
-      error: `Email send failed. ${resendDetail}`,
+      error: 'Email send failed.',
       fallback: `Please email ${EMAIL_DIRECT} or call ${PHONE}.`
     });
   }
