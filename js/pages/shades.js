@@ -3348,7 +3348,7 @@ async function _apiSubmit(name, email, phone, productName, configText, successId
   var map={
     roller:function(){selectProduct('roller','Roller Shades',true);},
     cellular:function(){selectProduct('cellular','Cellular Shades',true);},
-    zebra:function(){window.location.replace('wallace-banded-shades.html');},
+    zebra:function(){pbShowContact('Banded 2D Zebra Shades — get a free quote');},
     woven:function(){selectProduct('woven','Woven Wood Shades',true);},
     exterior:function(){selectProduct('exterior','Exterior Roller Shades',false);}
   };
