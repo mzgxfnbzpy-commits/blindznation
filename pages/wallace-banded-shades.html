@@ -120,6 +120,16 @@
 .b2d-chip.consult:hover{border-color:var(--gold);color:#555;font-style:normal}
 .b2d-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
 .b2d-consult-box{background:#f7f4ef;border:1px solid #d4c8b0;border-radius:10px;padding:14px 18px;margin-top:18px;display:flex;gap:12px;align-items:flex-start;font-size:12px;color:#555;line-height:1.6}
+.tier-bar{background:#f7f4ef;border-bottom:1px solid #e8e4de;padding:11px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tier-bar-label{font-size:11px;font-weight:600;color:#888;letter-spacing:.5px;text-transform:uppercase;margin-right:4px}
+.tier-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:24px;border:1.5px solid #e0e0db;background:#fff;color:#555;font-size:12px;font-weight:500;text-decoration:none;cursor:pointer;transition:border-color .15s,background .15s,color .15s;font-family:inherit}
+.tier-btn:hover{border-color:var(--gold)}
+.tier-btn.tier-active{background:var(--espresso);color:var(--cream);border-color:var(--espresso)}
+.tier-badge{font-size:10px;padding:1px 7px;border-radius:5px;font-weight:600}
+.tier-badge-basic{background:#e8f5e9;color:#2e7d32}
+.tier-badge-premium{background:rgba(200,151,63,.15);color:#7a5a00}
+.tier-btn.tier-active .tier-badge-basic{background:rgba(255,255,255,.18);color:#a0e0a0}
+.tier-btn.tier-active .tier-badge-premium{background:rgba(255,255,255,.18);color:var(--gold)}
 </style>
 </head>
 <body>
@@ -142,6 +152,16 @@
   <img loading="lazy" src="../images/portfolio/IMG_5583.JPEG" alt="Zebra dual sheer shades" style="width:100%;height:100%;object-fit:cover;display:block">
   <img loading="lazy" src="../images/portfolio/IMG_2854.JPEG" alt="Banded sheer installed" style="width:100%;height:100%;object-fit:cover;display:block">
   <img loading="lazy" src="../images/portfolio/IMG_1369.JPEG" alt="Dual sheer in living room" style="width:100%;height:100%;object-fit:cover;display:block">
+</div>
+
+<div class="tier-bar">
+  <span class="tier-bar-label">Tier</span>
+  <button class="tier-btn tier-active" id="tier-basic">
+    <span class="tier-badge tier-badge-basic">Basic</span> Banded 2D
+  </button>
+  <a class="tier-btn" href="portfolio-dual-sheer.html">
+    <span class="tier-badge tier-badge-premium">Premium</span> Portfolio Dual Sheer
+  </a>
 </div>
 
 <div class="config-layout">
