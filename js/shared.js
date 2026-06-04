@@ -264,7 +264,7 @@ function renderNav(activePage) {
       </div>
       <div class="nav-right">
         <button class="nav-cart-btn" onclick="pbOpenCart()" aria-label="Open cart">
-          📋 Quote List<span class="nav-cart-count" id="pb-nav-cart-count" style="display:none">0</span>
+          🛒 Cart<span class="nav-cart-count" id="pb-nav-cart-count" style="display:none">0</span>
         </button>
         <a class="nav-phone" href="tel:6097421720">
           📞 (609) 742-1720 <span class="badge-24">24/7</span>
@@ -412,7 +412,7 @@ function _updateCartBadge() {
 function _pbCartToast(name) {
   var t = document.getElementById('pb-cart-toast');
   if (!t) return;
-  t.textContent = '✓ ' + name + ' added to quote list';
+  t.textContent = '✓ ' + name + ' added to cart';
   t.classList.add('show');
   setTimeout(function(){ t.classList.remove('show'); }, 2600);
 }
@@ -443,7 +443,7 @@ function _renderCartBody() {
   _updateCartBadge();
   var foot = document.getElementById('pb-cart-foot');
   if (!cart.length) {
-    body.innerHTML = '<div class="pb-cart-empty"><div class="pb-cart-empty-icon">📋</div>Your quote list is empty.<br><span style="font-size:12px">Configure a product and click "Add to Quote List."</span></div>';
+    body.innerHTML = '<div class="pb-cart-empty"><div class="pb-cart-empty-icon">🛒</div>Your cart is empty.<br><span style="font-size:12px">Configure a product and click "Add to cart."</span></div>';
     if (foot) foot.style.display = 'none';
     return;
   }
@@ -508,7 +508,7 @@ function _initCart() {
   drawer.id = 'pb-cart-drawer'; drawer.className = 'pb-cart-drawer';
   drawer.innerHTML =
     '<div class="pb-cart-drawer-head">' +
-      '<div><div class="pb-cart-drawer-title">Your quote list</div></div>' +
+      '<div><div class="pb-cart-drawer-title">Your cart</div></div>' +
       '<button class="pb-cart-close" onclick="pbCloseCart()">×</button>' +
     '</div>' +
     '<div class="pb-cart-body" id="pb-cart-body"></div>' +
@@ -516,7 +516,7 @@ function _initCart() {
       '<button class="btn-gold" style="width:100%;padding:13px;font-size:15px;font-weight:600;margin-bottom:8px" ' +
         'onclick="pbGoCheckout()">Request Quotes for All Items →</button>' +
       '<div style="text-align:center;font-size:11px;color:#aaa;margin-bottom:12px">We\'ll reply by email &bull; No payment required now</div>' +
-      '<button onclick="pbClearCart()" style="display:block;width:100%;background:none;border:none;font-size:11px;color:#ccc;cursor:pointer;font-family:inherit">Clear quote list</button>' +
+      '<button onclick="pbClearCart()" style="display:block;width:100%;background:none;border:none;font-size:11px;color:#ccc;cursor:pointer;font-family:inherit">Clear cart</button>' +
     '</div>';
   document.body.appendChild(drawer);
 
@@ -652,7 +652,7 @@ function _initMotorModal() {
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">' +
         '<button onclick="document.getElementById(\'pb-motor-overlay\').classList.remove(\'open\')" ' +
           'style="padding:11px;border:1.5px solid #e8e8e4;border-radius:8px;background:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Cancel</button>' +
-        '<button onclick="_pmmConfirm()" class="btn-gold" style="padding:11px;font-size:14px">Add to Quote List →</button>' +
+        '<button onclick="_pmmConfirm()" class="btn-gold" style="padding:11px;font-size:14px">Add to cart →</button>' +
       '</div>' +
     '</div>';
   document.body.appendChild(ov);
