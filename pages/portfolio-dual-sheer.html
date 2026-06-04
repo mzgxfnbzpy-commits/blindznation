@@ -511,5 +511,12 @@ textarea.form-input{resize:vertical;min-height:80px}
 
 <script src="../js/shared.js"></script>
 <script src="../js/pages/portfolio-dual-sheer.js"></script>
+<script>
+(function() {
+  pbCtx.prefill('inp-w',   'w',   function(v) { if (typeof dimChanged === 'function') dimChanged(); });
+  pbCtx.prefill('inp-h',   'h',   function(v) { if (typeof dimChanged === 'function') dimChanged(); });
+  pbCtx.prefill('qty-inp', 'qty', function(v) { if (typeof S !== 'undefined') S.qty = parseInt(v) || 1; });
+})();
+</script>
 </body>
 </html>

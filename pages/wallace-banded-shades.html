@@ -449,6 +449,14 @@
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/wallace-banded-shades.js"></script>
+<script>
+(function() {
+  pbCtx.prefill('inp-w',   'w',   function(v) { validateDims(); });
+  pbCtx.prefill('inp-h',   'h',   function(v) { validateDims(); });
+  pbCtx.prefill('qty-inp', 'qty', function(v) { setQtyInp(v); });
+  pbCtx.prefill('room-lbl','room', null);
+})();
+</script>
 </body>
 </html>
 
