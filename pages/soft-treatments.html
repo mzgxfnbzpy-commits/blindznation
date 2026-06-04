@@ -1504,7 +1504,7 @@ var RN_TRIM_PER_FT = 15;
 // $40/sqft = cost $26 ÷ 0.65 margin. Same rate all styles — liner included in labor.
 var RN_RATES = {
   'Flat Roman':               { unlined: 40, lined: 40 },
-  'Permanently Pleated Roman':{ unlined: 40, lined: 40 },
+  'Permanently Pleated Roman':{ unlined: 50, lined: 50 },
   'Relaxed Roman':            { unlined: 40, lined: 40 },
   'Roman Valance':            { unlined: 40, lined: 40 }
 };
@@ -1615,15 +1615,16 @@ function calcRoman() {
 }
 
 // ── DRAPERY PRICING CALCULATOR ───────────────────────────────
-// Cost basis: unlined $80/width, lined $90/width. Margin: 35%. Tariff: none.
-// Formula: customer price = cost ÷ 0.65
-var D_RATE_UNLINED = 123;   // per cut/width (cost $80 ÷ 0.65)
-var D_RATE_LINED   = 138;   // per cut/width (cost $90 ÷ 0.65)
+// Rates (Justin confirmed): $120/width unlined · $130/width lined (liner included, BO=LF same price)
+// Goblet/Barrel: +$20/width · Interlining: +$10/width · Height >100": +$10/width per 10"
+var D_RATE_UNLINED = 120;   // per cut/width — unlined
+var D_RATE_LINED   = 130;   // per cut/width — liner included (BO or LF, same price)
 var D_MIN_WIDTHS   = 2;
 var D_FABRIC_WIDTH = 54;    // standard fabric width (inches)
-var D_LEN_SURCHARGE = 15;   // per width per 10" over 100" (cost $10 ÷ 0.65 ≈ $15)
+var D_LEN_SURCHARGE = 10;   // per width per 10" over 100"
+var D_INTERLINING_PER_WIDTH = 10; // interlining surcharge per width (on top of lined rate)
 var D_FABRIC_PER_YD = 25;   // placeholder — fabric is custom per spec
-var D_LINING_PER_YD = 9.25; // cost $6/yd ÷ 0.65 margin. Note: +$75/bolt ship charged separately.
+var D_LINING_PER_YD = 10;   // when we supply lining (White or Cream) — same yardage as face fabric
 var D_CORNICE_PER_FT = 38.50; // per linear ft (cost $25 ÷ 0.65)
 var D_CORNICE_MIN_FT = 4;
 var D_VALANCE_PER_FT = 38.50; // same as cornice
@@ -1680,16 +1681,17 @@ function calcDrapePrice() {
   var isLined = lining !== 'No liner';
   var interCheck = document.getElementById('d-interlining-check');
   var isInterlining = interCheck ? interCheck.checked : false;
-  // Goblet and Barrel pleat carry a premium — $130/width unlined, $140/width lined
+  // Goblet and Barrel pleat carry a premium — $140/width unlined, $150/width lined
   var isSpecialtyPleat = drapeState.pleat === 'Goblet Pleat' || drapeState.pleat === 'Barrel Pleat';
   var ratePerWidth = isSpecialtyPleat
-    ? (isLined ? 140 : 130)
+    ? (isLined ? 150 : 140)
     : (isLined ? D_RATE_LINED : D_RATE_UNLINED);
 
   // Length surcharge (over 100")
   var lenSurcharge = h > 100 ? Math.ceil((h - 100) / 10) * D_LEN_SURCHARGE : 0;
   var effectiveRate = ratePerWidth + lenSurcharge;
   var laborTotal = numWidths * effectiveRate;
+  var interlineTotal = isInterlining ? numWidths * D_INTERLINING_PER_WIDTH : 0;
 
   // Fabric & lining (if we supply)
   var fabricCost = 0; var liningCost = 0; var yardsTotal = 0;
@@ -1697,7 +1699,6 @@ function calcDrapePrice() {
     yardsTotal = Math.ceil(((h + 16) / 36) * numWidths * 10) / 10;
     fabricCost = yardsTotal * D_FABRIC_PER_YD;
     if (isLined) liningCost = yardsTotal * D_LINING_PER_YD;
-    if (isInterlining) liningCost += yardsTotal * D_LINING_PER_YD; // interlining same rate as lining
   }
 
   // Cornice
@@ -1759,7 +1760,7 @@ function calcDrapePrice() {
   // Shipping estimate
   var dShipEst = _getShippingEst(document.getElementById('drape-form'));
 
-  var grandTotal = laborTotal + fabricCost + liningCost + corniceTotal + valanceTotal + trimTotal + dShipEst;
+  var grandTotal = laborTotal + interlineTotal + fabricCost + liningCost + corniceTotal + valanceTotal + trimTotal + dShipEst;
 
   // Render
   var rows = '';
@@ -1768,6 +1769,7 @@ function calcDrapePrice() {
       '<span>' + lbl + '</span><span style="color:var(--cream);font-weight:500">$' + val.toFixed(0) + '</span></div>';
   };
   row('Labor — ' + numWidths + ' widths × $' + effectiveRate + (lenSurcharge ? ' (incl. +$' + lenSurcharge + ' length)' : ''), laborTotal);
+  if (interlineTotal) row('Interlining', interlineTotal);
   if (fabricCost)  row('Fabric est. (' + yardsTotal + ' yd × $25/yd)', fabricCost);
   if (liningCost)  row('Liner est. (' + yardsTotal + ' yd × $'+D_LINING_PER_YD+'/yd)', liningCost);
   if (trimTotal)   row('Trim', trimTotal);
