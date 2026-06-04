@@ -688,6 +688,8 @@ function pbRenderEstimate(priceBoxId, lines, subtotal, conflictMsg, onCheckout) 
   }
 
   var hasConflict = conflictMsg && conflictMsg.trim().length > 0;
+  var tariffAmt   = (subtotal && PB_TARIFF_RATE > 0) ? Math.round(subtotal * PB_TARIFF_RATE) : 0;
+  var total       = subtotal ? subtotal + tariffAmt : 0;
 
   var linesHtml = lines.map(function(l) {
     return '<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:6px 0;border-bottom:1px solid #f5f5f3">' +
@@ -696,27 +698,40 @@ function pbRenderEstimate(priceBoxId, lines, subtotal, conflictMsg, onCheckout) 
       '</div>';
   }).join('');
 
+  var estimateHtml = total
+    ? '<div style="background:#FBF7F0;border-radius:10px;padding:14px 16px;margin:12px 0 8px">' +
+        '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px">&#x1F4CB; Estimate Only</div>' +
+        (tariffAmt ? '<div style="display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:4px"><span>Subtotal</span><span>$' + subtotal.toFixed(0) + '</span></div>' +
+          '<div style="display:flex;justify-content:space-between;font-size:12px;color:#b45309;margin-bottom:4px"><span>Tariff (' + Math.round(PB_TARIFF_RATE*100) + '%)</span><span>+$' + tariffAmt.toFixed(0) + '</span></div>' : '') +
+        '<div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid #e8ddc8;padding-top:8px;margin-top:4px">' +
+          '<span style="font-size:13px;font-weight:600;color:#1a1a1a">Estimated total</span>' +
+          '<span style="font-size:22px;font-weight:700;color:var(--espresso)">$' + total.toFixed(0) + '</span>' +
+        '</div>' +
+      '</div>'
+    : '<div style="font-size:12px;color:#aaa;padding:8px 0">Enter dimensions above to see an estimate.</div>';
+
   var conflictHtml = hasConflict
     ? '<div style="background:#FEE2E2;border-radius:8px;padding:10px 13px;margin-bottom:12px;font-size:12px;color:#991B1B;line-height:1.5">&#9888; ' + conflictMsg + '</div>'
     : '';
 
-  // Store selections on panel for quote modal
   panel._pbLines      = lines;
   panel._pbProduct    = lines.length ? lines[0].value : '';
+  panel._pbEstimate   = total || null;
   panel._pbOnCheckout = onCheckout || null;
 
   panel.innerHTML =
     '<div style="padding:16px 18px">' +
-      '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Your selection</div>' +
+      '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Your configuration</div>' +
       linesHtml +
-      '<div style="font-size:11px;color:#aaa;margin:10px 0 10px;line-height:1.5">Pricing is custom-quoted for every order. Submit your configuration and we\'ll send you a full quote.</div>' +
+      estimateHtml +
+      '<div style="font-size:10px;color:#aaa;line-height:1.6;margin-bottom:10px">&#9432; This is an estimate only. Final price is confirmed after your free in-home measurement. Actual price may vary based on exact dimensions, fabric availability, and installation scope.</div>' +
       conflictHtml +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-        '<button onclick="pbEstimateAddCart(\'' + priceBoxId + '\')" style="padding:11px;border:1.5px solid #e8e8e4;border-radius:8px;background:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;color:#333">Add to Quote List</button>' +
+        '<button onclick="pbEstimateAddCart(\'' + priceBoxId + '\')" style="padding:11px;border:1.5px solid #e8e8e4;border-radius:8px;background:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;color:#333">Save to list</button>' +
         '<button onclick="pbOpenQuoteFromPanel(\'' + priceBoxId + '\')" ' +
           (hasConflict ? 'disabled style="padding:11px;border-radius:8px;background:#e5e5e5;font-size:13px;font-weight:700;cursor:not-allowed;font-family:inherit;color:#aaa;border:none"' :
                          'style="padding:11px;border-radius:8px;background:var(--espresso);color:var(--gold);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;border:none"') +
-          '>Request a Quote &#8594;</button>' +
+          '>Get My Free Estimate &#8594;</button>' +
       '</div>' +
     '</div>';
 }
@@ -724,7 +739,7 @@ function pbRenderEstimate(priceBoxId, lines, subtotal, conflictMsg, onCheckout) 
 function pbOpenQuoteFromPanel(priceBoxId) {
   var panel = document.getElementById(priceBoxId + '-checkout-panel');
   if (!panel) return;
-  pbShowQuoteModal(panel._pbLines || [], panel._pbProduct || '');
+  pbShowQuoteModal(panel._pbLines || [], panel._pbProduct || '', panel._pbEstimate || null);
 }
 
 function pbEstimateAddCart(priceBoxId) {
@@ -752,9 +767,11 @@ function pbCollectItem(productName, lines, total, motorized) {
 var _pbQuoteLines   = [];
 var _pbQuoteProduct = '';
 
-function pbShowQuoteModal(lines, productName) {
+var _pbQuoteEstimate = null;
+function pbShowQuoteModal(lines, productName, estimate) {
   _pbQuoteLines   = Array.isArray(lines) ? lines : [];
   _pbQuoteProduct = productName || (_pbQuoteLines.length ? _pbQuoteLines[0].value : 'Custom Window Treatment');
+  _pbQuoteEstimate = estimate || null;
 
   var existing = document.getElementById('pb-quote-overlay');
   if (existing) existing.remove();
@@ -782,8 +799,8 @@ function pbShowQuoteModal(lines, productName) {
 
   var selectionsHtml = _pbQuoteLines.map(function(l) {
     return '<div style="display:flex;justify-content:space-between;gap:12px;padding:5px 0;border-bottom:1px solid #f0f0ec;font-size:12px">' +
-      '<span style="color:#888;flex-shrink:0">' + l.label + '</span>' +
-      '<span style="font-weight:500;color:#333;text-align:right;max-width:60%">' + l.value + '</span>' +
+      '<span style="color:#888;flex-shrink:0">' + _pbEsc(l.label) + '</span>' +
+      '<span style="font-weight:500;color:#333;text-align:right;max-width:60%">' + _pbEsc(l.value) + '</span>' +
       '</div>';
   }).join('');
 
@@ -800,7 +817,14 @@ function pbShowQuoteModal(lines, productName) {
       '<div class="pb-qm-body">' +
         (selectionsHtml
           ? '<div class="pb-qm-lbl">Your Configuration</div>' +
-            '<div style="background:#f9f9f7;border-radius:8px;padding:10px 14px;margin-bottom:18px">' + selectionsHtml + '</div>'
+            '<div style="background:#f9f9f7;border-radius:8px;padding:10px 14px;margin-bottom:12px">' + selectionsHtml + '</div>'
+          : '') +
+        (_pbQuoteEstimate
+          ? '<div style="background:#FBF7F0;border-radius:10px;padding:14px 16px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">' +
+              '<div><div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)">Your Estimate</div>' +
+              '<div style="font-size:10px;color:#aaa;margin-top:3px">Estimate only — final price confirmed after measurement</div></div>' +
+              '<div style="font-size:24px;font-weight:700;color:var(--espresso)">$' + _pbQuoteEstimate.toFixed(0) + '</div>' +
+            '</div>'
           : '') +
         '<div class="pb-qm-lbl">Your Information</div>' +
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
@@ -856,6 +880,7 @@ async function pbSubmitQuote() {
         phone: phone.trim(),
         product: _pbQuoteProduct,
         selections: _pbQuoteLines,
+        estimate: _pbQuoteEstimate ? '$' + _pbQuoteEstimate.toFixed(0) + ' (estimate only)' : null,
         notes: notes.trim(),
         sourceUrl: window.location.href,
         _hp: '',
@@ -1115,7 +1140,7 @@ function pbGetFileNames(inputId) {
 function pbShowFileNames(input, displayId) {
   var el = document.getElementById(displayId);
   if (!el) return;
-  var names = Array.from(input.files).map(function(f){ return '📄 ' + f.name; }).join('<br>');
+  var names = Array.from(input.files).map(function(f){ return '📄 ' + _pbEsc(f.name); }).join('<br>');
   el.innerHTML = names;
 }
 function _initFileUploads() {
@@ -1298,7 +1323,7 @@ function pbCpShowFiles() {
   var el = document.getElementById('pb-cp-file-names');
   var fi = document.getElementById('pb-cp-files');
   if (!el || !fi) return;
-  el.innerHTML = Array.from(fi.files).map(function(f) { return '📄 ' + f.name; }).join('<br>');
+  el.innerHTML = Array.from(fi.files).map(function(f) { return '📄 ' + _pbEsc(f.name); }).join('<br>');
 }
 
 async function pbSubmitContact() {

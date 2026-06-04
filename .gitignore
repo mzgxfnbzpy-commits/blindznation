@@ -29,6 +29,11 @@ pdfs/scan/
 pdfs/scan2/
 pdfs/*.png
 
+# ── Environment / secrets (never commit) ──────────────────────────────────────
+.env
+.env.*
+!.env.example
+
 # ── OS files ───────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db

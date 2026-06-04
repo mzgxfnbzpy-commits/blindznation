@@ -2,6 +2,22 @@ const Anthropic = require('@anthropic-ai/sdk');
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+// Rate limiting: 20 requests per 10 minutes per IP
+const _rateMap = new Map();
+function _checkRate(ip) {
+  const now = Date.now();
+  const WINDOW = 10 * 60 * 1000;
+  const LIMIT  = 20;
+  if (_rateMap.size > 500) {
+    for (const [k, v] of _rateMap) { if (now - v.t > WINDOW * 2) _rateMap.delete(k); }
+  }
+  const entry = _rateMap.get(ip);
+  if (!entry || now - entry.t > WINDOW) { _rateMap.set(ip, { t: now, n: 1 }); return true; }
+  if (entry.n >= LIMIT) return false;
+  entry.n++;
+  return true;
+}
+
 const ALLOWED_ORIGINS = [
   'https://blindznation.com',
   'https://www.blindznation.com',
@@ -65,6 +81,12 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  // Rate limit by IP
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.socket?.remoteAddress || 'unknown';
+  if (!_checkRate(ip)) {
+    return res.status(429).json({ content: 'Too many messages. Please call (609) 742-1720 — Justin is available 24/7!' });
   }
 
   const { messages } = req.body || {};
