@@ -208,9 +208,14 @@ function selectProduct(productId, productName, isInstant) {
   const sec = document.getElementById('configurator-section');
   sec.style.display = 'block';
 
+  // Clear ALL configurators first — prevents stale 'open' panels when switching products
+  ['instant-config','hd-config','fwb-config','exterior-config','perfectsheer-config','verticals-type-config'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('open');
+  });
+
   if (isInstant) {
     document.getElementById('instant-config').classList.add('open');
-    document.getElementById('hd-config').classList.remove('open');
     document.getElementById('config-product-name').textContent = productName;
 
     // Reset brand chooser — hide all brand content, clear selections
@@ -346,15 +351,14 @@ function rtSelect(type) {
   } else if (type === 'norman') {
     selectBrand('norman');
     setTimeout(function() {
-      var el = document.getElementById('brand-norman-content');
+      var el = document.getElementById('rn-wrap') || document.getElementById('brand-norman-content');
       if (!el) return;
       var nav = document.getElementById('site-nav');
       var off = nav ? nav.offsetHeight + 16 : 90;
       var top = el.getBoundingClientRect().top + window.scrollY - off;
       window.scrollTo({ top: top, behavior: 'smooth' });
-    }, 80);
+    }, 120);
   }
-  // Woven Wood is an <a> tag — navigates directly, no JS needed
 }
 
 // ─── toggleMeasure ───────────────────────────────────────────
