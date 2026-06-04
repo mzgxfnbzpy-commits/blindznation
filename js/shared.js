@@ -5,6 +5,25 @@
 // ─── SECURITY — form load timestamp (bot timing check) ───────────────────────
 var _formLoadTime = Date.now();
 
+// ─── SHARED CONTEXT — persist dims/room across product pages ─────────────────
+window.pbCtx = (function() {
+  var KEY = 'pbSharedCtx';
+  function _get() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e) { return {}; } }
+  function save(k, v) { try { var d = _get(); d[k] = v; localStorage.setItem(KEY, JSON.stringify(d)); } catch(e) {} }
+  function get(k) { return _get()[k]; }
+  function prefill(id, ctxKey, onFilled) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var saved = _get()[ctxKey];
+    if (saved !== undefined && saved !== '' && !el.value) {
+      el.value = saved;
+      if (onFilled) onFilled(saved);
+    }
+    el.addEventListener('input', function() { save(ctxKey, el.value); });
+  }
+  return { save: save, get: get, prefill: prefill };
+})();
+
 
 function _injectHead(isHome) {
   const prefix = isHome ? '' : '../';
