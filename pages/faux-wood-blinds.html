@@ -539,6 +539,13 @@
 <script>renderNav('Shades & blinds'); renderFooter(false);</script>
 
 <script src="../js/pages/faux-wood-blinds.js"></script>
+<script>
+(function() {
+  pbCtx.prefill('w-whole',   'w',   function() { calcSize(); });
+  pbCtx.prefill('h-whole',   'h',   function() { calcSize(); });
+  pbCtx.prefill('qty-input', 'qty', null);
+})();
+</script>
 </body>
 </html>
 

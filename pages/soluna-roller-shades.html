@@ -807,6 +807,13 @@
 
 <script src="../js/shared.js"></script>
 <script src="../js/pages/soluna-roller-shades.js"></script>
+<script>
+(function() {
+  pbCtx.prefill('inp-width',  'w',   function() { if (typeof updateSummary === 'function') updateSummary(); });
+  pbCtx.prefill('inp-height', 'h',   function() { if (typeof updateSummary === 'function') updateSummary(); });
+  pbCtx.prefill('inp-qty',    'qty', null);
+})();
+</script>
 </body>
 </html>
 
