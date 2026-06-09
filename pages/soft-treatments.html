@@ -349,9 +349,42 @@
 
   </div>
 
-  <!-- STEP 2: FABRIC -->
+  <!-- STEP 2: DIMENSIONS -->
   <div class="step">
     <div class="step-label">Step 2</div>
+    <div class="step-title">Window dimensions</div>
+    <div class="step-sub">Enter your measurements — we'll confirm with our own measure at the home visit.</div>
+    <div class="form-group" style="margin-top:14px"><label>Approximate window width</label>
+      <select id="d-width">
+        <option>Not sure yet</option><option>Under 36"</option><option>36"–48"</option><option>48"–72"</option><option>72"–96"</option><option>96"–120"</option><option>120"+</option>
+      </select>
+    </div>
+    <div class="dim-box" style="margin-top:14px">
+      <div class="dim-box-label">Exact measurements</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Width</label>
+          <input type="number" id="d-exact-width" placeholder="84" min="12" max="300" oninput="calcDrapePrice()">
+          <div class="dim-unit">inches</div>
+        </div>
+        <div class="form-group">
+          <label>Finished length</label>
+          <input type="number" id="d-exact-length" placeholder="96" min="12" max="240" oninput="calcDrapePrice()">
+          <div class="dim-unit">inches</div>
+        </div>
+      </div>
+      <div id="d-min-warn" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.5"></div>
+    </div>
+    <div id="drape-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:18px 20px;margin-top:14px">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px">Your configuration</div>
+      <div id="drape-price-rows"></div>
+      <div style="font-size:10px;color:var(--text-faint);margin-top:8px;line-height:1.5" id="drape-price-note"></div>
+    </div>
+  </div>
+
+  <!-- STEP 3: FABRIC -->
+  <div class="step">
+    <div class="step-label">Step 3</div>
     <div class="step-title">Fabric</div>
     <div class="step-sub">We work with your fabric or help you choose from our selections.</div>
     <div class="fabric-cards" id="drape-fabric-cards">
@@ -396,52 +429,17 @@
     </div>
   </div>
 
-  <!-- STEP 3: QUOTE FORM -->
+  <!-- STEP 4: FINISHING OPTIONS & CONTACT -->
   <div class="step">
-    <div class="step-label">Step 3</div>
-    <div class="step-title">Review price &amp; request order</div>
-    <div class="step-sub">Enter your dimensions and we'll send you a custom quote. Fill out the form and we'll confirm everything before fabrication.</div>
+    <div class="step-label">Step 4</div>
+    <div class="step-title">Finishing options &amp; submit</div>
+    <div class="step-sub">All optional — fill in what applies. Your contact information is at the bottom.</div>
     <div style="display:flex;align-items:flex-start;gap:10px;background:#fef9ec;border:1px solid #f0d070;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#7a5c00;line-height:1.5">
       <span style="font-size:15px;flex-shrink:0">&#9888;</span>
       <span><strong>Specialty shapes &amp; designs</strong> — arched windows, bay windows, or heavily trimmed panels require a custom quote. Use the <strong>Specialty ✦</strong> tab above or call <a href="tel:6097421720" style="color:#7a5c00;font-weight:600">(609) 742-1720</a> and we'll price it out together.</span>
     </div>
 
     <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px;margin-top:16px" id="drape-form">
-      <div class="form-row">
-        <div class="form-group"><label>Name *</label><input type="text" id="d-name" placeholder="Jane Smith"></div>
-        <div class="form-group"><label>Phone *</label><input type="tel" id="d-phone" placeholder="(215) 555-0100"></div>
-      </div>
-      <div class="form-group"><label>Email</label><input type="email" id="d-email" placeholder="jane@example.com"></div>
-      <div class="form-group"><label>Installation address</label><input type="text" id="d-address" placeholder="123 Main St, Philadelphia PA"></div>
-      <div class="form-group"><label>Approximate window width</label>
-        <select id="d-width">
-          <option>Not sure yet</option><option>Under 36"</option><option>36"–48"</option><option>48"–72"</option><option>72"–96"</option><option>96"–120"</option><option>120"+</option>
-        </select>
-      </div>
-      <div class="dim-box">
-        <div class="dim-box-label">Enter your exact measurements</div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Width</label>
-            <input type="number" id="d-exact-width" placeholder="84" min="12" max="250" oninput="calcDrapePrice()">
-            <div class="dim-unit">inches</div>
-          </div>
-          <div class="form-group">
-            <label>Finished length</label>
-            <input type="number" id="d-exact-length" placeholder="96" min="12" max="150" oninput="calcDrapePrice()">
-            <div class="dim-unit">inches</div>
-          </div>
-        </div>
-        <div id="d-min-warn" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.5"></div>
-      </div>
-
-      <!-- DRAPERY PRICE ESTIMATE BOX -->
-      <div id="drape-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:18px 20px;margin-bottom:14px">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px">Your configuration</div>
-        <div id="drape-price-rows"></div>
-        <div style="font-size:10px;color:var(--text-faint);margin-top:8px;line-height:1.5" id="drape-price-note"></div>
-      </div>
-
       <!-- CORNICE & VALANCE ADD-ONS -->
       <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
         <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:10px">Add-ons (optional)</div>
@@ -598,6 +596,13 @@
         <div id="del-drape-p" class="delivery-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.</div>
       </div>
 
+      <div style="border-top:1px solid #e8e8e4;margin:20px 0 16px"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Name *</label><input type="text" id="d-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="d-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="d-email" placeholder="jane@example.com"></div>
+      <div class="form-group"><label>Installation address</label><input type="text" id="d-address" placeholder="123 Main St, Philadelphia PA"></div>
       <button onclick="reqMoreInfo('Custom Drapery')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Drapery →</button>
         <button class="btn-gold" onclick="submitDrape()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Submit Order for Review &rarr;</button>
     </div>
