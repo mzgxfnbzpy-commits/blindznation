@@ -208,6 +208,16 @@ function _motorCustomMsg(box, label) {
     '</div>';
 }
 
+function _customSizeMsg(box, label, maxW, maxH) {
+  if (!box) return;
+  box.style.display = 'block';
+  box.innerHTML =
+    '<div style="padding:2px 0">' +
+      '<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">' + label + ' — Custom Quote Required</div>' +
+      '<div style="font-size:12px;color:var(--text-dark);line-height:1.7">This size exceeds our standard pricing range (max ' + maxW + '″ wide × ' + maxH + '″ tall). Submit your order for review and we\'ll provide a custom price.</div>' +
+    '</div>';
+}
+
 function calcRoman() {
   var w   = parseFloat(document.getElementById('rn-w').value);
   var h   = parseFloat(document.getElementById('rn-h').value);
@@ -217,6 +227,9 @@ function calcRoman() {
 
   // Motorized operation → no customer-facing estimate
   if (getOpt('grp-roman-op') === 'Motorized') { _motorCustomMsg(box, 'Motorized Roman Shade'); return; }
+
+  // Oversized → custom quote (max 120″ × 120″)
+  if (w > 120 || h > 120) { _customSizeMsg(box, 'Roman Shade', 120, 120); return; }
 
   var rate     = rnGetRate();
   var sqft     = (w / 12) * (h / 12);
@@ -344,10 +357,18 @@ function calcDrapePrice() {
     } else if (tooShort) {
       minWarn.textContent = '⚠ Very short panel — finished lengths under 24″ may require specialty pricing. Call (609) 742-1720 to confirm.';
       minWarn.style.display = 'block';
+    } else if (w > 250 || h > 150) {
+      minWarn.textContent = w > 250
+        ? '⚠ Width over 250″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.'
+        : '⚠ Length over 150″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.';
+      minWarn.style.display = 'block';
     } else {
       minWarn.style.display = 'none';
     }
   }
+
+  // Oversized → custom quote (max 250″ wide × 150″ tall)
+  if (w > 250 || h > 150) { _customSizeMsg(box, 'Custom Drapery', 250, 150); return; }
 
   // Fullness factor
   var isRipple   = drapeState.pleat === 'Ripple Fold';
