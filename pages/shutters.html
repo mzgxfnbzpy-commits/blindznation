@@ -228,14 +228,14 @@
         </div>
         <div class="cfg-subhead">Applies to all openings in this order. If you have mixed types, note differences in Step 13.</div>
         <div class="opt-row">
-          <button class="opt-btn" onclick="selOpt(this,'opentype');updateQuote()" data-val="Standard window">Standard window</button>
-          <button class="opt-btn" onclick="selOpt(this,'opentype');updateQuote()" data-val="Double-hung window">Double-hung window</button>
-          <button class="opt-btn" onclick="selOpt(this,'opentype');checkOpenType(this);updateQuote()" data-val="Slider / bypass door">Slider / bypass door</button>
-          <button class="opt-btn" onclick="selOpt(this,'opentype');checkOpenType(this);updateQuote()" data-val="Bi-fold door">Bi-fold door</button>
-          <button class="opt-btn" onclick="selOpt(this,'opentype');checkOpenType(this);updateQuote()" data-val="French door">French door</button>
-          <button class="opt-btn" onclick="selOpt(this,'opentype');checkOpenType(this);updateQuote()" data-val="Bay / corner window">Bay / corner window</button>
-          <button class="opt-btn" onclick="selOpt(this,'opentype');checkOpenType(this);updateQuote()" data-val="Specialty shape (arch, circle, etc.)">Specialty shape</button>
-          <button class="opt-btn" onclick="selOpt(this,'opentype');updateQuote()" data-val="Café (bottom half only)">Café (lower half only)</button>
+          <button class="opt-btn" onclick="selOpt(this,'opentype');updateQuote();setTimeout(continueStep2,400)" data-val="Standard window">Standard window</button>
+          <button class="opt-btn" onclick="checkOpenType(this)" data-val="Double-hung window">Double-hung window <span style="font-size:9px;color:var(--gold)">+10%</span></button>
+          <button class="opt-btn" onclick="checkOpenType(this)" data-val="Slider / bypass door">Slider / bypass door</button>
+          <button class="opt-btn" onclick="checkOpenType(this)" data-val="Bi-fold door">Bi-fold door</button>
+          <button class="opt-btn" onclick="checkOpenType(this)" data-val="French door">French door</button>
+          <button class="opt-btn" onclick="checkOpenType(this)" data-val="Bay / corner window">Bay / corner window</button>
+          <button class="opt-btn" onclick="checkOpenType(this)" data-val="Specialty shape (arch, circle, etc.)">Specialty shape</button>
+          <button class="opt-btn" onclick="checkOpenType(this)" data-val="Café (lower half only)">Café (lower half only)</button>
         </div>
         <div id="opentype-note" class="warn-note"></div>
       </div>
@@ -530,9 +530,9 @@
         <button class="submit-btn" onclick="submitQuote()">Submit Order for Review →</button>
 
         <div class="success-box" id="success-box">
-          <h3>Order submitted!</h3>
-          <p>Your email opened with your full shutter spec pre-filled — just hit Send. We'll schedule a measuring visit, confirm final dimensions, and send you a formal invoice. <strong>No payment until you approve.</strong></p>
-          <p style="margin-top:8px">Questions? <strong>(609) 742-1720</strong> — 24/7 call or text.</p>
+          <h3 style="font-size:20px">Request for Quote Submitted!</h3>
+          <p style="font-size:14px;margin-top:6px">Order submitted!<br>Your email opened with your full spec pre-filled — just hit Send. We'll review your order and send you an invoice within a few hours.</p>
+          <p style="margin-top:10px;font-size:13px">Questions? <strong>(609) 742-1720</strong> · 24/7 call or text.</p>
         </div>
 
         <div style="font-size:11px;color:#aaa;line-height:1.6;margin-top:14px;text-align:center">

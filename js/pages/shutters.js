@@ -341,22 +341,8 @@ function selTilt(btn){
 /* ─── OPEN TYPE CHECK ───────────────────────────────────── */
 function checkOpenType(btn){
   selOpt(btn,'opentype');
-  const val = btn.dataset.val;
-  const note = qs('opentype-note');
-  const msgs = {
-    'Slider / bypass door': '⚠ Bypass/slider doors use a 2020 Bypass track system. Select the track layout in Step 5.',
-    'Bi-fold door': '⚠ Bi-fold doors use bi-fold track hardware (180° or 90°). Select the appropriate track layout in Step 6.',
-    'French door': '⚠ French door shutters require special cutouts. Be sure to note glass cutout type (flush, offset, arch) in your special instructions.',
-    'Bay / corner window': '⚠ Bay and corner windows require matching specifications across all panels. All openings must share the same louver size, frame type, mount type, stile, and height.',
-    'Specialty shape (arch, circle, etc.)': '⚠ Specialty shapes are hand-crafted solid wood with a standard lead time of 8 weeks from order confirmation. Templates may be required for imperfect arches.'
-  };
-  if(msgs[val]){
-    note.textContent = msgs[val];
-    note.classList.add('show');
-  } else {
-    note.classList.remove('show');
-  }
-  updateQuote();
+  var label = (btn.dataset.val || btn.textContent.trim()).split(' (')[0].replace(/\s*\+\d+%/, '').trim();
+  pbShowContact(label + ' — Custom Quote');
 }
 
 /* ─── MOUNT CHECK ───────────────────────────────────────── */

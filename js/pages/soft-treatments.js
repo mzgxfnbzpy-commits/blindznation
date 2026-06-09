@@ -77,6 +77,15 @@ function selectPleat(el, val) {
   if (stdFull)    stdFull.style.display    = (!isRipple && !noFull && !isRodPocket) ? 'block' : 'none';
   if (rippleOpts) rippleOpts.style.display = isRipple ? 'block' : 'none';
   if (fullRec && (isRipple || isRodPocket)) { fullRec.style.display = 'none'; }
+
+  // Scroll to reveal the sub-options or next step that just appeared
+  setTimeout(function() {
+    var target = val === 'Pinch Pleat' ? document.getElementById('pinch-subopts')
+               : isRipple             ? document.getElementById('drape-ripple-opts')
+               : val === 'Rod Pocket / Sheered Pocket' ? document.getElementById('rodpocket-subopts')
+               : stdFull;
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 120);
 }
 
 function drapeFullnessHint(val) {
