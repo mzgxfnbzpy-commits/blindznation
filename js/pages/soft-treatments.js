@@ -648,14 +648,24 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
     }
     fabricCost = fabricYds * CV_FABRIC_YD;
   }
-  var total = labor + trimCost + fabricCost;
+  var heightSurcharge = 0;
+  if (h > 15) {
+    var heightMult = Math.ceil((h - 15) / 10);
+    heightSurcharge = heightMult * 10 * ft;
+  }
+  var total = labor + trimCost + fabricCost + heightSurcharge;
   var rows = '';
-  rows += '<div style="font-size:12px;color:var(--text-dark);padding:4px 0">' + ft + ' linear ft (incl. ends)</div>';
+  rows += '<div style="font-size:12px;color:var(--text-dark);padding:4px 0">' + ft + ' linear ft (incl. ends) × $' + CV_PER_FT.toFixed(2) + '/ft</div>';
+  if (heightSurcharge) {
+    var hMult = Math.ceil((h - 15) / 10);
+    rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Height over 15″ (+' + hMult + ' × $10/ft) <span style="color:var(--gold)">+$' + heightSurcharge.toFixed(2) + '</span></div>';
+  }
   if (hasTrim) rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">' + selTrimTxt + '</div>';
   if (fabricCost) rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">We supply fabric (~' + fabricYds + ' yds est.)</div>';
+  rows += '<div style="font-size:11px;font-weight:700;color:var(--cream);padding-top:8px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)">Est. total: $' + total.toFixed(2) + '</div>';
   document.getElementById(rowsId).innerHTML = rows;
   var noteEl = document.getElementById(noteId);
-  if (noteEl) noteEl.textContent = 'Pricing confirmed at order.';
+  if (noteEl) noteEl.textContent = 'Estimated pricing — confirmed at order. Fabric and trim pricing confirmed during consultation.';
   box.style.display = 'block';
 }
 

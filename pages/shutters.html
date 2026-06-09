@@ -220,30 +220,13 @@
         <div id="line-note" style="display:none" class="info-note"></div>
       </div>
 
-      <!-- ── STEP 2: NUMBER OF OPENINGS ── -->
-      <div class="cfg-section locked" id="sec-count">
-        <div class="cfg-heading">
-          <span class="step-badge" id="badge-2">2</span>
-          Number of openings
-        </div>
-        <div class="cfg-subhead">Each opening gets its own dimensions and panel layout.</div>
-        <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
-          <button onclick="adjCount(-1)" style="width:38px;height:38px;border:1.5px solid #d8d8d4;border-radius:8px 0 0 8px;background:#fff;font-size:22px;font-weight:400;cursor:pointer;color:#333;font-family:inherit;display:flex;align-items:center;justify-content:center">−</button>
-          <input type="number" id="count-input" min="1" max="30" value="1"
-            style="width:62px;height:38px;border-top:1.5px solid #d8d8d4;border-bottom:1.5px solid #d8d8d4;border-left:none;border-right:none;font-size:18px;font-weight:600;color:#111;font-family:inherit;text-align:center;background:#fff"
-            oninput="selCountInput(this)">
-          <button onclick="adjCount(1)" style="width:38px;height:38px;border:1.5px solid #d8d8d4;border-radius:0 8px 8px 0;background:#fff;font-size:22px;font-weight:400;cursor:pointer;color:#333;font-family:inherit;display:flex;align-items:center;justify-content:center">+</button>
-          <span style="font-size:13px;color:#666;margin-left:6px">opening(s)</span>
-        </div>
-      </div>
-
-      <!-- ── STEP 3: OPENING TYPE ── -->
+      <!-- ── STEP 2: OPENING TYPE ── -->
       <div class="cfg-section locked" id="sec-opentype">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-3">3</span>
+          <span class="step-badge" id="badge-2">2</span>
           What type of opening?
         </div>
-        <div class="cfg-subhead">Applies to all openings in this order. If you have mixed types, note differences in Step 14.</div>
+        <div class="cfg-subhead">Applies to all openings in this order. If you have mixed types, note differences in Step 13.</div>
         <div class="opt-row">
           <button class="opt-btn" onclick="selOpt(this,'opentype');updateQuote()" data-val="Standard window">Standard window</button>
           <button class="opt-btn" onclick="selOpt(this,'opentype');updateQuote()" data-val="Double-hung window">Double-hung window</button>
@@ -257,10 +240,10 @@
         <div id="opentype-note" class="warn-note"></div>
       </div>
 
-      <!-- ── STEP 4: MOUNT ── -->
+      <!-- ── STEP 3: MOUNT ── -->
       <div class="cfg-section locked" id="sec-mount">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-4">4</span>
+          <span class="step-badge" id="badge-3">3</span>
           Mount &amp; frame situation
         </div>
         <div class="cfg-subhead">Inside mount sits within the window opening. Outside mount covers the full opening or wall area. Direct mount hinges directly to the window frame — not for drywall.</div>
@@ -276,23 +259,29 @@
         </div>
       </div>
 
-      <!-- ── STEP 5: DIMENSIONS ── -->
+      <!-- ── STEP 4: DIMENSIONS ── -->
       <div class="cfg-section locked" id="sec-dims">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-5">5</span>
+          <span class="step-badge" id="badge-4">4</span>
           Dimensions
         </div>
-        <div class="cfg-subhead">Enter width × height for each opening in inches (e.g., 36⅛). Measure to 1/8″ precision. We take 3W × 3H — the installer records final measurements at the home visit.</div>
-        <div id="dim-openings"></div>
+        <div class="cfg-subhead">Enter width × height in inches (e.g., 36⅛). Measure to 1/8″ precision. We take 3W × 3H — the installer records final measurements at the home visit.</div>
+        <div class="opening-card">
+          <div class="dim-row">
+            <div class="form-group" style="margin:0"><label>Width (inches)</label><input type="text" placeholder='e.g. 36⅛"' id="dim-w-0" oninput="S.dims[0].w=this.value;updateQuote();checkDimWarn(0,this.value)"></div>
+            <div class="form-group" style="margin:0"><label>Height (inches)</label><input type="text" placeholder='e.g. 60½"' id="dim-h-0" oninput="S.dims[0].h=this.value;updateQuote();checkDimHWarn(0,this.value)"></div>
+          </div>
+          <div id="dim-warn-0" class="warn-note"></div>
+        </div>
         <div class="info-note" style="margin-top:8px">
-          <strong>Not sure of exact measurements?</strong> Provide your best estimate — a measuring visit is included before ordering. Include fractions (e.g., 24¼, 36⅝).
+          <strong>Multiple windows with different sizes?</strong> Add each set of measurements in the Notes step below.
         </div>
       </div>
 
-      <!-- ── STEP 6: PANEL LAYOUT ── -->
+      <!-- ── STEP 5: PANEL LAYOUT ── -->
       <div class="cfg-section locked" id="sec-layout">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-6">6</span>
+          <span class="step-badge" id="badge-5">5</span>
           Panel layout / orientation
         </div>
         <div class="cfg-subhead">L = hinges on left, opens right. R = hinges on right, opens left. T = T-post (stationary center divider). Select the layout for your openings.</div>
@@ -319,10 +308,10 @@
         <div id="layout-note" class="spec-note" style="display:none"></div>
       </div>
 
-      <!-- ── STEP 7: T-POSTS ── -->
+      <!-- ── STEP 6: T-POSTS ── -->
       <div class="cfg-section locked" id="sec-tpost">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-7">7</span>
+          <span class="step-badge" id="badge-6">6</span>
           T-Posts
         </div>
         <div class="cfg-subhead">T-posts are stationary center dividers. Vertical T-posts split the shutter width. Horizontal T-posts split double-hung panels. Required when your layout includes "T".</div>
@@ -339,10 +328,10 @@
         <p class="t-post-note">Horizontal T-post default type: Chamfer T-post unless otherwise specified. Custom T-post width up to 7½″ available (surcharge applies). Section length per T-post ≤48″.</p>
       </div>
 
-      <!-- ── STEP 8: LOUVER SIZE ── -->
+      <!-- ── STEP 7: LOUVER SIZE ── -->
       <div class="cfg-section locked" id="sec-louver">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-8">8</span>
+          <span class="step-badge" id="badge-7">7</span>
           Louver size
         </div>
         <div class="cfg-subhead">Larger louvers mean a clearer view when open and a bolder look. Smaller louvers offer a traditional style.</div>
@@ -353,10 +342,10 @@
         <div id="louver-maxw-note" class="spec-note" style="display:none"></div>
       </div>
 
-      <!-- ── STEP 9: TILT TYPE ── -->
+      <!-- ── STEP 8: TILT TYPE ── -->
       <div class="cfg-section locked" id="sec-tilt">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-9">9</span>
+          <span class="step-badge" id="badge-8">8</span>
           Tilt rod / louver control
         </div>
         <div class="opt-row">
@@ -368,10 +357,10 @@
         <div style="font-size:11px;color:#888;line-height:1.6;margin-top:6px">InvisibleTilt™ embeds the tilt mechanism inside the stile — no visible rod. Surcharge applies. Not available for 1⅞″ louvers.</div>
       </div>
 
-      <!-- ── STEP 10: FRAME STYLE ── -->
+      <!-- ── STEP 9: FRAME STYLE ── -->
       <div class="cfg-section locked" id="sec-frame">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-10">10</span>
+          <span class="step-badge" id="badge-9">9</span>
           Frame style
         </div>
         <div class="cfg-subhead">The frame surrounds the shutter panel. Most inside-mount orders use an L Frame. Z frames work for window casings with specific depth. Hang strips are low-profile.</div>
@@ -389,10 +378,10 @@
         </div>
       </div>
 
-      <!-- ── STEP 11: DIVIDER RAILS ── -->
+      <!-- ── STEP 10: DIVIDER RAILS ── -->
       <div class="cfg-section locked" id="sec-divider">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-11">11</span>
+          <span class="step-badge" id="badge-10">10</span>
           Divider rails
         </div>
         <div class="cfg-subhead">A divider rail adds a horizontal mid-panel rail so louvers can be controlled independently above and below. Required on tall panels.</div>
@@ -405,10 +394,10 @@
         </div>
       </div>
 
-      <!-- ── STEP 12: FINISH / COLOR ── -->
+      <!-- ── STEP 11: FINISH / COLOR ── -->
       <div class="cfg-section locked" id="sec-color">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-12">12</span>
+          <span class="step-badge" id="badge-11">11</span>
           Finish &amp; color
         </div>
         <div id="color-inner">
@@ -416,10 +405,10 @@
         </div>
       </div>
 
-      <!-- ── STEP 13: SPECIALTY OPTIONS ── -->
+      <!-- ── STEP 12: SPECIALTY OPTIONS ── -->
       <div class="cfg-section locked" id="sec-special">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-13">13</span>
+          <span class="step-badge" id="badge-12">12</span>
           Specialty options
         </div>
         <div class="cfg-subhead">Select any add-ons. All items are optional.</div>
@@ -459,10 +448,10 @@
         </div>
       </div>
 
-      <!-- ── STEP 14: ROOM / NOTES ── -->
+      <!-- ── STEP 13: ROOM / NOTES ── -->
       <div class="cfg-section locked" id="sec-notes">
         <div class="cfg-heading">
-          <span class="step-badge" id="badge-14">14</span>
+          <span class="step-badge" id="badge-13">13</span>
           Room &amp; special notes
         </div>
         <div class="form-group">
@@ -472,6 +461,23 @@
         <div class="form-group">
           <label>Special instructions or questions</label>
           <textarea id="field-notes" placeholder="Any per-opening differences, stile preferences, obstructions (handles, cranks), match to existing shutters, or questions for the installer..."></textarea>
+        </div>
+      </div>
+
+      <!-- ── STEP 14: QUANTITY ── -->
+      <div class="cfg-section locked" id="sec-qty">
+        <div class="cfg-heading">
+          <span class="step-badge" id="badge-14">14</span>
+          Quantity
+        </div>
+        <div class="cfg-subhead">How many windows or openings are you ordering shutters for?</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:10px">
+          <button onclick="adjQty(-1)" style="width:38px;height:38px;border:1.5px solid #d8d8d4;border-radius:8px 0 0 8px;background:#fff;font-size:22px;font-weight:400;cursor:pointer;color:#333;font-family:inherit;display:flex;align-items:center;justify-content:center">−</button>
+          <input type="number" id="qty-input" min="1" max="50" value="1"
+            style="width:62px;height:38px;border-top:1.5px solid #d8d8d4;border-bottom:1.5px solid #d8d8d4;border-left:none;border-right:none;font-size:18px;font-weight:600;color:#111;font-family:inherit;text-align:center;background:#fff"
+            oninput="S.count=parseInt(this.value)||1;updateQuote()">
+          <button onclick="adjQty(1)" style="width:38px;height:38px;border:1.5px solid #d8d8d4;border-radius:0 8px 8px 0;background:#fff;font-size:22px;font-weight:400;cursor:pointer;color:#333;font-family:inherit;display:flex;align-items:center;justify-content:center">+</button>
+          <span style="font-size:13px;color:#666;margin-left:6px">window(s)</span>
         </div>
       </div>
 
@@ -542,12 +548,12 @@
         <div class="quote-box-title">Quote Summary</div>
 
         <div class="q-row"><span class="q-lbl">Line</span><span class="q-val" id="qs-line">—</span></div>
-        <div class="q-row"><span class="q-lbl">Openings</span><span class="q-val" id="qs-count">—</span></div>
+        <div class="q-row"><span class="q-lbl">Quantity</span><span class="q-val" id="qs-count">—</span></div>
         <div class="q-row"><span class="q-lbl">Type</span><span class="q-val" id="qs-opentype">—</span></div>
         <div class="q-row"><span class="q-lbl">Mount</span><span class="q-val" id="qs-mount">—</span></div>
 
         <hr class="q-divider">
-        <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Openings</div>
+        <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px">Dimensions</div>
         <ul class="q-opening-list" id="qs-openings"></ul>
 
         <hr class="q-divider">

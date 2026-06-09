@@ -154,8 +154,8 @@ const LAYOUTS = {
 
 /* ─── STATE ─────────────────────────────────────────────── */
 const S = {
-  line: '', count: 0,
-  opentype: '', mount: '', dims: [],
+  line: '', count: 1,
+  opentype: '', mount: '', dims: [{w:'',h:'',label:''}],
   layout: '', tpostV: '', tpostH: '',
   louver: '', tilt: '', frame: '', divider: '',
   colorType: '', color: '',
@@ -196,8 +196,23 @@ function selLine(name, card){
     (ln.notes ? '<br><small>' + ln.notes.join(' · ') + '</small>' : '');
   note.style.display = 'block';
 
-  unlock('sec-count');
-  qs('sec-count').classList.add('highlight');
+  S.count = 1;
+  S.dims = [{w:'',h:'',label:''}];
+  unlock('sec-opentype'); qs('sec-opentype').classList.add('highlight');
+  unlock('sec-mount');
+  unlock('sec-dims');
+  unlock('sec-layout');
+  unlock('sec-tpost');
+  unlock('sec-louver');
+  unlock('sec-tilt');
+  unlock('sec-frame');
+  unlock('sec-divider');
+  unlock('sec-color');
+  unlock('sec-special');
+  unlock('sec-notes');
+  unlock('sec-qty');
+  unlock('sec-delivery');
+  unlock('sec-contact');
   qs('sec-line').classList.remove('highlight');
 
   // Show waterproof option for WLP
@@ -208,68 +223,8 @@ function selLine(name, card){
   buildColorSection();
 }
 
-/* ─── COUNT ─────────────────────────────────────────────── */
-function adjCount(d){ var el=document.getElementById('count-input'); el.value=Math.max(1,Math.min(30,(parseInt(el.value)||1)+d)); selCountInput(el); }
-function selCountInput(inp){
-  const n = parseInt(inp.value)||0;
-  if(n < 1) return;
-  inp.style.borderColor = 'var(--gold)';
-  selCount(n);
-}
-function selCount(n, btn){
-  S.count = n;
-  markDone(2);
-  buildDims(n);
-  unlock('sec-opentype'); qs('sec-opentype').classList.add('highlight');
-  unlock('sec-mount');
-  unlock('sec-dims'); qs('sec-dims').classList.add('highlight');
-  unlock('sec-layout');
-  unlock('sec-tpost');
-  unlock('sec-louver');
-  unlock('sec-tilt');
-  unlock('sec-frame');
-  unlock('sec-divider');
-  unlock('sec-color');
-  unlock('sec-special');
-  unlock('sec-notes');
-  unlock('sec-delivery');
-  unlock('sec-contact');
-  qs('sec-count').classList.remove('highlight');
-  updateQuote();
-}
-
-/* ─── DIMS ──────────────────────────────────────────────── */
-function buildDims(n){
-  const container = qs('dim-openings');
-  container.innerHTML = '';
-  S.dims = Array.from({length:n}, (_,i) => ({w:'',h:'',label:'Opening '+(i+1)}));
-
-  for(let i=0;i<n;i++){
-    const div = document.createElement('div');
-    div.className = 'opening-card';
-    div.innerHTML = `
-      <div class="opening-title">
-        <span class="opening-num">${i+1}</span>
-        Opening ${i+1}
-      </div>
-      <div class="dim-row">
-        <div class="form-group" style="margin:0">
-          <label>Width (inches)</label>
-          <input type="text" placeholder='e.g. 36⅛"' oninput="S.dims[${i}].w=this.value;updateQuote();checkDimWarn(${i},this.value)" id="dim-w-${i}">
-        </div>
-        <div class="form-group" style="margin:0">
-          <label>Height (inches)</label>
-          <input type="text" placeholder='e.g. 60½"' oninput="S.dims[${i}].h=this.value;updateQuote();checkDimHWarn(${i},this.value)" id="dim-h-${i}">
-        </div>
-      </div>
-      <div id="dim-warn-${i}" class="warn-note"></div>
-      <div class="form-group" style="margin:6px 0 0">
-        <label>Opening label (optional)</label>
-        <input type="text" placeholder="e.g. Master bedroom left" oninput="S.dims[${i}].label=this.value;updateQuote()">
-      </div>`;
-    container.appendChild(div);
-  }
-}
+/* ─── QTY ───────────────────────────────────────────────── */
+function adjQty(d){ var el=document.getElementById('qty-input'); el.value=Math.max(1,Math.min(50,(parseInt(el.value)||1)+d)); S.count=parseInt(el.value)||1; updateQuote(); }
 
 function checkDimWarn(i, val){
   const w = parseFloat(val);
@@ -319,7 +274,7 @@ function selLayout(code, btn){
   document.querySelectorAll('.layout-btn,.opt-row .opt-btn[data-layout]').forEach(b=>b.classList.remove('sel'));
   btn.classList.add('sel');
   S.layout = code;
-  markDone(6);
+  markDone(5);
   // Show note for track layouts
   const trackLayouts = ['Bi-fold 180° (opens 180°)','Bi-fold 90° (folds into wall)','2020 Bypass (sliding panels)','Frame Hinged Bifold'];
   const note = qs('layout-note');
@@ -353,7 +308,7 @@ function selLouver(size, btn){
   document.querySelectorAll('#louver-opts .opt-btn').forEach(b=>b.classList.remove('sel'));
   btn.classList.add('sel');
   S.louver = size;
-  markDone(8);
+  markDone(7);
   // Check InvisibleTilt conflict
   if(S.tilt && S.tilt.includes('InvisibleTilt') && SHUTTER_LINES[S.line].invisibleTiltExclude.includes(size)){
     qs('tilt-warn').classList.add('show');
@@ -373,7 +328,7 @@ function selTilt(btn){
   document.querySelectorAll('#sec-tilt .opt-btn').forEach(b=>b.classList.remove('sel'));
   btn.classList.add('sel');
   S.tilt = btn.dataset.val;
-  markDone(9);
+  markDone(8);
   const warn = qs('tilt-warn');
   if(S.line && S.louver && SHUTTER_LINES[S.line].invisibleTiltExclude.includes(S.louver)){
     warn.classList.add('show');
@@ -389,7 +344,7 @@ function checkOpenType(btn){
   const val = btn.dataset.val;
   const note = qs('opentype-note');
   const msgs = {
-    'Slider / bypass door': '⚠ Bypass/slider doors use a 2020 Bypass track system. Select the track layout in Step 6.',
+    'Slider / bypass door': '⚠ Bypass/slider doors use a 2020 Bypass track system. Select the track layout in Step 5.',
     'Bi-fold door': '⚠ Bi-fold doors use bi-fold track hardware (180° or 90°). Select the appropriate track layout in Step 6.',
     'French door': '⚠ French door shutters require special cutouts. Be sure to note glass cutout type (flush, offset, arch) in your special instructions.',
     'Bay / corner window': '⚠ Bay and corner windows require matching specifications across all panels. All openings must share the same louver size, frame type, mount type, stile, and height.',
@@ -460,7 +415,7 @@ function selColor(id, name, el, group){
   document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('sel'));
   el.classList.add('sel');
   S.color = name + ' (' + id + ')';
-  markDone(12);
+  markDone(11);
   updateQuote();
 }
 
@@ -500,7 +455,7 @@ function selDelivery(type, card){
 /* ─── QUOTE SUMMARY ─────────────────────────────────────── */
 function updateQuote(){
   setText('qs-line', S.line || '—');
-  setText('qs-count', S.count ? S.count + ' opening'+(S.count!==1?'s':'') : '—');
+  setText('qs-count', S.count ? S.count + ' window'+(S.count!==1?'s':'') : '—');
   setText('qs-opentype', S.opentype || '—');
   setText('qs-mount', S.mount || '—');
   setText('qs-layout', S.layout || '—');
@@ -538,7 +493,7 @@ async function submitQuote(){
   ).join('; ');
   const selections = [
     { label:'Line', value:S.line },
-    { label:'Openings', value:S.count+' opening'+(S.count!==1?'s':'') },
+    { label:'Quantity', value:S.count+' window'+(S.count!==1?'s':'') },
     { label:'Opening type', value:S.opentype||'—' },
     { label:'Mount', value:S.mount||'—' },
     { label:'Dimensions', value:dimsText||'—' },
