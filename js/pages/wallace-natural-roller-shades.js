@@ -256,7 +256,7 @@ function buildBackGrids() {
   BACK_RD.forEach(function(b,i) {
     document.getElementById('back-rd-grid').innerHTML +=
       '<div class="back-card" id="backc-' + b.code + '" onclick="selectBack(\'' + b.code + '\',\'' + b.name + '\',\'RD\')">' +
-      '<div class="back-name">Room Darkening ' + b.name + '</div><div class="back-code">' + b.code + '</div></div>';
+      '<div class="back-name">Blackout ' + b.name + '</div><div class="back-code">' + b.code + '</div></div>';
   });
 }
 
@@ -265,7 +265,7 @@ function selectBack(code, name, type) {
   document.querySelectorAll('.back-card').forEach(function(el){ el.classList.remove('sel'); });
   var el = document.getElementById('backc-' + code);
   if (el) el.classList.add('sel');
-  var label = (type === 'RD' ? 'Room Darkening ' : 'Light Filtering ') + name + ' · ' + code;
+  var label = (type === 'RD' ? 'Blackout ' : 'Light Filtering ') + name + ' · ' + code;
   completeStep('step-5', label);
   updateSpec('sp-back', label);
   activateStep('step-6');
@@ -691,7 +691,7 @@ function submitQuote() {
     + (fab && fab.rhea ? 'NOTE: Rhea fabric — no cassette wrap, no box valance\n' : '')
     + (S.shadeType === 'double'
       ? '\n── BACK FABRIC ──\n'
-        + 'Back fabric: ' + (S.backFabric ? (S.backFabric.type === 'RD' ? 'Room Darkening' : 'Light Filtering') + ' ' + S.backFabric.name + ' · ' + S.backFabric.code : '—') + '\n'
+        + 'Back fabric: ' + (S.backFabric ? (S.backFabric.type === 'RD' ? 'Blackout' : 'Light Filtering') + ' ' + S.backFabric.name + ' · ' + S.backFabric.code : '—') + '\n'
       : '')
     + '\n── TOP TREATMENT / BRACKET ──\n'
     + 'Top treatment: ' + (ttlabels[tt] || '—') + '\n'

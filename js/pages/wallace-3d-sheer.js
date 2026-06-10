@@ -25,13 +25,13 @@ const COLLECTIONS = [
    colors:[{code:'FRB-1371',hw:'Ivory',label:'Ivory 1'},{code:'FRB-1372',hw:'Ivory',label:'Ivory 2'},{code:'FRB-1373',hw:'Grey',label:'Grey'},{code:'FRB-1374',hw:'Brown',label:'Brown 1'},{code:'FRB-1375',hw:'Brown',label:'Brown 2'}]},
   {name:'One Band', group:'B', band:'3"',    lc:'Translucent',    insert:false, rail:'Deluxe',     minW:20, maxW:100, minH:20, maxH:120,
    colors:[{code:'BD-1151',hw:'White',label:'White'},{code:'BD-1152',hw:'Ivory',label:'Ivory'},{code:'BD-1153',hw:'Beige',label:'Beige'},{code:'BD-1154',hw:'Brown',label:'Brown 1'},{code:'BD-1155',hw:'Brown',label:'Brown 2'}]},
-  {name:'Blackout Ares',group:'C',band:'3"', lc:'Room Darkening', insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+  {name:'Blackout Ares',group:'C',band:'3"', lc:'Blackout', insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
    colors:[{code:'ARB-1131',hw:'White',label:'White'},{code:'ARB-1132',hw:'Beige',label:'Beige'},{code:'ARB-1133',hw:'Brown',label:'Brown 1'},{code:'ARB-1134',hw:'Grey',label:'Grey'},{code:'ARB-1135',hw:'Ivory',label:'Ivory'},{code:'ARB-1136',hw:'Brown',label:'Brown 2'}]},
   {name:'Chelsea',  group:'C', band:'3"',    lc:'Translucent',    insert:false, rail:'Deluxe',     minW:20, maxW:100, minH:20, maxH:120,
    colors:[{code:'CS-1831',hw:'White',label:'White'},{code:'CS-1832',hw:'Ivory',label:'Ivory'},{code:'CS-1833',hw:'Beige',label:'Beige'},{code:'CS-1834',hw:'Brown',label:'Brown'},{code:'CS-1835',hw:'Grey',label:'Grey'}]},
   {name:'Shiny',    group:'C', band:'3"',    lc:'Translucent',    insert:true,  rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
    colors:[{code:'SNY-1841',hw:'White',label:'White'},{code:'SNY-1842',hw:'Ivory',label:'Ivory'},{code:'SNY-1843',hw:'Beige',label:'Beige 1'},{code:'SNY-1844',hw:'Beige',label:'Beige 2'},{code:'SNY-1845',hw:'Grey',label:'Grey'}]},
-  {name:'Sunlux',   group:'C', band:'2"',    lc:'Room Darkening', insert:false, rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
+  {name:'Sunlux',   group:'C', band:'2"',    lc:'Blackout', insert:false, rail:'Moon Shape', minW:12, maxW:100, minH:20, maxH:120,
    colors:[{code:'SLX-1861',hw:'White',label:'White'},{code:'SLX-1862',hw:'Grey',label:'Grey'},{code:'SLX-1863',hw:'Beige',label:'Beige'},{code:'SLX-1864',hw:'Brown',label:'Brown 1'},{code:'SLX-1865',hw:'Brown',label:'Brown 2'}]}
 ];
 
@@ -153,7 +153,7 @@ function buildCollGrid(){
       <div class="coll-name">${c.name}</div>
       <div class="coll-meta">
         <span class="pg-badge">Group ${c.group}</span>
-        ${c.lc==='Room Darkening'?'<span class="rd-badge">Room Darkening</span>':''}
+        ${c.lc==='Blackout'?'<span class="rd-badge">Blackout</span>':''}
         ${c.band} band · ${c.rail==='Deluxe'?'Deluxe bottom rail':c.rail}
       </div>
     </div>`).join('');

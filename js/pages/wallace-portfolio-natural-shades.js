@@ -120,10 +120,10 @@ const LINERS = [
   {code:'LF04', name:'Gray',           cat:'Light Filtering'},
   {code:'LF03', name:'Espresso',       cat:'Light Filtering'},
   {code:'LF10', name:'Black',          cat:'Light Filtering'},
-  {code:'BO01', name:'Soft White',     cat:'Room Darkening'},
-  {code:'BO02', name:'Beige',          cat:'Room Darkening'},
-  {code:'BO03', name:'Dark Linen',     cat:'Room Darkening'},
-  {code:'BO11', name:'Black',          cat:'Room Darkening'}
+  {code:'BO01', name:'Soft White',     cat:'Blackout'},
+  {code:'BO02', name:'Beige',          cat:'Blackout'},
+  {code:'BO03', name:'Dark Linen',     cat:'Blackout'},
+  {code:'BO11', name:'Black',          cat:'Blackout'}
 ];
 
 // ── Edge Bindings ───────────────────────────────────────────

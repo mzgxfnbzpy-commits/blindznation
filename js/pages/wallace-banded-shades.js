@@ -208,7 +208,7 @@ var COLL2D=[
   {n:'Reed',           l:'T', g:'E', c:['Ice White','White','Ivory','Light Grey','Grey','Dark Grey']},
   {n:'Sparkle',        l:'T', g:'E', c:['White (9-2)','Ivory (7-4)','2-6','3-4','Black']},
   {n:'Spread 1390',    l:'T', g:'E', c:['White','Grey','Stone Blue','Black Brown']},
-  // ── Room Darkening ──
+  // ── Blackout ──
   {n:'Almond',         l:'RD',g:'D', c:['Ice White','Ivory','Beige','Latte','Grey','Teak','Khaki','Anthracite'], note:'large rail req.'},
   {n:'Abakan',         l:'RD',g:'E', c:null},
   {n:'Equus One Tone', l:'RD',g:'E', c:null, note:'large rail req.'},
@@ -261,14 +261,14 @@ function set2dLight(l,btn){
   S.fabric=null;
   document.getElementById('val2').textContent='—';
   document.getElementById('step2').classList.remove('done');
-  spv('sp-fab','');spv('sp-op',l==='T'?'Translucent':'Room Darkening');
+  spv('sp-fab','');spv('sp-op',l==='T'?'Translucent':'Blackout');
 }
 
 function escQ(s){return (s+'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
 
 function render2dGrid(){
   var colls=COLL2D.filter(function(c){return c.l===b2dLight;});
-  var opLabel=b2dLight==='T'?'Light Filtering':'Room Darkening';
+  var opLabel=b2dLight==='T'?'Light Filtering':'Blackout';
   var html='';var hasAny=false;
   ['A','B','C','D','E','F'].forEach(function(grp){
     var grpColls=colls.filter(function(c){return c.g===grp;});
@@ -313,7 +313,7 @@ function pick2dFabric(collName,colorName,btn){
   var label=collName+' — '+colorName;
   S.fabric={name:label,type:'2d'};
   spv('sp-fab',label);
-  spv('sp-op',b2dLight==='T'?'Translucent':'Room Darkening');
+  spv('sp-op',b2dLight==='T'?'Translucent':'Blackout');
   document.getElementById('val2').textContent=label.length>32?collName:label;
   document.getElementById('step2').classList.add('done');
   openNext('step3');
@@ -325,7 +325,7 @@ function setOpacity(op,el){
   selB(el,'grp-opacity');
   document.getElementById('rd-note').style.display=op==='rd'?'':'none';
   if(op==='rd'){var lb=document.getElementById('btn-lb');if(lb)selB(lb,'grp-bar');}
-  spv('sp-op',op==='lf'?'Light Filtering':'Room Darkening');
+  spv('sp-op',op==='lf'?'Light Filtering':'Blackout');
   renderFabricGrid();
 }
 
@@ -362,7 +362,7 @@ function selectFab(f){
   S.fabric=f;
   document.getElementById('val2').textContent=f.pat.replace('*','')+' '+f.color+' ('+f.code+') Grp '+f.g;
   spv('sp-fab',f.pat.replace('*','')+' '+f.color+' ('+f.code+') · Group '+f.g+' · max '+f.maxW+'"W');
-  spv('sp-op',S.opacity==='lf'?'Light Filtering':'Room Darkening');
+  spv('sp-op',S.opacity==='lf'?'Light Filtering':'Blackout');
   document.getElementById('step2').classList.add('done');
   document.getElementById('tory-warn').style.display=f.code.startsWith('TR')?'':'none';
   var cb=document.getElementById('btn-cordless');
@@ -579,7 +579,7 @@ function submitQ(){
   ].concat(S.prod==='dual'?[
     'FABRIC',
     'Pattern: '+S.fabric.pat.replace('*',''),'Color: '+S.fabric.color,'Code: '+S.fabric.code,
-    'Price group: Group '+S.fabric.g,'Opacity: '+(S.opacity==='lf'?'Light Filtering':'Room Darkening'),
+    'Price group: Group '+S.fabric.g,'Opacity: '+(S.opacity==='lf'?'Light Filtering':'Blackout'),
     'Band height: '+S.fabric.band,'Max fabric width: '+S.fabric.maxW+'"',
     '','CONTROL',
     'Control: '+getCtrlLabel(),
