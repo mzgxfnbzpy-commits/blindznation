@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Custom roller shades — in-house fabricated to your exact specs. Any fabric type, any motor brand, customer fabric accepted. Serving Philadelphia area.">
+<meta property="og:title" content="Custom Roller Shades | Blindznation">
+<meta property="og:description" content="Custom roller shades — any fabric, any motor brand, customer fabric accepted.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.blindznation.com/pages/custom-roller-shades.html">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Custom Roller Shades | Blindznation">
+<meta name="twitter:description" content="Custom roller shades — any fabric, any motor brand, customer fabric accepted.">
+<meta property="og:image" content="https://www.blindznation.com/img/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://www.blindznation.com/img/social-preview.png">
+<title>Custom Roller Shades — Blindznation</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:linear-gradient(to right,rgba(28,21,16,.95) 40%,rgba(28,21,16,.65) 70%,rgba(28,21,16,.3) 100%),url('../images/thumbnails/roller-shades-commercial.JPEG') right center/cover no-repeat;padding:48px 28px 44px;min-height:280px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
+
+.config-layout{display:grid;grid-template-columns:1fr 308px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+
+/* Steps */
+.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:12px;margin-bottom:10px;overflow:hidden}
+.step-block.active{box-shadow:0 2px 12px rgba(45,224,193,.1);border-color:rgba(45,224,193,.3)}
+.step-head{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
+.step-title{font-size:13px;font-weight:600;color:#111;flex:1}
+.step-val{font-size:12px;color:var(--gold);font-weight:500;text-align:right;flex-shrink:0;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.step-body{padding:0 16px 16px;display:none}
+.step-block.active .step-body,.step-block.open .step-body{display:block}
+
+/* Type cards */
+.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:10px}
+.type-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:14px 12px;cursor:pointer;transition:all .15s;text-align:center}
+.type-card:hover{border-color:var(--gold);background:var(--gold-mid)}
+.type-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.type-card.disabled{opacity:.35;pointer-events:none}
+.type-icon{font-size:22px;margin-bottom:6px}
+.type-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px;line-height:1.3}
+.type-desc{font-size:10px;color:#666;line-height:1.4}
+.type-card.sel .type-name{color:#0A4A42}
+.exterior-card{border-style:dashed !important}
+.exterior-card.sel{border-style:solid !important}
+
+/* Openness sub-options */
+.sub-opts{margin-top:12px;padding:12px;background:#f9f9f7;border-radius:8px;display:none}
+.sub-opts.show{display:block}
+.sub-opts-label{font-size:11px;font-weight:600;color:#555;margin-bottom:8px}
+.openness-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+@media(max-width:420px){.openness-grid{grid-template-columns:repeat(2,1fr)}}
+.openness-btn{padding:10px 4px;border:1.5px solid #e0e0db;border-radius:8px;background:#fff;font-size:12px;font-weight:500;cursor:pointer;text-align:center;transition:all .15s;font-family:inherit}
+.openness-btn:hover{border-color:var(--gold)}
+.openness-btn.sel{border-color:var(--gold);background:var(--gold-mid);color:#0A4A42}
+.openness-pct{font-size:16px;font-weight:700;display:block;margin-bottom:2px}
+.openness-label{font-size:9px;color:#888;display:block;line-height:1.3}
+
+/* Exterior note */
+.exterior-note{background:#FFF8EC;border:1px solid #e8c96b;border-radius:8px;padding:11px 14px;font-size:12px;color:#5a3a00;line-height:1.6;margin-top:12px;display:none}
+.exterior-note strong{display:block;font-size:12px;font-weight:700;margin-bottom:4px;color:#3a2200}
+
+/* Opt cards */
+.opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.opt-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.opt-grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+@media(max-width:560px){.opt-grid-3,.opt-grid-5{grid-template-columns:1fr 1fr}}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;transition:all .15s;text-align:center}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.opt-card.disabled{opacity:.35;pointer-events:none}
+.opt-card-title{font-size:12px;font-weight:600;color:#111;margin-bottom:3px;line-height:1.3}
+.opt-card.sel .opt-card-title{color:#0A4A42}
+.opt-card-desc{font-size:10px;color:#666;line-height:1.4}
+.opt-badge{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:6px;background:var(--gold);color:var(--espresso);margin-bottom:4px}
+.mount-note{font-size:11px;color:#555;margin-top:8px;line-height:1.6;padding:8px 10px;background:#f0f9f8;border:1px solid rgba(45,224,193,.2);border-radius:7px;display:none}
+.mount-note.show{display:block}
+
+/* Dimensions */
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+@media(max-width:480px){.dim-row{grid-template-columns:1fr}}
+.dim-label{font-size:12px;font-weight:600;color:#444;margin-bottom:6px}
+.dim-inputs{display:flex;gap:6px;align-items:center}
+.dim-whole{width:62px;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:15px;text-align:center;font-family:inherit;transition:border-color .12s}
+.dim-whole:focus{outline:none;border-color:var(--gold)}
+.dim-frac{padding:8px 6px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;background:#fff;font-family:inherit;transition:border-color .12s}
+.dim-frac:focus{outline:none;border-color:var(--gold)}
+.dim-unit{font-size:12px;color:#666}
+.dim-msg{border-radius:7px;padding:8px 12px;font-size:11px;margin-top:8px;line-height:1.5;display:none}
+.dim-msg.show{display:block}
+.dim-msg.warn{background:#FEE2E2;border:1px solid #EF4444;color:#7f1d1d}
+.dim-msg.info{background:#f0f9f8;border:1px solid rgba(45,224,193,.25);color:#0A4A42}
+
+/* Fabric */
+.fabric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
+.fabric-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:14px 12px;cursor:pointer;transition:all .15s;text-align:center}
+.fabric-card:hover{border-color:var(--gold);background:var(--gold-mid)}
+.fabric-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.fabric-icon{font-size:22px;margin-bottom:6px}
+.fabric-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
+.fabric-desc{font-size:10px;color:#666;line-height:1.4}
+.fabric-card.sel .fabric-name{color:#0A4A42}
+.cust-note{background:#FFF8EC;border:1px solid #e8c96b;border-radius:8px;padding:10px 13px;font-size:11px;color:#5a3a00;line-height:1.6;margin-top:10px;display:none}
+.cust-note.show{display:block}
+
+/* Qty */
+.spinner-row{display:flex;align-items:center;gap:9px;margin-top:10px}
+.spin-btn{width:34px;height:34px;border:1.5px solid #ddd;border-radius:7px;background:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .12s;font-family:inherit;line-height:1}
+.spin-btn:hover{border-color:var(--gold)}
+.spin-num{width:50px;text-align:center;border:1.5px solid #ddd;border-radius:7px;font-size:15px;font-weight:600;padding:6px;font-family:inherit}
+.spin-label{font-size:12px;color:#666}
+
+/* Delivery */
+.delivery-opt{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1.5px solid #e8e8e4;border-radius:10px;cursor:pointer;margin-top:8px;transition:all .15s}
+.delivery-opt:hover{border-color:var(--gold)}
+.delivery-opt.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.del-radio{width:16px;height:16px;border:2px solid #ccc;border-radius:50%;flex-shrink:0;margin-top:2px;transition:all .15s}
+.delivery-opt.sel .del-radio{border-color:var(--gold);background:var(--gold)}
+.del-label{font-size:13px;font-weight:600;color:#111}
+.del-sub{font-size:11px;color:#666;margin-top:2px;line-height:1.5}
+.tariff-note{font-size:10px;color:#999;margin-top:4px;line-height:1.5}
+
+/* Form */
+.form-group{margin-bottom:12px}
+.form-group label{display:block;font-size:11px;font-weight:600;color:#555;margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+.form-group input,.form-group textarea{width:100%;padding:9px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;font-family:inherit;box-sizing:border-box;transition:border-color .12s}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--gold)}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+
+/* Quote panel */
+.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
+.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+.qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:12px 0;font-style:italic;line-height:1.6}
+.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px;gap:8px;align-items:baseline}
+.qrow-label{color:var(--text-muted)}
+.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
+.qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6;font-style:italic}
+.submit-note{font-size:10px;color:var(--text-muted);text-align:center;margin-top:8px;line-height:1.5}
+.success-box{background:#1a3a2a;border:1px solid rgba(45,224,193,.4);border-radius:10px;padding:16px;text-align:center;display:none}
+.success-box h4{color:var(--gold);font-size:14px;margin-bottom:6px}
+.success-box p{color:var(--text-dark);font-size:12px;line-height:1.6}
+</style>
+</head>
+<body data-page="Shades & blinds">
+<nav class="site-nav" id="site-nav"></nav>
+
+<!-- ═══ HERO ════════════════════════════════════════════════ -->
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Roller Shades</div>
+  <h1>Custom Roller Shades</h1>
+  <p class="sub">In-house fabricated to your exact specs. Any fabric type, any motor brand — or bring your own fabric. Interior and exterior applications.</p>
+  <div class="hero-pills">
+    <span class="hero-pill hero-pill-gold">In-house fabricated</span>
+    <span class="hero-pill">Any fabric type</span>
+    <span class="hero-pill">Any motor brand</span>
+    <span class="hero-pill">Customer fabric accepted</span>
+    <span class="hero-pill">Exterior available</span>
+  </div>
+</div>
+
+<!-- ═══ VARIANT SELECTOR ════════════════════════════════════ -->
+<div class="variant-select">
+  <div class="variant-select-label">Roller Shades — Choose your type</div>
+  <div class="variant-cards">
+    <span class="vcard v-active">
+      <span class="v-active-check">✓</span>
+      <div class="vcard-img"><img src="../images/thumbnails/roller-shades-commercial.JPEG" alt="Custom Roller Shades"><span class="vcard-badge" style="background:#2DE0C1;color:#0A4A42">Custom</span></div>
+      <div class="vcard-body"><div class="vcard-name">Custom Roller Shades</div><div class="vcard-desc">In-house fabricated — any fabric, any motor brand. Exterior available.</div></div>
+    </span>
+    <a class="vcard" href="soluna-roller-shades.html">
+      <div class="vcard-img"><img src="../images/thumbnails/CUSTOM LARGE ROLLER SHADES.JPEG" alt="Norman Soluna™"><span class="vcard-badge" style="background:#C8973F;color:#1C1510">Norman</span></div>
+      <div class="vcard-body"><div class="vcard-name">Norman Soluna™</div><div class="vcard-desc">Premium collection — 7 price groups, cassette &amp; fascia headrail options.</div></div>
+    </a>
+    <a class="vcard" href="wallace-natural-roller-shades.html">
+      <div class="vcard-img"><img src="../images/thumbnails/roller-shade-bedroom.JPEG" alt="Woven Wood Roller"><span class="vcard-badge" style="background:#7CB87C;color:#0F3010">Natural</span></div>
+      <div class="vcard-body"><div class="vcard-name">Woven Wood Roller</div><div class="vcard-desc">Wallace Portfolio Natural — 20 woven fabric patterns, single or double shade.</div></div>
+    </a>
+    <a class="vcard" href="exterior-roller-shades.html">
+      <div class="vcard-img"><img src="../images/thumbnails/exterior-roller-shade.JPEG" alt="Exterior Roller Shades"><span class="vcard-badge" style="background:#555;color:#fff">Exterior</span></div>
+      <div class="vcard-body"><div class="vcard-name">Exterior Roller Shades</div><div class="vcard-desc">Outdoor install — cassette, solar screen, zipper track &amp; cable options.</div></div>
+    </a>
+  </div>
+</div>
+
+<!-- ═══ CONFIGURATOR ════════════════════════════════════════ -->
+<div class="config-layout">
+<div id="configurator">
+
+<!-- STEP 1: SHADE TYPE -->
+<div class="step-block active" id="step-1">
+  <div class="step-head" onclick="crsToggle('step-1')">
+    <div class="step-num">1</div>
+    <div class="step-title">Shade type</div>
+    <div class="step-val" id="sv-1"></div>
+  </div>
+  <div class="step-body">
+    <div class="type-grid" style="grid-template-columns:1fr 1fr">
+      <div class="type-card" id="tc-solar" onclick="crsPickType('solar','Solar Screen')">
+        <div class="type-icon">🌅</div>
+        <div class="type-name">Solar Screen</div>
+        <div class="type-desc">Preserves the view, cuts glare &amp; UV. Choose openness factor below.</div>
+      </div>
+      <div class="type-card" id="tc-blackout" onclick="crsPickType('blackout','Blackout')">
+        <div class="type-icon">🌙</div>
+        <div class="type-name">Blackout</div>
+        <div class="type-desc">Maximum light reduction. Add a cassette headrail for the best seal.</div>
+      </div>
+    </div>
+
+    <!-- Solar openness sub-options -->
+    <div class="sub-opts" id="solar-opts">
+      <div class="sub-opts-label">Openness factor — how much you see through the fabric</div>
+      <div class="openness-grid" style="grid-template-columns:repeat(3,1fr)">
+        <button class="openness-btn" id="ob-3" onclick="crsPickOpenness('3','3%')"><span class="openness-pct">3%</span><span class="openness-label">Max privacy</span></button>
+        <button class="openness-btn" id="ob-5" onclick="crsPickOpenness('5','5%')"><span class="openness-pct">5%</span><span class="openness-label">Good balance</span></button>
+        <button class="openness-btn" id="ob-10" onclick="crsPickOpenness('10','10%')"><span class="openness-pct">10%</span><span class="openness-label">Open feel</span></button>
+      </div>
+    </div>
+
+    <!-- Color sub-options (shown after type + openness selected) -->
+    <div class="sub-opts" id="color-opts">
+      <div class="sub-opts-label">Color</div>
+      <div class="opt-row" id="crs-grp-color">
+        <button class="opt-btn" onclick="crsPickColor(this,'White')">White</button>
+        <button class="opt-btn" onclick="crsPickColor(this,'Off-White')">Off-White</button>
+        <button class="opt-btn" onclick="crsPickColor(this,'Cream')">Cream</button>
+        <button class="opt-btn" onclick="crsPickColor(this,'Gray')">Gray</button>
+        <button class="opt-btn" onclick="crsPickColor(this,'Charcoal')">Charcoal</button>
+        <button class="opt-btn" onclick="crsPickColor(this,'Black')">Black</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: MOUNT TYPE -->
+<div class="step-block" id="step-2">
+  <div class="step-head" onclick="crsToggle('step-2')">
+    <div class="step-num">2</div>
+    <div class="step-title">Mount type</div>
+    <div class="step-val" id="sv-2"></div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid-2">
+      <div class="opt-card" id="mc-inside" onclick="crsPickMount('inside','Inside mount')">
+        <div class="opt-card-title">Inside mount</div>
+        <div class="opt-card-desc">Shade fits inside the window frame. Clean, built-in look. Min frame depth required.</div>
+      </div>
+      <div class="opt-card" id="mc-outside" onclick="crsPickMount('outside','Outside mount')">
+        <div class="opt-card-title">Outside mount</div>
+        <div class="opt-card-desc">Mounts on wall or ceiling above the frame. Covers more area, good for shallow frames.</div>
+      </div>
+    </div>
+    <div class="mount-note" id="mount-note-im">Inside mount: give us your exact frame width and height — we'll deduct 1/4" from width for a proper fit.</div>
+    <div class="mount-note" id="mount-note-om">Outside mount: add 2–4" to each side of the opening for full coverage. Mount 2–4" above the frame to maximize the look.</div>
+  </div>
+</div>
+
+<!-- STEP 3: HEADRAIL / VALANCE -->
+<div class="step-block" id="step-3">
+  <div class="step-head" onclick="crsToggle('step-3')">
+    <div class="step-num">3</div>
+    <div class="step-title">Headrail &amp; valance</div>
+    <div class="step-val" id="sv-3"></div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid-2">
+      <div class="opt-card" id="hc-open" onclick="crsPickHeadrail('open','Open roll')">
+        <div class="opt-card-title">Open roll</div>
+        <div class="opt-card-desc">No valance — clean and minimal. Fabric tube is visible at the top.</div>
+      </div>
+      <div class="opt-card" id="hc-cassette" onclick="crsPickHeadrail('cassette','Cassette')">
+        <div class="opt-badge">Most popular</div>
+        <div class="opt-card-title">Cassette</div>
+        <div class="opt-card-desc">Enclosed headrail box hides the tube completely. Best for blackout.</div>
+      </div>
+      <div class="opt-card" id="hc-fascia" onclick="crsPickHeadrail('fascia','Fascia')">
+        <div class="opt-card-title">Fascia</div>
+        <div class="opt-card-desc">Decorative flat valance that drops in front of the tube. Slim, modern look.</div>
+      </div>
+      <div class="opt-card" id="hc-valance" onclick="crsPickHeadrail('valance','Wood valance box')">
+        <div class="opt-card-title">Wood valance box</div>
+        <div class="opt-card-desc">Premium chunky wood frame. Traditional look, great for custom paint or stain.</div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:#999;margin-top:10px;line-height:1.6">For blackout shades, cassette is recommended — it eliminates the light gap around the tube.</p>
+  </div>
+</div>
+
+<!-- STEP 4: DIMENSIONS -->
+<div class="step-block" id="step-4">
+  <div class="step-head" onclick="crsToggle('step-4')">
+    <div class="step-num">4</div>
+    <div class="step-title">Dimensions</div>
+    <div class="step-val" id="sv-4"></div>
+  </div>
+  <div class="step-body">
+    <p style="font-size:12px;color:#666;margin-bottom:10px;line-height:1.6">Enter your <strong>exact frame or opening measurements</strong>. Inside mount: give us the frame width — we deduct for fit. Outside mount: give us your desired shade width.</p>
+    <div class="dim-row">
+      <div>
+        <div class="dim-label">Width</div>
+        <div class="dim-inputs">
+          <input class="dim-whole" type="number" id="dim-w-whole" min="12" max="144" placeholder="36" oninput="crsDimChanged()">
+          <select class="dim-frac" id="dim-w-frac" onchange="crsDimChanged()">
+            <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
+            <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
+          </select>
+          <span class="dim-unit">in</span>
+        </div>
+      </div>
+      <div>
+        <div class="dim-label">Height</div>
+        <div class="dim-inputs">
+          <input class="dim-whole" type="number" id="dim-h-whole" min="12" max="132" placeholder="72" oninput="crsDimChanged()">
+          <select class="dim-frac" id="dim-h-frac" onchange="crsDimChanged()">
+            <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
+            <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
+          </select>
+          <span class="dim-unit">in</span>
+        </div>
+      </div>
+    </div>
+    <div class="dim-msg warn" id="dim-warn"></div>
+    <div class="dim-msg info" id="dim-info"></div>
+  </div>
+</div>
+
+<!-- STEP 5: FABRIC SUPPLY -->
+<div class="step-block" id="step-5">
+  <div class="step-head" onclick="crsToggle('step-5')">
+    <div class="step-num">5</div>
+    <div class="step-title">Fabric</div>
+    <div class="step-val" id="sv-5"></div>
+  </div>
+  <div class="step-body">
+    <div class="fabric-grid">
+      <div class="fabric-card" id="fc-we" onclick="crsPickFabric('we','We supply')">
+        <div class="fabric-icon">🎨</div>
+        <div class="fabric-name">We supply</div>
+        <div class="fabric-desc">We'll select from our fabric library. In-home consultation available to view samples.</div>
+      </div>
+      <div class="fabric-card" id="fc-customer" onclick="crsPickFabric('customer','Customer supplies')">
+        <div class="fabric-icon">📦</div>
+        <div class="fabric-name">I supply fabric</div>
+        <div class="fabric-desc">You ship your fabric to our shop. We fabricate and install.</div>
+      </div>
+      <div class="fabric-card" id="fc-consult" onclick="crsPickFabric('consult','Book consult')">
+        <div class="fabric-icon">📅</div>
+        <div class="fabric-name">Not sure — consult</div>
+        <div class="fabric-desc">Free in-home visit. We bring samples, measure, and advise.</div>
+      </div>
+    </div>
+    <div class="cust-note" id="cust-fabric-note">
+      Customer-supplied fabric: please email a photo or sample details in your notes. <strong>Do not ship fabric until we confirm receipt of your order and provide our shop address.</strong> No payment is collected until your fabric arrives.
+    </div>
+  </div>
+</div>
+
+<!-- STEP 6: MOTORIZATION -->
+<div class="step-block" id="step-6">
+  <div class="step-head" onclick="crsToggle('step-6')">
+    <div class="step-num">6</div>
+    <div class="step-title">Operation &amp; motorization</div>
+    <div class="step-val" id="sv-6"></div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid-2">
+      <div class="opt-card" id="motor-cord" onclick="crsPickMotor('cord','Manual cord loop')">
+        <div class="opt-card-title">Manual cord loop</div>
+        <div class="opt-card-desc">Continuous cord loop, left or right side. Standard, reliable.</div>
+      </div>
+      <div class="opt-card" id="motor-cordless" onclick="crsPickMotor('cordless','Cordless lift')">
+        <div class="opt-card-title">Cordless lift</div>
+        <div class="opt-card-desc">Push-up, spring-assisted. No cords — safe for children &amp; pets.</div>
+      </div>
+      <div class="opt-card" id="motor-lutron" onclick="crsPickMotor('lutron','Lutron Serena')">
+        <div class="opt-card-title">Lutron Serena</div>
+        <div class="opt-card-desc">Smart motor. App, voice, remote. Integrates with Lutron Caseta system.</div>
+      </div>
+      <div class="opt-card" id="motor-somfy" onclick="crsPickMotor('somfy','Somfy')">
+        <div class="opt-card-title">Somfy</div>
+        <div class="opt-card-desc">Smart motor. TaHoma app, remote, voice. Wide smart home compatibility.</div>
+      </div>
+      <div class="opt-card" id="motor-rollease" onclick="crsPickMotor('rollease','Rollease Acmeda')">
+        <div class="opt-card-title">Rollease Acmeda</div>
+        <div class="opt-card-desc">Smart motor. Automate app, remote. Rechargeable battery or hardwired.</div>
+      </div>
+      <div class="opt-card" id="motor-other" onclick="crsPickMotor('other','Other — specify in notes')">
+        <div class="opt-card-title">Other / not sure</div>
+        <div class="opt-card-desc">Specify brand preference in notes or ask during consultation.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 7: QUANTITY -->
+<div class="step-block" id="step-7">
+  <div class="step-head" onclick="crsToggle('step-7')">
+    <div class="step-num">7</div>
+    <div class="step-title">Quantity</div>
+    <div class="step-val" id="sv-7">1 shade</div>
+  </div>
+  <div class="step-body">
+    <p style="font-size:12px;color:#666;margin-bottom:4px;line-height:1.6">Number of shades with these same specs. If you have different sizes or rooms, add notes below or submit separate orders.</p>
+    <div class="spinner-row">
+      <button class="spin-btn" onclick="crsAdjQty(-1)">−</button>
+      <input class="spin-num" type="number" id="qty-num" min="1" max="20" value="1" oninput="crsQtyInput()">
+      <button class="spin-btn" onclick="crsAdjQty(1)">+</button>
+      <span class="spin-label">shade(s)</span>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 8: DELIVERY -->
+<div class="step-block" id="step-8">
+  <div class="step-head" onclick="crsToggle('step-8')">
+    <div class="step-num">8</div>
+    <div class="step-title">Delivery</div>
+    <div class="step-val" id="sv-8"></div>
+  </div>
+  <div class="step-body">
+    <div class="delivery-opt" id="del-ship" onclick="crsPickDelivery('ship')">
+      <div class="del-radio"></div>
+      <div>
+        <div class="del-label">Ship to me</div>
+        <div class="del-sub">UPS or FedEx from Huntingdon Valley, PA. Lead time provided at quote.</div>
+        <div class="tariff-note">Note: U.S. import tariffs may apply on some products. Any applicable duties are disclosed in your quote before payment.</div>
+      </div>
+    </div>
+    <div class="delivery-opt" id="del-pickup" onclick="crsPickDelivery('pickup')">
+      <div class="del-radio"></div>
+      <div>
+        <div class="del-label">Pickup — Huntingdon Valley, PA</div>
+        <div class="del-sub">Pickup available by appointment. Exact address provided after order confirmation — we do not publish it online.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 9: CONTACT & SUBMIT -->
+<div class="step-block" id="step-9">
+  <div class="step-head" onclick="crsToggle('step-9')">
+    <div class="step-num">9</div>
+    <div class="step-title">Your contact info</div>
+    <div class="step-val" id="sv-9"></div>
+  </div>
+  <div class="step-body">
+    <div id="contact-form">
+      <div class="form-group">
+        <label>Your name *</label>
+        <input type="text" id="q-name" placeholder="Jane Smith" autocomplete="name">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="q-email" placeholder="jane@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" id="q-phone" placeholder="(215) 555-0100" autocomplete="tel">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Notes / questions</label>
+        <textarea id="q-notes" placeholder="Window location, existing hardware, cord side preference, timeline, any questions…"></textarea>
+      </div>
+      <!-- Honeypot -->
+      <input type="text" id="q-hp" style="display:none" tabindex="-1" autocomplete="off">
+    </div>
+    <div class="success-box" id="success-box">
+      <h4>Order submitted!</h4>
+      <p>Justin will review your specs and get back to you with a custom quote — usually within a few hours. Call or text anytime: <a href="tel:6097421720" style="color:var(--gold)">(609) 742-1720</a>.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /left column -->
+
+<!-- ── QUOTE PANEL ── -->
+<div class="quote-panel" id="quote-panel">
+  <div class="qp-title">Your order</div>
+  <div class="qp-pending" id="qp-pending">Select shade type above to start building your order.</div>
+  <div id="qp-rows"></div>
+  <div class="qdiv" id="qp-div" style="display:none"></div>
+  <div class="qnote" id="qp-note" style="display:none">No pricing shown — Justin quotes each custom shade personally after reviewing your specs.</div>
+
+  <div id="submit-wrap">
+    <button onclick="crsSubmit()" id="submit-btn" class="btn-gold" style="width:100%;padding:14px;font-size:15px;font-weight:600;margin-top:16px;border:none;cursor:pointer;border-radius:10px">Submit Order for Review</button>
+    <div class="submit-note">No payment required now. Justin reviews your specs and sends a custom quote.</div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script src="../js/pages/custom-roller-shades.js"></script>
+</body>
+</html>
