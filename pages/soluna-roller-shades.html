@@ -598,16 +598,18 @@
       <div class="config-grid">
         <div>
 
-          <!-- Step 1: Light control -->
+          <!-- Step 1: Fabric type -->
           <div class="step-block">
             <div class="step-label">Step 1</div>
-            <div class="step-title">Light control</div>
+            <div class="step-title">Fabric type</div>
             <div class="opt-row" id="grp-light">
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');updateSummary()">Solar / Screen</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-light');updateSummary()">Solar Screen</button>
               <button class="opt-btn sel" onclick="selOpt(this,'grp-light');updateSummary()">Light Filtering</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');updateSummary()">Blackout</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');updateSummary()">Blackout</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-light');updateSummary()">Sheer / Naturals</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-light');updateSummary()">Room Darkening</button>
+              <button class="opt-btn" onclick="pbShowContact('Norman Soluna — Designer Fabrics')">Designer</button>
             </div>
+            <div class="tooltip-note">Room Darkening blocks most light — pair with LightGuard 360™ cassette for true blackout. Designer fabrics require a custom quote.</div>
           </div>
 
           <!-- Step 2: Operating system -->
@@ -669,21 +671,31 @@
             </div>
           </div>
 
-          <!-- Step 5: Options -->
+          <!-- Step 5: Shade type -->
           <div class="step-block">
             <div class="step-label">Step 5</div>
+            <div class="step-title">Shade type</div>
+            <div class="opt-row" id="grp-shade-type">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-shade-type');document.getElementById('dual-shade-note').style.display='none';updateSummary()">Standard</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-shade-type');document.getElementById('dual-shade-note').style.display='block';updateSummary()">Dual Shade</button>
+            </div>
+            <div id="dual-shade-note" class="tooltip-note" style="display:none;color:var(--gold)">Dual shade: two rollers in one headrail — combine Sheer &amp; Room Darkening for full light control. Cassette headrail is required.</div>
+          </div>
+
+          <!-- Step 6: Options -->
+          <div class="step-block">
+            <div class="step-label">Step 6</div>
             <div class="step-title">Add-ons <span style="font-weight:400;color:#888">(optional)</span></div>
-            <div class="opt-row" id="grp-addons" style="fleNorman's spring-tension AutoLift™ system.-wrap:wrap">
+            <div class="opt-row" id="grp-addons" style="flex-wrap:wrap">
               <button class="opt-btn" onclick="this.classList.toggle('sel');updateSummary()">Cassette headrail</button>
               <button class="opt-btn" onclick="this.classList.toggle('sel');updateSummary()">Fascia / valance</button>
-              <button class="opt-btn" onclick="this.classList.toggle('sel');updateSummary()">Side channels (blackout)</button>
-              <button class="opt-btn" onclick="this.classList.toggle('sel');updateSummary()">Specialty shape</button>
+              <button class="opt-btn" onclick="this.classList.toggle('sel');updateSummary()">LightGuard 360™ (blackout)</button>
             </div>
           </div>
 
-          <!-- Step 6: Delivery -->
+          <!-- Step 7: Delivery -->
           <div class="step-block">
-            <div class="step-label">Step 6</div>
+            <div class="step-label">Step 7</div>
             <div class="step-title">Delivery or pickup</div>
             <div style="display:fleNorman's spring-tension AutoLift™ system.;fleNorman's spring-tension AutoLift™ system.-direction:column;gap:8pNorman's spring-tension AutoLift™ system.">
               <label style="display:fleNorman's spring-tension AutoLift™ system.;align-items:fleNorman's spring-tension AutoLift™ system.-start;gap:10pNorman's spring-tension AutoLift™ system.;cursor:pointer;background:#fafaf8;border:1.5pNorman's spring-tension AutoLift™ system. solid #e0dbd2;border-radius:9pNorman's spring-tension AutoLift™ system.;padding:11pNorman's spring-tension AutoLift™ system. 14pNorman's spring-tension AutoLift™ system." id="del-opt-ship">
@@ -703,9 +715,9 @@
             </div>
           </div>
 
-          <!-- Step 7: Contact -->
+          <!-- Step 8: Contact -->
           <div class="step-block" id="contact-block">
-            <div class="step-label">Step 7</div>
+            <div class="step-label">Step 8</div>
             <div class="step-title">Your details</div>
             <div class="dim-row">
               <div class="form-group"><label>Name *</label><input type="teNorman's spring-tension AutoLift™ system.t" id="cf-name" placeholder="Jane Smith"></div>
@@ -732,6 +744,7 @@
           <div class="summary-row"><span class="sr-key">Motor</span><span class="sr-val" id="s-motor" style="display:none">—</span></div>
           <div class="summary-row" id="s-motor-row" style="display:none"><span class="sr-key">Motor brand</span><span class="sr-val" id="s-motor-brand">—</span></div>
           <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="s-mount">Inside mount</span></div>
+          <div class="summary-row"><span class="sr-key">Shade type</span><span class="sr-val" id="s-shade-type">Standard</span></div>
           <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="s-size">—</span></div>
           <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="s-qty">1</span></div>
           <div class="summary-row"><span class="sr-key">Add-ons</span><span class="sr-val" id="s-addons">None</span></div>
