@@ -146,6 +146,29 @@
   </div>
 </div>
 
+<div class="variant-select">
+  <div class="variant-select-label">Roller Shades — Choose your type</div>
+  <div class="variant-cards">
+    <a class="vcard" href="custom-roller-shades.html">
+      <div class="vcard-img"><img src="../images/thumbnails/roller-shades-commercial.JPEG" alt="Custom Roller Shades"><span class="vcard-badge" style="background:#2DE0C1;color:#0A4A42">Custom</span></div>
+      <div class="vcard-body"><div class="vcard-name">Custom Roller Shades</div><div class="vcard-desc">In-house fabricated — any fabric, any motor brand.</div></div>
+    </a>
+    <a class="vcard" href="soluna-roller-shades.html">
+      <div class="vcard-img"><img src="../images/thumbnails/CUSTOM LARGE ROLLER SHADES.JPEG" alt="Norman Soluna™"><span class="vcard-badge" style="background:#C9A96E;color:#111110">Norman</span></div>
+      <div class="vcard-body"><div class="vcard-name">Norman Soluna™</div><div class="vcard-desc">Premium collection — 7 price groups, cassette &amp; fascia headrail options.</div></div>
+    </a>
+    <a class="vcard" href="wallace-natural-roller-shades.html">
+      <div class="vcard-img"><img src="../images/thumbnails/roller-shade-bedroom.JPEG" alt="Woven Wood Roller"><span class="vcard-badge" style="background:#7CB87C;color:#0F3010">Natural</span></div>
+      <div class="vcard-body"><div class="vcard-name">Woven Wood Roller</div><div class="vcard-desc">Wallace Portfolio Natural — 20 woven fabric patterns, single or double shade.</div></div>
+    </a>
+    <span class="vcard v-active">
+      <span class="v-active-check">✓</span>
+      <div class="vcard-img"><img src="../images/thumbnails/exterior-roller-shade.JPEG" alt="Exterior Roller Shades"><span class="vcard-badge" style="background:#555;color:#fff">Exterior</span></div>
+      <div class="vcard-body"><div class="vcard-name">Exterior Roller Shades</div><div class="vcard-desc">Outdoor install — cassette, solar screen, zipper track &amp; cable options.</div></div>
+    </span>
+  </div>
+</div>
+
 <div class="config-layout">
 <div><!-- left column -->
 
@@ -290,40 +313,19 @@
     <div class="step-val" id="sv-6">—</div>
   </div>
   <div class="step-body">
-    <p style="font-size:12px;color:#555;margin-bottom:4px;line-height:1.6">Measure the opening you want to cover. For <strong>zipper track</strong>, the fabric goes edge-to-edge in the track — measure the exact opening width. For <strong>wall/ceiling mount without track</strong>, add 2–4″ to each side for coverage.</p>
-    <div class="dim-row">
-      <div>
-        <div class="dim-label">Width</div>
-        <div class="dim-inputs">
-          <input class="dim-whole" type="number" id="ers-w-whole" min="12" max="144" placeholder="36" oninput="ersDimChange()">
-          <select class="dim-frac" id="ers-w-frac" onchange="ersDimChange()">
-            <option value="0">0</option>
-            <option value="0.125">⅛</option>
-            <option value="0.25">¼</option>
-            <option value="0.375">⅜</option>
-            <option value="0.5">½</option>
-            <option value="0.625">⅝</option>
-            <option value="0.75">¾</option>
-            <option value="0.875">⅞</option>
-          </select>
-          <span class="dim-unit">inches</span>
+    <p style="font-size:12px;color:#555;margin-bottom:10px;line-height:1.6">Measure the opening you want to cover. For <strong>zipper track</strong>, the fabric goes edge-to-edge in the track — measure the exact opening width. For <strong>wall/ceiling mount without track</strong>, add 2–4″ to each side for coverage.</p>
+    <div class="dim-box">
+      <div class="dim-box-label">Enter your opening size</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Width</label>
+          <input type="number" id="ers-inp-w" min="12" max="144" step="0.5" placeholder="60" oninput="ersDimChange()">
+          <div class="dim-unit">inches &mdash; 12″ min · 144″ max</div>
         </div>
-      </div>
-      <div>
-        <div class="dim-label">Height / Drop</div>
-        <div class="dim-inputs">
-          <input class="dim-whole" type="number" id="ers-h-whole" min="12" max="144" placeholder="84" oninput="ersDimChange()">
-          <select class="dim-frac" id="ers-h-frac" onchange="ersDimChange()">
-            <option value="0">0</option>
-            <option value="0.125">⅛</option>
-            <option value="0.25">¼</option>
-            <option value="0.375">⅜</option>
-            <option value="0.5">½</option>
-            <option value="0.625">⅝</option>
-            <option value="0.75">¾</option>
-            <option value="0.875">⅞</option>
-          </select>
-          <span class="dim-unit">inches</span>
+        <div class="form-group">
+          <label>Height / Drop</label>
+          <input type="number" id="ers-inp-h" min="12" max="144" step="0.5" placeholder="84" oninput="ersDimChange()">
+          <div class="dim-unit">inches &mdash; 12″ min · 144″ max</div>
         </div>
       </div>
     </div>
@@ -523,12 +525,8 @@ function ersPickOperation(val, label) {
 }
 
 function ersDimChange() {
-  var wh = parseFloat(document.getElementById('ers-w-whole').value) || 0;
-  var wf = parseFloat(document.getElementById('ers-w-frac').value) || 0;
-  var hh = parseFloat(document.getElementById('ers-h-whole').value) || 0;
-  var hf = parseFloat(document.getElementById('ers-h-frac').value) || 0;
-  ERS.width  = wh + wf;
-  ERS.height = hh + hf;
+  ERS.width  = parseFloat(document.getElementById('ers-inp-w').value) || 0;
+  ERS.height = parseFloat(document.getElementById('ers-inp-h').value) || 0;
   var msg = document.getElementById('ers-dim-msg');
   msg.className = 'dim-msg';
   if (ERS.width > 0 || ERS.height > 0) {

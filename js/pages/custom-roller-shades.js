@@ -6,7 +6,7 @@ var CRS = {
   type: '', openness: '',
   mount: '',
   headrail: '',
-  wWhole: 0, wFrac: 0, hWhole: 0, hFrac: 0,
+  w: 0, h: 0,
   fabric: '',
   motor: '',
   qty: 1,
@@ -101,8 +101,8 @@ function crsPickMount(val, label) {
   if (noteOM) noteOM.classList.toggle('show', val === 'outside');
 
   // Refresh dim info if dims already entered
-  var w = _crsDim('dim-w-whole', 'dim-w-frac');
-  var h = _crsDim('dim-h-whole', 'dim-h-frac');
+  var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
+  var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
   if (w && h) crsDimChanged();
 
   crsDone('step-2', label);
@@ -122,15 +122,9 @@ function crsPickHeadrail(val, label) {
 }
 
 // ── STEP 4: DIMENSIONS ───────────────────────────────────────
-function _crsDim(wholeId, fracId) {
-  var w = parseFloat((_crsEl(wholeId) || {}).value) || 0;
-  var f = parseFloat((_crsEl(fracId)  || {}).value) || 0;
-  return w + f;
-}
-
 function crsDimChanged() {
-  var w = _crsDim('dim-w-whole', 'dim-w-frac');
-  var h = _crsDim('dim-h-whole', 'dim-h-frac');
+  var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
+  var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
   var warnEl = _crsEl('dim-warn');
   var infoEl = _crsEl('dim-info');
 
@@ -169,9 +163,7 @@ function crsDimChanged() {
   }
 
   if (w > 0 && h > 0) {
-    CRS.wWhole = w; CRS.hWhole = h;
-    var wStr = w % 1 ? w.toString().replace('.', ' ') : w;
-    var hStr = h % 1 ? h.toString().replace('.', ' ') : h;
+    CRS.w = w; CRS.h = h;
     crsDone('step-4', w + '" × ' + h + '"');
     crsUpdatePanel();
     clearTimeout(_crsDimTimer);
@@ -248,8 +240,8 @@ function crsUpdatePanel() {
     var hMap = { open: 'Open roll', cassette: 'Cassette', fascia: 'Fascia', valance: 'Wood valance box' };
     rows.push(['Headrail', hMap[CRS.headrail] || CRS.headrail]);
   }
-  var w = _crsDim('dim-w-whole', 'dim-w-frac');
-  var h = _crsDim('dim-h-whole', 'dim-h-frac');
+  var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
+  var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
   if (w && h) rows.push(['Size', w + '" W × ' + h + '" H']);
   if (CRS.fabric) {
     var fMap = { we: 'We supply', customer: 'Customer supplies', consult: 'Consult' };
@@ -310,8 +302,8 @@ function crsSubmit() {
   if (CRS.mount)    selections.push({ label: 'Mount', value: CRS.mount === 'inside' ? 'Inside mount' : 'Outside mount' });
   if (CRS.headrail) selections.push({ label: 'Headrail / valance', value: hMap[CRS.headrail] || CRS.headrail });
 
-  var w = _crsDim('dim-w-whole', 'dim-w-frac');
-  var h = _crsDim('dim-h-whole', 'dim-h-frac');
+  var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
+  var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
   if (w) selections.push({ label: 'Width', value: w + '"' + (CRS.mount === 'inside' ? ' (frame — we deduct ¼" for fit)' : '') });
   if (h) selections.push({ label: 'Height', value: h + '"' });
 

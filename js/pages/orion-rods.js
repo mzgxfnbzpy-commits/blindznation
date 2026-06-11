@@ -327,6 +327,7 @@ function buildFinialStep(){
       document.querySelectorAll('#s4-content .opt-pill').forEach(x=>x.classList.remove('sel'));
       p.classList.add('sel');
       S.finial=grpName+': '+ids;
+      setTimeout(function(){goStep(5);},250);
     };
     pills.appendChild(p);
     grp.appendChild(pills);
@@ -334,7 +335,7 @@ function buildFinialStep(){
   });
   // Endcap fallback
   var ecDiv=document.createElement('div'); ecDiv.style.marginTop='8px';
-  ecDiv.innerHTML='<div class="opt-pill" onclick="document.querySelectorAll(\'#s4-content .opt-pill\').forEach(x=>x.classList.remove(\'sel\'));this.classList.add(\'sel\');S.finial=\'Endcap/Socket only\'" style="display:inline-block">Endcap / Socket only (no finial)</div>';
+  ecDiv.innerHTML='<div class="opt-pill" onclick="document.querySelectorAll(\'#s4-content .opt-pill\').forEach(x=>x.classList.remove(\'sel\'));this.classList.add(\'sel\');S.finial=\'Endcap/Socket only\';setTimeout(function(){goStep(5)},250)" style="display:inline-block">Endcap / Socket only (no finial)</div>';
   el.appendChild(ecDiv);
 }
 
@@ -436,9 +437,10 @@ function buildFinishStep(){
   });
 }
 function pickGloss(g, el){
-  ['pill-semi','pill-high','pill-custom-finish'].forEach(function(id){ var e=$(id); if(e) e.classList.remove('sel'); });
+  ['pill-standard','pill-semi','pill-high','pill-custom-finish'].forEach(function(id){ var e=$(id); if(e) e.classList.remove('sel'); });
   el.classList.add('sel');
   S.gloss=g;
+  setTimeout(function(){ goStep(8); }, 300);
 }
 
 /* ── STEP 8: SUMMARY ── */

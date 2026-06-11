@@ -147,6 +147,29 @@
   </div>
 </div>
 
+<div class="variant-select">
+  <div class="variant-select-label">Roller Shades — Choose your type</div>
+  <div class="variant-cards">
+    <a class="vcard" href="custom-roller-shades.html">
+      <div class="vcard-img"><img src="../images/thumbnails/roller-shades-commercial.JPEG" alt="Custom Roller Shades"><span class="vcard-badge" style="background:#2DE0C1;color:#0A4A42">Custom</span></div>
+      <div class="vcard-body"><div class="vcard-name">Custom Roller Shades</div><div class="vcard-desc">In-house fabricated — any fabric, any motor brand. Exterior available.</div></div>
+    </a>
+    <a class="vcard" href="soluna-roller-shades.html">
+      <div class="vcard-img"><img src="../images/thumbnails/CUSTOM LARGE ROLLER SHADES.JPEG" alt="Norman Soluna™"><span class="vcard-badge" style="background:#C9A96E;color:#111110">Norman</span></div>
+      <div class="vcard-body"><div class="vcard-name">Norman Soluna™</div><div class="vcard-desc">Premium collection — 7 price groups, cassette &amp; fascia headrail options.</div></div>
+    </a>
+    <span class="vcard v-active">
+      <span class="v-active-check">✓</span>
+      <div class="vcard-img"><img src="../images/thumbnails/roller-shade-bedroom.JPEG" alt="Woven Wood Roller"><span class="vcard-badge" style="background:#7CB87C;color:#0F3010">Natural</span></div>
+      <div class="vcard-body"><div class="vcard-name">Woven Wood Roller</div><div class="vcard-desc">Wallace Portfolio Natural — 20 woven fabric patterns, single or double shade.</div></div>
+    </span>
+    <a class="vcard" href="exterior-roller-shades.html">
+      <div class="vcard-img"><img src="../images/thumbnails/exterior-roller-shade.JPEG" alt="Exterior Roller Shades"><span class="vcard-badge" style="background:#555;color:#fff">Exterior</span></div>
+      <div class="vcard-body"><div class="vcard-name">Exterior Roller Shades</div><div class="vcard-desc">Outdoor install — cassette, solar screen, zipper track &amp; cable options.</div></div>
+    </a>
+  </div>
+</div>
+
 <div class="config-layout">
 <div id="configurator">
 
@@ -208,33 +231,33 @@
   </div>
   <div class="step-body">
     <div id="size-type-note" class="info-box" style="display:none"></div>
-    <div class="dim-row" style="margin-top:12px">
-      <div>
-        <div class="dim-label">Order Width</div>
-        <div style="display:flex;align-items:center">
-          <input class="dim-input" type="number" id="inp-w" min="12" max="120" step="0.125" placeholder="e.g. 36" oninput="validateSize()">
-          <span class="dim-unit">in</span>
+    <div class="dim-box" style="margin-top:12px">
+      <div class="dim-box-label">Enter your window size</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Width</label>
+          <input type="number" id="inp-w" min="12" max="120" step="0.5" placeholder="36" oninput="validateSize()">
+          <div class="dim-unit">inches &mdash; 12″ min · 120″ max</div>
         </div>
-      </div>
-      <div>
-        <div class="dim-label">Order Height</div>
-        <div style="display:flex;align-items:center">
-          <input class="dim-input" type="number" id="inp-h" min="12" max="115" step="0.125" placeholder="e.g. 72" oninput="validateSize()">
-          <span class="dim-unit">in</span>
+        <div class="form-group">
+          <label>Height</label>
+          <input type="number" id="inp-h" min="12" max="115" step="0.5" placeholder="72" oninput="validateSize()">
+          <div class="dim-unit">inches &mdash; 12″ min · 115″ max</div>
         </div>
       </div>
     </div>
-    <div class="dim-row" style="margin-top:6px">
+    <div class="tooltip-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine — we confirm at the home visit.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px">
       <div>
         <div class="dim-label">Quantity</div>
-        <div style="display:flex;align-items:center">
+        <div style="display:flex;align-items:center;gap:6px">
           <input class="dim-input" type="number" id="inp-qty" min="1" max="50" value="1" oninput="validateSize()">
           <span class="dim-unit">shades</span>
         </div>
       </div>
       <div>
         <div class="dim-label">Room / window label</div>
-        <input type="text" id="inp-room" placeholder="e.g. Master Bedroom Left" style="padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;width:100%">
+        <input type="text" id="inp-room" placeholder="e.g. Master Bedroom Left" style="padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;width:100%;box-sizing:border-box">
       </div>
     </div>
     <div id="size-msgs" style="margin-top:8px"></div>

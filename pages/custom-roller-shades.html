@@ -308,31 +308,22 @@
     <div class="step-val" id="sv-4"></div>
   </div>
   <div class="step-body">
-    <p style="font-size:12px;color:#666;margin-bottom:10px;line-height:1.6">Enter your <strong>exact frame or opening measurements</strong>. Inside mount: give us the frame width — we deduct for fit. Outside mount: give us your desired shade width.</p>
-    <div class="dim-row">
-      <div>
-        <div class="dim-label">Width</div>
-        <div class="dim-inputs">
-          <input class="dim-whole" type="number" id="dim-w-whole" min="12" max="144" placeholder="36" oninput="crsDimChanged()">
-          <select class="dim-frac" id="dim-w-frac" onchange="crsDimChanged()">
-            <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
-            <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
-          </select>
-          <span class="dim-unit">in</span>
+    <div class="dim-box">
+      <div class="dim-box-label">Enter your window size</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Width</label>
+          <input type="number" id="crs-inp-w" min="12" max="144" step="0.5" placeholder="36" oninput="crsDimChanged()">
+          <div class="dim-unit">inches &mdash; 12″ min · 144″ max</div>
         </div>
-      </div>
-      <div>
-        <div class="dim-label">Height</div>
-        <div class="dim-inputs">
-          <input class="dim-whole" type="number" id="dim-h-whole" min="12" max="132" placeholder="72" oninput="crsDimChanged()">
-          <select class="dim-frac" id="dim-h-frac" onchange="crsDimChanged()">
-            <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
-            <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
-          </select>
-          <span class="dim-unit">in</span>
+        <div class="form-group">
+          <label>Height</label>
+          <input type="number" id="crs-inp-h" min="12" max="132" step="0.5" placeholder="72" oninput="crsDimChanged()">
+          <div class="dim-unit">inches &mdash; 12″ min · 132″ max</div>
         </div>
       </div>
     </div>
+    <div class="tooltip-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Inside mount: give us exact frame — we deduct for fit.</div>
     <div class="dim-msg warn" id="dim-warn"></div>
     <div class="dim-msg info" id="dim-info"></div>
   </div>

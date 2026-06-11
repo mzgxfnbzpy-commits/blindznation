@@ -397,6 +397,11 @@ function getOpt(groupId) {
   const s = document.querySelector('#' + groupId + ' .opt-btn.sel');
   return s ? s.textContent.trim() : '—';
 }
+function selOrToggle(el, groupId) {
+  var was = el.classList.contains('sel');
+  document.querySelectorAll('#' + groupId + ' .opt-btn').forEach(b => b.classList.remove('sel'));
+  if (!was) el.classList.add('sel');
+}
 
 // ============================================================
 // GLOBAL CART ENGINE
