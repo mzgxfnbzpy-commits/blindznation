@@ -647,19 +647,24 @@
           <!-- Step 4: Dimensions -->
           <div class="step-block">
             <div class="step-label">Step 4</div>
-            <div class="step-title">Window measurements <span style="font-weight:400;color:#888">(approximate is fine)</span></div>
-            <div class="dim-row">
-              <div class="form-group">
-                <label>Width (inches)</label>
-                <input type="number" id="inp-width" min="12" max="144" step="0.5" placeholder="e.g. 36" oninput="updateSummary()">
-                <div class="tooltip-note"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a></div>
-              </div>
-              <div class="form-group">
-                <label>Height (inches)</label>
-                <input type="number" id="inp-height" min="12" max="132" step="0.5" placeholder="e.g. 72" oninput="updateSummary()">
+            <div class="step-title">Window measurements</div>
+            <div class="dim-box">
+              <div class="dim-box-label">Enter your window size</div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Width</label>
+                  <input type="number" id="inp-width" min="12" max="144" step="0.5" placeholder="36" oninput="updateSummary()">
+                  <div class="dim-unit">inches &mdash; 12″ min · 144″ max</div>
+                </div>
+                <div class="form-group">
+                  <label>Height</label>
+                  <input type="number" id="inp-height" min="12" max="132" step="0.5" placeholder="72" oninput="updateSummary()">
+                  <div class="dim-unit">inches &mdash; 12″ min · 132″ max</div>
+                </div>
               </div>
             </div>
-            <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+            <div class="tooltip-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine — we confirm at the home visit.</div>
+            <div style="display:flex;align-items:center;gap:10px">
               <span style="font-size:12px;color:#666">Qty:</span>
               <div class="qty-btns">
                 <button class="qty-btn" onclick="adjustQty(-1)">&#8722;</button>
