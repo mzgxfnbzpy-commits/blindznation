@@ -335,16 +335,6 @@
         <div style="font-size:11px;color:#888;margin-top:5px">Buttmaster: panels meet edge to edge. Overlap: panels cross at center seam.</div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label style="font-size:12px">Return size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
-          <input type="number" id="ripple-return" value="4" min="1" max="24" style="font-size:14px">
-        </div>
-        <div class="form-group">
-          <label style="font-size:12px">Overlap size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
-          <input type="number" id="ripple-overlap" value="4" min="0" max="12" style="font-size:14px">
-        </div>
-      </div>
     </div>
 
   </div>
@@ -374,6 +364,17 @@
         </div>
       </div>
       <div id="d-min-warn" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.5"></div>
+    </div>
+    <!-- Returns & Overlaps — shown once for all pleat styles -->
+    <div class="form-row" style="margin-top:12px">
+      <div class="form-group">
+        <label>Return size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
+        <input type="number" id="d-return" value="4" min="1" max="24" style="font-size:14px">
+      </div>
+      <div class="form-group">
+        <label>Overlap size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
+        <input type="number" id="d-overlap" value="4" min="0" max="12" style="font-size:14px">
+      </div>
     </div>
     <div id="drape-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:18px 20px;margin-top:14px">
       <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px">Your configuration</div>
@@ -533,18 +534,6 @@
             <button class="opt-btn" onclick="selOpt(this,'grp-drape-side')">Right</button>
             <button class="opt-btn" onclick="selOpt(this,'grp-drape-side')">Center</button>
           </div>
-        </div>
-      </div>
-
-      <!-- Returns & Overlaps -->
-      <div class="form-row">
-        <div class="form-group">
-          <label>Return size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
-          <input type="number" id="d-return" value="4" min="1" max="24" style="font-size:14px">
-        </div>
-        <div class="form-group">
-          <label>Overlap size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
-          <input type="number" id="d-overlap" value="4" min="0" max="12" style="font-size:14px">
         </div>
       </div>
 

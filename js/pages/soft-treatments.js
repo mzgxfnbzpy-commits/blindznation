@@ -824,8 +824,6 @@ async function submitDrape() {
   var rippleHw   = isRipple ? getOpt('grp-ripple-hw') : '—';
   var rippleSnaps= isRipple ? getOpt('grp-ripple-snaps') : '—';
   var rippleJoin = isRipple ? getOpt('grp-ripple-join') : '—';
-  var rippleRet  = isRipple ? (document.getElementById('ripple-return').value || '4') : '—';
-  var rippleOvlp = isRipple ? (document.getElementById('ripple-overlap').value || '4') : '—';
   var hwNeed     = getOpt('grp-drape-hardware');
   var hwType     = hwNeed === 'I need hardware' ? getOpt('grp-drape-hw-type') : 'N/A';
   var delivery   = getOpt('grp-del-drape');
@@ -846,9 +844,9 @@ async function submitDrape() {
         var rpFull = (function(){ var b=document.querySelector('#grp-rp-fullness .opt-btn.sel'); return b?b.textContent.trim():'2.0×'; })();
         return 'Casing: ' + casing + '  Header: ' + header + '  Placement: ' + placement + '  Fullness: ' + rpFull + '\n';
       }()) : '')
-    + (!isRipple ? 'Return: ' + returnSz + '"  Overlap: ' + overlapSz + '"\n' : '')
+    + 'Return: ' + returnSz + '"  Overlap: ' + overlapSz + '"\n'
     + (isRipple ? 'Ripple fullness: ' + rippleFull + '  Hardware: ' + rippleHw + '  Snaps: ' + rippleSnaps + '\n' +
-       'Join type: ' + rippleJoin + '  Return: ' + rippleRet + '"  Overlap: ' + rippleOvlp + '"\n' : '')
+       'Join type: ' + rippleJoin + '\n' : '')
     + (function(){
         var trimSel = document.querySelectorAll('.drape-trim-check:checked');
         if (!trimSel.length) return '';
@@ -881,6 +879,7 @@ async function submitDrape() {
     { label: 'Panels', value: panels + (panelSide !== '—' ? ' — ' + panelSide : '') },
     { label: 'Width', value: (document.getElementById('d-exact-width').value || '—') + '"' },
     { label: 'Finished length', value: (document.getElementById('d-exact-length').value || '—') + '"' },
+    { label: 'Return / Overlap', value: (document.getElementById('d-return').value || '4') + '" / ' + (document.getElementById('d-overlap').value || '4') + '"' },
     { label: 'Hardware', value: hwNeed + (hwType !== 'N/A' ? ' — ' + hwType : '') },
     { label: 'Delivery', value: delivery }
   ];
