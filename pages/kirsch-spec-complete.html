@@ -866,17 +866,13 @@
         <div class="form-group"><label>Installation address</label><input type="text" id="q-address" placeholder="123 Main St, Philadelphia PA"></div>
         <div class="form-group"><label>Additional notes</label><textarea id="q-notes" style="min-height:70px" placeholder="Fabric weight/type, ceiling height, any special requirements, installation notes..."></textarea></div>
         <div class="delivery-section" style="margin-top:12px">
-          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
+          <div style="display:grid;grid-template-columns:1fr;gap:10px">
             <div style="border:1.5px solid #e8e8e4;border-radius:11px;padding:13px;cursor:pointer;text-align:center;transition:all .12s" id="del-ship" onclick="selDel('ship')">
               <div style="font-size:20px;margin-bottom:4px">📦</div><div style="font-size:13px;font-weight:500">Ship to me</div><div style="font-size:11px;color:#666">UPS/FedEx from Huntingdon Valley, PA</div>
             </div>
-            <div style="border:1.5px solid #e8e8e4;border-radius:11px;padding:13px;cursor:pointer;text-align:center;transition:all .12s" id="del-pickup" onclick="selDel('pickup')">
-              <div style="font-size:20px;margin-bottom:4px">🏠</div><div style="font-size:13px;font-weight:500">I'll pick up</div><div style="font-size:11px;color:#666">Address confirmed after order</div>
-            </div>
           </div>
           <div id="del-ship-note" class="delivery-note" style="display:none">Shipped via <strong>UPS or FedEx</strong>. <div class="delivery-tariff">Tariffs and import fees additional.</div></div>
-          <div id="del-pickup-note" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
         </div>
         <button class="btn-gold" onclick="submitQ()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Submit Specification &amp; Request Quote &rarr;</button>
         <div id="q-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">

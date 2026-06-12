@@ -21,7 +21,7 @@ window.addEventListener("load", function() {
     "cellular":   ["cellular",  "Cellular / Honeycomb Shades", true, "norman"],
     "fwb":        ["fwb",       "Wood Blinds",                 false],
     "exterior":   ["exterior",  "Exterior Roller Shades",      false],
-    "pb":         ["roller",    "Custom Roller Shades",        true, "pb"]
+    "pb":         ["roller",    "Basic Roller Shades",         true, "pb"]
   };
   var args = map[product];
   if (!args) return;
@@ -298,7 +298,7 @@ function selectBrand(brand) {
 
   // Update config title
   if (brand === 'pb') {
-    document.getElementById('config-product-name').textContent = 'Custom Roller Shades';
+    document.getElementById('config-product-name').textContent = 'Basic Roller Shades';
   } else if (brand === 'norman' && currentProduct) {
     const card = document.getElementById('card-' + currentProduct);
     const pname = card ? card.querySelector('.product-name').textContent : 'Shade';
@@ -1019,7 +1019,7 @@ async function submitPBForm(btn) {
     'Fabric notes:\n' + (notes || '(none)') +
     pbInstallLine(document.getElementById('brand-pb-content')) +
     (function(){ var fu = document.querySelector('#brand-pb-content .pb-fu-wrap input[type="file"]'); return fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@blindznation.com)' : ''; }());
-  await _apiSubmit(name, email, phone, 'Custom Roller Shade', body, 'pb-success', null, btn);
+  await _apiSubmit(name, email, phone, 'Basic Roller Shade', body, 'pb-success', null, btn);
 }
 
 // submitOtherForm removed — dead code, no HTML form references oth-* IDs
@@ -1996,7 +1996,7 @@ function pbCalcPrice() {
   // Line-by-line estimate panel
   var gPBs = function(id){ var b=document.querySelector('#'+id+' .pmm-opt.sel'); return b?b.textContent.trim():''; };
   var selLines = [
-    { label:'Product',     value:'Custom Roller Shade' },
+    { label:'Product',     value:'Basic Roller Shade' },
     { label:'Fabric type', value: fabType },
     { label:'Size',        value: w+'″ W × '+h+'″ H → '+result.rw+'″ × '+result.rh+'"' },
     { label:'Operation',   value: gPB('pb-grp-operation') || '—' },
@@ -2007,7 +2007,7 @@ function pbCalcPrice() {
     { label:'Freight',     value: isOversized ? 'Oversized rate ($80 first + $50 ea.)' : 'Standard ($25 first + $11 ea.)' }
   ];
   pbRenderEstimate('pb-price-box', selLines, grandTotal, '', function(checkout) {
-    pbCollectItem('Custom Roller Shade', selLines, grandTotal, gPB('pb-grp-operation')==='Motorized');
+    pbCollectItem('Basic Roller Shade', selLines, grandTotal, gPB('pb-grp-operation')==='Motorized');
     pbOpenCart();
     if (checkout) {
       setTimeout(function(){
@@ -3060,7 +3060,7 @@ async function rnSubmitForm(btn) {
     'Delivery:       ' + delivery             + '\n\n' +
     'Notes:\n' + (notes || '(none)');
 
-  await _apiSubmit(name, email, phone, 'Norman Soluna Roller Shade', body, 'rn-success', 'rn-submit-form', btn);
+  await _apiSubmit(name, email, phone, 'Premier Norman Roller Shade', body, 'rn-success', 'rn-submit-form', btn);
 }
 
 // ─── showCellularLiftNote (already defined above, referenced here for context)

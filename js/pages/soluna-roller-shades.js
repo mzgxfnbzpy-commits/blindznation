@@ -196,9 +196,9 @@ function submitQuote() {
     : 'Ship to me — UPS / FedEx from Huntingdon Valley, PA (freight TBD)';
 
   const body = [
-    '=== NORMAN SOLUNA ROLLER SHADE QUOTE REQUEST ===',
+    '=== PREMIER NORMAN ROLLER SHADE QUOTE REQUEST ===',
     '',
-    'PRODUCT: Norman Soluna Roller Shades',
+    'PRODUCT: Premier Norman Roller Shades',
     '',
     'CONFIGURATION',
     'Fabric type: ' + light,

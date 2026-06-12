@@ -178,6 +178,36 @@
 .rn-fabric-card.rn-fc-sel .rn-fc-desc{color:#7A5A28}
 .rn-fw-pill{display:inline-block;background:var(--espresso-mid);border:0.5px solid var(--border-dark);border-radius:6px;padding:2px 8px;font-size:10px;font-weight:500;color:var(--cream);margin:2px 2px 2px 0}
 .rn-fw-pill.unavail{background:#f5f5f5;border-color:#e0e0e0;color:#aaa;text-decoration:line-through}
+
+/* ── SHEER SHADING SELECTOR ── */
+.sheer-select-wrap{background:#fff;border:1.5px solid #e8e4de;border-radius:14px;padding:18px;margin-bottom:0}
+.sheer-cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:0}
+@media(max-width:520px){.sheer-cat-grid{grid-template-columns:1fr}}
+.sheer-cat-card{border:2px solid #e8e4de;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .18s,box-shadow .18s;background:#fff;user-select:none}
+.sheer-cat-card:hover{border-color:var(--gold);box-shadow:0 3px 14px rgba(200,151,63,.18)}
+.sheer-cat-card.active{border-color:var(--gold);background:var(--gold-mid);box-shadow:0 3px 14px rgba(200,151,63,.2)}
+.sheer-cat-img{height:110px;overflow:hidden}
+.sheer-cat-img img{width:100%;height:100%;object-fit:cover;transition:transform .2s}
+.sheer-cat-card:hover .sheer-cat-img img{transform:scale(1.04)}
+.sheer-cat-body{padding:9px 11px 11px}
+.sheer-cat-name{font-size:14px;font-weight:600;color:#111;margin-bottom:2px}
+.sheer-cat-sub{font-size:10px;color:#888;line-height:1.4}
+.sheer-cat-card.active .sheer-cat-name{color:#0D4A42}
+.sheer-cat-card.active .sheer-cat-sub{color:#7A5A28}
+.sheer-sub{display:none;padding-top:14px;animation:fadeSheer .18s ease}
+@keyframes fadeSheer{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.sheer-tier-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:520px){.sheer-tier-grid{grid-template-columns:1fr}}
+.sheer-tier-card{border:2px solid #e8e4de;border-radius:12px;overflow:hidden;cursor:pointer;background:#fff;text-decoration:none;display:block;transition:border-color .18s,box-shadow .18s}
+.sheer-tier-card:hover{border-color:var(--gold);box-shadow:0 3px 12px rgba(200,151,63,.15);transform:translateY(-1px)}
+.sheer-tier-img{height:90px;overflow:hidden}
+.sheer-tier-img img{width:100%;height:100%;object-fit:cover}
+.sheer-tier-body{padding:8px 11px 11px}
+.sheer-tier-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.4px;padding:2px 8px;border-radius:10px;margin-bottom:4px}
+.sheer-tier-badge.basic{background:#e6f4f0;color:#1a5c4f}
+.sheer-tier-badge.premium{background:#f8f0e0;color:#7d4c00}
+.sheer-tier-brand{font-size:10px;color:#888;margin-bottom:1px}
+.sheer-tier-name{font-size:13px;font-weight:600;color:#111}
 </style>
 </head>
 <body>
@@ -308,92 +338,89 @@
     <section class="soft-treatment-section">
       <div class="treatment-section-header">
         <h2>Specialty Shades</h2>
-        <p>Zebra, woven wood &amp; Hunter Douglas specialty systems</p>
+        <p>Sheer shading, woven wood &amp; specialty systems</p>
       </div>
       <div class="product-grid">
 
-        <div class="product-card" id="card-zebra" onclick="pbShowContact('Banded 2D Zebra Shades — get a free quote')">
-          <div class="product-img-photo">
-            <img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Zebra / Banded Sheer Shades" loading="lazy">
-            <div class="motor-chip">+ motorized</div>
-          </div>
-          <div class="product-body">
-            <div class="product-name">Banded 2D Shades</div>
-            <div class="product-sub">Wallace · Custom quote</div>
-            <span class="badge badge-quote">Get a quote</span>
-          </div>
-        </div>
+        <!-- SHEER SHADING GROUPED SELECTOR -->
+        <div class="product-card" style="grid-column:1/-1;cursor:default;padding:0;overflow:visible;background:transparent;border:none;box-shadow:none">
+          <div class="sheer-select-wrap">
+            <div style="font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:12px">Sheer Shading — Choose a style</div>
+            <div class="sheer-cat-grid">
+              <!-- Zebra -->
+              <div class="sheer-cat-card" id="scat-zebra" onclick="selectSheerCat('zebra',this)">
+                <div class="sheer-cat-img"><img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Zebra shades" loading="lazy"></div>
+                <div class="sheer-cat-body">
+                  <div class="sheer-cat-name">Zebra</div>
+                  <div class="sheer-cat-sub">Banded alternating sheer &amp; solid</div>
+                </div>
+              </div>
+              <!-- Silhouettes -->
+              <div class="sheer-cat-card" id="scat-silhouette" onclick="selectSheerCat('silhouette',this)">
+                <div class="sheer-cat-img"><img src="../images/thumbnails/SILOUETTE.JPEG" alt="Silhouette sheer shades" loading="lazy"></div>
+                <div class="sheer-cat-body">
+                  <div class="sheer-cat-name">Silhouettes</div>
+                  <div class="sheer-cat-sub">Soft horizontal sheer vane</div>
+                </div>
+              </div>
+              <!-- Hunter Douglas -->
+              <div class="sheer-cat-card" id="scat-hd" onclick="selectSheerCat('hd',this)">
+                <div class="sheer-cat-img"><img src="../images/thumbnails/pirouette-install.JPEG" alt="Hunter Douglas shadings" loading="lazy"></div>
+                <div class="sheer-cat-body">
+                  <div class="sheer-cat-name">Hunter Douglas</div>
+                  <div class="sheer-cat-sub">Pirouette · Silhouette · Luminette · Vignette</div>
+                </div>
+              </div>
+            </div>
 
-        <div class="product-card" id="card-portfolio-dual" onclick="pbShowContact('Portfolio Dual Sheer — Wallace, 95 fabrics — get a free quote')">
-          <div class="product-img-photo">
-            <img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Portfolio Dual Sheer Shades" loading="lazy">
-            <div class="motor-chip">+ motorized</div>
-          </div>
-          <div class="product-body">
-            <div class="product-name">Portfolio Dual Sheer</div>
-            <div class="product-sub">Wallace · 95 fabrics · 5 price groups</div>
-            <span class="badge badge-quote">Get a quote</span>
-          </div>
-        </div>
+            <!-- Sub-options: Zebra -->
+            <div class="sheer-sub" id="sheer-sub-zebra">
+              <div style="font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:10px">Zebra — Basic or Premium</div>
+              <div class="sheer-tier-grid">
+                <div class="sheer-tier-card" onclick="pbShowContact('Wallace 2D Banded Shades — Basic Zebra — custom quote')">
+                  <div class="sheer-tier-img"><img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Wallace 2D Banded" loading="lazy"></div>
+                  <div class="sheer-tier-body">
+                    <span class="sheer-tier-badge basic">Basic</span>
+                    <div class="sheer-tier-brand">Wallace</div>
+                    <div class="sheer-tier-name">2D Banded Shades</div>
+                  </div>
+                </div>
+                <a class="sheer-tier-card" href="portfolio-dual-sheer.html">
+                  <div class="sheer-tier-img"><img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Wallace Portfolio Dual" loading="lazy"></div>
+                  <div class="sheer-tier-body">
+                    <span class="sheer-tier-badge premium">Premium</span>
+                    <div class="sheer-tier-brand">Wallace</div>
+                    <div class="sheer-tier-name">Portfolio Dual Sheer</div>
+                  </div>
+                </a>
+              </div>
+            </div>
 
-        <div class="product-card" id="card-pirouette" onclick="pbShowContact('Hunter Douglas Pirouette Shadings — free consultation &amp; custom quote')">
-          <div class="product-img-photo">
-            <img src="../images/thumbnails/pirouette-install.JPEG" alt="Pirouette Shadings" loading="lazy">
-            <div class="motor-chip">+ motorized</div>
-          </div>
-          <div class="product-body">
-            <div class="product-name">Pirouette Shadings</div>
-            <div class="product-sub">Hunter Douglas — structured vane</div>
-            <span class="badge badge-quote">Custom quote</span>
-          </div>
-        </div>
-
-        <div class="product-card" id="card-silhouette" onclick="pbShowContact('Hunter Douglas Silhouette Shadings — free consultation &amp; custom quote')">
-          <div class="product-img-photo">
-            <img src="../images/thumbnails/SILOUETTE.JPEG" alt="Silhouette Shadings" loading="lazy">
-            <div class="motor-chip">+ motorized</div>
-          </div>
-          <div class="product-body">
-            <div class="product-name">Silhouette Shadings</div>
-            <div class="product-sub">Hunter Douglas — soft vane</div>
-            <span class="badge badge-quote">Custom quote</span>
-          </div>
-        </div>
-
-        <div class="product-card" id="card-wallace-3d" onclick="pbShowContact('Wallace 3D Dual Sheer — get a free quote')">
-          <div class="product-img-photo">
-            <img src="../images/thumbnails/PIROUTTES.JPEG" alt="Wallace 3D Dual Sheer Shades" loading="lazy" style="object-position:center 60%">
-            <div class="motor-chip">+ motorized</div>
-          </div>
-          <div class="product-body">
-            <div class="product-name">Wallace 3D Dual Sheer</div>
-            <div class="product-sub">13 collections · 3D horizontal vane</div>
-            <span class="badge badge-quote">Get a quote</span>
-          </div>
-        </div>
-
-        <div class="product-card" id="card-perfectsheer" onclick="selectProduct('perfectsheer','Norman PerfectSheer™ Shades',false)">
-          <div class="product-img-photo" style="position:relative">
-            <img src="../images/thumbnails/norman-perfect-sheer.jpg" alt="Norman PerfectSheer Shades installed on three windows" loading="lazy" style="object-position:center 40%">
-            <div style="position:absolute;bottom:8px;left:8px;background:var(--espresso);color:var(--gold);font-size:9px;padding:3px 7px;border-radius:6px;font-weight:600;letter-spacing:0.5px">NORMAN®</div>
-            <div class="motor-chip">+ motorized</div>
-          </div>
-          <div class="product-body">
-            <div class="product-name">PerfectSheer™ Shades</div>
-            <div class="product-sub">Norman — sheer vane, 32 colors</div>
-            <span class="badge badge-instant">Instant price</span>
-          </div>
-        </div>
-
-        <div class="product-card" id="card-vignette" onclick="pbShowContact('Hunter Douglas Vignette® Roman Shades — free consultation &amp; custom quote')">
-          <div class="product-img-photo">
-            <img src="../images/thumbnails/vignette-dining-room.JPEG" alt="Hunter Douglas Vignette Roman Shades" loading="lazy" style="object-position:center 30%">
-            <div class="motor-chip">+ motorized</div>
-          </div>
-          <div class="product-body">
-            <div class="product-name">Vignette® Roman Shades</div>
-            <div class="product-sub">Hunter Douglas — modern roman</div>
-            <span class="badge badge-quote">Custom quote</span>
+            <!-- Sub-options: Silhouettes -->
+            <div class="sheer-sub" id="sheer-sub-silhouette">
+              <div style="font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:10px">Silhouettes — Basic or Premium</div>
+              <div class="sheer-tier-grid">
+                <a class="sheer-tier-card" href="wallace-3d-sheer.html">
+                  <div class="sheer-tier-img"><img src="../images/thumbnails/PIROUTTES.JPEG" alt="Wallace 3D Sheer Horizontals" loading="lazy" style="object-position:center 60%"></div>
+                  <div class="sheer-tier-body">
+                    <span class="sheer-tier-badge basic">Basic</span>
+                    <div class="sheer-tier-brand">Wallace</div>
+                    <div class="sheer-tier-name">3D Sheer Horizontals</div>
+                  </div>
+                </a>
+                <div class="sheer-tier-card" onclick="selectProduct('perfectsheer','Norman PerfectSheer™ Shades',false)">
+                  <div class="sheer-tier-img" style="position:relative">
+                    <img src="../images/thumbnails/norman-perfect-sheer.jpg" alt="Norman PerfectSheer" loading="lazy" style="object-position:center 40%">
+                    <div style="position:absolute;bottom:6px;left:8px;background:var(--espresso);color:var(--gold);font-size:9px;padding:2px 6px;border-radius:5px;font-weight:600;letter-spacing:0.5px">NORMAN®</div>
+                  </div>
+                  <div class="sheer-tier-body">
+                    <span class="sheer-tier-badge premium">Premium</span>
+                    <div class="sheer-tier-brand">Norman</div>
+                    <div class="sheer-tier-name">PerfectSheer™</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -408,9 +435,6 @@
             <span class="badge badge-quote">Configure &amp; quote</span>
           </div>
         </a>
-
-
-
 
       </div><!-- /product-grid specialty -->
     </section><!-- /specialty shades -->
@@ -578,7 +602,7 @@
 
         <div class="rt-card" id="rt-norman" onclick="rtSelect('norman')">
           <div style="font-size:9px;font-weight:700;background:var(--espresso);color:var(--gold);display:inline-block;padding:2px 8px;border-radius:5px;letter-spacing:0.5px;margin-bottom:8px">NORMAN®</div>
-          <div class="rt-card-name">Norman Roller Shades</div>
+          <div class="rt-card-name">Premier Norman Roller Shades</div>
           <div class="rt-card-desc">Soluna collection — premium fabrics, 8-step configurator</div>
           <div style="margin-top:10px"><span class="badge badge-quote">Configure &amp; quote</span></div>
         </div>
@@ -602,12 +626,12 @@
           <span class="brand-btn-sub">Premium manufacturer · full options</span>
         </button>
         <button class="brand-btn" id="btn-brand-pb" onclick="selectBrand('pb')">
-          <span class="brand-btn-name">Custom Roller Shades</span>
+          <span class="brand-btn-name">Basic Roller Shades</span>
           <span class="brand-btn-sub">Our in-house fabrication · any fabric</span>
         </button>
       </div>
       <div id="pb-only-note" class="tooltip-note" style="display:none;margin-top:6px;color:#888">
-        Custom Roller Shade fabrication is available for <strong>roller shades only</strong>. Choose Norman or Other for this product type.
+        Basic Roller Shade fabrication is available for <strong>roller shades only</strong>. Choose Norman or Other for this product type.
       </div>
     </div>
 
@@ -986,7 +1010,7 @@
             <div class="step-hd"><div class="step-num-circle">8</div><div class="step-title">Estimated price</div></div>
             <div class="price-box" id="rn-price-box">
               <div class="price-box-head">Live estimate</div>
-              <div class="price-line"><span>Product</span><span id="rn-pb-product">Norman Soluna Roller Shade</span></div>
+              <div class="price-line"><span>Product</span><span id="rn-pb-product">Premier Norman Roller Shade</span></div>
               <div class="price-line"><span>Fabric type</span><span id="rn-pb-fabric">—</span></div>
               <div class="price-line"><span>Dimensions</span><span id="rn-pb-dims">Enter width &amp; height</span></div>
               <div class="price-line"><span>Priced at</span><span id="rn-pb-sqft">—</span></div>
@@ -1017,13 +1041,11 @@
             <div class="form-group"><label>Email</label><input type="email" id="rn-sf-email" placeholder="jane@example.com"></div>
             <div class="form-group"><label>Notes / fabric preference</label><textarea id="rn-sf-notes" placeholder="e.g. prefer neutral tone, looking for blackout, interested in motorization"></textarea></div>
             <div class="delivery-section">
-              <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+              <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
               <div class="opt-row" id="grp-del-rn">
-                <button class="opt-btn sel" onclick="selOpt(this,'grp-del-rn');document.getElementById('del-rn-s').style.display='block';document.getElementById('del-rn-p').style.display='none'">Ship to me</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-del-rn');document.getElementById('del-rn-s').style.display='none';document.getElementById('del-rn-p').style.display='block'">I'll pick up</button>
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-del-rn');document.getElementById('del-rn-s').style.display='block'">Ship to me</button>
               </div>
               <div id="del-rn-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with your quote.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately in your quote.</div></div>
-              <div id="del-rn-p" class="delivery-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.</div>
             </div>
             <button onclick="reqMoreInfo('Norman Roller Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Norman Roller Shades →</button>
         <button class="btn-gold" onclick="rnSubmitForm(this)" style="width:100%;padding:13px">Send quote request</button>
@@ -1396,17 +1418,13 @@
           <div class="form-group"><label>Email</label><input type="email" id="sf-email" placeholder="jane@example.com"></div>
           <div class="form-group"><label>Any notes?</label><textarea id="sf-notes" placeholder="e.g. looking for blackout in bedroom, open to fabric samples"></textarea></div>
           <div class="delivery-section">
-            <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+            <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
             <div class="opt-row" id="grp-del-sf">
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-del-sf');document.getElementById('del-sf-s').style.display='block';document.getElementById('del-sf-p').style.display='none'">Ship to me</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-del-sf');document.getElementById('del-sf-s').style.display='none';document.getElementById('del-sf-p').style.display='block'">I'll pick up</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-del-sf');document.getElementById('del-sf-s').style.display='block'">Ship to me</button>
             </div>
             <div id="del-sf-s" class="delivery-note">
               Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with your quote.
               <div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately in your quote.</div>
-            </div>
-            <div id="del-sf-p" class="delivery-note" style="display:none">
-              Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.
             </div>
           </div>
           <button onclick="reqMoreInfo('Norman Cellular / Zebra / Woven Wood Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Norman Cellular / Zebra / Woven Wood Shades →</button>
@@ -1427,7 +1445,7 @@
     <div id="brand-pb-content" style="display:none">
       <!-- Intro -->
       <div style="background:var(--gold-mid);border:1px solid #E8DCC8;border-radius:10px;padding:14px 18px;margin-bottom:20px">
-        <div style="font-size:12px;font-weight:600;color:#0D4A42;margin-bottom:4px">Custom Roller Shades — In-House Fabrication</div>
+        <div style="font-size:12px;font-weight:600;color:#0D4A42;margin-bottom:4px">Basic Roller Shades — In-House Fabrication</div>
         <div style="font-size:12px;color:#0D4A42;line-height:1.6">We custom fabricate and install roller shades in-house. Choose motorized or manual operation. Bring your own fabric or choose from our library — pricing quoted after we review your specs.</div>
       </div>
 
@@ -1585,15 +1603,13 @@
       </div>
       <div class="form-group"><label>Email</label><input type="email" id="pb-email" placeholder="jane@example.com"></div>
       <div class="delivery-section">
-        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
         <div class="opt-row" id="grp-del-pb">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-pb');document.getElementById('del-pb-s').style.display='block';document.getElementById('del-pb-p').style.display='none'">Ship to me</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-del-pb');document.getElementById('del-pb-s').style.display='none';document.getElementById('del-pb-p').style.display='block'">I'll pick up</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-pb');document.getElementById('del-pb-s').style.display='block'">Ship to me</button>
         </div>
         <div id="del-pb-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with your quote.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately.</div></div>
-        <div id="del-pb-p" class="delivery-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.</div>
       </div>
-      <button onclick="reqMoreInfo('Custom Roller Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roller Shades →</button>
+      <button onclick="reqMoreInfo('Basic Roller Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Basic Roller Shades →</button>
         <button class="btn-gold" onclick="submitPBForm(this)" style="width:100%;padding:13px;margin-top:4px">Send custom fabrication request &rarr;</button>
       <div class="success-state" id="pb-success">
         <h3>Request received!</h3>
@@ -1654,17 +1670,13 @@
       <textarea id="hd-notes" placeholder="e.g. interested in PowerView motorization, have 3 large arch windows in living room"></textarea>
     </div>
     <div class="delivery-section">
-      <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+      <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
       <div class="opt-row" id="grp-del-hd">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-del-hd');document.getElementById('del-hd-s').style.display='block';document.getElementById('del-hd-p').style.display='none'">Ship to me</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-del-hd');document.getElementById('del-hd-s').style.display='none';document.getElementById('del-hd-p').style.display='block'">I'll pick up</button>
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-del-hd');document.getElementById('del-hd-s').style.display='block'">Ship to me</button>
       </div>
       <div id="del-hd-s" class="delivery-note">
         Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with your quote.
         <div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately in your quote.</div>
-      </div>
-      <div id="del-hd-p" class="delivery-note" style="display:none">
-        Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.
       </div>
     </div>
     <button onclick="reqMoreInfo('Hunter Douglas Silhouette / Pirouette Shadings')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Hunter Douglas Silhouette / Pirouette Shadings →</button>
@@ -1805,13 +1817,11 @@
 
     <!-- Delivery -->
     <div class="delivery-section">
-      <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+      <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
       <div class="opt-row" id="grp-del-ext">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-del-ext');document.getElementById('del-ext-s').style.display='block';document.getElementById('del-ext-p').style.display='none'">Ship to me</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-del-ext');document.getElementById('del-ext-s').style.display='none';document.getElementById('del-ext-p').style.display='block'">I'll pick up</button>
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-del-ext');document.getElementById('del-ext-s').style.display='block'">Ship to me</button>
       </div>
       <div id="del-ext-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional.</div></div>
-      <div id="del-ext-p" class="delivery-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Address provided after order confirmation.</div>
     </div>
 
     <button class="btn-gold" onclick="submitExteriorForm(this)" style="width:100%;padding:13px;margin-top:4px">Request exterior shade quote &rarr;</button>
@@ -1965,13 +1975,11 @@
       <div class="form-group"><label>Email</label><input type="email" id="fwb-email" placeholder="jane@example.com"></div>
       <div class="form-group"><label>Notes</label><textarea id="fwb-notes" placeholder="e.g. specific color, existing hardware to reuse, special installation requirements"></textarea></div>
       <div class="delivery-section">
-        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
         <div class="opt-row" id="grp-del-fwb">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-fwb');document.getElementById('del-fwb-s').style.display='block';document.getElementById('del-fwb-p').style.display='none'">Ship to me</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-del-fwb');document.getElementById('del-fwb-s').style.display='none';document.getElementById('del-fwb-p').style.display='block'">I'll pick up</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-fwb');document.getElementById('del-fwb-s').style.display='block'">Ship to me</button>
         </div>
         <div id="del-fwb-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional.</div></div>
-        <div id="del-fwb-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
       </div>
       <button class="btn-gold" onclick="submitFWBForm(this)" style="width:100%;padding:13px;margin-top:12px">Request faux wood blinds quote &rarr;</button>
     </div>
@@ -2441,6 +2449,20 @@
 <script src="../js/shared.js"></script>
 <script src="../js/pages/shades.js"></script>
 <script>
+function selectSheerCat(cat, el) {
+  if (cat === 'hd') {
+    pbShowContact('Hunter Douglas Sheer Shadings — Silhouette · Pirouette · Luminette · Vignette — free consultation & custom quote');
+    return;
+  }
+  var wasActive = el.classList.contains('active');
+  document.querySelectorAll('.sheer-cat-card').forEach(function(c){ c.classList.remove('active'); });
+  document.querySelectorAll('.sheer-sub').forEach(function(s){ s.style.display='none'; });
+  if (!wasActive) {
+    el.classList.add('active');
+    var sub = document.getElementById('sheer-sub-' + cat);
+    if (sub) sub.style.display = 'block';
+  }
+}
 (function() {
   var fields = [
     ['rn-width','w'],['rn-height','h'],['rn-qty','qty'],

@@ -320,7 +320,7 @@ function crsSubmit() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       name: name, email: email, phone: phone,
-      product: 'Custom Roller Shades',
+      product: 'Basic Roller Shades',
       notes: notes,
       selections: selections,
       sourceUrl: window.location.href,
@@ -346,13 +346,13 @@ function crsSubmit() {
   .catch(function() {
     if (btn) { btn.disabled = false; btn.textContent = 'Submit Order for Review'; }
     // Mailto fallback
-    var lines = ['Custom Roller Shades Order'];
+    var lines = ['Basic Roller Shades Order'];
     selections.forEach(function(s) { lines.push(s.label + ': ' + s.value); });
     if (notes) lines.push('Notes: ' + notes);
     lines.push('Name: ' + name);
     if (email) lines.push('Email: ' + email);
     if (phone) lines.push('Phone: ' + phone);
-    window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Custom Roller Quote — ' + name) + '&body=' + encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Basic Roller Quote — ' + name) + '&body=' + encodeURIComponent(lines.join('\n'));
   });
 }
 

@@ -477,13 +477,11 @@
     <div class="form-group"><label>Additional notes</label><textarea id="q-notes" style="min-height:70px" placeholder="Fabric type, drapery weight, ceiling height, installer notes..."></textarea></div>
 
     <div class="delivery-section" style="margin-top:12px">
-      <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
+      <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
       <div class="opt-grid-2">
         <div class="opt-card sel" id="del-ship" onclick="selectDel('ship')"><div class="opt-card-icon" style="font-size:20px;margin-bottom:4px">📦</div><div class="opt-card-title">Ship to me</div><div class="opt-card-desc">UPS or FedEx from Huntingdon Valley, PA</div></div>
-        <div class="opt-card" id="del-pickup" onclick="selectDel('pickup')"><div class="opt-card-icon" style="font-size:20px;margin-bottom:4px">🏠</div><div class="opt-card-title">I'll pick up</div><div class="opt-card-desc">Address confirmed after order</div></div>
       </div>
       <div id="del-ship-note" class="delivery-note">Shipped via <strong>UPS or FedEx</strong>. <div class="delivery-tariff">Tariffs and import fees additional.</div></div>
-      <div id="del-pickup-note" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
     </div>
 
     <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Submit Specification &amp; Request Quote &rarr;</button>

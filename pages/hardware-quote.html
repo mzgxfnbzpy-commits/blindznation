@@ -275,15 +275,13 @@
       <div class="form-group"><label>Email *</label><input type="email" id="f-email" placeholder="jane@example.com" oninput="updateSubmitState()"></div>
       <div class="form-group"><label>Notes <span style="font-weight:400;color:#999">(room, fabric weight, existing hardware, etc.)</span></label><textarea id="f-notes" placeholder="e.g. master bedroom, 96&quot; panels, replacing brass rods…"></textarea></div>
       <div class="delivery-wrap">
-        <div style="font-size:13px;font-weight:500;color:#333;margin-bottom:8px">Delivery or pickup?</div>
+        <div style="font-size:13px;font-weight:500;color:#333;margin-bottom:8px">Delivery</div>
         <div class="del-btns">
           <button class="del-btn sel" id="del-ship" onclick="pickDel('ship')">Ship to me</button>
-          <button class="del-btn" id="del-pickup" onclick="pickDel('pickup')">I&rsquo;ll pick up</button>
         </div>
         <div class="del-note" id="del-ship-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.
           <div class="del-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately.</div>
         </div>
-        <div class="del-note" id="del-pickup-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Address disclosed after order.</div>
       </div>
       <div class="form-err" id="form-err"></div>
       <button class="submit-btn" id="submit-btn" onclick="submitForm()" style="opacity:.45;cursor:not-allowed" disabled>Complete required fields to submit &rarr;</button>
