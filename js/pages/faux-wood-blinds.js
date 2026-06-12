@@ -1,4 +1,4 @@
-// ── PRICING DATA ──────────────────────────────────────────────────────────────
+﻿// ── PRICING DATA ──────────────────────────────────────────────────────────────
 const W_COLS = [24,28,32,36,42,48,54,60,66,72,78,84,96];
 const H_ROWS = [30,36,42,48,54,60,66,73,78,84,90,96];
 const MATRIX = {
@@ -55,8 +55,8 @@ function pickSlat(el,label){
   const note = $('color-slat-note');
   if (note) {
     note.textContent = S.slat==='2in'
-      ? '2″ slat: Storm Gray Smooth and all printed colors available. Storm Gray Embossed not available in 2″.'
-      : '2½″ slat: Storm Gray Embossed available. Storm Gray Smooth and printed colors (Mist, Old Teak, Granite, Chestnut) not available in 2½″.';
+      ? '2″ slat: All colors available including Storm Gray Smooth and all printed colors. Storm Gray Embossed not available in 2″.'
+      : '2½″ slat: Storm Gray Embossed and Mist available. Storm Gray Smooth and other printed colors (Old Teak, Granite, Chestnut) not available in 2½″.';
     note.style.display='block';
   }
   calcPrice();
@@ -114,9 +114,9 @@ function calcSize(){
   if(!w&&!h){ cbox.style.display='none'; $('s4val').textContent='—'; updateWandUI(); calcPrice(); return; }
 
   const errs=[];
-  if(w>0&&w<6.5)  errs.push('Minimum width is 6½″.');
-  if(w>96)        errs.push('Maximum width is 96″.');
-  if(h>0&&h<16)   errs.push('Minimum height is 16″.');
+  if(w>0&&w<16.5) errs.push('Minimum width is 16½″.');
+  if(w>72)        errs.push('Maximum width is 72″ (inside/outside mount). Side mount brackets available — max 37″ wide. Call for anything wider.');
+  if(h>0&&h<24)   errs.push('Minimum height is 24″.');
   if(h>96)        errs.push('Maximum height is 96″.');
   const area=(w*h)/144;
 
@@ -242,11 +242,11 @@ function updateQty(){
 // ── DELIVERY ──────────────────────────────────────────────────────────────────
 function pickDel(v){
   S.delivery=v;
-  $('del-ship').classList.toggle('sel',v==='ship');
-  $('del-pickup').classList.toggle('sel',v==='pickup');
-  $('del-ship-note').style.display=v==='ship'?'block':'none';
-  $('del-pickup-note').style.display=v==='pickup'?'block':'none';
+  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
+  $('del-'+v).classList.add('sel');
 }
+
+const NORMAN_DISC = 0.35; // 35% off retail subtotal — not applied to shipping
 
 // ── PRICE CALC ────────────────────────────────────────────────────────────────
 function calcPrice(){
@@ -270,13 +270,15 @@ function calcPrice(){
   const overageAdd = overageSqft*18;
 
   const unit = base + printedAdd + valAdd + sideAdd + shimAdd + overageAdd;
-  const subtotal = unit * S.qty;
+  const retailSub = unit * S.qty;
+  const discountAmt = Math.round(retailSub * NORMAN_DISC);
+  const yourPrice = retailSub - discountAmt;
 
   const isOversized = S.w >= 90;
   const freight = isOversized
     ? (80 + (S.qty>1 ? (S.qty-1)*50 : 0))
     : (25 + (S.qty>1 ? (S.qty-1)*11 : 0));
-  const total = subtotal + freight;
+  const total = yourPrice + freight;
 
   $('qp-pending').style.display='none';
   $('qp-detail').style.display='block';
@@ -298,12 +300,37 @@ function calcPrice(){
   if(overageRow){ overageRow.style.display=overageSqft>0?'flex':'none'; if(overageSqft>0) $('q-overage').textContent='+'+fmt(overageAdd)+' ('+overageSqft+' sq ft × $18)'; }
 
   $('q-qty').textContent='× '+S.qty;
-  $('q-sub').textContent=fmt(subtotal);
+
+  // Retail subtotal row (strikethrough), discount, and your price
+  let retailSubRow=$('q-retail-sub-row');
+  let discRow=$('q-disc-row');
+  let yourPriceRow=$('q-yourprice-row');
+  if(!retailSubRow){
+    const subEl=$('q-sub').closest('.qrow');
+    const retailSubDiv=document.createElement('div');
+    retailSubDiv.className='qrow';retailSubDiv.id='q-retail-sub-row';
+    retailSubDiv.innerHTML='<span class="qrow-label"><s style="color:var(--text-dark)">Retail subtotal</s></span><span class="qrow-val" style="text-decoration:line-through;color:var(--text-dark)" id="q-retail-sub-val">—</span>';
+    subEl.parentNode.insertBefore(retailSubDiv,subEl);
+    discRow=document.createElement('div');
+    discRow.className='qrow';discRow.id='q-disc-row';
+    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">15% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="q-disc-val">—</span>';
+    subEl.parentNode.insertBefore(discRow,subEl);
+    yourPriceRow=document.createElement('div');
+    yourPriceRow.className='qrow';yourPriceRow.id='q-yourprice-row';
+    yourPriceRow.innerHTML='<span class="qrow-label" style="font-weight:600;color:var(--cream)">Your price (before shipping)</span><span class="qrow-val" style="color:var(--cream);font-weight:600" id="q-yourprice-val">—</span>';
+    subEl.parentNode.insertBefore(yourPriceRow,subEl);
+  }
+  $('q-retail-sub-val').textContent=fmt(retailSub);
+  $('q-disc-val').textContent='-'+fmt(discountAmt);
+  $('q-yourprice-val').textContent=fmt(yourPrice);
+  $('q-sub').textContent=fmt(yourPrice); // keep the existing subtotal element showing your price
+
   $('q-freight').textContent=fmt(freight);
   $('q-total').textContent=fmt(total);
-  $('q-note').textContent = isOversized
+  $('q-note').textContent = (isOversized
     ? 'Oversized freight: $80 first blind + $50 each additional (width 90″+).'
-    : 'Freight: $25 first blind + $11 each additional.';
+    : 'Freight: $25 first blind + $11 each additional.')
+    + ' Norman retail pricing with 15% discount on product subtotal. Shipping at retail rate.';
 }
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
@@ -380,39 +407,10 @@ function submitForm(){
     ($('f-notes').value||'None')
   ].join('\n');
 
-  const submitBtn = document.querySelector('[onclick*="submitForm"]') || document.querySelector('.btn-gold[type="button"]');
-  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
-
-  const selections = [
-    { label: 'Product', value: 'Norman SmartPrivacy® Faux Wood Blinds' },
-    { label: 'Slat size', value: slatLabel },
-    { label: 'Color', value: S.color + (S.isPrinted ? ' [Printed — +20%]' : '') },
-    { label: 'Mount type', value: S.mount === 'inside' ? 'Inside Mount' : 'Outside Mount' },
-    { label: 'Dimensions', value: S.w + '″ W × ' + S.h + '″ H' },
-    { label: 'Valance', value: valLabel },
-    { label: 'Quantity', value: String(S.qty) },
-    { label: 'Side mount brackets', value: S.sideMt ? 'Yes' : 'No' },
-    { label: 'Hold down brackets', value: (S.hdb || S.w <= 30) ? 'Yes (auto ≤30″)' : 'No' },
-    { label: 'Shims', value: S.shims > 0 ? S.shims + ' shims' : 'None' },
-    { label: 'Wand location', value: S.w < 15 ? 'Center (auto)' : S.wandLoc },
-    { label: 'Delivery', value: S.delivery === 'ship' ? 'Ship to me (UPS/FedEx)' : 'Customer pickup' },
-    { label: 'Estimated total', value: '$' + total + ' (MSRP estimate — confirmed at order)' },
-  ];
-
-  fetch('/api/quote', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, email: email || undefined, phone: phone || undefined,
-      product: 'Norman SmartPrivacy® Faux Wood Blinds',
-      selections, notes: ($('f-notes').value || '').trim(),
-      sourceUrl: window.location.href })
-  }).then(r => r.json().catch(() => ({}))).then(data => {
-    if (data && data.ok === false) throw new Error(data.error || 'Server error');
-    $('success-box').style.display = 'block';
-    errEl.style.display = 'none';
-  }).catch(() => {
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Request Quote →'; }
-    alert('Something went wrong. Please call (609) 742-1720 or email justin@blindznation.com');
-  });
+  const subj='SmartPrivacy Faux Wood Blinds Quote — '+name;
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  $('success-box').style.display='block';
+  errEl.style.display='none';
 }
 
 // Init — apply default 2" slat color filter on page load
@@ -424,5 +422,5 @@ document.addEventListener('DOMContentLoaded',()=>{
     card.style.display=(!ds||ds==='both'||ds==='2in')?'':'none';
   });
   var note=$('color-slat-note');
-  if(note){note.textContent='2″ slat: Storm Gray Smooth and all printed colors available. Storm Gray Embossed is only available in 2½″.';note.style.display='block';}
-});
+  if(note){note.textContent='2″ slat: All colors available including Storm Gray Smooth and all printed colors. Storm Gray Embossed is only available in 2½″.';note.style.display='block';}
+});

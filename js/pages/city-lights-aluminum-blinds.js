@@ -1,4 +1,4 @@
-// ── PRICING DATA ──────────────────────────────────────────────────────────────
+﻿// ── PRICING DATA ──────────────────────────────────────────────────────────────
 const W_COLS = [24,28,32,36,42,48,54,60,66,72,78,84,90,96];
 const H_ROWS = [42,48,54,61,66,73,78,84,90,96];
 const MATRIX = {
@@ -193,12 +193,10 @@ function adjShim(d){
   calcPrice();
 }
 function pickDel(btn,key){
-  document.querySelectorAll('.del-btn').forEach(b=>b.classList.remove('sel'));
+  document.querySelectorAll('.delivery-opt-card').forEach(b=>b.classList.remove('sel'));
   btn.classList.add('sel');
   state.del=key;
-  document.getElementById('del-ship').style.display=key==='ship'?'block':'none';
-  document.getElementById('del-pickup').style.display=key==='pickup'?'block':'none';
-  document.getElementById('s7val').textContent=key==='ship'?'Ship to me':'Pick up';
+      document.getElementById('s7val').textContent=key==='ship'?'Ship to me':'Pick up';
   markDone('step7');
   calcPrice();
   goNext('step7','step8');
@@ -229,6 +227,8 @@ function updateQuote(){
   const basePrice=MATRIX[hRow][W_COLS.indexOf(wCol)];
   if(!basePrice){document.getElementById('qp-pending').style.display='block';document.getElementById('qp-detail').style.display='none';return;}
 
+  const NORMAN_DISC = 0.35; // 35% off retail subtotal — not applied to shipping
+
   // slat multiplier + color finish surcharge + optional privacy
   const slatMult={half:1.10,one:1.00,two:1.20}[state.slat];
   const colorMult=1+(state.colorSurcharge/100);
@@ -237,15 +237,17 @@ function updateQuote(){
   let pricePerBlind=basePrice*slatMult*colorMult*privMult;
   let shimTotal=state.shim?(state.shimQty*7):0;
   let sideTotal=state.sidemount?25:0;
-  let subtotal=pricePerBlind*qty+shimTotal+sideTotal;
+  let retailSub=pricePerBlind*qty+shimTotal+sideTotal;
+  const discountAmt=Math.round(retailSub*NORMAN_DISC);
+  const yourPrice=retailSub-discountAmt;
 
-  // freight
+  // freight — no discount
   let freight=0;
   if(state.del==='ship'){
     if(state.w>=90) freight=80+(qty-1)*50;
     else freight=25+(qty-1)*11;
   }
-  const total=subtotal+freight;
+  const total=yourPrice+freight;
 
   // show detail
   document.getElementById('qp-pending').style.display='none';
@@ -265,6 +267,30 @@ function updateQuote(){
   showRow('qr-privacy-row',state.privacy,'+10%');
   showRow('qr-sm-row',state.sidemount,'+$25');
   showRow('qr-shim-row',state.shim,'$'+(state.shimQty*7));
+
+  // Retail subtotal row
+  let retailRow=document.getElementById('qr-retail-row');
+  let discRow=document.getElementById('qr-disc-row');
+  let yourPriceRow=document.getElementById('qr-yourprice-row');
+  const firstDiv=document.querySelector('#qp-detail .qdiv:last-of-type');
+  if(!retailRow){
+    retailRow=document.createElement('div');
+    retailRow.className='qrow';retailRow.id='qr-retail-row';
+    retailRow.innerHTML='<span class="qrow-label"><s style="color:var(--text-dark)">Retail subtotal</s></span><span class="qrow-val" style="text-decoration:line-through;color:var(--text-dark)" id="qr-retail-s">—</span>';
+    firstDiv.parentNode.insertBefore(retailRow,firstDiv);
+    discRow=document.createElement('div');
+    discRow.className='qrow';discRow.id='qr-disc-row';
+    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">15% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
+    firstDiv.parentNode.insertBefore(discRow,firstDiv);
+    yourPriceRow=document.createElement('div');
+    yourPriceRow.className='qrow';yourPriceRow.id='qr-yourprice-row';
+    yourPriceRow.innerHTML='<span class="qrow-label" style="font-weight:600;color:var(--cream)">Your price (before shipping)</span><span class="qrow-val" style="color:var(--cream);font-weight:600" id="qr-yourprice-s">—</span>';
+    firstDiv.parentNode.insertBefore(yourPriceRow,firstDiv);
+  }
+  document.getElementById('qr-retail-s').textContent='$'+Math.round(retailSub).toLocaleString();
+  document.getElementById('qr-disc-s').textContent='-$'+discountAmt;
+  document.getElementById('qr-yourprice-s').textContent='$'+yourPrice.toLocaleString();
+
   showRow('qr-freight-row',state.del==='ship','$'+freight);
 
   document.getElementById('qr-total').textContent='$'+Math.round(total).toLocaleString();
@@ -303,4 +329,4 @@ function submitQuote(){
   const subject=encodeURIComponent('Citylights Aluminum Blinds Quote — '+name);
   window.location.href='mailto:justin@blindznation.com?subject='+subject+'&body='+body;
   document.getElementById('success-box').style.display='block';
-}
+}

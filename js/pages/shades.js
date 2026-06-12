@@ -3266,7 +3266,11 @@ function psCalc() {
   var liftBtn = document.querySelector('#grp-ps-lift .opt-btn.sel');
   if (liftBtn && liftBtn.textContent.indexOf('motor') >= 0) lines.push('Motorization surcharge: added to final quote');
 
-  document.getElementById('ps-price-num').textContent = '$' + total.toLocaleString();
+  const NORMAN_DISC_PS = 0.35;
+  const psDiscountAmt = Math.round(total * NORMAN_DISC_PS);
+  const psYourPrice = total - psDiscountAmt;
+  lines.push('<span style="color:#2DE0C1;font-weight:500">Retail: $' + total.toLocaleString() + ' &rarr; 35% Norman discount: -$' + psDiscountAmt.toLocaleString() + ' &rarr; Your price: $' + psYourPrice.toLocaleString() + '</span>');
+  document.getElementById('ps-price-num').textContent = '$' + psYourPrice.toLocaleString();
   document.getElementById('ps-price-breakdown').innerHTML = lines.join('<br>');
   pb.style.display = 'block';
 }
