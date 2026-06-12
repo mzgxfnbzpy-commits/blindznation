@@ -1803,19 +1803,9 @@
       </div>
     </div>
 
-    <!-- Step 7: Control side -->
+    <!-- Step 7: Fabric -->
     <div class="step-block">
       <div class="step-label">Step 7</div>
-      <div class="step-title">Control side</div>
-      <div class="opt-row" id="ext-grp-control">
-        <button class="opt-btn sel" onclick="selOpt(this,'ext-grp-control')">Left</button>
-        <button class="opt-btn" onclick="selOpt(this,'ext-grp-control')">Right</button>
-      </div>
-    </div>
-
-    <!-- Step 8: Fabric -->
-    <div class="step-block">
-      <div class="step-label">Step 8</div>
       <div class="step-title">Fabric</div>
       <div class="opt-row" id="ext-grp-fabric">
         <button class="opt-btn sel" onclick="selOpt(this,'ext-grp-fabric')">We supply fabric</button>
@@ -1824,9 +1814,9 @@
       </div>
     </div>
 
-    <!-- Step 9: Quantity -->
+    <!-- Step 8: Quantity -->
     <div class="step-block">
-      <div class="step-label">Step 9</div>
+      <div class="step-label">Step 8</div>
       <div class="step-title">Quantity</div>
       <div class="qty-btns">
         <button class="qty-btn" onclick="var n=document.getElementById('ext-qty');n.value=Math.max(1,parseInt(n.value)-1)">−</button>
@@ -1835,9 +1825,9 @@
       </div>
     </div>
 
-    <!-- Step 10: Your details -->
+    <!-- Step 9: Your details -->
     <div class="step-block">
-      <div class="step-label">Step 10</div>
+      <div class="step-label">Step 9</div>
       <div class="step-title">Your details</div>
       <div class="form-row">
         <div class="form-group"><label>Your name *</label><input type="text" id="ext-name" placeholder="Jane Smith"></div>
@@ -1966,12 +1956,17 @@
       <div class="step-label">Step 3</div>
       <div class="step-title">Operating system</div>
       <div class="opt-row" id="fwb-grp-op">
-        <button class="opt-btn sel" onclick="selOpt(this,'fwb-grp-op')">Cordless push-lift</button>
-        <button class="opt-btn" onclick="selOpt(this,'fwb-grp-op')">Cordless</button>
-        <button class="opt-btn" onclick="selOpt(this,'fwb-grp-op')">SofTilt&trade; (wand tilt)</button>
-        
+        <button class="opt-btn sel" onclick="selOpt(this,'fwb-grp-op');document.getElementById('fwb-wand-wrap').style.display='none'">Cordless push-lift</button>
+        <button class="opt-btn" onclick="selOpt(this,'fwb-grp-op');document.getElementById('fwb-wand-wrap').style.display='block'">SofTilt&trade; (wand tilt)</button>
       </div>
       <div class="tooltip-note" id="fwb-op-note" style="margin-top:6px">Norman SmartPrivacy® is <strong>cordless only</strong> — no corded or motorized option. Child &amp; pet safe. Wand tilt adjusts slat angle independently.</div>
+      <div id="fwb-wand-wrap" style="display:none;margin-top:12px">
+        <div class="step-label">Wand side</div>
+        <div class="opt-row" id="fwb-grp-wand">
+          <button class="opt-btn sel" onclick="selOpt(this,'fwb-grp-wand')">Left</button>
+          <button class="opt-btn" onclick="selOpt(this,'fwb-grp-wand')">Right</button>
+        </div>
+      </div>
     </div>
 
     <!-- Step 4: Mount type -->
@@ -2063,14 +2058,13 @@
       </div>
     </div>
 
-    <!-- Step 3: Operating system -->
+    <!-- Step 3: Wand side -->
     <div class="step-block">
       <div class="step-label">Step 3</div>
-      <div class="step-title">Operating system</div>
-      <div class="opt-row" id="rwb-grp-op">
-        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-op')">Cord &amp; tilt wand</button>
-        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-op')">Cordless</button>
-        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-op')">Motorized</button>
+      <div class="step-title">Wand side (tilt control)</div>
+      <div class="opt-row" id="rwb-grp-wand">
+        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-wand')">Left</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-wand')">Right</button>
       </div>
     </div>
 
