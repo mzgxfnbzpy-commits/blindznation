@@ -881,11 +881,15 @@ function updatePrice() {
     const perShadeAll = tableBase + rdAdd + opAdd + liftAdd;
     const activeMotorUp = cellMotorUpcharge;
     const motorCost = motorOn ? activeMotorUp * qty : 0;
-    const total = (perShadeAll * qty) + motorCost + cellFreight;
+    const NORMAN_DISC_CELL = 0.35;
+    const cellProductSub = (perShadeAll * qty) + motorCost;
+    const cellDiscountAmt = Math.round(cellProductSub * NORMAN_DISC_CELL);
+    const cellYourPrice = cellProductSub - cellDiscountAmt;
+    const total = cellYourPrice + cellFreight;
 
     document.getElementById('pb-dims').textContent = w + '" W × ' + h + '" H';
     document.getElementById('pb-sqft').textContent = res.name + '  ·  table: ' + res.pricedAt;
-    document.getElementById('pb-base').textContent = '$' + tableBase + '/shade (Norman Portrait™ MSRP)';
+    document.getElementById('pb-base').textContent = '$' + tableBase + '/shade retail (Norman Portrait™ MSRP)';
     if (motorOn) {
       document.getElementById('pb-motor-row').style.display = 'flex';
       document.getElementById('pb-motor').textContent = '+$' + activeMotorUp + ' × ' + qty + ' = $' + (activeMotorUp * qty);
@@ -3040,9 +3044,12 @@ function rnUpdatePrice() {
     if (freightEl) freightEl.textContent = '$' + freightAmt + (oversize ? ' (90″+ oversize rate)' : '');
   }
 
-  // ── Grand total ───────────────────────────────────────────
-  const allSurcharges = hrSurcharge + sysSur + liftSur + lgSur + hdSur + freightAmt;
-  const total = perShade ? (perShade * qty) + motorCost + allSurcharges : null;
+  // ── Grand total with 35% Norman discount ─────────────────
+  const NORMAN_DISC_RN = 0.35;
+  const productSubtotalRN = perShade ? (perShade * qty) + motorCost + hrSurcharge + sysSur + liftSur + lgSur + hdSur : null;
+  const discountAmtRN = productSubtotalRN ? Math.round(productSubtotalRN * NORMAN_DISC_RN) : 0;
+  const yourPriceRN = productSubtotalRN ? productSubtotalRN - discountAmtRN : null;
+  const total = yourPriceRN !== null ? yourPriceRN + freightAmt : null;
 
   // Update standard chain label (75% of height)
   updateChainStdLabel('rn-clen-std-label', 'rn-height');
@@ -3050,8 +3057,28 @@ function rnUpdatePrice() {
   document.getElementById('rn-pb-dims').textContent  = w + '″ W × ' + h + '″ H';
   document.getElementById('rn-pb-sqft').textContent  = lookup ? lookup.pricedAt : '—';
   document.getElementById('rn-pb-base').textContent  = perShade
-    ? '$' + perShade.toFixed(0) + '/shade (PG' + (lookup ? lookup.group : '?') + ')'
+    ? '$' + perShade.toFixed(0) + '/shade retail (PG' + (lookup ? lookup.group : '?') + ')'
     : 'Size out of range — call for quote';
+
+  // Inject discount rows once
+  if (!document.getElementById('rn-pb-disc-row')) {
+    var rnDivider2 = document.querySelector('#rn-price-box .price-divider');
+    if (rnDivider2) {
+      var dr2 = document.createElement('div'); dr2.className='price-line'; dr2.id='rn-pb-disc-row';
+      dr2.innerHTML='<span style="color:#2DE0C1">35% Norman discount</span><span style="color:#2DE0C1" id="rn-pb-disc-val">—</span>';
+      rnDivider2.parentNode.insertBefore(dr2, rnDivider2);
+      var yr2 = document.createElement('div'); yr2.className='price-line'; yr2.id='rn-pb-your-row';
+      yr2.innerHTML='<span style="font-weight:600;color:#fff">Your price (before shipping)</span><span style="font-weight:600;color:#fff" id="rn-pb-your-val">—</span>';
+      rnDivider2.parentNode.insertBefore(yr2, rnDivider2);
+    }
+  }
+  if (productSubtotalRN) {
+    var rnDiscEl = document.getElementById('rn-pb-disc-val');
+    var rnYourEl = document.getElementById('rn-pb-your-val');
+    if (rnDiscEl) rnDiscEl.textContent = '-$' + discountAmtRN.toLocaleString();
+    if (rnYourEl) rnYourEl.textContent = '$' + yourPriceRN.toLocaleString();
+  }
+
   document.getElementById('rn-pb-total').textContent = total ? '$' + total.toFixed(0) + ' est.' : '—';
   document.getElementById('rn-pb-min-note').style.display = (perShade === RN_MIN) ? 'block' : 'none';
   if (isMotor) {

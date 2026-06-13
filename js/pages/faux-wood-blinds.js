@@ -313,7 +313,7 @@ function calcPrice(){
     subEl.parentNode.insertBefore(retailSubDiv,subEl);
     discRow=document.createElement('div');
     discRow.className='qrow';discRow.id='q-disc-row';
-    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">15% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="q-disc-val">—</span>';
+    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">35% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="q-disc-val">—</span>';
     subEl.parentNode.insertBefore(discRow,subEl);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='q-yourprice-row';
@@ -330,7 +330,7 @@ function calcPrice(){
   $('q-note').textContent = (isOversized
     ? 'Oversized freight: $80 first blind + $50 each additional (width 90″+).'
     : 'Freight: $25 first blind + $11 each additional.')
-    + ' Norman retail pricing with 15% discount on product subtotal. Shipping at retail rate.';
+    + ' Norman retail pricing — 35% off. ⓘ Estimated price only — tariffs, import fees, and exact shipping confirmed at order. No charge until Justin reviews and confirms your price.';
 }
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────────

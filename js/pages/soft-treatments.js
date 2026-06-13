@@ -129,12 +129,20 @@ function selectRomanStyle(el, val) {
   document.getElementById('valance-config').style.display  = isValance  ? 'block' : 'none';
   document.getElementById('roman-tdbu-wrap').style.display = tdbuStyles.indexOf(val) !== -1 ? 'block' : 'none';
 
-  ['step-roman-2','step-roman-3','step-roman-4','step-roman-5'].forEach(function(id){
+  ['step-roman-3','step-roman-4','step-roman-5','step-roman-6'].forEach(function(id){
     var s = document.getElementById(id);
     if (s) s.style.display = hideSteps ? 'none' : '';
   });
 
-  if (!hideSteps) { calcRoman(); }
+  calcRoman();
+
+  // Auto-scroll to the revealed content
+  setTimeout(function() {
+    var target = isVignette ? document.getElementById('vignette-notice')
+               : isValance  ? document.getElementById('valance-config')
+               : document.getElementById('roman-step-style');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, 150);
 }
 
 function romanChainCheck() {
@@ -922,8 +930,8 @@ async function submitValance() {
   if (!name) { alert('Please enter your name.'); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
   var selections = [
-    { label: 'Width',             value: (document.getElementById('val-w').value || '—') + '"' },
-    { label: 'Height / drop',     value: (document.getElementById('val-h').value || '—') + '"' },
+    { label: 'Width',             value: (_getDim('rn-w','rn-w-frac') || '—') + '"' },
+    { label: 'Height / drop',     value: (_getDim('rn-h','rn-h-frac') || '—') + '"' },
     { label: 'Number of folds',   value: document.getElementById('val-folds').value || '—' },
     { label: 'Fold section size', value: (document.getElementById('val-fold-size').value || '—') + '"' }
   ];

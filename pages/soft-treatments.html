@@ -622,9 +622,63 @@
 </div>
 <div class="step-wrap">
 
-  <!-- STEP 1: STYLE -->
-  <div class="step">
+  <!-- STEP 1: WIDTH & FINISHED LENGTH -->
+  <div class="step" id="roman-step-dims">
     <div class="step-label">Step 1</div>
+    <div class="step-title">Width &amp; finished length</div>
+    <div class="step-sub">Enter your window size — we confirm measurements at the home visit.</div>
+    <div class="configurator" style="margin-top:0">
+      <div>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="adjRomanQty(-1)">−</button>
+          <input class="qty-val" id="rn-qty" type="number" value="1" min="1" max="30" oninput="calcRoman()">
+          <span style="font-size:13px;color:#666">window(s)</span>
+        </div>
+        <div class="dim-box" style="margin-top:14px">
+          <div class="dim-box-label">Enter your window size</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Width</label>
+              <div style="display:flex;align-items:center;gap:6px">
+                <input type="number" id="rn-w" placeholder="36" min="12" max="120" oninput="calcRoman()" style="width:70px">
+                <select id="rn-w-frac" onchange="calcRoman()" style="padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff">
+                  <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
+                  <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
+                </select>
+                <span style="font-size:12px;color:#666">in</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Finished length</label>
+              <div style="display:flex;align-items:center;gap:6px">
+                <input type="number" id="rn-h" placeholder="48" max="120" oninput="calcRoman()" style="width:70px">
+                <select id="rn-h-frac" onchange="calcRoman()" style="padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff">
+                  <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
+                  <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
+                </select>
+                <span style="font-size:12px;color:#666">in</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="price-box" id="roman-pricebox" style="display:none">
+          <div class="pb-title">Your configuration</div>
+          <div class="pb-row"><span class="pb-key">Style</span><span class="pb-val" id="rn-pb-style">—</span></div>
+          <div class="pb-row"><span class="pb-key">Size</span><span class="pb-val" id="rn-pb-dims">—</span></div>
+          <div class="pb-row"><span class="pb-key">Qty</span><span class="pb-val" id="rn-pb-qty">1</span></div>
+          <div class="pb-row"><span class="pb-key">Motorization</span><span class="pb-val" id="rn-pb-motor">No</span></div>
+          <div id="rn-pb-min-note" style="display:none"></div>
+          <div class="pb-note">All pricing confirmed at order — submit your configuration for a custom quote.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: STYLE -->
+  <div class="step" id="roman-step-style">
+    <div class="step-label">Step 2</div>
     <div class="step-title">Choose your style</div>
     <div class="step-sub">Roman shades fold up into clean horizontal pleats. Each style folds differently when raised.</div>
     <div class="opt-cards" id="roman-style-cards">
@@ -698,36 +752,43 @@
     </div>
 
     <!-- VALANCE CONFIG (shows when Roman Valance selected) -->
-    <div id="valance-config" style="display:none;margin-top:18px;background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:22px">
-      <div style="font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:4px">Roman Valance</div>
-      <div style="font-size:12px;color:#888;margin-bottom:18px">Custom decorative top treatment — tell us your specs and we'll quote it.</div>
-      <div class="form-row">
-        <div class="form-group"><label>Width (inches) *</label><input type="number" id="val-w" placeholder="e.g. 72" min="12" max="240" style="font-size:14px"></div>
-        <div class="form-group"><label>Height / drop (inches) *</label><input type="number" id="val-h" placeholder="e.g. 18" min="4" max="60" style="font-size:14px"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Number of folds</label><input type="number" id="val-folds" placeholder="e.g. 3" min="1" max="20" style="font-size:14px"></div>
-        <div class="form-group"><label>Fold section size (inches)</label><input type="number" id="val-fold-size" placeholder="e.g. 4" min="1" max="24" style="font-size:14px"></div>
-      </div>
-      <div style="background:#FBF7F0;border-radius:8px;padding:10px 13px;font-size:11px;color:#888;margin-bottom:16px">Fold section dimensions will be confirmed and refined during your consultation.</div>
-      <div class="form-row">
-        <div class="form-group"><label>Your name *</label><input type="text" id="val-name" placeholder="Jane Smith"></div>
-        <div class="form-group"><label>Phone *</label><input type="tel" id="val-phone" placeholder="(215) 555-0100"></div>
-      </div>
-      <div class="form-group"><label>Email</label><input type="email" id="val-email" placeholder="jane@example.com"></div>
-      <div class="form-group"><label>Notes</label><textarea id="val-notes" placeholder="Fabric preference, room details, timeline..." style="min-height:60px"></textarea></div>
-      <button onclick="reqMoreInfo('Custom Valance')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Valance →</button>
+    <div id="valance-config" style="display:none;margin-top:18px">
+      <div id="valance-form-fields">
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Fold details</div>
+        <div class="dim-box" style="margin-bottom:16px">
+          <div class="dim-box-label">Fold specifications</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Number of folds</label>
+              <input type="number" id="val-folds" placeholder="e.g. 3" min="1" max="20" style="width:100px;padding:9px 11px;border:1px solid #ddd;border-radius:8px;font-size:14px">
+            </div>
+            <div class="form-group">
+              <label>Fold section size (inches)</label>
+              <input type="number" id="val-fold-size" placeholder="e.g. 4" min="1" max="24" style="width:100px;padding:9px 11px;border:1px solid #ddd;border-radius:8px;font-size:14px">
+            </div>
+          </div>
+          <div style="font-size:11px;color:#888;margin-top:8px;line-height:1.5">Fold dimensions confirmed and refined during your consultation.</div>
+        </div>
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Your contact info</div>
+        <div class="form-row">
+          <div class="form-group"><label>Your name *</label><input type="text" id="val-name" placeholder="Jane Smith"></div>
+          <div class="form-group"><label>Phone *</label><input type="tel" id="val-phone" placeholder="(215) 555-0100"></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" id="val-email" placeholder="jane@example.com"></div>
+        <div class="form-group"><label>Notes</label><textarea id="val-notes" placeholder="Fabric preference, room details, timeline..." style="min-height:60px"></textarea></div>
+        <button onclick="reqMoreInfo('Custom Valance')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Valance →</button>
         <button class="btn-gold" onclick="submitValance()" style="width:100%;padding:13px;font-size:14px;margin-top:4px">Submit Order for Review &rarr;</button>
+      </div>
       <div id="valance-success" style="display:none;background:#EAF3DE;border-radius:10px;padding:18px;text-align:center;margin-top:10px">
-        <strong>Order submitted!</strong><br><span style="font-size:13px;color:#3B6D11">Your email opened with your spec — hit Send. We'll review and send an invoice. Urgent? <a href="tel:6097421720" style="color:#3B6D11">(609) 742-1720</a></span>
+        <strong>Order submitted!</strong><br><span style="font-size:13px;color:#3B6D11">We'll review your valance spec and be in touch. Urgent? <a href="tel:6097421720" style="color:#3B6D11">(609) 742-1720</a></span>
       </div>
     </div>
 
   </div>
 
-  <!-- STEP 2: FABRIC -->
-  <div class="step" id="step-roman-2">
-    <div class="step-label">Step 2</div>
+  <!-- STEP 3: FABRIC -->
+  <div class="step" id="step-roman-3">
+    <div class="step-label">Step 3</div>
     <div class="step-title">Fabric</div>
     <div class="fabric-cards" id="roman-fabric-cards">
       <div class="fabric-card" onclick="selectFabric('roman',this,'We supply the fabric')">
@@ -767,9 +828,9 @@
     </div>
   </div>
 
-  <!-- STEP 3: LINING -->
-  <div class="step" id="step-roman-3">
-    <div class="step-label">Step 3</div>
+  <!-- STEP 4: LINING -->
+  <div class="step" id="step-roman-4">
+    <div class="step-label">Step 4</div>
     <div class="step-title">Lining</div>
     <div class="opt-row" id="grp-roman-lining" style="margin-top:12px">
       <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-lining');calcRoman()">Unlined</button>
@@ -778,9 +839,9 @@
     </div>
   </div>
 
-  <!-- STEP 4: OPERATION -->
-  <div class="step" id="step-roman-4">
-    <div class="step-label">Step 4</div>
+  <!-- STEP 5: OPERATION -->
+  <div class="step" id="step-roman-5">
+    <div class="step-label">Step 5</div>
     <div class="step-title">Operation</div>
     <div class="opt-row" id="grp-roman-op" style="margin-top:12px">
       <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-op');romanToggleOp('manual')">Manual</button>
@@ -839,11 +900,11 @@
     </div>
   </div>
 
-  <!-- STEP 5: DIMENSIONS + PRICE -->
-  <div class="step" id="step-roman-5">
-    <div class="step-label">Step 5</div>
-    <div class="step-title">Size &amp; details</div>
-    <div class="step-sub">Enter your window dimensions for an instant estimate. Roman shades are custom quoted — this gives you a starting figure.</div>
+  <!-- STEP 6: DETAILS + PRICE -->
+  <div class="step" id="step-roman-6">
+    <div class="step-label">Step 6</div>
+    <div class="step-title">Details &amp; submit</div>
+    <div class="step-sub">Final details for your roman shade order.</div>
 
     <div class="configurator" style="margin-top:16px">
       <div>
