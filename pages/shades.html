@@ -2225,20 +2225,10 @@
       <div class="step-label">Step 5</div>
       <div class="step-title">Operation</div>
       <div class="opt-row" id="grp-ps-lift">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-ps-lift');document.getElementById('ps-motor-note').style.display='none';psCalc()">Continuous cord loop</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-ps-lift');document.getElementById('ps-motor-note').style.display='block';psCalc()">Norman motorization</button>
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-ps-lift');document.getElementById('ps-motor-note').style.display='none';document.getElementById('ps-chain-len-wrap').style.display='block';psCalc()">Continuous cord loop</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-ps-lift');document.getElementById('ps-motor-note').style.display='block';document.getElementById('ps-chain-len-wrap').style.display='none';psCalc()">Norman motorization</button>
       </div>
       <div id="ps-motor-note" class="tooltip-note" style="display:none;margin-top:8px">&#9889; Norman Smart Rechargeable Battery or AC Adapter Plug-in — motorization surcharge will be added to your quote. Minimum width varies by motor.</div>
-    </div>
-
-    <!-- Step 6: Cord side + chain length -->
-    <div class="step-block">
-      <div class="step-label">Step 6</div>
-      <div class="step-title">Cord side</div>
-      <div class="opt-row" id="grp-ps-cord">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-ps-cord')">Right (default)</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-ps-cord')">Left</button>
-      </div>
       <div id="ps-chain-len-wrap" style="margin-top:12px">
         <div class="step-label">Chain length</div>
         <div class="opt-row" id="grp-ps-clen">
@@ -2254,9 +2244,9 @@
       </div>
     </div>
 
-    <!-- Step 7: Valance -->
+    <!-- Step 6: Valance -->
     <div class="step-block">
-      <div class="step-label">Step 7</div>
+      <div class="step-label">Step 6</div>
       <div class="step-title">Valance / headrail cover</div>
       <div class="opt-row" id="grp-ps-valance">
         <button class="opt-btn sel" onclick="selOpt(this,'grp-ps-valance');psCalc()">Curved fascia (free)</button>
@@ -2267,9 +2257,9 @@
       <div class="tooltip-note" style="margin-top:8px">Curved fascia with matching fabric is included at no charge. Fabric valance adds a flat front panel; wood valance is painted or stained hardwood.</div>
     </div>
 
-    <!-- Step 8: Accessories + price -->
+    <!-- Step 7: Accessories + price -->
     <div class="step-block">
-      <div class="step-label">Step 8</div>
+      <div class="step-label">Step 7</div>
       <div class="step-title">Accessories <span style="font-weight:400;color:#888">(optional)</span></div>
       <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
         <label style="display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer">
@@ -2304,9 +2294,9 @@
       <div id="ps-price-note" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px 14px;font-size:12px;color:#856404;margin-top:10px"></div>
     </div>
 
-    <!-- Step 9: Your details -->
+    <!-- Step 8: Your details -->
     <div class="step-block">
-      <div class="step-label">Step 9</div>
+      <div class="step-label">Step 8</div>
       <div class="step-title">Your details</div>
       <div class="form-group">
         <label>Your name *</label>
