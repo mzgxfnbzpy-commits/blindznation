@@ -209,7 +209,7 @@ function selectProduct(productId, productName, isInstant) {
   sec.style.display = 'block';
 
   // Clear ALL configurators first — prevents stale 'open' panels when switching products
-  ['instant-config','hd-config','fwb-config','exterior-config','perfectsheer-config','verticals-type-config'].forEach(function(id) {
+  ['instant-config','hd-config','fwb-config','exterior-config','perfectsheer-config','verticals-type-config','blinds-type-config','rwb-config'].forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.classList.remove('open');
   });
@@ -323,11 +323,9 @@ function clearProduct() {
   currentProduct = null;
   document.getElementById('roller-types').style.display = 'none';
   document.getElementById('configurator-section').style.display = 'none';
-  document.getElementById('instant-config').classList.remove('open');
-  document.getElementById('hd-config').classList.remove('open');
-  document.getElementById('fwb-config').classList.remove('open');
-  document.getElementById('exterior-config').classList.remove('open');
-  document.getElementById('perfectsheer-config').classList.remove('open');
+  ['instant-config','hd-config','fwb-config','exterior-config','perfectsheer-config','blinds-type-config','rwb-config','verticals-type-config'].forEach(function(id) {
+    var el = document.getElementById(id); if (el) el.classList.remove('open');
+  });
   // Scroll back to product grid
   document.getElementById('product-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -1776,10 +1774,9 @@ function selectBlindsType() {
   currentProduct = 'fwb';
   var sec = document.getElementById('configurator-section');
   sec.style.display = 'block';
-  document.getElementById('instant-config').classList.remove('open');
-  document.getElementById('hd-config').classList.remove('open');
-  document.getElementById('fwb-config').classList.remove('open');
-  document.getElementById('rwb-config').classList.remove('open');
+  ['instant-config','hd-config','fwb-config','rwb-config','exterior-config','perfectsheer-config','verticals-type-config'].forEach(function(id){
+    var e = document.getElementById(id); if (e) e.classList.remove('open');
+  });
   document.getElementById('blinds-type-config').classList.add('open');
   sec.scrollIntoView({behavior:'smooth',block:'start'});
 }

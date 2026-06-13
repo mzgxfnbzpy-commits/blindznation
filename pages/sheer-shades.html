@@ -1,22 +1,22 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sheer shades from Hunter Douglas (Silhouette, Pirouette, Luminette, Vignette) or Wallace 3D Dual Sheer — installed by Blindznation.">
-<meta property="og:title" content="Sheer Shades | Blindznation — Salt Lake City &amp; Philadelphia">
-<meta property="og:description" content="Sheer shades from Hunter Douglas or Wallace 3D Dual Sheer. Salt Lake City, UT and Philadelphia, PA.">
-<meta property="og:type" content="website">
+<meta name="description" content="Sheer shades — zebra banded, silhouette, and Hunter Douglas styles. Basic &amp; premium options. Custom-installed by Blindznation. Free quote.">
 <meta property="og:url" content="https://blindznation.com/pages/sheer-shades.html">
+<meta property="og:title" content="Sheer Shades — Blindznation">
+<meta property="og:description" content="Zebra, silhouette, and Hunter Douglas sheer shading. Basic &amp; premium options. Custom-installed by Blindznation.">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="Blindznation">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sheer Shades | Blindznation — Salt Lake City &amp; Philadelphia">
-<meta name="twitter:description" content="Sheer shades from Hunter Douglas or Wallace 3D Dual Sheer. Salt Lake City, UT and Philadelphia, PA.">
+<meta name="twitter:title" content="Sheer Shades — Blindznation">
+<meta name="twitter:description" content="Zebra, silhouette, and Hunter Douglas sheer shading. Basic &amp; premium options. Blindznation.">
 <meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://blindznation.com/img/social-preview.png">
-<title>Sheer Shades — Blindznation | Salt Lake City &amp; Philadelphia</title>
+<title>Sheer Shades — Blindznation</title>
 <link rel="stylesheet" href="../css/global.css">
 <style>
 .page-hero{background:linear-gradient(to right,rgba(28,21,16,.92) 35%,rgba(28,21,16,.55) 70%,rgba(28,21,16,.2) 100%),url('../images/thumbnails/SILOUETTE.JPEG') right center/cover no-repeat;padding:52px 28px 48px;min-height:260px}
@@ -28,125 +28,213 @@
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
 .hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
 
-.choice-section{max-width:860px;margin:0 auto;padding:40px 24px 80px}
-.choice-intro{font-size:15px;color:#555;line-height:1.7;margin-bottom:32px;max-width:640px}
-.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:620px){.choice-grid{grid-template-columns:1fr}}
+.sheer-page{max-width:860px;margin:0 auto;padding:40px 24px 80px}
+.sheer-intro{font-size:15px;color:#555;line-height:1.7;margin-bottom:28px;max-width:640px}
 
-.brand-card{background:#fff;border:1.5px solid #e8e4de;border-radius:16px;overflow:hidden;cursor:pointer;transition:border-color .18s,box-shadow .18s,transform .15s;text-decoration:none;display:block}
-.brand-card:hover{border-color:var(--gold);box-shadow:0 6px 28px rgba(200,151,63,.14);transform:translateY(-2px)}
-.brand-img{height:220px;overflow:hidden;position:relative}
-.brand-img img{width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:transform .3s}
-.brand-card:hover .brand-img img{transform:scale(1.04)}
-.brand-badge{position:absolute;bottom:10px;left:12px;font-size:10px;font-weight:700;padding:3px 10px;border-radius:8px;letter-spacing:.4px;text-transform:uppercase}
-.badge-hd{background:rgba(28,21,16,.82);color:var(--gold)}
-.badge-instant{background:var(--gold);color:#1C1510}
-.brand-body{padding:20px 20px 22px}
-.brand-name{font-size:18px;font-weight:600;color:#111;margin-bottom:5px;letter-spacing:-0.2px}
-.brand-products{font-size:12px;color:#777;margin-bottom:12px;line-height:1.6}
-.brand-cta{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--gold)}
-.brand-cta svg{transition:transform .15s}
-.brand-card:hover .brand-cta svg{transform:translateX(3px)}
+/* ── CATEGORY CARDS ── */
+.sheer-cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:0}
+@media(max-width:620px){.sheer-cat-grid{grid-template-columns:1fr}}
+.sheer-cat-card{border:2px solid #e8e4de;border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .18s,box-shadow .18s;background:#fff;user-select:none}
+.sheer-cat-card:hover{border-color:var(--gold);box-shadow:0 4px 18px rgba(200,151,63,.2)}
+.sheer-cat-card.active{border-color:var(--gold);background:var(--gold-mid);box-shadow:0 4px 18px rgba(200,151,63,.22)}
+.sheer-cat-img{height:130px;overflow:hidden}
+.sheer-cat-img img{width:100%;height:100%;object-fit:cover;transition:transform .2s}
+.sheer-cat-card:hover .sheer-cat-img img{transform:scale(1.04)}
+.sheer-cat-body{padding:11px 14px 14px}
+.sheer-cat-name{font-size:15px;font-weight:600;color:#111;margin-bottom:3px}
+.sheer-cat-sub{font-size:11px;color:#777;line-height:1.5}
+.sheer-cat-card.active .sheer-cat-name{color:#0D4A42}
+.sheer-cat-card.active .sheer-cat-sub{color:#7A5A28}
 
-.or-divider{display:flex;align-items:center;gap:12px;margin:8px 0;color:#bbb;font-size:12px;font-weight:500}
-.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:#e8e4de}
-@media(max-width:620px){.or-divider{display:none}}
+/* ── SUB-OPTIONS ── */
+.sheer-sub{display:none;padding:20px 0 0;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.sheer-sub-label{font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:#888;margin-bottom:12px}
+.sheer-tier-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.sheer-tier-grid{grid-template-columns:1fr}}
+.sheer-tier-card{border:2px solid #e8e4de;border-radius:12px;overflow:hidden;cursor:pointer;background:#fff;text-decoration:none;display:block;transition:border-color .18s,box-shadow .18s,transform .15s}
+.sheer-tier-card:hover{border-color:var(--gold);box-shadow:0 3px 14px rgba(200,151,63,.18);transform:translateY(-2px)}
+.sheer-tier-img{height:100px;overflow:hidden}
+.sheer-tier-img img{width:100%;height:100%;object-fit:cover}
+.sheer-tier-body{padding:10px 13px 13px}
+.sheer-tier-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.4px;padding:2px 9px;border-radius:10px;margin-bottom:5px}
+.sheer-tier-badge.basic{background:#e6f4f0;color:#1a5c4f}
+.sheer-tier-badge.premium{background:#f8f0e0;color:#7d4c00}
+.sheer-tier-brand{font-size:10px;color:#888;margin-bottom:2px}
+.sheer-tier-name{font-size:13px;font-weight:600;color:#111}
 
-.compare-note{margin-top:28px;background:#f9f7f3;border-radius:12px;padding:18px 20px}
-.compare-note h3{font-size:13px;font-weight:600;color:#333;margin-bottom:10px}
-.compare-table{width:100%;border-collapse:collapse;font-size:12px}
-.compare-table th{text-align:left;color:#888;font-weight:600;padding:5px 8px;border-bottom:1px solid #e8e4de}
-.compare-table td{padding:6px 8px;color:#444;border-bottom:.5px solid #f0ede8;vertical-align:top}
-.compare-table tr:last-child td{border-bottom:none}
-.compare-table td:first-child{font-weight:500;color:#222}
-.check-yes{color:#16a34a;font-weight:700}
-.check-no{color:#ccc}
+/* ── HUNTER DOUGLAS 3-CARD ── */
+.hd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:520px){.hd-grid{grid-template-columns:1fr}}
+.hd-card{border:2px solid #e8e4de;border-radius:12px;overflow:hidden;cursor:pointer;background:#fff;text-decoration:none;display:block;transition:border-color .18s,box-shadow .18s,transform .15s}
+.hd-card:hover{border-color:var(--gold);box-shadow:0 3px 12px rgba(200,151,63,.18);transform:translateY(-2px)}
+.hd-card-img{height:90px;overflow:hidden}
+.hd-card-img img{width:100%;height:100%;object-fit:cover}
+.hd-card-body{padding:9px 12px 12px}
+.hd-card-badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.4px;padding:2px 7px;border-radius:6px;background:rgba(28,21,16,.85);color:var(--gold);margin-bottom:4px}
+.hd-card-name{font-size:13px;font-weight:600;color:#111;margin-bottom:3px}
+.hd-card-sub{font-size:10px;color:#888;line-height:1.4}
+.hd-note{background:var(--espresso-mid);border:.5px solid var(--border-dark);border-radius:10px;padding:13px 16px;margin-top:12px;font-size:12px;color:var(--text-dark);line-height:1.6}
+.hd-note strong{color:var(--gold)}
 </style>
 </head>
-<body>
+<body data-page="Sheer Shades">
 <nav class="site-nav" id="site-nav"></nav>
 
 <div class="page-hero">
-  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="shades.html">Shades</a> &rsaquo; Sheer Shades</div>
+  <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Sheer Shades</div>
   <h1>Sheer Shades</h1>
-  <p class="sub">Soft light control with a sheer vane construction — filter daylight while maintaining your view. Two distinct product families to choose from.</p>
+  <p class="sub">Soft light control with a sheer vane construction — filter daylight while keeping your view. Three distinct families to choose from.</p>
   <div class="hero-pills">
+    <span class="hero-pill hero-pill-gold">Zebra</span>
+    <span class="hero-pill hero-pill-gold">Silhouettes</span>
     <span class="hero-pill hero-pill-gold">Hunter Douglas</span>
-    <span class="hero-pill hero-pill-gold">Wallace 3D Dual Sheer</span>
     <span class="hero-pill">Motorized available</span>
-    <span class="hero-pill">Translucent &amp; room darkening</span>
   </div>
 </div>
 
-<div class="choice-section">
-  <p class="choice-intro">We carry two sheer shade systems. Choose the Hunter Douglas family for the most recognized names in the industry — or choose Wallace 3D Dual Sheer for an instant online quote on a quality 3D vane system.</p>
+<div class="sheer-page">
+  <p class="sheer-intro">Choose a sheer shading style below. Each has basic and premium options — we'll walk you through the fabrics and help you find the right fit for your windows.</p>
 
-  <div class="choice-grid">
+  <!-- ── 3 CATEGORY CARDS ── -->
+  <div class="sheer-cat-grid">
 
-    <!-- Hunter Douglas card -->
-    <div class="brand-card" onclick="pbShowContact('Hunter Douglas Sheer Shades — Silhouette, Pirouette, Luminette, or Vignette — free consultation &amp; custom quote')">
-      <div class="brand-img">
-        <img loading="lazy" src="../images/thumbnails/PIROUTTES.JPEG" alt="Hunter Douglas Pirouette sheer shades">
-        <span class="brand-badge badge-hd">Free consultation</span>
-      </div>
-      <div class="brand-body">
-        <div class="brand-name">Hunter Douglas</div>
-        <div class="brand-products">
-          <strong>Silhouette®</strong> · soft fabric vane sheer<br>
-          <strong>Pirouette®</strong> · structured vane sheer<br>
-          <strong>Luminette®</strong> · vertical sheer drapery<br>
-          <strong>Vignette®</strong> · modern roman sheer
-        </div>
-        <div class="brand-cta">Get a free custom quote
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
+    <!-- Zebra -->
+    <div class="sheer-cat-card" id="scat-zebra" onclick="selectSheerCat('zebra',this)">
+      <div class="sheer-cat-img"><img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Zebra shades" loading="lazy"></div>
+      <div class="sheer-cat-body">
+        <div class="sheer-cat-name">Zebra Shades</div>
+        <div class="sheer-cat-sub">Banded alternating sheer &amp; solid — basic &amp; premium</div>
       </div>
     </div>
 
-    <!-- Wallace 3D card -->
-    <a class="brand-card" href="wallace-3d-sheer.html">
-      <div class="brand-img">
-        <img loading="lazy" src="../images/thumbnails/PIROUTTES.JPEG" alt="Wallace 3D Dual Sheer Shades" style="object-position:center 60%">
-        <span class="brand-badge badge-instant">Instant quote</span>
+    <!-- Silhouettes -->
+    <div class="sheer-cat-card" id="scat-silhouette" onclick="selectSheerCat('silhouette',this)">
+      <div class="sheer-cat-img"><img src="../images/thumbnails/SILOUETTE.JPEG" alt="Silhouette sheer shades" loading="lazy"></div>
+      <div class="sheer-cat-body">
+        <div class="sheer-cat-name">Silhouettes</div>
+        <div class="sheer-cat-sub">Soft horizontal sheer vane — basic &amp; premium</div>
       </div>
-      <div class="brand-body">
-        <div class="brand-name">Wallace 3D Dual Sheer</div>
-        <div class="brand-products">
-          <strong>13 collections</strong> · Groups A, B &amp; C<br>
-          <strong>2″ &amp; 3″ vanes</strong> · translucent or room darkening<br>
-          <strong>Cord loop or battery motor</strong><br>
-          Fabric headrail insert available
-        </div>
-        <div class="brand-cta">Configure &amp; get an instant quote
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
+    </div>
+
+    <!-- Hunter Douglas -->
+    <div class="sheer-cat-card" id="scat-hd" onclick="selectSheerCat('hd',this)">
+      <div class="sheer-cat-img"><img src="../images/thumbnails/pirouette-install.JPEG" alt="Hunter Douglas sheer shading" loading="lazy"></div>
+      <div class="sheer-cat-body">
+        <div class="sheer-cat-name">Hunter Douglas</div>
+        <div class="sheer-cat-sub">Luminette &middot; Pirouette &middot; Silhouette — custom quote</div>
       </div>
-    </a>
+    </div>
 
   </div>
 
-  <div class="compare-note">
-    <h3>Quick comparison</h3>
-    <table class="compare-table">
-      <thead><tr><th>Feature</th><th>Hunter Douglas</th><th>Wallace 3D Dual Sheer</th></tr></thead>
-      <tbody>
-        <tr><td>Pricing</td><td>Custom quote only</td><td>Instant quote online</td></tr>
-        <tr><td>Light control</td><td>Translucent (all styles)</td><td>Translucent or room darkening</td></tr>
-        <tr><td>Motorization</td><td class="check-yes">Yes — PowerView®</td><td class="check-yes">Yes — battery motor</td></tr>
-        <tr><td>Collections</td><td>4 distinct product lines</td><td>13 fabric collections</td></tr>
-        <tr><td>Vane orientation</td><td>Horizontal (Silhouette/Pirouette) or vertical (Luminette)</td><td>Horizontal 3D vane</td></tr>
-        <tr><td>Next step</td><td>Call, text, or email us</td><td>Configure online in minutes</td></tr>
-      </tbody>
-    </table>
+  <!-- ── SUB: ZEBRA ── -->
+  <div class="sheer-sub" id="sheer-sub-zebra">
+    <div class="sheer-sub-label">Zebra Shades — Basic or Premium</div>
+    <div class="sheer-tier-grid">
+      <div class="sheer-tier-card" onclick="pbShowContact('Wallace 2D Banded Shades — Basic Zebra — custom quote')">
+        <div class="sheer-tier-img"><img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Wallace 2D Banded" loading="lazy"></div>
+        <div class="sheer-tier-body">
+          <span class="sheer-tier-badge basic">Basic</span>
+          <div class="sheer-tier-brand">Wallace</div>
+          <div class="sheer-tier-name">2D Banded Shades</div>
+        </div>
+      </div>
+      <a class="sheer-tier-card" href="portfolio-dual-sheer.html">
+        <div class="sheer-tier-img"><img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Wallace Portfolio Dual" loading="lazy"></div>
+        <div class="sheer-tier-body">
+          <span class="sheer-tier-badge premium">Premium</span>
+          <div class="sheer-tier-brand">Wallace</div>
+          <div class="sheer-tier-name">Portfolio Dual Sheer</div>
+        </div>
+      </a>
+    </div>
   </div>
 
-  <div style="margin-top:20px;font-size:13px;color:#777;line-height:1.7">
-    Not sure which is right for your space? Call or text Justin at <a href="tel:6097421720" style="color:var(--gold);font-weight:600">(609) 742-1720</a> — 24/7.
+  <!-- ── SUB: SILHOUETTES ── -->
+  <div class="sheer-sub" id="sheer-sub-silhouette">
+    <div class="sheer-sub-label">Silhouettes — Basic or Premium</div>
+    <div class="sheer-tier-grid">
+      <a class="sheer-tier-card" href="wallace-3d-sheer.html">
+        <div class="sheer-tier-img"><img src="../images/thumbnails/PIROUTTES.JPEG" alt="Wallace 3D Sheer Horizontals" loading="lazy" style="object-position:center 60%"></div>
+        <div class="sheer-tier-body">
+          <span class="sheer-tier-badge basic">Basic</span>
+          <div class="sheer-tier-brand">Wallace</div>
+          <div class="sheer-tier-name">3D Sheer Horizontals</div>
+        </div>
+      </a>
+      <a class="sheer-tier-card" href="shades.html?product=perfectsheer">
+        <div class="sheer-tier-img" style="position:relative">
+          <img src="../images/thumbnails/norman-perfect-sheer.jpg" alt="Norman PerfectSheer" loading="lazy" style="object-position:center 40%">
+          <div style="position:absolute;bottom:6px;left:8px;background:var(--espresso);color:var(--gold);font-size:9px;padding:2px 6px;border-radius:5px;font-weight:600;letter-spacing:0.5px">NORMAN®</div>
+        </div>
+        <div class="sheer-tier-body">
+          <span class="sheer-tier-badge premium">Premium</span>
+          <div class="sheer-tier-brand">Norman</div>
+          <div class="sheer-tier-name">PerfectSheer™</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- ── SUB: HUNTER DOUGLAS ── -->
+  <div class="sheer-sub" id="sheer-sub-hd">
+    <div class="sheer-sub-label">Hunter Douglas Sheer Shading — Custom Quote</div>
+    <div class="hd-grid">
+
+      <div class="hd-card" onclick="pbShowContact('Hunter Douglas Luminette Privacy Sheers — vertical fabric vane system, motorized — free consultation &amp; custom quote')">
+        <div class="hd-card-img"><img src="../images/thumbnails/luminette-new.JPEG" alt="Luminette Privacy Sheers" loading="lazy"></div>
+        <div class="hd-card-body">
+          <span class="hd-card-badge">HUNTER DOUGLAS</span>
+          <div class="hd-card-name">Luminette</div>
+          <div class="hd-card-sub">Privacy Sheers · vertical fabric vanes · motorized</div>
+        </div>
+      </div>
+
+      <div class="hd-card" onclick="pbShowContact('Hunter Douglas Pirouette Shades — soft fabric vanes on a single sheer backing — free consultation &amp; custom quote')">
+        <div class="hd-card-img"><img src="../images/thumbnails/PIROUTTES.JPEG" alt="Pirouette Shades" loading="lazy" style="object-position:center 50%"></div>
+        <div class="hd-card-body">
+          <span class="hd-card-badge">HUNTER DOUGLAS</span>
+          <div class="hd-card-name">Pirouette</div>
+          <div class="hd-card-sub">Soft vanes on a single sheer backing · PowerView® motor</div>
+        </div>
+      </div>
+
+      <div class="hd-card" onclick="pbShowContact('Hunter Douglas Silhouette Window Shadings — horizontal fabric vanes between two sheer panels — free consultation &amp; custom quote')">
+        <div class="hd-card-img"><img src="../images/thumbnails/SILOUETTE.JPEG" alt="Silhouette Window Shadings" loading="lazy"></div>
+        <div class="hd-card-body">
+          <span class="hd-card-badge">HUNTER DOUGLAS</span>
+          <div class="hd-card-name">Silhouette</div>
+          <div class="hd-card-sub">Vanes between two sheer panels · light diffusion · privacy</div>
+        </div>
+      </div>
+
+    </div>
+    <div class="hd-note">
+      <strong>All Hunter Douglas products are custom quote only.</strong> No instant pricing — we review your windows, bring samples, and provide a formal invoice. Call or text <a href="tel:6097421720" style="color:var(--gold);font-weight:500;text-decoration:none">(609) 742-1720</a> anytime.
+    </div>
+  </div>
+
+  <div style="margin-top:24px;font-size:13px;color:#777;line-height:1.7">
+    Not sure which style is right for you? Call or text Justin at <a href="tel:6097421720" style="color:var(--gold);font-weight:600">(609) 742-1720</a> — 24/7.
   </div>
 </div>
 
 <footer id="site-footer"></footer>
 <script src="../js/shared.js"></script>
-<script>renderNav('Sheer Shades'); renderFooter(false);</script>
+<script>
+renderNav('Sheer Shades');
+renderFooter(false);
+function selectSheerCat(cat, el) {
+  var wasActive = el.classList.contains('active');
+  document.querySelectorAll('.sheer-cat-card').forEach(function(c){ c.classList.remove('active'); });
+  document.querySelectorAll('.sheer-sub').forEach(function(s){ s.style.display = 'none'; });
+  if (!wasActive) {
+    el.classList.add('active');
+    var sub = document.getElementById('sheer-sub-' + cat);
+    if (sub) sub.style.display = 'block';
+  }
+}
+</script>
 </body>
 </html>
