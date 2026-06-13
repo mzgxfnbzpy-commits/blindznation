@@ -686,11 +686,7 @@
                 <div class="rn-fc-name">Natural</div>
                 <div class="rn-fc-desc">Bamboo, jute, paper blends · organic look · light filtering · max 96″W or 78″W by collection</div>
               </button>
-              <button class="rn-fabric-card" onclick="pbShowContact('Norman Soluna — Designer Fabrics')">
-                <div class="rn-fc-name">Designer</div>
-                <div class="rn-fc-desc">Premium specialty fabrics · unique textures &amp; patterns · contact us for pricing</div>
-              </button>
-              <button class="rn-fabric-card" onclick="selRnFabric(this,'rd')">
+<button class="rn-fabric-card" onclick="selRnFabric(this,'rd')">
                 <div class="rn-fc-name">Room Darkening</div>
                 <div class="rn-fc-desc">High privacy · coated backing · blocks most light — add LightGuard 360™ for true blackout</div>
               </button>
@@ -838,17 +834,22 @@
 
             <!-- Fascia sub-options (shown when Fascia System selected) -->
             <div id="rn-fascia-opts" style="display:none;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px;margin-bottom:12px">
-              <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:6px">Fascia shape</div>
-              <div class="opt-row" id="rn-grp-fascia-shape">
-                <button class="opt-btn sel" onclick="selOpt(this,'rn-grp-fascia-shape');rnSetFasciaShape('square')">Square</button>
-                <button class="opt-btn" onclick="selOpt(this,'rn-grp-fascia-shape');rnSetFasciaShape('curved')">Curved</button>
+              <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:6px">Fascia style</div>
+              <div class="opt-row" id="rn-grp-fascia-style">
+                <button class="opt-btn sel" onclick="selOpt(this,'rn-grp-fascia-style');rnSetFasciaStyleCombined('square','metal')">Flat Metal Fascia</button>
+                <button class="opt-btn" onclick="selOpt(this,'rn-grp-fascia-style');rnSetFasciaStyleCombined('square','fabric')">Flat Fabric Balance</button>
+                <button class="opt-btn" onclick="selOpt(this,'rn-grp-fascia-style');rnSetFasciaStyleCombined('curved','fabric')">Curved Fabric-Wrapped Fascia</button>
               </div>
-              <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:6px;margin-top:12px">Fascia material</div>
-              <div class="opt-row" id="rn-grp-fascia-mat">
-                <button class="opt-btn sel" id="rn-fascia-metal-btn" onclick="selOpt(this,'rn-grp-fascia-mat');rnSetFasciaMat('metal')">Metal</button>
-                <button class="opt-btn" onclick="selOpt(this,'rn-grp-fascia-mat');rnSetFasciaMat('fabric')">Fabric Wrapped</button>
+              <!-- Hidden state holders — read by rnUpdatePrice / rnBuildSolunaColorConfig -->
+              <div style="display:none" id="rn-grp-fascia-shape">
+                <button class="opt-btn sel">Square</button>
+                <button class="opt-btn">Curved</button>
               </div>
-              <div id="rn-fascia-rule-note" class="tooltip-note" style="margin-top:6px">Square fascia: Metal or Fabric Wrapped. Curved fascia: Fabric Wrapped only (aluminum base with fabric cover).</div>
+              <div style="display:none" id="rn-grp-fascia-mat">
+                <button class="opt-btn sel" id="rn-fascia-metal-btn">Metal</button>
+                <button class="opt-btn">Fabric Wrapped</button>
+              </div>
+              <div id="rn-fascia-rule-note" style="display:none"></div>
             </div>
 
             <!-- Cassette sub-options (shown when Cassette System selected) -->

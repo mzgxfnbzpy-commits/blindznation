@@ -181,8 +181,11 @@ function _getShippingEst(containerEl) {
 }
 
 // ── Roman pricing ─────────────────────────────────────────
-var RN_MIN       = 85;       // minimum per shade regardless of sq ft
 var RN_TRIM_PER_FT = 15;
+// Minimums: flat/relaxed $150, permanently pleated $250
+function rnGetMin() {
+  return (romanState.style === 'Permanently Pleated Roman') ? 250 : 150;
+}
 
 // $40/sqft = cost $26 ÷ 0.65 margin. Same rate all styles — liner included in labor.
 var RN_RATES = {
@@ -237,12 +240,21 @@ function calcRoman() {
   // Motorized operation → no customer-facing estimate
   if (getOpt('grp-roman-op') === 'Motorized') { _motorCustomMsg(box, 'Motorized Roman Shade'); return; }
 
-  // Oversized → custom quote (max 120″ × 120″)
+  // Minimum functional size — 12″
+  if ((w > 0 && w < 12) || (h > 0 && h < 12)) {
+    if (box) { box.style.display = 'block'; box.innerHTML = '<div style="padding:6px 0;font-size:12px;color:var(--text-dark)">&#9888; Roman shades require a minimum <strong>12&rdquo;</strong> width and height to operate correctly.</div>'; }
+    return;
+  }
+
+  // Custom quote for over 120″
   if (w > 120 || h > 120) { _customSizeMsg(box, 'Roman Shade', 120, 120); return; }
+
+  // Oversized freight flag (>96″ wide = 8 ft)
+  var isRomanOversized = w > 96;
 
   var rate     = rnGetRate();
   var sqft     = (w / 12) * (h / 12);
-  var perShade = Math.max(RN_MIN, sqft * rate);
+  var perShade = Math.max(rnGetMin(), sqft * rate);
   var laborTotal = perShade * qty;
 
   // Trim
@@ -270,12 +282,21 @@ function calcRoman() {
     fabricCost = fabricYds * 25;
     var linerBtn = document.querySelector('#grp-roman-liner .opt-btn.sel');
     if (linerBtn && linerBtn.textContent.indexOf('liner') !== -1) {
-      linerCost = fabricYds * 7;
+      linerCost = fabricYds * 10;
     }
   }
 
-  // Shipping estimate
-  var shipEst = _getShippingEst(document.getElementById('roman-form'));
+  // Shipping estimate — FedEx/UPS from Philadelphia; min $75; >96″ wide = oversized freight $200
+  var isShippingRn = getOpt('grp-del-roman') === 'Ship to me';
+  var shipEst = 0;
+  if (isShippingRn) {
+    if (isRomanOversized) {
+      shipEst = 200;
+    } else {
+      var rnShipBase = Math.ceil((w / 12) * (h / 12) * qty * 3 / 5) * 5;
+      shipEst = Math.max(75, rnShipBase);
+    }
+  }
 
   var grandTotal = laborTotal + trimTotal + fabricCost + linerCost + shipEst;
   if (box) box.style.display = 'block';
@@ -314,6 +335,9 @@ function calcRoman() {
   ];
   if (getOpt('grp-roman-op') === 'Motorized') rnLines.push({ label: 'Motor brand', value: getOpt('grp-roman-motor-brand') || 'TBD at order' });
   if (trimTotal) rnLines.push({ label: 'Trim', value: getOpt('grp-roman-trim') || 'Selected' });
+  if (shipEst)   rnLines.push({ label: isRomanOversized ? 'Oversized freight est. (>96″ wide)' : 'Shipping est. (FedEx/UPS, Philadelphia)', value: '~$' + shipEst });
+  var rnAtMin = perShade === rnGetMin();
+  if (rnAtMin) rnLines.push({ label: 'Note', value: 'At ' + (romanState.style === 'Permanently Pleated Roman' ? 'pleated' : 'flat/relaxed') + ' minimum — $' + rnGetMin() + '/shade' });
   pbRenderEstimate('roman-pricebox', rnLines, grandTotal, '', function(checkout) {
     pbCollectItem(romanState.style || 'Roman Shade', rnLines, grandTotal, getOpt('grp-roman-op')==='Motorized');
     pbOpenCart();
@@ -356,19 +380,19 @@ function calcDrapePrice() {
   // Minimum dimension guard
   var minWarn = document.getElementById('d-min-warn');
   if (minWarn) {
-    var tooNarrow = w > 0 && w < 24, tooShort = h > 0 && h < 24;
+    var tooNarrow = w > 0 && w < 10, tooShort = h > 0 && h < 10;
     if (tooNarrow && tooShort) {
-      minWarn.textContent = '⚠ Both dimensions seem very small. Minimum panel width and height are typically 24″. Specialty panels smaller than this require a custom quote — call (609) 742-1720.';
+      minWarn.textContent = '⚠ Both dimensions are below the 10″ minimum. Call (609) 742-1720 for specialty sizes.';
       minWarn.style.display = 'block';
     } else if (tooNarrow) {
-      minWarn.textContent = '⚠ Very narrow panel — panels under 24″ wide may require specialty pricing. Call (609) 742-1720 to confirm.';
+      minWarn.textContent = '⚠ Minimum panel width is 10″. Call (609) 742-1720 to confirm.';
       minWarn.style.display = 'block';
     } else if (tooShort) {
-      minWarn.textContent = '⚠ Very short panel — finished lengths under 24″ may require specialty pricing. Call (609) 742-1720 to confirm.';
+      minWarn.textContent = '⚠ Minimum finished length is 10″. Call (609) 742-1720 to confirm.';
       minWarn.style.display = 'block';
-    } else if (w > 250 || h > 150) {
-      minWarn.textContent = w > 250
-        ? '⚠ Width over 250″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.'
+    } else if (w > 200 || h > 150) {
+      minWarn.textContent = w > 200
+        ? '⚠ Width over 200″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.'
         : '⚠ Length over 150″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.';
       minWarn.style.display = 'block';
     } else {
@@ -376,8 +400,8 @@ function calcDrapePrice() {
     }
   }
 
-  // Oversized → custom quote (max 250″ wide × 150″ tall)
-  if (w > 250 || h > 150) { _customSizeMsg(box, 'Custom Drapery', 250, 150); return; }
+  // Oversized → custom quote (max 200″ wide × 150″ tall)
+  if (w > 200 || h > 150) { _customSizeMsg(box, 'Custom Drapery', 200, 150); return; }
 
   // Fullness factor
   var isRipple   = drapeState.pleat === 'Ripple Fold';
@@ -481,10 +505,16 @@ function calcDrapePrice() {
     liningCost = linerCost2;
   }
 
-  // Shipping estimate
-  var dShipEst = _getShippingEst(document.getElementById('drape-form'));
+  // Shipping estimate — FedEx/UPS from Philadelphia; min $75 for drapes
+  var isShippingDrape = getOpt('grp-del-drape') === 'Ship to me';
+  var dShipEst = 0;
+  if (isShippingDrape) {
+    var dShipBase = Math.ceil(numWidths * 12 / 5) * 5;
+    dShipEst = Math.max(75, dShipBase);
+  }
 
   var grandTotal = laborTotal + interlineTotal + fabricCost + liningCost + corniceTotal + valanceTotal + trimTotal + dShipEst;
+  grandTotal = Math.max(200, grandTotal); // $200 minimum for custom drapery
 
   // Render
   var rows = '';
@@ -499,7 +529,7 @@ function calcDrapePrice() {
   if (trimTotal)   row('Trim', trimTotal);
   if (corniceTotal)row('Cornice', corniceTotal);
   if (valanceTotal)row('Valance', valanceTotal);
-  if (dShipEst)    row('Shipping est.', dShipEst);
+  if (dShipEst)    row('Shipping est. (FedEx/UPS from Philadelphia)', dShipEst);
 
   document.getElementById('drape-price-rows').innerHTML = '';
   // Fabric yardage note for drapes
@@ -531,12 +561,6 @@ function calcDrapePrice() {
   document.getElementById('drape-price-note').textContent = 'Pricing confirmed at order. Fill out the form to request your custom quote.';
   box.style.display = 'block';
 
-  // Shipping: drapes/romans $50 min; over 80" width = likely oversized
-  var dW = parseFloat(document.getElementById('d-exact-width').value) || 0;
-  var dShipMin = 50;
-  var dShipNote = dW > 80 ? 'Oversized (over 80") — heavy freight applies' : '$50 minimum (fabric shipments)';
-  dShipEst = Math.max(dShipMin, dShipEst);
-
   // Line-by-line estimate panel
   var drapeLines = [
     { label: 'Product',     value: (drapeState.pleat || 'Custom Drapery') },
@@ -548,6 +572,8 @@ function calcDrapePrice() {
   if (returnSz) drapeLines.push({ label: 'Return / Overlap', value: returnSz + '" / ' + overlapSz + '"' });
   if (fabricCost) drapeLines.push({ label: 'Fabric', value: '~' + yardsTotal + ' yds (est.)' });
   if (isInterlining) drapeLines.push({ label: 'Interlining', value: 'Yes' });
+  if (dShipEst)  drapeLines.push({ label: 'Shipping est. (FedEx/UPS, Philadelphia)', value: '~$' + dShipEst });
+  if (grandTotal === 200) drapeLines.push({ label: 'Note', value: '$200 minimum for custom drapery' });
   pbRenderEstimate('drape-price-box', drapeLines, grandTotal, '', function(checkout) {
     pbCollectItem(drapeState.pleat || 'Custom Drapery', drapeLines, grandTotal, false);
     pbOpenCart();

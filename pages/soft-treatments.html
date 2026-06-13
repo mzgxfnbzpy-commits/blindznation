@@ -354,7 +354,7 @@
       <div class="form-row">
         <div class="form-group">
           <label>Width</label>
-          <input type="number" id="d-exact-width" placeholder="84" min="12" max="300" oninput="calcDrapePrice()">
+          <input type="number" id="d-exact-width" placeholder="84" min="10" max="200" oninput="calcDrapePrice()">
           <div class="dim-unit">inches</div>
         </div>
         <div class="form-group">
@@ -578,8 +578,8 @@
       <div class="delivery-section" style="margin-top:16px">
         <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
         <div class="opt-row" id="grp-del-drape">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-drape');document.getElementById('del-drape-s').style.display='block';document.getElementById('del-drape-p').style.display='none'">Ship to me</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-del-drape');document.getElementById('del-drape-s').style.display='none';document.getElementById('del-drape-p').style.display='block'">I'll pick up</button>
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-drape');document.getElementById('del-drape-s').style.display='block';document.getElementById('del-drape-p').style.display='none';calcDrapePrice()">Ship to me</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-del-drape');document.getElementById('del-drape-s').style.display='none';document.getElementById('del-drape-p').style.display='block';calcDrapePrice()">I'll pick up</button>
         </div>
         <div id="del-drape-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with your quote.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately.</div></div>
         <div id="del-drape-p" class="delivery-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.</div>
@@ -857,7 +857,7 @@
           <div class="form-row">
             <div class="form-group">
               <label>Width</label>
-              <input type="number" id="rn-w" placeholder="36" max="120" oninput="calcRoman()">
+              <input type="number" id="rn-w" placeholder="36" min="12" max="120" oninput="calcRoman()">
               <div class="dim-unit">inches</div>
             </div>
             <div class="form-group">
@@ -968,8 +968,8 @@
           <div class="delivery-section" style="margin-top:16px">
             <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
             <div class="opt-row" id="grp-del-roman">
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-del-roman');document.getElementById('del-roman-s').style.display='block';document.getElementById('del-roman-p').style.display='none'">Ship to me</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-del-roman');document.getElementById('del-roman-s').style.display='none';document.getElementById('del-roman-p').style.display='block'">I'll pick up</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-del-roman');document.getElementById('del-roman-s').style.display='block';document.getElementById('del-roman-p').style.display='none';calcRoman()">Ship to me</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-del-roman');document.getElementById('del-roman-s').style.display='none';document.getElementById('del-roman-p').style.display='block';calcRoman()">I'll pick up</button>
             </div>
             <div id="del-roman-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
             <div id="del-roman-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>

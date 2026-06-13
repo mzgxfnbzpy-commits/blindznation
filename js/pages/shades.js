@@ -2742,6 +2742,23 @@ function rnSetFasciaMat(mat) {
   setTimeout(rnUpdatePrice, 0);
 }
 
+// ─── rnSetFasciaStyleCombined ─────────────────────────────────
+function rnSetFasciaStyleCombined(shape, mat) {
+  var shapeTarget = shape === 'square' ? 'Square' : 'Curved';
+  var matTarget   = mat   === 'metal'  ? 'Metal'  : 'Fabric Wrapped';
+  document.querySelectorAll('#rn-grp-fascia-shape .opt-btn').forEach(function(b) {
+    b.classList.remove('sel');
+    b.disabled = false; b.style.opacity = '1'; b.style.cursor = 'pointer';
+    if (b.textContent.trim() === shapeTarget) b.classList.add('sel');
+  });
+  document.querySelectorAll('#rn-grp-fascia-mat .opt-btn').forEach(function(b) {
+    b.classList.remove('sel');
+    b.disabled = false; b.style.opacity = '1'; b.style.cursor = 'pointer';
+    if (b.textContent.trim() === matTarget) b.classList.add('sel');
+  });
+  setTimeout(rnUpdatePrice, 0);
+}
+
 // ─── rnSetHeadrail ───────────────────────────────────────────
 function rnSetHeadrail(type) {
   // Show/hide sub-options
