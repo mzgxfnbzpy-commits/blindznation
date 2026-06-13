@@ -1844,26 +1844,111 @@ function showBlindsTypeSelector() {
   document.getElementById('rwb-config').classList.remove('open');
   document.getElementById('blinds-type-config').classList.add('open');
 }
+// ── Norman Normandy® Wood Blinds price matrix (MSRP, Feb 2026) ──
+const NNRM_W = [24,28,32,36,42,48,54,60,66,72,78,84,90,96];
+const NNRM_H = [30,36,42,48,54,60,66,73,78,84,90,96];
+const NNRM_PRICES = {
+  30: [297,318,339,364,394,425,472,526,563,609,655,709,748,796],
+  36: [327,343,361,389,429,461,501,574,612,664,714,775,816,876],
+  42: [345,369,389,421,464,501,557,627,678,735,788,864,913,982],
+  48: [370,397,420,454,502,546,607,683,738,803,862,943,992,1068],
+  54: [392,426,455,492,547,597,661,744,809,876,945,1033,1091,1172],
+  60: [419,455,490,534,594,649,722,811,878,955,1022,1130,1191,1283],
+  66: [441,484,520,568,637,696,776,875,953,1036,1116,1224,1298,1392],
+  73: [468,512,555,606,680,746,832,939,1022,1113,1194,1316,1389,1500],
+  78: [489,535,580,636,714,784,877,993,1081,1179,1263,1392,1476,1588],
+  84: [508,557,609,668,751,826,924,1047,1138,1245,1329,1474,1560,1682],
+  90: [548,585,649,704,788,862,986,1106,1187,1307,1378,1578,1667,1774],
+  96: [561,616,684,746,834,913,1035,1156,1266,1369,1414,1600,1703,1799]
+};
+const NNRM_VAL_CROWN    = [50,56,62,75,87,93,106,118,130,143,155,161,174,186];
+const NNRM_VAL_CONTEMPO = [62,68,81,87,99,118,124,143,155,167,180,198,211,223];
+function rwbLookup(w, h) {
+  var wi = NNRM_W.findIndex(function(v){ return v >= w; });
+  var hi = NNRM_H.findIndex(function(v){ return v >= h; });
+  if (wi < 0 || hi < 0) return null;
+  return NNRM_PRICES[NNRM_H[hi]][wi];
+}
+function rwbValanceLookup(w, type) {
+  var wi = NNRM_W.findIndex(function(v){ return v >= w; });
+  if (wi < 0) return 0;
+  return type === 'crown' ? NNRM_VAL_CROWN[wi] : NNRM_VAL_CONTEMPO[wi];
+}
+function rwbPickColorGroup(group) {
+  ['paint','stain','premium'].forEach(function(g) {
+    var el = document.getElementById('rwb-grp-' + g + 'col');
+    if (el) el.style.display = g === group ? '' : 'none';
+  });
+}
+function rwbAdjQty(delta) {
+  var inp = document.getElementById('rwb-qty');
+  var v = parseInt(inp.value) || 1;
+  v = Math.min(20, Math.max(1, v + delta));
+  inp.value = v;
+  rwbCalc();
+}
+function rwbCalc() {
+  var w   = parseFloat(document.getElementById('rwb-width').value);
+  var h   = parseFloat(document.getElementById('rwb-height').value);
+  var qty = parseInt(document.getElementById('rwb-qty').value) || 1;
+  var box = document.getElementById('rwb-price-box');
+  if (!w || !h || w < 6.5 || h < 16 || w > 96 || h > 96 || (w * h / 144) > 64) {
+    box.style.display = 'none'; return;
+  }
+  var baseRetail = rwbLookup(w, h);
+  if (!baseRetail) { box.style.display = 'none'; return; }
+  var colorMult = 1;
+  var colorType = document.querySelector('#rwb-grp-colortype .opt-btn.sel')?.textContent.trim() || '';
+  if (colorType.includes('Premium')) {
+    colorMult = 1.5;
+  } else {
+    var activeGrp = colorType.includes('Stain') ? 'rwb-grp-staincol' : 'rwb-grp-paintcol';
+    var selBtn = document.querySelector('#' + activeGrp + ' .opt-btn.sel');
+    if (selBtn && selBtn.dataset.des === '1') colorMult = 1.10;
+  }
+  var colorRetail = Math.round(baseRetail * colorMult);
+  var valance = document.querySelector('#rwb-grp-valance .opt-btn.sel')?.textContent.trim() || '';
+  var valRetail = 0;
+  if (valance.includes('Designer Crown')) valRetail = rwbValanceLookup(w, 'crown');
+  else if (valance.includes('Contempo')) valRetail = rwbValanceLookup(w, 'contempo');
+  var totalRetail = colorRetail + valRetail;
+  var customerEach = Math.round(totalRetail * 0.65);
+  var totalCustomer = customerEach * qty;
+  var lines = '<div class="price-line"><span>Retail (1 blind)</span><span>$' + totalRetail.toLocaleString() + '</span></div>';
+  if (colorMult > 1) lines += '<div class="price-line"><span>Color surcharge</span><span>' + (colorMult === 1.5 ? '+50%' : '+10%') + ' included</span></div>';
+  if (valRetail > 0) lines += '<div class="price-line"><span>Valance surcharge</span><span>+$' + valRetail + '</span></div>';
+  lines += '<div class="price-line"><span>Your price (35% off)</span><span style="color:var(--gold)">$' + customerEach.toLocaleString() + ' / blind</span></div>';
+  if (qty > 1) lines += '<div class="price-line"><span>Quantity</span><span>\xd7 ' + qty + '</span></div>';
+  document.getElementById('rwb-price-lines').innerHTML = lines;
+  document.getElementById('rwb-price-total').textContent = '$' + totalCustomer.toLocaleString();
+  box.style.display = 'block';
+}
 async function submitRWBForm(btn) {
   var name  = document.getElementById('rwb-name').value.trim();
   var phone = document.getElementById('rwb-phone').value.trim();
   if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
-  var slat   = document.querySelector('#rwb-grp-slat .opt-btn.sel')?.textContent.trim() || '';
-  var finish = document.querySelector('#rwb-grp-finish .opt-btn.sel')?.textContent.trim() || '';
-  var wand   = document.querySelector('#rwb-grp-wand .opt-btn.sel')?.textContent.trim() || '';
-  var mount  = document.querySelector('#rwb-grp-mount .opt-btn.sel')?.textContent.trim() || '';
-  var w      = document.getElementById('rwb-width').value;
-  var h      = document.getElementById('rwb-height').value;
-  var qty    = document.getElementById('rwb-qty').value;
-  var del    = document.querySelector('#grp-del-rwb .opt-btn.sel')?.textContent.trim() || '';
-  var notes  = document.getElementById('rwb-notes').value.trim();
-  var email  = document.getElementById('rwb-email').value.trim();
-  var body = 'Real Wood Blinds Quote Request\n\n'
+  var slat      = document.querySelector('#rwb-grp-slat .opt-btn.sel')?.textContent.trim() || '';
+  var colorType = document.querySelector('#rwb-grp-colortype .opt-btn.sel')?.textContent.trim() || '';
+  var activeGrpId = colorType.includes('Premium') ? 'rwb-grp-premcol' : colorType.includes('Stain') ? 'rwb-grp-staincol' : 'rwb-grp-paintcol';
+  var color     = document.querySelector('#' + activeGrpId + ' .opt-btn.sel')?.textContent.trim() || '';
+  var wand      = document.querySelector('#rwb-grp-wand .opt-btn.sel')?.textContent.trim() || '';
+  var mount     = document.querySelector('#rwb-grp-mount .opt-btn.sel')?.textContent.trim() || '';
+  var valance   = document.querySelector('#rwb-grp-valance .opt-btn.sel')?.textContent.trim() || '';
+  var w         = document.getElementById('rwb-width').value;
+  var h         = document.getElementById('rwb-height').value;
+  var qty       = document.getElementById('rwb-qty').value;
+  var del       = document.querySelector('#grp-del-rwb .opt-btn.sel')?.textContent.trim() || '';
+  var notes     = document.getElementById('rwb-notes').value.trim();
+  var email     = document.getElementById('rwb-email').value.trim();
+  var estEl     = document.getElementById('rwb-price-total');
+  var estLine   = (estEl && estEl.textContent !== '—') ? '\nEst. price: ' + estEl.textContent + ' (35% off MSRP — unconfirmed)' : '';
+  var body = 'Norman Normandy® Real Wood Blinds Quote Request\n\n'
     + 'Name: ' + name + '\nPhone: ' + phone + '\nEmail: ' + (email||'—') + '\n\n'
-    + 'Slat size: ' + slat + '\nFinish: ' + finish + '\nWand side: ' + wand
-    + '\nMount: ' + mount + '\nWidth: ' + (w||'—') + '"\nHeight: ' + (h||'—') + '"\nQty: ' + qty
-    + '\nDelivery: ' + del + '\n\nNotes: ' + (notes||'None');
-  await _apiSubmit(name, email, phone, 'Real Wood Blinds', body, 'rwb-success', null, btn);
+    + 'Slat size: ' + slat + '\nColor type: ' + colorType + '\nColor: ' + color
+    + '\nWand side: ' + wand + '\nMount: ' + mount + '\nValance: ' + valance
+    + '\nWidth: ' + (w||'—') + '"\nHeight: ' + (h||'—') + '"\nQty: ' + qty
+    + estLine + '\nDelivery: ' + del + '\n\nNotes: ' + (notes||'None');
+  await _apiSubmit(name, email, phone, 'Norman Normandy® Real Wood Blinds', body, 'rwb-success', null, btn);
 }
 async function submitFWBForm(btn) {
   var name  = document.getElementById('fwb-name').value.trim();

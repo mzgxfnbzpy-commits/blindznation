@@ -2027,11 +2027,12 @@
   <div class="configurator" id="rwb-config">
     <div class="config-head">
       <button class="config-back" onclick="clearProduct()">&#8592; Change product</button>
-      <div class="config-title">Real Wood Blinds</div>
+      <div class="config-title">Real Wood Blinds <span class="badge badge-instant" style="margin-left:6px">Instant price</span></div>
       <button onclick="switchBlindsType('fwb')" style="background:var(--espresso);color:var(--gold);border:none;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap">Switch to Faux Wood &#8594;</button>
     </div>
-    <div style="background:var(--gold-mid);border:1px solid #E8DCC8;border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:12px;color:#0D4A42;line-height:1.6">
-      <strong>Real Wood Blinds</strong> — genuine hardwood in rich stained and painted finishes. Beautiful natural grain, ideal for living rooms, offices, and traditional interiors.
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;padding:10px 14px;background:var(--espresso);border-radius:8px">
+      <span style="font-size:10px;font-weight:600;color:var(--gold);letter-spacing:1px">NORMAN®</span>
+      <span style="font-size:11px;color:rgba(255,255,255,0.6)">Ultimate&trade; Normandy® &middot; 26 colors &middot; Cordless &middot; SmartPrivacy® &middot; Lifetime Warranty</span>
     </div>
 
     <!-- Step 1: Slat size -->
@@ -2042,20 +2043,51 @@
         <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-slat')">2&Prime; slats</button>
         <button class="opt-btn" onclick="selOpt(this,'rwb-grp-slat')">2&frac12;&Prime; slats</button>
       </div>
+      <div class="tooltip-note" style="margin-top:6px">Same price for both slat sizes.</div>
     </div>
 
-    <!-- Step 2: Wood finish -->
+    <!-- Step 2: Color & finish -->
     <div class="step-block">
       <div class="step-label">Step 2</div>
-      <div class="step-title">Wood finish</div>
-      <div class="opt-row" id="rwb-grp-finish">
-        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-finish')">Natural / Light</button>
-        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-finish')">Medium stain</button>
-        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-finish')">Dark walnut</button>
-        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-finish')">Painted white</button>
-        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-finish')">Painted off-white</button>
-        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-finish')">Not sure — bring samples</button>
+      <div class="step-title">Color &amp; finish</div>
+      <div class="opt-row" id="rwb-grp-colortype" style="margin-bottom:12px">
+        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-colortype');rwbPickColorGroup('paint');rwbCalc()">Paint</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-colortype');rwbPickColorGroup('stain');rwbCalc()">Stain</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-colortype');rwbPickColorGroup('premium');rwbCalc()">Premium <span style="font-size:10px;opacity:.7">(+50%)</span></button>
       </div>
+      <div id="rwb-grp-paintcol" class="opt-row" style="flex-wrap:wrap;gap:8px">
+        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-paintcol');rwbCalc()">Pure White</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-paintcol');rwbCalc()">Silk White</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-paintcol');rwbCalc()">Pearl</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-paintcol');rwbCalc()" data-des="1">Taupe Gray <span style="font-size:10px;opacity:.7">(+10%)</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-paintcol');rwbCalc()" data-des="1">Clay <span style="font-size:10px;opacity:.7">(+10%)</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-paintcol');rwbCalc()" data-des="1">Solid Black <span style="font-size:10px;opacity:.7">(+10%)</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-paintcol');rwbCalc()" data-des="1">Platter <span style="font-size:10px;opacity:.7">(+10%)</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-paintcol');rwbCalc()" data-des="1">Gray Black <span style="font-size:10px;opacity:.7">(+10%)</span></button>
+      </div>
+      <div id="rwb-grp-staincol" class="opt-row" style="flex-wrap:wrap;gap:8px;display:none">
+        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-staincol');rwbCalc()">Limed White</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-staincol');rwbCalc()">Taupe</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-staincol');rwbCalc()">Rustic Gray</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-staincol');rwbCalc()">Oak Mantel</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-staincol');rwbCalc()">Cherry</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-staincol');rwbCalc()">Old Teak</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-staincol');rwbCalc()">Black Walnut</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-staincol');rwbCalc()" data-des="1">Matte Black <span style="font-size:10px;opacity:.7">(+10%)</span></button>
+      </div>
+      <div id="rwb-grp-premcol" class="opt-row" style="flex-wrap:wrap;gap:8px;display:none">
+        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">White Matte</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">Oak</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">Teak</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">Cherry</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">Silk Gray</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">Granite Gray</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">Black</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">Ebony</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">Sunbleached Gray</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-premcol');rwbCalc()">Weathered Gray</button>
+      </div>
+      <div class="tooltip-note" style="margin-top:8px">Designer colors (+10%) and Premium colors (+50%) carry an added surcharge. Slat color matches headrail &amp; valance.</div>
     </div>
 
     <!-- Step 3: Wand side -->
@@ -2063,9 +2095,10 @@
       <div class="step-label">Step 3</div>
       <div class="step-title">Wand side (tilt control)</div>
       <div class="opt-row" id="rwb-grp-wand">
-        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-wand')">Left</button>
+        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-wand')">Left <span style="font-size:11px;opacity:.7">(default)</span></button>
         <button class="opt-btn" onclick="selOpt(this,'rwb-grp-wand')">Right</button>
       </div>
+      <div class="tooltip-note" style="margin-top:6px">Normandy® is <strong>cordless</strong> &mdash; no lift cord. Wand tilts slats only. Blinds under 15&Prime; wide always use a center wand at no extra charge.</div>
     </div>
 
     <!-- Step 4: Mount type -->
@@ -2076,44 +2109,78 @@
         <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-mount')">Inside mount</button>
         <button class="opt-btn" onclick="selOpt(this,'rwb-grp-mount')">Outside mount</button>
       </div>
+      <div class="tooltip-note" style="margin-top:6px">Inside mount: we deduct 3/8&Prime; from ordered width. Outside mount: add 1&frac12;&Prime; per side for best light control &amp; privacy.</div>
     </div>
 
-    <!-- Step 5: Measurements + qty -->
+    <!-- Step 5: Measurements + qty + price -->
     <div class="step-block">
       <div class="step-label">Step 5</div>
       <div class="step-title">Measurements &amp; quantity</div>
       <div class="dim-row">
-        <div class="form-group"><label>Width (inches)</label><input type="number" id="rwb-width" min="10" max="96" step="0.5" placeholder="e.g. 36"></div>
-        <div class="form-group"><label>Height (inches)</label><input type="number" id="rwb-height" min="12" max="96" step="0.5" placeholder="e.g. 48"></div>
+        <div class="form-group">
+          <label>Width (inches)</label>
+          <input type="number" id="rwb-width" min="6.5" max="96" step="0.125" placeholder="e.g. 36" oninput="rwbCalc()">
+          <div class="tooltip-note" style="margin-top:4px">min 6&frac12;&Prime; &mdash; max 96&Prime;</div>
+        </div>
+        <div class="form-group">
+          <label>Height (inches)</label>
+          <input type="number" id="rwb-height" min="16" max="96" step="0.125" placeholder="e.g. 48" oninput="rwbCalc()">
+          <div class="tooltip-note" style="margin-top:4px">min 16&Prime; &mdash; max 96&Prime; &mdash; max 64 sq ft</div>
+        </div>
       </div>
-      <div class="form-group" style="margin-top:10px"><label>Quantity</label><input type="number" id="rwb-qty" min="1" max="20" value="1" style="width:80px"></div>
+      <div style="margin-top:10px">
+        <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:6px">Quantity</div>
+        <div class="qty-btns">
+          <button class="qty-btn" onclick="rwbAdjQty(-1)">&#8722;</button>
+          <input class="qty-num" type="number" id="rwb-qty" value="1" min="1" max="20" oninput="rwbCalc()">
+          <button class="qty-btn" onclick="rwbAdjQty(1)">&#43;</button>
+        </div>
+      </div>
+      <div class="price-box" id="rwb-price-box" style="display:none;margin-top:16px">
+        <div class="price-box-head">Estimated Price</div>
+        <div id="rwb-price-lines"></div>
+        <hr class="price-divider">
+        <div class="price-total"><span>Est. total</span><span id="rwb-price-total">&#8212;</span></div>
+        <div class="price-note">MSRP estimates at 35% off retail. Confirmed at quote. Shipping additional.</div>
+      </div>
     </div>
 
-    <!-- Step 6: Quote form -->
+    <!-- Step 6: Valance -->
     <div class="step-block">
       <div class="step-label">Step 6</div>
+      <div class="step-title">Valance <span style="font-weight:400;color:#888">(optional)</span></div>
+      <div class="opt-row" id="rwb-grp-valance">
+        <button class="opt-btn sel" onclick="selOpt(this,'rwb-grp-valance');rwbCalc()">None <span style="font-size:11px;opacity:.7">(valance-free headrail)</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-valance');rwbCalc()">Designer Crown</button>
+        <button class="opt-btn" onclick="selOpt(this,'rwb-grp-valance');rwbCalc()">Contempo</button>
+      </div>
+    </div>
+
+    <!-- Step 7: Your details -->
+    <div class="step-block">
+      <div class="step-label">Step 7</div>
       <div class="step-title">Your details</div>
       <div class="form-row">
         <div class="form-group"><label>Your name *</label><input type="text" id="rwb-name" placeholder="Jane Smith"></div>
         <div class="form-group"><label>Phone *</label><input type="tel" id="rwb-phone" placeholder="(215) 555-0100"></div>
       </div>
       <div class="form-group"><label>Email</label><input type="email" id="rwb-email" placeholder="jane@example.com"></div>
-      <div class="form-group"><label>Notes</label><textarea id="rwb-notes" placeholder="e.g. specific finish, existing hardware, special requirements"></textarea></div>
+      <div class="form-group"><label>Notes</label><textarea id="rwb-notes" placeholder="e.g. specific color, existing hardware to reuse, special installation requirements"></textarea></div>
       <div class="delivery-section">
         <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
         <div class="opt-row" id="grp-del-rwb">
           <button class="opt-btn sel" onclick="selOpt(this,'grp-del-rwb');document.getElementById('del-rwb-s').style.display='block';document.getElementById('del-rwb-p').style.display='none'">Ship to me</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-del-rwb');document.getElementById('del-rwb-s').style.display='none';document.getElementById('del-rwb-p').style.display='block'">I'll pick up</button>
         </div>
-        <div id="del-rwb-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional.</div></div>
+        <div id="del-rwb-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional.</div></div>
         <div id="del-rwb-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
       </div>
-      <button class="btn-gold" onclick="submitRWBForm(this)" style="width:100%;padding:13px;margin-top:12px">Request real wood blinds quote &rarr;</button>
+      <button class="btn-gold" onclick="submitRWBForm(this)" style="width:100%;padding:13px;margin-top:12px">Submit Order for Review &rarr;</button>
     </div>
 
     <div class="success-state" id="rwb-success">
       <h3>Quote request sent!</h3>
-      <p>We'll follow up within a few hours with finish samples and pricing. Call <strong>(609) 742-1720</strong> for anything urgent — available 24/7.</p>
+      <p>We'll follow up within a few hours with Norman Normandy® color samples and pricing. Call <strong>(609) 742-1720</strong> for anything urgent &mdash; available 24/7.</p>
     </div>
   </div><!-- /rwb-config -->
 
