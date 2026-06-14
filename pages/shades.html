@@ -701,6 +701,10 @@
                 <div class="rn-fc-name">Commercial Solar <span style="font-size:9px;font-weight:600;background:var(--espresso);color:var(--gold);padding:1px 5px;border-radius:4px;margin-left:4px;vertical-align:middle">NA Series</span></div>
                 <div class="rn-fc-desc">PVC/polyester · commercial rated · max UV protection · 118″ wide available</div>
               </button>
+              <button class="rn-fabric-card" onclick="selRnFabric(this,'designer')">
+                <div class="rn-fc-name">Designer <span style="font-size:9px;font-weight:600;background:var(--espresso);color:var(--gold);padding:1px 5px;border-radius:4px;margin-left:4px;vertical-align:middle">PREMIUM</span></div>
+                <div class="rn-fc-desc">Linen weaves &amp; specialty textures · Breeze, Clarissa, Kendra, Summerland · PG3–PG4 pricing</div>
+              </button>
             </div>
             <!-- Solar openness sub-option -->
             <div id="rn-solar-opts" style="display:none;margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
@@ -762,34 +766,26 @@
           <!-- Step 3b: Dual / Day & Night fabric (shown when dual or D&N system selected) -->
           <div class="step-block" id="rn-dual-fabric" style="display:none">
             <div class="step-label">Step 3b</div>
-            <div class="step-title">Dual roll fabrics</div>
+            <div class="step-title">Dual shade fabrics</div>
+            <div class="tooltip-note" style="margin-bottom:12px">Dual shade = two rolls in one headrail. Back roll (faces glass) is always Blackout. Front roll (faces room) is your choice below. Priced as two individual shades.</div>
 
-            <!-- Room Darkening position -->
+            <!-- Front shade (faces room) -->
             <div style="margin-bottom:16px">
-              <div class="step-title" style="font-size:12px;margin-bottom:6px">Room Darkening position</div>
-              <div class="opt-row" id="rn-grp-bo-pos">
-                <button class="opt-btn sel" onclick="selOpt(this,'rn-grp-bo-pos')">Back roll (faces glass)</button>
-                <button class="opt-btn" onclick="selOpt(this,'rn-grp-bo-pos')">Front roll (faces room)</button>
-              </div>
-              <div class="tooltip-note" style="margin-top:4px">Back roll is closest to the glass; front roll faces the room. Choose which position receives the room darkening fabric.</div>
-            </div>
-
-            <!-- Day roll: Sheer or LF -->
-            <div style="margin-bottom:16px">
-              <div class="step-title" style="font-size:12px;margin-bottom:6px">Day roll &mdash; Sheer or Light Filtering</div>
+              <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:6px">Front shade <span style="font-weight:400;color:#888">(faces room)</span></div>
               <div class="opt-row" id="rn-grp-day-type">
-                <button class="opt-btn sel" onclick="selOpt(this,'rn-grp-day-type');rnLoadDualFabrics('day','sheer')">Sheer</button>
-                <button class="opt-btn" onclick="selOpt(this,'rn-grp-day-type');rnLoadDualFabrics('day','lf')">Light Filtering</button>
+                <button class="opt-btn sel" onclick="selOpt(this,'rn-grp-day-type');rnLoadDualFabrics('day','lf')">Light Filtering</button>
+                <button class="opt-btn" onclick="selOpt(this,'rn-grp-day-type');rnLoadDualFabrics('day','sheer')">Sheer</button>
+                <button class="opt-btn" onclick="selOpt(this,'rn-grp-day-type');rnLoadDualFabrics('day','solar')">Solar Screen</button>
               </div>
               <div id="rn-day-summary" style="font-size:11px;color:#888;margin-top:8px;margin-bottom:6px;line-height:1.5"></div>
-              <div id="rn-day-grid" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+              <div id="rn-day-grid"></div>
             </div>
 
-            <!-- Night roll: Room Darkening -->
+            <!-- Back shade: always Blackout -->
             <div>
-              <div class="step-title" style="font-size:12px;margin-bottom:6px">Night roll &mdash; Room Darkening</div>
+              <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:4px">Back shade — Blackout <span style="font-weight:400;color:#888">(faces glass · always Room Darkening)</span></div>
               <div id="rn-night-summary" style="font-size:11px;color:#888;margin-bottom:6px;line-height:1.5"></div>
-              <div id="rn-night-grid" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+              <div id="rn-night-grid"></div>
             </div>
           </div>
 
