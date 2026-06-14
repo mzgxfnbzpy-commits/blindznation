@@ -520,6 +520,35 @@ function updateSpec(){
 }
 
 // ── SUBMIT ─────────────────────────────────────────────────────────────────
+function addWallace3dSheerToCart(){
+  if(!S.coll){ alert('Please select a collection before adding to cart.'); return; }
+  if(!S.color){ alert('Please select a color before adding to cart.'); return; }
+  if(!S.w||!S.h){ alert('Please enter valid dimensions before adding to cart.'); return; }
+  if(!S.ctrl){ alert('Please select a control type before adding to cart.'); return; }
+
+  const qty=S.qty||1;
+  const coll=S.coll;
+  const ctrlLabel=S.ctrl==='ccl'?'Continuous Cord Loop':'Battery Motor';
+
+  const lines=[
+    {label:'Product',value:'Wallace 3D Dual Sheer Shades'},
+    {label:'Collection',value:coll?coll.name:'—'},
+    {label:'Price Group',value:coll?'Group '+coll.group:'—'},
+    {label:'Band Size',value:coll?coll.band:'—'},
+    {label:'Color',value:S.color?S.color.label+' ('+S.color.code+')':'—'},
+    {label:'Mount',value:S.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Width',value:(S.w||'—')+'″'},
+    {label:'Height',value:(S.h||'—')+'″'},
+    {label:'Control',value:ctrlLabel},
+    {label:'Cassette',value:S.cassette==='round'?'Round':'Square'},
+    {label:'Hardware Color',value:S.hwColor||'—'},
+    {label:'Quantity',value:String(qty)}
+  ];
+  const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
+  pbAddToCart({product:'Wallace 3D Dual Sheer Shades',lines:lines,specs:specs,price:null,qty:qty});
+  pbOpenCart();
+}
+
 function submitQuote(){
   const name=document.getElementById('f-name').value.trim();
   const phone=document.getElementById('f-phone').value.trim();

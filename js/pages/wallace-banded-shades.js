@@ -542,6 +542,39 @@ document.getElementById('grp-bar-wrap').querySelectorAll('.opt-btn').forEach(fun
 document.getElementById('grp-bar').querySelectorAll('.opt-btn').forEach(function(b){b.addEventListener('click',updateCalc);});
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
+function addBandedShadesToCart(){
+  if(!S.prod){ alert('Please select a product type before adding to cart.'); return; }
+  if(S.prod==='dual'&&!S.fabric){ alert('Please select a fabric before adding to cart.'); return; }
+  if(!S.w||!S.h){ alert('Please enter width and height before adding to cart.'); return; }
+
+  var base=S.prod==='dual'?lookupPrice(S.w,S.h,S.fabric?S.fabric.g:null):null;
+  var ctrlUp=S.ctrl==='cordless'?192:S.ctrl==='prowand'?232:S.ctrl==='motor'?460:0;
+  var wrapUp=S.cassette==='square'?80:0;
+  var price=base!==null?(base+ctrlUp+wrapUp)*S.qty:null;
+  var mount=document.querySelector('#grp-mount .opt-btn.sel')?.textContent.trim()||'Inside mount';
+
+  var lines=[
+    {label:'Product',value:S.prod==='dual'?'Wallace Portfolio Dual Sheer Shades':'Wallace Banded 2D Shades'},
+    {label:'Quantity',value:String(S.qty||1)},
+    {label:'Width',value:(S.w||'—')+'"'},
+    {label:'Height',value:(S.h||'—')+'"'},
+    {label:'Mount',value:mount}
+  ];
+  if(S.prod==='dual'&&S.fabric){
+    lines.push({label:'Pattern',value:S.fabric.pat});
+    lines.push({label:'Color',value:S.fabric.color});
+    lines.push({label:'Code',value:S.fabric.code});
+    lines.push({label:'Price Group',value:'Group '+S.fabric.g});
+    lines.push({label:'Opacity',value:S.opacity==='lf'?'Light Filtering':'Blackout'});
+  }
+  if(S.ctrl) lines.push({label:'Control',value:S.ctrl});
+  lines.push({label:'Cassette',value:S.cassette==='rounded'?'Rounded':'Square'});
+
+  var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
+  pbAddToCart({product:S.prod==='dual'?'Wallace Portfolio Dual Sheer Shades':'Wallace Banded 2D Shades',lines:lines,specs:specs,price:price,qty:S.qty||1});
+  pbOpenCart();
+}
+
 function submitQ(){
   var name=document.getElementById('q-name').value.trim();
   var phone=document.getElementById('q-phone').value.trim();

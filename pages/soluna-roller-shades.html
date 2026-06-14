@@ -317,23 +317,26 @@
         </ul>
       </div>
 
-      <!-- Spring System -->
+      <!-- SmartRelease -->
       <div class="op-card">
         <div class="op-diagram">
           <svg viewBox="0 0 100 80" width="100" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="10" y="4" width="80" height="8" rx="4" fill="#C9A96E"/>
-            <rect x="14" y="13" width="72" height="30" rx="2" fill="var(--gold-mid)" stroke="#E8DCC8" stroke-width="1"/>
-            <path d="M30 8 Q35 2 40 8 Q45 14 50 8 Q55 2 60 8 Q65 14 70 8" stroke="#C9A96E" stroke-width="1.5" fill="none"/>
-            <path d="M50 50 L50 58 M46 54 L50 58 L54 54" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="14" y="13" width="72" height="44" rx="2" fill="var(--gold-mid)" stroke="#E8DCC8" stroke-width="1"/>
+            <circle cx="82" cy="38" r="5" fill="none" stroke="#8B6914" stroke-width="1.5"/>
+            <line x1="82" y1="13" x2="82" y2="33" stroke="#8B6914" stroke-width="1.5" stroke-dasharray="2,2"/>
+            <line x1="82" y1="43" x2="82" y2="63" stroke="#8B6914" stroke-width="1.5" stroke-dasharray="2,2"/>
+            <path d="M77 63 Q82 68 87 63" stroke="#8B6914" stroke-width="1.5" fill="none"/>
+            <path d="M50 55 L50 63 M46 59 L50 63 L54 59" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div class="op-name">AutoLift™</div>
-        <span class="op-tag op-tag-pro">Pull-to-operate</span>
-        <p class="op-desc">Norman's spring-tension AutoLift™ system. Pull down to lower, pull again to raise. Best for smaller windows with infrequent operation.</p>
+        <div class="op-name">SmartRelease™</div>
+        <span class="op-tag op-tag-pro">Quick-release cord loop</span>
+        <p class="op-desc">Norman's patent-pending innovation. Releases the shade from a raised position with a gentle pull — no lifting required. Raceway included. Ideal for high or hard-to-reach windows.</p>
         <ul class="op-specs">
-          <li>Max width <span>72″</span></li>
-          <li>Max height <span>96″</span></li>
-          <li>Cord free <span>Yes</span></li>
+          <li>Max width <span>144″</span></li>
+          <li>Max height <span>132″</span></li>
+          <li>Cord <span>Bead chain</span></li>
           <li>Smart home <span>No</span></li>
         </ul>
       </div>
@@ -573,14 +576,14 @@
         </thead>
         <tbody>
           <tr>
-            <td><strong>AutoLift™</strong></td>
-            <td>12″</td><td>72″</td><td>12″</td><td>96″</td>
+            <td><strong>PrecisionLift™ Cordless</strong></td>
+            <td>12″</td><td>120″</td><td>12″</td><td>132″</td>
             <td>Yes</td><td>No</td>
           </tr>
           <tr>
-            <td><strong>Cordless Push-Lift</strong></td>
-            <td>12″</td><td>72″</td><td>12″</td><td>84″</td>
-            <td>Yes</td><td>No</td>
+            <td><strong>SmartRelease™</strong></td>
+            <td>12″</td><td>144″</td><td>12″</td><td>132″</td>
+            <td>No (chain)</td><td>No</td>
           </tr>
           <tr>
             <td><strong>Continuous Loop</strong></td>
@@ -638,10 +641,10 @@
             <div class="step-label">Step 2</div>
             <div class="step-title">Operating system</div>
             <div class="opt-row" id="grp-op">
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);updateSummary()">AutoLift™</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);updateSummary()">Cordless</button>
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-op');toggleMotor(false);updateSummary()">Continuous loop</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(true);updateSummary()">Motorized</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();updateSummary()">PrecisionLift™ Cordless</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();updateSummary()">Continuous Cord Loop</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();updateSummary()">SmartRelease™</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(true);solCheckCoupledOpWarn();updateSummary()">Motorized</button>
             </div>
             <div class="motor-sub" id="motor-sub">
               <div class="form-group" style="margin-bottom:8px">
@@ -686,12 +689,47 @@
               </div>
             </div>
             <div class="tooltip-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine — we confirm at the home visit.</div>
-            <div style="display:flex;align-items:center;gap:10px">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
               <span style="font-size:12px;color:#666">Qty:</span>
               <div class="qty-btns">
                 <button class="qty-btn" onclick="adjustQty(-1)">&#8722;</button>
                 <input class="qty-num" type="number" id="inp-qty" value="1" min="1" max="20" oninput="updateSummary()">
                 <button class="qty-btn" onclick="adjustQty(1)">&#43;</button>
+              </div>
+              <button id="coupled-toggle-btn" class="opt-btn" style="font-size:11px;padding:5px 12px" onclick="solToggleCoupled()">+ Coupled Shades</button>
+            </div>
+
+            <!-- Coupled shades panel -->
+            <div id="coupled-wrap" style="display:none;margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
+              <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:6px">Coupled Shades configuration</div>
+              <div id="coupled-op-warn" style="display:none;font-size:11px;color:#c0392b;background:#fdf0ee;border:1px solid #f1c0bb;border-radius:6px;padding:7px 10px;margin-bottom:8px">⚠ PrecisionLift™ Cordless and SmartRelease™ are not available for coupled shades. Please select Continuous Cord Loop or Motorized.</div>
+              <div style="font-size:11px;color:#666;margin-bottom:10px;line-height:1.5">Shades are linked side by side on a shared headrail, ordered left to right. Requires Continuous Cord Loop or Motorized lift system.</div>
+              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Are the shades the same size?</div>
+              <div class="opt-row" id="grp-coupled-type" style="margin-bottom:10px">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-coupled-type');solShowCoupledSame();updateSummary()">Same size</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-coupled-type');solShowCoupledDiff();updateSummary()">Different sizes</button>
+              </div>
+
+              <!-- Same size: just pick count -->
+              <div id="coupled-same-wrap">
+                <div style="font-size:11px;color:#666;margin-bottom:6px">How many shades total?</div>
+                <div class="opt-row" id="grp-coupled-count">
+                  <button class="opt-btn sel" onclick="selOpt(this,'grp-coupled-count');solSetCoupledCount(2);updateSummary()">2 shades</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-coupled-count');solSetCoupledCount(3);updateSummary()">3 shades</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-coupled-count');solSetCoupledCount(4);updateSummary()">4 shades</button>
+                </div>
+                <div style="font-size:10px;color:#888;margin-top:6px">Same size as the dimensions entered above. Total price = (price × count) + coupled surcharge.</div>
+              </div>
+
+              <!-- Different sizes: enter dims per shade -->
+              <div id="coupled-diff-wrap" style="display:none">
+                <div style="font-size:11px;color:#666;margin-bottom:6px">How many shades total (left to right)?</div>
+                <div class="opt-row" id="grp-coupled-diff-count" style="margin-bottom:10px">
+                  <button class="opt-btn sel" onclick="selOpt(this,'grp-coupled-diff-count');solRenderCoupledFields(2);updateSummary()">2 shades</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-coupled-diff-count');solRenderCoupledFields(3);updateSummary()">3 shades</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-coupled-diff-count');solRenderCoupledFields(4);updateSummary()">4 shades</button>
+                </div>
+                <div id="coupled-dim-fields"></div>
               </div>
             </div>
           </div>
@@ -761,13 +799,14 @@
           <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Norman Soluna Roller</span></div>
           <div class="summary-row"><span class="sr-key">Light control</span><span class="sr-val" id="s-light">Light Filtering</span></div>
           <div class="summary-row" id="s-fabric-row" style="display:none"><span class="sr-key">Fabric</span><span class="sr-val" id="s-fabric">—</span></div>
-          <div class="summary-row"><span class="sr-key">Operation</span><span class="sr-val" id="s-op">Continuous loop</span></div>
+          <div class="summary-row"><span class="sr-key">Operation</span><span class="sr-val" id="s-op">Continuous Cord Loop</span></div>
           <div class="summary-row"><span class="sr-key">Motor</span><span class="sr-val" id="s-motor" style="display:none">—</span></div>
           <div class="summary-row" id="s-motor-row" style="display:none"><span class="sr-key">Motor brand</span><span class="sr-val" id="s-motor-brand">—</span></div>
           <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="s-mount">Inside mount</span></div>
           <div class="summary-row"><span class="sr-key">Shade type</span><span class="sr-val" id="s-shade-type">Standard</span></div>
           <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="s-size">—</span></div>
           <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="s-qty">1</span></div>
+          <div class="summary-row" id="s-coupled-row" style="display:none"><span class="sr-key">Coupled</span><span class="sr-val" id="s-coupled">—</span></div>
           <div class="summary-row"><span class="sr-key">Add-ons</span><span class="sr-val" id="s-addons">None</span></div>
           <div class="summary-note">Norman retail pricing with 35% off — shipping at retail rate. Final price confirmed at quote.</div>
         </div>

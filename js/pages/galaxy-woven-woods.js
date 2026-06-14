@@ -577,6 +577,40 @@ function updateQuote(){
   document.getElementById('qr-total').textContent='$'+Math.round(grandTotal).toLocaleString();
 }
 
+function addGalaxyToCart(){
+  if(!S.patternName){ alert('Please select a pattern before adding to cart.'); return; }
+  if(!S.w||!S.h){ alert('Please enter valid dimensions before adding to cart.'); return; }
+
+  const totalEl=document.getElementById('qr-total');
+  const priceText=totalEl?totalEl.textContent.trim():'';
+  const price=priceText?parseFloat(priceText.replace(/[^0-9.]/g,''))||null:null;
+  const qty=S.qty||1;
+
+  const styleLabel={waterfall:'Waterfall',flat:'Flat Fold',hobbled:'Hobbled',tdbu:'TDBU Cordless',motor:'Motorized',dual:'Dual Shade'}[S.style]||S.style||'—';
+  const ctrlLabel={loop:'Loop Control',cordless:'Cordless',motor:'Motorized'}[S.control]||S.control||'—';
+  const linerLabel=S.liner==='none'?'No liner':(S.liner==='privacy'?'Privacy':'Blackout')+' liner';
+  const edgeLabel={none:'None',half:'½″ Twill',one5:'1½″ Twill'}[S.edge]||'None';
+  const valLabel={standard:'Standard (included)',classic6:'6″ Classic',double12:'12″ Double Hobble',triple18:'18″ Triple Hobble'}[S.valance]||'—';
+
+  const lines=[
+    {label:'Product',value:'Wallace Galaxy Woven Wood Shades'},
+    {label:'Pattern',value:S.patternName+(S.sku?' ('+S.sku+')':'')},
+    {label:'Price Group',value:S.pg||'—'},
+    {label:'Style',value:styleLabel},
+    {label:'Mount',value:S.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Width',value:(S.w||'—')+'″'},
+    {label:'Height',value:(S.h||'—')+'″'},
+    {label:'Control',value:ctrlLabel},
+    {label:'Liner',value:linerLabel},
+    {label:'Edge Binding',value:edgeLabel},
+    {label:'Valance',value:valLabel},
+    {label:'Quantity',value:String(qty)}
+  ];
+  const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
+  pbAddToCart({product:'Wallace Galaxy Woven Wood Shades',lines:lines,specs:specs,price:price,qty:qty});
+  pbOpenCart();
+}
+
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
 function submitQuote(){
   const name=document.getElementById('f-name').value.trim();

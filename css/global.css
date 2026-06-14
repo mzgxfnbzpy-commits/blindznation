@@ -88,6 +88,8 @@ html { scroll-padding-top: 96px; }
 .btn-ghost-light { background: transparent; color: var(--cream); border: 1px solid rgba(201,169,110,0.4); padding: 11px 20px; border-radius: 8px; font-size: 13px; cursor: pointer; text-decoration: none; display: inline-block; }
 .btn-dark { background: var(--espresso); color: var(--cream); border: none; padding: 11px 20px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; display: inline-block; }
 .btn-outline { background: transparent; border: 1px solid rgba(17,17,16,0.3); color: var(--espresso); padding: 10px 18px; border-radius: 8px; font-size: 13px; cursor: pointer; text-decoration: none; display: inline-block; }
+.btn-cart-add { background: #fff; color: var(--espresso); border: 2px solid var(--espresso); border-radius: 8px; padding: 12px 18px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; display: inline-block; text-align: center; width: 100%; box-sizing: border-box; }
+.btn-cart-add:hover { background: #f0ede8; }
 
 /* ---- SECTIONS ---- */
 .section { padding: 44px 28px; }

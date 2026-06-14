@@ -467,49 +467,105 @@ function _renderCartBody() {
   _updateCartBadge();
   var foot = document.getElementById('pb-cart-foot');
   if (!cart.length) {
-    body.innerHTML = '<div class="pb-cart-empty"><div class="pb-cart-empty-icon">🛒</div>Your cart is empty.<br><span style="font-size:12px">Configure a product and click "Add to cart."</span></div>';
+    body.innerHTML = '<div class="pb-cart-empty"><div class="pb-cart-empty-icon">🛒</div>Your cart is empty.<br><span style="font-size:12px">Configure a product and click "+ Add to Cart."</span></div>';
     if (foot) foot.style.display = 'none';
     return;
   }
   if (foot) foot.style.display = 'block';
-  body.innerHTML = cart.map(function(item, idx) {
+  var pricedTotal = 0;
+  var hasCustom = false;
+  body.innerHTML = cart.map(function(item) {
     var motorHtml = '';
     if (item.motorized && item.motorOptions) {
       var mo = item.motorOptions;
-      var lines = ['Power: ' + mo.power];
-      if (mo.power === 'Rechargeable' && mo.chargers) lines.push('Chargers: ' + mo.chargers);
+      var mlines = ['Power: ' + mo.power];
+      if (mo.power === 'Rechargeable' && mo.chargers) mlines.push('Chargers: ' + mo.chargers);
       if (mo.power === 'Hardwire') {
-        lines.push('Wiring: ' + mo.wiring);
-        if (mo.cord) lines.push('Cord: ' + mo.cord);
+        mlines.push('Wiring: ' + mo.wiring);
+        if (mo.cord) mlines.push('Cord: ' + mo.cord);
       }
-      if (mo.remote === 'Yes') lines.push('Remote: ' + mo.channel + ' × ' + mo.remotes);
-      else lines.push('Remote: No');
-      motorHtml = '<div class="pb-ci-motor">⚡ ' + lines.map(_pbEsc).join(' · ') + '</div>';
+      if (mo.remote === 'Yes') mlines.push('Remote: ' + mo.channel + ' × ' + mo.remotes);
+      else mlines.push('Remote: No');
+      motorHtml = '<div class="pb-ci-motor">⚡ ' + mlines.map(_pbEsc).join(' · ') + '</div>';
+    }
+    var itemQty = item.qty || 1;
+    var priceHtml = '';
+    if (item.price && item.price > 0) {
+      var lineTotal = Math.round(item.price * itemQty);
+      pricedTotal += lineTotal;
+      priceHtml = '<div style="font-size:14px;font-weight:700;color:var(--espresso);margin-top:6px">$' + lineTotal.toLocaleString() + ' <span style="font-size:10px;font-weight:400;color:#aaa">est.</span></div>';
+    } else {
+      hasCustom = true;
+      priceHtml = '<div style="font-size:12px;color:#888;margin-top:6px;font-style:italic">Custom quote</div>';
     }
     return '<div class="pb-ci">' +
-      '<button class="pb-ci-remove" onclick="pbRemoveCartItem(\'' + _pbEsc(item.cartId) + '\')" aria-label="Remove">×</button>' +
-      '<div class="pb-ci-name">' + _pbEsc(item.product || 'Item') + (item.qty > 1 ? ' ×' + item.qty : '') + '</div>' +
-      (item.specs ? '<div class="pb-ci-specs">' + _pbEsc(item.specs) + '</div>' : '') +
-      motorHtml +
-      '</div>';
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">' +
+        '<div style="flex:1;min-width:0">' +
+          '<div class="pb-ci-name">' + _pbEsc(item.product || 'Item') + (itemQty > 1 ? ' ×' + itemQty : '') + '</div>' +
+          (item.specs ? '<div class="pb-ci-specs">' + _pbEsc(item.specs) + '</div>' : '') +
+          motorHtml +
+          priceHtml +
+        '</div>' +
+        '<button class="pb-ci-remove" onclick="pbRemoveCartItem(\'' + _pbEsc(item.cartId) + '\')" aria-label="Remove">×</button>' +
+      '</div>' +
+    '</div>';
   }).join('');
+  var totEl = document.getElementById('pb-cart-est-total');
+  if (totEl) {
+    if (pricedTotal > 0) {
+      totEl.innerHTML =
+        '<div style="display:flex;justify-content:space-between;align-items:baseline;padding:12px 0 4px;border-top:2px solid #e8e8e4;margin-top:4px">' +
+          '<span style="font-size:12px;color:#555;font-weight:600">Estimated total' + (hasCustom ? '*' : '') + '</span>' +
+          '<span style="font-size:22px;font-weight:700;color:var(--espresso)">$' + pricedTotal.toLocaleString() + '</span>' +
+        '</div>' +
+        (hasCustom ? '<div style="font-size:10px;color:#aaa;margin-bottom:4px">* Custom-quote items not included in total above</div>' : '') +
+        '<div style="font-size:10px;color:#aaa;margin-bottom:10px">Estimate only — final price confirmed at review</div>';
+    } else {
+      totEl.innerHTML = '<div style="font-size:11px;color:#aaa;padding:10px 0;text-align:center">Prices confirmed after Justin reviews your specs — no charge until then.</div>';
+    }
+  }
 }
 
 // ── Checkout from cart ───────────────────────────────────────
-// TODO: replace PB_CHECKOUT_URL with the real Stripe / checkout link when ready
 var PB_CHECKOUT_URL = '#checkout';
 
 function pbGoCheckout() {
   var cart = pbGetCart();
   if (!cart.length) return;
-  var lines = cart.map(function(item, i) {
-    var label = 'Item ' + (i + 1) + (item.product ? ': ' + item.product : '');
-    if (item.qty > 1) label += ' \xd7' + item.qty;
-    return { label: label, value: item.specs || '' };
+  var allLines = [];
+  var pricedTotal = 0;
+  var hasPrice = false;
+  var hasCustom = false;
+  cart.forEach(function(item, i) {
+    var itemQty = item.qty || 1;
+    allLines.push({ label: '─── Item ' + (i + 1), value: (item.product || 'Item') + (itemQty > 1 ? ' ×' + itemQty : '') });
+    if (item.lines && item.lines.length) {
+      item.lines.forEach(function(l) { allLines.push(l); });
+    } else if (item.specs) {
+      item.specs.split(' | ').forEach(function(s) {
+        var idx = s.indexOf(': ');
+        allLines.push(idx > -1 ? { label: s.slice(0,idx), value: s.slice(idx+2) } : { label: s, value: '' });
+      });
+    }
+    if (item.motorized && item.motorOptions) {
+      var mo = item.motorOptions;
+      var mstr = 'Power: ' + mo.power;
+      if (mo.remote === 'Yes') mstr += ' | Remote: ' + mo.channel + ' ×' + mo.remotes;
+      allLines.push({ label: 'Motorization', value: mstr });
+    }
+    if (item.price && item.price > 0) {
+      var lineTotal = Math.round(item.price * itemQty);
+      allLines.push({ label: 'Estimate', value: '$' + lineTotal.toLocaleString() + ' (estimate only)' });
+      pricedTotal += lineTotal;
+      hasPrice = true;
+    } else {
+      hasCustom = true;
+      allLines.push({ label: 'Price', value: 'Custom quote' });
+    }
   });
   var productName = cart.length === 1 ? (cart[0].product || 'Custom Window Treatment') : cart.length + ' items';
   pbCloseCart();
-  pbShowQuoteModal(lines, productName);
+  pbShowQuoteModal(allLines, productName, hasPrice ? pricedTotal : null);
 }
 
 // ── Inject cart DOM ─────────────────────────────────────────
@@ -537,9 +593,10 @@ function _initCart() {
     '</div>' +
     '<div class="pb-cart-body" id="pb-cart-body"></div>' +
     '<div id="pb-cart-foot" style="padding:16px;border-top:1px solid #e8e8e4;display:none">' +
+      '<div id="pb-cart-est-total"></div>' +
       '<button class="btn-gold" style="width:100%;padding:13px;font-size:15px;font-weight:600;margin-bottom:8px" ' +
-        'onclick="pbGoCheckout()">Request Quotes for All Items →</button>' +
-      '<div style="text-align:center;font-size:11px;color:#aaa;margin-bottom:12px">We\'ll reply by email &bull; No payment required now</div>' +
+        'onclick="pbGoCheckout()">Submit Order for Review →</button>' +
+      '<div style="text-align:center;font-size:11px;color:#aaa;margin-bottom:12px">No payment now &bull; Justin reviews before any charge</div>' +
       '<button onclick="pbClearCart()" style="display:block;width:100%;background:none;border:none;font-size:11px;color:#ccc;cursor:pointer;font-family:inherit">Clear cart</button>' +
     '</div>';
   document.body.appendChild(drawer);
@@ -751,7 +808,7 @@ function pbRenderEstimate(priceBoxId, lines, subtotal, conflictMsg, onCheckout) 
       '<div style="font-size:10px;color:#aaa;line-height:1.6;margin-bottom:10px">&#9432; This is an estimate only. Final price is confirmed after your free in-home measurement. Actual price may vary based on exact dimensions, fabric availability, and installation scope.</div>' +
       conflictHtml +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-        '<button onclick="pbEstimateAddCart(\'' + priceBoxId + '\')" style="padding:11px;border:1.5px solid #e8e8e4;border-radius:8px;background:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;color:#333">Save to list</button>' +
+        '<button onclick="pbEstimateAddCart(\'' + priceBoxId + '\')" style="padding:11px;border:2px solid var(--espresso);border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--espresso)">+ Add to Cart</button>' +
         '<button onclick="pbOpenQuoteFromPanel(\'' + priceBoxId + '\')" ' +
           (hasConflict ? 'disabled style="padding:11px;border-radius:8px;background:#e5e5e5;font-size:13px;font-weight:700;cursor:not-allowed;font-family:inherit;color:#aaa;border:none"' :
                          'style="padding:11px;border-radius:8px;background:var(--espresso);color:var(--gold);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;border:none"') +
@@ -771,9 +828,9 @@ function pbEstimateAddCart(priceBoxId) {
   if (panel && panel._pbOnCheckout) {
     panel._pbOnCheckout(false);
   } else if (panel && panel._pbLines) {
-    var product = panel._pbProduct || 'Item';
-    var specs = (panel._pbLines || []).map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
-    pbAddToCart({ product: product, specs: specs, qty: 1 });
+    var lines = panel._pbLines || [];
+    var specs = lines.map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
+    pbAddToCart({ product: panel._pbProduct || 'Item', specs: specs, lines: lines, price: panel._pbEstimate || null, qty: 1 });
   } else {
     pbOpenCart();
   }
@@ -784,7 +841,7 @@ function pbEstimateCheckoutNew(priceBoxId) { pbOpenQuoteFromPanel(priceBoxId); }
 
 function pbCollectItem(productName, lines, total, motorized) {
   var specs = lines.map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
-  pbAddToCartWithMotor({ product: productName, specs: specs, qty: 1 }, !!motorized);
+  pbAddToCartWithMotor({ product: productName, specs: specs, lines: lines, price: total || null, qty: 1 }, !!motorized);
 }
 
 // ── QUOTE REQUEST MODAL ─────────────────────────────────────────

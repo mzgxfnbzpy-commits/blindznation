@@ -482,6 +482,18 @@ function getSummaryText(){
 }
 
 // ── SUBMIT ────────────────────────────────────────────────────────
+function addSelectToCart(){
+  if(!SS.system){ alert('Please select a hardware system before adding to cart.'); return; }
+
+  var summaryLines=getCurrentSummaryLines();
+  var lines=[{label:'Product',value:'Select Drapery Hardware'}].concat(
+    summaryLines.filter(function(l){return l&&(l.k||l.label);}).map(function(l){return {label:l.k||l.label,value:String(l.v||l.value||'')};})
+  );
+  var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
+  pbAddToCart({product:'Select Drapery Hardware',lines:lines,specs:specs,price:null,qty:1});
+  pbOpenCart();
+}
+
 function submitSelect(){
   var name=document.getElementById('sel-name').value.trim();
   var phone=document.getElementById('sel-phone').value.trim();

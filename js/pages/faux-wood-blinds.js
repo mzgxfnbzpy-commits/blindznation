@@ -413,6 +413,46 @@ function submitForm(){
   errEl.style.display='none';
 }
 
+function addFauxWoodToCart(){
+  if(!S.color){ alert('Please select a color (Step 2) before adding to cart.'); return; }
+  if(!S.mount){ alert('Please select a mount type (Step 3) before adding to cart.'); return; }
+  if(!S.sizeOk){ alert('Please enter valid dimensions (Step 4) before adding to cart.'); return; }
+  if(!S.valance){ alert('Please select a valance option (Step 5) before adding to cart.'); return; }
+
+  const pW=W_COLS.find(v=>v>=S.w);
+  const pH=H_ROWS.find(v=>v>=S.h);
+  const wi=W_COLS.indexOf(pW);
+  const base=MATRIX[pH][wi];
+  const printedAdd=S.isPrinted?Math.round(base*0.20):0;
+  const valAdd=(S.valance&&S.valance!=='none')?(VALANCE_PRICE[pW]||0):0;
+  const sideAdd=S.sideMt?23:0;
+  const shimAdd=S.shims*7;
+  const unit=base+printedAdd+valAdd+sideAdd+shimAdd;
+  const subtotal=unit*S.qty;
+  const isOversized=S.w>=90;
+  const freight=isOversized?(80+(S.qty>1?(S.qty-1)*50:0)):(25+(S.qty>1?(S.qty-1)*11:0));
+  const total=subtotal+freight;
+
+  const slatLabel=S.slat==='2.5in'?'2½"':'2"';
+  const valLabel=S.valance==='none'?'No Valance':(S.valance==='modern'?'Modern Curved 2½"':'Designer Crown 3¼"');
+
+  const lines=[
+    {label:'Product',value:'SmartPrivacy Faux Wood Blinds (Ultimate)'},
+    {label:'Slat Size',value:slatLabel},
+    {label:'Color',value:S.color+(S.isPrinted?' [Printed +20%]':'')},
+    {label:'Mount',value:S.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Width',value:S.w+'"'},
+    {label:'Height',value:S.h+'"'},
+    {label:'Valance',value:valLabel},
+    {label:'Side Mount Brackets',value:S.sideMt?'Yes (+$23)':'No'},
+    {label:'Shims',value:S.shims>0?S.shims+' (+$'+shimAdd+')':'None'},
+    {label:'Quantity',value:String(S.qty)}
+  ];
+  const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
+  pbAddToCart({product:'SmartPrivacy Faux Wood Blinds',lines:lines,specs:specs,price:total,qty:S.qty});
+  pbOpenCart();
+}
+
 // Init — apply default 2" slat color filter on page load
 document.addEventListener('DOMContentLoaded',()=>{
   S.slat='2in'; markDone('step1'); $('s7val').textContent='1 blind';

@@ -190,6 +190,33 @@ function updateQuote(){
   document.getElementById('qr-total').textContent='$'+Math.round(total).toLocaleString();
 }
 
+function addSynchronyToCart(){
+  if(!state.collection||!state.colorName){ alert('Please select a fabric/color before adding to cart.'); return; }
+  if(!state.mount){ alert('Please select a mount type before adding to cart.'); return; }
+  if(!state.w||!state.h){ alert('Please enter valid dimensions before adding to cart.'); return; }
+
+  const totalEl=document.getElementById('qr-total');
+  const priceText=totalEl?totalEl.textContent.trim():'';
+  const price=priceText?parseFloat(priceText.replace(/[^0-9.]/g,''))||null:null;
+  const qty=parseInt(document.getElementById('qty').value)||1;
+
+  const lines=[
+    {label:'Product',value:'Norman Synchrony™ Vertical Blinds'},
+    {label:'Collection',value:state.collection||'—'},
+    {label:'Color',value:state.colorName||'—'},
+    {label:'Vane Style',value:state.vane||'—'},
+    {label:'Mount',value:state.mount==='inside'?'Inside Mount':state.mount==='semi'?'Semi-Inside Mount':'Outside Mount'},
+    {label:'Wand Side',value:state.wand||'—'},
+    {label:'Width',value:(state.w||'—')+'″'},
+    {label:'Height',value:(state.h||'—')+'″'},
+    {label:'Shims',value:state.shim?state.shimQty+' × $7':'None'},
+    {label:'Quantity',value:String(qty)}
+  ];
+  const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
+  pbAddToCart({product:'Norman Synchrony™ Vertical Blinds',lines:lines,specs:specs,price:price,qty:qty});
+  pbOpenCart();
+}
+
 function submitQuote(){
   const name=document.getElementById('f-name').value.trim();
   const phone=document.getElementById('f-phone').value.trim();

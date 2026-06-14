@@ -278,6 +278,39 @@ function crsUpdatePanel() {
 }
 
 // ── SUBMIT ───────────────────────────────────────────────────
+function addCustomRollerToCart(){
+  if(!CRS.mount){ alert('Please select a mount type before adding to cart.'); return; }
+  if(!CRS.w||!CRS.h){ alert('Please enter valid dimensions before adding to cart.'); return; }
+
+  var totalEl=document.getElementById('qp-total');
+  var priceText=totalEl?totalEl.textContent.trim():'';
+  var price=priceText&&priceText!=='—'?parseFloat(priceText.replace(/[^0-9.]/g,''))||null:null;
+
+  var typeMap={lf:'Light Filtering',rd:'Blackout',bk:'Blackout',solar:'Solar Screening',exterior:'Exterior Roller'};
+  var hMap={open:'Open Roll (no valance)',fascia:'Metal Fascia'};
+  var mMap={cord:'Manual chain',cordless:'Cordless',motorized:'Motorized',lutron:'Motorized — Lutron',somfy:'Motorized — Somfy','norman-motor':'Motorized — Norman Smart'};
+  var fMap={we:'We supply fabric',customer:'Customer supplies fabric',consult:'Consult — TBD'};
+
+  var typeLabel=typeMap[CRS.type]||CRS.type||'—';
+  if(CRS.type==='solar'&&CRS.openness) typeLabel+=' · '+CRS.openness+'% openness';
+  if(CRS.color) typeLabel+=' · '+CRS.color;
+
+  var lines=[
+    {label:'Product',value:'Custom Roller Shades'},
+    {label:'Shade Type',value:typeLabel},
+    {label:'Mount',value:CRS.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Headrail',value:(hMap[CRS.headrail]||CRS.headrail||'—')+(CRS.hwColor?' — '+CRS.hwColor:'')},
+    {label:'Width',value:(CRS.w||'—')+'"'},
+    {label:'Height',value:(CRS.h||'—')+'"'},
+    {label:'Fabric',value:fMap[CRS.fabric]||CRS.fabric||'—'},
+    {label:'Operation',value:mMap[CRS.motor]||CRS.motor||'—'},
+    {label:'Quantity',value:String(CRS.qty||1)}
+  ];
+  var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
+  pbAddToCart({product:'Custom Roller Shades',lines:lines,specs:specs,price:price,qty:CRS.qty||1});
+  pbOpenCart();
+}
+
 function crsSubmit() {
   var name  = ((_crsEl('q-name')  || {}).value || '').trim();
   var email = ((_crsEl('q-email') || {}).value || '').trim();

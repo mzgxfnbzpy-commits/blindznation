@@ -3,20 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Custom drapery and roman shades handcrafted to your exact dimensions. Your fabric or ours. Motorization available. Salt Lake City &amp; Philadelphia.">
-<meta property="og:title" content="Custom Drapery &amp; Roman Shades | Blindznation — Salt Lake City &amp; Philadelphia">
-<meta property="og:description" content="Custom drapery and roman shades — handcrafted to your exact dimensions. Your fabric or ours. Motorization available. Salt Lake City, UT and Philadelphia, PA.">
+<meta name="description" content="Custom drapery from $200 &amp; roman shades from $150. Six pleat styles, blackout lining &amp; motorization available. Instant estimate online — Salt Lake City, UT &amp; Philadelphia, PA.">
+<meta property="og:title" content="Custom Drapery &amp; Roman Shades Salt Lake City | Blindznation">
+<meta property="og:description" content="Custom drapery from $200 &amp; roman shades from $150. Six pleat styles, blackout lining &amp; motorization. Instant estimate — Salt Lake City, UT &amp; Philadelphia, PA.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://blindznation.com/pages/soft-treatments.html">
 <meta property="og:site_name" content="Blindznation">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Custom Drapery &amp; Roman Shades | Blindznation — Salt Lake City &amp; Philadelphia">
-<meta name="twitter:description" content="Custom drapery and roman shades — handcrafted to your exact dimensions. Your fabric or ours. Motorization available. Salt Lake City, UT and Philadelphia, PA.">
+<meta name="twitter:title" content="Custom Drapery &amp; Roman Shades Salt Lake City | Blindznation">
+<meta name="twitter:description" content="Custom drapery from $200 &amp; roman shades from $150. Six pleat styles, blackout lining &amp; motorization. Instant estimate — Salt Lake City, UT &amp; Philadelphia, PA.">
 <meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://blindznation.com/img/social-preview.png">
-<title>Custom Drapery &amp; Roman Shades — Blindznation | Salt Lake City &amp; Philadelphia</title>
+<title>Custom Drapery &amp; Roman Shades Salt Lake City | Blindznation</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much does custom drapery cost in Salt Lake City?","acceptedAnswer":{"@type":"Answer","text":"Custom drapery at Blindznation starts at $200 total. Labor runs $120–$140 per width panel (unlined or lined). Fabric we supply adds $25/yard and lining adds $10/yard. Use our instant estimate tool online — enter your window size and pleat style to see your total. We serve Salt Lake City, Midvale, Sandy, South Jordan, Draper, Orem, Park City, and throughout Utah."}},{"@type":"Question","name":"What types of drape pleat styles do you offer?","acceptedAnswer":{"@type":"Answer","text":"We offer six pleat styles: ripple fold, pinch pleat, goblet pleat, barrel pleat, grommet, and rod pocket. Ripple fold and goblet are the most popular for a tailored, formal look. All styles are available with your fabric or fabric we supply, plus optional blackout lining and motorized track."}},{"@type":"Question","name":"How much do custom roman shades cost in Salt Lake City?","acceptedAnswer":{"@type":"Answer","text":"Custom roman shades start at $150 per shade for flat and relaxed styles, and $250 per shade for permanently pleated. All styles include your choice of fabric and optional lining. Blackout lining, motorization, and customer-supplied fabric are all available. Get an instant price estimate by entering your window dimensions on our online configurator."}},{"@type":"Question","name":"Can I supply my own fabric for custom drapes or roman shades?","acceptedAnswer":{"@type":"Answer","text":"Yes — we accept customer-supplied fabric for both custom drapery and roman shades. Ship your fabric to us and we will fabricate your window treatments to your exact specifications. We also offer our own selection of blackout and light-filtering fabrics at $25/yard if you would like us to source the material."}}]}
+</script>
 <link rel="stylesheet" href="../css/global.css">
 <style>
 /* ── HERO ── */
@@ -593,6 +596,7 @@
       <div class="form-group"><label>Email</label><input type="email" id="d-email" placeholder="jane@example.com"></div>
       <div class="form-group"><label>Installation address</label><input type="text" id="d-address" placeholder="123 Main St, Philadelphia PA"></div>
       <button onclick="reqMoreInfo('Custom Drapery')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Drapery →</button>
+      <button class="btn-cart-add" onclick="addDrapeToCart()" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
         <button class="btn-gold" onclick="submitDrape()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Submit Order for Review &rarr;</button>
     </div>
     <div class="success-box" id="drape-success">
@@ -850,28 +854,17 @@
 
     <!-- Manual sub-options -->
     <div id="roman-manual-opts" style="margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
-      <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Lift type</div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;padding:7px 10px;background:rgba(201,169,110,.08);border:1px solid rgba(201,169,110,.2);border-radius:7px;font-size:11px;color:#0A4A42">
-        <span style="font-size:13px">⭐</span>We recommend <strong>Chain / Cord Loop</strong> for roman shades — smoother raise, holds position at any height.
+      <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Chain loop — chain length</div>
+      <div class="opt-row" id="grp-roman-clen">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-clen');document.getElementById('roman-clen-custom').style.display='none'">Default</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-clen');document.getElementById('roman-clen-custom').style.display='flex'">Custom</button>
       </div>
-      <div class="opt-row" id="grp-roman-lift">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-lift');document.getElementById('roman-chain-len').style.display='none'">Cordless</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-roman-lift');document.getElementById('roman-chain-len').style.display='block'">Chain / Cord Loop</button>
+      <div id="roman-clen-custom" style="display:none;align-items:center;gap:8px;margin-top:8px">
+        <input type="number" id="roman-clen-in" placeholder="e.g. 54" min="9" style="width:80px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px" oninput="romanChainCheck()">
+        <span style="font-size:13px;color:#666">inches</span>
       </div>
-      <!-- Chain length — visible when Chain selected -->
-      <div id="roman-chain-len" style="display:none;margin-top:10px;padding:10px 12px;background:#fff;border:1px solid #e8e8e4;border-radius:8px">
-        <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:6px">Chain length</div>
-        <div class="opt-row" id="grp-roman-clen">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-clen');document.getElementById('roman-clen-custom').style.display='none'">Default</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-roman-clen');document.getElementById('roman-clen-custom').style.display='flex'">Custom</button>
-        </div>
-        <div id="roman-clen-custom" style="display:none;align-items:center;gap:8px;margin-top:8px">
-          <input type="number" id="roman-clen-in" placeholder="e.g. 54" min="9" style="width:80px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px" oninput="romanChainCheck()">
-          <span style="font-size:13px;color:#666">inches</span>
-        </div>
-        <div id="roman-clen-warn" style="display:none;font-size:11px;color:#dc2626;background:#fee2e2;border-radius:6px;padding:6px 10px;margin-top:6px"></div>
-        <div style="font-size:11px;color:#888;margin-top:6px">Custom chain must be at least 75% of finished length for comfortable reach.</div>
-      </div>
+      <div id="roman-clen-warn" style="display:none;font-size:11px;color:#dc2626;background:#fee2e2;border-radius:6px;padding:6px 10px;margin-top:6px"></div>
+      <div style="font-size:11px;color:#888;margin-top:6px">Custom chain must be at least 75% of finished length for comfortable reach.</div>
     </div>
 
     <!-- Motorized sub-options -->
@@ -1037,6 +1030,7 @@
           </div>
 
           <button onclick="reqMoreInfo('Custom Roman Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Shades →</button>
+          <button class="btn-cart-add" onclick="addRomanToCart()" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
         <button class="btn-gold" onclick="submitRoman()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Submit Order for Review &rarr;</button>
         </div>
         <div class="success-box" id="roman-success">

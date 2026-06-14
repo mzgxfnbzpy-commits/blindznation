@@ -162,6 +162,21 @@
   </div>
 </div>
 
+<div class="variant-select">
+  <div class="variant-select-label">Wood Blinds &mdash; Choose your type</div>
+  <div class="variant-cards" style="grid-template-columns:1fr 1fr;max-width:560px">
+    <span class="vcard v-active">
+      <span class="v-active-check">&check;</span>
+      <div class="vcard-img"><img src="../images/thumbnails/faux-blinds.png" alt="Faux Wood Blinds"><span class="vcard-badge" style="background:var(--gold);color:#111110">Norman</span></div>
+      <div class="vcard-body"><div class="vcard-name">Faux Wood Blinds</div><div class="vcard-desc">SmartPrivacy&reg; &mdash; moisture resistant, cordless, 16 colors. Instant pricing.</div></div>
+    </span>
+    <span class="vcard" style="cursor:pointer" onclick="location.href='real-wood-blinds.html'">
+      <div class="vcard-img"><img src="../images/thumbnails/real wood blinds.JPEG" onerror="this.src='../images/products/real-wood-blinds.jpg'" alt="Real Wood Blinds"><span class="vcard-badge" style="background:var(--gold);color:#111110">Norman</span></div>
+      <div class="vcard-body"><div class="vcard-name">Real Wood Blinds</div><div class="vcard-desc">Genuine hardwood &mdash; 26 colors, natural grain. Instant pricing.</div></div>
+    </span>
+  </div>
+</div>
+
 <div class="config-layout">
 <div><!-- left column -->
 
@@ -497,6 +512,7 @@
       </div>
 
       <div class="form-err" id="form-err"></div>
+      <button class="btn-cart-add" onclick="addFauxWoodToCart()" style="margin-bottom:8px">+ Add to Cart</button>
       <button class="submit-btn" onclick="submitForm()">Submit Order for Review &rarr;</button>
       <div class="success-box" id="success-box">
         <h3>Quote request sent!</h3>

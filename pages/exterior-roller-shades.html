@@ -323,6 +323,7 @@
   </div>
   <div class="qnote" id="qp-note" style="display:none">Pricing estimate shown above. Final quote confirmed by Justin before any payment.</div>
   <div id="submit-wrap">
+    <button onclick="addExteriorRollerToCart()" class="btn-cart-add" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
     <button onclick="ersSubmit()" id="submit-btn" class="btn-gold" style="width:100%;padding:14px;font-size:15px;font-weight:600;margin-top:16px;border:none;cursor:pointer;border-radius:10px">Submit Order for Review</button>
     <div class="submit-note">No payment required now. Justin reviews your specs and sends a custom quote.</div>
   </div>
@@ -515,6 +516,31 @@ function ersUpdatePanel() {
   } else {
     priceEst.classList.remove('show');
   }
+}
+
+function addExteriorRollerToCart(){
+  if(!ERS.mount){ alert('Please select a mount type before adding to cart.'); return; }
+  if(!ERS.openness){ alert('Please select an openness factor before adding to cart.'); return; }
+  if(!ERS.width||!ERS.height){ alert('Please enter dimensions before adding to cart.'); return; }
+
+  var trackLabel=ERS.track==='zipper'?'Zipper Track':ERS.track==='cables'?'Cables':'—';
+  var mountLabel=ERS.mount==='wall'?'Wall Mount':ERS.mount==='ceiling'?'Ceiling / Soffit Mount':'—';
+  var opLabel=ERS.operation==='manual'?'Manual — hand crank':ERS.operation==='motorized'?'Motorized':'—';
+
+  var lines=[
+    {label:'Product',value:'Exterior Roller Shades'},
+    {label:'Openness',value:(ERS.openness||'—')+'% solar screen'},
+    {label:'Color',value:ERS.color||'—'},
+    {label:'Side Track',value:trackLabel},
+    {label:'Mount',value:mountLabel},
+    {label:'Operation',value:opLabel},
+    {label:'Width',value:(ERS.width||'—')+'″'},
+    {label:'Height',value:(ERS.height||'—')+'″'},
+    {label:'Quantity',value:String(ERS.qty||1)}
+  ];
+  var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
+  pbAddToCart({product:'Exterior Roller Shades',lines:lines,specs:specs,price:null,qty:ERS.qty||1});
+  pbOpenCart();
 }
 
 function ersSubmit() {

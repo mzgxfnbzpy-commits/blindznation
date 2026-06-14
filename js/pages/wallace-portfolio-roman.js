@@ -671,6 +671,33 @@ function setDelivery(opt) {
 function updateSpec() {}
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
+function addWallaceRomanToCart(){
+  if(!S.width||!S.length){ alert('Please enter dimensions before adding to cart.'); return; }
+  if(!S.shadeStyle){ alert('Please select a shade style before adding to cart.'); return; }
+  if(!S.fabric){ alert('Please select a fabric before adding to cart.'); return; }
+
+  var shadStyleLabels={standard:'Standard With Valance',waterfall:'Waterfall Without Valance','waterfall-fv':'Waterfall Front Valance','valance-only':'Valance Only'};
+  var panelLabels={flat:'Flat',hobbled:'Hobbled',knife:'Knife Pleated','front-slat':'Front Slat'};
+  var controlLabels={cordless:'Cordless',tdbu:'Cordless TDBU',clutch:'Clutch / Loop',prowand:'Pro Wand',motor:'Remote Motor'};
+
+  var lines=[
+    {label:'Product',value:'Wallace Portfolio Fabric Roman Shades'},
+    {label:'Quantity',value:String(S.qty||1)},
+    {label:'Mount',value:S.mount==='inside'?'Inside mount':'Outside mount'},
+    {label:'Width',value:(S.width||'—')+'"'},
+    {label:'Length',value:(S.length||'—')+'"'},
+    {label:'Shade Style',value:shadStyleLabels[S.shadeStyle]||S.shadeStyle},
+    {label:'Panel Style',value:panelLabels[S.panelStyle]||S.panelStyle||'—'},
+    {label:'Fabric',value:S.fabric?S.fabric.pattern+' '+S.fabric.color+' ('+S.fabric.code+') Group '+S.fabric.priceGroup:'—'},
+    {label:'Liner',value:S.linerLabel||S.liner||'—'},
+    {label:'Control',value:controlLabels[S.control]||S.control||'—'},
+    {label:'Returns',value:S.returns||'None'}
+  ];
+  var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
+  pbAddToCart({product:'Wallace Portfolio Fabric Roman Shades',lines:lines,specs:specs,price:null,qty:S.qty||1});
+  pbOpenCart();
+}
+
 function submitQuote() {
   var name=document.getElementById('q-name').value.trim();
   var phone=document.getElementById('q-phone').value.trim();

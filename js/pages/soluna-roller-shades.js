@@ -1,4 +1,79 @@
 var solDelivery = 'ship';
+var _solCoupledActive = false;
+var _solCoupledCount = 2;
+var _solCoupledSameSize = true;
+
+function solToggleCoupled() {
+  _solCoupledActive = !_solCoupledActive;
+  var btn = document.getElementById('coupled-toggle-btn');
+  var wrap = document.getElementById('coupled-wrap');
+  if (btn) btn.classList.toggle('sel', _solCoupledActive);
+  if (wrap) wrap.style.display = _solCoupledActive ? 'block' : 'none';
+  if (_solCoupledActive) {
+    solRenderCoupledFields(2);
+    solCheckCoupledOpWarn();
+  }
+  updateSummary();
+}
+
+function solCheckCoupledOpWarn() {
+  var warn = document.getElementById('coupled-op-warn');
+  if (!warn) return;
+  var op = getOpt('grp-op') || '';
+  var blocked = (op === 'PrecisionLift™ Cordless' || op === 'SmartRelease™');
+  warn.style.display = (_solCoupledActive && blocked) ? 'block' : 'none';
+}
+
+function solShowCoupledSame() {
+  _solCoupledSameSize = true;
+  var s = document.getElementById('coupled-same-wrap');
+  var d = document.getElementById('coupled-diff-wrap');
+  if (s) s.style.display = 'block';
+  if (d) d.style.display = 'none';
+}
+
+function solShowCoupledDiff() {
+  _solCoupledSameSize = false;
+  var s = document.getElementById('coupled-same-wrap');
+  var d = document.getElementById('coupled-diff-wrap');
+  if (s) s.style.display = 'none';
+  if (d) d.style.display = 'block';
+  solRenderCoupledFields(_solCoupledCount);
+}
+
+function solSetCoupledCount(n) {
+  _solCoupledCount = n;
+}
+
+function solRenderCoupledFields(n) {
+  _solCoupledCount = n;
+  var container = document.getElementById('coupled-dim-fields');
+  if (!container) return;
+  var html = '';
+  for (var i = 1; i <= n; i++) {
+    html += '<div style="margin-bottom:8px;padding:10px 12px;background:#fff;border:1px solid #e8e8e4;border-radius:8px">';
+    html += '<div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Shade ' + i + ' — from left</div>';
+    html += '<div class="form-row">';
+    html += '<div class="form-group"><label>Width</label><input type="number" id="coupled-w-' + i + '" min="12" max="144" step="0.5" placeholder="36" oninput="updateSummary()" style="width:100%"></div>';
+    html += '<div class="form-group"><label>Height</label><input type="number" id="coupled-h-' + i + '" min="12" max="132" step="0.5" placeholder="72" oninput="updateSummary()" style="width:100%"></div>';
+    html += '</div></div>';
+  }
+  container.innerHTML = html;
+}
+
+function solGetCoupledSummary() {
+  if (!_solCoupledActive) return null;
+  if (_solCoupledSameSize) {
+    return _solCoupledCount + ' shades — same size (see dimensions above)';
+  }
+  var parts = [];
+  for (var i = 1; i <= _solCoupledCount; i++) {
+    var w = (document.getElementById('coupled-w-' + i) || {}).value || '?';
+    var h = (document.getElementById('coupled-h-' + i) || {}).value || '?';
+    parts.push('Shade ' + i + ': ' + w + '″W × ' + h + '″H');
+  }
+  return _solCoupledCount + ' shades — ' + parts.join(' | ');
+}
 
 var SOLUNA_FABRIC_DATA = {
   'solar': [
@@ -170,6 +245,14 @@ function updateSummary() {
 
   const addons = [...document.querySelectorAll('#grp-addons .opt-btn.sel')].map(b => b.textContent.trim());
   document.getElementById('s-addons').textContent = addons.length ? addons.join(', ') : 'None';
+
+  var coupledRow = document.getElementById('s-coupled-row');
+  var coupledEl  = document.getElementById('s-coupled');
+  if (coupledRow && coupledEl) {
+    var cSum = solGetCoupledSummary();
+    coupledRow.style.display = cSum ? '' : 'none';
+    if (cSum) coupledEl.textContent = cSum;
+  }
 }
 
 function submitQuote() {
@@ -195,6 +278,7 @@ function submitQuote() {
     ? "I'll pick up (Huntingdon Valley, PA 19006 — address confirmed after order)"
     : 'Ship to me — UPS / FedEx from Huntingdon Valley, PA (freight TBD)';
 
+  const coupledLine = solGetCoupledSummary();
   const body = [
     '=== PREMIER NORMAN ROLLER SHADE QUOTE REQUEST ===',
     '',
@@ -210,6 +294,7 @@ function submitQuote() {
     'Width: ' + w + '"',
     'Height: ' + h + '"',
     'Quantity: ' + qty,
+    (coupledLine ? 'Coupled shades: ' + coupledLine : ''),
     'Add-ons: ' + (addons.length ? addons.join(', ') : 'None'),
     '',
     'DELIVERY',

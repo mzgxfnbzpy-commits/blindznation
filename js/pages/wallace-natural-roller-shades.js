@@ -645,6 +645,33 @@ function updateSpec(id, val) {
 // ═══════════════════════════════════════════════════════════════
 // SUBMIT QUOTE
 // ═══════════════════════════════════════════════════════════════
+function addWallaceNaturalRollerToCart(){
+  if(!S.shadeType){ alert('Please select single or double shade before adding to cart.'); return; }
+  if(!S.fabric){ alert('Please select a fabric before adding to cart.'); return; }
+  if(!S.width||!S.height){ alert('Please enter dimensions before adding to cart.'); return; }
+
+  var fab=S.fabric;
+  var ttlabels={'open-std':'Open Roll — Standard Bracket','open-metal':'Open Roll — Metal Bracket','cassette':'Square Cassette','box-valance':'Box Valance','trad-valance':'Traditional Valance'};
+  var ctrllabels={clutch:'Clutch',cordless:'Cordless',prowand:'Pro Wand Motor',motor:'Remote Motor'};
+
+  var lines=[
+    {label:'Product',value:'Wallace Portfolio Collection Natural Roller Shades'},
+    {label:'Shade Type',value:S.shadeType==='single'?'Single Natural Roller':'Double Natural Roller'},
+    {label:'Mount',value:S.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Width',value:(S.width||'—')+'"'},
+    {label:'Height',value:(S.height||'—')+'"'},
+    {label:'Quantity',value:String(S.qty||1)},
+    {label:'Pattern',value:fab?fab.name:'—'},
+    {label:'Price Group',value:fab?'Group '+fab.group:'—'},
+    {label:'Color Code',value:S.fabColor||'— (from sample book)'},
+    {label:'Top Treatment',value:ttlabels[S.topTreatment]||S.topTreatment||'—'},
+    {label:'Control',value:ctrllabels[S.control]||S.control||'—'}
+  ];
+  var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
+  pbAddToCart({product:'Wallace Portfolio Collection Natural Roller Shades',lines:lines,specs:specs,price:null,qty:S.qty||1});
+  pbOpenCart();
+}
+
 function submitQuote() {
   var name  = document.getElementById('q-name').value.trim();
   var phone = document.getElementById('q-phone').value.trim();

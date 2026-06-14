@@ -824,6 +824,46 @@ function rnToggleFrontValCustom(show) {
   if (el) el.style.display = show ? 'block' : 'none';
 }
 
+// ── ADD TO CART: DRAPERY ─────────────────────────────────
+function addDrapeToCart(){
+  var pleat=drapeState.pleat||'';
+  if(!pleat){ alert('Please select a pleat style before adding to cart.'); return; }
+  var panel=document.getElementById('drape-price-box-checkout-panel');
+  if(panel&&panel._pbLines&&panel._pbEstimate){
+    pbCollectItem(drapeState.pleat||'Custom Drapery',panel._pbLines,panel._pbEstimate,false);
+    pbOpenCart();
+  } else {
+    calcDrapePrice();
+    var p2=document.getElementById('drape-price-box-checkout-panel');
+    if(p2&&p2._pbLines&&p2._pbEstimate){
+      pbCollectItem(drapeState.pleat||'Custom Drapery',p2._pbLines,p2._pbEstimate,false);
+      pbOpenCart();
+    } else {
+      alert('Please complete your drapery configuration (width, height, pleat style) to see a price before adding to cart.');
+    }
+  }
+}
+
+// ── ADD TO CART: ROMAN SHADES ────────────────────────────
+function addRomanToCart(){
+  var style=romanState.style||'';
+  if(!style){ alert('Please select a roman shade style before adding to cart.'); return; }
+  var panel=document.getElementById('roman-pricebox-checkout-panel');
+  if(panel&&panel._pbLines&&panel._pbEstimate){
+    pbCollectItem(romanState.style||'Roman Shade',panel._pbLines,panel._pbEstimate,false);
+    pbOpenCart();
+  } else {
+    calcRomanPrice();
+    var p2=document.getElementById('roman-pricebox-checkout-panel');
+    if(p2&&p2._pbLines&&p2._pbEstimate){
+      pbCollectItem(romanState.style||'Roman Shade',p2._pbLines,p2._pbEstimate,false);
+      pbOpenCart();
+    } else {
+      alert('Please complete your roman shade configuration (width, height, style) to see a price before adding to cart.');
+    }
+  }
+}
+
 // ── SUBMIT: DRAPERY ───────────────────────────────────────
 async function submitDrape() {
   var name  = document.getElementById('d-name').value.trim();
@@ -952,7 +992,7 @@ async function submitRoman() {
   var tdbu        = getOpt('grp-roman-tdbu');
   var op          = getOpt('grp-roman-op');
   var isMotor     = op === 'Motorized';
-  var liftType    = !isMotor ? getOpt('grp-roman-lift') : '—';
+  var liftType    = !isMotor ? 'Chain loop' : '—';
   var remotes     = isMotor ? getOpt('grp-roman-remotes') : '—';
   var channel     = isMotor ? getOpt('grp-roman-channel') : '—';
   var controlSide = getOpt('grp-roman-control');

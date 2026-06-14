@@ -479,6 +479,32 @@ function pickDel(opt){
 }
 
 /* ── SUBMIT ── */
+function addOrionToCart(){
+  if(!S.type){ alert('Please select a hardware type before adding to cart.'); return; }
+
+  var typeLabel2={decorative:'Decorative Rod',traverse:'Traversing System',motorized:'Motorized Traversing','3d':'3D Hardware',cornice:'Cornice/Crown/Scroll',tieback:'Tieback/Swing Arm'}[S.type]||S.type;
+  var length=($('m-length')||{value:''}).value;
+  var qty=($('m-qty')||{value:'1'}).value;
+
+  var lines=[
+    {label:'Product',value:'Orion Drapery Hardware'},
+    {label:'Hardware Type',value:typeLabel2},
+    {label:'Collection',value:S.collection||'—'},
+    {label:'Diameter',value:S.rodDia||'N/A'},
+    {label:'Finish',value:S.finish||'—'},
+    {label:'Finial',value:S.finial||'N/A'},
+    {label:'Mount',value:S.mount||'—'},
+    {label:'Rod/Track Length',value:length?length+'"':'—'},
+    {label:'Quantity',value:String(qty)},
+    {label:'Draw',value:S.draw||'N/A'},
+    {label:'Motor',value:S.motor||'N/A'}
+  ];
+  var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
+  pbAddToCart({product:'Orion Drapery Hardware',lines:lines,specs:specs,price:null,qty:parseInt(qty)||1});
+  pbOpenCart();
+}
+
+
 function submitQuote(){
   var name=$('q-name').value.trim(), contact=$('q-contact').value.trim();
   if(!name||!contact){alert('Please enter your name and contact info.');return;}

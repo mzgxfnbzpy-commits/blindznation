@@ -518,6 +518,35 @@ function pickDel(btn,key){
   updateQuote();
 }
 
+function addDynastyToCart(){
+  if(!S.patName){ alert('Please select a pattern before adding to cart.'); return; }
+  if(!S.mount){ alert('Please select a mount type before adding to cart.'); return; }
+  if(!S.w||!S.h){ alert('Please enter valid dimensions before adding to cart.'); return; }
+  if(!S.lift){ alert('Please select a lift/control type before adding to cart.'); return; }
+
+  const totalEl=document.getElementById('qr-total');
+  const priceText=totalEl?totalEl.textContent.trim():'';
+  const price=priceText?parseFloat(priceText.replace(/[^0-9.]/g,''))||null:null;
+
+  const lines=[
+    {label:'Product',value:'Wallace Dynasty Woven Wood Shades'},
+    {label:'Pattern',value:(S.patNum?S.patNum+' ':'')+S.patName},
+    {label:'Price Group',value:String(S.grp||'—')},
+    {label:'Style',value:S.style||'—'},
+    {label:'Mount',value:S.mount||'—'},
+    {label:'Width',value:(S.w||'—')+'″'},
+    {label:'Height',value:(S.h||'—')+'″'},
+    {label:'Control',value:S.lift||'—'},
+    {label:'Liner',value:S.linerType&&S.linerType!=='none'?capitalize(S.linerType):'None'},
+    {label:'Edge Binding',value:S.eb!=='none'?(S.eb+'″ twill'):'None'},
+    {label:'Valance',value:S.valance||'—'},
+    {label:'Quantity',value:String(S.qty||1)}
+  ];
+  const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
+  pbAddToCart({product:'Wallace Dynasty Woven Wood Shades',lines:lines,specs:specs,price:price,qty:S.qty||1});
+  pbOpenCart();
+}
+
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
 function submitQuote(){
   const name=document.getElementById('f-name').value.trim();

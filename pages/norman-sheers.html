@@ -391,6 +391,7 @@
     <div class="form-group"><label>Notes / questions</label><textarea id="q-notes" placeholder="Timeline, room details, alternating color preference, patio door details, anything else..."></textarea></div>
     <div id="q-err" class="msg-err" style="display:none">Please enter your name and phone number.</div>
     <button onclick="reqMoreInfo('Norman SmartDrape™')" class="req-info-link" style="display:block;margin-bottom:10px;font-size:12px;color:var(--gold);background:none;border:none;cursor:pointer;text-align:left;padding:0">Request more information about SmartDrape™ →</button>
+    <button class="btn-cart-add" onclick="addNormanSheersToCart()" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
     <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:13px;font-size:14px;font-weight:600">Submit SmartDrape™ Specification &amp; Request Quote →</button>
     <div id="quote-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
       <strong>Specification submitted!</strong><br>Your email app opened with the complete spec pre-filled. We'll follow up within a few hours.<br><br>
@@ -431,11 +432,18 @@
     <div class="spec-divider"></div>
     <div id="price-pending" style="font-size:11px;color:var(--text-muted);text-align:center;padding:8px 0;font-style:italic">Select operation, dimensions &amp; fabric then submit for a custom quote.</div>
     <div id="price-box" style="display:none">
-      <div class="price-note" style="font-size:11px;color:var(--text-muted)">Norman retail pricing with 35% off — shipping at retail rate. Final price confirmed at quote.</div>
-      <span id="pr-base" style="display:none"></span><span id="pr-rd" style="display:none"></span>
-      <span id="pr-alt" style="display:none"></span><span id="pr-qty" style="display:none"></span>
-      <span id="pr-total" style="display:none"></span><span id="pr-rd-row" style="display:none"></span>
-      <span id="pr-alt-row" style="display:none"></span><span id="pr-motor-row" style="display:none"></span>
+      <div class="price-box">
+        <div class="price-box-label">Price Estimate</div>
+        <div class="price-line"><span>Base (per shade)</span><span style="color:var(--cream)" id="pr-base"></span></div>
+        <div id="pr-rd-row" style="display:none;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>Room darkening +20%</span><span style="color:var(--cream)" id="pr-rd"></span></div>
+        <div id="pr-alt-row" style="display:none;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>Alternating colors +10%</span><span style="color:var(--cream)" id="pr-alt"></span></div>
+        <div id="pr-motor-row" style="display:none;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>Norman Smart motor</span><span style="color:var(--cream)">+$642</span></div>
+        <div class="price-line"><span>Qty</span><span style="color:var(--cream)" id="pr-qty"></span></div>
+        <div class="price-line"><span>MSRP subtotal</span><span style="color:var(--cream)" id="pr-retail"></span></div>
+        <div class="price-line"><span>Discount (−15%)</span><span style="color:var(--gold)" id="pr-disc"></span></div>
+        <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-top:8px;padding-top:8px;border-top:.5px solid #3A2E24"><span style="color:var(--cream)">Est. total</span><span style="color:var(--gold)" id="pr-total"></span></div>
+        <div style="font-size:9px;color:#5A4A38;margin-top:6px;line-height:1.6">Estimate based on Norman MSRP −15%. Freight additional. Final price confirmed at quote.</div>
+      </div>
     </div>
   </div>
   <div style="background:var(--gold-mid);border:1px solid #e8e8e4;border-radius:12px;padding:16px;margin-top:14px">

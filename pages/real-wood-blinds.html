@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configure and price Norman Normandy® real wood blinds online. Genuine hardwood, cordless, 26 colors, instant pricing. Serving Philadelphia &amp; Salt Lake City.">
+<meta property="og:url" content="https://blindznation.com/pages/real-wood-blinds.html">
+<meta property="og:title" content="Normandy® Real Wood Blinds — Blindznation">
+<meta property="og:description" content="Genuine hardwood blinds — cordless, 26 paint, stain &amp; premium colors. Configure your specs and get an instant price online.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Normandy® Real Wood Blinds — Blindznation">
+<meta name="twitter:description" content="Genuine hardwood blinds — cordless, 26 colors. Instant pricing online.">
+<meta property="og:image" content="https://blindznation.com/img/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://blindznation.com/img/social-preview.png">
+<meta name="theme-color" content="#111110">
+<title>Normandy® Real Wood Blinds — Blindznation</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:linear-gradient(to right,rgba(17,17,16,.96) 40%,rgba(17,17,16,.65) 70%,rgba(17,17,16,.3) 100%),url('../images/thumbnails/real wood blinds.JPEG') right center/cover no-repeat;padding:48px 28px 44px;min-height:280px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px;line-height:1.2}
+.page-hero p{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(201,169,110,.12);border-color:rgba(201,169,110,.35);color:var(--gold)}
+
+.config-layout{display:grid;grid-template-columns:1fr 308px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+
+.opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.opt-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+@media(max-width:520px){.opt-grid-3{grid-template-columns:1fr 1fr}}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;text-align:center;transition:all .15s}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.opt-card.sel .opt-card-title{color:#0A4A42}
+.opt-card-desc{font-size:11px;color:#666;line-height:1.45}
+
+.color-group-label{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#888;margin:16px 0 8px;padding-bottom:5px;border-bottom:1px solid #eee}
+.color-group-label span{color:#B45309;background:#FEF3C7;padding:2px 6px;border-radius:4px;font-size:9px;margin-left:6px;vertical-align:middle}
+.color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:7px}
+.color-card{border:1.5px solid #e8e8e4;border-radius:9px;overflow:hidden;cursor:pointer;transition:all .15s}
+.color-card:hover{border-color:var(--gold);transform:translateY(-1px)}
+.color-card.sel{border:2px solid var(--gold);box-shadow:0 2px 10px rgba(201,169,110,.2)}
+.color-swatch{height:44px;width:100%}
+.color-label{padding:5px 6px;background:#fff}
+.color-name{font-size:10px;font-weight:600;color:#222;line-height:1.3}
+.color-code{font-size:9px;color:#999}
+.color-badge{font-size:8px;padding:1px 4px;border-radius:3px;display:inline-block;margin-top:2px;font-weight:600}
+.badge-designer{color:#92400E;background:#FEF3C7}
+.badge-premium{color:#6B21A8;background:#F3E8FF}
+
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
+.dim-inputs{display:flex;gap:6px;align-items:center}
+.dim-whole{width:54px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
+.dim-frac{padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff;color:#333}
+.dim-unit{font-size:13px;color:#555;font-weight:500}
+
+.msg-box{border-radius:8px;padding:9px 13px;font-size:12px;margin-top:8px;line-height:1.5}
+.msg-err{background:#FEE2E2;border:1px solid #EF4444;color:#7f1d1d}
+.msg-warn{background:#FFF3CD;border:1px solid #FFC107;color:#7d5a00}
+.msg-info{background:var(--gold-mid);border:1px solid rgba(201,169,110,.25);color:#0A4A42}
+
+.computed-box{background:#F9F7F4;border:1px solid #e4e0d8;border-radius:8px;padding:10px 14px;margin-top:10px}
+.cv-row{display:flex;justify-content:space-between;font-size:12px;padding:2px 0}
+.cv-key{color:#777}
+.cv-val{font-weight:500;color:#111}
+
+.spinner-row{display:flex;align-items:center;gap:9px;margin-top:8px}
+.spin-btn{width:32px;height:32px;border:1px solid #ddd;border-radius:7px;background:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1}
+.spin-btn:hover{border-color:var(--gold)}
+.spin-num{width:44px;text-align:center;border:1px solid #ddd;border-radius:7px;font-size:14px;padding:5px}
+.spin-label{font-size:12px;color:#666}
+
+.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
+
+.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
+.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+.qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
+.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
+.qrow-label{color:var(--text-muted);line-height:1.4}
+.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0}
+.qrow-disc{color:#C9A96E}
+.qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
+.qtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700}
+.qtotal-label{color:var(--cream)}
+.qtotal-val{color:var(--gold)}
+.qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
+.qbadge{font-size:9px;background:rgba(201,169,110,.15);color:var(--gold);padding:1px 5px;border-radius:3px;margin-left:3px;vertical-align:middle}
+
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
+.form-group input,.form-group textarea{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:inherit;box-sizing:border-box}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.delivery-wrap{background:#F9F7F4;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px;margin-bottom:14px}
+.submit-btn{width:100%;padding:14px;background:var(--gold);color:#111110;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;margin-top:2px}
+.submit-btn:hover{opacity:.88}
+.form-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-bottom:10px;display:none}
+.success-box{background:#EEFBE8;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;display:none}
+.success-box h3{font-size:15px;font-weight:600;color:#14532d;margin-bottom:6px}
+.success-box p{font-size:13px;color:#166534;line-height:1.6}
+.custom-notice{background:var(--gold-mid);border:1px solid var(--gold);border-radius:10px;padding:16px 18px;margin-bottom:14px;opacity:.8}
+.custom-notice-head{font-size:13px;font-weight:600;color:#0A4A42;margin-bottom:5px}
+.custom-notice-body{font-size:12px;color:#0A4A42;line-height:1.7}
+</style>
+</head>
+<body data-page="Shades & blinds">
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="shades.html">Shades &amp; Blinds</a> &rsaquo; Real Wood Blinds</div>
+    <h1>Normandy&reg;<br>Real Wood Blinds</h1>
+    <p>Genuine hardwood blinds with SmartPrivacy&reg; closure. Cordless and child-safe &mdash; configure your exact specs and see your price instantly.</p>
+    <div class="hero-pills">
+      <span class="hero-pill hero-pill-gold">Instant pricing</span>
+      <span class="hero-pill">Cordless &amp; child safe</span>
+      <span class="hero-pill">SmartPrivacy&reg; closure</span>
+      <span class="hero-pill">2&Prime; &amp; 2&frac12;&Prime; slats</span>
+      <span class="hero-pill">26 colors</span>
+      <span class="hero-pill">Norman</span>
+    </div>
+  </div>
+</div>
+
+<div class="variant-select">
+  <div class="variant-select-label">Wood Blinds &mdash; Choose your type</div>
+  <div class="variant-cards" style="grid-template-columns:1fr 1fr;max-width:560px">
+    <span class="vcard" style="cursor:pointer" onclick="location.href='faux-wood-blinds.html'">
+      <div class="vcard-img"><img src="../images/thumbnails/faux-blinds.png" alt="Faux Wood Blinds"><span class="vcard-badge" style="background:var(--gold);color:#111110">Norman</span></div>
+      <div class="vcard-body"><div class="vcard-name">Faux Wood Blinds</div><div class="vcard-desc">SmartPrivacy&reg; &mdash; moisture resistant, cordless, 16 colors. Instant pricing.</div></div>
+    </span>
+    <span class="vcard v-active">
+      <span class="v-active-check">&check;</span>
+      <div class="vcard-img"><img src="../images/thumbnails/real wood blinds.JPEG" onerror="this.src='../images/products/real-wood-blinds.jpg'" alt="Real Wood Blinds"><span class="vcard-badge" style="background:var(--gold);color:#111110">Norman</span></div>
+      <div class="vcard-body"><div class="vcard-name">Real Wood Blinds</div><div class="vcard-desc">Genuine hardwood &mdash; 26 colors, natural grain, stain &amp; paint. Instant pricing.</div></div>
+    </span>
+  </div>
+</div>
+
+<div class="config-layout">
+<div id="config-left">
+
+  <!-- STEP 1: MOUNT -->
+  <div class="step-block active" id="step1">
+    <div class="step-head" onclick="toggleStep('step1')">
+      <div class="step-num">1</div>
+      <div class="step-head-title">Mount Type</div>
+      <div class="step-head-val" id="s1val">&mdash;</div>
+    </div>
+    <div class="step-body">
+      <div class="opt-grid-2">
+        <div class="opt-card" onclick="pickMount(this,'inside')">
+          <div class="opt-card-title">Inside Mount</div>
+          <div class="opt-card-desc">Fits inside window frame &middot; clean built-in look</div>
+        </div>
+        <div class="opt-card" onclick="pickMount(this,'outside')">
+          <div class="opt-card-title">Outside Mount</div>
+          <div class="opt-card-desc">Mounts on wall or above frame &middot; covers trim</div>
+        </div>
+      </div>
+      <div class="step-note">Inside mount: blind width = your opening &minus; 3/8&Prime; (manufacturer deduction). Outside mount: order your finished blind size. We recommend adding 1&frac12;&Prime; each side for best light block.</div>
+    </div>
+  </div>
+
+  <!-- STEP 2: SLAT SIZE -->
+  <div class="step-block" id="step2">
+    <div class="step-head" onclick="toggleStep('step2')">
+      <div class="step-num">2</div>
+      <div class="step-head-title">Slat Size</div>
+      <div class="step-head-val" id="s2val">&mdash;</div>
+    </div>
+    <div class="step-body">
+      <div class="opt-grid-2">
+        <div class="opt-card sel" onclick="pickSlat(this,'2&Prime;')">
+          <div class="opt-card-title">2&Prime; Slat</div>
+          <div class="opt-card-desc">Classic proportion &middot; most popular</div>
+        </div>
+        <div class="opt-card" onclick="pickSlat(this,'2&frac12;&Prime;')">
+          <div class="opt-card-title">2&frac12;&Prime; Slat</div>
+          <div class="opt-card-desc">Wider look &middot; fewer slats visible</div>
+        </div>
+      </div>
+      <div class="step-note">Same price for both slat sizes. All 26 colors available in both slat widths.</div>
+    </div>
+  </div>
+
+  <!-- STEP 3: DIMENSIONS -->
+  <div class="step-block" id="step3">
+    <div class="step-head" onclick="toggleStep('step3')">
+      <div class="step-num">3</div>
+      <div class="step-head-title">Dimensions</div>
+      <div class="step-head-val" id="s3val">&mdash;</div>
+    </div>
+    <div class="step-body">
+      <div class="dim-row">
+        <div>
+          <div class="dim-label">Width</div>
+          <div class="dim-inputs">
+            <input class="dim-whole" type="number" id="w-whole" placeholder="36" min="6" max="96" oninput="calcSize()">
+            <select class="dim-frac" id="w-frac" onchange="calcSize()">
+              <option value="0">0&Prime;</option>
+              <option value="0.125">&#8539;&Prime;</option>
+              <option value="0.25">&#188;&Prime;</option>
+              <option value="0.375">&#8540;&Prime;</option>
+              <option value="0.5">&#189;&Prime;</option>
+              <option value="0.625">&#8541;&Prime;</option>
+              <option value="0.75">&#190;&Prime;</option>
+              <option value="0.875">&#8542;&Prime;</option>
+            </select>
+            <span class="dim-unit">&Prime;</span>
+          </div>
+        </div>
+        <div>
+          <div class="dim-label">Height</div>
+          <div class="dim-inputs">
+            <input class="dim-whole" type="number" id="h-whole" placeholder="48" min="16" max="96" oninput="calcSize()">
+            <select class="dim-frac" id="h-frac" onchange="calcSize()">
+              <option value="0">0&Prime;</option>
+              <option value="0.125">&#8539;&Prime;</option>
+              <option value="0.25">&#188;&Prime;</option>
+              <option value="0.375">&#8540;&Prime;</option>
+              <option value="0.5">&#189;&Prime;</option>
+              <option value="0.625">&#8541;&Prime;</option>
+              <option value="0.75">&#190;&Prime;</option>
+              <option value="0.875">&#8542;&Prime;</option>
+            </select>
+            <span class="dim-unit">&Prime;</span>
+          </div>
+        </div>
+      </div>
+      <div id="size-msgs"></div>
+      <div id="computed-box" class="computed-box" style="display:none">
+        <div class="cv-row"><span class="cv-key">Your size</span><span class="cv-val" id="cv-size">&mdash;</span></div>
+        <div class="cv-row"><span class="cv-key">Priced at grid</span><span class="cv-val" id="cv-pricesize">&mdash;</span></div>
+        <div class="cv-row"><span class="cv-key">Area</span><span class="cv-val" id="cv-area">&mdash;</span></div>
+      </div>
+      <div class="step-note">Enter your <strong>frame opening</strong> for inside mount, or desired <strong>finished blind size</strong> for outside mount. Min 6&frac12;&Prime; W &times; 16&Prime; H &middot; Max 96&Prime; W &times; 96&Prime; H &middot; Max area 64 sq ft.</div>
+    </div>
+  </div>
+
+  <!-- STEP 4: COLOR -->
+  <div class="step-block" id="step4">
+    <div class="step-head" onclick="toggleStep('step4')">
+      <div class="step-num">4</div>
+      <div class="step-head-title">Color &amp; Finish</div>
+      <div class="step-head-val" id="s4val">&mdash;</div>
+    </div>
+    <div class="step-body">
+
+      <div class="color-group-label">Paint Colors &mdash; Standard</div>
+      <div class="color-grid">
+        <div class="color-card" onclick="pickColor(this,'Pure White','ND001',0)">
+          <div class="color-swatch" style="background:#F8F7F5;border-bottom:1px solid #eee"></div>
+          <div class="color-label"><div class="color-name">Pure White</div><div class="color-code">ND001</div></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Silk White','ND003',0)">
+          <div class="color-swatch" style="background:#EDE9E4;border-bottom:1px solid #eee"></div>
+          <div class="color-label"><div class="color-name">Silk White</div><div class="color-code">ND003</div></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Pearl','ND006',0)">
+          <div class="color-swatch" style="background:#E0DBD1;border-bottom:1px solid #eee"></div>
+          <div class="color-label"><div class="color-name">Pearl</div><div class="color-code">ND006</div></div>
+        </div>
+      </div>
+
+      <div class="color-group-label">Paint Colors &mdash; Designer <span>+10%</span></div>
+      <div class="color-grid">
+        <div class="color-card" onclick="pickColor(this,'Taupe Gray','ND080',0.10)">
+          <div class="color-swatch" style="background:#9B9089;border-bottom:1px solid #ddd"></div>
+          <div class="color-label"><div class="color-name">Taupe Gray</div><div class="color-code">ND080</div><span class="color-badge badge-designer">Designer</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Clay','ND053',0.10)">
+          <div class="color-swatch" style="background:#C5B8A8;border-bottom:1px solid #ddd"></div>
+          <div class="color-label"><div class="color-name">Clay</div><div class="color-code">ND053</div><span class="color-badge badge-designer">Designer</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Platter','ND617',0.10)">
+          <div class="color-swatch" style="background:#7D7B78;border-bottom:1px solid #ddd"></div>
+          <div class="color-label"><div class="color-name">Platter</div><div class="color-code">ND617</div><span class="color-badge badge-designer">Designer</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Solid Black','ND091',0.10)">
+          <div class="color-swatch" style="background:#1A1918;border-bottom:1px solid #333"></div>
+          <div class="color-label"><div class="color-name">Solid Black</div><div class="color-code">ND091</div><span class="color-badge badge-designer">Designer</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Gray Black','ND017',0.10)">
+          <div class="color-swatch" style="background:#3A3838;border-bottom:1px solid #444"></div>
+          <div class="color-label"><div class="color-name">Gray Black</div><div class="color-code">ND017</div><span class="color-badge badge-designer">Designer</span></div>
+        </div>
+      </div>
+
+      <div class="color-group-label">Stain Colors &mdash; Standard</div>
+      <div class="color-grid">
+        <div class="color-card" onclick="pickColor(this,'Limed White','ND110',0)">
+          <div class="color-swatch" style="background:#DDD9CE;border-bottom:1px solid #ccc"></div>
+          <div class="color-label"><div class="color-name">Limed White</div><div class="color-code">ND110</div></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Taupe','ND114',0)">
+          <div class="color-swatch" style="background:#9E8F7E;border-bottom:1px solid #bbb"></div>
+          <div class="color-label"><div class="color-name">Taupe</div><div class="color-code">ND114</div></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Rustic Gray','ND108',0)">
+          <div class="color-swatch" style="background:#8C8884;border-bottom:1px solid #aaa"></div>
+          <div class="color-label"><div class="color-name">Rustic Gray</div><div class="color-code">ND108</div></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Oak Mantel','ND204',0)">
+          <div class="color-swatch" style="background:#8B6B4A;border-bottom:1px solid #aa8"></div>
+          <div class="color-label"><div class="color-name">Oak Mantel</div><div class="color-code">ND204</div></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Cherry','ND211',0)">
+          <div class="color-swatch" style="background:#6B3A2A;border-bottom:1px solid #884"></div>
+          <div class="color-label"><div class="color-name">Cherry</div><div class="color-code">ND211</div></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Old Teak','ND230',0)">
+          <div class="color-swatch" style="background:#7A5C3A;border-bottom:1px solid #997"></div>
+          <div class="color-label"><div class="color-name">Old Teak</div><div class="color-code">ND230</div></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Black Walnut','ND221',0)">
+          <div class="color-swatch" style="background:#3D2B1F;border-bottom:1px solid #555"></div>
+          <div class="color-label"><div class="color-name">Black Walnut</div><div class="color-code">ND221</div></div>
+        </div>
+      </div>
+
+      <div class="color-group-label">Stain Colors &mdash; Designer <span>+10%</span></div>
+      <div class="color-grid">
+        <div class="color-card" onclick="pickColor(this,'Matte Black','ND246',0.10)">
+          <div class="color-swatch" style="background:#222220;border-bottom:1px solid #333"></div>
+          <div class="color-label"><div class="color-name">Matte Black</div><div class="color-code">ND246</div><span class="color-badge badge-designer">Designer</span></div>
+        </div>
+      </div>
+
+      <div class="color-group-label">Premium Colors <span style="color:#6B21A8;background:#F3E8FF">+50%</span></div>
+      <div class="step-note" style="margin-top:-4px;margin-bottom:8px">Premium stains enhance the natural wood grain &mdash; each piece is unique. Color may vary slightly from sample.</div>
+      <div class="color-grid">
+        <div class="color-card" onclick="pickColor(this,'White Matte','1003',0.50)">
+          <div class="color-swatch" style="background:#EEE9E2;border-bottom:1px solid #ddd"></div>
+          <div class="color-label"><div class="color-name">White Matte</div><div class="color-code">1003</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Oak','1501',0.50)">
+          <div class="color-swatch" style="background:#B5894E;border-bottom:1px solid #c9a"></div>
+          <div class="color-label"><div class="color-name">Oak</div><div class="color-code">1501</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Teak','1502',0.50)">
+          <div class="color-swatch" style="background:#6B4E2E;border-bottom:1px solid #997"></div>
+          <div class="color-label"><div class="color-name">Teak</div><div class="color-code">1502</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Cherry (Premium)','1301',0.50)">
+          <div class="color-swatch" style="background:#6B3A2A;border-bottom:1px solid #884"></div>
+          <div class="color-label"><div class="color-name">Cherry</div><div class="color-code">1301</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Silk Gray','1109',0.50)">
+          <div class="color-swatch" style="background:#A5A0A0;border-bottom:1px solid #bbb"></div>
+          <div class="color-label"><div class="color-name">Silk Gray</div><div class="color-code">1109</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Granite Gray','1111',0.50)">
+          <div class="color-swatch" style="background:#888480;border-bottom:1px solid #aaa"></div>
+          <div class="color-label"><div class="color-name">Granite Gray</div><div class="color-code">1111</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Sunbleached Gray','1112',0.50)">
+          <div class="color-swatch" style="background:#B8B5AE;border-bottom:1px solid #ccc"></div>
+          <div class="color-label"><div class="color-name">Sunbleached Gray</div><div class="color-code">1112</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Weathered Gray','1114',0.50)">
+          <div class="color-swatch" style="background:#8B8882;border-bottom:1px solid #aaa"></div>
+          <div class="color-label"><div class="color-name">Weathered Gray</div><div class="color-code">1114</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Black','1203',0.50)">
+          <div class="color-swatch" style="background:#2A2827;border-bottom:1px solid #444"></div>
+          <div class="color-label"><div class="color-name">Black</div><div class="color-code">1203</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+        <div class="color-card" onclick="pickColor(this,'Ebony','1204',0.50)">
+          <div class="color-swatch" style="background:#1E1B1A;border-bottom:1px solid #333"></div>
+          <div class="color-label"><div class="color-name">Ebony</div><div class="color-code">1204</div><span class="color-badge badge-premium">Premium</span></div>
+        </div>
+      </div>
+      <div class="step-note" style="margin-top:10px">Headrail, bottom rail, and valance color match your slat color automatically.</div>
+    </div>
+  </div>
+
+  <!-- STEP 5: VALANCE -->
+  <div class="step-block" id="step5">
+    <div class="step-head" onclick="toggleStep('step5')">
+      <div class="step-num">5</div>
+      <div class="step-head-title">Valance</div>
+      <div class="step-head-val" id="s5val">&mdash;</div>
+    </div>
+    <div class="step-body">
+      <div class="opt-grid-3">
+        <div class="opt-card" onclick="pickValance(this,'No Valance','none')">
+          <div class="opt-card-title">No Valance</div>
+          <div class="opt-card-desc">Clean PolyDeco headrail &middot; modern look</div>
+        </div>
+        <div class="opt-card" onclick="pickValance(this,'Designer Crown','crown')">
+          <div class="opt-card-title">Designer Crown</div>
+          <div class="opt-card-desc">Traditional crown profile &middot; color matched</div>
+        </div>
+        <div class="opt-card" onclick="pickValance(this,'Contempo','contempo')">
+          <div class="opt-card-title">Contempo</div>
+          <div class="opt-card-desc">Contemporary curved profile &middot; color matched</div>
+        </div>
+      </div>
+      <div class="step-note">Valance color always matches slat color. Valance surcharge is added to your price when selected.</div>
+    </div>
+  </div>
+
+  <!-- STEP 6: CONTROLS -->
+  <div class="step-block" id="step6">
+    <div class="step-head" onclick="toggleStep('step6')">
+      <div class="step-num">6</div>
+      <div class="step-head-title">Wand Location</div>
+      <div class="step-head-val" id="s6val">&mdash;</div>
+    </div>
+    <div class="step-body">
+      <div id="wand-center-note" class="msg-box msg-info" style="display:none">Blinds under 15&Prime; wide use a center wand for tilt only &mdash; no lift function.</div>
+      <div id="wand-normal" class="opt-grid-2">
+        <div class="opt-card sel" onclick="pickWand(this,'left')">
+          <div class="opt-card-title">Left</div>
+          <div class="opt-card-desc">Standard position</div>
+        </div>
+        <div class="opt-card" onclick="pickWand(this,'right')">
+          <div class="opt-card-title">Right</div>
+          <div class="opt-card-desc">Optional &mdash; no extra charge</div>
+        </div>
+      </div>
+      <div class="step-note">No extra charge for wand location change.</div>
+    </div>
+  </div>
+
+  <!-- STEP 7: QUANTITY -->
+  <div class="step-block" id="step7">
+    <div class="step-head" onclick="toggleStep('step7')">
+      <div class="step-num">7</div>
+      <div class="step-head-title">Quantity</div>
+      <div class="step-head-val" id="s7val">1 blind</div>
+    </div>
+    <div class="step-body">
+      <div class="spinner-row">
+        <button class="spin-btn" onclick="adjQty(-1)">&#8722;</button>
+        <input class="spin-num" type="number" id="qty-input" value="1" min="1" max="50" oninput="updateQty()" style="width:52px">
+        <button class="spin-btn" onclick="adjQty(1)">&#43;</button>
+        <span class="spin-label">blind(s) of this size &amp; color</span>
+      </div>
+      <div class="step-note" style="margin-top:8px">Need different sizes or colors? Submit a separate order for each.</div>
+    </div>
+  </div>
+
+  <!-- STEP 8: INFO & SUBMIT -->
+  <div class="step-block" id="step8">
+    <div class="step-head" onclick="toggleStep('step8')">
+      <div class="step-num">8</div>
+      <div class="step-head-title">Your Info &amp; Submit</div>
+      <div class="step-head-val"></div>
+    </div>
+    <div class="step-body">
+      <div class="form-row">
+        <div class="form-group"><label>Name *</label><input type="text" id="f-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="f-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email *</label><input type="email" id="f-email" placeholder="jane@example.com"></div>
+      <div class="form-group"><label>Notes <span style="font-weight:400;color:#999">(optional)</span></label><textarea id="f-notes" placeholder="Installation details, questions, or anything else we should know&hellip;"></textarea></div>
+
+      <div class="delivery-wrap">
+        <div style="font-size:13px;font-weight:500;color:#333;margin-bottom:8px">Delivery</div>
+        <div class="delivery-opt-grid">
+          <div class="delivery-opt-card sel" id="del-ship" onclick="pickDel('ship')">
+            <div class="delivery-opt-title">Ship to me</div>
+            <div class="delivery-opt-body">UPS or FedEx from Huntingdon Valley, PA. Shipping estimated in your quote.</div>
+          </div>
+          <div class="delivery-opt-card" id="del-pickup" onclick="pickDel('pickup')">
+            <div class="delivery-opt-title">Customer pickup</div>
+            <div class="delivery-opt-body">No freight charge. Pickup address provided after order is confirmed.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="custom-notice">
+        <div class="custom-notice-head">Custom-made product</div>
+        <div class="custom-notice-body">Real wood blinds are custom made to order. Finished sizes may vary within manufacturer tolerance. No returns on custom products.</div>
+      </div>
+
+      <div class="form-err" id="form-err"></div>
+      <button class="submit-btn" id="submit-btn" onclick="submitForm()">Submit Order for Review &rarr;</button>
+      <div class="success-box" id="success-box">
+        <h3>Quote request sent!</h3>
+        <p>We&rsquo;ll follow up within a few hours to confirm your specs and collect payment. Call <strong>(609) 742-1720</strong> 24/7 for anything urgent.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /config-left -->
+
+<!-- STICKY PRICE PANEL -->
+<div class="quote-panel">
+  <div class="qp-title">Price Summary</div>
+  <div id="qp-pending" class="qp-pending">Complete your selections to see an instant price</div>
+  <div id="qp-detail" style="display:none">
+    <div class="qrow"><span class="qrow-label">Base price (retail)</span><span class="qrow-val" id="q-base">&mdash;</span></div>
+    <div class="qrow" id="q-color-row" style="display:none">
+      <span class="qrow-label">Color surcharge<span class="qbadge" id="q-color-badge"></span></span>
+      <span class="qrow-val" id="q-color">&mdash;</span>
+    </div>
+    <div class="qrow" id="q-valance-row" style="display:none">
+      <span class="qrow-label">Valance (retail)</span>
+      <span class="qrow-val" id="q-valance">&mdash;</span>
+    </div>
+    <div class="qrow"><span class="qrow-label">Quantity</span><span class="qrow-val" id="q-qty">&mdash;</span></div>
+    <div class="qdiv"></div>
+    <div class="qrow"><span class="qrow-label"><s style="color:var(--text-dark)">Retail subtotal</s></span><span class="qrow-val" style="text-decoration:line-through;color:var(--text-dark)" id="q-retail-sub">&mdash;</span></div>
+    <div class="qrow"><span class="qrow-label qrow-disc">35% Norman discount</span><span class="qrow-val qrow-disc" id="q-disc">&mdash;</span></div>
+    <div class="qrow"><span class="qrow-label" style="font-weight:600;color:var(--cream)">Your price</span><span class="qrow-val" style="color:var(--cream);font-weight:600" id="q-yourprice">&mdash;</span></div>
+    <div class="qrow"><span class="qrow-label">Freight</span><span class="qrow-val" id="q-freight">&mdash;</span></div>
+    <div class="qdiv"></div>
+    <div class="qtotal"><span class="qtotal-label">Total</span><span class="qtotal-val" id="q-total">&mdash;</span></div>
+    <div class="qnote" id="q-note"></div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script>renderNav('Shades & Blinds'); renderFooter(false);</script>
+<script src="../js/pages/real-wood-blinds.js"></script>
+<script>
+(function(){
+  S.slat = '2in';
+  S.wandLoc = 'left';
+  document.getElementById('s2val').textContent = '2″ (selected)';
+  document.getElementById('s6val').textContent = 'Left wand';
+  document.getElementById('step2').classList.add('done');
+  document.getElementById('step6').classList.add('done');
+})();
+</script>
+</body>
+</html>

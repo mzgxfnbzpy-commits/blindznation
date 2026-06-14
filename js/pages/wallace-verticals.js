@@ -341,6 +341,31 @@ function updateSpec(){
 }
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────
+function addWallaceVerticalsToCart(){
+  var color=vwColor||'—';
+  var w=document.getElementById('vw-width').value;
+  var h=document.getElementById('vw-height').value;
+  var qty=document.getElementById('vw-qty').value||'1';
+  if(!color||color==='—'){ alert('Please select a color before adding to cart.'); return; }
+  if(!w||!h){ alert('Please enter width and height before adding to cart.'); return; }
+
+  var mount=document.querySelector('#grp-vw-mount .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim()||'—';
+  var valSel=document.querySelector('#grp-vw-valance .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim()||'—';
+
+  var lines=[
+    {label:'Product',value:'Wallace Vertical Blinds'},
+    {label:'Color',value:color},
+    {label:'Width',value:(w||'—')+'″'},
+    {label:'Height',value:(h||'—')+'″'},
+    {label:'Quantity',value:String(qty)},
+    {label:'Mount',value:mount},
+    {label:'Valance',value:valSel}
+  ];
+  var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
+  pbAddToCart({product:'Wallace Vertical Blinds',lines:lines,specs:specs,price:null,qty:parseInt(qty)||1});
+  pbOpenCart();
+}
+
 function submitQuote(){
   const name=document.getElementById('f-name').value.trim();
   const phone=document.getElementById('f-phone').value.trim();

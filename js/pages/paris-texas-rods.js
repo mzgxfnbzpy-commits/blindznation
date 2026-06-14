@@ -442,6 +442,31 @@ function selectDelivery(opt, prefix) {
 }
 
 /* ─── SUBMIT ─── */
+function addParisTexasToCart(){
+  if(!S.type){ alert('Please select a rod type before adding to cart.'); return; }
+
+  const w=document.getElementById('width-in')?.value||'';
+  const qty=document.getElementById('qty-in')?.value||'1';
+  const finishLabel=S.finishType==='ptm'?'PTH Perfect Match™':S.finishType==='portfolio'?'Portfolio':S.finishType==='qs-metal'?'Quick Ship Metal':'Quick Ship Wood & Resin';
+
+  const lines=[
+    {label:'Product',value:'Paris Texas Hardware'},
+    {label:'Rod Type',value:typeLabel()},
+    {label:'Finish Collection',value:finishLabel},
+    {label:'Diameter',value:S.diameter||'—'},
+    {label:'Finish',value:S.finish||S.ptmColor||'—'},
+    {label:'Finial',value:S.finial||'None/TBD'},
+    {label:'Width / Track',value:w?w+'"':'—'},
+    {label:'Quantity',value:String(qty)},
+    {label:'Draw',value:S.draw||'N/A'},
+    {label:'Motor / Operation',value:S.motor||(S.type==='rtec'?'R-TEC Motorized':S.type==='baton'?'Baton draw':'N/A')},
+    {label:'Mount',value:S.mount||'—'}
+  ];
+  const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
+  pbAddToCart({product:'Paris Texas Hardware',lines:lines,specs:specs,price:null,qty:parseInt(qty)||1});
+  pbOpenCart();
+}
+
 function submitQuote() {
   const name=document.getElementById('q-name').value.trim();
   const contact=document.getElementById('q-contact').value.trim();
