@@ -650,14 +650,57 @@
               <strong style="color:#333">Continuous Cord Loop</strong> — Side-mounted bead chain operates the shade smoothly in both directions. Works for any size window. Best choice when cordless isn't required.
             </div>
             <div class="motor-sub" id="motor-sub">
-              <div class="form-group" style="margin-bottom:8px">
+
+              <!-- Motor brand -->
+              <div class="form-group" style="margin-bottom:10px">
                 <label style="font-size:12px;font-weight:500;color:#555;margin-bottom:5px;display:block">Motor system</label>
-                <select id="sel-motor" onchange="updateSummary()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font)">
-                  <option value="Norman Smart">Norman Smart — Recommended (app, voice, remote; rechargeable or hardwired)</option>
-                  <option value="Rollease Acmeda Automate">Rollease Acmeda Automate — custom priced (for existing Rollease Acmeda systems)</option>
+                <select id="sel-motor" onchange="solUpdateMotorBrand();updateSummary()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font)">
+                  <option value="Norman Smart">Norman Smart — Recommended (app, voice, remote)</option>
+                  <option value="Rollease Acmeda Automate">Rollease Acmeda Automate — custom priced (existing Rollease systems)</option>
                 </select>
               </div>
-              <div class="tooltip-note">Motor surcharge per shade. Power source (rechargeable battery, plug-in, or hardwired) confirmed at measurement visit. Norman Smart supports app control, Alexa, Apple HomeKit, and Google Home via the Norman Smart Hub. Rollease Acmeda Automate uses the Automate Pulse 2 hub.</div>
+
+              <!-- Power source (Norman Smart only) -->
+              <div id="motor-power-wrap">
+                <div style="font-size:12px;font-weight:500;color:#555;margin-bottom:6px">Power source</div>
+                <div class="opt-row" id="grp-motor-power" style="flex-wrap:wrap">
+                  <button class="opt-btn sel" onclick="selOpt(this,'grp-motor-power');solShowPowerOpts('rechargeable');updateSummary()">Rechargeable battery</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-motor-power');solShowPowerOpts('hardwired');updateSummary()">Hardwired (DC)</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-motor-power');solShowPowerOpts('plugin');updateSummary()">AC plug-in</button>
+                </div>
+
+                <!-- Charging wand (rechargeable only) -->
+                <div id="motor-wand-wrap" style="margin-top:10px;padding:10px 12px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+                  <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Charging wand</div>
+                  <div class="opt-row" id="grp-wand-type" style="margin-bottom:8px">
+                    <button class="opt-btn sel" onclick="selOpt(this,'grp-wand-type');solShowWandExt(false);updateSummary()">Corded</button>
+                    <button class="opt-btn" onclick="selOpt(this,'grp-wand-type');solShowWandExt(true);updateSummary()">Cordless</button>
+                  </div>
+                  <div id="wand-ext-wrap" style="display:none;margin-bottom:8px">
+                    <label style="font-size:11px;color:#444;display:flex;align-items:center;gap:7px;cursor:pointer">
+                      <input type="checkbox" id="wand-ext-chk" onchange="updateSummary()"> Add extension wand
+                    </label>
+                    <div style="font-size:10px;color:#999;margin-top:2px;margin-left:21px">Extends reach for high-mounted shades. Available for cordless wand only.</div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span style="font-size:11px;color:#666">Qty:</span>
+                    <div class="qty-btns">
+                      <button class="qty-btn" onclick="solAdjWandQty(-1)">&#8722;</button>
+                      <input class="qty-num" type="number" id="inp-wand-qty" value="1" min="1" max="20" oninput="updateSummary()" style="width:40px">
+                      <button class="qty-btn" onclick="solAdjWandQty(1)">&#43;</button>
+                    </div>
+                    <span style="font-size:10px;color:#999">default 1 per shade</span>
+                  </div>
+                  <div style="font-size:10px;color:#c0392b;margin-top:6px">⚠ Not available with cassette headrail or dual shades.</div>
+                </div>
+              </div>
+
+              <!-- Rollease note (shown when Rollease selected) -->
+              <div id="motor-rollease-wrap" style="display:none">
+                <div class="tooltip-note">Rollease Acmeda Automate is custom priced — confirmed at quote. Uses the Automate Pulse 2 hub. For customers with an existing Rollease Acmeda smart home system.</div>
+              </div>
+
+              <div class="tooltip-note" style="margin-top:8px">Norman Smart estimate: $482/shade. Supports Alexa, Google Home, Apple HomeKit via the Norman Smart Hub. Exact power source and accessories confirmed at measurement visit.</div>
             </div>
           </div>
 
@@ -805,6 +848,8 @@
           <div class="summary-row"><span class="sr-key">Operation</span><span class="sr-val" id="s-op">Continuous Cord Loop</span></div>
           <div class="summary-row"><span class="sr-key">Motor</span><span class="sr-val" id="s-motor" style="display:none">—</span></div>
           <div class="summary-row" id="s-motor-row" style="display:none"><span class="sr-key">Motor brand</span><span class="sr-val" id="s-motor-brand">—</span></div>
+          <div class="summary-row" id="s-power-row" style="display:none"><span class="sr-key">Power source</span><span class="sr-val" id="s-power">—</span></div>
+          <div class="summary-row" id="s-wand-row" style="display:none"><span class="sr-key">Charging wand</span><span class="sr-val" id="s-wand">—</span></div>
           <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="s-mount">Inside mount</span></div>
           <div class="summary-row"><span class="sr-key">Shade type</span><span class="sr-val" id="s-shade-type">Standard</span></div>
           <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="s-size">—</span></div>

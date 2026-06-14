@@ -221,13 +221,76 @@ function solPickDel(v, card) {
 
 function toggleMotor(on) {
   document.getElementById('motor-sub').classList.toggle('show', on);
-  document.getElementById('s-motor-row').style.display = on ? 'flex' : 'none';
+  var motorRow = document.getElementById('s-motor-row');
+  if (motorRow) motorRow.style.display = on ? 'flex' : 'none';
+  if (on) {
+    solUpdateMotorBrand();
+    var shadeQty = parseInt((document.getElementById('inp-qty')||{}).value) || 1;
+    var wandQtyEl = document.getElementById('inp-wand-qty');
+    if (wandQtyEl) wandQtyEl.value = shadeQty;
+  } else {
+    ['s-power-row','s-wand-row'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.style.display = 'none';
+    });
+  }
   updateSummary();
+}
+
+function solUpdateMotorBrand() {
+  var brand = (document.getElementById('sel-motor') || {}).value || 'Norman Smart';
+  var isNorman = brand === 'Norman Smart';
+  var powerWrap = document.getElementById('motor-power-wrap');
+  var rolleaseWrap = document.getElementById('motor-rollease-wrap');
+  if (powerWrap) powerWrap.style.display = isNorman ? 'block' : 'none';
+  if (rolleaseWrap) rolleaseWrap.style.display = isNorman ? 'none' : 'block';
+  if (isNorman) { solShowPowerOpts('rechargeable'); }
+}
+
+function solShowPowerOpts(type) {
+  var wandWrap = document.getElementById('motor-wand-wrap');
+  if (wandWrap) wandWrap.style.display = type === 'rechargeable' ? 'block' : 'none';
+  if (type !== 'rechargeable') {
+    document.querySelectorAll('#grp-wand-type .opt-btn').forEach(function(b,i){ b.classList.toggle('sel', i===0); });
+    solShowWandExt(false);
+  }
+}
+
+function solShowWandExt(show) {
+  var wrap = document.getElementById('wand-ext-wrap');
+  if (wrap) wrap.style.display = show ? 'block' : 'none';
+  if (!show) {
+    var chk = document.getElementById('wand-ext-chk');
+    if (chk) chk.checked = false;
+  }
+}
+
+function solAdjWandQty(d) {
+  var el = document.getElementById('inp-wand-qty');
+  if (!el) return;
+  el.value = Math.min(20, Math.max(1, (parseInt(el.value)||1)+d));
+  updateSummary();
+}
+
+function solGetWandSummary() {
+  var wandWrap = document.getElementById('motor-wand-wrap');
+  if (!wandWrap || wandWrap.style.display === 'none') return null;
+  var type = getOpt('grp-wand-type') || 'Corded';
+  var extChk = document.getElementById('wand-ext-chk');
+  var hasExt = extChk && extChk.checked;
+  var qty = parseInt((document.getElementById('inp-wand-qty')||{}).value) || 1;
+  return qty + '× ' + type + (hasExt ? ' + extension' : '');
 }
 
 function adjustQty(d) {
   const el = document.getElementById('inp-qty');
   el.value = Math.min(20, Math.max(1, (parseInt(el.value) || 1) + d));
+  var motorSubEl = document.getElementById('motor-sub');
+  var wandWrap = document.getElementById('motor-wand-wrap');
+  if (motorSubEl && motorSubEl.classList.contains('show') && wandWrap && wandWrap.style.display !== 'none') {
+    var wandEl = document.getElementById('inp-wand-qty');
+    if (wandEl) wandEl.value = el.value;
+  }
   updateSummary();
 }
 
@@ -249,8 +312,28 @@ function updateSummary() {
   document.getElementById('s-qty').textContent        = qty;
   document.getElementById('s-size').textContent       = (w && h) ? `${w}″ W × ${h}″ H` : '—';
 
+  var motorSubEl = document.getElementById('motor-sub');
+  var motorOn = motorSubEl && motorSubEl.classList.contains('show');
+  var isNorman = mBrand === 'Norman Smart';
+
   if (mBrand) {
     document.getElementById('s-motor-brand').textContent = mBrand;
+  }
+
+  var powerRow = document.getElementById('s-power-row');
+  var powerEl  = document.getElementById('s-power');
+  if (powerRow && powerEl) {
+    var power = (motorOn && isNorman) ? (getOpt('grp-motor-power') || 'Rechargeable battery') : null;
+    powerRow.style.display = power ? '' : 'none';
+    if (power) powerEl.textContent = power;
+  }
+
+  var wandRow = document.getElementById('s-wand-row');
+  var wandEl2 = document.getElementById('s-wand');
+  if (wandRow && wandEl2) {
+    var wSum = motorOn ? solGetWandSummary() : null;
+    wandRow.style.display = wSum ? '' : 'none';
+    if (wSum) wandEl2.textContent = wSum;
   }
 
   const fabricRow = document.getElementById('s-fabric-row');
@@ -289,6 +372,9 @@ function submitQuote() {
   const motorSub  = document.getElementById('motor-sub');
   const motorOn   = motorSub && motorSub.classList.contains('show');
   const motorVal  = motorOn ? (document.getElementById('sel-motor').value || '—') : 'None';
+  const isNormanMotor = motorOn && motorVal === 'Norman Smart';
+  const powerSrc = isNormanMotor ? (getOpt('grp-motor-power') || 'Rechargeable battery') : '';
+  const wandLine = isNormanMotor ? (solGetWandSummary() || '') : '';
   const addons    = [...document.querySelectorAll('#grp-addons .opt-btn.sel')].map(b => b.textContent.trim());
   const fabricColor = getSelectedFabricColor();
   const deliveryLabel = solDelivery === 'pickup'
@@ -307,6 +393,8 @@ function submitQuote() {
     'Shade type: ' + shadeType,
     'Operating system: ' + op,
     'Motorization: ' + motorVal,
+    (powerSrc ? 'Power source: ' + powerSrc : ''),
+    (wandLine ? 'Charging wand: ' + wandLine : ''),
     'Mount type: ' + mount,
     'Width: ' + w + '"',
     'Height: ' + h + '"',
