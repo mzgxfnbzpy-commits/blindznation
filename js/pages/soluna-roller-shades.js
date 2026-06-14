@@ -61,6 +61,23 @@ function solRenderCoupledFields(n) {
   container.innerHTML = html;
 }
 
+var _SOL_OP_DESC = {
+  cordless: '<strong style="color:#1a6b1a">⭐ PrecisionLift™ Cordless — Recommended</strong> — Pull the handle down to lower, push the hem bar up to raise. No cords, no chains. Norman\'s best-in-class cordless system. WCMA Best for Kids™ certified. Max 120″ W × 132″ H.',
+  loop:     '<strong style="color:#333">Continuous Cord Loop</strong> — Side-mounted bead chain operates the shade smoothly in both directions. Works for any window size. Best choice for large, heavy, or high windows. Max 144″ W × 132″ H.',
+  smartrelease: '<strong style="color:#333">SmartRelease™</strong> — Norman\'s patent-pending upgrade to the cord loop. A gentle tug releases the shade from any raised position — no reaching up required. Ideal for high or hard-to-reach windows. Raceway always included. Max 144″ W × 132″ H.',
+  motor:    '<strong style="color:#333">Motorized</strong> — Battery or hardwired motor inside the roller tube. Control by app, remote, voice (Alexa/Google/HomeKit), or schedule. 100% cord-free. Available with Norman Smart or Rollease Acmeda Automate. Max 144″ W × 132″ H.'
+};
+
+function solShowOpDesc(key) {
+  var box = document.getElementById('op-desc-box');
+  if (!box) return;
+  var bg = key === 'cordless' ? '#edf7ed' : '#f5f2ed';
+  var border = key === 'cordless' ? '#2e7d32' : 'var(--gold)';
+  box.style.background = bg;
+  box.style.borderLeftColor = border;
+  box.innerHTML = _SOL_OP_DESC[key] || '';
+}
+
 function solGetCoupledSummary() {
   if (!_solCoupledActive) return null;
   if (_solCoupledSameSize) {

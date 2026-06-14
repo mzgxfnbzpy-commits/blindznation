@@ -641,10 +641,13 @@
             <div class="step-label">Step 2</div>
             <div class="step-title">Operating system</div>
             <div class="opt-row" id="grp-op">
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();updateSummary()">PrecisionLift™ Cordless</button>
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();updateSummary()">Continuous Cord Loop</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();updateSummary()">SmartRelease™</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(true);solCheckCoupledOpWarn();updateSummary()">Motorized</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('cordless');updateSummary()">PrecisionLift™ Cordless</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('loop');updateSummary()">Continuous Cord Loop</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('smartrelease');updateSummary()">SmartRelease™</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(true);solCheckCoupledOpWarn();solShowOpDesc('motor');updateSummary()">Motorized</button>
+            </div>
+            <div id="op-desc-box" style="margin-top:10px;padding:10px 13px;border-radius:8px;font-size:12px;line-height:1.6;background:#f5f2ed;border-left:3px solid var(--gold)">
+              <strong style="color:#333">Continuous Cord Loop</strong> — Side-mounted bead chain operates the shade smoothly in both directions. Works for any size window. Best choice when cordless isn't required.
             </div>
             <div class="motor-sub" id="motor-sub">
               <div class="form-group" style="margin-bottom:8px">
