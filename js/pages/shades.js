@@ -394,24 +394,7 @@ function toggleMotor(on) {
 }
 
 function checkMotorConflict() {
-  // Enforce: Norman Smart controls and Automate Home motors are NOT compatible.
-  // Both programs are Norman-brand but use different RF protocols — cannot mix.
-  if (currentProduct !== 'cellular') return;
-  const motorTypeSel = document.querySelector('#grp-motor-type .opt-btn.sel');
-  if (!motorTypeSel || !motorOn) return;
-  const motorLabel = motorTypeSel.textContent || '';
-  const isNormanSmart   = motorLabel.indexOf('Norman Smart') !== -1;
-  const isAutomateHome  = motorLabel.indexOf('Automate Home') !== -1;
-  // Currently UI only lets user pick one at a time, so mix can't happen via normal flow.
-  // This guard exists in case programmatic state gets out of sync.
-  const conflictNote = document.getElementById('motor-program-conflict');
-  if (!conflictNote) return;
-  if (isNormanSmart && isAutomateHome) {
-    conflictNote.style.display = 'block';
-    conflictNote.textContent = '⛔ Norman Smart and Automate Home are NOT compatible — they use different RF protocols. Select one system only.';
-  } else {
-    conflictNote.style.display = 'none';
-  }
+  // Motor buttons are mutually exclusive (opt-btn .sel pattern) — no conflict possible.
 }
 
 // ─── updateChainStdLabel — live 75%-of-height on Standard btn ─
@@ -2317,7 +2300,8 @@ function rnLookupPrice(w, h) {
   return { price: price || null, pricedAt: pW + '″ W × ' + pH + '″ H', group: pg };
 }
 
-const RN_MOTOR_UP  = 482;  // Norman Smart motor per shade (per April 2026 Norman price book)
+var rnMotorUpcharge = 482; // Norman Smart default; updated by rnSetMotorType()
+function rnSetMotorType(price){ rnMotorUpcharge = price; rnUpdatePrice(); }
 const RN_MIN       = 85;   // minimum per shade
 
 const RN_SYSTEM_NOTES = {
@@ -2490,7 +2474,8 @@ function rnSetLift(type) {
   if (motorWrap) {
     motorWrap.style.display = type === 'motor' ? 'block' : 'none';
     if (type === 'motor') {
-      if (typeof normanMotorSection === 'function') normanMotorSection('rn-norman-motor-section', 'Norman Roller Shade');
+      rnMotorUpcharge = 482;
+      document.querySelectorAll('#grp-rn-motor-type .opt-btn').forEach(function(b,i){b.classList.toggle('sel',i===0);});
     }
   }
 
@@ -2939,7 +2924,7 @@ function rnUpdatePrice() {
     document.getElementById('rn-pb-sqft').textContent = '—';
     document.getElementById('rn-pb-base').textContent = '—';
     document.getElementById('rn-pb-total').textContent = '—';
-    if (isMotor) { document.getElementById('rn-pb-motor-row').style.display = 'flex'; document.getElementById('rn-pb-motor').textContent = '+$' + RN_MOTOR_UP + '/shade'; }
+    if (isMotor) { document.getElementById('rn-pb-motor-row').style.display = 'flex'; document.getElementById('rn-pb-motor').textContent = '+$' + rnMotorUpcharge + '/shade'; }
     else { document.getElementById('rn-pb-motor-row').style.display = 'none'; }
     return;
   }
@@ -2948,7 +2933,7 @@ function rnUpdatePrice() {
   const lookup    = rnLookupPrice(w, h);
   const basePrice = lookup ? lookup.price : null;
   const perShade  = basePrice ? Math.max(RN_MIN, basePrice) : null;
-  const motorCost = isMotor ? RN_MOTOR_UP * qty : 0;
+  const motorCost = isMotor ? rnMotorUpcharge * qty : 0;
 
   // ── Headrail / fascia surcharge ──────────────────────────────
   var hrBtn2     = document.querySelector('#rn-grp-headrail .opt-btn.sel');
@@ -3083,7 +3068,7 @@ function rnUpdatePrice() {
   document.getElementById('rn-pb-min-note').style.display = (perShade === RN_MIN) ? 'block' : 'none';
   if (isMotor) {
     document.getElementById('rn-pb-motor-row').style.display = 'flex';
-    document.getElementById('rn-pb-motor').textContent = '+$' + RN_MOTOR_UP + ' × ' + qty + ' = $' + (RN_MOTOR_UP * qty).toFixed(0);
+    document.getElementById('rn-pb-motor').textContent = '+$' + rnMotorUpcharge + ' × ' + qty + ' = $' + (rnMotorUpcharge * qty).toFixed(0);
   } else {
     document.getElementById('rn-pb-motor-row').style.display = 'none';
   }

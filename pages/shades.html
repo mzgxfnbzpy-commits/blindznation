@@ -805,7 +805,12 @@
             </div>
             <div id="rn-lift-note" class="tooltip-note" style="margin-top:5px">Continuous Cord Loop handles large widths &amp; heavy fabrics — child-safe tensioner required. Cordless max width varies by fabric weight. AutoLift™ is Norman's spring-tension pull system (+$89 AutoLift™ upgrade available for controlled descent).</div>
             <div id="rn-motor-wrap" style="display:none;margin-top:8px">
-              <div class="tooltip-note" style="color:var(--gold)">&#9889; Motorization added — we'll confirm battery or hardwired options at measurement visit.</div>
+              <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Motor system:</div>
+              <div class="opt-row" id="grp-rn-motor-type">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-motor-type');rnSetMotorType(482)">Norman Smart — $482 <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:4px;font-weight:700;vertical-align:middle">Recommended</span><br><span style="font-size:10px;font-weight:400;color:#888">App, voice, remote &middot; rechargeable or hardwired</span></button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-rn-motor-type');rnSetMotorType(682)">Rollease Acmeda Automate — $682<br><span style="font-size:10px;font-weight:400;color:#888">For existing Rollease smart home systems &middot; rechargeable or hardwired</span></button>
+              </div>
+              <div class="tooltip-note" style="color:var(--gold);margin-top:8px">&#9889; Motor surcharge per shade. Power source (battery/hardwired) and remote confirmed at your measurement visit.</div>
             </div>
           </div>
 
@@ -1382,13 +1387,12 @@
           <div class="motor-sub" id="motor-sub">
             <!-- Norman Cellular: specific motor system required -->
             <div id="motor-sub-norman" style="display:none">
-              <div style="font-size:12px;font-weight:500;color:#555;margin-bottom:8px">Select Norman motorization system:</div>
+              <div style="font-size:12px;font-weight:500;color:#555;margin-bottom:8px">Motor system:</div>
               <div class="opt-row" id="grp-motor-type" style="flex-wrap:wrap;gap:6px">
-                <button class="opt-btn sel" onclick="selOpt(this,'grp-motor-type');cellMotorUpcharge=482;updatePrice()">Norman Smart — $482<br><span style="font-size:10px;font-weight:400;color:#888">App, voice, remote &middot; rechargeable or hardwired</span></button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-motor-type');cellMotorUpcharge=166;updatePrice()">AutoWand — $166<br><span style="font-size:10px;font-weight:400;color:#888">Wand-controlled &middot; no remote needed &middot; rechargeable</span></button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-motor-type');cellMotorUpcharge=682;updatePrice()">Automate Home Motorization by Norman — $682<br><span style="font-size:10px;font-weight:400;color:#888">15-ch RF remote, wall switch &middot; rechargeable or low-voltage DC &middot; <strong style="color:#dc2626">not compatible with Norman Smart controls</strong></span></button>
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-motor-type');cellMotorUpcharge=482;updatePrice()">Norman Smart — $482 <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:4px;font-weight:700;vertical-align:middle">Recommended</span><br><span style="font-size:10px;font-weight:400;color:#888">App, voice, remote &middot; rechargeable or hardwired</span></button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-motor-type');cellMotorUpcharge=682;updatePrice()">Rollease Acmeda Automate — $682<br><span style="font-size:10px;font-weight:400;color:#888">For existing Rollease smart home systems &middot; rechargeable or hardwired</span></button>
               </div>
-              <div class="tooltip-note" style="color:var(--gold);margin-top:8px">&#9889; Norman Cellular shades use Norman-brand motorization only. Motor surcharge is per shade. Power source (battery/hardwired) confirmed at your measurement visit.</div>
+              <div class="tooltip-note" style="color:var(--gold);margin-top:8px">&#9889; Motor surcharge per shade. Power source (battery/hardwired) confirmed at your measurement visit.</div>
             </div>
             <!-- Custom / non-Norman: optional brand preference -->
             <div id="motor-sub-custom" style="display:none">
