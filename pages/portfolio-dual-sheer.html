@@ -481,25 +481,8 @@ textarea.form-input{resize:vertical;min-height:80px}
         <textarea class="form-input" id="inp-notes" placeholder="Room, window name, installation notes, questions..." oninput="S.notes=this.value"></textarea>
       </div>
 
-      <div class="delivery-block">
-        <div class="delivery-title">Delivery / Pickup</div>
-        <div class="delivery-opts">
-          <label class="delivery-opt">
-            <input type="radio" name="delivery" value="ship" checked onchange="S.delivery=this.value">
-            <div class="delivery-opt-body">
-              <strong>Ship to me — UPS / FedEx</strong>
-              Ships from Huntingdon Valley, PA. We'll confirm shipping cost with your quote.
-              <div class="tariff-note">Note: Prices subject to change due to tariffs or duties. Any applicable tariffs will be disclosed before your order is finalized.</div>
-            </div>
-          </label>
-          <label class="delivery-opt">
-            <input type="radio" name="delivery" value="pickup" onchange="S.delivery=this.value">
-            <div class="delivery-opt-body">
-              <strong>I'll pick up</strong>
-              Location provided after order is placed (Huntingdon Valley, PA 19006).
-            </div>
-          </label>
-        </div>
+      <div class="delivery-section">
+        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA. We'll confirm shipping cost with your quote.<div class="delivery-tariff">Note: tariffs and import fees are additional and will be itemized separately.</div></div>
       </div>
 
       <button class="btn-cart-add" onclick="addPortfolioDualSheerToCart()" style="margin-bottom:8px">+ Add to Cart</button>

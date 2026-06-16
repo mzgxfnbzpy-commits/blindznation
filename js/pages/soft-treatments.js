@@ -295,7 +295,7 @@ function calcRoman() {
   }
 
   // Shipping estimate — FedEx/UPS from Philadelphia; min $75; >96″ wide = oversized freight $200
-  var isShippingRn = getOpt('grp-del-roman') === 'Ship to me';
+  var isShippingRn = true;
   var shipEst = 0;
   if (isShippingRn) {
     if (isRomanOversized) {
@@ -514,7 +514,7 @@ function calcDrapePrice() {
   }
 
   // Shipping estimate — FedEx/UPS from Philadelphia; min $75 for drapes
-  var isShippingDrape = getOpt('grp-del-drape') === 'Ship to me';
+  var isShippingDrape = true;
   var dShipEst = 0;
   if (isShippingDrape) {
     var dShipBase = Math.ceil(numWidths * 12 / 5) * 5;

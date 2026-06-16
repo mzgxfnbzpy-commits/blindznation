@@ -488,7 +488,7 @@ function updateSpec(){
   const qty=parseInt(document.getElementById('qty').value)||1;
   S.qty=qty;
   document.getElementById('sp-qty').textContent=qty+' shade'+(qty>1?'s':'');
-  document.getElementById('s8val').textContent=qty+' shade'+(qty>1?'s':'')+' · '+(S.del==='ship'?'Ship':'Pickup');
+  document.getElementById('s8val').textContent=qty+' shade'+(qty>1?'s':'')+' · Ship (UPS/FedEx)';
 
   // Oversize warning
   document.getElementById('sp-warn-os').style.display=S.w>=90?'block':'none';

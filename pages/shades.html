@@ -2171,13 +2171,7 @@
       <div class="form-group"><label>Email</label><input type="email" id="rwb-email" placeholder="jane@example.com"></div>
       <div class="form-group"><label>Notes</label><textarea id="rwb-notes" placeholder="e.g. specific color, existing hardware to reuse, special installation requirements"></textarea></div>
       <div class="delivery-section">
-        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
-        <div class="opt-row" id="grp-del-rwb">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-rwb');document.getElementById('del-rwb-s').style.display='block';document.getElementById('del-rwb-p').style.display='none'">Ship to me</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-del-rwb');document.getElementById('del-rwb-s').style.display='none';document.getElementById('del-rwb-p').style.display='block'">I'll pick up</button>
-        </div>
-        <div id="del-rwb-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional.</div></div>
-        <div id="del-rwb-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional.</div></div>
       </div>
       <button class="btn-gold" onclick="submitRWBForm(this)" style="width:100%;padding:13px;margin-top:12px">Submit Order for Review &rarr;</button>
     </div>
@@ -2399,18 +2393,7 @@
         <textarea id="ps-notes" placeholder="e.g. three windows side by side, open to common valance, prefer right cord side"></textarea>
       </div>
       <div class="delivery-section">
-        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
-        <div class="opt-row" id="grp-del-ps">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-ps');document.getElementById('del-ps-s').style.display='block';document.getElementById('del-ps-p').style.display='none'">Ship to me</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-del-ps');document.getElementById('del-ps-s').style.display='none';document.getElementById('del-ps-p').style.display='block'">I'll pick up</button>
-        </div>
-        <div id="del-ps-s" class="delivery-note">
-          Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA. Freight: $25 first shade + $11 each additional (90&Prime;+ width: $80 min + $50 each).
-          <div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately in your quote.</div>
-        </div>
-        <div id="del-ps-p" class="delivery-note" style="display:none">
-          Pickup available in <strong>Huntingdon Valley, PA 19006</strong>. Address provided after order confirmation.
-        </div>
+        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA. Freight: $25 first shade + $11 each additional (90&Prime;+ width: $80 min + $50 each).<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately in your quote.</div></div>
       </div>
       <button onclick="reqMoreInfo('Norman PerfectSheer™ Shades')" class="req-info-link" style="display:block;margin-top:10px;margin-bottom:10px">Request more information about Norman PerfectSheer™ Shades →</button>
       <button class="btn-gold" onclick="submitPSForm(this)" style="width:100%;padding:13px;margin-top:4px">Send quote request &rarr;</button>

@@ -159,7 +159,7 @@ const S = {
   layout: '', tpostV: '', tpostH: '',
   louver: '', tilt: '', frame: '', divider: '',
   colorType: '', color: '',
-  specs: [], delivery: '',
+  specs: [], delivery: 'Ship (UPS/FedEx from Huntingdon Valley PA)',
   room: '', notes: ''
 };
 
@@ -212,6 +212,7 @@ function selLine(name, card){
   unlock('sec-notes');
   unlock('sec-qty');
   unlock('sec-delivery');
+  markDone(15);
   unlock('sec-contact');
   qs('sec-line').classList.remove('highlight');
 

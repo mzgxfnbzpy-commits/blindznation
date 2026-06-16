@@ -579,13 +579,7 @@
 
       <!-- DELIVERY -->
       <div class="delivery-section" style="margin-top:16px">
-        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
-        <div class="opt-row" id="grp-del-drape">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-drape');document.getElementById('del-drape-s').style.display='block';document.getElementById('del-drape-p').style.display='none';calcDrapePrice()">Ship to me</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-del-drape');document.getElementById('del-drape-s').style.display='none';document.getElementById('del-drape-p').style.display='block';calcDrapePrice()">I'll pick up</button>
-        </div>
-        <div id="del-drape-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with your quote.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately.</div></div>
-        <div id="del-drape-p" class="delivery-note" style="display:none">Pickup available in <strong>Huntingdon Valley, PA</strong>. Exact address provided after order confirmation.</div>
+        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA — shipping estimate included with your quote.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately.</div></div>
       </div>
 
       <div style="border-top:1px solid #e8e8e4;margin:20px 0 16px"></div>
@@ -758,30 +752,60 @@
     <!-- VALANCE CONFIG (shows when Roman Valance selected) -->
     <div id="valance-config" style="display:none;margin-top:18px">
       <div id="valance-form-fields">
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Fold details</div>
-        <div class="dim-box" style="margin-bottom:16px">
-          <div class="dim-box-label">Fold specifications</div>
+
+        <!-- Lining -->
+        <div style="margin-bottom:14px">
+          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Lining</div>
+          <div class="opt-row" id="grp-val-lining">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-val-lining')">Unlined</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-val-lining')">White liner (+$10/yd)</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-val-lining')">Cream liner (+$10/yd)</button>
+          </div>
+        </div>
+
+        <!-- Fabric supply -->
+        <div style="margin-bottom:14px">
+          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Who supplies the fabric?</div>
+          <div class="opt-row" id="grp-val-fabric">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-val-fabric')">We supply fabric</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric')">I supply fabric</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric')">Not sure</button>
+          </div>
+        </div>
+
+        <!-- Fold details -->
+        <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
+          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Fold details <span style="font-weight:400;color:#888">(optional)</span></div>
           <div class="form-row">
             <div class="form-group">
               <label>Number of folds</label>
-              <input type="number" id="val-folds" placeholder="e.g. 3" min="1" max="20" style="width:100px;padding:9px 11px;border:1px solid #ddd;border-radius:8px;font-size:14px">
+              <input type="number" id="val-folds" placeholder="e.g. 3" min="1" max="20">
             </div>
             <div class="form-group">
               <label>Fold section size (inches)</label>
-              <input type="number" id="val-fold-size" placeholder="e.g. 4" min="1" max="24" style="width:100px;padding:9px 11px;border:1px solid #ddd;border-radius:8px;font-size:14px">
+              <input type="number" id="val-fold-size" placeholder="e.g. 4" min="1" max="24">
             </div>
           </div>
           <div style="font-size:11px;color:#888;margin-top:8px;line-height:1.5">Fold dimensions confirmed and refined during your consultation.</div>
         </div>
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Your contact info</div>
+
+        <!-- Delivery -->
+        <div class="delivery-section" style="margin-bottom:14px">
+          <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
+        </div>
+
+        <!-- Contact -->
+        <div style="border-top:1px solid #e8e8e4;margin:16px 0 12px"></div>
         <div class="form-row">
-          <div class="form-group"><label>Your name *</label><input type="text" id="val-name" placeholder="Jane Smith"></div>
+          <div class="form-group"><label>Name *</label><input type="text" id="val-name" placeholder="Jane Smith"></div>
           <div class="form-group"><label>Phone *</label><input type="tel" id="val-phone" placeholder="(215) 555-0100"></div>
         </div>
-        <div class="form-group"><label>Email</label><input type="email" id="val-email" placeholder="jane@example.com"></div>
+        <div class="form-group"><label>Email *</label><input type="email" id="val-email" placeholder="jane@example.com"></div>
+        <div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="val-address" placeholder="123 Main St, Philadelphia PA"></div>
         <div class="form-group"><label>Notes</label><textarea id="val-notes" placeholder="Fabric preference, room details, timeline..." style="min-height:60px"></textarea></div>
-        <button onclick="reqMoreInfo('Custom Valance')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Valance →</button>
-        <button class="btn-gold" onclick="submitValance()" style="width:100%;padding:13px;font-size:14px;margin-top:4px">Submit Order for Review &rarr;</button>
+        <div id="val-contact-err" style="display:none;background:#FEE2E2;border-radius:8px;padding:9px 13px;font-size:12px;color:#991B1B;margin-bottom:8px"></div>
+        <button onclick="reqMoreInfo('Custom Roman Valance')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Valance &rarr;</button>
+        <button class="btn-gold" onclick="submitValance()" style="width:100%;padding:13px;font-size:14px;font-weight:600;margin-top:4px" data-pb-require-contact="val-contact-err">Submit Order for Review &rarr;</button>
       </div>
       <div id="valance-success" style="display:none;background:#EAF3DE;border-radius:10px;padding:18px;text-align:center;margin-top:10px">
         <strong>Order submitted!</strong><br><span style="font-size:13px;color:#3B6D11">We'll review your valance spec and be in touch. Urgent? <a href="tel:6097421720" style="color:#3B6D11">(609) 742-1720</a></span>
@@ -1020,13 +1044,7 @@
 
           <!-- DELIVERY -->
           <div class="delivery-section" style="margin-top:16px">
-            <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
-            <div class="opt-row" id="grp-del-roman">
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-del-roman');document.getElementById('del-roman-s').style.display='block';document.getElementById('del-roman-p').style.display='none';calcRoman()">Ship to me</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-del-roman');document.getElementById('del-roman-s').style.display='none';document.getElementById('del-roman-p').style.display='block';calcRoman()">I'll pick up</button>
-            </div>
-            <div id="del-roman-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
-            <div id="del-roman-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+            <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
           </div>
 
           <button onclick="reqMoreInfo('Custom Roman Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Shades →</button>
@@ -1164,13 +1182,7 @@
       <div class="form-group"><label>Email</label><input type="email" id="cn-email" placeholder="jane@example.com"></div>
       <div class="form-group"><label>Notes</label><textarea id="cn-notes" placeholder="Room, fabric preference, timeline..." style="min-height:60px"></textarea></div>
       <div class="delivery-section">
-        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
-        <div class="opt-row" id="grp-del-corn">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-corn');document.getElementById('del-corn-s').style.display='block';document.getElementById('del-corn-p').style.display='none'">Ship to me</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-del-corn');document.getElementById('del-corn-s').style.display='none';document.getElementById('del-corn-p').style.display='block'">I'll pick up</button>
-        </div>
-        <div id="del-corn-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
-        <div id="del-corn-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
       </div>
       <div style="display:flex;align-items:flex-start;gap:10px;background:#fef9ec;border:1px solid #f0d070;border-radius:8px;padding:10px 14px;margin-top:14px;margin-bottom:12px;font-size:12px;color:#7a5c00;line-height:1.5">
         <span style="font-size:15px;flex-shrink:0">&#9888;</span>
@@ -1300,13 +1312,7 @@
       <div class="form-group"><label>Email</label><input type="email" id="vn-email" placeholder="jane@example.com"></div>
       <div class="form-group"><label>Notes</label><textarea id="vn-notes" placeholder="Room, style preference, timeline..." style="min-height:60px"></textarea></div>
       <div class="delivery-section">
-        <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery or pickup?</div>
-        <div class="opt-row" id="grp-del-val">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-del-val');document.getElementById('del-val-s').style.display='block';document.getElementById('del-val-p').style.display='none'">Ship to me</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-del-val');document.getElementById('del-val-s').style.display='none';document.getElementById('del-val-p').style.display='block'">I'll pick up</button>
-        </div>
-        <div id="del-val-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
-        <div id="del-val-p" class="delivery-note" style="display:none">Pickup in <strong>Huntingdon Valley, PA</strong>. Address confirmed after order.</div>
+        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
       </div>
       <button class="btn-gold" onclick="submitValanceCv()" style="width:100%;padding:13px;font-size:14px;font-weight:600;margin-top:16px">Submit Order for Review &rarr;</button>
     </div>
