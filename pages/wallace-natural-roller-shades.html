@@ -247,17 +247,15 @@
       </div>
     </div>
     <div class="tooltip-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine — we confirm at the home visit.</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px">
-      <div>
-        <div class="dim-label">Quantity</div>
-        <div style="display:flex;align-items:center;gap:6px">
-          <input class="dim-input" type="number" id="inp-qty" min="1" max="50" value="1" oninput="validateSize()">
-          <span class="dim-unit">shades</span>
-        </div>
+    <div style="margin-top:4px">
+      <div class="dim-label">Quantity</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:12px">
+        <input class="dim-input" type="number" id="inp-qty" min="1" max="50" value="1" oninput="validateQty()">
+        <span class="dim-unit">shades</span>
       </div>
-      <div>
-        <div class="dim-label">Room / window label</div>
-        <input type="text" id="inp-room" placeholder="e.g. Master Bedroom Left" style="padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;width:100%;box-sizing:border-box">
+      <div id="room-labels-wrap">
+        <div class="dim-label">Room / window label <span style="font-weight:400;color:#999">(optional)</span></div>
+        <input type="text" id="inp-room" placeholder="e.g. Master Bedroom Left" style="padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;width:100%;box-sizing:border-box" oninput="validateQty()">
       </div>
     </div>
     <div id="size-msgs" style="margin-top:8px"></div>
@@ -424,7 +422,7 @@
     </div>
 
     <button class="btn-cart-add" onclick="addWallaceNaturalRollerToCart()" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
-    <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:16px">Submit Specification &amp; Request Quote &rarr;</button>
+    <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:14px;font-size:14px;font-weight:600;margin-top:0">Submit Specification &amp; Request Quote &rarr;</button>
 
     <div id="quote-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
       <strong>Specification submitted!</strong><br>Your email app opened with the complete spec pre-filled. Our team will review and follow up within a few hours.<br><br>

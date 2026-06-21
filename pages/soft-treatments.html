@@ -301,6 +301,27 @@
       <div style="font-size:12px;font-weight:700;color:#1a1a1a;margin-bottom:14px">Ripple fold options</div>
 
       <div style="margin-bottom:14px">
+        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px">Panel size</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Width per panel</label>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="number" id="rf-w" placeholder="48" min="12" max="200" oninput="calcDrapePrice()" style="width:70px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+              <span style="font-size:12px;color:#666">in</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Panel length</label>
+            <div style="display:flex;align-items:center;gap:6px">
+              <input type="number" id="rf-l" placeholder="84" min="12" max="200" oninput="calcDrapePrice()" style="width:70px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+              <span style="font-size:12px;color:#666">in</span>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#888;margin-top:5px">Width × length for one panel. Fullness and hardware below.</div>
+      </div>
+
+      <div style="margin-bottom:14px">
         <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px">Fullness %</div>
         <div class="opt-row" id="grp-ripple-fullness">
           <button class="opt-btn" onclick="selOpt(this,'grp-ripple-fullness')">60%</button>
@@ -620,63 +641,9 @@
 </div>
 <div class="step-wrap">
 
-  <!-- STEP 1: WIDTH & FINISHED LENGTH -->
-  <div class="step" id="roman-step-dims">
-    <div class="step-label">Step 1</div>
-    <div class="step-title">Width &amp; finished length</div>
-    <div class="step-sub">Enter your window size — we confirm measurements at the home visit.</div>
-    <div class="configurator" style="margin-top:0">
-      <div>
-        <div class="qty-row">
-          <button class="qty-btn" onclick="adjRomanQty(-1)">−</button>
-          <input class="qty-val" id="rn-qty" type="number" value="1" min="1" max="30" oninput="calcRoman()">
-          <span style="font-size:13px;color:#666">window(s)</span>
-        </div>
-        <div class="dim-box" style="margin-top:14px">
-          <div class="dim-box-label">Enter your window size</div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Width</label>
-              <div style="display:flex;align-items:center;gap:6px">
-                <input type="number" id="rn-w" placeholder="36" min="12" max="120" oninput="calcRoman()" style="width:70px">
-                <select id="rn-w-frac" onchange="calcRoman()" style="padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff">
-                  <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
-                  <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
-                </select>
-                <span style="font-size:12px;color:#666">in</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Finished length</label>
-              <div style="display:flex;align-items:center;gap:6px">
-                <input type="number" id="rn-h" placeholder="48" max="120" oninput="calcRoman()" style="width:70px">
-                <select id="rn-h-frac" onchange="calcRoman()" style="padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff">
-                  <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
-                  <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
-                </select>
-                <span style="font-size:12px;color:#666">in</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="price-box" id="roman-pricebox" style="display:none">
-          <div class="pb-title">Your configuration</div>
-          <div class="pb-row"><span class="pb-key">Style</span><span class="pb-val" id="rn-pb-style">—</span></div>
-          <div class="pb-row"><span class="pb-key">Size</span><span class="pb-val" id="rn-pb-dims">—</span></div>
-          <div class="pb-row"><span class="pb-key">Qty</span><span class="pb-val" id="rn-pb-qty">1</span></div>
-          <div class="pb-row"><span class="pb-key">Motorization</span><span class="pb-val" id="rn-pb-motor">No</span></div>
-          <div id="rn-pb-min-note" style="display:none"></div>
-          <div class="pb-note">All pricing confirmed at order — submit your configuration for a custom quote.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- STEP 2: STYLE -->
+  <!-- STEP 1: STYLE -->
   <div class="step" id="roman-step-style">
-    <div class="step-label">Step 2</div>
+    <div class="step-label">Step 1</div>
     <div class="step-title">Choose your style</div>
     <div class="step-sub">Roman shades fold up into clean horizontal pleats. Each style folds differently when raised.</div>
     <div class="opt-cards" id="roman-style-cards">
@@ -748,75 +715,141 @@
       <div style="font-size:13px;color:var(--cream);margin-bottom:6px;font-weight:500">Modern Roman Shades — always custom quoted</div>
       <div style="font-size:12px;color:var(--text-dark);line-height:1.7">Vignette® Modern Roman Shades are a Hunter Douglas product and require a custom quote. We'll discuss fabric collections, lift system, and PowerView® motorization during your consultation.</div>
     </div>
-
-    <!-- VALANCE CONFIG (shows when Roman Valance selected) -->
-    <div id="valance-config" style="display:none;margin-top:18px">
-      <div id="valance-form-fields">
-
-        <!-- Lining -->
-        <div style="margin-bottom:14px">
-          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Lining</div>
-          <div class="opt-row" id="grp-val-lining">
-            <button class="opt-btn sel" onclick="selOpt(this,'grp-val-lining')">Unlined</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-val-lining')">White liner (+$10/yd)</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-val-lining')">Cream liner (+$10/yd)</button>
-          </div>
-        </div>
-
-        <!-- Fabric supply -->
-        <div style="margin-bottom:14px">
-          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Who supplies the fabric?</div>
-          <div class="opt-row" id="grp-val-fabric">
-            <button class="opt-btn sel" onclick="selOpt(this,'grp-val-fabric')">We supply fabric</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric')">I supply fabric</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric')">Not sure</button>
-          </div>
-        </div>
-
-        <!-- Fold details -->
-        <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
-          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Fold details <span style="font-weight:400;color:#888">(optional)</span></div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Number of folds</label>
-              <input type="number" id="val-folds" placeholder="e.g. 3" min="1" max="20">
-            </div>
-            <div class="form-group">
-              <label>Fold section size (inches)</label>
-              <input type="number" id="val-fold-size" placeholder="e.g. 4" min="1" max="24">
-            </div>
-          </div>
-          <div style="font-size:11px;color:#888;margin-top:8px;line-height:1.5">Fold dimensions confirmed and refined during your consultation.</div>
-        </div>
-
-        <!-- Delivery -->
-        <div class="delivery-section" style="margin-bottom:14px">
-          <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
-        </div>
-
-        <!-- Contact -->
-        <div style="border-top:1px solid #e8e8e4;margin:16px 0 12px"></div>
-        <div class="form-row">
-          <div class="form-group"><label>Name *</label><input type="text" id="val-name" placeholder="Jane Smith"></div>
-          <div class="form-group"><label>Phone *</label><input type="tel" id="val-phone" placeholder="(215) 555-0100"></div>
-        </div>
-        <div class="form-group"><label>Email *</label><input type="email" id="val-email" placeholder="jane@example.com"></div>
-        <div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="val-address" placeholder="123 Main St, Philadelphia PA"></div>
-        <div class="form-group"><label>Notes</label><textarea id="val-notes" placeholder="Fabric preference, room details, timeline..." style="min-height:60px"></textarea></div>
-        <div id="val-contact-err" style="display:none;background:#FEE2E2;border-radius:8px;padding:9px 13px;font-size:12px;color:#991B1B;margin-bottom:8px"></div>
-        <button onclick="reqMoreInfo('Custom Roman Valance')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Valance &rarr;</button>
-        <button class="btn-gold" onclick="submitValance()" style="width:100%;padding:13px;font-size:14px;font-weight:600;margin-top:4px" data-pb-require-contact="val-contact-err">Submit Order for Review &rarr;</button>
-      </div>
-      <div id="valance-success" style="display:none;background:#EAF3DE;border-radius:10px;padding:18px;text-align:center;margin-top:10px">
-        <strong>Order submitted!</strong><br><span style="font-size:13px;color:#3B6D11">We'll review your valance spec and be in touch. Urgent? <a href="tel:6097421720" style="color:#3B6D11">(609) 742-1720</a></span>
-      </div>
-    </div>
-
   </div>
 
-  <!-- STEP 3: FABRIC -->
-  <div class="step" id="step-roman-3">
+  <!-- STEP 2: WIDTH & FINISHED LENGTH -->
+  <div class="step" id="roman-step-dims">
+    <div class="step-label">Step 2</div>
+    <div class="step-title">Width &amp; finished length</div>
+    <div class="step-sub">Enter your window size — we confirm measurements at the home visit.</div>
+    <div class="configurator" style="margin-top:0">
+      <div>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="adjRomanQty(-1)">−</button>
+          <input class="qty-val" id="rn-qty" type="number" value="1" min="1" max="30" oninput="calcRoman()">
+          <span style="font-size:13px;color:#666">window(s)</span>
+        </div>
+        <div class="dim-box" style="margin-top:14px">
+          <div class="dim-box-label">Enter your window size</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Width</label>
+              <div style="display:flex;align-items:center;gap:6px">
+                <input type="number" id="rn-w" placeholder="36" min="12" max="120" oninput="calcRoman()" style="width:70px">
+                <select id="rn-w-frac" onchange="calcRoman()" style="padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff">
+                  <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
+                  <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
+                </select>
+                <span style="font-size:12px;color:#666">in</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Finished length</label>
+              <div style="display:flex;align-items:center;gap:6px">
+                <input type="number" id="rn-h" placeholder="48" max="120" oninput="calcRoman()" style="width:70px">
+                <select id="rn-h-frac" onchange="calcRoman()" style="padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff">
+                  <option value="0">0"</option><option value="0.125">⅛"</option><option value="0.25">¼"</option><option value="0.375">⅜"</option>
+                  <option value="0.5">½"</option><option value="0.625">⅝"</option><option value="0.75">¾"</option><option value="0.875">⅞"</option>
+                </select>
+                <span style="font-size:12px;color:#666">in</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="price-box" id="roman-pricebox" style="display:none">
+          <div class="pb-title">Your configuration</div>
+          <div class="pb-row"><span class="pb-key">Style</span><span class="pb-val" id="rn-pb-style">—</span></div>
+          <div class="pb-row"><span class="pb-key">Size</span><span class="pb-val" id="rn-pb-dims">—</span></div>
+          <div class="pb-row"><span class="pb-key">Qty</span><span class="pb-val" id="rn-pb-qty">1</span></div>
+          <div class="pb-row"><span class="pb-key">Motorization</span><span class="pb-val" id="rn-pb-motor">No</span></div>
+          <div id="rn-pb-min-note" style="display:none"></div>
+          <div class="pb-note">All pricing confirmed at order — submit your configuration for a custom quote.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: MOUNTING -->
+  <div class="step" id="roman-step-mount">
     <div class="step-label">Step 3</div>
+    <div class="step-title">Mounting</div>
+    <div class="step-sub">How will the shade be attached to the window?</div>
+    <div class="opt-row" id="grp-roman-mount" style="margin-top:12px">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-mount');document.getElementById('roman-mount-note-inside').style.display='block';document.getElementById('roman-mount-note-outside').style.display='none'">Inside mount</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-roman-mount');document.getElementById('roman-mount-note-inside').style.display='none';document.getElementById('roman-mount-note-outside').style.display='block'">Outside mount</button>
+    </div>
+    <div id="roman-mount-note-inside" style="margin-top:10px;font-size:12px;color:#555;padding:10px 14px;background:#fafaf8;border-radius:8px;line-height:1.6">Shade mounts inside the window frame. We deduct for hardware — provide the rough opening.</div>
+    <div id="roman-mount-note-outside" style="margin-top:10px;font-size:12px;color:#555;padding:10px 14px;background:#fafaf8;border-radius:8px;line-height:1.6;display:none">Shade mounts outside the frame or on the wall. Provide the finished size you want covered.</div>
+  </div>
+
+  <!-- VALANCE CONFIG (standalone — shown when Roman Valance selected) -->
+  <div id="valance-config" style="display:none;margin-top:18px;padding:0 4px">
+    <div id="valance-form-fields">
+
+      <!-- Lining -->
+      <div style="margin-bottom:14px">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Lining</div>
+        <div class="opt-row" id="grp-val-lining">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-val-lining')">Unlined</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-val-lining')">White liner (+$10/yd)</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-val-lining')">Cream liner (+$10/yd)</button>
+        </div>
+      </div>
+
+      <!-- Fabric supply -->
+      <div style="margin-bottom:14px">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Who supplies the fabric?</div>
+        <div class="opt-row" id="grp-val-fabric">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-val-fabric')">We supply fabric</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric')">I supply fabric</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric')">Not sure</button>
+        </div>
+      </div>
+
+      <!-- Fold details -->
+      <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
+        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Fold details <span style="font-weight:400;color:#888">(optional)</span></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Number of folds</label>
+            <input type="number" id="val-folds" placeholder="e.g. 3" min="1" max="20">
+          </div>
+          <div class="form-group">
+            <label>Fold section size (inches)</label>
+            <input type="number" id="val-fold-size" placeholder="e.g. 4" min="1" max="24">
+          </div>
+        </div>
+        <div style="font-size:11px;color:#888;margin-top:8px;line-height:1.5">Fold dimensions confirmed and refined during your consultation.</div>
+      </div>
+
+      <!-- Delivery -->
+      <div class="delivery-section" style="margin-bottom:14px">
+        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
+      </div>
+
+      <!-- Contact -->
+      <div style="border-top:1px solid #e8e8e4;margin:16px 0 12px"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Name *</label><input type="text" id="val-name" placeholder="Jane Smith"></div>
+        <div class="form-group"><label>Phone *</label><input type="tel" id="val-phone" placeholder="(215) 555-0100"></div>
+      </div>
+      <div class="form-group"><label>Email *</label><input type="email" id="val-email" placeholder="jane@example.com"></div>
+      <div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="val-address" placeholder="123 Main St, Philadelphia PA"></div>
+      <div class="form-group"><label>Notes</label><textarea id="val-notes" placeholder="Fabric preference, room details, timeline..." style="min-height:60px"></textarea></div>
+      <div id="val-contact-err" style="display:none;background:#FEE2E2;border-radius:8px;padding:9px 13px;font-size:12px;color:#991B1B;margin-bottom:8px"></div>
+      <button onclick="reqMoreInfo('Custom Roman Valance')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Valance &rarr;</button>
+      <button class="btn-gold" onclick="submitValance()" style="width:100%;padding:13px;font-size:14px;font-weight:600;margin-top:4px" data-pb-require-contact="val-contact-err">Submit Order for Review &rarr;</button>
+    </div>
+    <div id="valance-success" style="display:none;background:#EAF3DE;border-radius:10px;padding:18px;text-align:center;margin-top:10px">
+      <strong>Order submitted!</strong><br><span style="font-size:13px;color:#3B6D11">We'll review your valance spec and be in touch. Urgent? <a href="tel:6097421720" style="color:#3B6D11">(609) 742-1720</a></span>
+    </div>
+  </div>
+
+  <!-- STEP 4: FABRIC -->
+  <div class="step" id="step-roman-3">
+    <div class="step-label">Step 4</div>
     <div class="step-title">Fabric</div>
     <div class="fabric-cards" id="roman-fabric-cards">
       <div class="fabric-card" onclick="selectFabric('roman',this,'We supply the fabric')">
@@ -856,9 +889,9 @@
     </div>
   </div>
 
-  <!-- STEP 4: LINING -->
+  <!-- STEP 5: LINING -->
   <div class="step" id="step-roman-4">
-    <div class="step-label">Step 4</div>
+    <div class="step-label">Step 5</div>
     <div class="step-title">Lining</div>
     <div class="opt-row" id="grp-roman-lining" style="margin-top:12px">
       <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-lining');calcRoman()">Unlined</button>
@@ -867,9 +900,9 @@
     </div>
   </div>
 
-  <!-- STEP 5: OPERATION -->
+  <!-- STEP 6: OPERATION -->
   <div class="step" id="step-roman-5">
-    <div class="step-label">Step 5</div>
+    <div class="step-label">Step 6</div>
     <div class="step-title">Operation</div>
     <div class="opt-row" id="grp-roman-op" style="margin-top:12px">
       <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-op');romanToggleOp('manual')">Manual</button>
@@ -917,9 +950,9 @@
     </div>
   </div>
 
-  <!-- STEP 6: DETAILS + PRICE -->
+  <!-- STEP 7: DETAILS + PRICE -->
   <div class="step" id="step-roman-6">
-    <div class="step-label">Step 6</div>
+    <div class="step-label">Step 7</div>
     <div class="step-title">Details &amp; submit</div>
     <div class="step-sub">Final details for your roman shade order.</div>
 

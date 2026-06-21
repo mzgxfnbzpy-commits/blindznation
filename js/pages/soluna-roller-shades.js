@@ -111,7 +111,12 @@ var SOLUNA_FABRIC_DATA = {
     {name:'Windsong 5%', colors:[{n:'Soft White',c:'F1260'},{n:'Canvas',c:'F1261'},{n:'Nickel',c:'F1262'},{n:'Graphite',c:'F1263'},{n:'Eclipse',c:'F1264'},{n:'Raven Black',c:'F1265'}]},
     {name:'Breeze Screen 1% ⚠ Linen', colors:[{n:'Linen Flax',c:'F1780'},{n:'Linen Khaki',c:'F1782'},{n:'Linen Dune',c:'F1783'},{n:'Linen Graphite',c:'F1784'},{n:'Linen Almond Milk',c:'F1785'},{n:'Linen Stone',c:'F1786'},{n:'Linen Cloud',c:'F1846'},{n:'Linen Warm Ivory',c:'F1850'}]},
     {name:'Breeze Screen 3% ⚠ Linen', colors:[{n:'Linen Flax',c:'F1787'},{n:'Linen Khaki',c:'F1789'},{n:'Linen Dune',c:'F1790'},{n:'Linen Graphite',c:'F1791'},{n:'Linen Almond Milk',c:'F1792'},{n:'Linen Stone',c:'F1793'},{n:'Linen Cloud',c:'F1845'},{n:'Linen Warm Ivory',c:'F1849'}]},
-    {name:'Galaxy 3%', colors:[{n:'Soft White',c:'F1728'},{n:'Ash',c:'F1731'},{n:'Black',c:'F1727'}]}
+    {name:'Galaxy 3%', colors:[{n:'Soft White',c:'F1728'},{n:'Ash',c:'F1731'},{n:'Black',c:'F1727'}]},
+    {_divider:'Commercial Solar Screens (NA Series)'},
+    {name:'NA400 3%', colors:[{n:'Chalk',c:'F0381'},{n:'Chalk/Beige',c:'F0382'},{n:'Charcoal',c:'F0384'}]},
+    {name:'NA820 3%', colors:[{n:'Oyster/Pewter',c:'F0407'}]},
+    {name:'NA400 5%', colors:[{n:'Chalk/Beige',c:'F0388'},{n:'Charcoal',c:'F0390'}]},
+    {name:'NA400 10%', colors:[{n:'Charcoal',c:'F0396'}]}
   ],
   'lf': [
     {name:'Kendra', colors:[{n:'LF Foliage',c:'F0890'}]},
@@ -173,6 +178,13 @@ function showFabricColls(key) {
   if (!colls.length) { wrap.style.display = 'none'; return; }
   inner.innerHTML = '';
   colls.forEach(function(coll) {
+    if (coll._divider) {
+      var divEl = document.createElement('div');
+      divEl.style.cssText = 'font-size:10px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.8px;margin:14px 0 6px;padding-top:10px;border-top:1px solid #e8e4de';
+      divEl.textContent = coll._divider;
+      inner.appendChild(divEl);
+      return;
+    }
     var isLinen = coll.name.indexOf('⚠') !== -1;
     var cleanName = coll.name.replace(' ⚠ Linen', '').replace(' ⚠ Max 120″H', '');
     var grpDiv = document.createElement('div');
@@ -421,3 +433,32 @@ function submitQuote() {
   document.getElementById('quote-success').classList.add('show');
   document.getElementById('quote-success').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+(function() {
+  var p = new URLSearchParams(window.location.search);
+  var w = p.get('w'), h = p.get('h'), qty = p.get('qty'), mount = p.get('mount'), op = p.get('op'), motor = p.get('motor');
+  if (w) { var el = document.getElementById('inp-width'); if (el) el.value = w; }
+  if (h) { var el = document.getElementById('inp-height'); if (el) el.value = h; }
+  if (qty) { var el = document.getElementById('inp-qty'); if (el) el.value = qty; }
+  if (mount) {
+    document.querySelectorAll('#grp-mount .opt-btn').forEach(function(b) {
+      b.classList.toggle('sel', b.textContent.trim().toLowerCase().startsWith(mount.toLowerCase()));
+    });
+  }
+  if (op) {
+    var opMap = { cordless: 'PrecisionLift™ Cordless', loop: 'Continuous Cord Loop', smart: 'SmartRelease™', motor: 'Motorized' };
+    var target = opMap[op] || op;
+    document.querySelectorAll('#grp-op .opt-btn').forEach(function(b) {
+      if (b.textContent.trim() === target) b.click();
+    });
+  }
+  if (motor && op === 'motor') {
+    var motorMap = { rollease: 'Rollease Acmeda Automate' };
+    var mTarget = motorMap[motor] || 'Norman Smart';
+    setTimeout(function() {
+      var sel = document.getElementById('sel-motor');
+      if (sel) { sel.value = mTarget; solUpdateMotorBrand(); }
+    }, 100);
+  }
+  if (w || h || op) updateSummary();
+})();

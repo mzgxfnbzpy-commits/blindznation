@@ -1085,12 +1085,29 @@
           <!-- Roller -->
           <div id="op-roller" style="display:none">
             <div class="opt-row" id="grp-op-roller">
-              <button class="opt-btn" onclick="selOpt(this,'grp-op-roller');updateSizeLimits();toggleChainOpts(false)">Spring</button>
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-op-roller');updateSizeLimits();toggleChainOpts(false)">Cordless</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op-roller');updateSizeLimits();toggleChainOpts(true)">Continuous loop</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op-roller');updateSizeLimits();autoMotor();toggleChainOpts(false)">Motorized</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op-roller');updateSizeLimits();toggleChainOpts(false);rollerOpChange('spring')">Spring</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-op-roller');updateSizeLimits();toggleChainOpts(false);rollerOpChange('cordless')">Cordless</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op-roller');updateSizeLimits();toggleChainOpts(true);rollerOpChange('loop')">Continuous loop</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op-roller');updateSizeLimits();toggleChainOpts(false);rollerOpChange('motor')">Motorized</button>
             </div>
             <div class="tooltip-note" style="margin-top:4px">Cordless is child &amp; pet safe. Continuous loop handles oversized windows. Motorized adds app &amp; voice control.</div>
+            <!-- Cordless upgrade note -->
+            <div id="roller-cordless-note" style="display:none;margin-top:10px;padding:11px 13px;background:#edf7ed;border-left:3px solid #2e7d32;border-radius:6px">
+              <div style="font-size:12px;color:#1a5c1a;font-weight:600;margin-bottom:4px">⭐ Want the premium cordless experience?</div>
+              <div style="font-size:11px;color:#444;line-height:1.6;margin-bottom:8px">Norman PrecisionLift™ Cordless is available on the Soluna roller — premium fabrics, WCMA certified, full configurator.</div>
+              <button onclick="goToSolunaWithOpts('cordless')" style="font-size:11px;padding:5px 12px;border:1px solid #2e7d32;background:#fff;color:#1a5c1a;border-radius:6px;cursor:pointer;font-weight:600">Configure on Norman Soluna →</button>
+            </div>
+            <!-- Motorized brand + Soluna transfer -->
+            <div id="roller-motor-note" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+              <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Motor system</div>
+              <div class="opt-row" id="grp-roller-motor" style="flex-wrap:wrap">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-roller-motor')">Norman Smart — $482 <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 5px;border-radius:4px;font-weight:700;vertical-align:middle">Recommended</span></button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-roller-motor')">Rollease Acmeda Automate</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-roller-motor')">Other / Not Sure</button>
+              </div>
+              <div style="font-size:11px;color:#666;margin:8px 0 10px;line-height:1.6">Norman Smart motorization is available on the <strong>Premier Norman Soluna</strong> page with full configuration (power source, charging wand, remote). Carry your selections over now:</div>
+              <button onclick="goToSolunaWithOpts('motor')" style="font-size:12px;padding:8px 16px;border:2px solid var(--espresso);background:var(--espresso);color:var(--cream);border-radius:8px;cursor:pointer;font-weight:600">Configure on Norman Soluna →</button>
+            </div>
           </div>
 
           <!-- Cellular -->

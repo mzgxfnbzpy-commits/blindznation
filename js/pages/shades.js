@@ -623,6 +623,28 @@ function autoMotor() {
   }
 }
 
+function rollerOpChange(type) {
+  var cordlessNote = document.getElementById('roller-cordless-note');
+  var motorNote = document.getElementById('roller-motor-note');
+  if (cordlessNote) cordlessNote.style.display = type === 'cordless' ? 'block' : 'none';
+  if (motorNote) motorNote.style.display = type === 'motor' ? 'block' : 'none';
+}
+
+function goToSolunaWithOpts(type) {
+  var w = (document.getElementById('inp-width') || {}).value || '';
+  var h = (document.getElementById('inp-height') || {}).value || '';
+  var qty = (document.getElementById('inp-qty') || {}).value || '1';
+  var mountBtn = document.querySelector('#grp-mount .opt-btn.sel');
+  var mount = mountBtn ? (mountBtn.textContent.toLowerCase().indexOf('inside') >= 0 ? 'inside' : 'outside') : 'inside';
+  var params = 'w=' + encodeURIComponent(w) + '&h=' + encodeURIComponent(h) + '&qty=' + qty + '&mount=' + mount + '&op=' + (type === 'motor' ? 'motor' : 'cordless');
+  if (type === 'motor') {
+    var motorBtn = document.querySelector('#grp-roller-motor .opt-btn.sel');
+    var motorText = motorBtn ? motorBtn.textContent.trim() : '';
+    if (motorText.indexOf('Rollease') >= 0) params += '&motor=rollease';
+  }
+  window.location.href = 'soluna-roller-shades.html?' + params;
+}
+
 // ─── toggleSolar ─────────────────────────────────────────────
 function toggleSolar(on) {
   document.getElementById('solar-openness').style.display = on ? 'block' : 'none';
