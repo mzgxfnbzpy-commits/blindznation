@@ -207,6 +207,7 @@ function showFabricColls(key) {
       btn.style.cssText = 'font-size:11px;padding:3px 9px';
       btn.textContent = color.n;
       btn.title = color.c;
+      btn.setAttribute('data-coll', cleanName);
       btn.onclick = function() {
         document.querySelectorAll('#fabric-coll-inner .opt-btn').forEach(function(b){b.classList.remove('sel');});
         btn.classList.add('sel');
@@ -306,6 +307,92 @@ function adjustQty(d) {
   updateSummary();
 }
 
+// ── Pricing grids (Norman suggested retail, cordless base) ───
+var _SOL_W = [24,30,36,42,48,54,60,66,72,78,84,90,96,108,120];
+var _SOL_H = [36,48,60,72,84,96,108,120,132,144];
+var _SOL_GRIDS = {
+  f1:[[254,273,291,312,333,351,371,401,429,474,500,526,551,601,652],[274,298,318,345,368,397,422,464,495,547,576,608,639,697,750],[296,318,346,377,414,448,482,526,566,620,655,690,717,774,826],[313,345,382,420,457,497,538,591,628,689,717,749,779,841,903],[336,375,418,462,503,546,592,648,683,737,774,806,841,909,982],[357,406,453,501,549,598,639,696,730,791,828,866,903,982,1055],[383,437,488,544,594,640,677,737,779,842,885,923,968,1048,1130],[409,469,526,582,636,676,719,782,828,895,941,987,1030,1121,1207],[435,500,560,623,670,714,762,828,873,945,995,1042,1092,1188,1286],[462,530,596,649,701,750,802,871,923,997,1050,1103,1155,1255,1362]],
+  f2:[[278,299,323,341,367,389,412,446,476,529,558,587,617,672,731],[301,328,353,377,406,440,471,518,549,609,647,679,713,780,843],[325,353,384,420,462,497,537,587,628,692,733,772,803,868,927],[349,383,422,467,509,555,600,659,703,770,803,842,873,944,1017],[370,415,465,513,562,611,661,727,765,829,868,907,944,1023,1103],[396,449,503,561,613,670,714,777,820,887,932,973,1017,1103,1189],[423,486,543,605,667,717,763,829,873,945,994,1042,1091,1181,1276],[454,520,591,650,708,759,809,878,932,1005,1055,1107,1157,1261,1359],[485,558,627,697,748,801,854,932,985,1066,1122,1173,1230,1341,1449],[513,593,668,730,785,842,898,983,1042,1123,1183,1243,1299,1417,1537]],
+  f3:[[307,337,365,396,424,454,485,517,552,609,645,680,719,786,856],[337,372,407,443,482,522,563,605,648,715,755,800,841,927,1002],[366,407,449,497,545,594,643,693,745,817,868,918,957,1044,1126],[398,444,498,554,613,671,725,782,839,917,964,1011,1054,1153,1247],[428,487,549,617,677,740,809,869,920,999,1049,1103,1154,1261,1366],[462,530,602,674,745,817,879,940,995,1081,1137,1195,1254,1367,1489],[497,575,656,734,813,879,944,1005,1071,1160,1226,1289,1352,1480,1608],[534,622,707,792,871,940,1011,1079,1148,1242,1314,1382,1451,1592,1731],[572,667,759,846,921,999,1071,1148,1225,1325,1398,1473,1549,1704,1852],[607,708,811,897,976,1054,1138,1219,1301,1407,1485,1569,1647,1812,1974]],
+  f4:[[337,371,402,435,468,500,534,569,608,671,711,749,792,865,942],[371,409,448,487,529,574,620,668,713,787,834,879,924,1021,1103],[403,448,495,546,601,651,707,763,820,898,955,1011,1053,1148,1239],[437,488,547,609,674,738,798,863,922,1010,1058,1112,1160,1267,1372],[470,537,605,677,747,814,889,956,1014,1098,1155,1215,1268,1388,1504],[508,582,664,742,820,898,969,1035,1095,1189,1251,1316,1380,1505,1637],[546,634,723,809,895,969,1041,1106,1179,1278,1349,1420,1488,1628,1770],[590,682,778,870,959,1035,1112,1187,1263,1365,1446,1521,1596,1750,1904],[629,733,835,933,1015,1098,1179,1263,1348,1457,1539,1621,1704,1873,2040],[669,779,892,988,1075,1160,1252,1342,1431,1549,1633,1725,1812,1995,2172]],
+  s1:[[240,258,278,296,314,331,362,382,406,450,474,507,533,577,628],[259,282,302,325,350,372,412,439,468,519,545,587,614,671,723],[281,302,326,357,390,421,467,497,535,586,618,666,692,745,795],[297,325,359,397,430,468,522,558,595,650,677,721,749,809,870],[318,354,394,434,474,513,573,614,645,697,745,776,809,874,941],[336,383,428,471,518,563,618,656,690,745,797,831,870,941,1015],[361,411,461,511,558,600,659,697,737,795,850,890,932,1007,1088],[387,440,495,546,597,635,697,739,780,844,903,949,990,1078,1160],[408,470,526,582,627,670,737,780,826,894,956,1002,1049,1141,1235],[434,498,561,609,659,703,777,823,872,940,1010,1061,1111,1206,1309]],
+  s2:[[261,283,306,325,346,367,406,428,454,503,530,571,600,652,711],[284,309,334,357,384,416,462,495,526,581,617,660,692,761,818],[307,334,361,396,434,468,525,561,600,658,699,748,779,842,898],[328,359,398,439,477,522,587,627,671,733,766,817,846,918,986],[351,390,437,483,527,574,645,693,728,791,842,877,918,992,1069],[372,422,474,526,575,628,699,740,778,843,902,945,986,1069,1153],[399,456,510,571,624,672,745,791,831,902,966,1010,1055,1145,1235],[428,490,551,611,667,711,791,837,887,957,1023,1073,1123,1220,1317],[454,523,591,650,701,749,835,887,936,1014,1086,1139,1190,1297,1400],[483,554,626,684,737,789,877,935,990,1067,1146,1204,1258,1373,1488]],
+  s3:[[290,322,346,374,404,430,460,488,522,575,608,655,690,754,822],[322,354,385,419,454,495,533,573,611,673,713,768,805,891,963],[349,385,423,469,515,561,605,651,701,770,815,879,918,1000,1079],[376,420,470,525,577,633,683,738,791,863,905,969,1013,1105,1194],[406,462,519,579,641,699,762,818,868,940,1006,1057,1106,1206,1312],[436,501,570,636,701,770,829,885,938,1017,1090,1146,1200,1313,1426],[469,544,620,693,766,829,890,945,1010,1091,1173,1236,1294,1417,1541],[503,587,668,745,821,885,950,1015,1080,1169,1256,1325,1389,1523,1657],[541,627,714,799,869,940,1010,1080,1152,1246,1341,1413,1482,1628,1772],[574,669,764,844,920,992,1070,1146,1222,1320,1422,1499,1576,1732,1888]]
+};
+var _SOL_COLL_GROUP = {
+  'Serene 7%':'s1','Flow 7%':'s1','Windsong 5%':'s1',
+  'NA400 3%':'s1','NA400 5%':'s1','NA400 10%':'s1',
+  'Serene 1%':'s2','Serene 3%':'s2','Flow 1%':'s2','Flow 5%':'s2',
+  'Windsong 1%':'s2','Moon 5%':'s2','Breeze Screen 1%':'s2','Breeze Screen 3%':'s2',
+  'NA820 3%':'s2',
+  'Lakeview 3%':'s3','Lakeview 7%':'s3','Lakeview 10%':'s3',
+  'Meadows 1%':'s3','Meadows 3%':'s3','Jubilee 3%':'s3','Galaxy 3%':'s3',
+  'Scarlett':'f1','Catalina (Natural)':'f1','Brook':'f1','Chelsea':'f1',
+  'Callie':'f1','Callie RD':'f1','Elements':'f1','Elements White Backing':'f1',
+  'Sheer':'f2','Dazzle':'f2','Lakeshore':'f2',
+  'Samoa (Natural)':'f2','Phuket (Natural)':'f2','Bora Bora (Natural)':'f2',
+  'Java (Natural)':'f2','Bali (Natural)':'f2','Riviera (Natural)':'f2',
+  'Francis':'f2','Hayes':'f2','Valerie':'f2','Emery':'f2','Sierra':'f2',
+  'Shimmer':'f2','Amelia':'f2','Lola LF':'f2','Remy':'f2',
+  'Jamaica':'f2','Bermuda':'f2','Fiji':'f2','Francis RD':'f2','Amelia RD':'f2',
+  'Aruba (Natural)':'f3','Caroline (Natural)':'f3','Maui Natural':'f3','Cove (Natural)':'f3',
+  'Breeze':'f3','Clarissa':'f3',
+  'Garden':'f3','Lola BO':'f3','Summerland':'f3','Cory':'f3',
+  'Remy RD':'f3','Breeze RD':'f3',
+  'Kendra':'f4'
+};
+
+function _solGridLookup(gKey, w, h) {
+  var g = _SOL_GRIDS[gKey];
+  if (!g) return 0;
+  var ci = _SOL_W.length - 1;
+  for (var i = 0; i < _SOL_W.length; i++) { if (w <= _SOL_W[i]) { ci = i; break; } }
+  var ri = _SOL_H.length - 1;
+  for (var j = 0; j < _SOL_H.length; j++) { if (h <= _SOL_H[j]) { ri = j; break; } }
+  return g[ri][ci];
+}
+
+function getSelectedFabricColl() {
+  var sel = document.querySelector('#fabric-coll-inner .opt-btn.sel');
+  return sel ? sel.getAttribute('data-coll') : null;
+}
+
+function _solEstimatePrice() {
+  var w    = parseFloat((document.getElementById('inp-width') ||{}).value) || 0;
+  var h    = parseFloat((document.getElementById('inp-height')||{}).value) || 0;
+  var qty  = parseInt( (document.getElementById('inp-qty')   ||{}).value) || 1;
+  var op   = getOpt('grp-op') || '';
+  var shadeType = getOpt('grp-shade-type') || 'Standard';
+  var coll = getSelectedFabricColl();
+  if (!w || !h || !coll) return null;
+  var gKey = _SOL_COLL_GROUP[coll];
+  if (!gKey) return null;
+  var base = _solGridLookup(gKey, w, h);
+  if (!base) return null;
+  var srFee = (op === 'SmartRelease™') ? 89 : 0;
+  if (shadeType === 'Dual Shade') base = base * 2 + 73;
+  var unitPrice, totalPrice;
+  if (_solCoupledActive) {
+    if (_solCoupledSameSize) {
+      unitPrice = (base + srFee) * _solCoupledCount + 117 * (_solCoupledCount - 1);
+    } else {
+      var tally = 0;
+      for (var ci2 = 1; ci2 <= _solCoupledCount; ci2++) {
+        var pw = parseFloat((document.getElementById('coupled-w-'+ci2)||{}).value) || 0;
+        var ph = parseFloat((document.getElementById('coupled-h-'+ci2)||{}).value) || 0;
+        if (!pw || !ph) return null;
+        tally += _solGridLookup(gKey, pw, ph) + srFee;
+      }
+      unitPrice = tally + 117 * (_solCoupledCount - 1);
+    }
+    totalPrice = unitPrice * qty;
+  } else {
+    unitPrice  = base + srFee;
+    totalPrice = unitPrice * qty;
+  }
+  return { unit: unitPrice, total: totalPrice, qty: qty, motor: op === 'Motorized' };
+}
+
 function updateSummary() {
   const light     = getOpt('grp-light');
   const op        = getOpt('grp-op');
@@ -365,6 +452,21 @@ function updateSummary() {
     coupledRow.style.display = cSum ? '' : 'none';
     if (cSum) coupledEl.textContent = cSum;
   }
+
+  var priceResult = _solEstimatePrice();
+  var priceRow = document.getElementById('s-price-row');
+  var priceEl2 = document.getElementById('s-price');
+  if (priceRow && priceEl2) {
+    if (priceResult) {
+      var pTxt = '$' + priceResult.total.toLocaleString();
+      if (priceResult.qty > 1 && !_solCoupledActive) pTxt += ' (' + priceResult.qty + ' × $' + priceResult.unit.toLocaleString() + ')';
+      if (priceResult.motor) pTxt += ' + motor est.';
+      priceEl2.textContent = pTxt;
+      priceRow.style.display = '';
+    } else {
+      priceRow.style.display = 'none';
+    }
+  }
 }
 
 function submitQuote() {
@@ -394,6 +496,10 @@ function submitQuote() {
     : 'Ship to me — UPS / FedEx from Huntingdon Valley, PA (freight TBD)';
 
   const coupledLine = solGetCoupledSummary();
+  const priceEst = _solEstimatePrice();
+  const priceEstLine = priceEst
+    ? 'Est. retail: $' + priceEst.total.toLocaleString() + (priceEst.motor ? ' (motor priced separately)' : '') + (priceEst.qty > 1 && !_solCoupledActive ? ' (' + priceEst.qty + ' × $' + priceEst.unit.toLocaleString() + ')' : '')
+    : '';
   const body = [
     '=== PREMIER NORMAN ROLLER SHADE QUOTE REQUEST ===',
     '',
@@ -413,6 +519,7 @@ function submitQuote() {
     'Quantity: ' + qty,
     (coupledLine ? 'Coupled shades: ' + coupledLine : ''),
     'Add-ons: ' + (addons.length ? addons.join(', ') : 'None'),
+    (priceEstLine ? priceEstLine : ''),
     '',
     'DELIVERY',
     deliveryLabel,
