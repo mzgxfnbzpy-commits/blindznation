@@ -415,18 +415,74 @@ function _pbSaveCart(cart) {
   try { localStorage.setItem(_PB_CART_KEY, JSON.stringify(cart)); } catch(e) {}
   _updateCartBadge();
 }
+// In-memory file store: cartId -> [File,...]. Held in memory only (never serialized to
+// localStorage — files would blow the ~5MB quota). Sent at checkout via base64 payload.
+window._pbFiles = window._pbFiles || {};
+// Transient extras (notes/files) captured from an estimate panel just before an item is added.
+// Consumed once by pbAddToCart so it works for both direct adds and the motor-modal (async) path.
+var _pbPendingExtras = null;
+
 function pbAddToCart(item) {
   item.cartId = Date.now() + '-' + Math.floor(Math.random()*9999);
+  // Merge any extras captured from the estimate panel (notes/files) if the item didn't set them
+  if (_pbPendingExtras) {
+    if (!item.notes && _pbPendingExtras.notes) item.notes = _pbPendingExtras.notes;
+    if ((!item._files || !item._files.length) && _pbPendingExtras.files && _pbPendingExtras.files.length) item._files = _pbPendingExtras.files;
+    _pbPendingExtras = null;
+  }
+  if (item.notes == null) item.notes = '';
+  // Move pending File objects into the per-item in-memory store; keep lightweight metadata on the item
+  if (item._files && item._files.length) {
+    window._pbFiles[item.cartId] = Array.prototype.slice.call(item._files);
+    item.attachments = window._pbFiles[item.cartId].map(function(f){ return { name:f.name, type:f.type, size:f.size }; });
+  } else if (!item.attachments) {
+    item.attachments = [];
+  }
+  delete item._files;
   var cart = pbGetCart();
   cart.push(item);
   _pbSaveCart(cart);
   _pbCartToast(item.product || 'Item');
 }
 function pbRemoveCartItem(cartId) {
+  if (window._pbFiles) delete window._pbFiles[cartId];
   _pbSaveCart(pbGetCart().filter(function(i){ return i.cartId !== cartId; }));
   _renderCartBody();
 }
-function pbClearCart() { _pbSaveCart([]); _renderCartBody(); }
+function pbClearCart() { window._pbFiles = {}; _pbSaveCart([]); _renderCartBody(); }
+
+// ── Per-item notes (kept separate per cartId — one item's note never overwrites another's) ──
+function pbSetItemNotes(cartId, text) {
+  var cart = pbGetCart();
+  for (var i = 0; i < cart.length; i++) { if (cart[i].cartId === cartId) { cart[i].notes = text; break; } }
+  _pbSaveCart(cart);
+}
+// ── Per-item file attachments (held in memory, metadata mirrored on the cart item) ──
+function pbAttachItemFiles(cartId, inputEl) {
+  if (!inputEl || !inputEl.files || !inputEl.files.length) return;
+  window._pbFiles = window._pbFiles || {};
+  var existing = window._pbFiles[cartId] || [];
+  Array.prototype.forEach.call(inputEl.files, function(f){ existing.push(f); });
+  window._pbFiles[cartId] = existing;
+  _pbSyncAttachMeta(cartId);
+  inputEl.value = '';
+  _renderCartBody();
+}
+function pbRemoveItemFile(cartId, idx) {
+  var arr = (window._pbFiles && window._pbFiles[cartId]) || [];
+  arr.splice(idx, 1);
+  window._pbFiles[cartId] = arr;
+  _pbSyncAttachMeta(cartId);
+  _renderCartBody();
+}
+function _pbSyncAttachMeta(cartId) {
+  var arr = (window._pbFiles && window._pbFiles[cartId]) || [];
+  var cart = pbGetCart();
+  for (var i = 0; i < cart.length; i++) {
+    if (cart[i].cartId === cartId) { cart[i].attachments = arr.map(function(f){ return { name:f.name, type:f.type, size:f.size }; }); break; }
+  }
+  _pbSaveCart(cart);
+}
 
 function _updateCartBadge() {
   var n = pbGetCart().length;
@@ -498,6 +554,23 @@ function _renderCartBody() {
       hasCustom = true;
       priceHtml = '<div style="font-size:12px;color:#888;margin-top:6px;font-style:italic">Custom quote</div>';
     }
+    // Per-item attachment chips (with remove ×)
+    var atts = item.attachments || [];
+    var attHtml = atts.map(function(a, ai) {
+      return '<span style="display:inline-flex;align-items:center;gap:4px;background:#f0ede7;border-radius:5px;padding:2px 7px;margin:4px 5px 0 0;font-size:11px;color:#555;max-width:100%">' +
+        '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">📎 ' + _pbEsc(a.name) + '</span>' +
+        '<span onclick="pbRemoveItemFile(\'' + _pbEsc(item.cartId) + '\',' + ai + ')" style="cursor:pointer;color:#b00;font-weight:700;flex-shrink:0" aria-label="Remove file">×</span></span>';
+    }).join('');
+    var fid = 'pbci-f-' + _pbEsc(item.cartId);
+    var notesFilesHtml =
+      '<div style="margin-top:10px;border-top:1px dashed #eee;padding-top:9px">' +
+        '<textarea onchange="pbSetItemNotes(\'' + _pbEsc(item.cartId) + '\',this.value)" placeholder="Notes for this item (room, timeline, questions)…" ' +
+          'style="width:100%;box-sizing:border-box;font-family:inherit;font-size:12px;padding:7px 9px;border:1px solid #e8e8e4;border-radius:7px;resize:vertical;min-height:38px">' + _pbEsc(item.notes || '') + '</textarea>' +
+        (attHtml ? '<div style="margin-top:4px">' + attHtml + '</div>' : '') +
+        '<label style="display:inline-block;margin-top:8px;font-size:11px;color:var(--gold,#C8973F);font-weight:600;cursor:pointer">📎 Attach photos / PDFs' +
+          '<input type="file" id="' + fid + '" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" style="display:none" onchange="pbAttachItemFiles(\'' + _pbEsc(item.cartId) + '\',this)">' +
+        '</label>' +
+      '</div>';
     return '<div class="pb-ci">' +
       '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:6px">' +
         '<div style="flex:1;min-width:0">' +
@@ -508,6 +581,7 @@ function _renderCartBody() {
         '</div>' +
         '<button class="pb-ci-remove" onclick="pbRemoveCartItem(\'' + _pbEsc(item.cartId) + '\')" aria-label="Remove">×</button>' +
       '</div>' +
+      notesFilesHtml +
     '</div>';
   }).join('');
   var totEl = document.getElementById('pb-cart-est-total');
@@ -536,6 +610,7 @@ function pbGoCheckout() {
   var pricedTotal = 0;
   var hasPrice = false;
   var hasCustom = false;
+  var checkoutFiles = [];   // all File objects across all cart items, for the email payload
   cart.forEach(function(item, i) {
     var itemQty = item.qty || 1;
     allLines.push({ label: '─── Item ' + (i + 1), value: (item.product || 'Item') + (itemQty > 1 ? ' ×' + itemQty : '') });
@@ -562,10 +637,18 @@ function pbGoCheckout() {
       hasCustom = true;
       allLines.push({ label: 'Price', value: 'Custom quote' });
     }
+    // Per-item notes — kept directly under this item so they never bleed into another product
+    if (item.notes && item.notes.trim()) allLines.push({ label: 'Notes', value: item.notes.trim() });
+    // Per-item file attachments — gather the in-memory Files and list their names under this item
+    var fl = (window._pbFiles && window._pbFiles[item.cartId]) || [];
+    if (fl.length) {
+      fl.forEach(function(f){ checkoutFiles.push(f); });
+      allLines.push({ label: 'Attachments', value: fl.map(function(f){ return f.name; }).join(', ') });
+    }
   });
   var productName = cart.length === 1 ? (cart[0].product || 'Custom Window Treatment') : cart.length + ' items';
   pbCloseCart();
-  pbShowQuoteModal(allLines, productName, hasPrice ? pricedTotal : null);
+  pbShowQuoteModal(allLines, productName, hasPrice ? pricedTotal : null, checkoutFiles);
 }
 
 // ── Inject cart DOM ─────────────────────────────────────────
@@ -731,7 +814,7 @@ function _initMotorModal() {
 
       // Confirm
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px">' +
-        '<button onclick="document.getElementById(\'pb-motor-overlay\').classList.remove(\'open\')" ' +
+        '<button onclick="_pbPendingExtras=null;document.getElementById(\'pb-motor-overlay\').classList.remove(\'open\')" ' +
           'style="padding:11px;border:1.5px solid #e8e8e4;border-radius:8px;background:#fff;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit">Cancel</button>' +
         '<button onclick="_pmmConfirm()" class="btn-gold" style="padding:11px;font-size:14px">Add to cart →</button>' +
       '</div>' +
@@ -807,12 +890,19 @@ function pbRenderEstimate(priceBoxId, lines, subtotal, conflictMsg, onCheckout) 
       estimateHtml +
       '<div style="font-size:10px;color:#aaa;line-height:1.6;margin-bottom:10px">&#9432; This is an estimate only. Final price is confirmed after your free in-home measurement. Actual price may vary based on exact dimensions, fabric availability, and installation scope.</div>' +
       conflictHtml +
+      // Per-item notes + attachments — captured into the cart item on Add to Cart
+      '<div style="margin:2px 0 12px">' +
+        '<textarea id="' + priceBoxId + '-note" placeholder="Notes for this item — room, timeline, questions (optional)" style="width:100%;box-sizing:border-box;font-family:inherit;font-size:12px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:8px;resize:vertical;min-height:40px"></textarea>' +
+        '<div style="margin-top:8px;font-size:11px;color:#888;font-weight:600">&#128206; Attach photos / PDFs <span style="font-weight:400;color:#aaa">(optional)</span></div>' +
+        '<input type="file" id="' + priceBoxId + '-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" style="width:100%;font-size:11px;color:#555;font-family:inherit;cursor:pointer;padding:3px 0" onchange="pbShowFileNames(this,\'' + priceBoxId + '-fnames\')">' +
+        '<div id="' + priceBoxId + '-fnames" style="font-size:11px;color:#555;margin-top:4px;line-height:1.7"></div>' +
+      '</div>' +
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
         '<button onclick="pbEstimateAddCart(\'' + priceBoxId + '\')" style="padding:11px;border:2px solid var(--espresso);border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--espresso)">+ Add to Cart</button>' +
-        '<button onclick="pbOpenQuoteFromPanel(\'' + priceBoxId + '\')" ' +
+        '<button onclick="pbPanelSubmit(\'' + priceBoxId + '\')" ' +
           (hasConflict ? 'disabled style="padding:11px;border-radius:8px;background:#e5e5e5;font-size:13px;font-weight:700;cursor:not-allowed;font-family:inherit;color:#aaa;border:none"' :
                          'style="padding:11px;border-radius:8px;background:var(--espresso);color:var(--gold);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;border:none"') +
-          '>Get My Free Estimate &#8594;</button>' +
+          '>Submit Order for Review &#8594;</button>' +
       '</div>' +
     '</div>';
 }
@@ -823,17 +913,48 @@ function pbOpenQuoteFromPanel(priceBoxId) {
   pbShowQuoteModal(panel._pbLines || [], panel._pbProduct || '', panel._pbEstimate || null);
 }
 
+// Read the notes textarea + file input from an estimate panel
+function _pbReadPanelExtras(priceBoxId) {
+  var nEl = document.getElementById(priceBoxId + '-note');
+  var fEl = document.getElementById(priceBoxId + '-files');
+  return {
+    notes: nEl ? nEl.value.trim() : '',
+    files: (fEl && fEl.files) ? Array.prototype.slice.call(fEl.files) : []
+  };
+}
+function _pbResetPanelExtras(priceBoxId) {
+  var nEl = document.getElementById(priceBoxId + '-note');   if (nEl) nEl.value = '';
+  var fEl = document.getElementById(priceBoxId + '-files');  if (fEl) fEl.value = '';
+  var fn  = document.getElementById(priceBoxId + '-fnames'); if (fn)  fn.innerHTML = '';
+}
+
 function pbEstimateAddCart(priceBoxId) {
   var panel = document.getElementById(priceBoxId + '-checkout-panel');
+  // Stash notes/files so they attach to the next item added (works for both the direct
+  // add path and the async motorization-modal path, which adds later via pbAddToCart).
+  _pbPendingExtras = _pbReadPanelExtras(priceBoxId);
   if (panel && panel._pbOnCheckout) {
     panel._pbOnCheckout(false);
+    _pbResetPanelExtras(priceBoxId);
+    return true;
   } else if (panel && panel._pbLines) {
     var lines = panel._pbLines || [];
     var specs = lines.map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
     pbAddToCart({ product: panel._pbProduct || 'Item', specs: specs, lines: lines, price: panel._pbEstimate || null, qty: 1 });
+    _pbResetPanelExtras(priceBoxId);
+    return true;
   } else {
+    _pbPendingExtras = null;
     pbOpenCart();
+    return false;
   }
+}
+
+// "Submit Order for Review" from a product panel: add the current config (with its notes/files)
+// to the cart, then open checkout for the whole cart (requires name + email + phone).
+function pbPanelSubmit(priceBoxId) {
+  pbEstimateAddCart(priceBoxId);
+  pbGoCheckout();
 }
 
 function pbEstimateCheckout(priceBoxId) { pbOpenQuoteFromPanel(priceBoxId); }
@@ -849,10 +970,12 @@ var _pbQuoteLines   = [];
 var _pbQuoteProduct = '';
 
 var _pbQuoteEstimate = null;
-function pbShowQuoteModal(lines, productName, estimate) {
+var _pbQuoteFiles = [];   // File objects to attach to this submission (set by the caller, e.g. pbGoCheckout)
+function pbShowQuoteModal(lines, productName, estimate, files) {
   _pbQuoteLines   = Array.isArray(lines) ? lines : [];
   _pbQuoteProduct = productName || (_pbQuoteLines.length ? _pbQuoteLines[0].value : 'Custom Window Treatment');
   _pbQuoteEstimate = estimate || null;
+  _pbQuoteFiles   = Array.isArray(files) ? files : [];
 
   var existing = document.getElementById('pb-quote-overlay');
   if (existing) existing.remove();
@@ -913,8 +1036,9 @@ function pbShowQuoteModal(lines, productName, estimate) {
           '<div class="pb-qm-field"><label>Last name *</label><input id="pbq-lname" type="text" placeholder="Smith" autocomplete="family-name"></div>' +
         '</div>' +
         '<div class="pb-qm-field"><label>Email address *</label><input id="pbq-email" type="email" placeholder="jane@example.com" autocomplete="email"></div>' +
-        '<div class="pb-qm-field"><label>Phone number <span style="font-weight:400;color:#888">(preferred — we\'ll call or text you)</span></label><input id="pbq-phone" type="tel" placeholder="(215) 555-0100" autocomplete="tel"></div>' +
-        '<div class="pb-qm-field"><label>Notes / questions <span style="font-weight:400;color:#888">(optional)</span></label><textarea id="pbq-notes" rows="3" placeholder="Number of windows, room, timeline, questions..."></textarea></div>' +
+        '<div class="pb-qm-field"><label>Phone number *</label><input id="pbq-phone" data-pb-contact="phone" type="tel" placeholder="(215) 555-0100" autocomplete="tel"></div>' +
+        '<div class="pb-qm-field"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input id="pbq-address" data-pb-contact="address" type="text" placeholder="Street, City, State" autocomplete="street-address"></div>' +
+        '<div class="pb-qm-field"><label>Additional notes <span style="font-weight:400;color:#888">(optional)</span></label><textarea id="pbq-notes" rows="3" placeholder="Anything else — overall timeline, install questions..."></textarea></div>' +
         '<div class="pb-qm-err" id="pbq-err"></div>' +
         '<button class="pb-qm-submit" id="pbq-submit" onclick="pbSubmitQuote()">Submit Quote Request &#8594;</button>' +
         '<div style="text-align:center;font-size:11px;color:#aaa;margin-top:8px">We\'ll respond by email and phone — no spam, ever.</div>' +
@@ -930,11 +1054,63 @@ function pbShowQuoteModal(lines, productName, estimate) {
   setTimeout(function(){ var f=document.getElementById('pbq-fname'); if(f) f.focus(); }, 80);
 }
 
+// ── Attachment helpers — turn File objects into base64 for the JSON email payload ──
+// Images are downscaled client-side (canvas) so phone photos don't blow the request body limit.
+function _pbCompressImage(file, maxDim, quality) {
+  return new Promise(function(resolve) {
+    try {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function() {
+        var w = img.width, h = img.height;
+        var scale = Math.min(1, maxDim / Math.max(w, h));
+        var cw = Math.max(1, Math.round(w * scale)), ch = Math.max(1, Math.round(h * scale));
+        var c = document.createElement('canvas'); c.width = cw; c.height = ch;
+        c.getContext('2d').drawImage(img, 0, 0, cw, ch);
+        URL.revokeObjectURL(url);
+        try { resolve(c.toDataURL('image/jpeg', quality).split(',')[1] || null); }
+        catch (e) { resolve(null); }
+      };
+      img.onerror = function() { URL.revokeObjectURL(url); resolve(null); };
+      img.src = url;
+    } catch (e) { resolve(null); }
+  });
+}
+function _pbFileToBase64(file) {
+  return new Promise(function(resolve) {
+    try {
+      var r = new FileReader();
+      r.onload = function() { var s = String(r.result); var i = s.indexOf(','); resolve(i > -1 ? s.slice(i + 1) : s); };
+      r.onerror = function() { resolve(null); };
+      r.readAsDataURL(file);
+    } catch (e) { resolve(null); }
+  });
+}
+async function _pbBuildAttachments(files) {
+  var out = [];
+  var TOTAL_CAP = 2.5 * 1024 * 1024;  // ~2.5MB of raw bytes → keeps JSON body under Vercel's ~4.5MB limit
+  var used = 0;
+  out._overflow = 0;
+  for (var i = 0; i < (files || []).length; i++) {
+    var f = files[i];
+    var b64 = null;
+    if (/^image\//i.test(f.type)) b64 = await _pbCompressImage(f, 1600, 0.82);
+    if (!b64) b64 = await _pbFileToBase64(f);
+    if (!b64) continue;
+    var approxBytes = Math.ceil(b64.length * 0.75);
+    if (used + approxBytes > TOTAL_CAP) { out._overflow++; continue; }
+    used += approxBytes;
+    out.push({ filename: f.name, type: f.type || 'application/octet-stream', content: b64 });
+  }
+  return out;
+}
+
 async function pbSubmitQuote() {
   var fname  = (document.getElementById('pbq-fname') ||{}).value || '';
   var lname  = (document.getElementById('pbq-lname') ||{}).value || '';
   var email  = (document.getElementById('pbq-email') ||{}).value || '';
   var phone  = (document.getElementById('pbq-phone') ||{}).value || '';
+  var address= (document.getElementById('pbq-address')||{}).value || '';
   var notes  = (document.getElementById('pbq-notes') ||{}).value || '';
   var errEl  = document.getElementById('pbq-err');
   var submit = document.getElementById('pbq-submit');
@@ -948,8 +1124,17 @@ async function pbSubmitQuote() {
     if (errEl) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; }
     return;
   }
+  if (!phone.trim()) {
+    if (errEl) { errEl.textContent = 'Please enter your phone number.'; errEl.style.display = 'block'; }
+    var _pf = document.getElementById('pbq-phone'); if (_pf) { try { _pf.focus(); } catch(e){} }
+    return;
+  }
   if (errEl) errEl.style.display = 'none';
   if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
+
+  // Build base64 attachments from the gathered cart files
+  var attachments = [];
+  try { attachments = await _pbBuildAttachments(_pbQuoteFiles || []); } catch(e) { attachments = []; }
 
   try {
     var resp = await fetch('/api/quote', {
@@ -959,10 +1144,13 @@ async function pbSubmitQuote() {
         name: name,
         email: email.trim(),
         phone: phone.trim(),
+        address: address.trim(),
+        delivery: 'Ship to me',
         product: _pbQuoteProduct,
         selections: _pbQuoteLines,
         estimate: _pbQuoteEstimate ? '$' + _pbQuoteEstimate.toFixed(0) + ' (estimate only)' : null,
         notes: notes.trim(),
+        attachments: attachments,
         sourceUrl: window.location.href,
         _hp: '',
         _t: Date.now() - _formLoadTime
@@ -981,6 +1169,8 @@ async function pbSubmitQuote() {
     }
     var ok = document.getElementById('pbq-ok');
     if (ok) ok.style.display = 'block';
+    // Order submitted — empty the cart so it can't be resubmitted (also clears in-memory files)
+    try { pbClearCart(); } catch(e) {}
 
   } catch(err) {
     console.error('Quote error:', err.message);
@@ -989,12 +1179,15 @@ async function pbSubmitQuote() {
     var mailLines = ['QUOTE REQUEST', ''];
     mailLines.push('Name: ' + name, 'Email: ' + email.trim());
     if (phone.trim()) mailLines.push('Phone: ' + phone.trim());
+    if (address.trim()) mailLines.push('Address: ' + address.trim());
+    mailLines.push('Delivery: Ship to me');
     mailLines.push('', 'Product: ' + (_pbQuoteProduct || 'Custom Window Treatment'));
     if (_pbQuoteLines && _pbQuoteLines.length) {
       mailLines.push('', 'Configuration:');
       _pbQuoteLines.forEach(function(l){ mailLines.push('  ' + l.label + ': ' + l.value); });
     }
     if (notes.trim()) mailLines.push('', 'Notes:', notes.trim());
+    if (_pbQuoteFiles && _pbQuoteFiles.length) mailLines.push('', '(' + _pbQuoteFiles.length + ' file attachment(s) — please reply to this email with the photos/PDFs attached.)');
     var mailHref = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Quote Request — ' + name) +
       '&body=' + encodeURIComponent(mailLines.join('\n'));
 
