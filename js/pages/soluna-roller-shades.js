@@ -568,4 +568,11 @@ function submitQuote() {
     }, 100);
   }
   if (w || h || op) updateSummary();
+
+  // Fix: render the color swatches for the default-selected fabric type on load.
+  // The fabric-type buttons only call showFabricColls() from their click handler,
+  // so the pre-selected type ("Light Filtering Designer") showed no colors until
+  // it was re-clicked. Clicking the .sel button on load renders its swatches.
+  var _selLight = document.querySelector('#grp-light .opt-btn.sel');
+  if (_selLight) _selLight.click();
 })();
