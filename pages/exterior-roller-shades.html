@@ -117,96 +117,11 @@
 <div class="config-layout">
 <div><!-- left column -->
 
-<!-- STEP 1: OPENNESS -->
-<div class="step-block active" id="step-1">
-  <div class="step-head" onclick="ersToggle('step-1')">
-    <div class="step-num">1</div>
-    <div class="step-head-title">Openness factor</div>
-    <div class="step-val" id="sv-1">—</div>
-  </div>
-  <div class="step-body">
-    <p class="step-subhead">Lower % = tighter weave, more shade and glare control. ±10% is industry-standard tolerance.</p>
-    <div class="opt-row">
-      <button class="opt-btn" id="op-5" onclick="ersPickOpenness('5','5% — high shade')">5% &mdash; High shade</button>
-      <button class="opt-btn" id="op-10" onclick="ersPickOpenness('10','10% — balanced')">10% &mdash; Balanced</button>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 2: COLOR -->
-<div class="step-block" id="step-2">
-  <div class="step-head" onclick="ersToggle('step-2')">
-    <div class="step-num">2</div>
-    <div class="step-head-title">Fabric color</div>
-    <div class="step-val" id="sv-2">—</div>
-  </div>
-  <div class="step-body">
-    <p class="step-subhead">Solar screen fabric in your chosen openness. Actual color may vary slightly — request a swatch before ordering for the best match.</p>
-    <div class="opt-row" id="color-grid">
-      <button class="opt-btn" onclick="ersPickColor(this,'White')"><span class="csw" style="background:#f5f5f5;border-color:#ccc"></span>White</button>
-      <button class="opt-btn" onclick="ersPickColor(this,'Off-White')"><span class="csw" style="background:#f0ead8;border-color:#ccc"></span>Off-White</button>
-      <button class="opt-btn" onclick="ersPickColor(this,'Cream')"><span class="csw" style="background:#e8dcc8;border-color:#ccc"></span>Cream</button>
-      <button class="opt-btn" onclick="ersPickColor(this,'Gray')"><span class="csw" style="background:#9e9e9e;border-color:#888"></span>Gray</button>
-      <button class="opt-btn" onclick="ersPickColor(this,'Charcoal')"><span class="csw" style="background:#4a4a4a;border-color:#333"></span>Charcoal</button>
-      <button class="opt-btn" onclick="ersPickColor(this,'Black')"><span class="csw" style="background:#111;border-color:#000"></span>Black</button>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 3: SIDE TRACK -->
-<div class="step-block" id="step-3">
-  <div class="step-head" onclick="ersToggle('step-3')">
-    <div class="step-num">3</div>
-    <div class="step-head-title">Side track / hold-down</div>
-    <div class="step-val" id="sv-3">—</div>
-  </div>
-  <div class="step-body">
-    <p class="step-subhead">None is fine for sheltered areas. Cables guide the hem bar straight. Zipper track zips the fabric into aluminum channels for the tightest seal and maximum wind resistance.</p>
-    <div class="opt-row">
-      <button class="opt-btn" id="track-none" onclick="ersPickTrack('none','None')">None</button>
-      <button class="opt-btn" id="track-cables" onclick="ersPickTrack('cables','Cables')">Cables</button>
-      <button class="opt-btn" id="track-zipper" onclick="ersPickTrack('zipper','Zipper Track')">Zipper Track</button>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 4: MOUNT -->
-<div class="step-block" id="step-4">
-  <div class="step-head" onclick="ersToggle('step-4')">
-    <div class="step-num">4</div>
-    <div class="step-head-title">Mount type</div>
-    <div class="step-val" id="sv-4">—</div>
-  </div>
-  <div class="step-body">
-    <p class="step-subhead">Both use the cassette headrail. Wall mount attaches to wall or fascia. Ceiling / soffit mount attaches overhead — ideal for pergolas and covered patios.</p>
-    <div class="opt-row">
-      <button class="opt-btn" id="mount-wall" onclick="ersPickMount('wall','Wall Mount')">Wall Mount</button>
-      <button class="opt-btn" id="mount-ceiling" onclick="ersPickMount('ceiling','Ceiling / Soffit Mount')">Ceiling / Soffit Mount</button>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 5: OPERATION -->
-<div class="step-block" id="step-5">
-  <div class="step-head" onclick="ersToggle('step-5')">
-    <div class="step-num">5</div>
-    <div class="step-head-title">Operation</div>
-    <div class="step-val" id="sv-5">—</div>
-  </div>
-  <div class="step-body">
-    <p class="step-subhead">Manual uses a continuous cord loop with stainless chain — no power required. Any motor brand (Lutron, Somfy, Rollease Acmeda) — specify preference in notes, priced at quote.</p>
-    <div class="opt-row">
-      <button class="opt-btn" id="op-manual" onclick="ersPickOperation('manual','Manual — chain')">Manual &mdash; chain</button>
-      <button class="opt-btn" id="op-motorized" onclick="ersPickOperation('motorized','Motorized')">Motorized</button>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 6: DIMENSIONS -->
-<div class="step-block" id="step-6">
+<!-- STEP 1: SIZE & QUANTITY -->
+<div class="step-block active" id="step-6">
   <div class="step-head" onclick="ersToggle('step-6')">
-    <div class="step-num">6</div>
-    <div class="step-head-title">Dimensions</div>
+    <div class="step-num">1</div>
+    <div class="step-head-title">Window size &amp; quantity</div>
     <div class="step-val" id="sv-6">—</div>
   </div>
   <div class="step-body">
@@ -227,19 +142,8 @@
       </div>
     </div>
     <div id="ers-dim-msg" class="dim-msg"></div>
-  </div>
-</div>
-
-<!-- STEP 7: QUANTITY -->
-<div class="step-block" id="step-7">
-  <div class="step-head" onclick="ersToggle('step-7')">
-    <div class="step-num">7</div>
-    <div class="step-head-title">Quantity</div>
-    <div class="step-val" id="sv-7">1 shade</div>
-  </div>
-  <div class="step-body">
-    <p class="step-subhead">Number of shades with these exact specs. Multiple sizes? Submit separate orders or add details in the notes.</p>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+    <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
+      <span style="font-size:13px;color:#666;margin-right:2px">Qty:</span>
       <div class="qty-btns">
         <button class="qty-btn" onclick="ersAdjQty(-1)">&#8722;</button>
         <input class="qty-num" type="number" id="ers-qty" min="1" max="20" value="1" oninput="ersQtyChange()">
@@ -250,10 +154,95 @@
   </div>
 </div>
 
+<!-- STEP 2: MOUNT -->
+<div class="step-block" id="step-4">
+  <div class="step-head" onclick="ersToggle('step-4')">
+    <div class="step-num">2</div>
+    <div class="step-head-title">Mount type</div>
+    <div class="step-val" id="sv-4">—</div>
+  </div>
+  <div class="step-body">
+    <p class="step-subhead">Both use the cassette headrail. Wall mount attaches to wall or fascia. Ceiling / soffit mount attaches overhead — ideal for pergolas and covered patios.</p>
+    <div class="opt-row">
+      <button class="opt-btn" id="mount-wall" onclick="ersPickMount('wall','Wall Mount')">Wall Mount</button>
+      <button class="opt-btn" id="mount-ceiling" onclick="ersPickMount('ceiling','Ceiling / Soffit Mount')">Ceiling / Soffit Mount</button>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 3: OPENNESS -->
+<div class="step-block" id="step-1">
+  <div class="step-head" onclick="ersToggle('step-1')">
+    <div class="step-num">3</div>
+    <div class="step-head-title">Openness factor</div>
+    <div class="step-val" id="sv-1">—</div>
+  </div>
+  <div class="step-body">
+    <p class="step-subhead">Lower % = tighter weave, more shade and glare control. ±10% is industry-standard tolerance.</p>
+    <div class="opt-row">
+      <button class="opt-btn" id="op-5" onclick="ersPickOpenness('5','5% — high shade')">5% &mdash; High shade</button>
+      <button class="opt-btn" id="op-10" onclick="ersPickOpenness('10','10% — balanced')">10% &mdash; Balanced</button>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 4: COLOR -->
+<div class="step-block" id="step-2">
+  <div class="step-head" onclick="ersToggle('step-2')">
+    <div class="step-num">4</div>
+    <div class="step-head-title">Fabric color</div>
+    <div class="step-val" id="sv-2">—</div>
+  </div>
+  <div class="step-body">
+    <p class="step-subhead">Solar screen fabric in your chosen openness. Actual color may vary slightly — request a swatch before ordering for the best match.</p>
+    <div class="opt-row" id="color-grid">
+      <button class="opt-btn" onclick="ersPickColor(this,'White')"><span class="csw" style="background:#f5f5f5;border-color:#ccc"></span>White</button>
+      <button class="opt-btn" onclick="ersPickColor(this,'Off-White')"><span class="csw" style="background:#f0ead8;border-color:#ccc"></span>Off-White</button>
+      <button class="opt-btn" onclick="ersPickColor(this,'Cream')"><span class="csw" style="background:#e8dcc8;border-color:#ccc"></span>Cream</button>
+      <button class="opt-btn" onclick="ersPickColor(this,'Gray')"><span class="csw" style="background:#9e9e9e;border-color:#888"></span>Gray</button>
+      <button class="opt-btn" onclick="ersPickColor(this,'Charcoal')"><span class="csw" style="background:#4a4a4a;border-color:#333"></span>Charcoal</button>
+      <button class="opt-btn" onclick="ersPickColor(this,'Black')"><span class="csw" style="background:#111;border-color:#000"></span>Black</button>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 5: SIDE TRACK -->
+<div class="step-block" id="step-3">
+  <div class="step-head" onclick="ersToggle('step-3')">
+    <div class="step-num">5</div>
+    <div class="step-head-title">Side track / hold-down</div>
+    <div class="step-val" id="sv-3">—</div>
+  </div>
+  <div class="step-body">
+    <p class="step-subhead">None is fine for sheltered areas. Cables guide the hem bar straight. Zipper track zips the fabric into aluminum channels for the tightest seal and maximum wind resistance.</p>
+    <div class="opt-row">
+      <button class="opt-btn" id="track-none" onclick="ersPickTrack('none','None')">None</button>
+      <button class="opt-btn" id="track-cables" onclick="ersPickTrack('cables','Cables')">Cables</button>
+      <button class="opt-btn" id="track-zipper" onclick="ersPickTrack('zipper','Zipper Track')">Zipper Track</button>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 6: OPERATION -->
+<div class="step-block" id="step-5">
+  <div class="step-head" onclick="ersToggle('step-5')">
+    <div class="step-num">6</div>
+    <div class="step-head-title">Operation</div>
+    <div class="step-val" id="sv-5">—</div>
+  </div>
+  <div class="step-body">
+    <p class="step-subhead">Manual uses a continuous cord loop with stainless chain — no power required. Any motor brand (Lutron, Somfy, Rollease Acmeda) — specify preference in notes, priced at quote.</p>
+    <div class="opt-row">
+      <button class="opt-btn" id="op-manual" onclick="ersPickOperation('manual','Manual — chain')">Manual &mdash; chain</button>
+      <button class="opt-btn" id="op-motorized" onclick="ersPickOperation('motorized','Motorized')">Motorized</button>
+    </div>
+  </div>
+</div>
+
 <!-- STEP 8: DELIVERY -->
 <div class="step-block" id="step-8">
   <div class="step-head" onclick="ersToggle('step-8')">
-    <div class="step-num">8</div>
+    <div class="step-num">7</div>
     <div class="step-head-title">Delivery</div>
     <div class="step-val" id="sv-8"></div>
   </div>
@@ -271,7 +260,7 @@
 <!-- STEP 9: CONTACT & SUBMIT -->
 <div class="step-block" id="step-9">
   <div class="step-head" onclick="ersToggle('step-9')">
-    <div class="step-num">9</div>
+    <div class="step-num">8</div>
     <div class="step-head-title">Your contact info</div>
     <div class="step-val" id="sv-9"></div>
   </div>
@@ -391,7 +380,7 @@ function ersPickTrack(val, label) {
   if (card) card.classList.add('sel');
   ersDone('step-3', label);
   ersUpdatePanel();
-  setTimeout(function() { ersOpen('step-4'); }, 300);
+  setTimeout(function() { ersOpen('step-5'); }, 300);
 }
 
 function ersPickMount(val, label) {
@@ -401,7 +390,7 @@ function ersPickMount(val, label) {
   if (card) card.classList.add('sel');
   ersDone('step-4', label);
   ersUpdatePanel();
-  setTimeout(function() { ersOpen('step-5'); }, 300);
+  setTimeout(function() { ersOpen('step-1'); }, 300);
 }
 
 function ersPickOperation(val, label) {
@@ -411,7 +400,7 @@ function ersPickOperation(val, label) {
   if (card) card.classList.add('sel');
   ersDone('step-5', label);
   ersUpdatePanel();
-  setTimeout(function() { ersOpen('step-6'); }, 300);
+  setTimeout(function() { ersOpen('step-8'); }, 300);
 }
 
 function ersDimChange() {
@@ -433,6 +422,7 @@ function ersDimChange() {
       if (sv6) sv6.textContent = ERS.width + '″ × ' + ERS.height + '″';
       var el6 = document.getElementById('step-6');
       if (el6) { el6.classList.add('done'); el6.classList.remove('active','open'); }
+      setTimeout(function() { ersOpen('step-4'); }, 300);
     }
   }
   ersUpdatePanel();
