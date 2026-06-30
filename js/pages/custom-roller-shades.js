@@ -85,7 +85,7 @@ function crsPickColor(btn, color) {
     : 'Blackout · ' + color;
   crsDone('step-1', label);
   crsUpdatePanel();
-  setTimeout(function() { crsOpen('step-2'); }, 350);
+  setTimeout(function() { crsOpen('step-3'); }, 350);
 }
 
 // ── STEP 2: MOUNT ────────────────────────────────────────────
@@ -107,7 +107,7 @@ function crsPickMount(val, label) {
 
   crsDone('step-2', label);
   crsUpdatePanel();
-  setTimeout(function() { crsOpen('step-3'); }, 350);
+  setTimeout(function() { crsOpen('step-1'); }, 350);
 }
 
 // ── STEP 3: HEADRAIL ─────────────────────────────────────────
@@ -118,7 +118,7 @@ function crsPickHeadrail(val, label) {
   if (card && !card.classList.contains('disabled')) card.classList.add('sel');
   crsDone('step-3', label);
   crsUpdatePanel();
-  setTimeout(function() { crsOpen('step-4'); }, 350);
+  setTimeout(function() { crsOpen('step-5'); }, 350);
 }
 
 // ── STEP 4: DIMENSIONS ───────────────────────────────────────
@@ -167,7 +167,7 @@ function crsDimChanged() {
     crsDone('step-4', w + '" × ' + h + '"');
     crsUpdatePanel();
     clearTimeout(_crsDimTimer);
-    _crsDimTimer = setTimeout(function() { crsOpen('step-5'); }, 900);
+    _crsDimTimer = setTimeout(function() { crsOpen('step-2'); }, 900);
   }
 }
 
@@ -192,7 +192,7 @@ function crsPickMotor(val, label) {
   if (card) card.classList.add('sel');
   crsDone('step-6', label);
   crsUpdatePanel();
-  setTimeout(function() { crsOpen('step-7'); }, 350);
+  setTimeout(function() { crsOpen('step-8'); }, 350);
 }
 
 // ── STEP 7: QUANTITY ─────────────────────────────────────────
@@ -200,19 +200,13 @@ function crsAdjQty(d) {
   CRS.qty = Math.max(1, Math.min(20, CRS.qty + d));
   var el = _crsEl('qty-num');
   if (el) el.value = CRS.qty;
-  crsDone('step-7', CRS.qty + (CRS.qty === 1 ? ' shade' : ' shades'));
   crsUpdatePanel();
-  clearTimeout(_crsQtyTimer);
-  _crsQtyTimer = setTimeout(function() { crsOpen('step-8'); }, 500);
 }
 
 function crsQtyInput() {
   var v = parseInt((_crsEl('qty-num') || {}).value) || 1;
   CRS.qty = Math.max(1, Math.min(20, v));
-  crsDone('step-7', CRS.qty + (CRS.qty === 1 ? ' shade' : ' shades'));
   crsUpdatePanel();
-  clearTimeout(_crsQtyTimer);
-  _crsQtyTimer = setTimeout(function() { crsOpen('step-8'); }, 700);
 }
 
 // ── STEP 8: DELIVERY ─────────────────────────────────────────

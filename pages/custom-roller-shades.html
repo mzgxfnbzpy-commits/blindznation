@@ -199,10 +199,69 @@
 <div class="config-layout">
 <div id="configurator">
 
-<!-- STEP 1: SHADE TYPE -->
-<div class="step-block active" id="step-1">
-  <div class="step-head" onclick="crsToggle('step-1')">
+<!-- STEP 1: SIZE & QUANTITY -->
+<div class="step-block active" id="step-4">
+  <div class="step-head" onclick="crsToggle('step-4')">
     <div class="step-num">1</div>
+    <div class="step-title">Window size &amp; quantity</div>
+    <div class="step-val" id="sv-4"></div>
+  </div>
+  <div class="step-body">
+    <div class="dim-box">
+      <div class="dim-box-label">Enter your window size</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Width</label>
+          <input type="number" id="crs-inp-w" min="12" max="144" step="0.5" placeholder="36" oninput="crsDimChanged()">
+          <div class="dim-unit">inches &mdash; 12″ min · 144″ max</div>
+        </div>
+        <div class="form-group">
+          <label>Height</label>
+          <input type="number" id="crs-inp-h" min="12" max="132" step="0.5" placeholder="72" oninput="crsDimChanged()">
+          <div class="dim-unit">inches &mdash; 12″ min · 132″ max</div>
+        </div>
+      </div>
+    </div>
+    <div class="tooltip-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Inside mount: give us exact frame — we deduct for fit.</div>
+    <div class="dim-msg warn" id="dim-warn"></div>
+    <div class="dim-msg info" id="dim-info"></div>
+    <div class="spinner-row" style="margin-top:14px">
+      <span class="spin-label" style="margin-right:8px">Qty:</span>
+      <button class="spin-btn" onclick="crsAdjQty(-1)">−</button>
+      <input class="spin-num" type="number" id="qty-num" min="1" max="20" value="1" oninput="crsQtyInput()">
+      <button class="spin-btn" onclick="crsAdjQty(1)">+</button>
+      <span class="spin-label">shade(s)</span>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: MOUNT TYPE -->
+<div class="step-block" id="step-2">
+  <div class="step-head" onclick="crsToggle('step-2')">
+    <div class="step-num">2</div>
+    <div class="step-title">Mount type</div>
+    <div class="step-val" id="sv-2"></div>
+  </div>
+  <div class="step-body">
+    <div class="opt-grid-2">
+      <div class="opt-card" id="mc-inside" onclick="crsPickMount('inside','Inside mount')">
+        <div class="opt-card-title">Inside mount</div>
+        <div class="opt-card-desc">Shade fits inside the window frame. Clean, built-in look. Min frame depth required.</div>
+      </div>
+      <div class="opt-card" id="mc-outside" onclick="crsPickMount('outside','Outside mount')">
+        <div class="opt-card-title">Outside mount</div>
+        <div class="opt-card-desc">Mounts on wall or ceiling above the frame. Covers more area, good for shallow frames.</div>
+      </div>
+    </div>
+    <div class="mount-note" id="mount-note-im">Inside mount: give us your exact frame width and height — we'll deduct 1/4" from width for a proper fit.</div>
+    <div class="mount-note" id="mount-note-om">Outside mount: add 2–4" to each side of the opening for full coverage. Mount 2–4" above the frame to maximize the look.</div>
+  </div>
+</div>
+
+<!-- STEP 3: SHADE TYPE -->
+<div class="step-block" id="step-1">
+  <div class="step-head" onclick="crsToggle('step-1')">
+    <div class="step-num">3</div>
     <div class="step-title">Shade type</div>
     <div class="step-val" id="sv-1"></div>
   </div>
@@ -245,33 +304,10 @@
   </div>
 </div>
 
-<!-- STEP 2: MOUNT TYPE -->
-<div class="step-block" id="step-2">
-  <div class="step-head" onclick="crsToggle('step-2')">
-    <div class="step-num">2</div>
-    <div class="step-title">Mount type</div>
-    <div class="step-val" id="sv-2"></div>
-  </div>
-  <div class="step-body">
-    <div class="opt-grid-2">
-      <div class="opt-card" id="mc-inside" onclick="crsPickMount('inside','Inside mount')">
-        <div class="opt-card-title">Inside mount</div>
-        <div class="opt-card-desc">Shade fits inside the window frame. Clean, built-in look. Min frame depth required.</div>
-      </div>
-      <div class="opt-card" id="mc-outside" onclick="crsPickMount('outside','Outside mount')">
-        <div class="opt-card-title">Outside mount</div>
-        <div class="opt-card-desc">Mounts on wall or ceiling above the frame. Covers more area, good for shallow frames.</div>
-      </div>
-    </div>
-    <div class="mount-note" id="mount-note-im">Inside mount: give us your exact frame width and height — we'll deduct 1/4" from width for a proper fit.</div>
-    <div class="mount-note" id="mount-note-om">Outside mount: add 2–4" to each side of the opening for full coverage. Mount 2–4" above the frame to maximize the look.</div>
-  </div>
-</div>
-
-<!-- STEP 3: HEADRAIL / VALANCE -->
+<!-- STEP 4: HEADRAIL / VALANCE -->
 <div class="step-block" id="step-3">
   <div class="step-head" onclick="crsToggle('step-3')">
-    <div class="step-num">3</div>
+    <div class="step-num">4</div>
     <div class="step-title">Headrail &amp; valance</div>
     <div class="step-val" id="sv-3"></div>
   </div>
@@ -296,35 +332,6 @@
       </div>
     </div>
     <p style="font-size:11px;color:#999;margin-top:10px;line-height:1.6">For blackout shades, cassette is recommended — it eliminates the light gap around the tube.</p>
-  </div>
-</div>
-
-<!-- STEP 4: DIMENSIONS -->
-<div class="step-block" id="step-4">
-  <div class="step-head" onclick="crsToggle('step-4')">
-    <div class="step-num">4</div>
-    <div class="step-title">Dimensions</div>
-    <div class="step-val" id="sv-4"></div>
-  </div>
-  <div class="step-body">
-    <div class="dim-box">
-      <div class="dim-box-label">Enter your window size</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Width</label>
-          <input type="number" id="crs-inp-w" min="12" max="144" step="0.5" placeholder="36" oninput="crsDimChanged()">
-          <div class="dim-unit">inches &mdash; 12″ min · 144″ max</div>
-        </div>
-        <div class="form-group">
-          <label>Height</label>
-          <input type="number" id="crs-inp-h" min="12" max="132" step="0.5" placeholder="72" oninput="crsDimChanged()">
-          <div class="dim-unit">inches &mdash; 12″ min · 132″ max</div>
-        </div>
-      </div>
-    </div>
-    <div class="tooltip-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Inside mount: give us exact frame — we deduct for fit.</div>
-    <div class="dim-msg warn" id="dim-warn"></div>
-    <div class="dim-msg info" id="dim-info"></div>
   </div>
 </div>
 
@@ -396,28 +403,10 @@
   </div>
 </div>
 
-<!-- STEP 7: QUANTITY -->
-<div class="step-block" id="step-7">
-  <div class="step-head" onclick="crsToggle('step-7')">
-    <div class="step-num">7</div>
-    <div class="step-title">Quantity</div>
-    <div class="step-val" id="sv-7">1 shade</div>
-  </div>
-  <div class="step-body">
-    <p style="font-size:12px;color:#666;margin-bottom:4px;line-height:1.6">Number of shades with these same specs. If you have different sizes or rooms, add notes below or submit separate orders.</p>
-    <div class="spinner-row">
-      <button class="spin-btn" onclick="crsAdjQty(-1)">−</button>
-      <input class="spin-num" type="number" id="qty-num" min="1" max="20" value="1" oninput="crsQtyInput()">
-      <button class="spin-btn" onclick="crsAdjQty(1)">+</button>
-      <span class="spin-label">shade(s)</span>
-    </div>
-  </div>
-</div>
-
 <!-- STEP 8: DELIVERY -->
 <div class="step-block" id="step-8">
   <div class="step-head" onclick="crsToggle('step-8')">
-    <div class="step-num">8</div>
+    <div class="step-num">7</div>
     <div class="step-title">Delivery</div>
     <div class="step-val" id="sv-8"></div>
   </div>
@@ -436,7 +425,7 @@
 <!-- STEP 9: CONTACT & SUBMIT -->
 <div class="step-block" id="step-9">
   <div class="step-head" onclick="crsToggle('step-9')">
-    <div class="step-num">9</div>
+    <div class="step-num">8</div>
     <div class="step-title">Your contact info</div>
     <div class="step-val" id="sv-9"></div>
   </div>
@@ -475,7 +464,7 @@
 <!-- ── QUOTE PANEL ── -->
 <div class="quote-panel" id="quote-panel">
   <div class="qp-title">Your order</div>
-  <div class="qp-pending" id="qp-pending">Select shade type above to start building your order.</div>
+  <div class="qp-pending" id="qp-pending">Enter your window size above to start building your order.</div>
   <div id="qp-rows"></div>
   <div class="qdiv" id="qp-div" style="display:none"></div>
   <div class="qnote" id="qp-note" style="display:none">No pricing shown — Justin quotes each custom shade personally after reviewing your specs.</div>
