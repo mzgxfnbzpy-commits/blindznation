@@ -1077,9 +1077,48 @@
         <!-- Wrapper hidden when Norman roller active (rn-wrap takes over) -->
         <div id="shared-steps-wrap">
 
+        <!-- Step 1: Size & quantity -->
+        <div class="step-block" style="margin-bottom:14px">
+          <div class="step-label">Step 1</div>
+          <div class="step-title">Window size &amp; quantity</div>
+          <div class="dim-box">
+            <div class="dim-box-label">Enter your window size</div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Width</label>
+                <input type="number" id="inp-width" min="12" max="144" step="0.5" placeholder="36" oninput="updatePrice()">
+                <div class="dim-unit">inches &nbsp;·&nbsp; halves OK (e.g. 36.5)</div>
+              </div>
+              <div class="form-group">
+                <label>Height</label>
+                <input type="number" id="inp-height" min="12" max="132" step="0.5" placeholder="48" oninput="updatePrice()">
+                <div class="dim-unit">inches</div>
+              </div>
+            </div>
+          </div>
+          <div class="tooltip-note" id="size-note" style="margin-top:-4px;margin-bottom:8px;color:var(--gold)"></div>
+          <div class="step-title" style="font-size:12px;margin-bottom:8px">Quantity</div>
+          <div class="qty-btns">
+            <button class="qty-btn" onclick="adjustQty(-1)">&#8722;</button>
+            <input class="qty-num" type="number" id="inp-qty" value="1" min="1" max="10" oninput="clampQty();updatePrice()">
+            <button class="qty-btn" onclick="adjustQty(1)">&#43;</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Mount -->
+        <div class="step-block" style="margin-bottom:14px">
+          <div class="step-label">Step 2</div>
+          <div class="step-title">Mount type</div>
+          <div class="opt-row" id="grp-mount">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-mount');updatePrice()">Inside mount</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-mount');updatePrice()">Outside mount</button>
+          </div>
+          <div class="tooltip-note" style="margin-top:6px">Inside mount requires a minimum 2&frac34;&rdquo; window depth.</div>
+        </div>
+
         <!-- OPERATING SYSTEM (shown per product, drives size limits) -->
         <div class="step-block" id="op-system-block" style="display:none">
-          <div class="step-label">Step 2</div>
+          <div class="step-label">Step 3</div>
           <div class="step-title">Operating system</div>
 
           <!-- Roller -->
@@ -1165,43 +1204,10 @@
           <div id="op-system-note" class="tooltip-note" style="margin-top:6px;color:var(--gold);font-weight:500"></div>
         </div>
 
-        <!-- Step B: Dimensions -->
-        <div class="step-block" style="margin-bottom:14px">
-          <div class="step-label">Step 2</div>
-          <div class="step-title">Window measurements</div>
-          <div class="dim-box">
-            <div class="dim-box-label">Enter your window size</div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Width</label>
-                <input type="number" id="inp-width" min="12" max="144" step="0.5" placeholder="36" oninput="updatePrice()">
-                <div class="dim-unit">inches &nbsp;·&nbsp; halves OK (e.g. 36.5)</div>
-              </div>
-              <div class="form-group">
-                <label>Height</label>
-                <input type="number" id="inp-height" min="12" max="132" step="0.5" placeholder="48" oninput="updatePrice()">
-                <div class="dim-unit">inches</div>
-              </div>
-            </div>
-          </div>
-          <div class="tooltip-note" id="size-note" style="margin-top:-4px;margin-bottom:8px;color:var(--gold)"></div>
-          <div class="step-title" style="font-size:12px;margin-bottom:8px">Mount type</div>
-          <div class="opt-row" id="grp-mount">
-            <button class="opt-btn sel" onclick="selOpt(this,'grp-mount');updatePrice()">Inside mount</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-mount');updatePrice()">Outside mount</button>
-          </div>
-          <div class="tooltip-note" style="margin-top:-8px;margin-bottom:12px">Inside mount requires a minimum 2&frac34;&rdquo; window depth.</div>
-          <div class="step-title" style="font-size:12px;margin-bottom:8px">Quantity</div>
-          <div class="qty-btns">
-            <button class="qty-btn" onclick="adjustQty(-1)">&#8722;</button>
-            <input class="qty-num" type="number" id="inp-qty" value="1" min="1" max="10" oninput="clampQty();updatePrice()">
-            <button class="qty-btn" onclick="adjustQty(1)">&#43;</button>
-          </div>
-        </div>
 
         <!-- Step C: Light / fabric options — per product -->
         <div class="step-block" id="step-light">
-          <div class="step-label">Step 3</div>
+          <div class="step-label">Step 4</div>
           <div class="step-title" id="light-step-title">Light control</div>
 
           <!-- ROLLER: Sheer · LF · RD · LightGuard 360 · Solar -->
@@ -1258,7 +1264,7 @@
 
         <!-- CELLULAR ONLY: cell size FIRST → then fabric + color -->
         <div class="step-block" id="cellular-opts" style="display:none">
-          <div class="step-label">Step 3b</div>
+          <div class="step-label">Step 4b</div>
           <div class="step-title">Cell size &amp; fabric</div>
 
           <!-- Window shape — specialty routes to contact popup -->
@@ -1331,7 +1337,7 @@
 
         <!-- WOVEN WOOD ONLY: material preference -->
         <div class="step-block" id="woven-material-opts" style="display:none">
-          <div class="step-label">Step 3b</div>
+          <div class="step-label">Step 4b</div>
           <div class="step-title">Material preference</div>
           <div class="opt-row" id="grp-woven-material">
             <button class="opt-btn sel" onclick="selOpt(this,'grp-woven-material')">Bamboo</button>
@@ -1345,7 +1351,7 @@
 
         <!-- ROLLER ONLY: hardware & finish -->
         <div class="step-block" id="roller-hardware-opts" style="display:none">
-          <div class="step-label">Step 3b</div>
+          <div class="step-label">Step 4b</div>
           <div class="step-title">Hardware &amp; finish</div>
 
           <div style="margin-bottom:16px">
@@ -1391,7 +1397,7 @@
 
         <!-- Step D: Motorization -->
         <div class="step-block">
-          <div class="step-label">Step 4</div>
+          <div class="step-label">Step 5</div>
           <div class="step-title">Add motorization? <span style="font-weight:400;color:#888">(optional)</span></div>
           <div class="opt-row" id="grp-motor">
             <button class="opt-btn sel" onclick="selOpt(this,'grp-motor');toggleMotor(false)">No thanks — manual</button>
@@ -1423,7 +1429,7 @@
 
         <!-- Step E: Price box -->
         <div class="step-block">
-          <div class="step-label">Step 5</div>
+          <div class="step-label">Step 6</div>
           <div class="step-title">Estimated price</div>
           <div class="price-box" id="price-box">
             <div class="price-box-head">Live estimate</div>
