@@ -492,11 +492,12 @@ html { scroll-padding-top: 96px; }
 html, body { overflow-x: hidden; }
 
 /* ── Improved opt-btn: hover animation, selected glow, disabled lock ── */
+/* Small Soluna-style pill — the consistent option-button size for ALL products (see CONFIGURATOR-STANDARD.md). */
 .opt-btn {
-  padding: 11px 18px;
+  padding: 8px 14px;
   border: 1.5px solid #ddd;
   border-radius: 8px;
-  font-size: 17px;
+  font-size: 13px;
   cursor: pointer;
   background: #fff;
   color: #333;
