@@ -91,7 +91,7 @@ function crsPickColor(btn, color) {
 // ── STEP 2: MOUNT ────────────────────────────────────────────
 function crsPickMount(val, label) {
   CRS.mount = val;
-  document.querySelectorAll('#step-2 .opt-card').forEach(function(c) { c.classList.remove('sel'); });
+  document.querySelectorAll('#step-2 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   var card = _crsEl('mc-' + val);
   if (card) card.classList.add('sel');
 
