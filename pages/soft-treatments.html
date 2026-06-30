@@ -699,15 +699,7 @@
       </div>
     </div>
 
-    <!-- TDBU toggle — only for Flat / Permanently Pleated Roman -->
-    <div id="roman-tdbu-wrap" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Top-Down / Bottom-Up operation?</div>
-      <div class="opt-row" id="grp-roman-tdbu">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-tdbu')">Standard</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-roman-tdbu')">Yes — add TDBU</button>
-      </div>
-      <div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5">TDBU lets the shade open from the top or bottom — privacy with natural light.</div>
-    </div>
+    <!-- TDBU moved to its own numbered step after Fabric — see #roman-step-tdbu -->
 
     <!-- VIGNETTE NOTICE -->
     <div id="vignette-notice" style="display:none;margin-top:14px;background:var(--espresso);border-radius:12px;padding:18px 20px">
@@ -889,7 +881,18 @@
     </div>
   </div>
 
-  <!-- STEP 5: LINING -->
+  <!-- STEP: TOP-DOWN / BOTTOM-UP — Flat / Permanently Pleated only; shown + renumbered live -->
+  <div class="step" id="roman-step-tdbu" style="display:none">
+    <div class="step-label">Step 5</div>
+    <div class="step-title">Top-Down / Bottom-Up</div>
+    <div class="opt-row" id="grp-roman-tdbu" style="margin-top:12px">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-tdbu')">Standard</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-roman-tdbu')">Yes — add TDBU</button>
+    </div>
+    <div style="font-size:12px;color:#888;margin-top:8px;line-height:1.5">TDBU lets the shade open from the top or bottom — privacy with natural light.</div>
+  </div>
+
+  <!-- STEP: LINING -->
   <div class="step" id="step-roman-4">
     <div class="step-label">Step 5</div>
     <div class="step-title">Lining</div>

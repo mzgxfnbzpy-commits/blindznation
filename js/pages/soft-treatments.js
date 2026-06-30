@@ -255,6 +255,20 @@ function selectPinchDetail(el, val) {
   el.classList.add('sel');
   drapeState.pleat = val;
 }
+// Roman config steps in DOM order. The TDBU step is conditional (Flat / Permanently
+// Pleated only), so step numbers are assigned live to the currently-visible steps —
+// this prevents a number gap when TDBU is hidden.
+var RN_STEP_IDS = ['roman-step-style','roman-step-dims','roman-step-mount','step-roman-3','roman-step-tdbu','step-roman-4','step-roman-5','step-roman-6'];
+function rnRenumberSteps() {
+  var n = 0;
+  RN_STEP_IDS.forEach(function(id) {
+    var s = document.getElementById(id);
+    if (!s || s.style.display === 'none') return;
+    n++;
+    var lbl = s.querySelector('.step-label');
+    if (lbl) lbl.textContent = 'Step ' + n;
+  });
+}
 function selectRomanStyle(el, val) {
   if (romanState.style && romanState.style !== val) _rnCaptureState(romanState.style);
   var _prevRnState = romanState.style ? _rnStyleCache[romanState.style] : null;
@@ -270,7 +284,7 @@ function selectRomanStyle(el, val) {
 
   document.getElementById('vignette-notice').style.display = isVignette ? 'block' : 'none';
   document.getElementById('valance-config').style.display  = isValance  ? 'block' : 'none';
-  document.getElementById('roman-tdbu-wrap').style.display = tdbuStyles.indexOf(val) !== -1 ? 'block' : 'none';
+  document.getElementById('roman-step-tdbu').style.display = tdbuStyles.indexOf(val) !== -1 ? '' : 'none';
 
   var mountStep = document.getElementById('roman-step-mount');
   if (mountStep) mountStep.style.display = hideSteps ? 'none' : '';
@@ -278,6 +292,8 @@ function selectRomanStyle(el, val) {
     var s = document.getElementById(id);
     if (s) s.style.display = hideSteps ? 'none' : '';
   });
+
+  rnRenumberSteps();
 
   _rnRestoreState(val, _prevRnState);
   calcRoman();

@@ -404,6 +404,58 @@ function selOrToggle(el, groupId) {
 }
 
 // ============================================================
+// CONTACT PERSISTENCE
+// ============================================================
+var _PB_CONTACT_KEY = 'pb_contact_v1';
+
+function pbGetContact() {
+  try { return JSON.parse(localStorage.getItem(_PB_CONTACT_KEY) || '{}'); } catch(e) { return {}; }
+}
+function pbSaveContact(updates) {
+  try {
+    var cur = pbGetContact();
+    for (var k in updates) if (Object.prototype.hasOwnProperty.call(updates, k) && updates[k] !== undefined) cur[k] = updates[k];
+    localStorage.setItem(_PB_CONTACT_KEY, JSON.stringify(cur));
+  } catch(e) {}
+}
+
+// Auto-fill all [data-pb-contact] inputs from saved data; attach input listeners to keep saving.
+// Called once on DOMContentLoaded from shared.js init.
+function pbAutoFillContact() {
+  var c = pbGetContact();
+  document.querySelectorAll('[data-pb-contact]').forEach(function(el) {
+    var key = el.getAttribute('data-pb-contact');
+    if (c[key] && !el.value) el.value = c[key];
+    if (!el._pbCBound) {
+      el._pbCBound = true;
+      el.addEventListener('input', function() {
+        var upd = {}; upd[key] = el.value.trim();
+        pbSaveContact(upd);
+      });
+    }
+  });
+}
+
+// Returns true when name + phone + email are filled; shows error in element with id=errId.
+function pbContactValid(errId) {
+  var nameEl  = document.querySelector('[data-pb-contact="name"]');
+  var phoneEl = document.querySelector('[data-pb-contact="phone"]');
+  var emailEl = document.querySelector('[data-pb-contact="email"]');
+  var errEl   = errId ? document.getElementById(errId) : null;
+  function _fail(msg, focusEl) {
+    if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
+    if (focusEl) { try { focusEl.scrollIntoView({ behavior:'smooth', block:'center' }); focusEl.focus(); } catch(e){} }
+    return false;
+  }
+  if (!nameEl  || !nameEl.value.trim())  return _fail('Please enter your name.', nameEl);
+  if (!phoneEl || !phoneEl.value.trim()) return _fail('Please enter your phone number.', phoneEl);
+  if (!emailEl || !emailEl.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim()))
+    return _fail('Please enter a valid email address.', emailEl);
+  if (errEl) errEl.style.display = 'none';
+  return true;
+}
+
+// ============================================================
 // GLOBAL CART ENGINE
 // ============================================================
 var _PB_CART_KEY = 'pb_cart_v1';
@@ -1051,6 +1103,21 @@ function pbShowQuoteModal(lines, productName, estimate, files) {
       '</div>' +
     '</div>';
   document.body.appendChild(ov);
+  // Pre-fill from saved contact
+  var _ck = pbGetContact();
+  if (_ck.name) {
+    var _pts = _ck.name.trim().split(' ');
+    var _fnEl = document.getElementById('pbq-fname');
+    var _lnEl = document.getElementById('pbq-lname');
+    if (_fnEl && !_fnEl.value) _fnEl.value = _pts[0] || '';
+    if (_lnEl && !_lnEl.value) _lnEl.value = _pts.slice(1).join(' ') || '';
+  }
+  var _emEl = document.getElementById('pbq-email');
+  var _phEl = document.getElementById('pbq-phone');
+  if (_emEl && !_emEl.value && _ck.email) _emEl.value = _ck.email;
+  if (_phEl && !_phEl.value && _ck.phone) _phEl.value = _ck.phone;
+  var _adEl = document.getElementById('pbq-address');
+  if (_adEl && !_adEl.value && _ck.address) _adEl.value = _ck.address;
   setTimeout(function(){ var f=document.getElementById('pbq-fname'); if(f) f.focus(); }, 80);
 }
 
@@ -1169,6 +1236,7 @@ async function pbSubmitQuote() {
     }
     var ok = document.getElementById('pbq-ok');
     if (ok) ok.style.display = 'block';
+    pbSaveContact({ name: name, email: email.trim(), phone: phone.trim(), address: address.trim() });
     // Order submitted — empty the cart so it can't be resubmitted (also clears in-memory files)
     try { pbClearCart(); } catch(e) {}
 
@@ -1940,6 +2008,23 @@ function reqMoreInfo(product) {
     pbShowContact(title || 'Get a Free Quote');
   }, true);
 }());
+
+// ── Contact auto-fill + submit guard ────────────────────────────────────────
+// Runs on every page that includes shared.js.
+document.addEventListener('DOMContentLoaded', function() {
+  pbAutoFillContact();
+  // Intercept clicks on [data-pb-require-contact] buttons (capture phase = before onclick handler).
+  // Prevents submission when name / phone / email are missing.
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-pb-require-contact]');
+    if (!btn || btn.disabled) return;
+    var errId = btn.getAttribute('data-pb-require-contact');
+    if (!pbContactValid(errId)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+    }
+  }, true);
+});
 
 
 
