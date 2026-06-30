@@ -162,8 +162,10 @@
     <div class="step-val" id="sv-4">—</div>
   </div>
   <div class="step-body">
-    <p class="step-subhead">Both use the cassette headrail. Wall mount attaches to wall or fascia. Ceiling / soffit mount attaches overhead — ideal for pergolas and covered patios.</p>
+    <p class="step-subhead">All use the cassette headrail. Inside / Outside mount fit within or over the window frame; Wall mount attaches to wall or fascia; Ceiling / soffit mount attaches overhead — ideal for pergolas and covered patios.</p>
     <div class="opt-row">
+      <button class="opt-btn" id="mount-inside" onclick="ersPickMount('inside','Inside Mount')">Inside Mount</button>
+      <button class="opt-btn" id="mount-outside" onclick="ersPickMount('outside','Outside Mount')">Outside Mount</button>
       <button class="opt-btn" id="mount-wall" onclick="ersPickMount('wall','Wall Mount')">Wall Mount</button>
       <button class="opt-btn" id="mount-ceiling" onclick="ersPickMount('ceiling','Ceiling / Soffit Mount')">Ceiling / Soffit Mount</button>
     </div>
@@ -385,6 +387,7 @@ function ersPickTrack(val, label) {
 
 function ersPickMount(val, label) {
   ERS.mount = val;
+  ERS.mountLabel = label;
   document.querySelectorAll('#step-4 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   var card = document.getElementById('mount-' + val);
   if (card) card.classList.add('sel');
@@ -472,7 +475,7 @@ function ersUpdatePanel() {
     qr('Openness', ERS.openness + '% solar screen');
     if (ERS.color) qr('Color', ERS.color);
     if (ERS.track) qr('Side track', ERS.track === 'none' ? 'None' : ERS.track === 'zipper' ? 'Zipper Track' : 'Cables');
-    if (ERS.mount) qr('Mount', ERS.mount === 'wall' ? 'Wall Mount' : 'Ceiling / Soffit Mount');
+    if (ERS.mount) qr('Mount', ERS.mountLabel || ERS.mount);
     if (ERS.operation) qr('Operation', ERS.operation === 'manual' ? 'Manual — chain' : 'Motorized');
     if (ERS.width && ERS.height) qr('Size', ERS.width + '″ × ' + ERS.height + '″');
     qr('Qty', ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : ''));
@@ -514,7 +517,7 @@ function addExteriorRollerToCart(){
   if(!ERS.width||!ERS.height){ alert('Please enter dimensions before adding to cart.'); return; }
 
   var trackLabel=ERS.track==='zipper'?'Zipper Track':ERS.track==='cables'?'Cables':'—';
-  var mountLabel=ERS.mount==='wall'?'Wall Mount':ERS.mount==='ceiling'?'Ceiling / Soffit Mount':'—';
+  var mountLabel=ERS.mountLabel||'—';
   var opLabel=ERS.operation==='manual'?'Manual — hand crank':ERS.operation==='motorized'?'Motorized':'—';
 
   var lines=[
@@ -542,7 +545,7 @@ function ersSubmit() {
   if (!email && !phone) { alert('Please enter at least an email or phone number.'); return; }
 
   var trackLabel = ERS.track === 'none' ? 'None' : ERS.track === 'zipper' ? 'Zipper Track' : ERS.track === 'cables' ? 'Cables' : '—';
-  var mountLabel = ERS.mount === 'wall' ? 'Wall Mount' : ERS.mount === 'ceiling' ? 'Ceiling / Soffit Mount' : '—';
+  var mountLabel = ERS.mountLabel || '—';
   var opLabel = ERS.operation === 'manual' ? 'Manual — chain' : ERS.operation === 'motorized' ? 'Motorized' : '—';
   var dimLabel = (ERS.width && ERS.height) ? (ERS.width + '″W × ' + ERS.height + '″H') : '—';
   var sqft = (ERS.width && ERS.height) ? (ERS.width * ERS.height / 144).toFixed(1) + ' sq ft' : '—';
