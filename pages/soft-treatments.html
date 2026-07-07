@@ -1172,6 +1172,17 @@
       <div id="cv-valance-finish" style="display:none">
         <div style="font-size:12px;color:#555;margin-bottom:8px">Applied trim options:</div>
       </div>
+      <!-- Self / Double welt placement (shown when Self welt or Double self welt selected) -->
+      <div id="corn-welt-opts" style="margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+        <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Where should the welt go?</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-welt-edge" data-loc="top" onchange="calcCornice()"> Top</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-welt-edge" data-loc="bottom" checked onchange="calcCornice()"> Bottom</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-welt-edge" data-loc="sides" onchange="calcCornice()"> Both sides</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-welt-edge" data-loc="returns" onchange="calcCornice()"> Returns</label>
+        </div>
+        <div style="font-size:10px;color:#999;margin-top:6px">Welt is made from your shade fabric — no separate trim to supply.</div>
+      </div>
       <div id="corn-trim-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
         <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Which edges?</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">

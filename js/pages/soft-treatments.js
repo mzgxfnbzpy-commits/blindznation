@@ -829,21 +829,42 @@ function cvSetType(type) {
     : 'Fabric soft top treatment. Custom quoted.';
   var cornFin = document.getElementById('cv-cornice-finish');
   var valFin  = document.getElementById('cv-valance-finish');
-  var trimOpts= document.getElementById('corn-trim-opts');
-  if (cornFin) cornFin.style.display = isCorn ? 'block' : 'none';
-  if (valFin)  valFin.style.display  = isCorn ? 'none'  : 'block';
-  // For valance, always show trim edges; for cornice, respect the toggle
-  if (!isCorn && trimOpts) trimOpts.style.display = 'block';
-  if (isCorn  && trimOpts) { trimOpts.style.display = 'none'; }
+  // Both cornice and valance use the same finishing choices: Self welt / Double self welt / Applied trim.
+  if (cornFin) cornFin.style.display = 'block';
+  if (valFin)  valFin.style.display  = 'none';   // legacy valance-only "Applied trim" label — no longer used
+  // Sync the placement pickers (welt vs applied-trim edges) to whichever finishing is selected.
+  var trimSel = document.querySelector('#grp-corn-trim .opt-btn.sel');
+  cornToggleTrim(!!(trimSel && trimSel.textContent.indexOf('Applied trim') !== -1));
   calcCornice();
 }
+// show=true → Applied trim (edge picker + supply). show=false → Self/Double welt (welt-placement picker).
 function cornToggleTrim(show) {
-  var el = document.getElementById('corn-trim-opts');
-  if (el) el.style.display = show ? 'block' : 'none';
+  var trim = document.getElementById('corn-trim-opts');
+  var welt = document.getElementById('corn-welt-opts');
+  if (trim) trim.style.display = show ? 'block' : 'none';
+  if (welt) welt.style.display = show ? 'none'  : 'block';
 }
 function valToggleTrim(show) {
-  var el = document.getElementById('val-trim-opts');
-  if (el) el.style.display = show ? 'block' : 'none';
+  var trim = document.getElementById('val-trim-opts');
+  var welt = document.getElementById('val-welt-opts');
+  if (trim) trim.style.display = show ? 'block' : 'none';
+  if (welt) welt.style.display = show ? 'none'  : 'block';
+}
+// Readable list of checked edge locations for a given checkbox class ('Top, Bottom, …')
+function _cvEdges(cls) {
+  var m = {top:'Top', bottom:'Bottom', sides:'Both sides', returns:'Returns'};
+  var locs = [];
+  document.querySelectorAll('.' + cls + ':checked').forEach(function(cb) {
+    locs.push(m[cb.getAttribute('data-loc')] || cb.getAttribute('data-loc'));
+  });
+  return locs.join(', ');
+}
+// Finishing description including placement (welt edges, or applied-trim edges)
+function _cvFinishDesc(trimGrp, weltCls, trimCls) {
+  var t = getOpt(trimGrp) || '—';
+  if (t.indexOf('Applied trim') !== -1) { var e = _cvEdges(trimCls); return t + (e ? ' (' + e + ')' : ''); }
+  if (t.toLowerCase().indexOf('welt') !== -1) { var w = _cvEdges(weltCls); return t + (w ? ' (' + w + ')' : ''); }
+  return t;
 }
 
 function _cvTrimFt(edgeClass, w, h, ret) {
@@ -902,7 +923,13 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
     var hMult = Math.ceil((h - 15) / 10);
     rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Height over 15″ (+' + hMult + ' × $10/ft) <span style="color:var(--gold)">+$' + heightSurcharge.toFixed(2) + '</span></div>';
   }
-  if (hasTrim) rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">' + selTrimTxt + '</div>';
+  if (hasTrim) {
+    var trimEdges = _cvEdges(trimClass);
+    rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">' + selTrimTxt + (trimEdges ? ' — ' + trimEdges : '') + '</div>';
+  } else if (isSelfWelt) {
+    var weltEdges = _cvEdges(trimClass.replace('-trim-', '-welt-'));
+    rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">' + selTrimTxt + (weltEdges ? ' — ' + weltEdges : '') + '</div>';
+  }
   if (fabricCost) rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">We supply fabric (~' + fabricYds + ' yds est.)</div>';
   rows += '<div style="font-size:11px;font-weight:700;color:var(--cream);padding-top:8px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)">Est. total: $' + total.toFixed(2) + '</div>';
   document.getElementById(rowsId).innerHTML = rows;
@@ -955,7 +982,7 @@ async function submitCornice() {
     { label: 'Width',        value: (document.getElementById('cv-corn-w').value||'—') + '"' },
     { label: 'Height',       value: (document.getElementById('cv-corn-h').value||'—') + '"' },
     { label: 'Return depth', value: (document.getElementById('cv-corn-return').value||'4') + '"' },
-    { label: 'Finishing',    value: getOpt('grp-corn-trim') || '—' },
+    { label: 'Finishing',    value: _cvFinishDesc('grp-corn-trim','corn-welt-edge','corn-trim-edge') },
     { label: 'Fabric',       value: getOpt('grp-corn-fabric') || '—' },
     { label: 'Installation', value: pbInstallRequested(document.getElementById('corn-form')) ? 'Requested' : 'Not requested' }
   ];
@@ -972,7 +999,7 @@ async function submitValanceCv() {
     { label: 'Width',        value: (document.getElementById('cv-val-w').value||'—') + '"' },
     { label: 'Height',       value: (document.getElementById('cv-val-h').value||'—') + '"' },
     { label: 'Return depth', value: (document.getElementById('cv-val-return').value||'4') + '"' },
-    { label: 'Finishing',    value: getOpt('grp-val-trim') || '—' },
+    { label: 'Finishing',    value: _cvFinishDesc('grp-val-trim','val-welt-edge','val-trim-edge') },
     { label: 'Fabric',       value: getOpt('grp-val-fabric') || '—' }
   ];
   await _stApiSubmit('val-form', 'val-cv-success', name, email, phone, 'Valance', selections, document.getElementById('vn-notes').value.trim());

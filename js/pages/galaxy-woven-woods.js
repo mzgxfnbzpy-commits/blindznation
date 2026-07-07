@@ -302,6 +302,15 @@ function updateControlOptions(){
   document.getElementById('ctrl-loop').classList.toggle('disabled',motor||tdbu);
   document.getElementById('ctrl-cordless').classList.toggle('disabled',hobble||motor);
   document.getElementById('ctrl-motor').classList.toggle('disabled',hobble||tdbu||dual);
+  // If the currently-selected control just became disabled by the style change, clear it.
+  if(S.control){
+    var cur=document.getElementById('ctrl-'+S.control);
+    if(cur&&cur.classList.contains('disabled')){
+      S.control='';cur.classList.remove('sel');
+      document.getElementById('s4val').textContent='—';
+      var ma=document.getElementById('motor-accessories'); if(ma) ma.style.display='none';
+    }
+  }
 }
 
 function pickControl(el,key){
@@ -313,6 +322,9 @@ function pickControl(el,key){
 
 function pickControlByKey(key){
   S.control=key;
+  // Highlight the matching control card (this is also called programmatically from pickStyle).
+  document.querySelectorAll('#step4 .opt-card').forEach(c=>c.classList.remove('sel'));
+  var _cb=document.getElementById('ctrl-'+key); if(_cb) _cb.classList.add('sel');
   const label={loop:'Loop Control',cordless:'Cordless',motor:'Motorized'}[key]||key;
   document.getElementById('s4val').textContent=label;
   markDone('step4');

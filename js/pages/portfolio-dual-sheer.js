@@ -485,9 +485,19 @@ function pickControl(v,el){
   S.control=v;
   document.querySelectorAll('#control-opts .opt-btn').forEach(b=>b.classList.remove('sel'));
   el.classList.add('sel');
-  // Update BB square availability for cordless
+  // Update BB square availability for cordless (square bottom bar not available on cordless)
   const sqBtn=document.getElementById('bb-sq-btn');
-  if(v==='cordless') sqBtn.classList.add('disabled');
+  if(v==='cordless'){
+    sqBtn.classList.add('disabled');
+    if(S.bbStyle==='square'){                       // revert a now-unavailable square selection
+      S.bbStyle='rounded';
+      document.querySelectorAll('#bb-style-opts .opt-btn').forEach(b=>b.classList.remove('sel'));
+      var _rb=document.querySelector('#bb-style-opts .opt-btn[onclick*="rounded"]'); if(_rb) _rb.classList.add('sel');
+    }
+  } else {
+    var _f=fab();
+    if(!(_f&&_f.tory)) sqBtn.classList.remove('disabled');   // re-enable unless a Tory fabric blocks square
+  }
   buildControlOptions(v);
   const labels={clutch:'Clutch (beaded chain)',cordless:'Cordless (+$192)',prowand:'Pro Wand (+$232)',remote:'Remote Motor (+$460)'};
   advance(9, labels[v]);

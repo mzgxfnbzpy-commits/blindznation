@@ -161,7 +161,7 @@ function setProd(p,el){
   document.getElementById('ctrl-2d').style.display=p==='2d'?'':'none';
   document.getElementById('step5-dual').style.display=p==='dual'?'':'none';
   document.getElementById('step5-2d').style.display=p==='2d'?'':'none';
-  document.getElementById('opts-2d').style.display=p==='2d'?'':'none';
+  var opts2d=document.getElementById('opts-2d');if(opts2d)opts2d.style.display=p==='2d'?'':'none';
   document.getElementById('s2title').textContent=p==='dual'?'Fabric':'Fabric Preferences';
   spv('sp-prod',p==='dual'?'Portfolio Dual Sheer':'Banded 2D Shades');
   if(p==='2d'){render2dGrid();}

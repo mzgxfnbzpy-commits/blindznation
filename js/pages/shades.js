@@ -700,7 +700,7 @@ const CELL_COMPAT = {
   // Source: Norman Portrait Honeycomb catalog Option Reference Chart
   'lf':   [0,1,2,3,4,5],  // Light Filtering — all 6 sizes
   'rd':   [  1,2,3,4,5],  // Room Darkening — 9/16"S (16-color limited palette), 1/2"D, 3/4"S, 3/4"D, 1¼"S. NOT 3/8"S.
-  'sheer':[0],             // Sheer — 3/8"S only as single shade (9/16"S top in D&N only)
+  'sheer':[0,3,5],         // Sheer single shade — 3/8"S, 3/4"S, 1¼"S (9/16"S is D&N-top only; not in double cells)
   'dn':   [0,1,2,3,4,5],  // Day & Night — all 6 cell sizes confirmed by owner 2026-05-16. Top & bottom same cell size.
 };
 const FABRIC_NOTES = {
@@ -874,8 +874,9 @@ function updatePrice() {
       'Cord Loop system', opAdd > 0 ? '+$73' : null);
 
     // Lift direction surcharge (TDBU/D&N +$89)
-    const liftAdd = (liftTxt === 'Top Down / Bottom Up') ? 89 : (liftTxt === 'Day & Night') ? 89 : 0;
-    const liftLabel = liftTxt === 'Top Down / Bottom Up' ? 'Top Down / Bottom Up' : liftTxt === 'Day & Night' ? 'Day & Night' : '';
+    // D&N is now selected via the fabric category (not lift), so key its surcharge off fabTxt.
+    const liftAdd = (liftTxt === 'Top Down / Bottom Up') ? 89 : (fabTxt === 'Day & Night') ? 89 : 0;
+    const liftLabel = liftTxt === 'Top Down / Bottom Up' ? 'Top Down / Bottom Up' : fabTxt === 'Day & Night' ? 'Day & Night' : '';
     cellRow('pb-sur-lift-row', 'pb-sur-lift-label', 'pb-sur-lift',
       liftLabel, liftAdd > 0 ? '+$89' : null);
 
@@ -966,6 +967,7 @@ async function submitShadeForm(btn) {
   const chainType = '';   // field removed from current UI
   const chainLen  = '';
   const cellLift    = isCellular ? '\nLift:         ' + getOpt('grp-cellular-lift') : '';
+  const cellFabric  = isCellular ? '\nFabric:       ' + getOpt('grp-cell-fabric')   : '';
   const cellSize    = isCellular ? '\nCell size:    ' + getOpt('grp-cell-size')     : '';
   const cellType    = isCellular ? '\nCell type:    ' + getOpt('grp-cell-type')     : '';
 
@@ -982,7 +984,7 @@ async function submitShadeForm(btn) {
     'Qty:          ' + (qty || 1) + '\n' +
     'Mount:        ' + getOpt('grp-mount') + '\n' +
     'Operating:    ' + getOpt('grp-op-' + currentProduct) +
-    cellLift + cellSize + cellType +
+    cellLift + cellFabric + cellSize + cellType +
     fascia + endcap + chainType + chainLen + '\n' +
     'Motorization: ' + (motorOn ? 'Yes — ' + motorBrand : 'No') + '\n' +
     (motorOn && currentBrand === 'norman' && typeof nmGetMotorSummary === 'function' ? 'Motor options: ' + nmGetMotorSummary() + '\n' : '') +

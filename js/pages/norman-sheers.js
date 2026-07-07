@@ -167,6 +167,8 @@ function buildStack(){
     {val:'center',label:'Center Stack',    desc:'Vanes stack toward center (added Jan 2026)'},
     {val:'copen', label:'Center Opening',  desc:'Motorized only — two panels part from center outward'}
   ];
+  // Drop a now-invalid stack (e.g. Center Opening after switching Motorized → Wand Tilt).
+  if(S.stack && !opts.some(function(o){return o.val===S.stack;})) S.stack='';
   document.getElementById('stack-opts').innerHTML=opts.map(function(o){
     return '<div class="opt-card'+(S.stack===o.val?' sel':'')+'" id="stk-'+o.val+'" onclick="pickStack(\''+o.val+'\')">'
       +'<div class="opt-card-title">'+o.label+'</div><div class="opt-card-desc">'+o.desc+'</div></div>';

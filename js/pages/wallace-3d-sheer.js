@@ -163,13 +163,14 @@ buildCollGrid();
 // Build HW color dots
 function buildHWColors(suggested){
   const g=document.getElementById('hw-colors');
+  if(!S.hwColorManual) S.hwColor=suggested;   // keep a manually-chosen hardware color across fabric changes
+  const cur=S.hwColor;
   g.innerHTML=HW_COLORS.map(c=>`
     <div class="hw-col-item">
-      <div class="hw-dot${c.name===suggested?' sel':''}" style="background:${c.hex};border-color:${c.name===suggested?'var(--gold)':'transparent'}"
+      <div class="hw-dot${c.name===cur?' sel':''}" style="background:${c.hex};border-color:${c.name===cur?'var(--gold)':'transparent'}"
         onclick="pickHWColor(this,'${c.name}')" title="${c.name}"></div>
       <div class="hw-dot-label">${c.name}</div>
     </div>`).join('');
-  S.hwColor=suggested;
 }
 
 // ── STEP TOGGLES ──────────────────────────────────────────────────────────
@@ -309,6 +310,7 @@ function pickHWColor(el,name){
   el.classList.add('sel');
   el.style.borderColor='var(--gold)';
   S.hwColor=name;
+  S.hwColorManual=true;
   document.getElementById('s4val').textContent=(S.cassette==='round'?'Round':'Square')+' · '+name;
   updateSpec();
 }

@@ -450,7 +450,8 @@ function pickLinerColor(color,codeBase,el){
 }
 
 function pickEB(el,type){
-  document.querySelectorAll('#step6 .opt-card').forEach(c=>c.classList.remove('sel'));
+  // EB cards are the first 3 in #step6; valance cards (index 3+) keep their highlight.
+  document.querySelectorAll('#step6 .opt-card').forEach((c,i)=>{ if(i<3) c.classList.remove('sel'); });
   el.classList.add('sel');
   S.eb=type;
   updateEBVal();

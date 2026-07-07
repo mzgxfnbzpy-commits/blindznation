@@ -396,11 +396,17 @@ function setShadeStyle(style, el) {
   if(hobBtn) hobBtn.classList.toggle('blocked',!isWaterfall||isRV);
   // Auto-select Flat if Roman Valance and no flat-compatible style chosen
   if(isRV&&S.panelStyle&&S.panelStyle!=='flat'&&S.panelStyle!=='knife'){
+    if(!S.panelStyleBeforeRV) S.panelStyleBeforeRV=S.panelStyle;   // remember it to restore when leaving Roman Valance
     S.panelStyle='flat';
     document.querySelectorAll('#grp-panel-style .opt-btn').forEach(function(b){b.classList.remove('sel');});
     if(flatBtn) flatBtn.classList.add('sel');
     document.getElementById('val6').textContent='Flat';
     sp('sp-panel-style','Flat');
+  } else if(!isRV && S.panelStyleBeforeRV){
+    // Leaving Roman Valance — restore the panel style the user had before.
+    var _prev=S.panelStyleBeforeRV; S.panelStyleBeforeRV='';
+    var _pbtn=document.querySelector('#grp-panel-style .opt-btn[onclick*="\''+_prev+'\'"]');
+    if(_pbtn && !_pbtn.classList.contains('blocked')) setPanelStyle(_prev,_pbtn);
   }
   // Show/hide total-height note
   var rvHNote=document.getElementById('roman-valance-height-note');
