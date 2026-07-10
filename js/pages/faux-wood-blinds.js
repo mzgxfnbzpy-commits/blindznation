@@ -1,4 +1,4 @@
-﻿// ── PRICING DATA ──────────────────────────────────────────────────────────────
+// ── PRICING DATA ──────────────────────────────────────────────────────────────
 const W_COLS = [24,28,32,36,42,48,54,60,66,72,78,84,96];
 const H_ROWS = [30,36,42,48,54,60,66,73,78,84,90,96];
 const MATRIX = {
@@ -38,7 +38,7 @@ function markDone(id){ $(id).classList.add('done'); }
 
 // ── STEP 1 ────────────────────────────────────────────────────────────────────
 function pickSlat(el,label){
-  document.querySelectorAll('#step1 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step1 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.slat=label.includes('2½')?'2.5in':'2in';
   $('s1val').innerHTML=label+' (selected)';
@@ -73,9 +73,9 @@ function pickColor(el,label,code,printed){
 
 // ── STEP 3 ────────────────────────────────────────────────────────────────────
 function pickMount(el,label,val){
-  document.querySelectorAll('#step3 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step3 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
-  S.mount=val; $('s3val').textContent=label;
+  S.mount=val;
 
   const mn=$('mount-note');
   if(val==='inside'){
@@ -103,15 +103,15 @@ function pickMount(el,label,val){
 
 // ── STEP 4 ────────────────────────────────────────────────────────────────────
 function calcSize(){
-  const w=(parseFloat($('w-whole').value)||0)+(parseFloat($('w-frac').value)||0);
-  const h=(parseFloat($('h-whole').value)||0)+(parseFloat($('h-frac').value)||0);
+  const w=parseFloat($('w-whole').value)||0;
+  const h=parseFloat($('h-whole').value)||0;
   S.w=w; S.h=h; S.sizeOk=false;
 
   const msgs=$('size-msgs');
   const cbox=$('computed-box');
   msgs.innerHTML='';
 
-  if(!w&&!h){ cbox.style.display='none'; $('s4val').textContent='—'; updateWandUI(); calcPrice(); return; }
+  if(!w&&!h){ cbox.style.display='none'; $('s3val').textContent='—'; updateWandUI(); calcPrice(); return; }
 
   const errs=[];
   if(w>0&&w<16.5) errs.push('Minimum width is 16½″.');
@@ -122,7 +122,7 @@ function calcSize(){
 
   if(errs.length){
     errs.forEach(e=>{const d=document.createElement('div');d.className='msg-box msg-err';d.textContent=e;msgs.appendChild(d);});
-    cbox.style.display='none'; $('s4val').textContent='—'; updateWandUI(); updateSideMtUI(); calcPrice(); return;
+    cbox.style.display='none'; $('s3val').textContent='—'; updateWandUI(); updateSideMtUI(); calcPrice(); return;
   }
   if(!w||!h){ cbox.style.display='none'; updateWandUI(); calcPrice(); return; }
 
@@ -131,14 +131,14 @@ function calcSize(){
   if(!pW||!pH){
     const d=document.createElement('div');d.className='msg-box msg-err';
     d.textContent='Size is outside the pricing range. Please call us for a custom quote.';msgs.appendChild(d);
-    cbox.style.display='none'; $('s4val').textContent='—'; updateWandUI(); calcPrice(); return;
+    cbox.style.display='none'; $('s3val').textContent='—'; updateWandUI(); calcPrice(); return;
   }
 
   const wi=W_COLS.indexOf(pW);
   if(MATRIX[pH][wi]===null){
     const d=document.createElement('div');d.className='msg-box msg-err';
     d.textContent='This width × height combination is not available as a standard order. Please call us for a custom quote.';msgs.appendChild(d);
-    cbox.style.display='none'; $('s4val').textContent='—'; updateWandUI(); calcPrice(); return;
+    cbox.style.display='none'; $('s3val').textContent='—'; updateWandUI(); calcPrice(); return;
   }
 
   if(w>=90){
@@ -155,7 +155,7 @@ function calcSize(){
   $('cv-size').textContent=w+'″ W × '+h+'″ H';
   $('cv-pricesize').textContent=pW+'″ W × '+pH+'″ H';
   $('cv-area').textContent=area.toFixed(2)+' sq ft';
-  $('s4val').textContent=w+'″ × '+h+'″';
+  $('s3val').textContent=w+'″ × '+h+'″';
 
   // Hold down brackets
   $('hdb-prompt').style.display='none';
@@ -166,7 +166,7 @@ function calcSize(){
   }
 
   S.sizeOk=true;
-  markDone('step4'); updateWandUI(); updateSideMtUI(); calcPrice();
+  markDone('step3'); updateWandUI(); updateSideMtUI(); calcPrice();
 }
 
 function updateWandUI(){
@@ -196,7 +196,7 @@ function updateSideMtUI(){
 
 // ── STEP 5 ────────────────────────────────────────────────────────────────────
 function pickValance(el,label,val){
-  document.querySelectorAll('#step5 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step5 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.valance=val;
   $('s5val').innerHTML=label;
@@ -224,7 +224,7 @@ function adjShims(d){
 }
 
 function pickWandLoc(el,label){
-  document.querySelectorAll('#wand-loc-normal .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#wand-loc-normal .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.wandLoc=label.toLowerCase(); calcPrice();
 }
@@ -236,7 +236,7 @@ function adjQty(d){
 }
 function updateQty(){
   S.qty=Math.max(1,parseInt($('qty-input').value)||1);
-  $('s7val').textContent=S.qty+(S.qty===1?' blind':' blinds'); calcPrice();
+  calcPrice();
 }
 
 // ── DELIVERY ──────────────────────────────────────────────────────────────────
@@ -335,18 +335,18 @@ function calcPrice(){
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
 function submitForm(){
-  const name=$('f-name').value.trim();
-  const phone=$('f-phone').value.trim();
-  const email=$('f-email').value.trim();
-  const errEl=$('form-err');
+  const name=$('cf-name').value.trim();
+  const phone=$('cf-phone').value.trim();
+  const email=$('cf-email').value.trim();
+  const errEl=$('cf-contact-err');
   errEl.style.display='none';
 
   if(!name){ errEl.textContent='Please enter your name.'; errEl.style.display='block'; return; }
   if(!phone&&!email){ errEl.textContent='Please enter a phone number or email address.'; errEl.style.display='block'; return; }
-  if(!S.color){ errEl.textContent='Please select a color in Step 2.'; errEl.style.display='block'; return; }
-  if(!S.mount){ errEl.textContent='Please select a mount type in Step 3.'; errEl.style.display='block'; return; }
-  if(!S.sizeOk){ errEl.textContent='Please enter valid dimensions in Step 4.'; errEl.style.display='block'; return; }
-  if(!S.valance){ errEl.textContent='Please select a valance option in Step 5.'; errEl.style.display='block'; return; }
+  if(!S.color){ errEl.textContent='Please select a color in Step 3.'; errEl.style.display='block'; return; }
+  if(!S.mount){ errEl.textContent='Please select a mount type in Step 1.'; errEl.style.display='block'; return; }
+  if(!S.sizeOk){ errEl.textContent='Please enter valid dimensions in Step 1.'; errEl.style.display='block'; return; }
+  if(!S.valance){ errEl.textContent='Please select a valance option in Step 4.'; errEl.style.display='block'; return; }
 
   const pW=W_COLS.find(v=>v>=S.w);
   const pH=H_ROWS.find(v=>v>=S.h);
@@ -373,13 +373,13 @@ function submitForm(){
     'Name: '+name,
     'Phone: '+(phone||'—'),
     'Email: '+(email||'—'),
-    'Delivery: '+(S.delivery==='ship'?'Ship to me (UPS/FedEx)':'Customer pickup'),
+    'Delivery: '+'Ship to me (UPS/FedEx)',
     '',
     'PRODUCT SPECS',
     'Product: SmartPrivacy Faux Wood Blinds (Ultimate program)',
     'Slat Size: '+slatLabel,
     'Color: '+S.color+(S.isPrinted?' [PRINTED — +20% surcharge]':''),
-    'Mount Type: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Mount type: '+(S.mount==='inside'?'Inside mount':'Outside mount'),
     'Width: '+S.w+'"',
     'Height: '+S.h+'"',
     'Area: '+(S.w*S.h/144).toFixed(2)+' sq ft',
@@ -404,20 +404,20 @@ function submitForm(){
     'TOTAL: $'+total,
     '',
     'NOTES',
-    ($('f-notes').value||'None')
+    ($('cf-notes').value||'None')
   ].join('\n');
 
   const subj='SmartPrivacy Faux Wood Blinds Quote — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
   $('success-box').style.display='block';
   errEl.style.display='none';
 }
 
 function addFauxWoodToCart(){
-  if(!S.color){ alert('Please select a color (Step 2) before adding to cart.'); return; }
-  if(!S.mount){ alert('Please select a mount type (Step 3) before adding to cart.'); return; }
-  if(!S.sizeOk){ alert('Please enter valid dimensions (Step 4) before adding to cart.'); return; }
-  if(!S.valance){ alert('Please select a valance option (Step 5) before adding to cart.'); return; }
+  if(!S.color){ alert('Please select a color (Step 3) before adding to cart.'); return; }
+  if(!S.mount){ alert('Please select a mount type (Step 1) before adding to cart.'); return; }
+  if(!S.sizeOk){ alert('Please enter valid dimensions (Step 1) before adding to cart.'); return; }
+  if(!S.valance){ alert('Please select a valance option (Step 4) before adding to cart.'); return; }
 
   const pW=W_COLS.find(v=>v>=S.w);
   const pH=H_ROWS.find(v=>v>=S.h);
@@ -440,7 +440,7 @@ function addFauxWoodToCart(){
     {label:'Product',value:'SmartPrivacy Faux Wood Blinds (Ultimate)'},
     {label:'Slat Size',value:slatLabel},
     {label:'Color',value:S.color+(S.isPrinted?' [Printed +20%]':'')},
-    {label:'Mount',value:S.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Mount',value:S.mount==='inside'?'Inside mount':'Outside mount'},
     {label:'Width',value:S.w+'"'},
     {label:'Height',value:S.h+'"'},
     {label:'Valance',value:valLabel},
@@ -455,7 +455,7 @@ function addFauxWoodToCart(){
 
 // Init — apply default 2" slat color filter on page load
 document.addEventListener('DOMContentLoaded',()=>{
-  S.slat='2in'; markDone('step1'); $('s7val').textContent='1 blind';
+  S.slat='2in'; markDone('step1');
   // Hide colors not available for 2" slat (Storm Gray Embossed = 2.5in only)
   document.querySelectorAll('#step2 .color-card').forEach(function(card){
     var ds=card.getAttribute('data-slat');

@@ -880,3 +880,13 @@ html, body { overflow-x: hidden; }
   box-sizing: border-box;
 }
 .form-group textarea { resize: vertical; min-height: 72px; }
+
+/* ── Canonical Step-1 / final-step helpers (ported from Philly Blinds) ── */
+.step-note { font-size: 11px; color: #888; line-height: 1.6; margin-top: 6px; }
+.qty-btns { display: flex; align-items: center; }
+.qty-btn { width: 32px; height: 32px; border: 1px solid #ddd; background: #fff; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: var(--font); }
+.qty-btn:first-child { border-radius: 8px 0 0 8px; }
+.qty-btn:last-child { border-radius: 0 8px 8px 0; }
+.qty-num { width: 44px; text-align: center; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; border-left: none; border-right: none; height: 32px; font-size: 13px; font-weight: 500; font-family: var(--font); background: #fff; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--espresso); color: var(--gold); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-block.done .step-num { background: var(--gold); color: var(--espresso); }

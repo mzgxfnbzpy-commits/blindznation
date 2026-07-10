@@ -110,6 +110,8 @@ module.exports = async function handler(req, res) {
   const sourceUrl = (_rawSourceUrl && /^https?:\/\//i.test(_rawSourceUrl.trim())) ? _rawSourceUrl : null;
   const selections = Array.isArray(_b.selections) ? _b.selections.slice(0, 60) : [];
   const estimate   = _b.estimate;
+  const agreedToTerms = _b.agreedToTerms === true || _b.agreedToTerms === 'true';
+  const agreedAtRaw   = typeof _b.agreedToTermsAt === 'string' ? _b.agreedToTermsAt.slice(0, 40) : null;
   const { _hp, _t } = _b;
 
   // Honeypot — bots fill hidden fields, humans don't
@@ -149,6 +151,18 @@ module.exports = async function handler(req, res) {
     hour: 'numeric', minute: '2-digit', hour12: true
   });
 
+  // Terms of Agreement — link to the hosted, printable copy, and a human-readable acceptance stamp.
+  const TERMS_URL = `https://${SITE_URL}/pages/terms-of-agreement.html`;
+  let acceptedStr = null;
+  if (agreedToTerms) {
+    let d = null;
+    if (agreedAtRaw) { const parsed = new Date(agreedAtRaw); if (!isNaN(parsed.getTime())) d = parsed; }
+    acceptedStr = (d || now).toLocaleString('en-US', {
+      timeZone: 'America/New_York', year: 'numeric', month: 'short', day: 'numeric',
+      hour: 'numeric', minute: '2-digit', hour12: true
+    }) + ' ET';
+  }
+
   const rows = selections.map(function(s) {
     var lbl = String(s.label || '').slice(0, 100).replace(/</g,'&lt;').replace(/>/g,'&gt;');
     var val = String(s.value || '').slice(0, 500).replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -173,6 +187,7 @@ module.exports = async function handler(req, res) {
         <tr><td style="padding:4px 14px 4px 0;color:#888;font-size:13px;white-space:nowrap">Phone</td>  <td style="font-size:14px;font-weight:600;color:#111110">${safePhone || '<em style="color:#aaa;font-weight:400">Not provided</em>'}</td></tr>
         <tr><td style="padding:4px 14px 4px 0;color:#888;font-size:13px;white-space:nowrap;vertical-align:top">Address</td><td style="font-size:14px;color:#111110">${safeAddress || '<em style="color:#aaa;font-weight:400">Not provided</em>'}</td></tr>
         <tr><td style="padding:4px 14px 4px 0;color:#888;font-size:13px;white-space:nowrap">Delivery</td><td style="font-size:14px;font-weight:600;color:#111110">${safeDelivery || 'Ship to me'}</td></tr>
+        <tr><td style="padding:4px 14px 4px 0;color:#888;font-size:13px;white-space:nowrap;vertical-align:top">Terms</td><td style="font-size:13px;color:#111110">${acceptedStr ? `&#10003; <strong>Agreed</strong> &middot; ${acceptedStr}` : '&#10003; Agreed at submission'}</td></tr>
       </table>
     </div>
 
@@ -227,6 +242,22 @@ module.exports = async function handler(req, res) {
         Call or text Justin: <a href="tel:6097421720" style="color:#C9A96E;font-weight:700">${PHONE}</a> — 24/7<br>
         Email: <a href="mailto:${EMAIL_DIRECT}" style="color:#C9A96E">${EMAIL_DIRECT}</a>
       </div>
+    </div>
+
+    <div style="border:1px solid #e8e8e4;border-radius:10px;padding:18px 20px;margin-bottom:22px">
+      <div style="font-size:13px;font-weight:700;color:#111110;margin-bottom:4px">&#128203; Your Terms of Agreement &mdash; copy for your records</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">${acceptedStr ? `You agreed to these terms on ${acceptedStr} when you submitted this order for review.` : 'You agreed to these terms when you submitted this order for review.'}</div>
+      <ol style="margin:0 0 14px;padding-left:18px;font-size:12.5px;color:#555;line-height:1.75">
+        <li><strong>Estimates are not final prices.</strong> Any price shown is an estimate only; your final price is confirmed in writing after we review your specifications and, where applicable, measure.</li>
+        <li><strong>Submitting is a request for review, not a purchase.</strong> No order is confirmed until we send a final written quote and you approve it.</li>
+        <li><strong>No charge until you approve.</strong> You are not charged when you submit, and no deposit is required to submit. Payment is processed manually through a secure processor (e.g. Stripe) only after you approve your final quote.</li>
+        <li><strong>Custom, made-to-order.</strong> Products are fabricated to your specifications. You may cancel or change at no cost before fabrication begins; once in production, custom items are final sale and non-refundable.</li>
+        <li><strong>Measurements.</strong> Self-provided measurements are your responsibility; we recommend and provide professional measurement for local projects.</li>
+        <li><strong>Delivery &amp; tariffs.</strong> Orders ship to the address you provide; some products carry manufacturer tariff or freight surcharges, reflected on your final quote.</li>
+        <li><strong>Warranty.</strong> Manufacturer warranties pass through to you; installation workmanship is warranted per your final quote. Report any defect or shipping damage within 7 days of delivery.</li>
+        <li><strong>Privacy.</strong> We do not sell or share your information or send marketing spam.</li>
+      </ol>
+      <a href="${TERMS_URL}" style="display:inline-block;background:#111110;color:#C9A96E;font-size:13px;font-weight:700;padding:11px 20px;border-radius:8px;text-decoration:none">View / download the full Terms of Agreement &rarr;</a>
     </div>
 
     <p style="font-size:12px;color:#999;line-height:1.7;margin:0">

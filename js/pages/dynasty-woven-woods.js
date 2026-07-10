@@ -1,6 +1,3 @@
-renderNav('Shades & blinds');
-renderFooter(false);
-
 // ── PRICING DATA ─────────────────────────────────────────────────────────────
 const W=[24,30,36,42,48,60,72,84,96];
 const H=[36,42,48,54,60,66,72,78,84,90,96,102,108,114,120];
@@ -170,11 +167,8 @@ function getFreight(){
 
 // ── CALC + RENDER ─────────────────────────────────────────────────────────────
 function calcPrice(){
-  const wW=parseFloat(document.getElementById('w-whole').value)||0;
-  const wF=parseFloat(document.getElementById('w-frac').value)||0;
-  const hW=parseFloat(document.getElementById('h-whole').value)||0;
-  const hF=parseFloat(document.getElementById('h-frac').value)||0;
-  S.w=wW+wF; S.h=hW+hF;
+  S.w=parseFloat(document.getElementById('w-whole').value)||0;
+  S.h=parseFloat(document.getElementById('h-whole').value)||0;
   const qty=parseInt(document.getElementById('qty').value)||1;
   S.qty=qty;
 
@@ -203,9 +197,9 @@ function calcPrice(){
     document.getElementById('cv-size').textContent=S.w+'″ W × '+S.h+'″ H';
     document.getElementById('cv-bracket').textContent=wCol+'″ × '+hRow+'″';
     document.getElementById('cv-base').textContent=base?'$'+base:'Group not selected';
-    document.getElementById('s3val').textContent=S.w+'″ × '+S.h+'″';
-    markDone('step3');
   }
+
+  updateWindowVal();
 
   // Slim clutch note
   if(S.patNum&&S.w&&S.h){
@@ -346,7 +340,7 @@ function pickPattern(num,name,grp,el){
 }
 
 function pickStyle(el,style){
-  document.querySelectorAll('#step2 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step2 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.style=style;
   const warn=document.getElementById('style-warn');
@@ -373,29 +367,32 @@ function pickStyle(el,style){
 }
 
 function pickMount(el,mount){
-  document.querySelectorAll('#step2 .opt-card').forEach(c=>{
-    if(c.closest('#step2')) c.classList.remove('sel');
-  });
-  // re-apply style selection
-  if(S.style){
-    const ids={Waterfall:'sc-waterfall','Flat Fold':'sc-flatfold',Hobbled:'sc-hobbled'};
-    const sid=ids[S.style]; if(sid){const e=document.getElementById(sid);if(e)e.classList.add('sel');}
-  }
+  document.querySelectorAll('#grp-mount .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.mount=mount;
-  updateStyleVal();
+  updateWindowVal();
   updateQuote();
 }
 
+function updateWindowVal(){
+  const parts=[];
+  if(S.w&&S.h) parts.push(S.w+'″ × '+S.h+'″');
+  if(S.mount) parts.push(S.mount);
+  if(parts.length){
+    document.getElementById('s3val').textContent=parts.join(' · ');
+    markDone('step3');
+  }
+}
+
 function updateStyleVal(){
-  if(S.style&&S.mount){
-    document.getElementById('s2val').textContent=S.style+' · '+S.mount;
+  if(S.style){
+    document.getElementById('s2val').textContent=S.style;
     markDone('step2');
   }
 }
 
 function pickLift(el,lift){
-  document.querySelectorAll('#step4 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step4 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.lift=lift;
   document.getElementById('s4val').textContent=lift;
@@ -450,8 +447,8 @@ function pickLinerColor(color,codeBase,el){
 }
 
 function pickEB(el,type){
-  // EB cards are the first 3 in #step6; valance cards (index 3+) keep their highlight.
-  document.querySelectorAll('#step6 .opt-card').forEach((c,i)=>{ if(i<3) c.classList.remove('sel'); });
+  // EB pills are the first 3 buttons in #step6; valance buttons (index 3+) keep their highlight.
+  document.querySelectorAll('#step6 .opt-btn').forEach((c,i)=>{ if(i<3) c.classList.remove('sel'); });
   el.classList.add('sel');
   S.eb=type;
   updateEBVal();
@@ -467,8 +464,8 @@ function pickEB(el,type){
 
 function pickValance(el,val){
   // Only update valance cards within step6
-  document.querySelectorAll('#step6 .opt-card').forEach((c,i)=>{
-    if(i>=3) c.classList.remove('sel'); // 0,1,2 are EB cards; 3,4,5 are valance
+  document.querySelectorAll('#step6 .opt-btn').forEach((c,i)=>{
+    if(i>=3) c.classList.remove('sel'); // 0,1,2 are EB pills; 3,4,5 are valance
   });
   el.classList.add('sel');
   S.valance=val;
@@ -487,7 +484,7 @@ function toggleHW(el,label){
   el.classList.toggle('sel');
   const check=el.querySelector('.addon-check');
   const isOn=el.classList.contains('sel');
-  check.style.color=isOn?'#1C1510':'transparent';
+  check.style.color=isOn?'#111110':'transparent';
   if(isOn){if(!S.hw.includes(label))S.hw.push(label);}
   else{S.hw=S.hw.filter(v=>v!==label);}
   // Hold down + EB conflict warning
@@ -509,16 +506,15 @@ function adjQty(d){
 }
 
 function pickDel(btn,key){
-  document.querySelectorAll('.del-btn').forEach(b=>b.classList.remove('sel'));
+  document.querySelectorAll('.delivery-opt-card').forEach(b=>b.classList.remove('sel'));
   btn.classList.add('sel');
   S.del=key;
-  showEl('del-ship',key==='ship');
-  showEl('del-pickup',key==='pickup');
   document.getElementById('s8val').textContent=key==='ship'?'Ship to me':'Pick up';
   markDone('step8');
   updateQuote();
 }
 
+// ── SUBMIT ────────────────────────────────────────────────────────────────────
 function addDynastyToCart(){
   if(!S.patName){ alert('Please select a pattern before adding to cart.'); return; }
   if(!S.mount){ alert('Please select a mount type before adding to cart.'); return; }
@@ -548,12 +544,11 @@ function addDynastyToCart(){
   pbOpenCart();
 }
 
-// ── SUBMIT ────────────────────────────────────────────────────────────────────
 function submitQuote(){
-  const name=document.getElementById('f-name').value.trim();
-  const phone=document.getElementById('f-phone').value.trim();
-  const err=document.getElementById('form-err');
-  if(!name||!phone){err.style.display='block';return;}
+  const name=document.getElementById('cf-name').value.trim();
+  const phone=document.getElementById('cf-phone').value.trim();
+  const err=document.getElementById('cf-contact-err');
+  if(!name||!phone){err.textContent='Please enter your name and phone number.';err.style.display='block';return;}
   err.style.display='none';
 
   const base=getBasePrice(S.grp,S.w,S.h)||0;
@@ -618,21 +613,20 @@ function submitQuote(){
     '  ESTIMATED TOTAL: $'+Math.round(total).toLocaleString(),
     '',
     'DELIVERY',
-    '  '+(S.del==='ship'?'Ship to me (UPS/FedEx from Huntingdon Valley PA)':'Will pick up (Huntingdon Valley, PA — address after order)'),
+    '  '+'Ship to me (UPS/FedEx)',
     '',
     'CUSTOMER',
     '  Name: '+name,
     '  Phone: '+phone,
-    '  Email: '+(document.getElementById('f-email').value.trim()||'—'),
-    '  Room/location: '+(document.getElementById('f-room').value.trim()||'Not provided'),
-    '  Notes: '+(document.getElementById('f-notes').value.trim()||'None'),
+    '  Email: '+(document.getElementById('cf-email').value.trim()||'—'),
+    '  Notes: '+(document.getElementById('cf-notes').value.trim()||'None'),
     '',
     'NOTE: Estimated retail pricing only. Final price confirmed with current Wallace Blinds price book before order.'
   ];
 
   const body=encodeURIComponent(lines.join('\n'));
   const subject=encodeURIComponent('Dynasty Woven Quote — '+S.patName+' (Grp '+S.grp+') — '+name);
-  window.location.href='mailto:justin@blindznation.com?subject='+subject+'&body='+body;
+  window.location.href='mailto:blindznation@gmail.com?subject='+subject+'&body='+body;
   document.getElementById('success-box').style.display='block';
   markDone('step9');
-}
+}

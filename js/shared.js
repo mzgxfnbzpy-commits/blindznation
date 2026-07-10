@@ -365,7 +365,7 @@ function renderFooter(isHome) {
     </div>
     <div class="footer-disc">Blindznation is an independent business providing professional installation and consulting services. Product names, logos, and trademarks are the property of their respective owners and are used for identification purposes only. Blindznation is not affiliated with, endorsed by, or sponsored by any manufacturer. &nbsp;·&nbsp; <a href="${pre}privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a></div>
   `;
-  setTimeout(function(){ _initShippingEstimators(); _initFileUploads(); _initInstallationAddons(); }, 0);
+  setTimeout(function(){ _initShippingEstimators(); _initCartExtras(); _initFileUploads(); _initInstallationAddons(); _initShadeLabels(); }, 0);
 }
 
 function _toggleDrawer() {
@@ -437,10 +437,20 @@ function pbAutoFillContact() {
 }
 
 // Returns true when name + phone + email are filled; shows error in element with id=errId.
+// Returns the first VISIBLE [data-pb-contact=key] input, falling back to the first match.
+// Pages can have more than one contact form in the DOM; visibility preference stops a hidden
+// form's empty fields from wrongly blocking the active form's submit.
+function _pbContactEl(key) {
+  var els = document.querySelectorAll('[data-pb-contact="' + key + '"]');
+  for (var i = 0; i < els.length; i++) { if (els[i].offsetParent !== null) return els[i]; }
+  return els[0] || null;
+}
+
+// Returns true when name + phone + email are filled; shows error in element with id=errId.
 function pbContactValid(errId) {
-  var nameEl  = document.querySelector('[data-pb-contact="name"]');
-  var phoneEl = document.querySelector('[data-pb-contact="phone"]');
-  var emailEl = document.querySelector('[data-pb-contact="email"]');
+  var nameEl  = _pbContactEl('name');
+  var phoneEl = _pbContactEl('phone');
+  var emailEl = _pbContactEl('email');
   var errEl   = errId ? document.getElementById(errId) : null;
   function _fail(msg, focusEl) {
     if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
@@ -453,6 +463,301 @@ function pbContactValid(errId) {
     return _fail('Please enter a valid email address.', emailEl);
   if (errEl) errEl.style.display = 'none';
   return true;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TERMS OF AGREEMENT — required acceptance before any "Submit Order for Review".
+// One source of truth for the checkbox markup + validation, reused by the cart
+// checkout modal (pbShowQuoteModal) and any inline contact form that carries a
+// [data-pb-require-contact] submit button (checkbox auto-injected on load).
+// Adding to cart never requires it — only submitting for review does.
+// ─────────────────────────────────────────────────────────────────────────────
+// Resolve the correct relative path to the terms page from any page depth.
+function pbTermsHref() {
+  var p = location.pathname || '';
+  return /\/pages\//i.test(p) ? 'terms-of-agreement.html' : 'pages/terms-of-agreement.html';
+}
+var _pbTermsSeq = 0;
+// Shared checkbox block. id defaults to 'cf-terms'; pass a unique id for other contexts.
+function pbTermsCheckboxHTML(id) {
+  id = id || 'cf-terms';
+  return '<div class="pb-terms-row" style="display:flex;align-items:flex-start;gap:9px;margin:2px 0 12px;padding:11px 13px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">' +
+      '<input type="checkbox" id="' + id + '" class="pb-terms-check" style="margin-top:1px;width:17px;height:17px;flex-shrink:0;cursor:pointer" ' +
+        'onchange="var r=this.closest(\'.pb-terms-row\');if(r){r.style.borderColor=\'#e8e8e4\';r.style.background=\'#fafaf8\';}">' +
+      '<label for="' + id + '" style="font-size:12px;color:#555;line-height:1.55;cursor:pointer">I have read and agree to the ' +
+        '<a href="' + pbTermsHref() + '" target="_blank" rel="noopener" style="color:var(--gold);font-weight:600;text-decoration:underline">Terms of Agreement</a> ' +
+        '<span style="color:#c0392b">*</span>. A copy will be emailed to me when I submit.</label>' +
+    '</div>';
+}
+// Validate the terms checkbox is checked. scope = element to search within (default document).
+// Graceful: if no VISIBLE checkbox is present in scope, returns true (page has no terms gate).
+function pbTermsValid(scope, errId) {
+  var root = scope || document;
+  var boxes = Array.prototype.slice.call(root.querySelectorAll('.pb-terms-check'))
+    .filter(function(b){ return b.offsetParent !== null; }); // visible only
+  if (!boxes.length) return true;
+  var unchecked = boxes.filter(function(b){ return !b.checked; });
+  if (!unchecked.length) return true;
+  var b = unchecked[0];
+  var row = b.closest('.pb-terms-row');
+  if (row) { row.style.borderColor = '#c0392b'; row.style.background = '#fff5f5'; }
+  if (errId) { var el = document.getElementById(errId); if (el) { el.textContent = 'Please check the box to agree to the Terms of Agreement before submitting.'; el.style.display = 'block'; } }
+  try { b.scrollIntoView({ behavior:'smooth', block:'center' }); } catch(e){}
+  return false;
+}
+// Inject the terms checkbox just before any [data-pb-require-contact] submit button
+// that doesn't already have one in its container. Runs on load (inline forms exist then).
+function _pbInjectTermsCheckboxes() {
+  var btns = document.querySelectorAll('[data-pb-require-contact]');
+  Array.prototype.forEach.call(btns, function(btn) {
+    if (btn._pbTermsInjected) return;
+    var scope = btn.closest('.pb-cart-extras') || btn.closest('form') || btn.parentNode;
+    if (scope && scope.querySelector('.pb-terms-check')) { btn._pbTermsInjected = true; return; }
+    btn._pbTermsInjected = true;
+    var holder = document.createElement('div');
+    holder.innerHTML = pbTermsCheckboxHTML('cf-terms-' + (++_pbTermsSeq));
+    var node = holder.firstChild;
+    if (btn.parentNode) btn.parentNode.insertBefore(node, btn);
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CANONICAL FINAL STEP — identical "Your details" contact + files step on every
+// product configurator (ported from Philly Blinds — one source of truth).
+// Usage:  <div id="pb-final-step"></div>
+//   document.getElementById('pb-final-step').innerHTML =
+//     pbContactStepHTML({ stepNum: 7, cartFn: "addFooToCart()", submitFn: "submitFooQuote()" });
+// opts: { stepNum, submitFn (default "submitQuote()"), cartFn (omit to hide Add to Cart), bare }
+function pbContactStepHTML(opts) {
+  opts = opts || {};
+  var stepNum  = opts.stepNum != null ? opts.stepNum : '';
+  var submitFn = opts.submitFn || 'submitQuote()';
+  var cartBtn  = opts.cartFn
+    ? '<button class="btn-cart-add" onclick="' + opts.cartFn + '" style="width:100%;margin-bottom:8px">+ Add to Cart</button>'
+    : '';
+  var inner = '' +
+      '<div class="pb-cart-extras">' +
+        '<div class="dim-row">' +
+          '<div class="form-group"><label>Name *</label><input type="text" id="cf-name" data-pb-contact="name" placeholder="Jane Smith"></div>' +
+          '<div class="form-group"><label>Phone *</label><input type="tel" id="cf-phone" data-pb-contact="phone" placeholder="(215) 555-0100"></div>' +
+        '</div>' +
+        '<div class="form-group"><label>Email *</label><input type="email" id="cf-email" data-pb-contact="email" placeholder="jane@example.com"></div>' +
+        '<div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="cf-address" data-pb-contact="address" placeholder="123 Main St, Philadelphia PA"></div>' +
+        '<div class="form-group"><label>Notes</label><textarea id="cf-notes" placeholder="Room name, ceiling height, fabric ideas, timeline &mdash; anything helpful" style="min-height:60px"></textarea></div>' +
+        '<div style="border:1.5px dashed #ddd;border-radius:10px;padding:14px 16px;margin-bottom:12px;background:#fafaf8">' +
+          '<div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">&#128206; Attach photos or files <span style="font-weight:400;color:#999">(optional)</span></div>' +
+          '<input type="file" id="cf-files" class="pb-ce-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" style="width:100%;font-size:12px;color:#555;font-family:inherit;cursor:pointer;padding:4px 0" onchange="pbShowFileNames(this,\'cf-files-names\')">' +
+          '<div id="cf-files-names" style="font-size:11px;color:#555;margin-top:6px;line-height:1.8"></div>' +
+          '<div style="font-size:11px;color:#aaa;margin-top:5px;line-height:1.5">Window photos, room photos, measurements, inspiration &mdash; anything that helps.</div>' +
+        '</div>' +
+        // Honeypot — hidden from humans; bots that fill it are blocked in the submit interceptor.
+        '<input type="text" id="pb-hp" name="pb-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;pointer-events:none">' +
+        '<div id="cf-contact-err" style="display:none;background:#FEE2E2;border-radius:8px;padding:9px 13px;font-size:12px;color:#991B1B;margin-bottom:8px"></div>' +
+        cartBtn +
+        // Required Terms of Agreement acceptance — gates "Submit Order for Review" only (not Add to Cart).
+        pbTermsCheckboxHTML('cf-terms') +
+        '<button class="btn-gold" onclick="' + submitFn + '" style="width:100%;padding:13px;margin-top:4px" data-pb-require-contact="cf-contact-err">Submit Order for Review &rarr;</button>' +
+      '</div>';
+  if (opts.bare) return inner;
+  return '' +
+    '<div class="step-block" id="contact-block">' +
+      '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">' +
+        '<div class="step-num">' + stepNum + '</div>' +
+        '<div class="step-title" style="margin-bottom:0">Your details</div>' +
+      '</div>' +
+      inner +
+    '</div>';
+}
+
+// Adjust a numeric quantity <input id=id> by delta, clamped to [min,max]. Shared qty stepper.
+function pbAdjQty(id, delta, min, max) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  min = (min == null ? 1 : min); max = (max == null ? 50 : max);
+  var v = (parseInt(el.value, 10) || min) + delta;
+  if (v < min) v = min; if (v > max) v = max;
+  el.value = v;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CANONICAL STEP 1 — "Window measurements & mount" (ported from Philly Blinds).
+// opts: { stepNum(1), title, widthId, heightId, qtyId, mountGroupId, widthMin/Max/Placeholder/Hint,
+//         heightMin/Max/Placeholder/Hint, calc (default 'updateSummary()'), mountOnclick,
+//         qtyMin(1)/qtyMax(50), measureHref('measure.html'), extraFieldsHTML, coupled, noMount, noQty, bare }
+function pbSizeMountStepHTML(opts) {
+  opts = opts || {};
+  var stepNum = (opts.stepNum != null ? opts.stepNum : 1);
+  var title   = opts.title || 'Window measurements &amp; mount';
+  var calc    = opts.calc || 'updateSummary()';
+  var wId = opts.widthId || 'inp-width', hId = opts.heightId || 'inp-height', qId = opts.qtyId || 'inp-qty';
+  var wMin = (opts.widthMin != null ? opts.widthMin : 12),  wMax = (opts.widthMax != null ? opts.widthMax : 144);
+  var hMin = (opts.heightMin != null ? opts.heightMin : 12), hMax = (opts.heightMax != null ? opts.heightMax : 144);
+  var wPh = opts.widthPlaceholder || '36', hPh = opts.heightPlaceholder || '60';
+  var wHint = opts.widthHint  || ('inches &mdash; ' + wMin + '&Prime; min &middot; ' + wMax + '&Prime; max');
+  var hHint = opts.heightHint || ('inches &mdash; ' + hMin + '&Prime; min &middot; ' + hMax + '&Prime; max');
+  var measureHref = opts.measureHref || 'measure.html';
+  var grp = opts.mountGroupId || 'grp-mount';
+  var mountOnclick = opts.mountOnclick || ("selOpt(this,'" + grp + "');" + calc);
+  var qMin = (opts.qtyMin != null ? opts.qtyMin : 1), qMax = (opts.qtyMax != null ? opts.qtyMax : 50);
+
+  var mount = opts.noMount ? '' :
+    '<div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>' +
+    '<div class="opt-row" id="' + grp + '" style="margin-bottom:14px">' +
+      '<button class="opt-btn sel" onclick="' + mountOnclick + '">Inside mount</button>' +
+      '<button class="opt-btn" onclick="' + mountOnclick + '">Outside mount</button>' +
+    '</div>';
+
+  var coupledBtn = opts.coupled
+    ? '<button id="coupled-toggle-btn" class="opt-btn" style="font-size:11px;padding:5px 12px" onclick="' + opts.coupled + '">+ Coupled Shades</button>'
+    : '';
+  var qty = opts.noQty ? '' :
+    '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">' +
+      '<span style="font-size:12px;color:#666">Qty:</span>' +
+      '<div class="qty-btns">' +
+        '<button class="qty-btn" onclick="pbAdjQty(\'' + qId + '\',-1,' + qMin + ',' + qMax + ');' + calc + '">&#8722;</button>' +
+        '<input class="qty-num" type="number" id="' + qId + '" value="1" min="' + qMin + '" max="' + qMax + '" oninput="' + calc + '">' +
+        '<button class="qty-btn" onclick="pbAdjQty(\'' + qId + '\',1,' + qMin + ',' + qMax + ');' + calc + '">&#43;</button>' +
+      '</div>' + coupledBtn +
+    '</div>';
+
+  var inner =
+    '<div class="dim-box">' +
+      '<div class="dim-box-label">Enter your window size</div>' +
+      '<div class="form-row">' +
+        '<div class="form-group"><label>Width</label><input type="number" id="' + wId + '" min="' + wMin + '" max="' + wMax + '" step="0.125" placeholder="' + wPh + '" oninput="' + calc + '"><div class="dim-unit">' + wHint + '</div></div>' +
+        '<div class="form-group"><label>Height</label><input type="number" id="' + hId + '" min="' + hMin + '" max="' + hMax + '" step="0.125" placeholder="' + hPh + '" oninput="' + calc + '"><div class="dim-unit">' + hHint + '</div></div>' +
+      '</div>' + (opts.extraFieldsHTML || '') +
+    '</div>' +
+    '<div class="step-note" style="margin-bottom:10px"><a href="' + measureHref + '" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>' +
+    mount + qty;
+
+  if (opts.bare) return inner;
+  return '<div class="step-block" id="size-mount-block">' +
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">' +
+      '<div class="step-num">' + stepNum + '</div>' +
+      '<div class="step-title" style="margin-bottom:0">' + title + '</div>' +
+    '</div>' + inner + '</div>';
+}
+
+// Auto-injects a notes/files + professional-installation block before any "Add to Cart"
+// button that doesn't already have one (ported from Philly Blinds).
+function _initCartExtras() {
+  var btns = document.querySelectorAll('button');
+  Array.prototype.forEach.call(btns, function(btn) {
+    if (!/add to cart/i.test(btn.textContent || '')) return;
+    if (/pbEstimateAddCart/.test(btn.getAttribute('onclick') || '')) return; // estimate panel has its own notes/files
+    var container = btn.parentNode;
+    if (!container || container.querySelector('.pb-cart-extras')) return;
+    var id = 'ce-' + Math.random().toString(36).slice(2, 7);
+    var wrap = document.createElement('div');
+    wrap.className = 'pb-cart-extras';
+    wrap.style.cssText = 'margin:0 0 12px';
+    wrap.innerHTML =
+      '<div style="border:1.5px dashed #ddd;border-radius:10px;padding:14px 16px;margin-bottom:12px;background:#fafaf8">' +
+        '<div style="font-size:12px;font-weight:600;color:#333;margin-bottom:7px">&#128206; Add files / notes <span style="font-weight:400;color:#999">(optional)</span></div>' +
+        '<textarea id="' + id + '-notes" placeholder="Room, timeline, questions, special requirements&hellip;" ' +
+          'style="width:100%;box-sizing:border-box;font-family:inherit;font-size:12px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:8px;resize:vertical;min-height:40px;margin-bottom:8px"></textarea>' +
+        '<input type="file" id="' + id + '-files" class="pb-ce-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" ' +
+          'style="width:100%;font-size:12px;color:#555;font-family:inherit;cursor:pointer;padding:4px 0" onchange="pbShowFileNames(this,\'' + id + '-names\')">' +
+        '<div id="' + id + '-names" style="font-size:11px;color:#555;margin-top:6px;line-height:1.8"></div>' +
+        '<div style="font-size:11px;color:#aaa;margin-top:4px;line-height:1.5">Window/room photos, measurements, inspiration &mdash; anything that helps.</div>' +
+      '</div>' +
+      '<div style="border:2px solid var(--gold,#C9A96E);border-radius:12px;padding:14px 16px;background:var(--gold-mid,#FAF7EF)">' +
+        '<label style="display:flex;align-items:flex-start;gap:11px;cursor:pointer">' +
+          '<input type="checkbox" id="' + id + '-install" class="pb-ce-install" ' +
+            'style="margin-top:2px;flex-shrink:0;width:19px;height:19px;cursor:pointer;accent-color:var(--espresso,#111110)">' +
+          '<div>' +
+            '<div style="font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:3px">&#128295; Add professional installation</div>' +
+            '<div style="font-size:12px;color:#555;line-height:1.55">Our team installs it for you. Priced separately by location &amp; product &mdash; Justin confirms installation pricing in your quote.</div>' +
+          '</div>' +
+        '</label>' +
+      '</div>';
+    container.insertBefore(wrap, btn);
+  });
+}
+// Pull notes / files / installation flag from the in-form block into the cart item, then reset it.
+function _pbMergeCartExtras(item) {
+  var ce = document.querySelector('.pb-cart-extras');
+  if (!ce) return;
+  var nEl = ce.querySelector('textarea');
+  var fEl = ce.querySelector('.pb-ce-files');
+  var iEl = ce.querySelector('.pb-ce-install');
+  if (!item.notes && nEl && nEl.value.trim()) item.notes = nEl.value.trim();
+  if ((!item._files || !item._files.length) && fEl && fEl.files && fEl.files.length) item._files = Array.prototype.slice.call(fEl.files);
+  if (iEl && iEl.checked) {
+    item.installation = true;
+    item.lines = (item.lines || []).concat([{ label: 'Professional Installation', value: 'Requested — priced at quote' }]);
+  }
+  var labels = pbGetShadeLabels();
+  if (labels) {
+    item.labels = labels;
+    item.lines = (item.lines || []).concat([{ label: 'Labels', value: labels }]);
+  }
+  if (nEl) nEl.value = '';
+  if (fEl) fEl.value = '';
+  var nm = ce.querySelector('[id$="-names"]'); if (nm) nm.innerHTML = '';
+  if (iEl) iEl.checked = false;
+}
+
+// ── PER-UNIT LABELS — auto-injected after every .qty-btns stepper (ported from PB). ──
+function pbRenderShadeLabels(wrap) {
+  if (!wrap) return;
+  var qtyEl = wrap._pbQtyEl;
+  var count = 1;
+  if (qtyEl) {
+    var raw = (qtyEl.tagName === 'INPUT') ? qtyEl.value : qtyEl.textContent;
+    count = parseInt(raw, 10) || 1;
+  }
+  if (count < 1) count = 1; if (count > 50) count = 50;
+  var prev = {};
+  Array.prototype.forEach.call(wrap.querySelectorAll('.pb-shade-label'), function(inp) {
+    prev[inp.getAttribute('data-idx')] = inp.value;
+  });
+  var inStyle = 'padding:7px 10px;border:1px solid #ddd;border-radius:7px;font-size:12px;font-family:inherit;box-sizing:border-box';
+  var html;
+  if (count === 1) {
+    html = '<div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Label <span style="font-weight:400;color:#999">(optional)</span></div>' +
+           '<input type="text" class="pb-shade-label" data-idx="1" placeholder="e.g. Master bedroom window" style="' + inStyle + ';width:100%">';
+  } else {
+    html = '<div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Label each one <span style="font-weight:400;color:#999">(optional)</span></div>';
+    for (var i = 1; i <= count; i++) {
+      html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">' +
+                '<span style="font-size:11px;color:#888;min-width:26px">#' + i + '</span>' +
+                '<input type="text" class="pb-shade-label" data-idx="' + i + '" placeholder="Room / window ' + i + '" style="' + inStyle + ';flex:1;min-width:0">' +
+              '</div>';
+    }
+  }
+  wrap.innerHTML = html;
+  Array.prototype.forEach.call(wrap.querySelectorAll('.pb-shade-label'), function(inp) {
+    var k = inp.getAttribute('data-idx'); if (prev[k]) inp.value = prev[k];
+  });
+}
+function _initShadeLabels() {
+  document.querySelectorAll('.qty-btns').forEach(function(q) {
+    if (q._pbLabelsInit) return; q._pbLabelsInit = true;
+    var qtyEl = q.querySelector('.qty-num') || q.querySelector('input, span');
+    var wrap = document.createElement('div');
+    wrap.className = 'pb-labels-wrap';
+    wrap.style.cssText = 'margin-top:12px';
+    wrap._pbQtyEl = qtyEl;
+    var host = q.parentNode;
+    if (host && host.parentNode) host.parentNode.insertBefore(wrap, host.nextSibling);
+    else q.parentNode.appendChild(wrap);
+    var render = function() { setTimeout(function() { pbRenderShadeLabels(wrap); }, 0); };
+    if (qtyEl) { qtyEl.addEventListener('input', render); qtyEl.addEventListener('change', render); }
+    q.querySelectorAll('.qty-btn').forEach(function(b) { b.addEventListener('click', render); });
+    pbRenderShadeLabels(wrap);
+  });
+}
+// Collect the VISIBLE per-unit labels into a single string for the quote.
+function pbGetShadeLabels() {
+  var vals = [];
+  document.querySelectorAll('.pb-shade-label').forEach(function(inp) {
+    if (inp.offsetParent === null) return;
+    var v = (inp.value || '').trim();
+    if (v) vals.push(inp.getAttribute('data-idx') + ': ' + v);
+  });
+  return vals.join(' | ');
 }
 
 // ============================================================
@@ -482,6 +787,8 @@ function pbAddToCart(item) {
     if ((!item._files || !item._files.length) && _pbPendingExtras.files && _pbPendingExtras.files.length) item._files = _pbPendingExtras.files;
     _pbPendingExtras = null;
   }
+  // Merge extras from the in-form "files / notes + professional installation" block (Add-to-Cart flow)
+  _pbMergeCartExtras(item);
   if (item.notes == null) item.notes = '';
   // Move pending File objects into the per-item in-memory store; keep lightweight metadata on the item
   if (item._files && item._files.length) {
@@ -1092,7 +1399,8 @@ function pbShowQuoteModal(lines, productName, estimate, files) {
         '<div class="pb-qm-field"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input id="pbq-address" data-pb-contact="address" type="text" placeholder="Street, City, State" autocomplete="street-address"></div>' +
         '<div class="pb-qm-field"><label>Additional notes <span style="font-weight:400;color:#888">(optional)</span></label><textarea id="pbq-notes" rows="3" placeholder="Anything else — overall timeline, install questions..."></textarea></div>' +
         '<div class="pb-qm-err" id="pbq-err"></div>' +
-        '<button class="pb-qm-submit" id="pbq-submit" onclick="pbSubmitQuote()">Submit Quote Request &#8594;</button>' +
+        pbTermsCheckboxHTML('pbq-terms') +
+        '<button class="pb-qm-submit" id="pbq-submit" onclick="pbSubmitQuote()">Submit Order for Review &#8594;</button>' +
         '<div style="text-align:center;font-size:11px;color:#aaa;margin-top:8px">We\'ll respond by email and phone — no spam, ever.</div>' +
         '<div class="pb-qm-ok" id="pbq-ok">' +
           '<div style="font-size:36px;margin-bottom:8px">&#10003;</div>' +
@@ -1196,6 +1504,8 @@ async function pbSubmitQuote() {
     var _pf = document.getElementById('pbq-phone'); if (_pf) { try { _pf.focus(); } catch(e){} }
     return;
   }
+  // Required Terms of Agreement acceptance before submitting for review.
+  if (!pbTermsValid(document.querySelector('.pb-qm-body') || document, 'pbq-err')) return;
   if (errEl) errEl.style.display = 'none';
   if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
 
@@ -1218,6 +1528,8 @@ async function pbSubmitQuote() {
         estimate: _pbQuoteEstimate ? '$' + _pbQuoteEstimate.toFixed(0) + ' (estimate only)' : null,
         notes: notes.trim(),
         attachments: attachments,
+        agreedToTerms: true,
+        agreedToTermsAt: new Date().toISOString(),
         sourceUrl: window.location.href,
         _hp: '',
         _t: Date.now() - _formLoadTime
@@ -1384,13 +1696,7 @@ function normanMotorSection(containerId, productName, onChange) {
       // Smart home
       '<div>' +
         '<div style="font-size:12px;font-weight:600;color:var(--cream);margin-bottom:7px">Smart home integration</div>' +
-        '<div class="opt-row" id="nm-grp-smart" style="flex-wrap:wrap">' +
-          '<button class="opt-btn sel" onclick="selOpt(this,\'nm-grp-smart\')" style="color:#333">None</button>' +
-          '<button class="opt-btn" onclick="selOpt(this,\'nm-grp-smart\')" style="color:#333">Amazon Alexa</button>' +
-          '<button class="opt-btn" onclick="selOpt(this,\'nm-grp-smart\')" style="color:#333">Google Home</button>' +
-          '<button class="opt-btn" onclick="selOpt(this,\'nm-grp-smart\')" style="color:#333">Apple HomeKit</button>' +
-        '</div>' +
-        '<div style="font-size:10px;color:var(--text-faint);margin-top:5px">Hub required for app and voice control. ShadeAuto Hub + Repeater available as add-on. Max 5 repeaters per system.</div>' +
+        '<div style="font-size:11px;color:var(--text-dark);line-height:1.7">Works with <strong>Amazon Alexa, Google Home &amp; Apple HomeKit</strong> — no need to choose; the system integrates with all of them. A hub enables app &amp; voice control (ShadeAuto Hub + Repeater available as an add-on; max 5 repeaters per system).</div>' +
       '</div>' +
     '</div>';
 
@@ -1419,12 +1725,11 @@ function nmGetMotorSummary() {
   var remote  = (document.querySelector('#nm-grp-remote .opt-btn.sel') || {}).textContent || '—';
   var remotes = (document.querySelector('#nm-grp-remotes .opt-btn.sel') || {}).textContent || '';
   var channel = (document.querySelector('#nm-grp-channel .opt-btn.sel') || {}).textContent || '';
-  var smart   = (document.querySelector('#nm-grp-smart .opt-btn.sel') || {}).textContent || 'None';
   return 'Power: ' + power.replace(/[^\w\s]/g,'').trim() +
     (wire ? ' — ' + wire : '') +
     ' | Remote: ' + remote.replace(/[^\w\s\-]/g,'').trim() +
     (remotes ? ' × ' + remotes + ' (' + channel + ')' : '') +
-    ' | Smart home: ' + smart;
+    ' | Integrates with Alexa, Google Home & Apple HomeKit';
 }
 
 // ---- INSTALLATION ADD-ON — auto-injects into every quote form ----
@@ -2013,15 +2318,34 @@ function reqMoreInfo(product) {
 // Runs on every page that includes shared.js.
 document.addEventListener('DOMContentLoaded', function() {
   pbAutoFillContact();
+  // Add the required Terms of Agreement checkbox to any inline submit-for-review form.
+  try { _pbInjectTermsCheckboxes(); } catch(e) {}
   // Intercept clicks on [data-pb-require-contact] buttons (capture phase = before onclick handler).
-  // Prevents submission when name / phone / email are missing.
+  // Prevents submission when name / phone / email are missing, or the Terms box is unchecked.
   document.addEventListener('click', function(e) {
     var btn = e.target.closest('[data-pb-require-contact]');
     if (!btn || btn.disabled) return;
+    // Honeypot: a filled hidden field means a bot — silently block submission.
+    var _hp = document.getElementById('pb-hp');
+    if (_hp && _hp.value.trim() !== '') { e.stopImmediatePropagation(); e.preventDefault(); return; }
     var errId = btn.getAttribute('data-pb-require-contact');
     if (!pbContactValid(errId)) {
       e.stopImmediatePropagation();
       e.preventDefault();
+      return;
+    }
+    // Required Terms of Agreement acceptance — block submit-for-review if not checked.
+    var _termsScope = btn.closest('.pb-cart-extras') || btn.closest('form') || btn.closest('.step-block') || document;
+    if (!pbTermsValid(_termsScope, errId)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      return;
+    }
+    // Fold per-unit labels into the notes so they reach the quote email/cart.
+    var _lbl = pbGetShadeLabels();
+    var _n = document.getElementById('cf-notes');
+    if (_lbl && _n && (_n.value || '').indexOf(_lbl) < 0) {
+      _n.value = (_n.value ? _n.value.replace(/\n?Labels: .*/,'') + '\n' : '') + 'Labels: ' + _lbl;
     }
   }, true);
 });

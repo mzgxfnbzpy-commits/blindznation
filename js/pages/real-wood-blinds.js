@@ -47,10 +47,10 @@ function markDone(id) { $(id).classList.add('done'); }
 
 // ── STEP 1: MOUNT ─────────────────────────────────────────────────────────────
 function pickMount(el, val) {
-  document.querySelectorAll('#step1 .opt-card').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('#step1 .opt-btn').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
   S.mount = val;
-  $('s1val').textContent = val === 'inside' ? 'Inside Mount' : 'Outside Mount';
+  $('s1val').textContent = val === 'inside' ? 'Inside mount' : 'Outside mount';
   markDone('step1');
   // Show/hide shim note
   const shimNote = $('shim-note');
@@ -61,28 +61,19 @@ function pickMount(el, val) {
 
 // ── STEP 2: SLAT SIZE ─────────────────────────────────────────────────────────
 function pickSlat(el, label) {
-  document.querySelectorAll('#step2 .opt-card').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('#step2 .opt-btn').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
   S.slat = label.includes('2½') ? '2.5in' : '2in';
   $('s2val').textContent = label + ' (selected)';
   markDone('step2');
-  toggleStep('step3');
+  toggleStep('step4');
   calcPrice();
 }
 
-// ── STEP 3: DIMENSIONS ────────────────────────────────────────────────────────
-function _frac(id) {
-  const el = $(id);
-  return el ? parseFloat(el.value) || 0 : 0;
-}
-function _whole(id) {
-  const el = $(id);
-  return el ? parseInt(el.value, 10) || 0 : 0;
-}
-
+// ── STEP 1: DIMENSIONS (merged into Window measurements & mount) ───────────────
 function calcSize() {
-  const w = _whole('w-whole') + _frac('w-frac');
-  const h = _whole('h-whole') + _frac('h-frac');
+  const w = parseFloat($('w-whole').value) || 0;
+  const h = parseFloat($('h-whole').value) || 0;
   const msgs = $('size-msgs');
   const cbox = $('computed-box');
 
@@ -117,8 +108,7 @@ function calcSize() {
   $('cv-area').textContent = (w * h / 144).toFixed(2) + ' sq ft';
   cbox.style.display = 'block';
 
-  $('s3val').textContent = w + '″ × ' + h + '″';
-  markDone('step3');
+  markDone('step1');
 
   // Wand center note
   const wandCenter = $('wand-center-note');
@@ -146,7 +136,7 @@ function pickColor(el, name, code, surcharge) {
 
 // ── STEP 5: VALANCE ───────────────────────────────────────────────────────────
 function pickValance(el, label, val) {
-  document.querySelectorAll('#step5 .opt-card').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('#step5 .opt-btn').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
   S.valance = val;
   $('s5val').textContent = label;
@@ -157,12 +147,12 @@ function pickValance(el, label, val) {
 
 // ── STEP 6: CONTROLS ──────────────────────────────────────────────────────────
 function pickWand(el, val) {
-  document.querySelectorAll('#step6 .opt-card').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('#step6 .opt-btn').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
   S.wandLoc = val;
   $('s6val').textContent = val.charAt(0).toUpperCase() + val.slice(1) + ' wand';
   markDone('step6');
-  toggleStep('step7');
+  toggleStep('step8');
 }
 
 // ── STEP 7: QUANTITY ──────────────────────────────────────────────────────────
@@ -177,7 +167,6 @@ function adjQty(d) {
 function updateQty() {
   const v = Math.max(1, parseInt($('qty-input').value, 10) || 1);
   S.qty = v;
-  $('s7val').textContent = v + ' blind' + (v > 1 ? 's' : '');
   calcPrice();
 }
 
@@ -263,21 +252,64 @@ function calcPrice() {
     + 'Norman retail pricing — 35% off. Estimated price — confirmed at order. No charge until Justin reviews.';
 }
 
+// ── ADD TO CART ───────────────────────────────────────────────────────────────
+function addRealWoodToCart() {
+  const errEl = $('cf-contact-err');
+  errEl.style.display = 'none';
+  if (!S.mount)  { errEl.textContent = 'Please select a mount type (Step 1) before adding to cart.';      errEl.style.display = 'block'; return; }
+  if (!S.sizeOk) { errEl.textContent = 'Please enter valid dimensions (Step 1) before adding to cart.';   errEl.style.display = 'block'; return; }
+  if (!S.color)  { errEl.textContent = 'Please select a color (Step 3) before adding to cart.';           errEl.style.display = 'block'; return; }
+  if (!S.valance){ errEl.textContent = 'Please select a valance option (Step 4) before adding to cart.';  errEl.style.display = 'block'; return; }
+
+  const pW = NW_W.find(v => v >= S.w);
+  const pH = NW_H.find(v => v >= S.h);
+  const wi = NW_W.indexOf(pW);
+  const base = NW_MATRIX[pH][wi];
+  const colorAdd = Math.round(base * S.colorSurcharge);
+  const valArr = S.valance === 'crown' ? NW_VAL_CROWN : (S.valance === 'contempo' ? NW_VAL_CONTEMPO : null);
+  const valRetail = valArr ? (valArr[wi] || 0) : 0;
+  const unitRetail = base + colorAdd + valRetail;
+  const retailSub = unitRetail * S.qty;
+  const yourPrice = Math.round(retailSub * (1 - NORMAN_DISC));
+  const isOversized = S.w >= 90;
+  const freight = S.delivery === 'ship'
+    ? (isOversized ? (80 + (S.qty - 1) * 50) : (25 + (S.qty - 1) * 11))
+    : 0;
+  const total = yourPrice + freight;
+
+  const surchargeLabel = S.colorSurcharge === 0.10 ? ' [Designer +10%]' : S.colorSurcharge === 0.50 ? ' [Premium +50%]' : '';
+  const valLabel = S.valance === 'none' ? 'No Valance' : S.valance === 'crown' ? 'Designer Crown' : 'Contempo';
+
+  const lines = [
+    { label: 'Product',   value: 'Norman Ultimate™ Normandy® Real Wood Blinds' },
+    { label: 'Slat Size', value: S.slat === '2.5in' ? '2½"' : '2"' },
+    { label: 'Color',     value: S.color + surchargeLabel },
+    { label: 'Mount',     value: S.mount === 'inside' ? 'Inside mount' : 'Outside mount' },
+    { label: 'Width',     value: S.w + '"' },
+    { label: 'Height',    value: S.h + '"' },
+    { label: 'Valance',   value: valLabel },
+    { label: 'Quantity',  value: String(S.qty) }
+  ];
+  const specs = lines.map(l => l.label + ': ' + l.value).join(' | ');
+  pbAddToCart({ product: 'Norman Real Wood Blinds', lines: lines, specs: specs, price: total, qty: S.qty });
+  pbOpenCart();
+}
+
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
 function submitForm() {
-  const name = $('f-name').value.trim();
-  const phone = $('f-phone').value.trim();
-  const email = $('f-email').value.trim();
-  const notes = ($('f-notes') || {}).value || '';
-  const errEl = $('form-err');
+  const name = $('cf-name').value.trim();
+  const phone = $('cf-phone').value.trim();
+  const email = $('cf-email').value.trim();
+  const notes = ($('cf-notes') || {}).value || '';
+  const errEl = $('cf-contact-err');
   errEl.style.display = 'none';
 
   if (!name) { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; return; }
   if (!phone && !email) { errEl.textContent = 'Please enter a phone or email.'; errEl.style.display = 'block'; return; }
   if (!S.mount) { errEl.textContent = 'Please select a mount type (Step 1).'; errEl.style.display = 'block'; return; }
-  if (!S.sizeOk) { errEl.textContent = 'Please enter valid dimensions (Step 3).'; errEl.style.display = 'block'; return; }
-  if (!S.color) { errEl.textContent = 'Please select a color (Step 4).'; errEl.style.display = 'block'; return; }
-  if (!S.valance) { errEl.textContent = 'Please select a valance option (Step 5).'; errEl.style.display = 'block'; return; }
+  if (!S.sizeOk) { errEl.textContent = 'Please enter valid dimensions (Step 1).'; errEl.style.display = 'block'; return; }
+  if (!S.color) { errEl.textContent = 'Please select a color (Step 3).'; errEl.style.display = 'block'; return; }
+  if (!S.valance) { errEl.textContent = 'Please select a valance option (Step 4).'; errEl.style.display = 'block'; return; }
 
   const pW = NW_W.find(v => v >= S.w);
   const pH = NW_H.find(v => v >= S.h);
@@ -308,12 +340,12 @@ function submitForm() {
     'Phone: ' + (phone || '—'),
     'Email: ' + (email || '—'),
     'Notes: ' + (notes || '—'),
-    'Delivery: ' + (S.delivery === 'ship' ? 'Ship to me (UPS/FedEx)' : 'Customer pickup'),
+    'Delivery: ' + ('Ship to me (UPS/FedEx)'),
     '',
     'PRODUCT SPECS',
     'Product: Norman Ultimate™ Normandy® Cordless Wood Blinds',
     'Slat Size: ' + (S.slat === '2.5in' ? '2½"' : '2"'),
-    'Mount: ' + (S.mount === 'inside' ? 'Inside Mount' : 'Outside Mount'),
+    'Mount: ' + (S.mount === 'inside' ? 'Inside mount' : 'Outside mount'),
     'Width (ordered): ' + S.w + '"',
     'Height (ordered): ' + S.h + '"',
     'Area: ' + (S.w * S.h / 144).toFixed(2) + ' sq ft',
@@ -343,9 +375,10 @@ function submitForm() {
     })
   }).then(r => {
     if (r.ok) {
-      $('form-err').style.display = 'none';
+      $('cf-contact-err').style.display = 'none';
       $('success-box').style.display = 'block';
-      $('submit-btn').style.display = 'none';
+      const _sb = document.querySelector('[data-pb-require-contact]');
+      if (_sb) _sb.style.display = 'none';
     } else {
       errEl.textContent = 'Submission failed. Please call (609) 742-1720.';
       errEl.style.display = 'block';
