@@ -1100,7 +1100,7 @@ function _pmmConfirm() {
   }
   opts.remote = remote === 'Yes' ? 'Yes' : 'No';
   if (remote === 'Yes') {
-    opts.channel = _pmmGet('pmm-grp-channel') || 'Single channel';
+    opts.channel = _pmmGet('pmm-grp-channel') || 'Multi channel';
     opts.remotes = _pmmGet('pmm-grp-remotes') || '1';
   }
   document.getElementById('pb-motor-overlay').classList.remove('open');
@@ -1157,12 +1157,11 @@ function _initMotorModal() {
 
       // Remote detail
       '<div id="pmm-remote-detail" style="display:none" class="pmm-sub">' +
-        '<div class="pmm-sub-label">Channel type</div>' +
+        '<div class="pmm-sub-label">Channels</div>' +
         '<div class="pmm-row" id="pmm-grp-channel">' +
-          '<button class="pmm-opt sel" onclick="_pmmSel(this,\'pmm-grp-channel\')">Single channel</button>' +
-          '<button class="pmm-opt" onclick="_pmmSel(this,\'pmm-grp-channel\')">Multi channel</button>' +
+          '<button class="pmm-opt sel" onclick="_pmmSel(this,\'pmm-grp-channel\')">Multi channel</button>' +
         '</div>' +
-        '<div class="pmm-note" style="margin-bottom:8px">Single: one remote for all shades together. Multi: control each shade independently.</div>' +
+        '<div class="pmm-note" style="margin-bottom:8px">Norman remotes are multi-channel — control each shade independently, or assign several to the same channel to move together.</div>' +
         '<div class="pmm-sub-label" style="margin-top:8px">Number of remotes</div>' +
         '<div class="pmm-row" id="pmm-grp-remotes">' +
           '<button class="pmm-opt sel" onclick="_pmmSel(this,\'pmm-grp-remotes\')">1</button>' +
@@ -1613,16 +1612,24 @@ function normanMotorSection(containerId, productName, onChange) {
                       (productName || '').toLowerCase().indexOf('smartfold') === -1 &&
                       (productName || '').toLowerCase().indexOf('perfectsheer') === -1;
 
+  var isRoller   = (productName || '').toLowerCase().indexOf('roller') !== -1;
+  var isCellular = (productName || '').toLowerCase().indexOf('cellular') !== -1 || (productName || '').toLowerCase().indexOf('honeycomb') !== -1;
+
+  // Battery charging method. On rollers a charging wand needs a visible control box at the headrail
+  // — not recommended; on cellular the wand connects directly at the shade.
   var batteryDetail = wandAllowed
-    ? '<div style="font-size:11px;color:var(--text-dark);line-height:1.6;margin-bottom:6px">Battery options:</div>' +
+    ? '<div style="font-size:11px;color:var(--text-dark);line-height:1.6;margin-bottom:6px">Battery charging method:</div>' +
       '<div class="opt-row" id="nm-grp-battery-type">' +
-        '<button class="opt-btn sel" onclick="selOpt(this,\'nm-grp-battery-type\')" style="color:#333">Charging Wand</button>' +
-        '<button class="opt-btn" onclick="selOpt(this,\'nm-grp-battery-type\')" style="color:#333">AC Adapter Charger</button>' +
+        '<button class="opt-btn' + (isCellular ? ' sel' : '') + '" onclick="selOpt(this,\'nm-grp-battery-type\')" style="color:#333">Charging Wand (corded)' + (isRoller ? ' <span style="font-size:9px;color:#c77">not rec.</span>' : '') + '</button>' +
+        '<button class="opt-btn" onclick="selOpt(this,\'nm-grp-battery-type\')" style="color:#333">Cordless Charging Wand' + (isRoller ? ' <span style="font-size:9px;color:#c77">not rec.</span>' : '') + '</button>' +
+        '<button class="opt-btn' + (!isCellular ? ' sel' : '') + '" onclick="selOpt(this,\'nm-grp-battery-type\')" style="color:#333">AC Adapter Charger' + (isRoller ? ' <span style="font-size:9px;color:var(--gold)">recommended</span>' : '') + '</button>' +
       '</div>' +
-      '<div style="font-size:10px;color:var(--text-faint);margin-top:5px;line-height:1.5">Charging Wand: NOT available with Cassette headrail or Dual shades. Use AC Adapter Charger for those configurations.</div>'
-    : '<div style="font-size:11px;color:var(--text-dark);line-height:1.6">Rechargeable battery with AC Adapter Charger. No wiring required — ideal for retrofit installations. ' +
-      (isSmartDrape ? '' : '') +
-      'Charging Wand is not available for this product type.</div>';
+      '<div style="font-size:10px;color:var(--text-faint);margin-top:5px;line-height:1.5">' +
+        (isRoller
+          ? 'On roller shades a charging wand needs a small visible control box at the top of the shade — we don\'t recommend it; use the AC Adapter Charger. '
+          : (isCellular ? 'On cellular shades the charging wand connects directly at the shade (no visible box). ' : '')) +
+        'The corded Charging Wand supports an extension; the Cordless Charging Wand does not. Charging Wand is not available with a Cassette headrail or Dual shades — use the AC Adapter Charger for those.</div>'
+    : '<div style="font-size:11px;color:var(--text-dark);line-height:1.6">Rechargeable battery, recharged with an AC Adapter Charger. No wiring required — ideal for retrofit installations. Charging Wand is not available for this product type.</div>';
 
   var dcLowVoltageBtn = isSmartDrape
     ? '<button class="opt-btn" style="color:#aaa;text-decoration:line-through;cursor:not-allowed" disabled title="DC Low Voltage not available for SmartDrape">DC Low Voltage ⚠</button>'
@@ -1685,12 +1692,11 @@ function normanMotorSection(containerId, productName, onChange) {
           '<button class="opt-btn sel" onclick="selOpt(this,\'nm-grp-remote-type\')" style="color:#333">Basic Remote</button>' +
           '<button class="opt-btn" onclick="selOpt(this,\'nm-grp-remote-type\')" style="color:#333">SmartDial G2</button>' +
         '</div>' +
-        '<div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;margin-top:10px">Channel assignment</div>' +
+        '<div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;margin-top:10px">Channels</div>' +
         '<div class="opt-row" id="nm-grp-channel">' +
-          '<button class="opt-btn sel" onclick="selOpt(this,\'nm-grp-channel\')" style="color:#333">Single channel</button>' +
-          '<button class="opt-btn" onclick="selOpt(this,\'nm-grp-channel\')" style="color:#333">Multi channel</button>' +
+          '<button class="opt-btn sel" onclick="selOpt(this,\'nm-grp-channel\')" style="color:#333">Multi channel</button>' +
         '</div>' +
-        '<div style="font-size:10px;color:var(--text-faint);margin-top:5px">Single: all shades respond together. Multi: control each shade independently. Shades default to Ch 1 if not assigned.</div>' +
+        '<div style="font-size:10px;color:var(--text-faint);margin-top:5px">Norman Smart remotes (Basic &amp; SmartDial G2) are multi-channel — control each shade independently, or assign several shades to the same channel to move them together.</div>' +
       '</div>' +
 
       // Smart home
