@@ -1,5 +1,3 @@
-renderNav('Shades & blinds'); renderFooter(false);
-
 // ═══════════════════════════════════════════════════════════════
 // FABRIC DATA — patterns from PDF pages 4-5
 // maxH = single shade max height; double shades always capped at 96"
@@ -76,7 +74,7 @@ var DEDUCTIONS = {
 var S = {
   shadeType: '',    // 'single' | 'double'
   mount: '',
-  width: 0, height: 0, qty: 1, room: '',
+  width: 0, height: 0, qty: 1,
   fabric: null, fabColor: '',
   backFabric: null,
   topTreatment: '',
@@ -103,11 +101,11 @@ function selectType(t) {
   document.getElementById('tc-single').classList.toggle('sel', t === 'single');
   document.getElementById('tc-double').classList.toggle('sel', t === 'double');
   var label = t === 'single' ? 'Single Natural Roller' : 'Double Natural Roller';
-  completeStep('step-1', label);
+  completeStep('step-4', label);
   updateSpec('sp-type', label);
 
   // Show/hide back fabric step
-  document.getElementById('step-5').style.display = t === 'double' ? 'block' : 'none';
+  document.getElementById('step-6').style.display = t === 'double' ? 'block' : 'none';
   document.getElementById('sp-back-row').style.display = t === 'double' ? 'flex' : 'none';
 
   // Update size note
@@ -122,7 +120,7 @@ function selectType(t) {
   buildTopTreatmentStep();
   buildControlStep();
   validateSize();
-  activateStep('step-2');
+  activateStep('step-5');
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -132,11 +130,20 @@ function selectMount(m) {
   S.mount = m;
   document.getElementById('mc-in').classList.toggle('sel', m === 'inside');
   document.getElementById('mc-out').classList.toggle('sel', m === 'outside');
-  var label = m === 'inside' ? 'Inside Mount' : 'Outside Mount';
-  completeStep('step-2', label);
+  var label = m === 'inside' ? 'Inside mount' : 'Outside mount';
   updateSpec('sp-mount', label);
   validateSize();
-  activateStep('step-3');
+  maybeAdvanceMeasure();
+}
+
+// Step 1 combines width/height + mount + quantity — advance once size is valid and mount picked.
+function maybeAdvanceMeasure() {
+  if (S.width > 0 && S.height > 0 && S.mount &&
+      document.getElementById('size-computed').style.display !== 'none') {
+    var ml = S.mount === 'inside' ? 'Inside mount' : 'Outside mount';
+    completeStep('step-1', S.width + '" × ' + S.height + '" · ' + ml);
+    activateStep('step-4');
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -145,18 +152,13 @@ function selectMount(m) {
 function validateSize() {
   var w = parseFloat(document.getElementById('inp-w').value) || 0;
   var h = parseFloat(document.getElementById('inp-h').value) || 0;
-  var qty = parseInt(document.getElementById('inp-qty').value) || 1;
-  S.width = w; S.height = h; S.qty = qty;
-  S.room = document.getElementById('inp-room') ? document.getElementById('inp-room').value.trim() : '';
+  S.width = w; S.height = h;
 
   var msgs = document.getElementById('size-msgs');
   msgs.innerHTML = '';
   var errors = [], warns = [];
 
   if (w > 0 && h > 0) {
-    var maxH = S.shadeType === 'double' ? 96 : (S.fabric ? S.fabric.maxH : 108);
-    var maxW = S.fabric ? S.fabric.maxW : 114;
-
     if (S.fabric && w > S.fabric.maxW) errors.push('Width ' + w + '" exceeds ' + S.fabric.name + ' maximum of ' + S.fabric.maxW + '".');
     if (S.shadeType === 'double' && h > 96) errors.push('Double shades: maximum height is 96". Entered: ' + h + '".');
     if (S.fabric && !S.shadeType === 'double' && h > S.fabric.maxH) errors.push('Height ' + h + '" exceeds ' + S.fabric.name + ' maximum of ' + S.fabric.maxH + '".');
@@ -167,8 +169,7 @@ function validateSize() {
     if (!errors.length) {
       msgs.innerHTML += '<div class="size-ok">✓ Dimensions within specification.</div>';
       updateSpec('sp-dims', w + '" × ' + h + '"');
-      updateSpec('sp-qty', qty);
-      document.getElementById('s3-val').textContent = w + '" × ' + h + '"';
+      document.getElementById('s1-val').textContent = w + '" × ' + h + '"';
 
       // Approximate fabric width
       var ded = getDeduction();
@@ -177,7 +178,7 @@ function validateSize() {
       document.getElementById('cp-fabW').textContent = fabW + '"';
       document.getElementById('size-computed').style.display = 'block';
 
-      if (!document.getElementById('step-4').classList.contains('done')) activateStep('step-4');
+      maybeAdvanceMeasure();
     } else {
       document.getElementById('size-computed').style.display = 'none';
     }
@@ -188,46 +189,11 @@ function validateSize() {
 
 function validateQty() {
   var qty = parseInt(document.getElementById('inp-qty').value) || 1;
+  if (qty < 1) qty = 1;
   S.qty = qty;
-  updateRoomLabels(qty);
-  S.room = getRoomLabels();
-  var label = qty + ' shade' + (qty !== 1 ? 's' : '') + (S.room ? ' · ' + S.room : '');
-  document.getElementById('s3-val').textContent = label;
+  // Per-unit room/window labels are now handled by the shared label block
+  // (auto-injected after .qty-btns by shared.js) — no ad-hoc field here.
   updateSpec('sp-qty', qty);
-  completeStep('step-3', label);
-  activateStep('step-4');
-}
-
-function updateRoomLabels(qty) {
-  var wrap = document.getElementById('room-labels-wrap');
-  if (!wrap) return;
-  if (qty <= 1) {
-    wrap.innerHTML = '<div class="dim-label">Room / window label <span style="font-weight:400;color:#999">(optional)</span></div>' +
-      '<input type="text" id="inp-room" placeholder="e.g. Master Bedroom Left" style="padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;width:100%;box-sizing:border-box" oninput="validateQty()">';
-  } else {
-    var html = '<div class="dim-label">Room / window labels <span style="font-weight:400;color:#999">(optional — one per shade)</span></div>';
-    for (var i = 1; i <= qty; i++) {
-      var prev = (document.getElementById('inp-room-' + i) || {}).value || '';
-      html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">' +
-        '<span style="font-size:11px;font-weight:600;color:#777;min-width:56px">Shade ' + i + '</span>' +
-        '<input type="text" id="inp-room-' + i + '" placeholder="e.g. Living room left" value="' + prev.replace(/"/g, '&quot;') + '" style="flex:1;padding:7px 10px;border:1px solid #ddd;border-radius:7px;font-size:12px" oninput="validateQty()">' +
-        '</div>';
-    }
-    wrap.innerHTML = html;
-  }
-}
-
-function getRoomLabels() {
-  var qty = parseInt((document.getElementById('inp-qty') || {}).value) || 1;
-  if (qty <= 1) {
-    return (document.getElementById('inp-room') || {}).value || '';
-  }
-  var parts = [];
-  for (var i = 1; i <= qty; i++) {
-    var v = ((document.getElementById('inp-room-' + i) || {}).value || '').trim();
-    if (v) parts.push('Shade ' + i + ': ' + v);
-  }
-  return parts.join(' | ');
 }
 
 function getDeduction() {
@@ -275,14 +241,14 @@ function selectFabric(idx) {
   validateSize();
   buildTopTreatmentStep();
 
-  if (S.shadeType === 'double') activateStep('step-5');
-  else activateStep('step-6');
+  if (S.shadeType === 'double') activateStep('step-6');
+  else activateStep('step-7');
 }
 
 function updateFabColor(val) {
   S.fabColor = val;
   if (val.trim()) {
-    completeStep('step-4', S.fabric.name + (val ? ' · ' + val : ''));
+    completeStep('step-5', S.fabric.name + (val ? ' · ' + val : ''));
     updateSpec('sp-front', S.fabric.name + (val ? ' · ' + val : '') + ' · Group ' + S.fabric.group);
   }
 }
@@ -310,16 +276,16 @@ function selectBack(code, name, type) {
   var el = document.getElementById('backc-' + code);
   if (el) el.classList.add('sel');
   var label = (type === 'RD' ? 'Blackout ' : 'Light Filtering ') + name + ' · ' + code;
-  completeStep('step-5', label);
+  completeStep('step-6', label);
   updateSpec('sp-back', label);
-  activateStep('step-6');
+  activateStep('step-7');
 }
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 6 — TOP TREATMENT
 // ═══════════════════════════════════════════════════════════════
 function buildTopTreatmentStep() {
-  var body = document.getElementById('s6-body');
+  var body = document.getElementById('s7-body');
   var isDouble = S.shadeType === 'double';
   var isRhea = S.fabric && S.fabric.rhea;
 
@@ -332,17 +298,19 @@ function buildTopTreatmentStep() {
     {key:'trad-valance',icon:'🪵', title:'Traditional Valance',               desc:'Wood headrail + fabric · 6" single / 8" double · Returns available', show:true}
   ];
 
-  body.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:4px">' +
-    items.filter(function(i){ return i.show; }).map(function(item) {
+  var shown = items.filter(function(i){ return i.show; });
+  body.innerHTML = '<div class="opt-row">' +
+    shown.map(function(item) {
       var sel = S.topTreatment === item.key ? ' sel' : '';
       var blocked = item.blocked ? ' blocked' : '';
       var onclick = item.blocked ? '' : 'onclick="selectTopTreatment(\'' + item.key + '\')"';
-      return '<div class="opt-card' + sel + blocked + '" id="tt-' + item.key + '" ' + onclick + '>' +
-        '<div class="opt-card-icon">' + item.icon + '</div>' +
-        '<div class="opt-card-title">' + item.title + '</div>' +
-        '<div class="opt-card-desc">' + item.desc + '</div>' +
-      '</div>';
-    }).join('') + '</div>';
+      return '<button class="opt-btn' + sel + blocked + '" id="tt-' + item.key + '" ' + onclick + '>' +
+        item.title +
+      '</button>';
+    }).join('') + '</div>' +
+    '<div class="step-note" style="font-size:11px;color:#888;margin-top:6px">' +
+    shown.map(function(item){ return '<strong>' + item.title + ':</strong> ' + item.desc; }).join('<br>') +
+    '</div>';
 
   // Sub-options appear below when a treatment is selected
   body.innerHTML += '<div id="tt-sub-opts" style="margin-top:14px"></div>';
@@ -356,14 +324,14 @@ function selectTopTreatment(key) {
   if (el) el.classList.add('sel');
 
   var label = TOP_TREATMENTS[key] ? TOP_TREATMENTS[key].label : key;
-  completeStep('step-6', label);
+  completeStep('step-7', label);
   updateSpec('sp-top', label);
 
   buildTopSubOpts(key);
   buildRollStep();
   buildControlStep();
   validateSize();
-  activateStep('step-7');
+  activateStep('step-8');
 }
 
 function buildTopSubOpts(key) {
@@ -377,27 +345,28 @@ function buildTopSubOpts(key) {
         return '<div class="hw-color-opt' + (c === S.cassetteColor ? ' sel' : '') + '" onclick="selCassetteColor(\'' + c + '\',this)"><span class="hw-dot" style="background:' + dots[c] + '"></span>' + c + '</div>';
       }).join('') + '</div>' +
       '<div style="font-size:12px;font-weight:500;color:#444;margin:12px 0 8px">Fabric wrap</div>' +
-      '<div class="opt-grid-2">' +
-      '<div class="opt-card' + (S.cassetteWrap ? ' sel' : '') + '" onclick="selCassetteWrap(true)"><div class="opt-card-title">Wrapped</div><div class="opt-card-desc">Fabric-covered cassette housing</div></div>' +
-      '<div class="opt-card' + (!S.cassetteWrap ? ' sel' : '') + '" onclick="selCassetteWrap(false)"><div class="opt-card-title">Unwrapped</div><div class="opt-card-desc">Solid color cassette housing</div></div>' +
-      '</div>';
+      '<div class="opt-row">' +
+      '<button class="opt-btn' + (S.cassetteWrap ? ' sel' : '') + '" onclick="selCassetteWrap(true)">Wrapped</button>' +
+      '<button class="opt-btn' + (!S.cassetteWrap ? ' sel' : '') + '" onclick="selCassetteWrap(false)">Unwrapped</button>' +
+      '</div>' +
+      '<div class="step-note" style="font-size:11px;color:#888;margin-top:6px"><strong>Wrapped:</strong> fabric-covered cassette housing. <strong>Unwrapped:</strong> solid color cassette housing.</div>';
     if (S.fabric && S.fabric.rhea) html = '<div class="err-box"><span>⚠️</span><span>Rhea fabric cannot use square cassette fabric wrap.</span></div>';
   } else if (key === 'open-metal') {
     html += '<div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Bracket color</div>' +
-      '<div class="opt-grid-3">' +
+      '<div class="opt-row">' +
       ['Antique Brass','Satin Nickel','Black'].map(function(c) {
-        return '<div class="opt-card' + (S.metalBracketColor === c ? ' sel' : '') + '" onclick="selMetalBracket(\'' + c + '\')">' +
-          '<div class="opt-card-title">' + c + '</div></div>';
+        return '<button class="opt-btn' + (S.metalBracketColor === c ? ' sel' : '') + '" onclick="selMetalBracket(\'' + c + '\')">' + c + '</button>';
       }).join('') + '</div>';
   } else if (key === 'box-valance') {
     if (S.fabric && S.fabric.rhea) {
       html = '<div class="err-box"><span>⚠️</span><span>Rhea fabric cannot use fabric-wrapped box valance.</span></div>';
     } else {
       html += '<div style="font-size:12px;font-weight:500;color:#444;margin-bottom:6px">Valance height</div>' +
-        '<div class="opt-grid-2">' +
-        '<div class="opt-card' + (S.shadeType === 'double' ? '' : ' sel') + '" onclick="this.classList.add(\'sel\');this.nextElementSibling.classList.remove(\'sel\')"><div class="opt-card-title">4" height</div><div class="opt-card-desc">Single shades</div></div>' +
-        '<div class="opt-card' + (S.shadeType === 'double' ? ' sel' : '') + '" onclick="this.classList.add(\'sel\');this.previousElementSibling.classList.remove(\'sel\')"><div class="opt-card-title">6" height</div><div class="opt-card-desc">Double shades — recommended</div></div>' +
+        '<div class="opt-row">' +
+        '<button class="opt-btn' + (S.shadeType === 'double' ? '' : ' sel') + '" onclick="this.classList.add(\'sel\');this.nextElementSibling.classList.remove(\'sel\')">4" height</button>' +
+        '<button class="opt-btn' + (S.shadeType === 'double' ? ' sel' : '') + '" onclick="this.classList.add(\'sel\');this.previousElementSibling.classList.remove(\'sel\')">6" height</button>' +
         '</div>' +
+        '<div class="step-note" style="font-size:11px;color:#888;margin-top:6px"><strong>4" height:</strong> single shades. <strong>6" height:</strong> double shades — recommended.</div>' +
         '<div class="info-box" style="margin-top:10px">Returns from 1"–6". Outside mount recommended: 3¼" single, 4" double. Not recommended inside mount. If returns used, valance must be ≥1⅞" wider than shade.</div>';
       document.getElementById('box-val-return-wrap').style.display = 'block';
     }
@@ -412,7 +381,7 @@ function selCassetteColor(c, el) {
 }
 function selCassetteWrap(v) {
   S.cassetteWrap = v;
-  document.querySelectorAll('#tt-cassette ~ #tt-sub-opts .opt-card').forEach(function(e,i){ e.classList.toggle('sel', i === (v ? 0 : 1)); });
+  document.querySelectorAll('#tt-cassette ~ #tt-sub-opts .opt-btn').forEach(function(e,i){ e.classList.toggle('sel', i === (v ? 0 : 1)); });
   buildTopSubOpts('cassette');
 }
 function selMetalBracket(c) {
@@ -424,14 +393,14 @@ function selMetalBracket(c) {
 // STEP 7 — ROLL DIRECTION
 // ═══════════════════════════════════════════════════════════════
 function buildRollStep() {
-  var body = document.getElementById('s7-body');
+  var body = document.getElementById('s8-body');
   var tt = S.topTreatment;
   var isDouble = S.shadeType === 'double';
 
   if (isDouble) {
     body.innerHTML = '<div class="info-box">Double shades: roll direction is fixed — front fabric reverse roll, back fabric standard roll. No selection needed.</div>';
     S.rollDir = 'double-fixed';
-    completeStep('step-7', 'Front: Reverse · Back: Standard (fixed)');
+    completeStep('step-8', 'Front: Reverse · Back: Standard (fixed)');
     updateSpec('sp-roll', 'Front Reverse / Back Standard');
     return;
   }
@@ -439,16 +408,11 @@ function buildRollStep() {
   var reverseBlocked = tt === 'cassette' || tt === 'trad-valance';
   var whyBlocked = tt === 'cassette' ? 'Not available with square cassette' : tt === 'trad-valance' ? 'Not available with traditional valance' : '';
 
-  body.innerHTML = '<div class="opt-grid-2">' +
-    '<div class="opt-card' + (S.rollDir === 'standard' ? ' sel' : '') + '" id="rd-std" onclick="selectRoll(\'standard\')">' +
-      '<div class="opt-card-title">Standard Roll</div>' +
-      '<div class="opt-card-desc">Fabric off back of roll — best for privacy and light blocking</div>' +
-    '</div>' +
-    '<div class="opt-card' + (reverseBlocked ? ' blocked' : (S.rollDir === 'reverse' ? ' sel' : '')) + '" id="rd-rev" onclick="selectRoll(\'reverse\')">' +
-      '<div class="opt-card-title">Reverse Roll</div>' +
-      '<div class="opt-card-desc">' + (reverseBlocked ? '<span style="color:#dc2626;font-weight:600">' + whyBlocked + '</span>' : 'Fabric off front — best for clearing obstructions') + '</div>' +
-    '</div>' +
-  '</div>';
+  body.innerHTML = '<div class="opt-row">' +
+    '<button class="opt-btn' + (S.rollDir === 'standard' ? ' sel' : '') + '" id="rd-std" onclick="selectRoll(\'standard\')">Standard Roll</button>' +
+    '<button class="opt-btn' + (reverseBlocked ? ' blocked' : (S.rollDir === 'reverse' ? ' sel' : '')) + '" id="rd-rev" onclick="selectRoll(\'reverse\')">Reverse Roll</button>' +
+  '</div>' +
+  '<div class="step-note" style="font-size:11px;color:#888;margin-top:6px"><strong>Standard Roll:</strong> fabric off back of roll — best for privacy and light blocking. <strong>Reverse Roll:</strong> ' + (reverseBlocked ? '<span style="color:#dc2626;font-weight:600">' + whyBlocked + '</span>' : 'fabric off front — best for clearing obstructions') + '</div>';
 
   if (reverseBlocked && S.rollDir === 'reverse') {
     S.rollDir = 'standard';
@@ -460,16 +424,16 @@ function selectRoll(dir) {
   S.rollDir = dir;
   document.getElementById('rd-std') && document.getElementById('rd-std').classList.toggle('sel', dir === 'standard');
   document.getElementById('rd-rev') && document.getElementById('rd-rev').classList.toggle('sel', dir === 'reverse');
-  completeStep('step-7', dir === 'standard' ? 'Standard Roll' : 'Reverse Roll');
+  completeStep('step-8', dir === 'standard' ? 'Standard Roll' : 'Reverse Roll');
   updateSpec('sp-roll', dir === 'standard' ? 'Standard' : 'Reverse');
-  activateStep('step-8');
+  activateStep('step-9');
 }
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 8 — CONTROL TYPE
 // ═══════════════════════════════════════════════════════════════
 function buildControlStep() {
-  var body = document.getElementById('s8-body');
+  var body = document.getElementById('s9-body');
   var tt = S.topTreatment;
   var isDouble = S.shadeType === 'double';
 
@@ -489,51 +453,54 @@ function buildControlStep() {
     return;
   }
 
-  body.innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:4px">' +
+  body.innerHTML = '<div class="opt-row">' +
     controls.map(function(c) {
       var isBlocked = c.blocked || (tt === 'open-metal' && c.key === 'clutch');
       var sel = S.control === c.key && !isBlocked ? ' sel' : '';
       var blocked = isBlocked ? ' blocked' : '';
+      return '<button class="opt-btn' + sel + blocked + '" id="ctrl-' + c.key + '" onclick="selectControl(\'' + c.key + '\')">' +
+        c.title +
+      '</button>';
+    }).join('') + '</div>' +
+    '<div class="step-note" style="font-size:11px;color:#888;margin-top:6px">' +
+    controls.map(function(c) {
+      var isBlocked = c.blocked || (tt === 'open-metal' && c.key === 'clutch');
       var desc = isBlocked && c.blockedReason ? '<span style="color:#dc2626;font-weight:600">' + c.blockedReason + '</span>' : c.desc;
-      return '<div class="opt-card' + sel + blocked + '" id="ctrl-' + c.key + '" onclick="selectControl(\'' + c.key + '\')">' +
-        '<div class="opt-card-icon">' + c.icon + '</div>' +
-        '<div class="opt-card-title">' + c.title + '</div>' +
-        '<div class="opt-card-desc">' + desc + '</div>' +
-      '</div>';
-    }).join('') + '</div>';
+      return '<strong>' + c.title + ':</strong> ' + desc;
+    }).join('<br>') +
+    '</div>';
 }
 
 function selectControl(key) {
   S.control = key;
   S.controlSide = '';
   var labels = {clutch:'Clutch', cordless:'Cordless', prowand:'Pro Wand Motor', motor:'Remote Motor'};
-  completeStep('step-8', labels[key]);
+  completeStep('step-9', labels[key]);
   updateSpec('sp-control', labels[key]);
   validateSize();
 
-  var needsSide = key !== 'cordless';
   var needsMotorAcc = key === 'motor' || key === 'prowand';
-  document.getElementById('step-9').style.display = 'block';
-  document.getElementById('step-10').style.display = needsMotorAcc ? 'block' : 'none';
+  document.getElementById('step-10').style.display = 'block';
+  document.getElementById('step-11').style.display = needsMotorAcc ? 'block' : 'none';
 
   buildControlDetails(key);
   if (needsMotorAcc) buildMotorAcc(key);
 
-  activateStep('step-9');
+  activateStep('step-10');
 }
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 9 — CONTROL DETAILS
 // ═══════════════════════════════════════════════════════════════
 function buildControlDetails(key) {
-  var body = document.getElementById('s9-body');
-  var titleEl = document.getElementById('s9-title');
+  var body = document.getElementById('s10-body');
+  var titleEl = document.getElementById('s10-title');
   titleEl.textContent = 'Control side' + (key === 'clutch' ? ' + chain' : key === 'prowand' ? ' + wand length' : key === 'motor' ? ' + motor type' : '');
 
   var sideHTML = '<div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Control side</div>' +
-    '<div class="opt-grid-2">' +
-    '<div class="opt-card' + (S.controlSide === 'Right' ? ' sel' : '') + '" id="side-right" onclick="selectSide(\'Right\')"><div class="opt-card-title">Right</div></div>' +
-    '<div class="opt-card' + (S.controlSide === 'Left' ? ' sel' : '') + '" id="side-left" onclick="selectSide(\'Left\')"><div class="opt-card-title">Left</div></div>' +
+    '<div class="opt-row">' +
+    '<button class="opt-btn' + (S.controlSide === 'Right' ? ' sel' : '') + '" id="side-right" onclick="selectSide(\'Right\')">Right</button>' +
+    '<button class="opt-btn' + (S.controlSide === 'Left' ? ' sel' : '') + '" id="side-left" onclick="selectSide(\'Left\')">Left</button>' +
     '</div>';
 
   var extraHTML = '';
@@ -546,41 +513,43 @@ function buildControlDetails(key) {
         return '<div class="hw-color-opt' + (c === S.chainColor ? ' sel' : '') + '" onclick="selChainColor(\'' + c + '\',this)"><span class="hw-dot" style="background:' + dots[c] + '"></span>' + c + '</div>';
       }).join('') + '</div>' +
       '<div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 8px">Chain drop length</div>' +
-      '<div class="opt-grid-3">' +
+      '<div class="opt-row">' +
       ['2 ft','3 ft','4 ft','5 ft'].map(function(l){
         var isClosest = S.height > 0 && isChainDefault(l);
-        return '<div class="opt-card' + (S.chainDrop === l ? ' sel' : '') + '" onclick="selChainDrop(\'' + l + '\')">' +
-          '<div class="opt-card-title">' + l + (isClosest ? ' ✓' : '') + '</div>' +
-          (isClosest ? '<div class="opt-card-desc">Default (≈2/3 height)</div>' : '') +
-        '</div>';
+        return '<button class="opt-btn' + (S.chainDrop === l ? ' sel' : '') + '" onclick="selChainDrop(\'' + l + '\')">' + l + (isClosest ? ' ✓' : '') + '</button>';
       }).join('') + '</div>' +
+      '<div class="step-note" style="font-size:11px;color:#888;margin-top:6px">✓ marks the default (≈2/3 height).</div>' +
       '<div class="info-box" style="margin-top:10px">Default chain is closest to 2/3 of shade height. Compliant cord tensioner included. Metal chain available — note in quote.</div>';
   }
 
   if (key === 'prowand') {
     extraHTML = '<div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 8px">Wand length</div>' +
-      '<div class="opt-grid-2">' +
+      '<div class="opt-row">' +
       ['24"','36"','48"','60"'].map(function(l) {
-        return '<div class="opt-card' + (S.wandLength === l ? ' sel' : '') + '" onclick="selWandLength(\'' + l + '\')">' +
-          '<div class="opt-card-title">' + l + '</div></div>';
+        return '<button class="opt-btn' + (S.wandLength === l ? ' sel' : '') + '" onclick="selWandLength(\'' + l + '\')">' + l + '</button>';
       }).join('') + '</div>' +
       (S.topTreatment === 'open-metal' ? '<div class="info-box" style="margin-top:10px">Pro Wand with decorative metal bracket requires top mount installation.</div>' : '');
   }
 
   if (key === 'motor') {
+    var motors = [
+      {v:'li-std',   label:'LI Rechargeable',     desc:'Standard lift — rechargeable lithium ion'},
+      {v:'li-power', label:'LI Power Lift',        desc:'Heavy fabric/oversized — rechargeable LI'},
+      {v:'dc-12v',   label:'12V DC Hardwired',     desc:'Hardwired to 12V DC power'},
+      {v:'dc-ext',   label:'12V DC External',      desc:'External 12V DC power supply'},
+      {v:'ac-100',   label:'AC 100–240V Hardwired',desc:'Requires licensed electrician'}
+    ];
     extraHTML = '<div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 8px">Motor type</div>' +
-      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px">' +
-      [
-        {v:'li-std',   label:'LI Rechargeable',     desc:'Standard lift — rechargeable lithium ion'},
-        {v:'li-power', label:'LI Power Lift',        desc:'Heavy fabric/oversized — rechargeable LI'},
-        {v:'dc-12v',   label:'12V DC Hardwired',     desc:'Hardwired to 12V DC power'},
-        {v:'dc-ext',   label:'12V DC External',      desc:'External 12V DC power supply'},
-        {v:'ac-100',   label:'AC 100–240V Hardwired',desc:'Requires licensed electrician'}
-      ].map(function(m) {
-        var warn = m.v === 'ac-100' ? '<div class="opt-card-desc" style="color:#dc2626">Electrician required</div>' : '<div class="opt-card-desc">' + m.desc + '</div>';
-        return '<div class="opt-card' + (S.motorType === m.v ? ' sel' : '') + '" onclick="selMotorType(\'' + m.v + '\')">' +
-          '<div class="opt-card-title">' + m.label + '</div>' + warn + '</div>';
-      }).join('') + '</div>';
+      '<div class="opt-row">' +
+      motors.map(function(m) {
+        return '<button class="opt-btn' + (S.motorType === m.v ? ' sel' : '') + '" onclick="selMotorType(\'' + m.v + '\')">' + m.label + '</button>';
+      }).join('') + '</div>' +
+      '<div class="step-note" style="font-size:11px;color:#888;margin-top:6px">' +
+      motors.map(function(m){
+        var d = m.v === 'ac-100' ? '<span style="color:#dc2626">Electrician required</span>' : m.desc;
+        return '<strong>' + m.label + ':</strong> ' + d;
+      }).join('<br>') +
+      '</div>';
   }
 
   if (key === 'cordless') {
@@ -594,13 +563,13 @@ function selectSide(side) {
   S.controlSide = side;
   ['side-right','side-left'].forEach(function(id){ var el=document.getElementById(id); if(el) el.classList.remove('sel'); });
   var el = document.getElementById('side-' + side.toLowerCase()); if(el) el.classList.add('sel');
-  document.getElementById('s9-val').textContent = side;
-  activateStep('step-11');
+  document.getElementById('s10-val').textContent = side;
+  activateStep('step-12');
 }
 function selChainColor(c,el) { S.chainColor=c; document.querySelectorAll('#grp-chain-color .hw-color-opt').forEach(function(e){e.classList.remove('sel');}); el.classList.add('sel'); }
 function selChainDrop(l) { S.chainDrop=l; buildControlDetails('clutch'); }
 function selWandLength(l) { S.wandLength=l; buildControlDetails('prowand'); }
-function selMotorType(v) { S.motorType=v; buildControlDetails('motor'); if(S.motorType==='ac-100'){ document.querySelector('#s9-body .err-box') || (document.getElementById('s9-body').insertAdjacentHTML('beforeend','<div class="err-box" style="margin-top:10px"><span>⚠️</span><span>AC hardwired motor requires installation by a licensed electrician.</span></div>')); } }
+function selMotorType(v) { S.motorType=v; buildControlDetails('motor'); if(S.motorType==='ac-100'){ document.querySelector('#s10-body .err-box') || (document.getElementById('s10-body').insertAdjacentHTML('beforeend','<div class="err-box" style="margin-top:10px"><span>⚠️</span><span>AC hardwired motor requires installation by a licensed electrician.</span></div>')); } }
 function isChainDefault(l) {
   if (!S.height) return false;
   var twoThirds = S.height * 2 / 3;
@@ -613,7 +582,7 @@ function isChainDefault(l) {
 // STEP 10 — MOTOR ACCESSORIES
 // ═══════════════════════════════════════════════════════════════
 function buildMotorAcc(key) {
-  var body = document.getElementById('s10-body');
+  var body = document.getElementById('s11-body');
   var items = [
     {id:'acc-remote15', label:'15-Channel Handheld Remote',  sub:'Controls up to 15 shades'},
     {id:'acc-switch15', label:'15-Channel Wall Switch',       sub:'Wall-mounted controller'},
@@ -635,12 +604,12 @@ function buildMotorAcc(key) {
 
 function updateMotorAcc() {
   var acc = [];
-  document.querySelectorAll('#s10-body .acc-check:checked').forEach(function(el) {
+  document.querySelectorAll('#s11-body .acc-check:checked').forEach(function(el) {
     var lbl = el.nextElementSibling && el.nextElementSibling.querySelector('.acc-label');
     if (lbl) acc.push(lbl.textContent);
   });
   S.motorAccessories = acc;
-  document.getElementById('s10-val').textContent = acc.length ? acc.length + ' selected' : 'Optional';
+  document.getElementById('s11-val').textContent = acc.length ? acc.length + ' selected' : 'Optional';
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -653,7 +622,7 @@ function updateOptions() {
   var opts = [];
   if (S.holdDown) opts.push('Hold-downs');
   if (S.spacer) opts.push('Spacer blocks');
-  document.getElementById('s11-val').textContent = opts.length ? opts.join(', ') : 'None';
+  document.getElementById('s12-val').textContent = opts.length ? opts.join(', ') : 'None';
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -661,10 +630,8 @@ function updateOptions() {
 // ═══════════════════════════════════════════════════════════════
 function selectDelivery(mode) {
   S.delivery = mode;
-  document.getElementById('del-ship').classList.toggle('sel', mode === 'ship');
-  document.getElementById('del-pickup').classList.toggle('sel', mode === 'pickup');
-  document.getElementById('del-ship-note').style.display = mode === 'ship' ? 'block' : 'none';
-  document.getElementById('del-pickup-note').style.display = mode === 'pickup' ? 'block' : 'none';
+  var delShip = document.getElementById('del-ship');
+  if (delShip) delShip.classList.add('sel');
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -701,7 +668,7 @@ function addWallaceNaturalRollerToCart(){
   var lines=[
     {label:'Product',value:'Wallace Portfolio Collection Natural Roller Shades'},
     {label:'Shade Type',value:S.shadeType==='single'?'Single Natural Roller':'Double Natural Roller'},
-    {label:'Mount',value:S.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Mount',value:S.mount==='inside'?'Inside mount':'Outside mount'},
     {label:'Width',value:(S.width||'—')+'"'},
     {label:'Height',value:(S.height||'—')+'"'},
     {label:'Quantity',value:String(S.qty||1)},
@@ -717,8 +684,8 @@ function addWallaceNaturalRollerToCart(){
 }
 
 function submitQuote() {
-  var name  = document.getElementById('q-name').value.trim();
-  var phone = document.getElementById('q-phone').value.trim();
+  var name  = document.getElementById('cf-name').value.trim();
+  var phone = document.getElementById('cf-phone').value.trim();
   if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
 
   var fab = S.fabric;
@@ -726,13 +693,13 @@ function submitQuote() {
   var ctrl = S.control;
   var ctrllabels = {clutch:'Clutch', cordless:'Cordless', prowand:'Pro Wand Motor', motor:'Remote Motor'};
   var ttlabels = {'open-std':'Open Roll — Standard Bracket','open-metal':'Open Roll — Decorative Metal Bracket','open-dual':'Open Roll — Dual Bracket','cassette':'Square Cassette','box-valance':'Fabric-Wrapped Box Valance','trad-valance':'Traditional Valance'};
-  var delivery = S.delivery === 'pickup' ? "I'll pick up (Huntingdon Valley, PA)" : 'Ship to me (UPS/FedEx from Huntingdon Valley, PA)';
+  var delivery = 'Ship to me (UPS/FedEx)';
 
   var warns = [];
   if (fab && S.width > fab.maxW) warns.push('Width exceeds fabric max (' + fab.maxW + '")');
   if (S.shadeType === 'double' && S.height > 96) warns.push('Double shade height exceeds 96" maximum');
   if (S.motorType === 'ac-100') warns.push('AC hardwired motor requires a licensed electrician');
-  if (S.backFabric && S.backFabric.type === 'RD') warns.push('Room-darkening back fabric is not total blackout — light may pass through side gaps');
+  if (S.backFabric && S.backFabric.type === 'RD') warns.push('Blackout back fabric is not total blackout — light may pass through side gaps');
   if (fab && fab.rhea && (tt === 'cassette' || tt === 'box-valance')) warns.push('Rhea fabric selected with incompatible top treatment — please review');
 
   var im = S.mount === 'inside' ? 0.125 : 0;
@@ -742,13 +709,12 @@ function submitQuote() {
   var body = 'WALLACE PORTFOLIO COLLECTION NATURAL ROLLER SHADES — SPECIFICATION REQUEST\n\n'
     + '── CUSTOMER ──\n'
     + 'Name: ' + name + '\nPhone: ' + phone
-    + '\nEmail: ' + (document.getElementById('q-email').value.trim() || '—')
-    + '\nAddress: ' + (document.getElementById('q-address').value.trim() || '—') + '\n\n'
+    + '\nEmail: ' + (document.getElementById('cf-email').value.trim() || '—')
+    + '\nAddress: ' + (document.getElementById('cf-address').value.trim() || '—') + '\n\n'
     + '── PRODUCT SPECIFICATION ──\n'
     + 'Product: Wallace Portfolio Collection Natural Roller Shades (2026)\n'
     + 'Shade type: ' + (S.shadeType === 'single' ? 'Single Natural Roller' : 'Double Natural Roller') + '\n'
-    + 'Room / window: ' + (S.room || '—') + '\n'
-    + 'Mount: ' + (S.mount === 'inside' ? 'Inside Mount (−1/8" deduction)' : S.mount === 'outside' ? 'Outside Mount' : '—') + '\n'
+    + 'Mount: ' + (S.mount === 'inside' ? 'Inside mount (−1/8" deduction)' : S.mount === 'outside' ? 'Outside mount' : '—') + '\n'
     + 'Ordered width: ' + (S.width || '—') + '"\n'
     + 'Ordered height: ' + (S.height || '—') + '"\n'
     + 'Quantity: ' + S.qty + '\n'
@@ -784,9 +750,9 @@ function submitQuote() {
     + '\n── DELIVERY ──\n'
     + delivery + '\n\n'
     + '── NOTES ──\n'
-    + (document.getElementById('q-notes').value.trim() || 'None');
+    + (document.getElementById('cf-notes').value.trim() || 'None');
 
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.location.href = 'mailto:blindznation@gmail.com'
     + '?subject=' + encodeURIComponent('Wallace Natural Roller Spec — ' + name + (fab ? ' · ' + fab.name : ''))
     + '&body=' + encodeURIComponent(body);
 
@@ -797,4 +763,4 @@ function submitQuote() {
 buildFabGrid('all');
 buildBackGrids();
 buildTopTreatmentStep();
-buildControlStep();
+buildControlStep();

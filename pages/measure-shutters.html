@@ -29,7 +29,7 @@
 .hero-trust{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .hero-phone{font-size:16px;font-weight:500;color:var(--gold);text-decoration:none}
 .hero-phone-note{font-size:11px;color:var(--text-faint)}
-.shutters-notice{display:inline-flex;align-items:center;gap:8px;background:rgba(201,169,110,0.12);border:1px solid rgba(201,169,110,0.3);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--gold);margin-bottom:18px}
+.shutters-notice{display:inline-flex;align-items:center;gap:8px;background:rgba(45,224,193,0.12);border:1px solid rgba(45,224,193,0.3);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--gold);margin-bottom:18px}
 
 .persistent-strip{background:var(--espresso-mid);border-bottom:1px solid var(--border-dark);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:58px;z-index:90}
 .ps-text{font-size:12px;color:var(--text-dark)}
@@ -119,7 +119,7 @@
 }
 </style>
 </head>
-<body>
+<body data-page="How to measure">
 <nav class="site-nav" id="site-nav"></nav>
 
 <div class="page-hero">
@@ -151,8 +151,8 @@
 
 <div class="tab-nav-wrap">
   <div class="tab-nav">
-    <button class="tab-btn active" onclick="showTab('inside')">Inside Mount</button>
-    <button class="tab-btn" onclick="showTab('outside')">Outside Mount</button>
+    <button class="tab-btn active" onclick="showTab('inside')">Inside mount</button>
+    <button class="tab-btn" onclick="showTab('outside')">Outside mount</button>
     <button class="tab-btn" onclick="showTab('lines')">Norman Lines &amp; Sizes</button>
     <button class="tab-btn" onclick="showTab('frames')">Frame Styles &amp; Depth</button>
     <button class="tab-btn" onclick="showTab('tips')">Tips &amp; Troubleshooting</button>
@@ -168,7 +168,7 @@
 <div class="measure-wrap">
 
   <div class="section-label">Tab 1 of 5</div>
-  <div class="section-title" style="margin-bottom:14px">Inside Mount</div>
+  <div class="section-title" style="margin-bottom:14px">Inside mount</div>
 
   <p class="intro-text">An inside mount shutter sits <strong>within</strong> the window frame. It gives the cleanest, most built-in look. Because shutters are rigid panels, the frame depth requirement is higher than for shades — and the 3&times;3 measuring rule is critical to get right.</p>
 
@@ -192,7 +192,7 @@
   <div class="diagram-row">
     <div class="diagram-box">
       <!--
-        SVG: Shutter Inside Mount — 3W × 3H
+        SVG: Shutter Inside mount — 3W × 3H
         ViewBox 260 × 270. Frame with 2-panel split and louver lines.
         W1/W2/W3 horizontal arrows with chip labels.
         H1 (left, outside frame), H2 (center, dashed), H3 (right, outside frame).
@@ -236,38 +236,38 @@
         <line x1="48" y1="54" x2="178" y2="54" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-al)" marker-end="url(#sh-ar)"/>
         <line x1="48" y1="48" x2="48" y2="60" stroke="#2DE0C1" stroke-width="1.5"/>
         <line x1="178" y1="48" x2="178" y2="60" stroke="#2DE0C1" stroke-width="1.5"/>
-        <rect x="99" y="46" width="28" height="15" rx="3" fill="#1C1510"/>
-        <text x="113" y="57" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">W1</text>
+        <rect x="99" y="46" width="28" height="15" rx="3" fill="#111110"/>
+        <text x="113" y="57" text-anchor="middle" fill="#FAF8F3" font-size="10" font-weight="700" font-family="system-ui,sans-serif">W1</text>
         <!-- ── W2: middle width ── -->
         <line x1="48" y1="125" x2="178" y2="125" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-al)" marker-end="url(#sh-ar)"/>
         <line x1="48" y1="119" x2="48" y2="131" stroke="#2DE0C1" stroke-width="1.5"/>
         <line x1="178" y1="119" x2="178" y2="131" stroke="#2DE0C1" stroke-width="1.5"/>
-        <rect x="99" y="117" width="28" height="15" rx="3" fill="#1C1510"/>
-        <text x="113" y="128" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">W2</text>
+        <rect x="99" y="117" width="28" height="15" rx="3" fill="#111110"/>
+        <text x="113" y="128" text-anchor="middle" fill="#FAF8F3" font-size="10" font-weight="700" font-family="system-ui,sans-serif">W2</text>
         <!-- ── W3: bottom width ── -->
         <line x1="48" y1="196" x2="178" y2="196" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-al)" marker-end="url(#sh-ar)"/>
         <line x1="48" y1="190" x2="48" y2="202" stroke="#2DE0C1" stroke-width="1.5"/>
         <line x1="178" y1="190" x2="178" y2="202" stroke="#2DE0C1" stroke-width="1.5"/>
-        <rect x="99" y="188" width="28" height="15" rx="3" fill="#1C1510"/>
-        <text x="113" y="199" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">W3</text>
+        <rect x="99" y="188" width="28" height="15" rx="3" fill="#111110"/>
+        <text x="113" y="199" text-anchor="middle" fill="#FAF8F3" font-size="10" font-weight="700" font-family="system-ui,sans-serif">W3</text>
         <!-- ── H1: left height (outside frame) ── -->
         <line x1="12" y1="38" x2="12" y2="212" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-au)" marker-end="url(#sh-ad)"/>
         <line x1="6" y1="38" x2="18" y2="38" stroke="#2DE0C1" stroke-width="1.5"/>
         <line x1="6" y1="212" x2="18" y2="212" stroke="#2DE0C1" stroke-width="1.5"/>
-        <rect x="0" y="117" width="28" height="15" rx="3" fill="#1C1510"/>
-        <text x="14" y="128" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">H1</text>
+        <rect x="0" y="117" width="28" height="15" rx="3" fill="#111110"/>
+        <text x="14" y="128" text-anchor="middle" fill="#FAF8F3" font-size="10" font-weight="700" font-family="system-ui,sans-serif">H1</text>
         <!-- ── H2: center height (dashed — through opening) ── -->
         <line x1="113" y1="38" x2="113" y2="212" stroke="#2DE0C1" stroke-width="1.3" stroke-dasharray="5 3" opacity="0.55" marker-start="url(#sh-au)" marker-end="url(#sh-ad)"/>
         <line x1="107" y1="38" x2="119" y2="38" stroke="#2DE0C1" stroke-width="1.2" opacity="0.55"/>
         <line x1="107" y1="212" x2="119" y2="212" stroke="#2DE0C1" stroke-width="1.2" opacity="0.55"/>
-        <rect x="99" y="152" width="28" height="15" rx="3" fill="#1C1510"/>
-        <text x="113" y="163" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">H2</text>
+        <rect x="99" y="152" width="28" height="15" rx="3" fill="#111110"/>
+        <text x="113" y="163" text-anchor="middle" fill="#FAF8F3" font-size="10" font-weight="700" font-family="system-ui,sans-serif">H2</text>
         <!-- ── H3: right height (outside frame) ── -->
         <line x1="248" y1="38" x2="248" y2="212" stroke="#2DE0C1" stroke-width="1.8" marker-start="url(#sh-au)" marker-end="url(#sh-ad)"/>
         <line x1="242" y1="38" x2="254" y2="38" stroke="#2DE0C1" stroke-width="1.5"/>
         <line x1="242" y1="212" x2="254" y2="212" stroke="#2DE0C1" stroke-width="1.5"/>
-        <rect x="234" y="117" width="28" height="15" rx="3" fill="#1C1510"/>
-        <text x="248" y="128" text-anchor="middle" fill="#F5ECD7" font-size="10" font-weight="700" font-family="system-ui,sans-serif">H3</text>
+        <rect x="234" y="117" width="28" height="15" rx="3" fill="#111110"/>
+        <text x="248" y="128" text-anchor="middle" fill="#FAF8F3" font-size="10" font-weight="700" font-family="system-ui,sans-serif">H3</text>
         <!-- Caption -->
         <text x="113" y="254" text-anchor="middle" fill="#7A6A58" font-size="9" font-family="system-ui,sans-serif">3 widths &amp; 3 heights — use the smallest of each</text>
       </svg>
@@ -340,7 +340,7 @@
 <div class="measure-wrap">
 
   <div class="section-label">Tab 2 of 5</div>
-  <div class="section-title" style="margin-bottom:14px">Outside Mount</div>
+  <div class="section-title" style="margin-bottom:14px">Outside mount</div>
 
   <p class="intro-text">An <strong>outside mount</strong> shutter is attached to the wall or face of the window casing — the frame surrounds the opening from the outside rather than sitting inside it. Outside mount is required when frame depth is insufficient for inside mount, or when you want to make a window appear larger.</p>
 
@@ -722,7 +722,7 @@
   <div class="measure-table-wrap">
     <table class="measure-table">
       <thead>
-        <tr><th>Frame Style</th><th>Min Inside Mount Depth</th><th>Notes</th></tr>
+        <tr><th>Frame Style</th><th>Min Inside mount Depth</th><th>Notes</th></tr>
       </thead>
       <tbody>
         <tr><td>L-Frame</td><td>1-3/4&rdquo;</td><td>Most common, works on nearly all standard windows</td></tr>
@@ -730,7 +730,7 @@
         <tr><td>Deco-Frame</td><td>2-1/2&rdquo;</td><td>Wider visual frame; requires more depth</td></tr>
         <tr><td>Contour-Frame</td><td>2-1/2&rdquo;</td><td>Used for arched or shaped windows</td></tr>
         <tr><td>Frameless</td><td>1-3/8&rdquo;</td><td>Requires a very level, flat casing surface</td></tr>
-        <tr><td>Outside Mount (any frame)</td><td>No depth min</td><td>Mounts to wall surface — depth irrelevant</td></tr>
+        <tr><td>Outside mount (any frame)</td><td>No depth min</td><td>Mounts to wall surface — depth irrelevant</td></tr>
       </tbody>
     </table>
   </div>
@@ -874,7 +874,6 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
-<script src="../js/pages/measure-shutters.js"></script>
+<script src="../js/pages/measure.js"></script>
 </body>
 </html>
-

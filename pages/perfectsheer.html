@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configure and price Norman PerfectSheer™ shades. Soft horizontal sheer vanes, 32 colors, CCL or motorized. 35% Norman discount. Instant pricing. Philadelphia area.">
+<meta property="og:url" content="https://blindznation.com/pages/perfectsheer.html">
+<meta property="og:title" content="Norman PerfectSheer™ Shades — Blindznation">
+<meta property="og:description" content="Horizontal sheer vanes that tilt like blinds — diffuse light beautifully. 32 colors, CCL or motorized. 35% Norman discount. Instant pricing.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Blindznation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Norman PerfectSheer™ Shades — Blindznation">
+<meta name="twitter:description" content="Configure and price Norman PerfectSheer™ shades. Instant pricing.">
+<meta property="og:image" content="https://blindznation.com/img/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://blindznation.com/img/social-preview.png">
+<title>Norman PerfectSheer™ Shades — Blindznation</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.page-hero{background:linear-gradient(to right,rgba(28,21,16,.96) 40%,rgba(28,21,16,.65) 70%,rgba(28,21,16,.3) 100%),url('../images/thumbnails/norman-perfect-sheer.jpg') right center/cover no-repeat;padding:48px 28px 44px;min-height:280px}
+.breadcrumb{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+.breadcrumb a{color:var(--text-muted);text-decoration:none}
+.page-hero h1{font-size:30px;font-weight:500;color:var(--cream);letter-spacing:-0.4px;margin-bottom:8px;line-height:1.2}
+.page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
+.config-layout{display:grid;grid-template-columns:1fr 308px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
+@media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
+.opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.opt-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+@media(max-width:520px){.opt-grid-3{grid-template-columns:1fr 1fr}}
+.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;text-align:center;transition:all .15s}
+.opt-card:hover{border-color:var(--gold)}
+.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
+.opt-card.sel .opt-card-title{color:#0A4A42}
+.opt-card.sel,.addon-row.sel,.delivery-opt-card.sel{box-shadow:0 0 0 3px rgba(45,224,193,.15),0 2px 8px rgba(45,224,193,.18)}
+.opt-card-desc{font-size:11px;color:#666;line-height:1.45}
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
+.dim-whole{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:16px;text-align:center;box-sizing:border-box}
+.dim-unit{font-size:11px;color:#888;margin-top:4px;line-height:1.5}
+.msg-box{border-radius:8px;padding:9px 13px;font-size:12px;margin-top:8px;line-height:1.5}
+.msg-warn{background:#FFF3CD;border:1px solid #FFC107;color:#7d5a00}
+.msg-info{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);color:#0A4A42}
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
+.addon-row:hover{border-color:var(--gold)}
+.addon-row.sel{border:2px solid var(--gold);background:var(--gold-mid)}
+.addon-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
+.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#111110}
+.addon-name{font-size:13px;font-weight:500;color:#111}
+.addon-sub{font-size:11px;color:#666;margin-top:1px}
+.addon-price{font-size:12px;font-weight:600;color:var(--gold);flex-shrink:0}
+.spinner-row{display:flex;align-items:center;gap:9px;margin-top:8px}
+.spin-btn{width:32px;height:32px;border:1px solid #ddd;border-radius:7px;background:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1}
+.spin-btn:hover{border-color:var(--gold)}
+.spin-num{width:44px;text-align:center;border:1px solid #ddd;border-radius:7px;font-size:14px;padding:5px}
+.spin-label{font-size:12px;color:#666}
+.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
+.sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 5px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:inherit;box-sizing:border-box}
+.form-group textarea{resize:vertical;min-height:72px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.submit-btn{width:100%;padding:14px;background:var(--gold);color:#111110;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;margin-top:8px}
+.submit-btn:hover{opacity:.88}
+.success-box{background:#EEFBE8;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;display:none;margin-top:12px}
+.success-box h3{font-size:15px;font-weight:600;color:#14532d;margin-bottom:6px}
+.success-box p{font-size:13px;color:#166534;line-height:1.6}
+.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
+.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+.qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:8px 0;font-style:italic;line-height:1.6}
+.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
+.qrow-label{color:var(--text-muted);line-height:1.4}
+.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
+.qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
+.ps-breakdown{margin-top:10px;padding-top:10px;border-top:.5px solid var(--border-dark);font-size:11px;color:rgba(255,255,255,.6);line-height:1.9}
+.ps-grand-row{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:.5px solid var(--border-dark)}
+.ps-grand-label{font-size:12px;color:var(--cream);font-weight:600}
+.ps-grand-val{font-size:18px;font-weight:700;color:var(--gold)}
+.ps-per-shade{font-size:24px;font-weight:700;color:var(--gold)}
+.ps-opts{font-size:13px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;width:100%;font-family:inherit;background:#fff;box-sizing:border-box}
+.val-grid{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+</style>
+</head>
+<body data-page="Sheer Shades">
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="sheer-shades.html">Sheer Shades</a> &rsaquo; Norman PerfectSheer™</div>
+    <h1>Norman<br>PerfectSheer™</h1>
+    <p class="sub">Soft horizontal sheer vanes that tilt open and closed like blinds — diffusing light beautifully while keeping your view. 100% polyester, 32 colors, CCL or motorized.</p>
+    <div class="hero-pills">
+      <span class="hero-pill hero-pill-gold">Instant pricing</span>
+      <span class="hero-pill hero-pill-gold">35% Norman discount</span>
+      <span class="hero-pill">32 colors</span>
+      <span class="hero-pill">CCL or motorized</span>
+      <span class="hero-pill">NORMAN®</span>
+    </div>
+  </div>
+</div>
+
+<div class="config-layout">
+<div><!-- left column -->
+
+  <!-- STEP 1: MEASUREMENTS & MOUNT -->
+  <div class="step-block" id="step1">
+    <div class="step-head" onclick="toggleStep('step1')">
+      <div class="step-num">1</div>
+      <div class="step-head-title">Window measurements &amp; mount</div>
+      <div class="step-head-val" id="s1val">—</div>
+    </div>
+    <div class="step-body">
+      <!-- Width + Height (canonical dim-box) -->
+      <div class="dim-box">
+        <div class="dim-box-label">Enter your window size</div>
+        <div class="form-row">
+          <div class="form-group"><label>Width</label><input type="number" id="ps-width" min="12" max="110" step="0.125" placeholder="48" oninput="onDimChange()"><div class="dim-unit">inches &middot; CCL 12&ndash;98&Prime; &middot; Motorized up to 110&Prime;</div></div>
+          <div class="form-group"><label>Height</label><input type="number" id="ps-height" min="12" max="120" step="0.125" placeholder="60" oninput="onDimChange()"><div class="dim-unit">inches &middot; CCL 12&ndash;98&Prime; &middot; Motorized up to 120&Prime;</div></div>
+        </div>
+      </div>
+      <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Measure to the nearest &frac14;&Prime;. For inside mount, give us the exact opening &mdash; we take the deduction.</div>
+      <div id="ps-price-note" class="msg-box msg-warn" style="display:none"></div>
+
+      <!-- Mount type -->
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
+      <div class="opt-row" style="margin-bottom:6px">
+        <button class="opt-btn" onclick="pickMount(this,'Inside mount')">Inside mount</button>
+        <button class="opt-btn" onclick="pickMount(this,'Outside mount')">Outside mount</button>
+        <button class="opt-btn" onclick="pickMount(this,'Semi-inside mount')">Semi-Inside</button>
+      </div>
+      <div class="step-note" style="margin-bottom:12px">Inside: fits inside frame &middot; clean flush look &middot; mfr deducts 3/8&Prime; automatically. Outside: mounts above/outside frame &middot; better light control &middot; covers more wall. Semi-Inside: partially recessed &middot; for shallow window frames.</div>
+
+      <!-- Quantity (shared stepper) -->
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:12px;color:#666">Qty:</span>
+        <div class="qty-btns">
+          <button class="qty-btn" onclick="adjPsQty(-1)">&#8722;</button>
+          <span class="qty-num" id="ps-qty-display">1</span>
+          <button class="qty-btn" onclick="adjPsQty(1)">&#43;</button>
+        </div>
+        <span style="font-size:12px;color:#666">shades (same size)</span>
+      </div>
+      <div class="step-note">For different sizes, add each shade to cart separately. Freight is calculated on the full order.</div>
+    </div>
+  </div>
+
+  <!-- STEP 2: LIGHT CONTROL -->
+  <div class="step-block" id="step2">
+    <div class="step-head" onclick="toggleStep('step2')">
+      <div class="step-num">2</div>
+      <div class="step-head-title">Light Control</div>
+      <div class="step-head-val" id="s3val">Light Filtering</div>
+    </div>
+    <div class="step-body">
+      <div class="opt-row">
+        <button class="opt-btn sel" onclick="pickFabric(this,'lf')">Light Filtering</button>
+        <button class="opt-btn" onclick="pickFabric(this,'rd')">Room Darkening <span style="font-size:10px;opacity:.65">+20%</span></button>
+      </div>
+      <div class="step-note">Light Filtering: 22 colors &middot; sheer vanes diffuse daylight &middot; view-through when open. Room Darkening: 10 colors &middot; more privacy when closed &middot; adds a liner to reduce light, best for bedrooms &middot; not a true blackout.</div>
+    </div>
+  </div>
+
+  <!-- STEP 3: COLOR -->
+  <div class="step-block" id="step3">
+    <div class="step-head" onclick="toggleStep('step3')">
+      <div class="step-num">3</div>
+      <div class="step-head-title">Fabric Color</div>
+      <div class="step-head-val" id="s4val">—</div>
+    </div>
+    <div class="step-body">
+      <select id="ps-color" class="ps-opts" onchange="onColorChange()">
+        <optgroup label="Light Filtering (22 colors)">
+          <option value="Snowflake">Snowflake (F1178) — bright white</option>
+          <option value="Soft White">Soft White (F1186) — clean white</option>
+          <option value="Frosty White">Frosty White (F1196) — sheer white</option>
+          <option value="Lily Cream">Lily Cream (F1179) — warm cream</option>
+          <option value="Cedar Cream">Cedar Cream (F1184) — warm beige</option>
+          <option value="Ivory">Ivory (F1363) — warm ivory</option>
+          <option value="Cottonwood">Cottonwood (F1183) — blush neutral</option>
+          <option value="Dunes">Dunes (F1180) — soft blush</option>
+          <option value="Cinnamon">Cinnamon (F1187) — warm pink-tan</option>
+          <option value="Smoke">Smoke (F1181) — warm gray</option>
+          <option value="Light Gray">Light Gray (F1197) — soft gray</option>
+          <option value="Quarry">Quarry (F1185) — cool silver</option>
+          <option value="Frosty Gray">Frosty Gray (F1195) — sheer gray</option>
+          <option value="Mineral">Mineral (F1193) — silver gray</option>
+          <option value="Silver">Silver (F1364) — metallic silver</option>
+          <option value="Platinum">Platinum (F1188) — light silver</option>
+          <option value="Magnetic Gray">Magnetic Gray (F1189) — warm gray</option>
+          <option value="Granite">Granite (F1192) — medium gray</option>
+          <option value="Midnight">Midnight (F1182) — charcoal black</option>
+          <option value="Cast Iron">Cast Iron (F1190) — dark gray</option>
+          <option value="Frosty Asphalt">Frosty Asphalt (F1194) — sheer dark</option>
+          <option value="Nightfall">Nightfall (F1191) — deep charcoal</option>
+        </optgroup>
+        <optgroup label="Room Darkening (10 colors — +20%)" id="ps-rd-group" style="display:none">
+          <option value="Moon">Moon (F1200) — white</option>
+          <option value="Silk">Silk (F1201) — warm white</option>
+          <option value="Chai Latte">Chai Latte (F1202) — blush cream</option>
+          <option value="Sky">Sky (F1203) — cool gray</option>
+          <option value="Seaside">Seaside (F1205) — coastal neutral</option>
+          <option value="Palm">Palm (F1206) — warm tan</option>
+          <option value="Stone">Stone (F1207) — cool silver</option>
+          <option value="Heather Gray">Heather Gray (F1208) — warm gray</option>
+          <option value="Ash Gray">Ash Gray (F1209) — deep gray</option>
+          <option value="Mars Black">Mars Black (F1204) — black</option>
+        </optgroup>
+      </select>
+      <div class="step-note">Actual fabric swatches available at your free in-home consultation.</div>
+    </div>
+  </div>
+
+  <!-- STEP 4: LIFT -->
+  <div class="step-block" id="step4">
+    <div class="step-head" onclick="toggleStep('step4')">
+      <div class="step-num">4</div>
+      <div class="step-head-title">Lift System</div>
+      <div class="step-head-val" id="s5val">Cord Loop</div>
+    </div>
+    <div class="step-body">
+      <div class="opt-row">
+        <button class="opt-btn sel" onclick="pickLift(this,'ccl')">Continuous Cord Loop</button>
+        <button class="opt-btn" onclick="pickLift(this,'motor')">Norman Motorization</button>
+      </div>
+      <div class="step-note">Continuous Cord Loop: max 98″W × 98″H &middot; smooth pull-chain &middot; most popular. Norman Motorization: up to 110″W × 120″H &middot; app, remote &amp; voice control &middot; rechargeable or plug-in.</div>
+      <div id="ps-motor-note" class="msg-box msg-info" style="display:none;margin-top:8px">Norman Smart Motorization — rechargeable battery or AC plug-in. Surcharge (+$482) added to your final quote.</div>
+      <div id="ps-motor-config" style="display:none;margin-top:8px"><!-- Populated by normanMotorSection when Motorized is selected --></div>
+      <div id="ps-chain-len-wrap" style="margin-top:14px">
+        <div class="sub-label">Chain length</div>
+        <div class="opt-row">
+          <button class="opt-btn sel" onclick="pickCLen(this,'default')">Default</button>
+          <button class="opt-btn" onclick="pickCLen(this,'custom')">Custom</button>
+        </div>
+        <div class="step-note">Default: 75% of shade height — comfortable reach. Custom: specify length below (min 75% of height).</div>
+        <div id="ps-clen-custom" style="display:none;align-items:center;gap:8px;margin-top:8px">
+          <input type="number" id="ps-clen-in" placeholder="e.g. 54" min="9" style="width:100px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px">
+          <span style="font-size:12px;color:#666">inches</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5: VALANCE -->
+  <div class="step-block" id="step5">
+    <div class="step-head" onclick="toggleStep('step5')">
+      <div class="step-num">5</div>
+      <div class="step-head-title">Valance / Headrail Cover</div>
+      <div class="step-head-val" id="s6val">Curved fascia</div>
+    </div>
+    <div class="step-body">
+      <div class="opt-row" id="grp-ps-valance">
+        <button class="opt-btn sel" onclick="pickValance(this,'Curved fascia (free)')">Curved Fascia — Free</button>
+        <button class="opt-btn" id="ps-val-fab35" onclick="pickValance(this,'Fabric valance 3½″')">Fabric Valance 3½″</button>
+        <button class="opt-btn" onclick="pickValance(this,'Fabric valance 4½″')">Fabric Valance 4½″</button>
+        <button class="opt-btn" onclick="pickValance(this,'Wood valance 4½″')">Wood Valance 4½″</button>
+      </div>
+      <div class="step-note">Curved Fascia (free): fabric-covered headrail cover matching your shade fabric. Fabric Valance 3½″: flat front panel, heights ≤72″ only. Fabric Valance 4½″: taller fascia, all heights. Wood Valance 4½″: painted or stained hardwood &middot; 6 paint &amp; 6 stain colors.</div>
+      <div id="ps-val-size-warn" class="msg-box msg-warn" style="display:none;margin-top:8px">Height over 72″ — 3½″ valance not available. Only 4½″ options can be ordered.</div>
+      <div id="ps-wood-val-wrap" style="display:none;margin-top:10px">
+        <div class="sub-label">Wood valance color (paint or stain)</div>
+        <select id="ps-wood-val-color" class="ps-opts" onchange="psCalc()">
+          <optgroup label="Paint">
+            <option value="001 Pure White">001 Pure White</option>
+            <option value="003 Silk White">003 Silk White</option>
+            <option value="006 Pearl">006 Pearl</option>
+            <option value="012 Crisp Linen">012 Crisp Linen</option>
+            <option value="049 Stone Grey">049 Stone Grey</option>
+            <option value="053 Clay">053 Clay</option>
+          </optgroup>
+          <optgroup label="Stain">
+            <option value="109 Weathered Teak">109 Weathered Teak</option>
+            <option value="110 Lined White">110 Lined White</option>
+            <option value="212 Dark Teak">212 Dark Teak</option>
+            <option value="221 Black Walnut">221 Black Walnut</option>
+            <option value="237 Wenge">237 Wenge</option>
+            <option value="246 Matte Black">246 Matte Black</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="step-note">Valances are NOT recommended for door applications. Max single valance width 93″ (spliced for wider shades). Fabric valance 3½″ requires height ≤72″.</div>
+    </div>
+  </div>
+
+  <!-- STEP 6: ACCESSORIES -->
+  <div class="step-block" id="step6">
+    <div class="step-head" onclick="toggleStep('step6')">
+      <div class="step-num">6</div>
+      <div class="step-head-title">Accessories</div>
+      <div class="step-head-val" id="s7val">Optional</div>
+    </div>
+    <div class="step-body">
+      <div class="addon-row" id="addon-lg-basic" onclick="toggleAddonMutex('addon-lg-basic','addon-lg-premium','lgBasic','lgPrem')">
+        <div class="addon-left">
+          <div class="addon-check">✓</div>
+          <div>
+            <div class="addon-name">Basic Light Guard</div>
+            <div class="addon-sub">Fabric side channels — blocks side light gaps</div>
+          </div>
+        </div>
+        <div class="addon-price">+$45</div>
+      </div>
+      <div class="addon-row" id="addon-lg-premium" onclick="toggleAddonMutex('addon-lg-premium','addon-lg-basic','lgPrem','lgBasic')">
+        <div class="addon-left">
+          <div class="addon-check">✓</div>
+          <div>
+            <div class="addon-name">Premium Wood Light Guard</div>
+            <div class="addon-sub">Painted hardwood channels &middot; 7 colors &middot; luxury finish</div>
+          </div>
+        </div>
+        <div class="addon-price">+$117</div>
+      </div>
+      <div class="addon-row" id="addon-holddown" onclick="toggleAddon('addon-holddown','holddown')">
+        <div class="addon-left">
+          <div class="addon-check">✓</div>
+          <div>
+            <div class="addon-name">Magnetic Hold-Down</div>
+            <div class="addon-sub">Keeps shade aligned on door applications</div>
+          </div>
+        </div>
+        <div class="addon-price">+$28</div>
+      </div>
+      <div class="sub-label">Shims (for uneven mounts)</div>
+      <select id="ps-shims" class="ps-opts" onchange="PS.shims=parseInt(this.value)||0;psCalc()">
+        <option value="0">None</option>
+        <option value="1">1 shim (+$7)</option>
+        <option value="2">2 shims (+$14)</option>
+        <option value="3">3 shims (+$21)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- STEP 7: QUOTE FORM -->
+  <div class="step-block" id="step7">
+    <div class="step-head" onclick="toggleStep('step7')">
+      <div class="step-num">7</div>
+      <div class="step-head-title">Request Your Quote</div>
+      <div class="step-head-val" id="s9val">—</div>
+    </div>
+    <div class="step-body">
+      <div class="delivery-section" style="margin-bottom:14px">
+        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong>. Shipping estimated in your quote.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
+      </div>
+
+      <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
+      <div id="pb-final-step"></div>
+      <div class="success-box" id="ps-success">
+        <h3>Order submitted!</h3>
+        <p>We'll confirm your exact price within a few hours. For anything urgent, call Justin at <strong>(609) 742-1720</strong> &mdash; 24/7.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /left column -->
+
+<!-- RIGHT: Quote Panel -->
+<div>
+  <div class="quote-panel">
+    <div class="qp-title">Your Estimate</div>
+    <div class="qp-pending" id="qp-pending">Complete the steps on the left to see your live price estimate.</div>
+
+    <div id="ps-selection-summary" style="display:none">
+      <div class="qrow"><span class="qrow-label">Product</span><span class="qrow-val">Norman PerfectSheer™</span></div>
+      <div class="qrow"><span class="qrow-label">Mount</span><span class="qrow-val" id="qr-mount">—</span></div>
+      <div class="qrow"><span class="qrow-label">Size</span><span class="qrow-val" id="qr-dims">—</span></div>
+      <div class="qrow"><span class="qrow-label">Light control</span><span class="qrow-val" id="qr-opacity">Light Filtering</span></div>
+      <div class="qrow"><span class="qrow-label">Color</span><span class="qrow-val" id="qr-color">—</span></div>
+      <div class="qrow"><span class="qrow-label">Lift</span><span class="qrow-val" id="qr-lift">Cord Loop</span></div>
+      <div class="qrow"><span class="qrow-label">Valance</span><span class="qrow-val" id="qr-valance">Curved fascia</span></div>
+      <div class="qrow"><span class="qrow-label">Qty</span><span class="qrow-val" id="qr-qty">1 shade</span></div>
+      <div class="qdiv"></div>
+    </div>
+
+    <div id="ps-price-box" style="display:none">
+      <div style="font-size:10px;color:var(--text-dark);letter-spacing:1px;margin-bottom:4px">35% NORMAN DISCOUNT APPLIED</div>
+      <div class="ps-per-shade" id="ps-price-num">—</div>
+      <div class="ps-breakdown" id="ps-price-breakdown"></div>
+      <div class="ps-grand-row">
+        <div class="ps-grand-label">Est. total (incl. freight)</div>
+        <div class="ps-grand-val" id="ps-price-total">—</div>
+      </div>
+      <div class="qnote">Norman retail pricing with 35% discount. Freight at retail rate. Final price confirmed at order.</div>
+    </div>
+
+    <div id="ps-cart-wrap" style="display:none;margin-top:16px">
+      <button class="btn-cart-add" onclick="psAddToCart()" style="width:100%">+ Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /config-layout -->
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script src="../js/pages/perfectsheer.js"></script>
+<script>
+// Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-final-step').innerHTML =
+  pbContactStepHTML({ bare: true, cartFn: 'psAddToCart()', submitFn: 'submitPSQuote(this)' });
+function updateStep1Val() {
+  var w = document.getElementById('ps-width').value;
+  var h = document.getElementById('ps-height').value;
+  var parts = [];
+  if (PS.mount) parts.push(PS.mount);
+  if (w && h) parts.push(w + '″ × ' + h + '″');
+  if (PS.qty > 1) parts.push(PS.qty + ' shades');
+  document.getElementById('s1val').textContent = parts.length ? parts.join(' · ') : '—';
+}
+function pickMount(el, label) {
+  document.querySelectorAll('#step1 .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  PS.mount = label;
+  document.getElementById('qr-mount').textContent = label;
+  updateStep1Val();
+  markDone('step1');
+  psCalc();
+}
+function onDimChange() {
+  var w = document.getElementById('ps-width').value;
+  var h = document.getElementById('ps-height').value;
+  updateStep1Val();
+  if (w && h) markDone('step1');
+  psCalc();
+}
+function pickFabric(el, type) {
+  document.querySelectorAll('#step2 .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  PS.fabric = type;
+  document.getElementById('s3val').textContent = type === 'rd' ? 'Room Darkening' : 'Light Filtering';
+  markDone('step2');
+  psUpdateColors(type);
+}
+function onColorChange() {
+  var sel = document.getElementById('ps-color');
+  var val = sel ? sel.value : '';
+  PS.color = val;
+  document.getElementById('s4val').textContent = val.split('(')[0].trim();
+  document.getElementById('qr-color').textContent = val.split('(')[0].trim();
+  markDone('step3');
+  psCalc();
+}
+function pickLift(el, type) {
+  document.querySelectorAll('#step4 .opt-row .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  PS.lift = type;
+  document.getElementById('s5val').textContent = type === 'motor' ? 'Motorization' : 'Cord Loop';
+  document.getElementById('qr-lift').textContent = type === 'motor' ? 'Norman Motorization' : 'Continuous Cord Loop';
+  document.getElementById('ps-motor-note').style.display   = type === 'motor' ? 'block' : 'none';
+  document.getElementById('ps-chain-len-wrap').style.display = type === 'ccl'   ? 'block' : 'none';
+  var mc = document.getElementById('ps-motor-config');
+  if (mc) {
+    if (type === 'motor') {
+      mc.style.display = 'block';
+      if (typeof normanMotorSection === 'function') normanMotorSection('ps-motor-config', 'PerfectSheer');
+    } else {
+      mc.style.display = 'none';
+      mc.innerHTML = '';
+    }
+  }
+  markDone('step4');
+  psCalc();
+}
+function pickCLen(el, type) {
+  document.querySelectorAll('#ps-chain-len-wrap .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  document.getElementById('ps-clen-custom').style.display = type === 'custom' ? 'flex' : 'none';
+}
+function pickValance(el, label) {
+  document.querySelectorAll('#step5 .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
+  el.classList.add('sel');
+  PS.valance = label;
+  var short = label.replace(' (free)', '');
+  document.getElementById('s6val').textContent = short;
+  document.getElementById('qr-valance').textContent = short;
+  document.getElementById('ps-wood-val-wrap').style.display = label.indexOf('Wood') >= 0 ? 'block' : 'none';
+  markDone('step5');
+  psCalc();
+}
+function toggleAddon(rowId, stateKey) {
+  var row   = document.getElementById(rowId);
+  var check = row.querySelector('.addon-check');
+  var isSel = row.classList.contains('sel');
+  row.classList.toggle('sel');
+  check.style.color = isSel ? 'transparent' : '#111110';
+  PS[stateKey] = !isSel;
+  psCalc();
+}
+function toggleAddonMutex(rowId, mutexId, stateKey, mutexKey) {
+  var row    = document.getElementById(rowId);
+  var mutex  = document.getElementById(mutexId);
+  var check  = row.querySelector('.addon-check');
+  var mcheck = mutex.querySelector('.addon-check');
+  var isSel  = row.classList.contains('sel');
+  // Clear mutex first
+  mutex.classList.remove('sel');
+  mcheck.style.color = 'transparent';
+  PS[mutexKey] = false;
+  // Toggle self
+  row.classList.toggle('sel');
+  check.style.color = isSel ? 'transparent' : '#111110';
+  PS[stateKey] = !isSel;
+  psCalc();
+}
+</script>
+</body>
+</html>

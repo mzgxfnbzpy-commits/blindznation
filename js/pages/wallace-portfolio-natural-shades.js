@@ -1,4 +1,4 @@
-// ============================================================
+﻿// ============================================================
 // Wallace Portfolio Natural Shades — Configurator
 // ============================================================
 
@@ -9,6 +9,7 @@ const W = {
   mount: 'inside',
   width: 0,
   height: 0,
+  qty: 1,
   style: 'standard',
   control: 'cordless',
   controlSide: 'right',
@@ -164,7 +165,7 @@ function colorToCSS(color) {
   if (/brown|cocoa|mocha|mahogany|cedar/.test(c))          return '#7A5A3A';
   if (/blue|navy|ocean|teal|jade/.test(c))                 return '#3A5A7A';
   if (/green|sage|moss|forest/.test(c))                    return '#6A7A5A';
-  if (/gold|amber|honey|copper/.test(c))                   return '#C8973F';
+  if (/gold|amber|honey|copper/.test(c))                   return '#C9A96E';
   if (/taupe|mushroom|pewter|sable/.test(c))               return '#9A8A78';
   if (/silver|metallic|graphite|titanium/.test(c))         return '#9A9A9A';
   if (/sugar/.test(c))                                     return '#F5F0E8';
@@ -193,16 +194,16 @@ const DRAPE_STACK = [
   [120,32.5],[132,35.75],[144,39],[156,42.25],[168,45.5],[180,48.75],[192,52]
 ];
 
-// ── Control size limits ─────────────────────────────────────
+// ── Control size limits (verified against wwnw PDF p.15) ────
 const CTRL_LIMITS = {
-  'cordless':    {minW:12, maxW:72,  minH:12, maxH:84},
-  'tdbu':        {minW:12, maxW:72,  minH:24, maxH:84},
-  'clutch':      {minW:12, maxW:96,  minH:12, maxH:108},
-  'prowand':     {minW:12, maxW:84,  minH:12, maxH:96},
-  'motor-li':    {minW:12, maxW:96,  minH:12, maxH:108},
-  'motor-dc':    {minW:12, maxW:96,  minH:12, maxH:108},
-  'motor-ac':    {minW:12, maxW:96,  minH:12, maxH:108},
-  'motor-pl':    {minW:12, maxW:120, minH:12, maxH:120}
+  'cordless':   {minW:15,     maxW:96, minH:18, maxH:95},
+  'tdbu':       {minW:15,     maxW:60, minH:18, maxH:72},
+  'clutch':     {minW:14,     maxW:96, minH:18, maxH:120},
+  'prowand':    {minW:25,     maxW:96, minH:18, maxH:120},
+  'motor-li':   {minW:29,     maxW:96, minH:18, maxH:120},
+  'motor-dc':   {minW:17.125, maxW:96, minH:18, maxH:120},
+  'motor-ac':   {minW:20,     maxW:96, minH:18, maxH:120},
+  'motor-pl':   {minW:29,     maxW:96, minH:18, maxH:120}
 };
 
 // ── Helpers ─────────────────────────────────────────────────
@@ -310,7 +311,6 @@ function renderPatterns(group) {
 function pickPattern(idx) {
   W.pattern = PATTERNS[idx];
   renderPatterns(currentGroup);
-  showStep('sec-mount');
 
   // Edge binding warnings
   warn('warn-ebreq', W.pattern.ebReq && W.binding === '' );
@@ -329,7 +329,7 @@ function pickMount(m, btn) {
   if(btn) { selOpt(btn, 'grp-mount'); }
 
   const notes = {
-    inside:  'Inside mount: minimum 2″ depth required. Shade width = ordered width − 3/8″.',
+    inside:  'Inside mount: minimum 2¼″ depth (cordless) to 4¼″ (clutch/motor). Shade width = ordered width − 3/8″.',
     outside: 'Outside mount: measure the width and height you want the shade to cover. Allow overlap on all sides.',
     ceiling: 'Ceiling mount: measured and installed from the ceiling. Requires minimum clearance from ceiling to sill.'
   };
@@ -337,7 +337,20 @@ function pickMount(m, btn) {
 
   // TDBU + returns warning
   validateReturns();
-  showStep('sec-dims');
+  updateSummary();
+}
+
+// ── Quantity ────────────────────────────────────────────────
+function adjQty(d) {
+  const el = document.getElementById('qty-input');
+  let v = (parseInt(el.value, 10) || 1) + d;
+  v = Math.max(1, Math.min(50, v));
+  el.value = v;
+  updateQty();
+}
+function updateQty() {
+  const v = Math.max(1, Math.min(50, parseInt(document.getElementById('qty-input').value, 10) || 1));
+  W.qty = v;
   updateSummary();
 }
 
@@ -360,6 +373,13 @@ function updateDims() {
         else if(h < lim.minH) msg = `⚠ Height too small. Min: ${lim.minH}″ for ${W.control}.`;
         else if(h > lim.maxH) msg = `⚠ Height too large. Max: ${lim.maxH}″ for ${W.control}.`;
       }
+    }
+
+    // Panel size validation (PDF p.25: min 48", max 192"W × 120"H)
+    if(W.type === 'panel') {
+      if(w < 48) msg = '⚠ Sliding panels require minimum 48″ total width.';
+      else if(w > 192) msg = '⚠ Maximum sliding panel width is 192″.';
+      else if(h > 120) msg = '⚠ Maximum sliding panel height is 120″.';
     }
 
     // Panel track info
@@ -510,9 +530,14 @@ function validateControl() {
 }
 
 function checkMotorSqFt() {
-  // TODO: When PDF motor sq ft limits are confirmed, validate here
-  // W.pattern.motorSqFtLiner / motorSqFtNoLiner vs (W.width * W.height / 144)
-  warn('warn-motor-sqft', false);
+  if(!W.pattern || !W.control || !W.control.startsWith('motor') || W.type !== 'shade') {
+    warn('warn-motor-sqft', false);
+    return;
+  }
+  if(W.width <= 0 || W.height <= 0) { warn('warn-motor-sqft', false); return; }
+  const sqFt = (W.width * W.height) / 144;
+  const limit = W.linerCode ? W.pattern.motorSqFtLiner : W.pattern.motorSqFtNoLiner;
+  warn('warn-motor-sqft', sqFt > limit);
 }
 
 // ── Step 7: Liner ───────────────────────────────────────────
@@ -632,7 +657,7 @@ function updateSummary() {
   setText('s-color',   W.pattern ? W.pattern.color : '—');
   setText('s-group',   W.pattern ? `Group ${W.pattern.group} · ${W.pattern.comp}` : '—');
   setText('s-mount',   W.mount ? W.mount.charAt(0).toUpperCase() + W.mount.slice(1) + ' Mount' : '—');
-  setText('s-size',    W.width && W.height ? `${W.width}″ W × ${W.height}″ H` : '—');
+  setText('s-size',    W.width && W.height ? `${W.width}″ W × ${W.height}″ H${W.qty > 1 ? ` · Qty ${W.qty}` : ''}` : '—');
   setText('s-style',   W.style || '—');
   setText('s-control', W.type === 'shade' ? (CTRL_LABELS[W.control] || '—') + (W.controlSide ? ` · ${W.controlSide} side` : '') : 'N/A');
   setText('s-liner',   W.liner || '—');
@@ -682,10 +707,10 @@ function buildQuote() {
   if(W.pattern && W.pattern.ebReq && W.bindingCode === '') warnings.push('NOTE: Fabric requires edge binding — frayed-edge warranty voided without binding');
   if(W.width > 94 && W.type === 'panel') warnings.push('NOTE: Track over 94″ — will be spliced for shipping');
 
-  const name  = document.getElementById('wf-name').value.trim();
-  const phone = document.getElementById('wf-phone').value.trim();
-  const email = document.getElementById('wf-email').value.trim();
-  const notes = document.getElementById('wf-notes').value.trim();
+  const name  = document.getElementById('cf-name').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const notes = document.getElementById('cf-notes').value.trim();
 
   return `QUOTE REQUEST — Wallace Portfolio Collection Natural Shades
 ================================================
@@ -707,6 +732,7 @@ DIMENSIONS & MOUNT
 Mount:  ${W.mount ? W.mount.charAt(0).toUpperCase() + W.mount.slice(1) + ' Mount' : '—'}
 Width:  ${W.width || '—'}″
 Height: ${W.height || '—'}″
+Qty:    ${W.qty}
 
 STYLE & CONTROL
 Style:        ${W.style || '—'}
@@ -761,24 +787,25 @@ function addWallacePortfolioNaturalToCart(){
     {label:'Pattern',value:W.pattern?W.pattern.name+' ('+W.pattern.code+')':'—'},
     {label:'Color',value:W.pattern?W.pattern.color:'—'},
     {label:'Price Group',value:W.pattern?W.pattern.group:'—'},
-    {label:'Mount',value:W.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Mount',value:W.mount==='inside'?'Inside mount':'Outside mount'},
     {label:'Width',value:(W.width||'—')+'"'},
     {label:'Height',value:(W.height||'—')+'"'},
     {label:'Style',value:W.style||'—'},
     {label:'Control',value:W.control||'—'},
     {label:'Liner',value:W.liner||'No Liner'},
     {label:'Binding',value:W.binding||'No Binding'},
-    {label:'Valance',value:W.valance||'—'}
+    {label:'Valance',value:W.valance||'—'},
+    {label:'Quantity',value:String(W.qty)}
   ];
   const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
-  pbAddToCart({product:'Wallace Portfolio Natural Woven Wood Shades',lines:lines,specs:specs,price:null,qty:1});
+  pbAddToCart({product:'Wallace Portfolio Natural Woven Wood Shades',lines:lines,specs:specs,price:null,qty:W.qty});
   pbOpenCart();
 }
 
 function submitQuote() {
-  const name  = document.getElementById('wf-name').value.trim();
-  const phone = document.getElementById('wf-phone').value.trim();
-  const errEl = document.getElementById('wf-error');
+  const name  = document.getElementById('cf-name').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const errEl = document.getElementById('cf-contact-err');
 
   if(!name || !phone) {
     errEl.textContent = 'Please enter your name and phone number.';
@@ -789,7 +816,7 @@ function submitQuote() {
 
   const body = encodeURIComponent(buildQuote());
   const sub  = encodeURIComponent('Wallace Portfolio Natural Shades Quote — ' + name);
-  window.location.href = `mailto:justin@blindznation.com?subject=${sub}&body=${body}`;
+  window.location.href = `mailto:blindznation@gmail.com?subject=${sub}&body=${body}`;
 
   document.getElementById('wallace-form').style.display = 'none';
   document.getElementById('wf-success').style.display = 'block';
@@ -819,4 +846,4 @@ function submitQuote() {
   document.getElementById('ctrl-side-row').style.display = 'block';
   document.getElementById('motor-opts').style.display = 'none';
   updateSummary();
-})();
+})();

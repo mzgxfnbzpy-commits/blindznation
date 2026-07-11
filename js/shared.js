@@ -2350,5 +2350,44 @@ document.addEventListener('DOMContentLoaded', function() {
   }, true);
 });
 
+// Quote submission helper used by standalone product pages (ported from Philly Blinds).
+async function _apiSubmit(name, email, phone, productName, configText, successId, formHideId, btn, onSuccess) {
+  if (btn) { btn._origText = btn.textContent; btn.disabled = true; btn.textContent = 'Sending…'; }
+  try {
+    var r = await fetch('/api/quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email || '', phone: phone, product: productName, selections: [], notes: configText })
+    });
+    var d = {}; try { d = await r.json(); } catch(e) {}
+    if (!r.ok) throw new Error(d.error || 'Server error ' + r.status);
+    if (onSuccess) onSuccess();
+    if (formHideId) { var fEl = document.getElementById(formHideId); if (fEl) { fEl.classList.remove('show'); fEl.style.display = 'none'; } }
+    var sEl = document.getElementById(successId);
+    if (sEl) { sEl.classList.add('show'); sEl.style.display = 'block'; sEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  } catch(err) {
+    if (btn) { btn.disabled = false; btn.textContent = btn._origText || 'Send quote request'; }
+    var mh = 'mailto:blindznation@gmail.com?subject=' + encodeURIComponent('Quote — ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nProduct: ' + productName + '\n\n' + configText);
+    var eDiv = document.createElement('div');
+    eDiv.style.cssText = 'background:#FEE2E2;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:12px;color:#991B1B;line-height:1.5';
+    eDiv.innerHTML = '<strong>Issue sending.</strong> <a href="' + mh + '" style="color:#991B1B;font-weight:700;text-decoration:underline">Email directly →</a> or call <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a>';
+    if (btn && btn.parentElement) btn.insertAdjacentElement('afterend', eDiv);
+    setTimeout(function(){ if (eDiv.parentElement) eDiv.remove(); }, 15000);
+  }
+}
+
+// ── Auto-init nav/footer from data-page body attribute (ported from Philly Blinds) ──
+// Pages declare: <body data-page="Page Name"> → shared.js renders nav + footer automatically,
+// so ported pages need no inline renderNav()/renderFooter() script. Pages without data-page
+// (they call renderNav()/renderFooter() themselves) are left untouched.
+(function() {
+  var pg = document.body && document.body.getAttribute('data-page');
+  if (pg !== null) {
+    if (typeof renderPromoBar === 'function') renderPromoBar();
+    renderNav(pg);
+    renderFooter(pg === 'home');
+  }
+})();
+
 
 

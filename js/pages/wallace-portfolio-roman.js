@@ -1,6 +1,3 @@
-renderNav('Roman Shades');
-renderFooter(false);
-
 // ── STATE ─────────────────────────────────────────────────────────────────────
 var S = {
   qty:1, room:'', mount:'inside', width:0, length:0,
@@ -273,10 +270,7 @@ function sp(id,val) { var el=document.getElementById(id); if(el){el.textContent=
 function setQtyVal(n) {
   n = Math.max(1, Math.min(50, n||1));
   S.qty = n;
-  document.getElementById('val1').textContent = n + (n===1?' shade':' shades');
-  document.getElementById('step1').classList.add('done');
   sp('sp-qty', n + (n===1?' shade':' shades'));
-  openNext('step2');
 }
 function adjQty(d) {
   var el = document.getElementById('qty-inp');
@@ -284,28 +278,18 @@ function adjQty(d) {
   setQtyVal(parseInt(el.value));
 }
 
-// ── STEP 2 ────────────────────────────────────────────────────────────────────
-document.getElementById('room-label').addEventListener('input',function(){
-  S.room=this.value.trim();
-  document.getElementById('val2').textContent=S.room||'—';
-  sp('sp-room',S.room);
-  document.getElementById('step2').classList.add('done');
-});
-
-// ── STEP 3 ────────────────────────────────────────────────────────────────────
+// ── MOUNT (Step 1) ────────────────────────────────────────────────────────────
 function setMount(m, el) {
   S.mount=m; selBtn(el,'grp-mount');
   var label=m==='inside'?'Inside mount':'Outside mount';
-  document.getElementById('val3').textContent=label;
   sp('sp-mount',label);
-  document.getElementById('step3').classList.add('done');
   // Outside mount: extended returns available; inside: standard only
   var extBtn=document.getElementById('btn-ext-returns');
   if(extBtn) extBtn.classList.toggle('blocked',m==='inside');
-  validateTDBU(); validateReturns(); openNext('step4');
+  validateTDBU(); validateReturns(); validateDims();
 }
 
-// ── STEP 4 ────────────────────────────────────────────────────────────────────
+// ── DIMENSIONS (Step 1) ───────────────────────────────────────────────────────
 function validateDims() {
   S.width=parseFloat(document.getElementById('inp-w').value)||0;
   S.length=parseFloat(document.getElementById('inp-l').value)||0;
@@ -338,8 +322,8 @@ function validateDims() {
   if(warns.length) html+=warns.map(function(e){return'<div class="warn-box" style="margin-top:6px">&#9888; '+e+'</div>';}).join('');
   if(!errs.length&&S.width&&S.length){
     html='<div class="ok-box">&#10003; '+S.width+'" W &times; '+S.length+'" L — dimensions accepted.</div>';
-    document.getElementById('step4').classList.add('done');
-    document.getElementById('val4').textContent=S.width+'" W &times; '+S.length+'" L';
+    document.getElementById('step1').classList.add('done');
+    document.getElementById('val1').textContent=S.width+'" W &times; '+S.length+'" L';
     sp('sp-size',S.width+'" × '+S.length+'"');
     openNext('step5');
   }
@@ -493,7 +477,7 @@ function renderFabricGrid() {
 }
 
 function selectFabric(f) {
-  if(f.placeholder){alert('This is a placeholder. Enter the fabric data from Wallace PDF pages 3-5 first.');return;}
+  if(f.placeholder){return;}
   // Block flat for [1] fabrics
   if(S.panelStyle==='flat'&&f.noFlat){alert(f.pattern+' '+f.color+' is not available in Flat style. Change panel style first.');return;}
   S.fabric=f;
@@ -664,10 +648,11 @@ function setCutFabric(on) {
 }
 
 // ── STEP 15: DELIVERY ─────────────────────────────────────────────────────────
-function setDelivery(opt) {
+function setDelivery(opt,card) {
   S.delivery=opt;
-  ['ship','pickup','install'].forEach(function(o){var e=document.getElementById('del-'+o);if(e)e.classList.toggle('sel',o===opt);});
-  var labels={ship:'Ship to me',pickup:'Pick up',install:'Professional installation'};
+  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
+  card.classList.add('sel');
+  var labels={ship:'Ship to me',install:'Professional installation'};
   document.getElementById('val15').textContent=labels[opt]||opt;
   sp('sp-delivery',labels[opt]||opt);
   document.getElementById('step15').classList.add('done');
@@ -705,19 +690,19 @@ function addWallaceRomanToCart(){
 }
 
 function submitQuote() {
-  var name=document.getElementById('q-name').value.trim();
-  var phone=document.getElementById('q-phone').value.trim();
-  var errEl=document.getElementById('submit-errors');
+  var name=document.getElementById('cf-name').value.trim();
+  var phone=document.getElementById('cf-phone').value.trim();
+  var errEl=document.getElementById('cf-contact-err');
   var errs=[];
   if(!name)         errs.push('Name required.');
   if(!phone)        errs.push('Phone required.');
   if(!S.qty)        errs.push('Select number of shades (Step 1).');
-  if(!S.width||!S.length) errs.push('Enter width and length (Step 4).');
-  if(!S.shadeStyle) errs.push('Select shade construction style (Step 5).');
-  if(!S.panelStyle) errs.push('Select panel style (Step 6).');
-  if(!S.fabric)     errs.push('Select a fabric (Step 7).');
-  if(!S.control&&S.shadeStyle!=='roman-valance') errs.push('Select control type (Step 10).');
-  if(S.control==='motor'&&!S.motorType&&S.shadeStyle!=='roman-valance') errs.push('Select motor type (Step 10).');
+  if(!S.width||!S.length) errs.push('Enter width and length (Step 1).');
+  if(!S.shadeStyle) errs.push('Select shade construction style (Step 3).');
+  if(!S.panelStyle) errs.push('Select panel style (Step 4).');
+  if(!S.fabric)     errs.push('Select a fabric (Step 5).');
+  if(!S.control&&S.shadeStyle!=='roman-valance') errs.push('Select control type (Step 8).');
+  if(S.control==='motor'&&!S.motorType&&S.shadeStyle!=='roman-valance') errs.push('Select motor type (Step 8).');
 
   // Validation warnings to flag in email
   var validationFlags=[];
@@ -749,7 +734,7 @@ function submitQuote() {
   var wandLen=document.querySelector('#grp-wand-len .opt-btn.sel')?.textContent.trim()||'—';
   var controlSide=document.querySelector('#grp-control-side .opt-btn.sel')?.textContent.trim()||'—';
   var returnLabel={none:'No returns',standard:'Standard 4½" returns',extended:'Extended depth returns',custom:'Custom — '+document.getElementById('return-depth').value+'"'}[S.returns]||S.returns;
-  var delivery={ship:'Ship (UPS/FedEx from Huntingdon Valley PA)',pickup:'Pick up (Huntingdon Valley PA)',install:'Professional installation'}[S.delivery]||S.delivery;
+  var delivery='Ship (UPS/FedEx)'||S.delivery;
 
   // Motor accessories
   var motorAcc=[];
@@ -765,12 +750,11 @@ function submitQuote() {
     'CONTACT',
     'Name: '+name,
     'Phone: '+phone,
-    'Email: '+(document.getElementById('q-email').value.trim()||'—'),
-    'Address: '+(document.getElementById('q-address').value.trim()||'—'),'',
+    'Email: '+(document.getElementById('cf-email').value.trim()||'—'),
+    'Address: '+(document.getElementById('cf-address').value.trim()||'—'),'',
     'ORDER DETAILS',
     'Product: Wallace Portfolio Collection Fabric Roman Shades',
     'Quantity: '+S.qty+' shade(s)',
-    'Room/Window: '+(S.room||'—'),
     'Mount: '+(S.mount==='inside'?'Inside mount':'Outside mount'),
     'Width: '+S.width+'"',
     'Length: '+S.length+'"','',
@@ -821,13 +805,13 @@ var p=isHob?getPriceHobbled(w,l,f.priceGroup):getPriceFlat(w,l,f.priceGroup,f.no
       return '$'+tot+'/shade Group '+f.priceGroup+(ns.length?' ('+ns.join(', ')+')':'');
     })(),
     'NOTES',
-    document.getElementById('q-notes').value.trim()||'None','',
+    document.getElementById('cf-notes').value.trim()||'None','',
     '⚠ INTERNAL NOTE: Fabric codes marked "ENTER" are placeholders. Enter all codes from Wallace PDF pages 3-5 before finalizing this quote.','',
     '--- Sent from blindznation.com/pages/wallace-portfolio-roman.html ---',
   ].filter(function(l){return l!==undefined&&l!==null;}).join('\n');
 
   var subj='Wallace Portfolio Roman — '+S.width+'"×'+S.length+'" '+(S.fabric?S.fabric.pattern+' '+S.fabric.color:'')+' — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
 
   document.getElementById('step16-body').querySelectorAll(':not(#success-box)').forEach(function(el){el.style.display='none';});
   document.getElementById('success-box').style.display='block';
@@ -835,11 +819,5 @@ var p=isHob?getPriceHobbled(w,l,f.priceGroup):getPriceFlat(w,l,f.priceGroup,f.no
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 renderFabricGrid();
-// Auto-advance step 1 since qty defaults to 1 (valid)
+// Initialize quantity spec (qty defaults to 1)
 setQtyVal(1);
-document.getElementById('room-label').addEventListener('input',function(){
-  S.room=this.value.trim();
-  document.getElementById('val2').textContent=S.room||'—';
-  sp('sp-room',S.room);
-  if(S.room)document.getElementById('step2').classList.add('done');
-});

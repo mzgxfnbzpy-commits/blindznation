@@ -221,23 +221,12 @@ function calcPrice() {
   $('qp-pending').style.display = 'none';
   $('qp-detail').style.display = 'block';
 
+  // Detail hidden per owner request — base/color/valance roll silently into the retail subtotal.
+  // Customer sees retail → 35% off → your price → freight. (Cordless-only; no motor/TDBU/D&N.)
   $('q-base').textContent = fmt(base);
-
-  const colorRow = $('q-color-row');
-  if (colorRow) {
-    colorRow.style.display = colorAdd > 0 ? 'flex' : 'none';
-    if (colorAdd > 0) {
-      const pct = S.colorSurcharge === 0.10 ? '+10% Designer' : '+50% Premium';
-      $('q-color-badge').textContent = pct;
-      $('q-color').textContent = '+' + fmt(colorAdd);
-    }
-  }
-
-  const valRow = $('q-valance-row');
-  if (valRow) {
-    valRow.style.display = valRetail > 0 ? 'flex' : 'none';
-    if (valRetail > 0) $('q-valance').textContent = '+' + fmt(valRetail);
-  }
+  const _baseRow = $('q-base').closest ? $('q-base').closest('.qrow') : null; if(_baseRow) _baseRow.style.display='none';
+  const colorRow = $('q-color-row'); if (colorRow) colorRow.style.display='none';
+  const valRow = $('q-valance-row'); if (valRow) valRow.style.display='none';
 
   $('q-qty').textContent = '× ' + S.qty;
   $('q-retail-sub').textContent = fmt(retailSub);

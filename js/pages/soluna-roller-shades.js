@@ -63,7 +63,7 @@ function solRenderCoupledFields(n) {
 
 var _SOL_OP_DESC = {
   cordless: '<strong style="color:#1a6b1a">⭐ PrecisionLift™ Cordless — Recommended</strong> — Pull the handle down to lower, push the hem bar up to raise. No cords, no chains. Norman\'s best-in-class cordless system. WCMA Best for Kids™ certified. Max 118″ W × 144″ H.',
-  loop:     '<strong style="color:#333">Continuous Cord Loop</strong> — Side-mounted bead chain operates the shade smoothly in both directions. Works for any window size. Best choice for large, heavy, or high windows. Max 118″ W × 144″ H.',
+  loop:     '<strong style="color:#333">Manual with chain</strong> — Side-mounted bead chain operates the shade smoothly in both directions. Works for any window size. Best choice for large, heavy, or high windows. Max 118″ W × 144″ H.',
   smartrelease: '<strong style="color:#333">SmartRelease™</strong> — Norman\'s patent-pending upgrade to the cord loop. A gentle tug releases the shade from any raised position — no reaching up required. Ideal for high or hard-to-reach windows. Raceway always included. Max 118″ W × 144″ H.',
   motor:    '<strong style="color:#333">Motorized</strong> — Battery or hardwired motor inside the roller tube. Control by app, remote, voice (Alexa/Google/HomeKit), or schedule. 100% cord-free. Available with Norman Smart or Rollease Acmeda Automate. Max 144″ W × 144″ H.'
 };
@@ -226,6 +226,49 @@ function getSelectedFabricColor() {
   return sel ? sel.textContent.trim() + ' (' + sel.title + ')' : '';
 }
 
+function solPickShadeType(type, btn) {
+  selOpt(btn, 'grp-shade-type');
+  var isDual = type === 'dual';
+  var dualFabrics = document.getElementById('dual-shade-fabrics');
+  var fabricStep = document.getElementById('fabric-coll-wrap');
+  var grpLight = document.getElementById('grp-light');
+  if (dualFabrics) dualFabrics.style.display = isDual ? 'block' : 'none';
+  // Dim single-shade fabric picker when dual is active
+  if (grpLight) grpLight.style.opacity = isDual ? '0.4' : '';
+  if (fabricStep) fabricStep.style.display = isDual ? 'none' : '';
+  // Auto-select cassette when dual shade chosen
+  if (isDual) {
+    ['openroll','cassette','fascia','lightguard'].forEach(function(t) {
+      var el = document.getElementById('sol-addon-' + t);
+      if (el) el.classList.remove('sel');
+    });
+    var cassetteBtn = document.getElementById('sol-addon-cassette');
+    if (cassetteBtn) cassetteBtn.classList.add('sel');
+    var hwOpts = document.getElementById('sol-hw-subopts');
+    var fasciaOpts = document.getElementById('sol-fascia-subopts');
+    if (hwOpts) hwOpts.style.display = 'none';
+    if (fasciaOpts) fasciaOpts.style.display = 'none';
+  }
+  updateSummary();
+}
+
+function solPickAddon(type, btn) {
+  var isActive = btn.classList.contains('sel');
+  // All headrail options are mutually exclusive — clear all first
+  ['openroll','cassette','fascia','lightguard'].forEach(function(t) {
+    var el = document.getElementById('sol-addon-' + t);
+    if (el) el.classList.remove('sel');
+  });
+  var activeType = isActive ? null : type;
+  if (!isActive) btn.classList.add('sel');
+  // Show/hide sub-panels
+  var hwOpts = document.getElementById('sol-hw-subopts');
+  var fasciaOpts = document.getElementById('sol-fascia-subopts');
+  if (hwOpts) hwOpts.style.display = (activeType === 'openroll') ? 'block' : 'none';
+  if (fasciaOpts) fasciaOpts.style.display = (activeType === 'fascia') ? 'block' : 'none';
+  updateSummary();
+}
+
 function solPickDel(v, card) {
   solDelivery = v;
   document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
@@ -236,74 +279,19 @@ function toggleMotor(on) {
   document.getElementById('motor-sub').classList.toggle('show', on);
   var motorRow = document.getElementById('s-motor-row');
   if (motorRow) motorRow.style.display = on ? 'flex' : 'none';
+  var cfg = document.getElementById('sol-motor-config');
   if (on) {
-    solUpdateMotorBrand();
-    var shadeQty = parseInt((document.getElementById('inp-qty')||{}).value) || 1;
-    var wandQtyEl = document.getElementById('inp-wand-qty');
-    if (wandQtyEl) wandQtyEl.value = shadeQty;
-  } else {
-    ['s-power-row','s-wand-row'].forEach(function(id){
-      var el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
+    // Render the shared Norman motor UI (Soluna is a roller → Rollease + Charging Wand allowed)
+    if (typeof normanMotorSection === 'function') normanMotorSection('sol-motor-config', 'Soluna Roller Shade');
+  } else if (cfg) {
+    cfg.innerHTML = '';
   }
   updateSummary();
-}
-
-function solUpdateMotorBrand() {
-  var brand = (document.getElementById('sel-motor') || {}).value || 'Norman Smart';
-  var isNorman = brand === 'Norman Smart';
-  var powerWrap = document.getElementById('motor-power-wrap');
-  var rolleaseWrap = document.getElementById('motor-rollease-wrap');
-  if (powerWrap) powerWrap.style.display = isNorman ? 'block' : 'none';
-  if (rolleaseWrap) rolleaseWrap.style.display = isNorman ? 'none' : 'block';
-  if (isNorman) { solShowPowerOpts('rechargeable'); }
-}
-
-function solShowPowerOpts(type) {
-  var wandWrap = document.getElementById('motor-wand-wrap');
-  if (wandWrap) wandWrap.style.display = type === 'rechargeable' ? 'block' : 'none';
-  if (type !== 'rechargeable') {
-    document.querySelectorAll('#grp-wand-type .opt-btn').forEach(function(b,i){ b.classList.toggle('sel', i===0); });
-    solShowWandExt(false);
-  }
-}
-
-function solShowWandExt(show) {
-  var wrap = document.getElementById('wand-ext-wrap');
-  if (wrap) wrap.style.display = show ? 'block' : 'none';
-  if (!show) {
-    var chk = document.getElementById('wand-ext-chk');
-    if (chk) chk.checked = false;
-  }
-}
-
-function solAdjWandQty(d) {
-  var el = document.getElementById('inp-wand-qty');
-  if (!el) return;
-  el.value = Math.min(20, Math.max(1, (parseInt(el.value)||1)+d));
-  updateSummary();
-}
-
-function solGetWandSummary() {
-  var wandWrap = document.getElementById('motor-wand-wrap');
-  if (!wandWrap || wandWrap.style.display === 'none') return null;
-  var type = getOpt('grp-wand-type') || 'Corded';
-  var extChk = document.getElementById('wand-ext-chk');
-  var hasExt = extChk && extChk.checked;
-  var qty = parseInt((document.getElementById('inp-wand-qty')||{}).value) || 1;
-  return qty + '× ' + type + (hasExt ? ' + extension' : '');
 }
 
 function adjustQty(d) {
   const el = document.getElementById('inp-qty');
   el.value = Math.min(20, Math.max(1, (parseInt(el.value) || 1) + d));
-  var motorSubEl = document.getElementById('motor-sub');
-  var wandWrap = document.getElementById('motor-wand-wrap');
-  if (motorSubEl && motorSubEl.classList.contains('show') && wandWrap && wandWrap.style.display !== 'none') {
-    var wandEl = document.getElementById('inp-wand-qty');
-    if (wandEl) wandEl.value = el.value;
-  }
   updateSummary();
 }
 
@@ -320,25 +308,32 @@ var _SOL_GRIDS = {
   s3:[[290,322,346,374,404,430,460,488,522,575,608,655,690,754,822],[322,354,385,419,454,495,533,573,611,673,713,768,805,891,963],[349,385,423,469,515,561,605,651,701,770,815,879,918,1000,1079],[376,420,470,525,577,633,683,738,791,863,905,969,1013,1105,1194],[406,462,519,579,641,699,762,818,868,940,1006,1057,1106,1206,1312],[436,501,570,636,701,770,829,885,938,1017,1090,1146,1200,1313,1426],[469,544,620,693,766,829,890,945,1010,1091,1173,1236,1294,1417,1541],[503,587,668,745,821,885,950,1015,1080,1169,1256,1325,1389,1523,1657],[541,627,714,799,869,940,1010,1080,1152,1246,1341,1413,1482,1628,1772],[574,669,764,844,920,992,1070,1146,1222,1320,1422,1499,1576,1732,1888]]
 };
 var _SOL_COLL_GROUP = {
+  // Solar PG1: higher-openness screents + commercial NA400
   'Serene 7%':'s1','Flow 7%':'s1','Windsong 5%':'s1',
   'NA400 3%':'s1','NA400 5%':'s1','NA400 10%':'s1',
+  // Solar PG2: lower-openness screens, Moon, Breeze Screen + NA820
   'Serene 1%':'s2','Serene 3%':'s2','Flow 1%':'s2','Flow 5%':'s2',
   'Windsong 1%':'s2','Moon 5%':'s2','Breeze Screen 1%':'s2','Breeze Screen 3%':'s2',
   'NA820 3%':'s2',
+  // Solar PG3: Lakeview, Meadows, Jubilee, Galaxy
   'Lakeview 3%':'s3','Lakeview 7%':'s3','Lakeview 10%':'s3',
   'Meadows 1%':'s3','Meadows 3%':'s3','Jubilee 3%':'s3','Galaxy 3%':'s3',
+  // Fabric PG1: Scarlett, Catalina, Brook, Chelsea, Callie, Elements
   'Scarlett':'f1','Catalina (Natural)':'f1','Brook':'f1','Chelsea':'f1',
   'Callie':'f1','Callie RD':'f1','Elements':'f1','Elements White Backing':'f1',
+  // Fabric PG2: most sheers/naturals/designer/RD
   'Sheer':'f2','Dazzle':'f2','Lakeshore':'f2',
   'Samoa (Natural)':'f2','Phuket (Natural)':'f2','Bora Bora (Natural)':'f2',
   'Java (Natural)':'f2','Bali (Natural)':'f2','Riviera (Natural)':'f2',
   'Francis':'f2','Hayes':'f2','Valerie':'f2','Emery':'f2','Sierra':'f2',
   'Shimmer':'f2','Amelia':'f2','Lola LF':'f2','Remy':'f2',
   'Jamaica':'f2','Bermuda':'f2','Fiji':'f2','Francis RD':'f2','Amelia RD':'f2',
+  // Fabric PG3: Aruba/Caroline/Maui/Cove naturals, Breeze/Clarissa designer, most RD
   'Aruba (Natural)':'f3','Caroline (Natural)':'f3','Maui Natural':'f3','Cove (Natural)':'f3',
   'Breeze':'f3','Clarissa':'f3',
   'Garden':'f3','Lola BO':'f3','Summerland':'f3','Cory':'f3',
   'Remy RD':'f3','Breeze RD':'f3',
+  // Fabric PG4: Kendra only
   'Kendra':'f4'
 };
 
@@ -401,38 +396,31 @@ function updateSummary() {
   const w         = document.getElementById('inp-width').value;
   const h         = document.getElementById('inp-height').value;
   const qty       = document.getElementById('inp-qty').value || 1;
-  const mBrand    = document.getElementById('sel-motor').value;
   const fabric    = getSelectedFabricColor();
 
-  document.getElementById('s-light').textContent      = light;
+  var isDual = shadeType === 'Dual Shade';
+  var dualFront = isDual ? getOpt('grp-dual-front') : '';
+  var dualBack = isDual ? getOpt('grp-dual-back') : '';
+  var lightDisplay = isDual
+    ? 'Front: ' + (dualFront || '—') + ' / Back: ' + (dualBack || '—')
+    : light;
+  document.getElementById('s-light').textContent      = lightDisplay;
   document.getElementById('s-op').textContent         = op;
   document.getElementById('s-mount').textContent      = mount;
   document.getElementById('s-shade-type').textContent = shadeType;
   document.getElementById('s-qty').textContent        = qty;
   document.getElementById('s-size').textContent       = (w && h) ? `${w}″ W × ${h}″ H` : '—';
 
-  var motorSubEl = document.getElementById('motor-sub');
-  var motorOn = motorSubEl && motorSubEl.classList.contains('show');
-  var isNorman = mBrand === 'Norman Smart';
+  var motorSub = document.getElementById('motor-sub');
+  var motorOn = motorSub && motorSub.classList.contains('show');
 
-  if (mBrand) {
-    document.getElementById('s-motor-brand').textContent = mBrand;
-  }
-
-  var powerRow = document.getElementById('s-power-row');
-  var powerEl  = document.getElementById('s-power');
-  if (powerRow && powerEl) {
-    var power = (motorOn && isNorman) ? (getOpt('grp-motor-power') || 'Rechargeable battery') : null;
-    powerRow.style.display = power ? '' : 'none';
-    if (power) powerEl.textContent = power;
-  }
-
-  var wandRow = document.getElementById('s-wand-row');
-  var wandEl2 = document.getElementById('s-wand');
-  if (wandRow && wandEl2) {
-    var wSum = motorOn ? solGetWandSummary() : null;
-    wandRow.style.display = wSum ? '' : 'none';
-    if (wSum) wandEl2.textContent = wSum;
+  // Motor summary comes from the shared Norman motor section (nmGetMotorSummary in shared.js)
+  var motorRow = document.getElementById('s-motor-row');
+  var motorBrandEl = document.getElementById('s-motor-brand');
+  if (motorRow && motorBrandEl) {
+    var mSum = (motorOn && typeof nmGetMotorSummary === 'function') ? nmGetMotorSummary() : null;
+    motorRow.style.display = mSum ? '' : 'none';
+    if (mSum) motorBrandEl.textContent = mSum;
   }
 
   const fabricRow = document.getElementById('s-fabric-row');
@@ -443,7 +431,12 @@ function updateSummary() {
   }
 
   const addons = [...document.querySelectorAll('#grp-addons .opt-btn.sel')].map(b => b.textContent.trim());
-  document.getElementById('s-addons').textContent = addons.length ? addons.join(', ') : 'None';
+  const hwColor = getOpt('grp-hw-color');
+  const fasciaStyle = getOpt('grp-fascia-style');
+  var addonParts = addons.slice();
+  if (hwColor) addonParts.push('Premium HW: ' + hwColor);
+  if (fasciaStyle) addonParts.push(fasciaStyle);
+  document.getElementById('s-addons').textContent = addonParts.length ? addonParts.join(', ') : 'None';
 
   var coupledRow = document.getElementById('s-coupled-row');
   var coupledEl  = document.getElementById('s-coupled');
@@ -485,15 +478,22 @@ function submitQuote() {
   const notes     = document.getElementById('cf-notes').value.trim();
   const motorSub  = document.getElementById('motor-sub');
   const motorOn   = motorSub && motorSub.classList.contains('show');
-  const motorVal  = motorOn ? (document.getElementById('sel-motor').value || '—') : 'None';
-  const isNormanMotor = motorOn && motorVal === 'Norman Smart';
-  const powerSrc = isNormanMotor ? (getOpt('grp-motor-power') || 'Rechargeable battery') : '';
-  const wandLine = isNormanMotor ? (solGetWandSummary() || '') : '';
+  // Motor details come from the shared Norman motor section (nmGetMotorSummary in shared.js)
+  const motorSummary = (motorOn && typeof nmGetMotorSummary === 'function') ? nmGetMotorSummary() : '';
   const addons    = [...document.querySelectorAll('#grp-addons .opt-btn.sel')].map(b => b.textContent.trim());
+  const hwColor   = getOpt('grp-hw-color');
+  const fasciaStyle = getOpt('grp-fascia-style');
+  if (hwColor) addons.push('Premium hardware: ' + hwColor);
+  if (fasciaStyle) addons.push('Fascia style: ' + fasciaStyle);
   const fabricColor = getSelectedFabricColor();
-  const deliveryLabel = solDelivery === 'pickup'
-    ? "I'll pick up (Huntingdon Valley, PA 19006 — address confirmed after order)"
-    : 'Ship to me — UPS / FedEx from Huntingdon Valley, PA (freight TBD)';
+  const deliveryLabel = 'Ship to me — UPS / FedEx (freight TBD)';
+
+  const isDualSubmit = shadeType === 'Dual Shade';
+  const dualFrontSubmit = isDualSubmit ? getOpt('grp-dual-front') : '';
+  const dualBackSubmit = isDualSubmit ? getOpt('grp-dual-back') : '';
+  const fabricTypeLabel = isDualSubmit
+    ? 'Dual shade — front: ' + (dualFrontSubmit || '—') + ' / back: ' + (dualBackSubmit || '—')
+    : light;
 
   const coupledLine = solGetCoupledSummary();
   const priceEst = _solEstimatePrice();
@@ -506,13 +506,12 @@ function submitQuote() {
     'PRODUCT: Premier Norman Roller Shades',
     '',
     'CONFIGURATION',
-    'Fabric type: ' + light,
-    (fabricColor ? 'Fabric selection: ' + fabricColor : ''),
+    'Fabric type: ' + fabricTypeLabel,
+    (fabricColor && !isDualSubmit ? 'Fabric selection: ' + fabricColor : ''),
     'Shade type: ' + shadeType,
     'Operating system: ' + op,
-    'Motorization: ' + motorVal,
-    (powerSrc ? 'Power source: ' + powerSrc : ''),
-    (wandLine ? 'Charging wand: ' + wandLine : ''),
+    'Motorization: ' + (motorOn ? 'Yes' : 'None'),
+    (motorSummary ? 'Motor details: ' + motorSummary : ''),
     'Mount type: ' + mount,
     'Width: ' + w + '"',
     'Height: ' + h + '"',
@@ -535,12 +534,34 @@ function submitQuote() {
   ].filter(l => l !== undefined && l !== null).join('\n');
 
   const subj = 'Soluna Roller Quote — ' + w + '"×' + h + '" ' + light + (shadeType !== 'Standard' ? ' ' + shadeType : '') + ' — ' + name;
-  window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+  window.location.href = 'mailto:blindznation@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
 
   document.getElementById('quote-success').classList.add('show');
   document.getElementById('quote-success').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+function addSolunaToCart() {
+  const light     = getOpt('grp-light') || '—';
+  const op        = getOpt('grp-op') || '—';
+  const mount     = getOpt('grp-mount') || '—';
+  const shadeType = getOpt('grp-shade-type') || 'Standard';
+  const w         = document.getElementById('inp-width').value || '—';
+  const h         = document.getElementById('inp-height').value || '—';
+  const qty       = parseInt(document.getElementById('inp-qty').value) || 1;
+  const lines = [
+    { label: 'Product',  value: 'Norman Soluna Roller Shade' },
+    { label: 'Size',     value: w + '″ × ' + h + '″' },
+    { label: 'Type',     value: shadeType },
+    { label: 'Fabric',   value: light },
+    { label: 'Control',  value: op },
+    { label: 'Mount',    value: mount },
+    { label: 'Quantity', value: String(qty) }
+  ];
+  pbAddToCart({ product: 'Norman Soluna Roller Shade', lines: lines, specs: lines.map(function(l){ return l.label+': '+l.value; }).join(' | '), qty: qty });
+  pbOpenCart();
+}
+
+// Pre-fill from URL params (carry-over from Basic Roller Shades page)
 (function() {
   var p = new URLSearchParams(window.location.search);
   var w = p.get('w'), h = p.get('h'), qty = p.get('qty'), mount = p.get('mount'), op = p.get('op'), motor = p.get('motor');
@@ -553,26 +574,20 @@ function submitQuote() {
     });
   }
   if (op) {
-    var opMap = { cordless: 'PrecisionLift™ Cordless', loop: 'Continuous Cord Loop', smart: 'SmartRelease™', motor: 'Motorized' };
+    var opMap = { cordless: 'PrecisionLift™ Cordless', loop: 'Manual with chain', smart: 'SmartRelease™', motor: 'Motorized' };
     var target = opMap[op] || op;
     document.querySelectorAll('#grp-op .opt-btn').forEach(function(b) {
       if (b.textContent.trim() === target) b.click();
     });
   }
   if (motor && op === 'motor') {
-    var motorMap = { rollease: 'Rollease Acmeda Automate' };
-    var mTarget = motorMap[motor] || 'Norman Smart';
+    // The op click above already rendered the shared Norman motor section; select Rollease brand if requested
     setTimeout(function() {
-      var sel = document.getElementById('sel-motor');
-      if (sel) { sel.value = mTarget; solUpdateMotorBrand(); }
+      if (motor === 'rollease') {
+        var brandBtns = document.querySelectorAll('#nm-grp-brand .opt-btn');
+        if (brandBtns.length > 1) { brandBtns[1].click(); updateSummary(); }
+      }
     }, 100);
   }
   if (w || h || op) updateSummary();
-
-  // Fix: render the color swatches for the default-selected fabric type on load.
-  // The fabric-type buttons only call showFabricColls() from their click handler,
-  // so the pre-selected type ("Light Filtering Designer") showed no colors until
-  // it was re-clicked. Clicking the .sel button on load renders its swatches.
-  var _selLight = document.querySelector('#grp-light .opt-btn.sel');
-  if (_selLight) _selLight.click();
 })();

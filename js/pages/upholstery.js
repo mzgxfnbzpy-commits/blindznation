@@ -1,6 +1,4 @@
-renderNav('Custom upholstery'); renderFooter(false);
-
-// ── Gallery data ──────────────────────────────────────────────
+﻿// ── Gallery data ──────────────────────────────────────────────
 var closetImgs = [
   {src:'../images/upholstery/IMG_2166.JPEG',  label:'Closet — floral fabric panels overview'},
   {src:'../images/upholstery/IMG_2166-1.JPEG',label:'Closet — panel detail'},
@@ -142,10 +140,10 @@ function submitUpholstery() {
     + 'Delivery preference: ' + delivery + '\n\n'
     + 'Project details:\n' + (notes || 'None provided');
 
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.location.href = 'mailto:blindznation@gmail.com'
     + '?subject=' + encodeURIComponent('Wall Upholstery Quote — ' + name)
     + '&body=' + encodeURIComponent(body);
 
   document.getElementById('upholstery-form-card').style.display = 'none';
   document.getElementById('u-success').style.display = 'block';
-}
+}

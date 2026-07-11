@@ -1,8 +1,6 @@
-renderNav('Free consultation'); renderFooter(false);
-
-function showPanel(id, el) {
-  document.querySelectorAll('.path-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+﻿function showPanel(id, el) {
+  document.querySelectorAll('.path-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.form-panel').forEach(function(p){ p.classList.remove('active'); });
   el.classList.add('active');
   document.getElementById('panel-' + id).classList.add('active');
 }
@@ -25,7 +23,7 @@ function submitInperson() {
     + 'Products interested in: ' + (products || '—') + '\n'
     + 'Number of windows: ' + windows + '\n\n'
     + 'Notes: ' + (notes || 'None');
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.location.href = 'mailto:blindznation@gmail.com'
     + '?subject=' + encodeURIComponent('In-Home Visit Request — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('card-inperson').style.display = 'none';
@@ -44,9 +42,9 @@ function submitCallback() {
     + 'Best time to call: ' + time + '\n'
     + 'Topic: ' + topic + '\n\n'
     + 'Notes: ' + (notes || 'None');
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.location.href = 'mailto:blindznation@gmail.com'
     + '?subject=' + encodeURIComponent('Callback Request — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('card-callback').style.display = 'none';
   document.getElementById('success-callback').style.display = 'block';
-}
+}

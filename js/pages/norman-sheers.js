@@ -1,6 +1,3 @@
-renderNav('Shades & blinds');
-renderFooter(false);
-
 // ═══════════════════════════════════════════════════════════
 // STATE — initialized before any function calls
 // ═══════════════════════════════════════════════════════════
@@ -69,6 +66,23 @@ var SD_FABRICS = {
       {code:'F2040',name:'Shadow',         hw:'Matte Silver', hex:'#A8A4A0'},
       {code:'F2041',name:'Latte',          hw:'Cottage White',hex:'#C4A880'},
       {code:'F2042',name:'Empirical Gray', hw:'Matte Silver', hex:'#989090'}
+    ],
+    'Coronado': [
+      {code:'F1685',name:'White',          hw:'White',        hex:'#F5F5F0'},
+      {code:'F1686',name:'Ivory',          hw:'Cottage White',hex:'#F0E8D0'},
+      {code:'F1687',name:'Light Gray',     hw:'Matte Silver', hex:'#C4C4C0'},
+      {code:'F1688',name:'Gray',           hw:'Black',        hex:'#888080'},
+      {code:'F1689',name:'Charcoal',       hw:'Black',        hex:'#404040'},
+      {code:'F1690',name:'Cottonwood',     hw:'Cottage White',hex:'#E8D0B0'}
+    ],
+    'Teardrop': [
+      {code:'F1691',name:'White',          hw:'White',        hex:'#F5F5F0'},
+      {code:'F1692',name:'Ivory',          hw:'Cottage White',hex:'#F0E8D0'},
+      {code:'F1693',name:'Light Gray',     hw:'Matte Silver', hex:'#C4C4C0'},
+      {code:'F1694',name:'Gray',           hw:'Black',        hex:'#888080'},
+      {code:'F1695',name:'Charcoal',       hw:'Black',        hex:'#404040'},
+      {code:'F1696',name:'Cottonwood',     hw:'Cottage White',hex:'#E8D0B0'},
+      {code:'F1697',name:'Platinum',       hw:'Cottage White',hex:'#C8C0B0'}
     ]
   },
   rd: {
@@ -86,6 +100,14 @@ var SD_FABRICS = {
       {code:'F1856',name:'Coffee',    hw:'Black',        hex:'#583218'},
       {code:'F1857',name:'Carbon',    hw:'Black',        hex:'#282828'},
       {code:'F1858',name:'Light Gray',hw:'Matte Silver', hex:'#ACACA8'}
+    ],
+    'Pacific': [
+      {code:'F1880',name:'Soft White',hw:'White',        hex:'#F2F2EC'},
+      {code:'F1881',name:'Crema',     hw:'Cottage White',hex:'#E8D8C0'},
+      {code:'F1882',name:'Coffee',    hw:'Black',        hex:'#5C3820'},
+      {code:'F1883',name:'Carbon',    hw:'Black',        hex:'#2C2C2C'},
+      {code:'F1884',name:'Light Gray',hw:'Matte Silver', hex:'#B0ACA8'},
+      {code:'F1885',name:'Cottonwood',hw:'Cottage White',hex:'#D8C8A8'}
     ]
   }
 };
@@ -145,12 +167,23 @@ function pickOp(op){
   document.getElementById('op-motor').classList.toggle('sel',op==='motor');
   document.getElementById('motor-note').style.display=op==='motor'?'block':'none';
   document.getElementById('acc-charge-row').style.display=op==='motor'?'flex':'none';
+  // Shared Norman Smart motor section (Norman Smart only for SmartDrape — no Rollease/DC/Charging Wand)
+  var motorCfg=document.getElementById('smartdrape-motor-config');
+  if(motorCfg){
+    if(op==='motor'){
+      motorCfg.style.display='block';
+      if(typeof normanMotorSection==='function') normanMotorSection('smartdrape-motor-config','SmartDrape');
+    } else {
+      motorCfg.style.display='none';
+      motorCfg.innerHTML='';
+    }
+  }
   var lbl=op==='wand'?'Wand Tilt':'Motorized (Norman Smart)';
-  markDone('step1',lbl); sp('sp-op',lbl);
+  markDone('step2',lbl); sp('sp-op',lbl);
   // Rebuild stack options
   buildStack();
   calcPrice();
-  openStep('step2');
+  openStep('step3');
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -169,10 +202,11 @@ function buildStack(){
   ];
   // Drop a now-invalid stack (e.g. Center Opening after switching Motorized → Wand Tilt).
   if(S.stack && !opts.some(function(o){return o.val===S.stack;})) S.stack='';
-  document.getElementById('stack-opts').innerHTML=opts.map(function(o){
-    return '<div class="opt-card'+(S.stack===o.val?' sel':'')+'" id="stk-'+o.val+'" onclick="pickStack(\''+o.val+'\')">'
-      +'<div class="opt-card-title">'+o.label+'</div><div class="opt-card-desc">'+o.desc+'</div></div>';
+  var stackBtns=opts.map(function(o){
+    return '<button class="opt-btn'+(S.stack===o.val?' sel':'')+'" id="stk-'+o.val+'" onclick="pickStack(\''+o.val+'\')">'+o.label+'</button>';
   }).join('');
+  var stackNote=opts.map(function(o){return o.label+': '+o.desc+'.';}).join(' ');
+  document.getElementById('stack-opts').innerHTML='<div class="opt-row">'+stackBtns+'</div><div class="step-note">'+stackNote+'</div>';
   // SBS toggle: wand only
   var sbsWrap=document.getElementById('sbs-wrap');
   if(sbsWrap) sbsWrap.style.display=S.op==='wand'?'flex':'none';
@@ -181,13 +215,13 @@ function buildStack(){
 
 function pickStack(v){
   S.stack=v;
-  document.querySelectorAll('#stack-opts .opt-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#stack-opts .opt-btn').forEach(function(c){c.classList.remove('sel');});
   var el=document.getElementById('stk-'+v);
   if(el) el.classList.add('sel');
   var labels={'left':'Left Stack','right':'Right Stack','center':'Traveling Center Stack','copen':'Center Opening'};
-  markDone('step2',labels[v]||v); sp('sp-stack',labels[v]||v);
+  markDone('step3',labels[v]||v); sp('sp-stack',labels[v]||v);
   calcDims();
-  openStep('step3');
+  openStep('step4');
 }
 
 function onSBSChange(){calcDims();}
@@ -197,13 +231,13 @@ function onSBSChange(){calcDims();}
 // ═══════════════════════════════════════════════════════════
 function pickMount(el,m){
   S.mount=m;
-  ['mc-wall','mc-ceiling','mc-pocket'].forEach(function(id){
+  ['mc-wall','mc-ceiling'].forEach(function(id){
     var e=document.getElementById(id); if(e) e.classList.remove('sel');
   });
   el.classList.add('sel');
-  var lbl={'wall':'Wall Mount (L bracket)','ceiling':'Ceiling Mount','pocket':'Ceiling Pocket Mount'}[m]||'Outside Mount';
-  markDone('step3',lbl); sp('sp-mount',lbl);
-  openStep('step4');
+  var lbl={'wall':'Wall mount (L bracket)','ceiling':'Ceiling mount'}[m]||'Wall mount (L bracket)';
+  sp('sp-mount',lbl);
+  openStep('step2');
 }
 
 function onDoorChange(){
@@ -247,10 +281,20 @@ function calcDims(){
   document.getElementById('cp-joints').textContent=joints===0?'None (track ≤97⅝″)':joints===1?'1 SmartJoint™':'2 SmartJoints™';
   document.getElementById('cp-area').textContent=area.toFixed(1)+' sq ft';
   var dimsText=S.w+'″ × '+S.h+'″';
-  markDone('step4',dimsText);
+  markDone('step1',dimsText);
   sp('sp-dims',dimsText); sp('sp-qty',S.qty+' shade'+(S.qty>1?'s':''));
   calcPrice();
-  openStep('step5');
+  openStep('step2');
+}
+
+// Quantity stepper (shared .qty-btns) — reuses inp-qty id + calcDims handler
+function adjQty(d){
+  var el=document.getElementById('inp-qty');
+  if(!el) return;
+  var v=(parseInt(el.value)||1)+d;
+  if(v<1) v=1; if(v>50) v=50;
+  el.value=v;
+  calcDims();
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -263,13 +307,13 @@ function pickOpacity(o){
   document.getElementById('oc-rd').classList.toggle('sel',o==='rd');
   document.getElementById('rd-warn').style.display=o==='rd'?'block':'none';
   var lbl=o==='lf'?'Light Filtering':'Blackout (+20%)';
-  markDone('step5',lbl); sp('sp-opacity',lbl);
+  markDone('step4',lbl); sp('sp-opacity',lbl);
   sp('sp-fabric','—');
-  document.getElementById('s6val').textContent='—';
-  document.getElementById('step6').classList.remove('done');
+  document.getElementById('s5val').textContent='—';
+  document.getElementById('step5').classList.remove('done');
   buildFabricGrid();
   calcPrice();
-  openStep('step6');
+  openStep('step5');
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -278,7 +322,7 @@ function pickOpacity(o){
 var activeColl='';
 function buildFabricGrid(){
   var body=document.getElementById('fabric-body');
-  if(!S.opacity){body.innerHTML='<div class="msg-info">Select light control first (step 5).</div>';return;}
+  if(!S.opacity){body.innerHTML='<div class="msg-info">Select light control first (step 4).</div>';return;}
   var colls=Object.keys(SD_FABRICS[S.opacity]);
   activeColl=activeColl&&SD_FABRICS[S.opacity][activeColl]?activeColl:colls[0];
   // Collection filter buttons
@@ -313,11 +357,11 @@ function pickFabric(code,name,coll,hw,hex){
   S.fabric={code:code,name:name,coll:coll,hw:hw,hex:hex};
   if(!S.hw) S.hw=hw; // Set hardware default from fabric
   buildFabricGrid();
-  markDone('step6',name+' · '+coll);
+  markDone('step5',name+' · '+coll);
   sp('sp-fabric',name+' ('+code+') · '+coll);
   sp('sp-hw',S.hw||'Fabric default ('+hw+')');
   calcPrice();
-  openStep('step7');
+  openStep('step6');
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -325,9 +369,9 @@ function pickFabric(code,name,coll,hw,hex){
 // ═══════════════════════════════════════════════════════════
 function pickHW(el,color){
   S.hw=color;
-  document.querySelectorAll('#hw-color-grid .opt-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#hw-color-grid .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
-  markDone('step7',color); sp('sp-hw',color);
+  markDone('step6',color); sp('sp-hw',color);
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -357,10 +401,10 @@ function updateAcc(){
 // ═══════════════════════════════════════════════════════════
 // STEP 9: DELIVERY
 // ═══════════════════════════════════════════════════════════
-function pickDel(d){
+function pickDel(d,card){
   S.delivery=d;
-  document.getElementById('del-ship').classList.toggle('sel',d==='ship');
-  document.getElementById('del-pickup').classList.toggle('sel',d==='pickup');
+  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
+  card.classList.add('sel');
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -399,9 +443,10 @@ function calcPrice(){
   var isMotor=S.op==='motor';
   document.getElementById('pr-motor-row').style.display=isMotor?'flex':'none';
   if(isMotor) per+=642;
-  // Total with 15% Norman discount
+  // 35% Norman discount on product subtotal (not applied to shipping)
+  var NORMAN_DISC_SD=0.35;
   var sdRetailSub=Math.round(per*S.qty);
-  var sdDiscountAmt=Math.round(sdRetailSub*0.15);
+  var sdDiscountAmt=Math.round(sdRetailSub*NORMAN_DISC_SD);
   var sdYourPrice=sdRetailSub-sdDiscountAmt;
   document.getElementById('pr-qty').textContent=S.qty+' shade'+(S.qty>1?'s':'');
   document.getElementById('pr-retail').textContent='$'+sdRetailSub.toLocaleString();
@@ -419,7 +464,7 @@ function addNormanSheersToCart(){
   if(!S.w||!S.h){ alert('Please enter valid dimensions before adding to cart.'); return; }
 
   var stackLabels={'left':'Left Stack','right':'Right Stack','center':'Traveling Center Stack','copen':'Center Opening'};
-  var mountLabels={'wall':'Wall Mount (L bracket)','ceiling':'Ceiling Mount','pocket':'Ceiling Pocket Mount'};
+  var mountLabels={'wall':'Wall mount (L bracket)','ceiling':'Ceiling mount','pocket':'Ceiling Pocket Mount'};
   var isSBS=document.getElementById('sbs-check')&&document.getElementById('sbs-check').checked;
 
   var lines=[
@@ -435,21 +480,24 @@ function addNormanSheersToCart(){
     {label:'Side by Side',value:isSBS?'Yes':'No'},
     {label:'Quantity',value:String(S.qty||1)}
   ];
+  if(S.op==='motor'&&typeof nmGetMotorSummary==='function'){
+    lines.push({label:'Motor options',value:nmGetMotorSummary()});
+  }
   var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
   pbAddToCart({product:'Norman SmartDrape™',lines:lines,specs:specs,price:null,qty:S.qty||1});
   pbOpenCart();
 }
 
 async function submitQuote(){
-  var name=document.getElementById('q-name').value.trim();
-  var email=document.getElementById('q-email').value.trim();
-  var phone=document.getElementById('q-phone').value.trim();
-  var err=document.getElementById('q-err');
+  var name=document.getElementById('cf-name').value.trim();
+  var email=document.getElementById('cf-email').value.trim();
+  var phone=document.getElementById('cf-phone').value.trim();
+  var err=document.getElementById('cf-contact-err');
   if(!name){err.textContent='Please enter your name.';err.style.display='block';return;}
   if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Please enter a valid email address.';err.style.display='block';return;}
   err.style.display='none';
   var stackLabels={'left':'Left Stack','right':'Right Stack','center':'Traveling Center Stack','copen':'Center Opening'};
-  var mountLabels={'wall':'Wall Mount (L bracket)','ceiling':'Ceiling Mount','pocket':'Ceiling Pocket Mount'};
+  var mountLabels={'wall':'Wall mount (L bracket)','ceiling':'Ceiling mount'};
   var isSBS=document.getElementById('sbs-check')&&document.getElementById('sbs-check').checked;
   var joints=S.w<=97.625?0:S.w<=189.625?1:2;
   var selections=[
@@ -468,10 +516,13 @@ async function submitQuote(){
     {label:'Fabric code',value:S.fabric?S.fabric.code:'—'},
     {label:'Hardware color',value:S.hw&&S.hw!==(S.fabric?S.fabric.hw:'')?S.hw:'Fabric default'},
     {label:'Accessories',value:S.accs.length>0?S.accs.join(', '):'None'},
-    {label:'Delivery',value:S.delivery==='ship'?'Ship to me':'Will pick up (Huntingdon Valley, PA)'}
+    {label:'Delivery',value:'Ship to me'}
   ];
+  if(S.op==='motor'&&typeof nmGetMotorSummary==='function'){
+    selections.push({label:'Motor options',value:nmGetMotorSummary()});
+  }
   if(S.isDoor) selections.push({label:'Application',value:'Patio door/slider'});
-  var notes=document.getElementById('q-notes').value.trim();
+  var notes=document.getElementById('cf-notes').value.trim();
   var btn=document.querySelector('#quote-form .btn-gold');
   if(btn){btn.disabled=true;btn.textContent='Sending…';}
   try{
@@ -483,7 +534,7 @@ async function submitQuote(){
     var form=document.getElementById('quote-form'); if(form) form.style.display='none';
   }catch(err2){
     if(btn){btn.disabled=false;btn.textContent='Submit SmartDrape™ Specification & Request Quote →';}
-    err.innerHTML=(err2.message&&err2.message.length<200?err2.message+'<br>':'')+'Please email <a href="mailto:justin@blindznation.com">justin@blindznation.com</a> or call (609) 742-1720.';
+    err.innerHTML=(err2.message&&err2.message.length<200?err2.message+'<br>':'')+'Please email <a href="mailto:blindznation@gmail.com">blindznation@gmail.com</a> or call (609) 742-1720.';
     err.style.display='block';
   }
 }
@@ -492,10 +543,9 @@ async function submitQuote(){
 // INIT — called AFTER all function and state definitions
 // ═══════════════════════════════════════════════════════════
 (function(){
-  // Pre-select defaults and mark step3 done (wall mount pre-selected)
-  pickOp('wand');        // operation → builds stack options → opens step2
-  pickStack('left');     // stack → opens step3
-  // Mount is pre-selected (wall) — mark done
-  markDone('step3','Wall Mount (L bracket)');
-  openStep('step4');
-})();
+  // Step 1 (measurements & mount) is active by default; wall mount pre-selected.
+  pickOp('wand');        // operation (step2) → builds stack options
+  pickStack('left');     // stack (step3) default
+  sp('sp-mount','Wall mount (L bracket)');  // reflect pre-selected wall mount in spec panel
+  openStep('step1');
+})();

@@ -1,6 +1,4 @@
-renderNav('Hardware'); renderFooter(false);
-
-var hwState = { type:'', style:'', brand:'' };
+﻿var hwState = { type:'', style:'', brand:'' };
 
 function hwReveal(id) {
   var el = document.getElementById(id);
@@ -19,7 +17,7 @@ function hwPickType(type) {
   document.getElementById('sec-functional').classList.remove('on');
   document.getElementById('dec-brand-step').classList.remove('on');
   document.getElementById('sec-quote').classList.remove('on');
-  document.querySelectorAll('#dec-type-cards .opt-card').forEach(function(c){ c.classList.remove('sel'); });
+  document.querySelectorAll('#dec-type-cards .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
   document.querySelectorAll('#dec-brand-cards .brand-card').forEach(function(c){ c.classList.remove('sel'); });
 
   if (type === 'decorative') {
@@ -35,7 +33,7 @@ var kfType = '';
 
 function kfSetType(type, el) {
   kfType = type;
-  document.querySelectorAll('#kf-step1 .opt-card').forEach(function(c){ c.classList.remove('sel'); });
+  document.querySelectorAll('#kf-step1 .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
   if (el) el.classList.add('sel');
 
   // Show/hide sub-option panels
@@ -112,7 +110,7 @@ function kfUpdate() {
 
   if (!lines.length) return;
   var html = lines.map(function(l) {
-    return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:.5px solid rgba(201,169,110,.15)">' +
+    return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:.5px solid rgba(45,224,193,.15)">' +
       '<span style="color:var(--text-muted)">' + l.l + '</span>' +
       '<span style="color:var(--cream);font-weight:500">' + l.v + '</span>' +
       '</div>';
@@ -351,7 +349,7 @@ function archToggleBaton(sku, el) {
     if (type === 'functional') {
       // Auto-select Traverse as default
       setTimeout(function() {
-        var traverseCard = document.querySelector('#kf-step1 .opt-card:first-child');
+        var traverseCard = document.querySelector('#kf-step1 .opt-btn:first-child');
         if (traverseCard && !traverseCard.classList.contains('sel')) {
           kfSetType('traverse', traverseCard);
         }
@@ -362,7 +360,7 @@ function archToggleBaton(sku, el) {
 
 function hwPickStyle(el, style) {
   hwState.style = style; hwState.brand = '';
-  document.querySelectorAll('#dec-type-cards .opt-card').forEach(function(c){ c.classList.remove('sel'); });
+  document.querySelectorAll('#dec-type-cards .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
   el.classList.add('sel');
   document.getElementById('dec-brand-step').classList.remove('on');
   document.getElementById('sec-quote').classList.remove('on');
@@ -403,9 +401,9 @@ function submitHardware() {
     + 'Finish: ' + document.getElementById('hw-finish').value + '\n'
     + 'Delivery: ' + delivery + '\n\n'
     + 'Notes:\n' + (document.getElementById('hw-notes').value.trim() || 'None');
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.location.href = 'mailto:blindznation@gmail.com'
     + '?subject=' + encodeURIComponent('Hardware Quote — ' + (hwState.style || hwState.type) + ' — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('hw-form').style.display = 'none';
   document.getElementById('hw-success').style.display = 'block';
-}
+}

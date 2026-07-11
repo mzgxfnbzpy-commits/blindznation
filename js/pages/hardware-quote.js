@@ -19,13 +19,13 @@ const PT_BRACKETS_158 = {
   single:    {label:'Single Bracket (3½&Prime; return)',  price:61.80},
   single6:   {label:'Single 6&Prime; Bracket (6&Prime; return)', price:67.98},
   double:    {label:'Double Bracket (3½/6&Prime;)',       price:74.16},
-  inside:    {label:'Inside Mount (pair)',                price:80.34}
+  inside:    {label:'Inside mount (pair)',                price:80.34}
 };
 const PT_BRACKETS_178 = {
   single:    {label:'Single Bracket (3½&Prime; return)',  price:67.98},
   single6:   {label:'Single 6&Prime; Bracket (6&Prime; return)', price:74.16},
   double:    {label:'Double Bracket (3½/6&Prime;)',       price:80.34},
-  inside:    {label:'Inside Mount (pair)',                price:80.34}
+  inside:    {label:'Inside mount (pair)',                price:80.34}
 };
 const PT_FRENCH_158  = {square:{label:'French Return w/ Square Plate (pair)',price:92.70}, round:{label:'French Return w/ Round Plate (pair)',price:92.70}};
 const PT_RING_158    = 9.27;  // per ring
@@ -92,7 +92,7 @@ function markDone(id){ $(id).classList.add('done'); }
 
 // ── STEP 1: BRAND ─────────────────────────────────────────────────────────────
 function pickBrand(el,code,label,type){
-  document.querySelectorAll('#step1 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step1 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.brand=code; S.brandLabel=label;
   $('s1val').textContent=label;
@@ -112,36 +112,36 @@ function buildDiameterStep(code,type){
   const body=$('s2-body');
   $('s2-title').textContent = type==='Traverse'||type==='Motorized' ? 'Configuration' : 'Diameter';
   if(code==='pt'){
-    body.innerHTML='<div class="opt-grid-2">' +
-      optCard('158','1⅛&Prime; Metal Pole','Most popular — works with all PT finials','pickDia',code) +
-      optCard('178','1⅜&Prime; Metal Pole','Larger statement look — heavier drapes','pickDia',code) +
-    '</div>';
+    body.innerHTML=optRow([
+      ['158','1⅛&Prime; Metal Pole','Most popular — works with all PT finials'],
+      ['178','1⅜&Prime; Metal Pole','Larger statement look — heavier drapes']
+    ],'pickDia',code);
   } else if(code==='sm'){
-    body.innerHTML='<div class="opt-grid-2">' +
-      optCard('34','¾&Prime; Brass Poles','Classic proportions — 8 finishes','pickDia',code) +
-      optCard('138','1⅜&Prime; Brass Poles','Bold presence — 8 finishes','pickDia',code) +
-    '</div>';
+    body.innerHTML=optRow([
+      ['34','¾&Prime; Brass Poles','Classic proportions — 8 finishes'],
+      ['138','1⅜&Prime; Brass Poles','Bold presence — 8 finishes']
+    ],'pickDia',code);
   } else if(code==='kdm'){
-    body.innerHTML='<div class="opt-grid-2">' +
-      optCard('1in','1&Prime; Designer Metals','Antique Silver, Black, Brushed Bronze, Elegant/Gilded Brass, Polished/Satin Nickel, Gunmetal','pickDia',code) +
-    '</div>';
+    body.innerHTML=optRow([
+      ['1in','1&Prime; Designer Metals','Antique Silver, Black, Brushed Bronze, Elegant/Gilded Brass, Polished/Satin Nickel, Gunmetal']
+    ],'pickDia',code);
     S.diameter='1in'; $('s2val').textContent='1″';
     markDone('step2');
   } else if(code==='kb'){
     body.innerHTML='<div style="font-size:12px;color:#555;line-height:1.6;margin-top:8px">Kirsch Superfine Pro traverse rods in white. Choose your draw type and length below.</div>' +
-      '<div class="opt-grid-2" style="margin-top:10px">' +
-      optCard('split','Split Draw','Panels draw from both sides to center','pickDia',code) +
-      optCard('oneR','One-Way Right','All fabric stacks to the right','pickDia',code) +
-      optCard('oneL','One-Way Left','All fabric stacks to the left','pickDia',code) +
-      optCard('double','Double Traverse','Two rods — sheer + blackout','pickDia',code) +
-    '</div>';
+      optRow([
+        ['split','Split Draw','Panels draw from both sides to center'],
+        ['oneR','One-Way Right','All fabric stacks to the right'],
+        ['oneL','One-Way Left','All fabric stacks to the left'],
+        ['double','Double Traverse','Two rods — sheer + blackout']
+      ],'pickDia',code);
   } else if(code==='moto'){
     body.innerHTML='<div class="info-box" style="margin-top:8px">Sonoran motorized aluminum track. Quiet, app and remote controlled. Available in white or bronze aluminum. Double-track (sheer + panel) also available.</div>' +
-      '<div class="opt-grid-2" style="margin-top:10px">' +
-      optCard('single110','Single Track — 110V AC','Hardwired motor — most reliable for permanent installs','pickDia',code) +
-      optCard('singleBatt','Single Track — Battery','Rechargeable battery — no wiring needed','pickDia',code) +
-      optCard('double','Double Track','Two independent tracks (sheer + panel)','pickDia',code) +
-    '</div>';
+      optRow([
+        ['single110','Single Track — 110V AC','Hardwired motor — most reliable for permanent installs'],
+        ['singleBatt','Single Track — Battery','Rechargeable battery — no wiring needed'],
+        ['double','Double Track','Two independent tracks (sheer + panel)']
+      ],'pickDia',code);
   } else {
     body.innerHTML='<div class="info-box" style="margin-top:8px">No problem — we\'ll recommend the right rod type for your panels and space. Just tell us your fabric weight and window width in the notes.</div>';
     S.diameter='other'; $('s2val').textContent='Will advise';
@@ -150,14 +150,18 @@ function buildDiameterStep(code,type){
   }
 }
 
-function optCard(val,title,desc,fn,extra){
-  return '<div class="opt-card" onclick="'+fn+'(this,\''+val+'\',\''+extra+'\')">' +
-    '<div class="opt-card-title">'+title+'</div>' +
-    '<div class="opt-card-desc">'+desc+'</div></div>';
+// Build a row of Soluna-style pills + one combined step-note from the descriptions.
+// items: array of [val, title, desc?]; fn/extra form the onclick: fn(this,'val','extra')
+function optRow(items,fn,extra){
+  const btns=items.map(it=>
+    '<button class="opt-btn" onclick="'+fn+'(this,\''+it[0]+'\',\''+extra+'\')">'+it[1]+'</button>'
+  ).join('');
+  const notes=items.filter(it=>it[2]).map(it=>'<strong>'+it[1]+'</strong> — '+it[2]).join('<br>');
+  return '<div class="opt-row">'+btns+'</div>'+(notes?'<div class="step-note">'+notes+'</div>':'');
 }
 
 function pickDia(el,val,brand){
-  document.querySelectorAll('#step2 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step2 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.diameter=val;
   const labels={'158':'1⅝″','178':'1⅞″','34':'¾″','138':'1⅜″','1in':'1″',
@@ -176,26 +180,29 @@ function buildLengthStep(brand,dia){
   if(brand==='pt'){
     body.innerHTML='<div class="sub-label" style="margin-top:0">Number of rod sections needed</div>' +
       '<div style="font-size:11px;color:#888;margin-bottom:8px">Most windows use 1 section (up to 12 ft). Splice two sections for wider spans.</div>' +
-      '<div class="opt-grid-4">'+[1,2,3].map(n=>'<div class="opt-card" onclick="pickLength(this,'+n+',\'pt\')"><div class="opt-card-title">'+n+' section'+(n>1?'s':'')+'</div><div class="opt-card-desc">Up to '+(n*12)+' ft total</div></div>').join('')+'</div>' +
+      '<div class="opt-row">'+[1,2,3].map(n=>'<button class="opt-btn" onclick="pickLength(this,'+n+',\'pt\')">'+n+' section'+(n>1?'s':'')+'</button>').join('')+'</div>' +
+      '<div class="step-note">'+[1,2,3].map(n=>'<strong>'+n+' section'+(n>1?'s':'')+'</strong> — up to '+(n*12)+' ft total').join('<br>')+'</div>' +
       '<div class="sub-label">Length per section</div>' +
-      '<div class="opt-grid-4">' + [2,4,6,8,10,12].map(ft=>
-        '<div class="opt-card" onclick="pickPTLen(this,'+ft+')"><div class="opt-card-title">'+ft+' ft</div><div class="opt-card-desc">'+(ft*12)+'"</div></div>'
-      ).join('')+'</div>';
+      '<div class="opt-row" id="pt-seclen-row">' + [2,4,6,8,10,12].map(ft=>
+        '<button class="opt-btn" onclick="pickPTLen(this,'+ft+')">'+ft+' ft</button>'
+      ).join('')+'</div>' +
+      '<div class="step-note">'+[2,4,6,8,10,12].map(ft=>ft+' ft = '+(ft*12)+'"').join(' · ')+'</div>';
     S.length=6; // default
   } else if(brand==='sm'){
-    body.innerHTML='<div class="opt-grid-3">' + [6,8,12].map(ft=>
-      '<div class="opt-card" onclick="pickLength(this,'+ft+',\'sm\')"><div class="opt-card-title">'+ft+' ft</div><div class="opt-card-desc">'+(ft*12)+'&Prime;</div></div>'
+    body.innerHTML='<div class="opt-row">' + [6,8,12].map(ft=>
+      '<button class="opt-btn" onclick="pickLength(this,'+ft+',\'sm\')">'+ft+' ft</button>'
     ).join('')+'</div>' +
+    '<div class="step-note">'+[6,8,12].map(ft=>ft+' ft = '+(ft*12)+'&Prime;').join(' · ')+'</div>' +
     '<div class="info-box" style="margin-top:8px">Poles can be cut to specified measurement ($5 per cut). Poles 90&Prime; or less may reduce shipping cost.</div>';
   } else if(brand==='kb'){
     const ranges=['30–48&Prime;','48–84&Prime;','66–120&Prime;','84–156&Prime;','156–228&Prime;'];
-    body.innerHTML='<div class="opt-grid-2">'+ranges.map((r,i)=>
-      '<div class="opt-card" onclick="pickLength(this,\'kb'+i+'\',\'kb\')"><div class="opt-card-title">'+r+'</div></div>'
+    body.innerHTML='<div class="opt-row">'+ranges.map((r,i)=>
+      '<button class="opt-btn" onclick="pickLength(this,\'kb'+i+'\',\'kb\')">'+r+'</button>'
     ).join('')+'</div>';
   } else if(brand==='moto'){
     body.innerHTML='<div class="sub-label" style="margin-top:0">Track width (finished track size)</div>' +
-      '<div class="opt-grid-4">'+[60,72,84,96,108,120,132,144,156,168].map(w=>
-        '<div class="opt-card" onclick="pickMotorWidth(this,'+w+')"><div class="opt-card-title">'+w+'&Prime;</div></div>'
+      '<div class="opt-row">'+[60,72,84,96,108,120,132,144,156,168].map(w=>
+        '<button class="opt-btn" onclick="pickMotorWidth(this,'+w+')">'+w+'&Prime;</button>'
       ).join('')+'</div>';
   } else {
     body.innerHTML='<div class="form-group" style="margin-top:8px"><label>Window width (inches)</label><input type="number" id="len-other" min="12" max="288" placeholder="e.g. 72" oninput="pickOtherLen()"></div>';
@@ -204,7 +211,7 @@ function buildLengthStep(brand,dia){
 
 let ptSections=1;
 function pickPTLen(el,ft){
-  document.querySelectorAll('#step3 .opt-grid-4:last-child .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#pt-seclen-row .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.length=ft;
   $('s3val').textContent=(ptSections)+' × '+ft+'ft';
@@ -213,7 +220,7 @@ function pickPTLen(el,ft){
   $('step4').classList.add('active','open');
 }
 function pickLength(el,val,brand){
-  document.querySelectorAll('#step3 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step3 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.length=val;
   $('s3val').textContent=typeof val==='number' ? val+'ft' : val;
@@ -222,7 +229,7 @@ function pickLength(el,val,brand){
   $('step4').classList.add('active','open');
 }
 function pickMotorWidth(el,w){
-  document.querySelectorAll('#step3 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step3 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.motorTrackWidth=w;
   S.length=w;
@@ -292,7 +299,7 @@ function buildFinishStep(brand){
     body.innerHTML='<div style="font-size:12px;color:#555;padding-top:8px">Kirsch Superfine Pro is available in <strong>White only</strong>.</div>';
     S.finish='white'; S.finishLabel='White'; $('s4val').textContent='White'; markDone('step4'); return;
   } else if(brand==='moto'){
-    body.innerHTML='<div class="opt-grid-2"><div class="opt-card" onclick="pickFinish(this,\'wh\',\'White Aluminum\')"><div class="opt-card-title">White</div></div><div class="opt-card" onclick="pickFinish(this,\'br\',\'Bronze Aluminum\')"><div class="opt-card-title">Bronze</div></div></div>';
+    body.innerHTML='<div class="opt-row"><button class="opt-btn" onclick="pickFinish(this,\'wh\',\'White Aluminum\')">White</button><button class="opt-btn" onclick="pickFinish(this,\'br\',\'Bronze Aluminum\')">Bronze</button></div>';
     return;
   } else {
     body.innerHTML='<div style="font-size:12px;color:#555;padding-top:8px">Specify preferred finish in notes — we carry a wide range across all brands.</div>';
@@ -307,7 +314,7 @@ function buildFinishStep(brand){
 }
 
 function pickFinish(el,code,name){
-  document.querySelectorAll('#step4 .finish-card, #step4 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step4 .finish-card, #step4 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.finish=code; S.finishLabel=name;
   $('s4val').textContent=name;
@@ -330,12 +337,12 @@ function buildFinialStep(brand){
     body.innerHTML='<div style="font-size:12px;color:#555;padding-top:8px">Finial selection confirmed at quote.</div>';
     S.finialKey='other'; $('s5val').textContent='TBD'; markDone('step5'); return;
   }
-  body.innerHTML='<div class="opt-grid-2">'+Object.entries(tiers).map(([k,v])=>
-    '<div class="opt-card" onclick="pickFinial(this,\''+k+'\','+v.price+',\''+v.label+'\')">' +
-    '<div class="opt-card-title">'+v.label+'</div>' +
-    '<div class="opt-card-desc">'+v.note+'</div>' +
-    '<div class="opt-card-price">'+fmt(v.price)+'/pair</div></div>'
+  body.innerHTML='<div class="opt-row">'+Object.entries(tiers).map(([k,v])=>
+    '<button class="opt-btn" onclick="pickFinial(this,\''+k+'\','+v.price+',\''+v.label+'\')">'+v.label+'</button>'
   ).join('')+'</div>' +
+  '<div class="step-note">'+Object.entries(tiers).map(([k,v])=>
+    '<strong>'+v.label+'</strong> — '+fmt(v.price)+'/pair · '+v.note
+  ).join('<br>')+'</div>' +
   '<div class="sub-label">Quantity</div>' +
   '<div class="spinner-row"><button class="spin-btn" onclick="adjFinials(-1)">&#8722;</button>' +
   '<input class="spin-num" type="number" id="finial-qty" value="1" min="0" max="20" oninput="updFinials()" style="width:52px">' +
@@ -345,7 +352,7 @@ function buildFinialStep(brand){
 
 let finialPrice=0;
 function pickFinial(el,key,price,label){
-  document.querySelectorAll('#step5 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step5 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.finialKey=key; finialPrice=price;
   S.finialQty=parseInt($('finial-qty').value)||1;
@@ -380,25 +387,26 @@ function buildBracketStep(brand){
     S.bracketKey='tbd'; $('s6val').textContent='TBD'; markDone('step6'); return;
   }
 
-  body.innerHTML='<div class="opt-grid-2">'+Object.entries(bracks).map(([k,v])=>
-    '<div class="opt-card" onclick="pickBracket(this,\''+k+'\','+v.price+',\''+v.label+'\')">'+
-    '<div class="opt-card-title">'+v.label+'</div>'+
-    '<div class="opt-card-price">'+fmt(v.price)+(k==='inside'?'/pair':' ea')+'</div></div>'
+  body.innerHTML='<div class="opt-row">'+Object.entries(bracks).map(([k,v])=>
+    '<button class="opt-btn" onclick="pickBracket(this,\''+k+'\','+v.price+',\''+v.label+'\')">'+v.label+'</button>'
   ).join('')+'</div>' +
+  '<div class="step-note">'+Object.entries(bracks).map(([k,v])=>
+    '<strong>'+v.label+'</strong> — '+fmt(v.price)+(k==='inside'?'/pair':' ea')
+  ).join('<br>')+'</div>' +
   '<div class="sub-label">Quantity</div>' +
   '<div class="spinner-row"><button class="spin-btn" onclick="adjBrackets(-1)">&#8722;</button>' +
   '<input class="spin-num" type="number" id="bracket-qty" value="3" min="1" max="20" oninput="updBrackets()" style="width:52px">' +
   '<button class="spin-btn" onclick="adjBrackets(1)">&#43;</button><span style="font-size:12px;color:#666">bracket(s)</span></div>' +
   '<div class="step-note">Standard: 1 bracket per end + 1 center support per 4 ft of span.</div>' +
-  (brand==='pt'?'<div class="sub-label">French Returns?</div><div class="opt-grid-2">' +
-    '<div class="opt-card" onclick="pickFR(this,false)"><div class="opt-card-title">No French Returns</div></div>' +
-    '<div class="opt-card" onclick="pickFR(this,true)"><div class="opt-card-title">Add French Returns</div><div class="opt-card-price">$92.70–$105.06/pair</div></div>' +
-    '</div>':'');
+  (brand==='pt'?'<div class="sub-label">French Returns?</div><div class="opt-row" id="fr-row">' +
+    '<button class="opt-btn" onclick="pickFR(this,false)">No French Returns</button>' +
+    '<button class="opt-btn" onclick="pickFR(this,true)">Add French Returns</button>' +
+    '</div><div class="step-note"><strong>Add French Returns</strong> — $92.70–$105.06/pair</div>':'');
 }
 
 let bracketPrice=0;
 function pickBracket(el,key,price,label){
-  document.querySelectorAll('#step6 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step6 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.bracketKey=key; bracketPrice=price;
   S.bracketQty=parseInt($('bracket-qty').value)||3;
@@ -416,7 +424,7 @@ function updBrackets(){
   calcPrice();
 }
 function pickFR(el,val){
-  document.querySelectorAll('#step6 .opt-grid-2:last-child .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#fr-row .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.frenchReturn=val;
   calcPrice();
@@ -462,15 +470,16 @@ function buildMotorStep(brand,type){
     body.innerHTML='<div style="font-size:12px;color:#555;padding-top:8px">To add motorization to a traverse system, we convert to a Sonoran motorized track — price quoted separately.</div>';
     $('s8val').textContent='None'; return;
   }
-  body.innerHTML='<div class="opt-grid-2">' +
-    '<div class="opt-card" onclick="pickMotor(this,\'none\',0)"><div class="opt-card-title">No Motorization</div><div class="opt-card-desc">Manual wand or baton draw</div></div>' +
+  body.innerHTML='<div class="opt-row">' +
+    '<button class="opt-btn" onclick="pickMotor(this,\'none\',0)">No Motorization</button>' +
     '</div>' +
+    '<div class="step-note"><strong>No Motorization</strong> — Manual wand or baton draw</div>' +
     '<div class="info-box" style="margin-top:8px">Motorization for decorative rods is brand-specific and varies by manufacturer. Select in notes and we will confirm compatibility and pricing at quote stage.</div>';
   S.motorKey='none'; $('s8val').textContent='None';
 }
 
 function pickMotor(el,key,price){
-  document.querySelectorAll('#step8 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step8 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.motorKey=key;
   $('s8val').textContent=key==='none'?'None':key;
@@ -481,10 +490,8 @@ function pickMotor(el,key,price){
 // ── DELIVERY ──────────────────────────────────────────────────────────────────
 function pickDel(v){
   S.delivery=v;
-  $('del-ship').classList.toggle('sel',v==='ship');
-  $('del-pickup').classList.toggle('sel',v==='pickup');
-  $('del-ship-note').style.display=v==='ship'?'block':'none';
-  $('del-pickup-note').style.display=v==='pickup'?'block':'none';
+  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
+  $('del-'+v).classList.add('sel');
 }
 
 // ── PRICE CALC ────────────────────────────────────────────────────────────────
@@ -561,6 +568,7 @@ function calcPrice(){
   $('q-motor-row').style.display='none';
 
   const total=rodCost+finCost+braCost+ringCost;
+  S.estTotal=total;
   $('q-total').textContent=total>0?fmt(total)+' est.':'TBD';
 
   // ── Update inline summary in Step 9 (always shown once brand picked) ──
@@ -593,9 +601,9 @@ function calcPrice(){
 
 // ── SUBMIT VALIDATION ─────────────────────────────────────────────────────────
 function updateSubmitState(){
-  const name=($('f-name')||{}).value||'';
-  const phone=($('f-phone')||{}).value||'';
-  const email=($('f-email')||{}).value||'';
+  const name=($('cf-name')||{}).value||'';
+  const phone=($('cf-phone')||{}).value||'';
+  const email=($('cf-email')||{}).value||'';
   const missing=[];
 
   if(!S.brand) missing.push('Select a brand (Step 1)');
@@ -610,7 +618,7 @@ function updateSubmitState(){
   const clItems=$('checklist-items');
 
   if(missing.length===0){
-    if(btn){ btn.disabled=false; btn.style.opacity='1'; btn.style.cursor='pointer'; btn.textContent='Send quote request →'; }
+    if(btn){ btn.disabled=false; btn.style.opacity='1'; btn.style.cursor='pointer'; btn.textContent='Submit Order for Review →'; }
     if(clBox) clBox.style.display='none';
   } else {
     if(btn){ btn.disabled=true; btn.style.opacity='.45'; btn.style.cursor='not-allowed'; btn.textContent='Complete required fields to submit →'; }
@@ -621,12 +629,33 @@ function updateSubmitState(){
   }
 }
 
+// ── ADD TO CART ───────────────────────────────────────────────────────────────
+function addHardwareQuoteToCart(){
+  const errEl=$('cf-contact-err'); errEl.style.display='none';
+  if(!S.brand){errEl.textContent='Please select a brand (Step 1) before adding to cart.';errEl.style.display='block';return;}
+  calcPrice(); // refresh S.estTotal from current selections
+  const lines=[
+    {label:'Product',       value:'Drapery Hardware — '+(S.brandLabel||'Custom')},
+    {label:'Diameter/Type', value:S.diameter||'—'},
+    {label:'Finish',        value:S.finishLabel||'TBD'},
+    {label:'Length',        value:S.length?(typeof S.length==='number'?S.length+'ft':S.length):'TBD'},
+    {label:'Finials',       value:(!S.finialKey||S.finialKey==='none')?'None':S.finialKey+' × '+(S.finialQty||1)+' pair(s)'},
+    {label:'French Returns',value:S.frenchReturn?'Yes':'No'},
+    {label:'Brackets',      value:(!S.bracketKey||S.bracketKey==='tbd')?'TBD':S.bracketKey+' × '+(S.bracketQty||0)},
+    {label:'Rings',         value:String(S.rings||0)},
+    {label:'Motorization',  value:(!S.motorKey||S.motorKey==='none')?'None':S.motorKey}
+  ];
+  const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
+  pbAddToCart({product:'Drapery Hardware ('+(S.brandLabel||'Custom')+')',lines:lines,specs:specs,price:(S.estTotal>0?S.estTotal:null),qty:1});
+  pbOpenCart();
+}
+
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
 function submitForm(){
-  const name=$('f-name').value.trim();
-  const phone=$('f-phone').value.trim();
-  const email=$('f-email').value.trim();
-  const errEl=$('form-err'); errEl.style.display='none';
+  const name=$('cf-name').value.trim();
+  const phone=$('cf-phone').value.trim();
+  const email=$('cf-email').value.trim();
+  const errEl=$('cf-contact-err'); errEl.style.display='none';
   if(!name){errEl.textContent='Please enter your name.';errEl.style.display='block';return;}
   if(!phone&&!email){errEl.textContent='Please enter a phone number or email.';errEl.style.display='block';return;}
   if(!S.brand){errEl.textContent='Please select a brand in Step 1.';errEl.style.display='block';return;}
@@ -639,7 +668,7 @@ function submitForm(){
     'Name: '+name,
     'Phone: '+(phone||'—'),
     'Email: '+(email||'—'),
-    'Delivery: '+(S.delivery==='ship'?'Ship (UPS/FedEx)':'Customer pickup'),
+    'Delivery: '+'Ship (UPS/FedEx)',
     '',
     'HARDWARE SPECS',
     'Brand: '+S.brandLabel,
@@ -653,10 +682,10 @@ function submitForm(){
     'Motorization: '+(S.motorKey==='none'||!S.motorKey?'None':S.motorKey),
     '',
     'NOTES',
-    ($('f-notes').value||'None')
+    ($('cf-notes').value||'None')
   ].join('\n');
 
   const subj='Drapery Hardware Quote — '+name+' — '+S.brandLabel;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
   $('success-box').style.display='block';
-}
+}

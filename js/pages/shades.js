@@ -1,7 +1,4 @@
-renderNav('Shades & blinds');
-renderFooter(false);
-
-// Auto-open product configurator from URL ?product=xxx parameter
+﻿// Auto-open product configurator from URL ?product=xxx parameter
 window.addEventListener("load", function() {
   var params = new URLSearchParams(window.location.search);
   var product = params.get("product");
@@ -240,9 +237,9 @@ function selectProduct(productId, productName, isInstant) {
         // Show roller type subsection; hide brand chooser until type is picked
         document.getElementById('roller-types').style.display = 'block';
         document.getElementById('brand-chooser').style.display = 'none';
-        // Auto-select Basic as default so configurator is immediately visible
-        rtSelect('basic');
-        setTimeout(function(){ var el=document.getElementById('brand-pb-content'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }, 120);
+        // Auto-select Norman Soluna as default
+        rtSelect('norman');
+        setTimeout(function(){ var el=document.getElementById('rn-wrap')||document.getElementById('brand-norman-content'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }, 120);
       } else {
         pbBtn.classList.add('disabled');
         document.getElementById('pb-only-note').style.display = 'block';
@@ -350,6 +347,7 @@ function rtSelect(type) {
   } else if (type === 'norman') {
     selectBrand('norman');
     setTimeout(function() {
+      // Scroll to rn-wrap (Step 1) — skip the measure question, land directly on the configurator
       var el = document.getElementById('rn-wrap') || document.getElementById('brand-norman-content');
       if (!el) return;
       var nav = document.getElementById('site-nav');
@@ -489,7 +487,7 @@ function cellularOpChange(type) {
     else cellMotorWrap.innerHTML = '<div style="background:var(--espresso-mid);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:12px;color:var(--text-dark)">Norman Smart Motorization: power source (battery/hardwired), remote, and smart home options confirmed at measurement visit.</div>';
   } else {
     if (motorOn) toggleMotor(false);
-    note.textContent = 'Cord Loop: handles larger windows up to 120″ W × 144″ H (80 sq ft max area). Available in Bottom Up, TDBU, and Day & Night. SmartRelease™ upgrade available.';
+    note.textContent = 'Cord Loop: handles larger windows up to 120″ W × 144″ H (80 sq ft max area). Available in Bottom Up, TDBU, and Day & Night.';
   }
 }
 
@@ -623,6 +621,7 @@ function autoMotor() {
   }
 }
 
+// ─── Basic roller op change ───────────────────────────────────
 function rollerOpChange(type) {
   var cordlessNote = document.getElementById('roller-cordless-note');
   var motorNote = document.getElementById('roller-motor-note');
@@ -895,7 +894,7 @@ function updatePrice() {
 
     document.getElementById('pb-dims').textContent = w + '" W × ' + h + '" H';
     document.getElementById('pb-sqft').textContent = res.name + '  ·  table: ' + res.pricedAt;
-    document.getElementById('pb-base').textContent = '$' + tableBase + '/shade retail (Norman Portrait™ MSRP)';
+    document.getElementById('pb-base').textContent = '$' + tableBase + '/shade retail (Norman Portrait' + String.fromCharCode(0x2122) + ' MSRP)';
     if (motorOn) {
       document.getElementById('pb-motor-row').style.display = 'flex';
       document.getElementById('pb-motor').textContent = '+$' + activeMotorUp + ' × ' + qty + ' = $' + (activeMotorUp * qty);
@@ -936,6 +935,11 @@ function showShadeForm() {
   f.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+function pickDelCard(card) {
+  card.closest('.delivery-opt-grid').querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
+  card.classList.add('sel');
+}
+
 // ─── submitShadeForm ─────────────────────────────────────────
 async function submitShadeForm(btn) {
   const name = document.getElementById('sf-name').value.trim();
@@ -944,8 +948,8 @@ async function submitShadeForm(btn) {
 
   const email    = document.getElementById('sf-email').value.trim();
   const notes    = document.getElementById('sf-notes').value.trim();
-  const delBtn   = document.querySelector('#grp-del-sf .opt-btn.sel');
-  const delivery = delBtn ? delBtn.textContent.trim() : 'Ship to me';
+  const delBtn   = document.querySelector('#grp-del-sf .delivery-opt-card.sel');
+  const delivery = delBtn ? delBtn.querySelector('.delivery-opt-title').textContent.trim() : 'Ship to me';
   const pname    = (document.getElementById('config-product-name') || {}).textContent || currentProduct;
   const w = document.getElementById('inp-width').value;
   const h = document.getElementById('inp-height').value;
@@ -1000,8 +1004,8 @@ async function submitPBForm(btn) {
   const phone = document.getElementById('pb-phone').value.trim();
   if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
   const email    = document.getElementById('pb-email').value.trim();
-  const delBtn   = document.querySelector('#grp-del-pb .opt-btn.sel');
-  const delivery = delBtn ? delBtn.textContent.trim() : 'Ship to me';
+  const delBtn   = document.querySelector('#grp-del-pb .delivery-opt-card.sel');
+  const delivery = delBtn ? delBtn.querySelector('.delivery-opt-title').textContent.trim() : 'Ship to me';
   const w     = document.getElementById('pb-width').value;   // fixed: was inp-width
   const h     = document.getElementById('pb-height').value;  // fixed: was inp-height
   const gPB   = function(id) { const b = document.querySelector('#' + id + ' .opt-btn.sel'); return b ? b.textContent.trim() : '—'; };
@@ -1028,7 +1032,7 @@ async function submitPBForm(btn) {
     'Delivery:       ' + delivery                + '\n\n' +
     'Fabric notes:\n' + (notes || '(none)') +
     pbInstallLine(document.getElementById('brand-pb-content')) +
-    (function(){ var fu = document.querySelector('#brand-pb-content .pb-fu-wrap input[type="file"]'); return fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@blindznation.com)' : ''; }());
+    (function(){ var fu = document.querySelector('#brand-pb-content .pb-fu-wrap input[type="file"]'); return fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to blindznation@gmail.com)' : ''; }());
   await _apiSubmit(name, email, phone, 'Basic Roller Shade', body, 'pb-success', null, btn);
 }
 
@@ -1043,8 +1047,8 @@ async function submitQuoteForm(btn) {
   const product  = document.getElementById('hd-product-sel').value;
   const wincount = document.getElementById('hd-wincount').value;
   const notes    = document.getElementById('hd-notes').value.trim();
-  const delBtn   = document.querySelector('#grp-del-hd .opt-btn.sel');
-  const delivery = delBtn ? delBtn.textContent.trim() : 'Ship to me';
+  const delBtn   = document.querySelector('#grp-del-hd .delivery-opt-card.sel');
+  const delivery = delBtn ? delBtn.querySelector('.delivery-opt-title').textContent.trim() : 'Ship to me';
   const body =
     'HUNTER DOUGLAS QUOTE REQUEST\n' +
     '─────────────────────────────\n' +
@@ -1145,7 +1149,7 @@ function removeFromCart(id) {
 }
 
 function clearCart() {
-  if (!cart.length || confirm('Remove all items from your quote list?')) {
+  if (!cart.length || confirm('Remove all items from your cart?')) {
     cart = [];
     renderCart();
   }
@@ -1449,7 +1453,7 @@ const SOLUNA_COLLECTIONS = {
 // ─── Norman Portrait Cellular — real fabric data (2025-2026) ──
 // Source: Norman HC Color Coordination spreadsheet, updated 2026-03-06
 // ⚠ DISCONTINUED — DO NOT RE-ADD:
-// Discontinued per Wallace email dated 2026-04-23 (see C:\Users\Blind\PhillyBlinds Photos\fabrics\discontinued.png):
+// Discontinued per Wallace email dated 2026-04-23 (see C:\Users\Blind\Blindznation Photos\fabrics\discontinued.png):
 //   Light Filtering C7018K Soft Stone — removed from ALL Portrait honeycomb cell sizes:
 //     9/16"S, 3/8"S, 1/2"D, 3/4"S, 3/4"D, 1 1/4"S
 //   Rustica designer colors (C7004/C7409/C7610/C7113 LF, C4004/C4403/C4606/C4115 RD) — discontinued 2/1/2026
@@ -1865,13 +1869,13 @@ const NNRM_PRICES = {
   30: [297,318,339,364,394,425,472,526,563,609,655,709,748,796],
   36: [327,343,361,389,429,461,501,574,612,664,714,775,816,876],
   42: [345,369,389,421,464,501,557,627,678,735,788,864,913,982],
-  48: [370,397,420,454,502,546,607,683,738,803,862,943,992,1068],
-  54: [392,426,455,492,547,597,661,744,809,876,945,1033,1091,1172],
-  60: [419,455,490,534,594,649,722,811,878,955,1022,1130,1191,1283],
-  66: [441,484,520,568,637,696,776,875,953,1036,1116,1224,1298,1392],
-  73: [468,512,555,606,680,746,832,939,1022,1113,1194,1316,1389,1500],
-  78: [489,535,580,636,714,784,877,993,1081,1179,1263,1392,1476,1588],
-  84: [508,557,609,668,751,826,924,1047,1138,1245,1329,1474,1560,1682],
+  48: [376,389,418,451,500,536,598,680,732,794,856,938,994,1063],
+  54: [390,424,448,505,557,604,666,760,815,888,956,1053,1111,1191],
+  60: [420,464,494,535,598,641,714,813,875,956,1035,1133,1191,1289],
+  66: [448,493,523,568,633,691,767,870,937,1020,1111,1223,1289,1407],
+  73: [479,522,560,604,682,739,822,939,1022,1115,1218,1329,1412,1531],
+  78: [487,542,581,635,709,769,884,1008,1084,1167,1261,1433,1515,1655],
+  84: [522,561,621,673,751,820,943,1050,1147,1223,1342,1505,1619,1698],
   90: [548,585,649,704,788,862,986,1106,1187,1307,1378,1578,1667,1774],
   96: [561,616,684,746,834,913,1035,1156,1266,1369,1414,1600,1703,1799]
 };
@@ -1893,6 +1897,8 @@ function rwbPickColorGroup(group) {
     var el = document.getElementById('rwb-grp-' + g + 'col');
     if (el) el.style.display = g === group ? '' : 'none';
   });
+  var grpId = 'rwb-grp-' + group + 'col';
+  document.querySelectorAll('#' + grpId + ' .opt-btn').forEach(function(b, i){ b.classList.toggle('sel', i === 0); });
 }
 function rwbAdjQty(delta) {
   var inp = document.getElementById('rwb-qty');
@@ -1911,10 +1917,10 @@ function rwbCalc() {
   }
   var baseRetail = rwbLookup(w, h);
   if (!baseRetail) { box.style.display = 'none'; return; }
-  var colorMult = 1;
   var colorType = document.querySelector('#rwb-grp-colortype .opt-btn.sel')?.textContent.trim() || '';
+  var colorMult = 1;
   if (colorType.includes('Premium')) {
-    colorMult = 1.5;
+    colorMult = 1.50;
   } else {
     var activeGrp = colorType.includes('Stain') ? 'rwb-grp-staincol' : 'rwb-grp-paintcol';
     var selBtn = document.querySelector('#' + activeGrp + ' .opt-btn.sel');
@@ -1932,7 +1938,7 @@ function rwbCalc() {
   if (colorMult > 1) lines += '<div class="price-line"><span>Color surcharge</span><span>' + (colorMult === 1.5 ? '+50%' : '+10%') + ' included</span></div>';
   if (valRetail > 0) lines += '<div class="price-line"><span>Valance surcharge</span><span>+$' + valRetail + '</span></div>';
   lines += '<div class="price-line"><span>Your price (35% off)</span><span style="color:var(--gold)">$' + customerEach.toLocaleString() + ' / blind</span></div>';
-  if (qty > 1) lines += '<div class="price-line"><span>Quantity</span><span>\xd7 ' + qty + '</span></div>';
+  if (qty > 1) lines += '<div class="price-line"><span>Quantity</span><span>&times; ' + qty + '</span></div>';
   document.getElementById('rwb-price-lines').innerHTML = lines;
   document.getElementById('rwb-price-total').textContent = '$' + totalCustomer.toLocaleString();
   box.style.display = 'block';
@@ -1951,7 +1957,7 @@ async function submitRWBForm(btn) {
   var w         = document.getElementById('rwb-width').value;
   var h         = document.getElementById('rwb-height').value;
   var qty       = document.getElementById('rwb-qty').value;
-  var del       = document.querySelector('#grp-del-rwb .opt-btn.sel')?.textContent.trim() || '';
+  var del       = document.querySelector('#grp-del-rwb .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim() || '';
   var notes     = document.getElementById('rwb-notes').value.trim();
   var email     = document.getElementById('rwb-email').value.trim();
   var estEl     = document.getElementById('rwb-price-total');
@@ -1962,7 +1968,7 @@ async function submitRWBForm(btn) {
     + '\nWand side: ' + wand + '\nMount: ' + mount + '\nValance: ' + valance
     + '\nWidth: ' + (w||'—') + '"\nHeight: ' + (h||'—') + '"\nQty: ' + qty
     + estLine + '\nDelivery: ' + del + '\n\nNotes: ' + (notes||'None');
-  await _apiSubmit(name, email, phone, 'Norman Normandy® Real Wood Blinds', body, 'rwb-success', null, btn);
+  await _apiSubmit(name, email, phone, 'Norman Real Wood Blinds', body, 'rwb-success', null, btn);
 }
 async function submitFWBForm(btn) {
   var name  = document.getElementById('fwb-name').value.trim();
@@ -1976,7 +1982,7 @@ async function submitFWBForm(btn) {
   var w     = document.getElementById('fwb-width').value;
   var h     = document.getElementById('fwb-height').value;
   var qty   = document.getElementById('fwb-qty').value;
-  var del   = document.querySelector('#grp-del-fwb .opt-btn.sel')?.textContent.trim() || '';
+  var del   = document.querySelector('#grp-del-fwb .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim() || '';
   var notes = document.getElementById('fwb-notes').value.trim();
   var email = document.getElementById('fwb-email').value.trim();
   var body  = 'Norman Faux Wood Blinds Quote Request\n\n'
@@ -2120,8 +2126,8 @@ function pbCalcPrice() {
 }
 
 const PB_FABRICS = {
-  'Blackout':      ['White','Black','Cream','Off-White','Gray','Charcoal'],
-  'Solar Screen':  ['White','Black','Cream','Off-White','Gray','Charcoal']
+  'Light Filtering': ['White','Cream','Off-White','Gray','Linen','Beige'],
+  'Blackout':        ['White','Black','Cream','Off-White','Gray','Charcoal']
 };
 function pbToggleFasciaColor(isMetal) {
   var lbl  = document.getElementById('pb-hw-color-label');
@@ -2543,7 +2549,7 @@ function rnSetLift(type) {
   const liftNotes = {
     cordless: 'PrecisionLift™ Cordless: child & pet safe, no exposed chain. Max width varies by fabric weight — not recommended for oversized or very heavy shades.',
     cord:     'Continuous Cord Loop: handles large widths & heavy fabrics. Child-safe tensioner required. Choose chain or cord control below.',
-    smart:    'SmartRelease™: controlled soft descent. Requires compatible raceway/cassette. Has surcharge.',
+    smart:    'AutoLift™: Norman spring-tension pull system. Pull down to lower, release to raise. SmartRelease™ controlled-descent upgrade available (+$89). Best for smaller windows.',
     motor:    'Motorized: required for large shades, hard-to-reach windows, dual & coupled systems. Battery or hardwired options available.'
   };
   const note = document.getElementById('rn-lift-note');
@@ -2665,8 +2671,6 @@ function rnBuildConfig() {
   const g = function(id) { const b = document.querySelector('#' + id + ' .opt-btn.sel, #' + id + ' .rn-fc-sel .rn-fc-name'); return b ? b.textContent.trim() : ''; };
   const hrBtn = document.querySelector('#rn-grp-headrail .opt-btn.sel');
   const hrText = hrBtn ? hrBtn.textContent.trim() : 'Open Roll';
-  const isPremium = document.getElementById('rn-premium-hw').style.display !== 'none';
-
   return {
     systemType:         hrText.includes('Cassette') ? 'Cassette' : hrText.includes('Fascia') ? 'Fascia' : 'Open Roll',
     lightGuard:         (document.querySelector('#rn-grp-lg .opt-btn.sel') || {}).textContent || 'None',
@@ -2676,10 +2680,10 @@ function rnBuildConfig() {
     operatingSystem:    rnLiftType === 'motor' ? 'Motorized' : rnLiftType === 'cord' ? 'Continuous Cord Loop' : 'Cordless',
     motorType:          'Battery / Wired (TBD)',
     isDualShade:        rnSystemType === 'dual' || rnSystemType === 'dn',
-    tensionDevice:      true,         // always required
-    cassetteColor:      'Standard',   // defaults to standard — cassette color confirmed at order
-    usesFabricDefaultColor: !isPremium,
-    premiumFinish:      isPremium ? g('rn-grp-premium-finish') : null
+    tensionDevice:      true,
+    cassetteColor:      'Standard',
+    usesFabricDefaultColor: true,
+    hardwareColor:      g('rn-grp-hw-color')
   };
 }
 
@@ -2707,11 +2711,17 @@ function rnSetPremiumFinish(finish) {
 }
 
 // ─── rnSwitchHardwareMode ────────────────────────────────────
-// Open Roll → Premium Hardware / Fascia|Cassette|LightGuard → Standard Hardware
+// Updates hardware color label based on headrail type
 function rnSwitchHardwareMode(mode) {
-  // mode: 'premium' or 'standard'
-  document.getElementById('rn-premium-hw').style.display  = mode === 'premium'  ? 'block' : 'none';
-  document.getElementById('rn-standard-hw').style.display = mode === 'standard' ? 'block' : 'none';
+  var label = document.getElementById('rn-hw-color-label');
+  var note  = document.getElementById('rn-hw-color-note');
+  if (mode === 'standard') {
+    if (label) label.textContent = 'Hardware & fascia color';
+    if (note)  note.textContent  = 'Applies to brackets, hem bar, fascia/cassette housing, and all hardware components.';
+  } else {
+    if (label) label.textContent = 'Hardware color';
+    if (note)  note.textContent  = 'Applies to brackets, hem bar, clutch, and all hardware components.';
+  }
 }
 
 // ─── rnSetFasciaShape ────────────────────────────────────────
@@ -2779,6 +2789,9 @@ function rnSetFasciaMat(mat) {
 }
 
 // ─── rnSetFasciaStyleCombined ─────────────────────────────────
+// Called by the 3-button combined fascia style row.
+// Syncs the hidden shape/material DOM state holders so existing
+// rnUpdatePrice / rnBuildSolunaColorConfig readers still work.
 function rnSetFasciaStyleCombined(shape, mat) {
   var shapeTarget = shape === 'square' ? 'Square' : 'Curved';
   var matTarget   = mat   === 'metal'  ? 'Metal'  : 'Fabric Wrapped';
@@ -2804,7 +2817,7 @@ function rnSetHeadrail(type) {
   const notes = {
     open:     'Open Roll: exposed tube, most compact profile. Brackets are visible. Not compatible with LightGuard 360™.',
     fascia:   'Fascia System: covers the tube with a decorative front panel. Choose shape and material below.',
-    cassette: 'Cassette System: fully enclosed headrail. Required for LightGuard 360™ and most room-darkening/blackout setups.'
+    cassette: 'Cassette System: fully enclosed headrail. Required for LightGuard 360™ and most Room Darkening/blackout setups.'
   };
   const n = document.getElementById('rn-headrail-note');
   if (n) n.textContent = notes[type] || '';
@@ -3083,7 +3096,8 @@ function rnUpdatePrice() {
     if (freightEl) freightEl.textContent = '$' + freightAmt + (oversize ? ' (90″+ oversize rate)' : '');
   }
 
-  // ── Grand total with 35% Norman discount ─────────────────
+
+  // ── Grand total with 35% Norman discount on product subtotal only ──
   const NORMAN_DISC_RN = 0.35;
   const productSubtotalRN = perShade ? (perShade * qty) + motorCost + hrSurcharge + sysSur + liftSur + lgSur + hdSur : null;
   const discountAmtRN = productSubtotalRN ? Math.round(productSubtotalRN * NORMAN_DISC_RN) : 0;
@@ -3096,7 +3110,7 @@ function rnUpdatePrice() {
   document.getElementById('rn-pb-dims').textContent  = w + '″ W × ' + h + '″ H';
   document.getElementById('rn-pb-sqft').textContent  = lookup ? lookup.pricedAt : '—';
   document.getElementById('rn-pb-base').textContent  = perShade
-    ? '$' + perShade.toFixed(0) + '/shade retail (PG' + (lookup ? lookup.group : '?') + ')'
+    ? '\$' + perShade.toFixed(0) + '/shade retail (PG' + (lookup ? lookup.group : '?') + ')'
     : 'Size out of range — call for quote';
 
   // Inject discount rows once
@@ -3114,16 +3128,16 @@ function rnUpdatePrice() {
   if (productSubtotalRN) {
     var rnDiscEl = document.getElementById('rn-pb-disc-val');
     var rnYourEl = document.getElementById('rn-pb-your-val');
-    if (rnDiscEl) rnDiscEl.textContent = '-$' + discountAmtRN.toLocaleString();
-    if (rnYourEl) rnYourEl.textContent = '$' + yourPriceRN.toLocaleString();
+    if (rnDiscEl) rnDiscEl.textContent = '-\$' + discountAmtRN.toLocaleString();
+    if (rnYourEl) rnYourEl.textContent = '\$' + yourPriceRN.toLocaleString();
   }
 
-  document.getElementById('rn-pb-total').textContent = total ? '$' + total.toFixed(0) + ' est.' : '—';
+  document.getElementById('rn-pb-total').textContent = total ? '\$' + total.toFixed(0) + ' est.' : '—';
   document.getElementById('rn-pb-min-note').style.display = (perShade === RN_MIN) ? 'block' : 'none';
   if (isMotor) {
     var motorQtyLabel = isDualSystem ? qty + ' × 2 shades' : qty + ' shade' + (qty > 1 ? 's' : '');
     document.getElementById('rn-pb-motor-row').style.display = 'flex';
-    document.getElementById('rn-pb-motor').textContent = '+$' + rnMotorUpcharge + ' × ' + motorQtyLabel + ' = $' + motorCost.toFixed(0);
+    document.getElementById('rn-pb-motor').textContent = '+\$' + rnMotorUpcharge + ' × ' + motorQtyLabel + ' = \$' + motorCost.toFixed(0);
   } else {
     document.getElementById('rn-pb-motor-row').style.display = 'none';
   }
@@ -3157,8 +3171,8 @@ async function rnSubmitForm(btn) {
   const w       = (document.getElementById('rn-width')    || {}).value;
   const h       = (document.getElementById('rn-height')   || {}).value;
   const qty     = (document.getElementById('rn-qty')      || {}).value || 1;
-  const delBtn  = document.querySelector('#grp-del-rn .opt-btn.sel');
-  const delivery = delBtn ? delBtn.textContent.trim() : 'Ship to me';
+  const delBtn  = document.querySelector('#grp-del-rn .delivery-opt-card.sel');
+  const delivery = delBtn ? delBtn.querySelector('.delivery-opt-title').textContent.trim() : 'Ship to me';
 
   const g = function(id) { const b = document.querySelector('#' + id + ' .opt-btn.sel'); return b ? b.textContent.trim() : '—'; };
 
@@ -3171,10 +3185,9 @@ async function rnSubmitForm(btn) {
     hrDetail = '\n  Cassette type:  ' + g('rn-grp-cassette');
   }
 
-  // Hardware mode: premium (open roll) or standard (fascia/cassette)
-  const isPremium = document.getElementById('rn-premium-hw').style.display !== 'none';
-  const premiumFinishBtn = document.querySelector('#rn-grp-premium-finish .rn-fc-sel .rn-fc-name');
-  const premiumFinish = isPremium && premiumFinishBtn ? premiumFinishBtn.textContent.trim() : null;
+  // Hardware mode derived from headrail selection
+  const isPremium = hrType.includes('Open Roll');
+  const premiumFinish = null; // unified hw color used for all modes
 
   // Control detail (standard only)
   const ctrlType = g('rn-grp-control');
@@ -3214,17 +3227,8 @@ async function rnSubmitForm(btn) {
     'Hem bar type:   ' + g('rn-grp-hem-type')  + '\n' +
     'Hem bar color:  Fabric Matched (auto)\n\n' +
     '── HARDWARE & COLORS ────────────────────\n' +
-    (isPremium
-      ? 'Hardware mode:  Premium (Open Roll — no mix & match)\n' +
-        'Premium finish: ' + (premiumFinish || '—') + '\n' +
-        '  Brackets/Clutch: ' + (document.getElementById('rn-ps-bracket')||{}).textContent + '\n' +
-        '  Hem Bar:         ' + (document.getElementById('rn-ps-hem')||{}).textContent + '\n' +
-        '  Chain/Tensioner: ' + (document.getElementById('rn-ps-chain')||{}).textContent + '\n'
-      : 'Hardware mode:  Standard (Fascia/Cassette/LightGuard)\n' +
-        'Control:        ' + ctrlType + '\n' +
-        'Control color:  ' + ctrlColor + '\n' +
-        'Hardware color: ' + g('rn-grp-hw-color') + '\n'
-    ) +
+    'Hardware color: ' + g('rn-grp-hw-color') + '\n' +
+    (rnLiftType === 'cord' ? 'Chain color:    ' + ctrlColor + '\n' : '') +
     'Safety tensioner: Included (required by code)\n\n' +
     'Delivery:       ' + delivery             + '\n\n' +
     'Notes:\n' + (notes || '(none)');
@@ -3264,7 +3268,7 @@ async function submitExteriorForm(btn) {
   var h       = document.getElementById('ext-height').value;
   var qty     = document.getElementById('ext-qty').value;
   var motorReq= document.getElementById('ext-motor-req').value.trim();
-  var delivery= gExt('grp-del-ext');
+  var delivery= (document.querySelector('#grp-del-ext .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim()) || 'Ship to me';
   var body = 'EXTERIOR ROLLER SHADE QUOTE\n' +
     '=====================================\n' +
     'Name:  ' + name + '\nPhone: ' + phone +
@@ -3285,42 +3289,30 @@ async function submitExteriorForm(btn) {
   await _apiSubmit(name.trim(), extEmail, phone.trim(), 'Exterior Roller Shade', body, 'ext-success', null, btn);
 }
 
-async function handleQuickQuote(e) {
+function handleQuickQuote(e) {
   e.preventDefault();
   const form = document.getElementById('quick-quote-form');
-  const btn = form.querySelector('button[type="submit"]');
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
-  const fd = new FormData(form);
-  const name     = fd.get('name') || '';
-  const phone    = fd.get('phone') || '';
-  const email    = fd.get('email') || '';
-  const product  = fd.get('product') || '';
-  const windows  = fd.get('window_count') || '';
-  const timeline = fd.get('timeline') || '';
-  const notes    = fd.get('notes') || '';
-  const selections = [];
-  if (product)  selections.push({ label: 'Product', value: product });
-  if (windows)  selections.push({ label: 'Number of windows', value: windows });
-  if (timeline) selections.push({ label: 'Timeline', value: timeline });
-  try {
-    const resp = await fetch('/api/quote', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, phone, product: product || 'Quick Quote Request', selections, notes })
-    });
-    const data = await resp.json().catch(() => ({}));
-    if (resp.ok) {
-      form.style.display = 'none';
-      document.getElementById('quick-quote-success').style.display = 'block';
-    } else {
-      throw new Error(data.error || 'Server error');
-    }
-  } catch(err) {
-    btn.disabled = false;
-    btn.textContent = 'Send quote request →';
-    alert('Something went wrong. Please call (609) 742-1720 or email justin@blindznation.com');
-  }
+  const data = new FormData(form);
+  const name     = data.get('name') || '';
+  const phone    = data.get('phone') || '';
+  const email    = data.get('email') || '';
+  const product  = data.get('product') || '';
+  const windows  = data.get('window_count') || '';
+  const timeline = data.get('timeline') || '';
+  const notes    = data.get('notes') || '';
+  const subject  = 'Quote Request — Blindznation' + (product ? ': ' + product : '');
+  const body     = [
+    'Name: ' + name,
+    'Phone: ' + phone,
+    'Email: ' + email,
+    'Product: ' + (product || 'Not specified'),
+    'Number of windows: ' + (windows || 'Not specified'),
+    'Timeline: ' + (timeline || 'Not specified'),
+    'Notes: ' + (notes || 'None')
+  ].join('\n');
+  window.location.href = 'mailto:blindznation@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  form.style.display = 'none';
+  document.getElementById('quick-quote-success').style.display = 'block';
 }
 
 async function submitCart(btn) {
@@ -3395,6 +3387,28 @@ function psCalc() {
   if (isCCL && w > 98) { pn.style.display='block'; pn.textContent='Continuous Cord Loop max width is 98″ (Norman spec). For 98″–110″ width, motorization is required — select "Norman motorization" above.'; return; }
   if (isCCL && h > 98) { pn.style.display='block'; pn.textContent='Continuous Cord Loop max height is 98″ (Norman spec). For 98″–120″ height, motorization is required — select "Norman motorization" above.'; return; }
   if (h > 4*w) { pn.style.display='block'; pn.textContent='Height cannot exceed 4× the width (ratio limit). Adjust your dimensions.'; return; }
+
+  // Valance size rule: 3½" valance requires height ≤72"; over 72" only 4½" available
+  var valSizeWarn = document.getElementById('ps-val-size-warn');
+  var val35Btn    = document.getElementById('ps-val-fab35');
+  if (valSizeWarn && val35Btn) {
+    if (h > 72) {
+      valSizeWarn.style.display = 'block';
+      val35Btn.disabled = true;
+      val35Btn.style.opacity = '0.4';
+      // If 3½" is selected, auto-switch to curved fascia
+      var curVal = document.querySelector('#grp-ps-valance .opt-btn.sel');
+      if (curVal === val35Btn) {
+        curVal.classList.remove('sel');
+        document.querySelector('#grp-ps-valance .opt-btn').classList.add('sel');
+        document.getElementById('ps-wood-val-wrap').style.display = 'none';
+      }
+    } else {
+      valSizeWarn.style.display = 'none';
+      val35Btn.disabled = false;
+      val35Btn.style.opacity = '';
+    }
+  }
 
   var wi = psGetIdx(PS_WIDTHS,  w);
   var hi = psGetIdx(PS_HEIGHTS, h);
@@ -3473,11 +3487,15 @@ async function submitPSForm(btn) {
   var color  = document.getElementById('ps-color').value;
   var lift   = (document.querySelector('#grp-ps-lift .opt-btn.sel')||{}).textContent || '';
   var valance= (document.querySelector('#grp-ps-valance .opt-btn.sel')||{}).textContent || '';
+  var woodValColor = '';
+  if (valance.indexOf('Wood') >= 0) {
+    var wvc = document.getElementById('ps-wood-val-color');
+    if (wvc) woodValColor = ' — Color: ' + wvc.value;
+  }
   var qty    = document.getElementById('ps-qty').value;
-  var loc    = document.getElementById('ps-location').value;
   var notes  = document.getElementById('ps-notes').value;
   var email  = document.getElementById('ps-email').value;
-  var delBtn = (document.querySelector('#grp-del-ps .opt-btn.sel')||{}).textContent || '';
+  var delBtn = document.querySelector('#grp-del-ps .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim() || '';
   var price  = document.getElementById('ps-price-num').textContent;
   var lg     = document.getElementById('ps-lightguard-basic').checked ? 'Basic light guard' :
                document.getElementById('ps-lightguard-premium').checked ? 'Premium wood light guard' : 'None';
@@ -3492,13 +3510,12 @@ async function submitPSForm(btn) {
     + 'Opacity: ' + opac + '\n'
     + 'Color: ' + color + '\n'
     + 'Operation: ' + lift + '\n'
-    + 'Valance: ' + valance + '\n'
+    + 'Valance: ' + valance + woodValColor + '\n'
     + 'Light guard: ' + lg + '\n'
     + 'Magnetic hold-down: ' + hd + '\n'
     + 'Shims: ' + shims + '\n\n'
     + 'ORDER DETAILS\n'
     + 'Quantity: ' + qty + '\n'
-    + 'Room/location: ' + (loc||'not specified') + '\n'
     + 'Delivery: ' + delBtn + '\n'
     + 'Estimated price: ' + price + ' per shade\n\n'
     + 'Notes: ' + (notes||'none');
@@ -3523,7 +3540,7 @@ async function _apiSubmit(name, email, phone, productName, configText, successId
     if (sEl) { sEl.classList.add('show'); sEl.style.display = 'block'; sEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   } catch(err) {
     if (btn) { btn.disabled = false; btn.textContent = btn._origText || 'Send quote request'; }
-    var mh = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Quote — ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nProduct: ' + productName + '\n\n' + configText);
+    var mh = 'mailto:blindznation@gmail.com?subject=' + encodeURIComponent('Quote — ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nProduct: ' + productName + '\n\n' + configText);
     var eDiv = document.createElement('div');
     eDiv.style.cssText = 'background:#FEE2E2;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:12px;color:#991B1B;line-height:1.5';
     eDiv.innerHTML = '<strong>Issue sending.</strong> <a href="' + mh + '" style="color:#991B1B;font-weight:700;text-decoration:underline">Email directly →</a> or call <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a>';
@@ -3540,7 +3557,7 @@ async function _apiSubmit(name, email, phone, productName, configText, successId
   var map={
     roller:function(){selectProduct('roller','Roller Shades',true);},
     cellular:function(){selectProduct('cellular','Cellular Shades',true);},
-    zebra:function(){pbShowContact('Banded 2D Zebra Shades — get a free quote');},
+    zebra:function(){pbShowContact('Banded 2D Zebra Shades — Wallace, motorized available — get a free quote');},
     woven:function(){selectProduct('woven','Woven Wood Shades',true);},
     exterior:function(){selectProduct('exterior','Exterior Roller Shades',false);}
   };

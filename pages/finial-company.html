@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="The Finial Company drapery hardware — Modern Metal, Steel, Wood &amp; Resin, Traverse Systems. All collections, finishes, and restrictions. Custom quote.">
+<meta name="description" content="The Finial Company drapery rods — Modern Metal, Steel, Wood &amp; Resin, Traverse Systems. All finishes and options. Custom quote. Philadelphia area.">
 <meta property="og:url" content="https://blindznation.com/pages/finial-company.html">
 <meta property="og:title" content="The Finial Company Hardware — Blindznation">
-<meta property="og:description" content="The Finial Company drapery hardware — Modern Metal, Steel, Wood &amp; Resin, Traverse Systems. All collections, finishes, and restrictions. Custom quote.">
+<meta property="og:description" content="The Finial Company drapery rods — Modern Metal, Steel, Wood &amp; Resin, Traverse Systems. All finishes and options. Custom quote. Philadelphia area.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Blindznation">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Finial Company Hardware — Blindznation">
-<meta name="twitter:description" content="The Finial Company drapery hardware — Modern Metal, Steel, Wood &amp; Resin, Traverse Systems. All collections, finishes, and restrictions. Custom quote.">
+<meta name="twitter:description" content="The Finial Company drapery rods — Modern Metal, Steel, Wood &amp; Resin, Traverse Systems. All finishes and options. Custom quote. Philadelphia area.">
 <meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://blindznation.com/img/social-preview.png">
-<meta property="og:site_name" content="Blindznation">
 <title>The Finial Company Hardware — Blindznation</title>
 <link rel="stylesheet" href="../css/global.css">
 <style>
@@ -26,33 +26,25 @@
 .page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
-.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 .config-layout{display:grid;grid-template-columns:1fr 310px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:900px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
 /* Steps */
-.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden}
-.step-block.active{box-shadow:0 2px 18px rgba(200,151,63,.1);border-color:rgba(200,151,63,.3)}
-.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
-.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
-.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
-.step-head-val{font-size:12px;color:var(--gold);font-weight:500;max-width:200px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.step-body{padding:4px 20px 20px;display:none}
 .step-block.active .step-body,.step-block.open .step-body{display:block}
 /* Opt cards */
 .opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
 .opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;text-align:center;transition:all .15s}
 .opt-card:hover{border-color:var(--gold)}
-.opt-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
-.opt-card.sel .opt-card-title{color:#7A4F00}
+.opt-card.sel .opt-card-title{color:#0A4A42}
 .opt-card-desc{font-size:11px;color:#666;line-height:1.45}
 .opt-card.blocked{opacity:.35;pointer-events:none;cursor:default}
 /* Collection cards */
 .coll-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:10px}
 .coll-card{border:1.5px solid #e8e8e4;border-radius:12px;padding:16px 14px;cursor:pointer;transition:all .15s;background:#fff}
 .coll-card:hover{border-color:var(--gold)}
-.coll-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.coll-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .coll-card-title{font-size:13px;font-weight:600;color:#111;margin-bottom:4px}
 .coll-card-sub{font-size:11px;color:#777;line-height:1.5}
 .coll-badge{display:inline-block;font-size:9px;padding:1px 6px;border-radius:4px;background:#f0ece4;color:#555;font-weight:600;margin-bottom:6px}
@@ -60,14 +52,14 @@
 .finish-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
 .fin-chip{display:flex;align-items:center;gap:7px;padding:7px 12px;border:1.5px solid #e8e8e4;border-radius:20px;cursor:pointer;font-size:12px;font-weight:500;transition:all .15s;background:#fff;color:#333;white-space:nowrap}
 .fin-chip:hover{border-color:var(--gold)}
-.fin-chip.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06);color:#7A4F00}
+.fin-chip.sel{border:2px solid var(--gold);background:var(--gold-mid);color:#0A4A42}
 .fin-chip.blocked{opacity:.35;pointer-events:none}
 .fin-dot{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.1);flex-shrink:0}
 /* Finial selector */
 .finial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:8px;max-height:300px;overflow-y:auto}
 .finial-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:10px 12px;cursor:pointer;transition:all .15s;background:#fff}
 .finial-card:hover{border-color:var(--gold)}
-.finial-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.finial-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .finial-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
 .finial-sku{font-size:9px;color:#aaa;letter-spacing:.4px;font-weight:600}
 .finial-dim{font-size:10px;color:#888;margin-top:2px}
@@ -76,8 +68,8 @@
 .sf-list{max-height:200px;overflow-y:auto;border:1px solid #eee;border-radius:8px}
 .sf-item{padding:8px 12px;cursor:pointer;font-size:12px;transition:background .1s;display:flex;align-items:center;gap:8px;border-bottom:.5px solid #f5f5f5}
 .sf-item:last-child{border-bottom:none}
-.sf-item:hover{background:#FBF7F0}
-.sf-item.sel{background:rgba(200,151,63,.08);font-weight:500}
+.sf-item:hover{background:var(--gold-mid)}
+.sf-item.sel{background:var(--gold-mid);font-weight:500}
 /* Dims */
 .dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
@@ -86,16 +78,16 @@
 .msg-ok{background:#DCFCE7;border:1px solid #86EFAC;border-radius:8px;padding:9px 13px;font-size:12px;color:#14532d;margin-top:8px;line-height:1.5}
 .msg-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-top:8px;line-height:1.5}
 .msg-warn{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.55}
-.msg-info{background:rgba(200,151,63,.08);border:1px solid rgba(200,151,63,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#7A4F00;margin-top:8px;line-height:1.55}
+.msg-info{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#0A4A42;margin-top:8px;line-height:1.55}
 .sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 6px}
 .step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
 /* Addon rows */
 .addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
 .addon-row:hover{border-color:var(--gold)}
-.addon-row.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.addon-row.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .addon-left{display:flex;align-items:center;gap:10px;flex:1}
 .addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
-.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#1C1510}
+.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#111110}
 .addon-name{font-size:13px;font-weight:500;color:#111}
 .addon-sub{font-size:11px;color:#666;margin-top:1px}
 /* Spec panel */
@@ -116,11 +108,11 @@
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
 .success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:22px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center;margin-top:12px}
 /* Warning banner */
-.restriction-banner{background:#1a1208;border:1px solid rgba(200,151,63,.25);border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:12px;color:var(--text-dark);line-height:1.7}
+.restriction-banner{background:#1a1208;border:1px solid rgba(45,224,193,.25);border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:12px;color:var(--text-dark);line-height:1.7}
 .restriction-banner strong{color:var(--gold)}
 </style>
 </head>
-<body>
+<body data-page="Hardware">
 <nav class="site-nav" id="site-nav"></nav>
 
 <div class="page-hero">
@@ -142,10 +134,41 @@
   <strong>All items are custom-manufactured to order.</strong> No changes or cancellations after 24 hours of order confirmation. Pricing is from The Finial Company Retail Price List — not shown publicly. Lead time: Modern Metal &amp; Metal Collection ship within 48 hours (non-painted options); all painted products, custom products, and traverse systems ship within <strong>10–15 business days</strong>. Rush orders (+30%) available in 5 business days — <strong>not available</strong> for arch rods, bay windows, custom brackets, or mitered returns. Poles/tracks over 96″ must ship common carrier.
 </div>
 
-<!-- STEP 1: COLLECTION CATEGORY -->
+<!-- STEP 1: ROD WIDTH & QUANTITY -->
+<div class="step-block active open" id="stepMeasure">
+  <div class="step-head" onclick="toggleStep('stepMeasure')">
+    <div class="step-num">1</div>
+    <div class="step-head-title">Rod width &amp; quantity</div>
+    <div class="step-head-val" id="sMval">—</div>
+  </div>
+  <div class="step-body">
+    <div class="dim-box">
+      <div class="dim-box-label">Enter your rod width</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Width</label>
+          <input type="number" id="rod-width" min="12" max="480" step="0.125" placeholder="e.g. 96" oninput="updateRodWidth()">
+          <div class="dim-unit">inches · overall rod length needed</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-note"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> · Approximate is fine — we confirm exact pole/track length in the steps below.</div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <span style="font-size:12px;color:#666">Qty:</span>
+      <div class="qty-btns">
+        <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
+        <input class="qty-num" type="number" id="qty" value="1" min="1" max="99" oninput="updateSpec()">
+        <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+      </div>
+      <span style="font-size:12px;color:#666">rod(s) / system(s) of this spec</span>
+    </div>
+  </div>
+</div>
+
+<!-- STEP 2: COLLECTION CATEGORY -->
 <div class="step-block active" id="step1">
   <div class="step-head" onclick="toggleStep('step1')">
-    <div class="step-num">1</div>
+    <div class="step-num">2</div>
     <div class="step-head-title">Collection category</div>
     <div class="step-head-val" id="s1val">—</div>
   </div>
@@ -188,7 +211,7 @@
 <!-- STEP 2: SUB-SELECTION (diameter/profile/system) — filled by JS -->
 <div class="step-block" id="step2" style="display:none">
   <div class="step-head" onclick="toggleStep('step2')">
-    <div class="step-num">2</div>
+    <div class="step-num">3</div>
     <div class="step-head-title" id="s2title">Diameter / system</div>
     <div class="step-head-val" id="s2val">—</div>
   </div>
@@ -198,7 +221,7 @@
 <!-- STEP 3: FINISH -->
 <div class="step-block" id="step3" style="display:none">
   <div class="step-head" onclick="toggleStep('step3')">
-    <div class="step-num">3</div>
+    <div class="step-num">4</div>
     <div class="step-head-title">Finish</div>
     <div class="step-head-val" id="s3val">—</div>
   </div>
@@ -208,7 +231,7 @@
 <!-- STEP 4: FINIALS (left + right) -->
 <div class="step-block" id="step4" style="display:none">
   <div class="step-head" onclick="toggleStep('step4')">
-    <div class="step-num">4</div>
+    <div class="step-num">5</div>
     <div class="step-head-title">Finials</div>
     <div class="step-head-val" id="s4val">—</div>
   </div>
@@ -218,7 +241,7 @@
 <!-- STEP 5: CUFF / COLLAR (Modern Metal only) -->
 <div class="step-block" id="step5" style="display:none">
   <div class="step-head" onclick="toggleStep('step5')">
-    <div class="step-num">5</div>
+    <div class="step-num">6</div>
     <div class="step-head-title">Cuff or collar</div>
     <div class="step-head-val" id="s5val">—</div>
   </div>
@@ -228,7 +251,7 @@
 <!-- STEP 6: POLE LENGTH -->
 <div class="step-block" id="step6" style="display:none">
   <div class="step-head" onclick="toggleStep('step6')">
-    <div class="step-num">6</div>
+    <div class="step-num">7</div>
     <div class="step-head-title">Pole length</div>
     <div class="step-head-val" id="s6val">—</div>
   </div>
@@ -238,7 +261,7 @@
 <!-- STEP 7: BRACKETS -->
 <div class="step-block" id="step7" style="display:none">
   <div class="step-head" onclick="toggleStep('step7')">
-    <div class="step-num">7</div>
+    <div class="step-num">8</div>
     <div class="step-head-title">Brackets &amp; mount</div>
     <div class="step-head-val" id="s7val">—</div>
   </div>
@@ -248,7 +271,7 @@
 <!-- STEP 8: RINGS -->
 <div class="step-block" id="step8" style="display:none">
   <div class="step-head" onclick="toggleStep('step8')">
-    <div class="step-num">8</div>
+    <div class="step-num">9</div>
     <div class="step-head-title">Rings</div>
     <div class="step-head-val" id="s8val">—</div>
   </div>
@@ -258,7 +281,7 @@
 <!-- STEP 9: ACCESSORIES (batons, tiebacks, rosettes, extras) -->
 <div class="step-block" id="step9" style="display:none">
   <div class="step-head" onclick="toggleStep('step9')">
-    <div class="step-num">9</div>
+    <div class="step-num">10</div>
     <div class="step-head-title">Accessories &amp; special options</div>
     <div class="step-head-val" id="s9val">Optional</div>
   </div>
@@ -268,7 +291,7 @@
 <!-- STEP 10: TRAVERSE-SPECIFIC DETAILS (shown only for traverse) -->
 <div class="step-block" id="step10" style="display:none">
   <div class="step-head" onclick="toggleStep('step10')">
-    <div class="step-num">10</div>
+    <div class="step-num">11</div>
     <div class="step-head-title">Traverse specifications</div>
     <div class="step-head-val" id="s10val">—</div>
   </div>
@@ -278,28 +301,26 @@
 <!-- STEP 11: QUANTITY & DELIVERY -->
 <div class="step-block" id="step11" style="display:none">
   <div class="step-head" onclick="toggleStep('step11')">
-    <div class="step-num" id="qtyStepNum">11</div>
-    <div class="step-head-title">Quantity &amp; delivery</div>
+    <div class="step-num" id="qtyStepNum">12</div>
+    <div class="step-head-title">Delivery</div>
     <div class="step-head-val" id="s11val">—</div>
   </div>
   <div class="step-body">
-    <div class="form-row">
-      <div class="form-group"><label>Number of rods / systems</label><input type="number" id="qty" value="1" min="1" max="99" oninput="updateSpec()"></div>
-      <div class="form-group"><label>Room / window label</label><input type="text" id="room-label" placeholder="e.g. Living room bay"></div>
-    </div>
     <div style="margin-top:8px">
       <div class="dim-label" style="margin-bottom:6px">Rush order?</div>
-      <div class="opt-grid" style="grid-template-columns:1fr 1fr 1fr">
-        <div class="opt-card sel" id="rush-no" onclick="pickRush(this,'no','Standard')"><div class="opt-card-title" style="font-size:12px">Standard</div><div class="opt-card-desc">10–15 bus. days</div></div>
-        <div class="opt-card" id="rush-yes" onclick="pickRush(this,'yes','Rush +30%')"><div class="opt-card-title" style="font-size:12px">Rush +30%</div><div class="opt-card-desc">5 bus. days</div></div>
+      <div class="opt-row">
+        <button class="opt-btn sel" id="rush-no" onclick="pickRush(this,'no','Standard')">Standard</button>
+        <button class="opt-btn" id="rush-yes" onclick="pickRush(this,'yes','Rush +30%')">Rush +30%</button>
       </div>
+      <div class="step-note">Standard: 10–15 bus. days · Rush +30%: 5 bus. days</div>
       <div id="rush-warn" class="msg-warn" style="display:none">⚠ Rush not available for arch rods, bay windows, custom brackets, or mitered returns.</div>
     </div>
     <div style="margin-top:12px">
       <div class="dim-label" style="margin-bottom:6px">Delivery</div>
-      <div class="opt-grid" style="grid-template-columns:1fr 1fr">
-        <div class="opt-card sel" id="del-ship" onclick="pickDel(this,'ship')"><div class="opt-card-title" style="font-size:12px">📦 Ship to me</div><div class="opt-card-desc">UPS/FedEx · poles over 96″ = common carrier</div></div>
+      <div class="opt-row">
+        <button class="opt-btn sel" id="del-ship" onclick="pickDel(this,'ship')">📦 Ship to me</button>
       </div>
+      <div class="step-note">UPS/FedEx · poles over 96″ = common carrier</div>
     </div>
   </div>
 </div>
@@ -307,21 +328,11 @@
 <!-- STEP 12: CONTACT & SUBMIT -->
 <div class="step-block" id="step12" style="display:none">
   <div class="step-head" onclick="toggleStep('step12')">
-    <div class="step-num" id="contactStepNum">12</div>
+    <div class="step-num" id="contactStepNum">13</div>
     <div class="step-head-title">Your info &amp; submit</div>
   </div>
   <div class="step-body">
-    <div class="form-row">
-      <div class="form-group"><label>Name *</label><input type="text" id="q-name" placeholder="Jane Smith"></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" id="q-phone" placeholder="(215) 555-0100"></div>
-    </div>
-    <div class="form-group"><label>Email</label><input type="email" id="q-email" placeholder="jane@example.com"></div>
-    <div class="form-group"><label>Notes / questions</label><textarea id="q-notes" placeholder="Additional specifications, custom finish requests, arch template details, special requirements..."></textarea></div>
-    <div id="q-err" class="msg-err" style="display:none">Please enter your name and phone number.</div>
-    <button class="btn-submit-cta" onclick="submitQuote()" style="font-family:var(--font)">
-      Get Custom Quote — The Finial Company →
-      <span class="cta-sub">Hand-painted to order · We'll follow up within a few hours · (609) 742-1720</span>
-    </button>
+    <div id="pb-final-step"></div>
     <div class="success-box" id="success-box">
       <strong>Quote request sent!</strong><br>We'll follow up within a few hours. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a>
     </div>
@@ -367,5 +378,8 @@
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/finial-company.js"></script>
+<script>
+document.getElementById('pb-final-step').innerHTML = pbContactStepHTML({ bare: true, cartFn: 'addFinialToCart()', submitFn: 'submitQuote()' });
+</script>
 </body>
 </html>

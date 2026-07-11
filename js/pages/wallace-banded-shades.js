@@ -1,7 +1,4 @@
-renderNav('Shades & blinds');
-renderFooter(false);
-
-var S={prod:'',opacity:'lf',fabric:null,fabFilter:'all',w:0,h:0,ctrl:'',motorType:'std-li',cassColor:'White',cassette:'rounded',qty:1,room:'',del:'ship'};
+﻿var S={prod:'',opacity:'lf',fabric:null,fabFilter:'all',w:0,h:0,ctrl:'',motorType:'std-li',cassColor:'White',cassette:'rounded',qty:1,del:'ship'};
 
 // ── FABRIC DATA — Portfolio Dual Sheer (Wallace 2026 PDF) ─────────────────────
 var FABRICS=[
@@ -165,7 +162,7 @@ function setProd(p,el){
   document.getElementById('s2title').textContent=p==='dual'?'Fabric':'Fabric Preferences';
   spv('sp-prod',p==='dual'?'Portfolio Dual Sheer':'Banded 2D Shades');
   if(p==='2d'){render2dGrid();}
-  updateCalc();openNext('step2');
+  updateCalc();openNext('step3'); // product chosen → open size (Step 2)
 }
 
 // ── BANDED 2D: COLLECTION + COLOR DATA ────────────────────────────────────────
@@ -316,7 +313,7 @@ function pick2dFabric(collName,colorName,btn){
   spv('sp-op',b2dLight==='T'?'Translucent':'Blackout');
   document.getElementById('val2').textContent=label.length>32?collName:label;
   document.getElementById('step2').classList.add('done');
-  openNext('step3');
+  openNext('step4');
 }
 
 // ── STEP 2 ────────────────────────────────────────────────────────────────────
@@ -369,7 +366,7 @@ function selectFab(f){
   if(cb)cb.classList.toggle('blocked',!f.cordless);
   if(!f.cordless&&S.ctrl==='cordless'){S.ctrl='';document.getElementById('val4').textContent='—';}
   if(f.lb||f.op==='rd'){var lb=document.getElementById('btn-lb');if(lb)selB(lb,'grp-bar');}
-  renderFabricGrid();validateDims();updateCalc();openNext('step3');
+  renderFabricGrid();validateDims();updateCalc();openNext('step4');
 }
 
 // ── STEP 3 ────────────────────────────────────────────────────────────────────
@@ -415,7 +412,6 @@ function validateDims(){
     document.getElementById('step3').classList.add('done');
     document.getElementById('val3').textContent=S.w+'" W \xd7 '+S.h+'" H';
     spv('sp-sz',S.w+'" \xd7 '+S.h+'"');
-    openNext('step4');
   }
   fb.innerHTML=html;
   updateCalc();
@@ -465,8 +461,6 @@ function setQtyInp(v){
   var n=Math.max(1,Math.min(50,parseInt(v)||1));
   S.qty=n;
   spv('sp-qty',n+(n===1?' shade':' shades'));
-  document.getElementById('step6').classList.add('done');
-  document.getElementById('val6').textContent=n+' shade'+(n===1?'':'s');
   updateCalc();
 }
 function adjQty(d){
@@ -474,13 +468,13 @@ function adjQty(d){
   el.value=Math.max(1,Math.min(50,(parseInt(el.value)||1)+d));
   setQtyInp(el.value);
 }
-document.getElementById('room-lbl').addEventListener('input',function(){S.room=this.value.trim();updateSpec();});
 
 // ── STEP 7 ────────────────────────────────────────────────────────────────────
-function setDel(opt){
+function setDel(opt,card){
   S.del=opt;
-  ['ship','pickup','install'].forEach(function(o){var e=document.getElementById('del-'+o);if(e)e.classList.toggle('sel',o===opt);});
-  var lbl={ship:'Ship to me',pickup:'Pick up',install:'Professional installation'}[opt]||opt;
+  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
+  card.classList.add('sel');
+  var lbl='Ship to me';
   document.getElementById('val7').textContent=lbl;
   spv('sp-del',lbl);
   document.getElementById('step7').classList.add('done');
@@ -529,7 +523,7 @@ function updateCalc(){
   showR('pr-ctrl-row',ctrlUp>0); if(ctrlUp)setV('pr-ctrl','+$'+ctrlUp);
   showR('pr-wrap-row',wrapUp>0); if(wrapUp)setV('pr-wrap','+$'+wrapUp+'/shade');
   showR('pr-acc-row',accUp>0);   if(accUp)setV('pr-acc','+$'+accUp);
-  var freight=(S.del==='pickup'||S.del==='install')?0:25+(S.qty>1?(S.qty-1)*11:0);
+  var freight=(S.del==='install')?0:25+(S.qty>1?(S.qty-1)*11:0);
   showR('pr-frt-row',freight>0); if(freight)setV('pr-frt','$'+freight);
   var total=(base+ctrlUp+wrapUp+accUp)*S.qty+freight;
   setV('pr-total','~$'+Math.round(total).toLocaleString());
@@ -576,21 +570,21 @@ function addBandedShadesToCart(){
 }
 
 function submitQ(){
-  var name=document.getElementById('q-name').value.trim();
-  var phone=document.getElementById('q-phone').value.trim();
-  var errEl=document.getElementById('sub-err');
+  var name=document.getElementById('cf-name').value.trim();
+  var phone=document.getElementById('cf-phone').value.trim();
+  var errEl=document.getElementById('cf-contact-err');
   var errs=[];
   if(!name)errs.push('Name required.');
   if(!phone)errs.push('Phone required.');
-  if(!S.prod)errs.push('Select product (Step 1).');
-  if(S.prod==='dual'&&!S.fabric)errs.push('Select fabric (Step 2).');
-  if(!S.w||!S.h)errs.push('Enter width and height (Step 3).');
+  if(!S.prod)errs.push('Select product (Step 2).');
+  if(S.prod==='dual'&&!S.fabric)errs.push('Select fabric (Step 3).');
+  if(!S.w||!S.h)errs.push('Enter width and height (Step 1).');
   if(S.prod==='dual'&&!S.ctrl)errs.push('Select control type (Step 4).');
   if(errs.length){errEl.innerHTML='&#9888; '+errs.join(' ');errEl.style.display='';return;}
   errEl.style.display='none';
 
   var mount=document.querySelector('#grp-mount .opt-btn.sel')?.textContent.trim()||'Inside mount';
-  var del={ship:'Ship (UPS/FedEx from Huntingdon Valley PA)',pickup:'Pick up',install:'Professional installation'}[S.del]||S.del;
+  var del='Ship (UPS/FedEx)';
   var sbs=document.querySelector('#grp-sbs .opt-btn.sel')?.textContent.trim().includes('Yes')?'Yes':'No';
   var bar=document.querySelector('#grp-bar .opt-btn.sel')?.textContent.trim()||'Standard';
   var barWrap=document.querySelector('#grp-bar-wrap .opt-btn.sel')?.textContent.trim().includes('wrap')?'Yes (+$'+getWrapP(S.w)+')':'No';
@@ -599,15 +593,14 @@ function submitQ(){
   var wrapUp=S.cassette==='square'?80:0;
   var bbW=document.querySelector('#grp-bar-wrap .opt-btn.sel');if(bbW&&bbW.textContent.includes('wrap'))wrapUp+=getWrapP(S.w);
   var accUp=(document.getElementById('acc-bat')?.checked?160:0)+(document.getElementById('acc-plug')?.checked?60:0)+(document.getElementById('acc-charger')?.checked?83:0)+(document.getElementById('acc-ext6')?.checked?32:0)+(document.getElementById('acc-ext48')?.checked?43:0)+(document.getElementById('acc-pole')?.checked?80:0);
-  var freight=(S.del==='pickup'||S.del==='install')?0:25+(S.qty>1?(S.qty-1)*11:0);
+  var freight=(S.del==='install')?0:25+(S.qty>1?(S.qty-1)*11:0);
 
   var body=[
     '=== WALLACE ZEBRA / BANDED SHADE QUOTE ===','',
-    'CONTACT','Name: '+name,'Phone: '+phone,'Email: '+(document.getElementById('q-email').value||'—'),'',
+    'CONTACT','Name: '+name,'Phone: '+phone,'Email: '+(document.getElementById('cf-email').value||'—'),'',
     'ORDER DETAILS',
     'Product: '+(S.prod==='dual'?'Wallace Portfolio Dual Sheer Shades':'Wallace Banded 2D Shades'),
     'Quantity: '+S.qty+' shade(s)',
-    'Room: '+(S.room||'—'),
     'Width: '+S.w+'"','Height: '+S.h+'"','Mount: '+mount,''
   ].concat(S.prod==='dual'?[
     'FABRIC',
@@ -631,12 +624,13 @@ function submitQ(){
     'Est. total: ~$'+Math.round((base||0+ctrlUp+wrapUp+accUp)*S.qty+freight),
   ]:['CONTROL',document.querySelector('#grp-ctrl-2d .opt-btn.sel')?.textContent.trim()||'—']).concat([
     '','OPTIONS','Side-by-side matching: '+sbs,'Delivery: '+del,
-    '','NOTES',document.getElementById('q-notes').value||'None','',
+    '','NOTES',document.getElementById('cf-notes').value||'None','',
     '--- Sent from blindznation.com/pages/wallace-banded-shades.html ---'
   ]).join('\n');
 
   var subj='Wallace '+(S.prod==='dual'?'Dual Sheer':'Banded 2D')+' Quote — '+S.w+'"x'+S.h+'" — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
   document.getElementById('step8-body').querySelectorAll(':not(#success-box)').forEach(function(el){el.style.display='none';});
   document.getElementById('success-box').style.display='block';
-}
+}
+

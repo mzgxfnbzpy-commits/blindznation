@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Sheer shades — zebra banded, silhouette, and Hunter Douglas styles. Basic &amp; premium options. Custom-installed by Blindznation. Free quote.">
+<meta name="description" content="Sheer shades — zebra banded, silhouette, Hunter Douglas, and SmartDrape. Basic &amp; premium options. Custom-installed in the Philadelphia area. Free quote.">
 <meta property="og:url" content="https://blindznation.com/pages/sheer-shades.html">
 <meta property="og:title" content="Sheer Shades — Blindznation">
-<meta property="og:description" content="Zebra, silhouette, and Hunter Douglas sheer shading. Basic &amp; premium options. Custom-installed by Blindznation.">
+<meta property="og:description" content="Zebra, silhouette, Hunter Douglas, and SmartDrape sheer shading. Basic &amp; premium options. Custom-installed in the Philadelphia area.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Blindznation">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sheer Shades — Blindznation">
-<meta name="twitter:description" content="Zebra, silhouette, and Hunter Douglas sheer shading. Basic &amp; premium options. Blindznation.">
+<meta name="twitter:description" content="Zebra, silhouette, Hunter Douglas, and SmartDrape sheer shading. Basic &amp; premium options. Blindznation, Philadelphia area.">
 <meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -26,14 +26,15 @@
 .page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
-.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 
-.sheer-page{max-width:860px;margin:0 auto;padding:40px 24px 80px}
+.sheer-page{max-width:900px;margin:0 auto;padding:40px 24px 80px}
 .sheer-intro{font-size:15px;color:#555;line-height:1.7;margin-bottom:28px;max-width:640px}
 
-/* ── CATEGORY CARDS ── */
-.sheer-cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:0}
-@media(max-width:620px){.sheer-cat-grid{grid-template-columns:1fr}}
+/* ── CATEGORY CARDS — 4 columns ── */
+.sheer-cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:0}
+@media(max-width:760px){.sheer-cat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.sheer-cat-grid{grid-template-columns:1fr}}
 .sheer-cat-card{border:2px solid #e8e4de;border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .18s,box-shadow .18s;background:#fff;user-select:none}
 .sheer-cat-card:hover{border-color:var(--gold);box-shadow:0 4px 18px rgba(200,151,63,.2)}
 .sheer-cat-card.active{border-color:var(--gold);background:var(--gold-mid);box-shadow:0 4px 18px rgba(200,151,63,.22)}
@@ -62,6 +63,9 @@
 .sheer-tier-level.premium{color:#7d4c00}
 .sheer-tier-detail{font-size:11px;color:#888;line-height:1.4}
 
+/* Direct-link card (no sub-options) */
+.sheer-cat-card-link{display:block;text-decoration:none}
+.sheer-cat-card-link .sheer-cat-card{height:100%}
 </style>
 </head>
 <body data-page="Sheer Shades">
@@ -70,19 +74,20 @@
 <div class="page-hero">
   <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Sheer Shades</div>
   <h1>Sheer Shades</h1>
-  <p class="sub">Soft light control with a sheer vane construction — filter daylight while keeping your view. Three distinct families to choose from.</p>
+  <p class="sub">Soft light control with sheer vane or banded construction — filter daylight beautifully while keeping your view. Four distinct styles to choose from.</p>
   <div class="hero-pills">
     <span class="hero-pill hero-pill-gold">Zebra</span>
     <span class="hero-pill hero-pill-gold">Silhouettes</span>
     <span class="hero-pill hero-pill-gold">Hunter Douglas</span>
+    <span class="hero-pill hero-pill-gold">SmartDrape</span>
     <span class="hero-pill">Motorized available</span>
   </div>
 </div>
 
 <div class="sheer-page">
-  <p class="sheer-intro">Choose a sheer shading style below. Each has basic and premium options — we'll walk you through the fabrics and help you find the right fit for your windows.</p>
+  <p class="sheer-intro">Choose a sheer shading style below. Each has basic and premium options — we'll walk you through the fabrics and help you find the perfect fit for your windows.</p>
 
-  <!-- ── 3 CATEGORY CARDS ── -->
+  <!-- ── 4 CATEGORY CARDS ── -->
   <div class="sheer-cat-grid">
 
     <!-- Zebra -->
@@ -99,7 +104,7 @@
       <div class="sheer-cat-img"><img src="../images/thumbnails/SILOUETTE.JPEG" alt="Silhouette sheer shades" loading="lazy"></div>
       <div class="sheer-cat-body">
         <div class="sheer-cat-name">Silhouettes</div>
-        <div class="sheer-cat-sub">Soft horizontal sheer vane — basic &amp; premium</div>
+        <div class="sheer-cat-sub">Soft horizontal sheer vane — basic &amp; premium (Norman PerfectSheer™)</div>
       </div>
     </div>
 
@@ -108,9 +113,20 @@
       <div class="sheer-cat-img"><img src="../images/thumbnails/pirouette-install.JPEG" alt="Hunter Douglas sheer shading" loading="lazy"></div>
       <div class="sheer-cat-body">
         <div class="sheer-cat-name">Hunter Douglas</div>
-        <div class="sheer-cat-sub">Luminette &middot; Pirouette &middot; Silhouette — custom quote</div>
+        <div class="sheer-cat-sub">Luminette &middot; Pirouette &middot; Silhouette &middot; Vignette — custom quote</div>
       </div>
     </div>
+
+    <!-- SmartDrape -->
+    <a class="sheer-cat-card-link" href="norman-sheers.html">
+      <div class="sheer-cat-card" id="scat-smartdrape">
+        <div class="sheer-cat-img"><img src="../images/thumbnails/SILOUETTE.JPEG" alt="Norman SmartDrape" loading="lazy" style="object-position:center 30%"></div>
+        <div class="sheer-cat-body">
+          <div class="sheer-cat-name">SmartDrape</div>
+          <div class="sheer-cat-sub">Norman motorized soft sheer &middot; vertical pleats &middot; powered panel</div>
+        </div>
+      </div>
+    </a>
 
   </div>
 
@@ -118,18 +134,18 @@
   <div class="sheer-sub" id="sheer-sub-zebra">
     <div class="sheer-sub-label">Zebra Shades — Basic or Premium</div>
     <div class="sheer-tier-grid">
-      <div class="sheer-tier-card" onclick="pbShowContact('Wallace 2D Banded Shades — Basic Zebra — custom quote')">
+      <a class="sheer-tier-card" href="wallace-banded-shades.html">
         <div class="sheer-tier-img"><img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Wallace 2D Banded" loading="lazy"></div>
         <div class="sheer-tier-body">
           <div class="sheer-tier-level basic">Basic</div>
-          <div class="sheer-tier-detail">Wallace · 2D Banded Shades</div>
+          <div class="sheer-tier-detail">Wallace · 2D Banded Shades — instant pricing</div>
         </div>
-      </div>
+      </a>
       <a class="sheer-tier-card" href="portfolio-dual-sheer.html">
         <div class="sheer-tier-img"><img src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Wallace Portfolio Dual" loading="lazy"></div>
         <div class="sheer-tier-body">
           <div class="sheer-tier-level premium">Premium</div>
-          <div class="sheer-tier-detail">Wallace · Portfolio Dual Sheer</div>
+          <div class="sheer-tier-detail">Wallace · Portfolio Dual Sheer — instant pricing</div>
         </div>
       </a>
     </div>
@@ -146,14 +162,14 @@
           <div class="sheer-tier-detail">Wallace · 3D Sheer Horizontals</div>
         </div>
       </a>
-      <a class="sheer-tier-card" href="shades.html?product=perfectsheer">
+      <a class="sheer-tier-card" href="perfectsheer.html">
         <div class="sheer-tier-img" style="position:relative">
           <img src="../images/thumbnails/norman-perfect-sheer.jpg" alt="Norman PerfectSheer" loading="lazy" style="object-position:center 40%">
           <div style="position:absolute;bottom:6px;left:8px;background:var(--espresso);color:var(--gold);font-size:9px;padding:2px 6px;border-radius:5px;font-weight:600;letter-spacing:0.5px">NORMAN®</div>
         </div>
         <div class="sheer-tier-body">
           <div class="sheer-tier-level premium">Premium</div>
-          <div class="sheer-tier-detail">Norman · PerfectSheer™</div>
+          <div class="sheer-tier-detail">Norman · PerfectSheer™ — instant pricing</div>
         </div>
       </a>
     </div>
@@ -167,8 +183,6 @@
 <footer id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script>
-renderNav('Sheer Shades');
-renderFooter(false);
 function selectSheerCat(cat, el) {
   var wasActive = el.classList.contains('active');
   document.querySelectorAll('.sheer-cat-card').forEach(function(c){ c.classList.remove('active'); });

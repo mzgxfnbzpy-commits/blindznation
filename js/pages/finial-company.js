@@ -1,6 +1,3 @@
-renderNav('Hardware');
-renderFooter(false);
-
 // ═══════════════════════════════════════════════════════════
 // DATA — The Finial Company September 2018 Catalog
 // ═══════════════════════════════════════════════════════════
@@ -178,7 +175,7 @@ var S = {
   rings:'',ringsQty:0,
   baton:'',batonLen:'',tieback:'',rosette:'',metalBand:'',
   extraFinialFinish:'',customFinishNote:'',
-  rush:'no',del:'ship',qty:1,
+  rush:'no',del:'ship',qty:1,rodWidth:0,
   // Traverse
   travSystem:'',travMotor:'',travFasciaDia:'',travFasciaProfile:'',
   travLen:0,travDraw:'',travHeading:'',travFullness:'',travMount:'',
@@ -233,7 +230,7 @@ function buildStep2(coll){
 
   if(coll==='modern-metal'){
     title.textContent='Diameter';
-    body.innerHTML='<div class="opt-grid" style="grid-template-columns:1fr 1fr"><div class="opt-card" onclick="pickSub(this,\'1-1/8\',\'1⅛″ diameter\')"><div class="opt-card-title">1⅛″</div><div class="opt-card-desc">TFCM118 · poles 2–12 ft · 5 finishes</div></div><div class="opt-card" onclick="pickSub(this,\'1-3/8\',\'1⅜″ diameter\')"><div class="opt-card-title">1⅜″</div><div class="opt-card-desc">TFCM138 · poles 2–12 ft · + Clear Acrylic option</div></div></div><div class="msg-info" style="margin-top:10px">All Modern Metal finials work with both 1⅛″ and 1⅜″ poles. Cuffs and collars <strong>must match your selected pole diameter</strong>.</div>';
+    body.innerHTML='<div class="opt-row"><button class="opt-btn" onclick="pickSub(this,\'1-1/8\',\'1⅛″ diameter\')">1⅛″</button><button class="opt-btn" onclick="pickSub(this,\'1-3/8\',\'1⅜″ diameter\')">1⅜″</button></div><div class="step-note">1⅛″: TFCM118 · poles 2–12 ft · 5 finishes · 1⅜″: TFCM138 · poles 2–12 ft · + Clear Acrylic option</div><div class="msg-info" style="margin-top:10px">All Modern Metal finials work with both 1⅛″ and 1⅜″ poles. Cuffs and collars <strong>must match your selected pole diameter</strong>.</div>';
   } else if(coll==='metal-138'){
     title.textContent='Diameter';
     body.innerHTML='<div class="msg-info">Fixed 1⅜″ diameter. 8 specialty plated finishes + all 50 standard hand-painted finishes. 10′ and 12′ poles not available in Brushed Bronze (BZ) or Oil Rubbed Bronze (ORB).</div><div style="margin-top:10px;font-size:12px;color:#444"><strong>MK (Matte Black) ring</strong> coordinates with VZ (Venetian Bronze) and DRB (Dark Oil Rubbed Bronze) finishes.</div>';
@@ -263,7 +260,7 @@ function buildStep2(coll){
 
 function pickSub(el,key,label){
   if(el){
-    document.querySelectorAll('#s2body .coll-card,#s2body .opt-card').forEach(function(c){c.classList.remove('sel');});
+    document.querySelectorAll('#s2body .coll-card,#s2body .opt-btn').forEach(function(c){c.classList.remove('sel');});
     el.classList.add('sel');
   }
   S.sub=key;
@@ -325,10 +322,10 @@ function buildStep3(coll,sub){
     }).join('')+'</div><div class="step-note" style="margin-top:6px">5-year warranty against rust and fading. Each order includes 2 oz. touch-up finish and protective topcoat.</div>';
   } else if(coll==='traverse'){
     body.innerHTML='<div class="step-note">Track and bracket finish is matched to your fascia finish. Select from:<br><br><strong>White, Bronze, or Antique Gold</strong> for track/brackets/glides.</div>'
-      +'<div class="opt-grid" style="grid-template-columns:repeat(3,1fr);margin-top:10px">'
-      +'<div class="opt-card" onclick="pickFinish(this,\'White\')"><div class="opt-card-title">White</div></div>'
-      +'<div class="opt-card" onclick="pickFinish(this,\'Bronze\')"><div class="opt-card-title">Bronze</div></div>'
-      +'<div class="opt-card" onclick="pickFinish(this,\'Antique Gold\')"><div class="opt-card-title">Antique Gold</div></div>'
+      +'<div class="opt-row" style="margin-top:10px">'
+      +'<button class="opt-btn" onclick="pickFinish(this,\'White\')">White</button>'
+      +'<button class="opt-btn" onclick="pickFinish(this,\'Bronze\')">Bronze</button>'
+      +'<button class="opt-btn" onclick="pickFinish(this,\'Antique Gold\')">Antique Gold</button>'
       +'</div>'
       +'<div class="msg-info" style="margin-top:10px">If ordering wood fascia: the fascia finish is selected from the 50 standard hand-painted finishes. Track color is matched accordingly. Specify desired fascia finish in notes.</div>'
       +buildSFPicker();
@@ -365,7 +362,7 @@ function pickSF(el,val){
 
 function pickFinish(el,val){
   if(el){
-    document.querySelectorAll('#s3body .fin-chip,#s3body .opt-card').forEach(function(c){c.classList.remove('sel');});
+    document.querySelectorAll('#s3body .fin-chip,#s3body .opt-btn').forEach(function(c){c.classList.remove('sel');});
     el.classList.add('sel');
   }
   S.finish=val;
@@ -483,17 +480,16 @@ function buildStep5CuffOrCollar(dia){
     {sku:'TFCM'+prefix+'802',name:'Transitional Collar',dim:(dia==='1-1/8'?'1⅝″':'1⅞″')+'L × '+(dia==='1-1/8'?'1⅜″':'1⅝″')+'W'}
   ];
   body.innerHTML='<div class="msg-info" style="margin-top:4px">Cuff/collar must match your '+dia+'″ pole diameter. Available in all 5 Modern Metal finishes. Finishes can be mixed and matched with pole and finial finishes.</div>'
-    +'<div class="opt-grid">'+opts.map(function(o){
-      return '<div class="opt-card" onclick="pickCuff(this,\''+o.name+' ('+o.sku+')\')">'
-        +'<div class="opt-card-title">'+o.name+'</div>'
-        +'<div class="opt-card-desc">'+o.sku+'<br>'+o.dim+'</div></div>';
+    +'<div class="opt-row">'+opts.map(function(o){
+      return '<button class="opt-btn" onclick="pickCuff(this,\''+o.name+' ('+o.sku+')\')">'+o.name+'</button>';
     }).join('')+'</div>'
+    +'<div class="step-note">'+opts.map(function(o){return o.name+': '+o.sku+' ('+o.dim+')';}).join(' · ')+'</div>'
     +'<div class="sub-label">Cuff/collar finish (if different from pole)</div>'
     +'<div class="form-group"><input type="text" id="cuff-finish" placeholder="Leave blank to match pole finish" oninput="S.cuff=(document.getElementById(\'cuff-finish\').value?S.cuff+\' — finish: \'+document.getElementById(\'cuff-finish\').value:S.cuff)"></div>';
 }
 
 function pickCuff(el,val){
-  document.querySelectorAll('#s5body .opt-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#s5body .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   S.cuff=val;
   document.getElementById('step5').classList.add('done');
@@ -519,10 +515,11 @@ function buildStep6(coll,sub){
       +(S.finish&&(S.finish.startsWith('ORB')||S.finish.startsWith('BZ'))?'<strong style="color:#dc2626">⚠ 10 ft and 12 ft poles NOT available in this finish.</strong><br>':'')
       +(S.finish==='CL Clear Acrylic'?'<strong style="color:#dc2626">⚠ Clear Acrylic cannot be spliced.</strong><br>':'')
       +'Fall-off not saved or shipped.</div>'
-      +'<div class="opt-grid" style="margin-top:10px">'+[2,4,6,8,10,12].map(function(ft){
+      +'<div class="opt-row" style="margin-top:10px">'+[2,4,6,8,10,12].map(function(ft){
         var blocked=((S.finish&&(S.finish.startsWith('ORB')||S.finish.startsWith('BZ')))&&(ft===10||ft===12));
-        return '<div class="opt-card'+(blocked?' blocked':'')+'" onclick="pickPoleLen(this,'+ft+',\''+ft+' ft\')"><div class="opt-card-title">'+ft+' ft</div><div class="opt-card-desc">'+(ft*12)+'″</div></div>';
+        return '<button class="opt-btn'+(blocked?' blocked':'')+'" onclick="pickPoleLen(this,'+ft+',\''+ft+' ft\')">'+ft+' ft</button>';
       }).join('')+'</div>'
+      +'<div class="step-note">'+[2,4,6,8,10,12].map(function(ft){return ft+' ft = '+(ft*12)+'″';}).join(' · ')+'</div>'
       +'<div class="sub-label">Custom length within standard increments</div>'
       +'<div style="display:flex;gap:10px;align-items:center;margin-top:4px"><input class="dim-input" type="number" id="pole-len-custom" style="width:100px" min="2" max="12" step="2" placeholder="ft" oninput="calcPoleLen()"><span style="font-size:12px;color:#666">ft (2 ft increments)</span></div>';
   } else if(coll==='wood'){
@@ -531,20 +528,22 @@ function buildStep6(coll,sub){
       +'<div style="display:flex;gap:10px;align-items:center;margin-top:8px"><input class="dim-input" type="number" id="pole-len" style="width:100px" min="2" max="'+maxFt+'" step="2" placeholder="e.g. 10" oninput="calcPoleLen()"><span style="font-size:12px;color:#666">ft (2 ft increments)</span></div>';
   } else if(coll==='outdoor'){
     html='<div class="msg-info" style="margin-top:4px">1 ft increments · 2 ft minimum. Splicing NOT recommended for outdoor rods. Max length depends on profile selected.</div>'
-      +'<div style="margin-top:10px"><div class="sub-label" style="margin-top:0">Pole profile</div><div class="opt-grid">'+OUTDOOR_POLES.map(function(p){
-        return '<div class="opt-card" onclick="pickOutdoorPole(this,\''+p.profile+'\','+p.poleMax+')"><div class="opt-card-title" style="font-size:11px">'+p.profile+'</div><div class="opt-card-desc">'+p.desc+'</div></div>';
-      }).join('')+'</div></div>'
+      +'<div style="margin-top:10px"><div class="sub-label" style="margin-top:0">Pole profile</div><div class="opt-row">'+OUTDOOR_POLES.map(function(p){
+        return '<button class="opt-btn" onclick="pickOutdoorPole(this,\''+p.profile+'\','+p.poleMax+')">'+p.profile+'</button>';
+      }).join('')+'</div>'
+      +'<div class="step-note">'+OUTDOOR_POLES.map(function(p){return p.profile+': '+p.desc;}).join(' · ')+'</div></div>'
       +'<div style="display:flex;gap:10px;align-items:center;margin-top:10px"><input class="dim-input" type="number" id="pole-len" style="width:100px" min="2" max="240" step="1" placeholder="length" oninput="calcPoleLen()"><span style="font-size:12px;color:#666">inches</span></div><div id="pole-len-msg" style="margin-top:6px"></div>';
   } else {
     // Steel — show profiles
     var poles=STEEL_POLES[sub]||[];
     html='<div class="msg-info" style="margin-top:4px">1 ft increments · 2 ft minimum. Fall-off not saved or shipped. Poles over 96″ ship common carrier.</div>'
       +'<div class="sub-label" style="margin-top:8px">Pole profile</div>'
-      +'<div class="opt-grid">'+poles.map(function(p){
-        return '<div class="opt-card" onclick="pickSteelPole(this,\''+p.profile+'\','+p.maxIn+')">'
-          +'<div class="opt-card-title" style="font-size:11px">'+p.profile+'</div>'
-          +'<div class="opt-card-desc">'+p.desc+'<br>Max '+p.maxIn+'″'+(p.minRingID?' · ring min '+p.minRingID+'″ ID':'')+''+(p.noBypass?' · no bypass':'')+''+(p.squareBrackets?' · square brackets only':'')+'</div></div>';
+      +'<div class="opt-row">'+poles.map(function(p){
+        return '<button class="opt-btn" onclick="pickSteelPole(this,\''+p.profile+'\','+p.maxIn+')">'+p.profile+'</button>';
       }).join('')+'</div>'
+      +'<div class="step-note">'+poles.map(function(p){
+        return p.profile+': '+p.desc+' · Max '+p.maxIn+'″'+(p.minRingID?' · ring min '+p.minRingID+'″ ID':'')+(p.noBypass?' · no bypass':'')+(p.squareBrackets?' · square brackets only':'');
+      }).join('<br>')+'</div>'
       +'<div style="display:flex;gap:10px;align-items:center;margin-top:10px"><input class="dim-input" type="number" id="pole-len" style="width:100px" min="24" max="300" step="12" placeholder="e.g. 96" oninput="calcPoleLen()"><span style="font-size:12px;color:#666">inches</span></div>'
       +'<div id="pole-len-msg" style="margin-top:6px"></div>';
   }
@@ -552,14 +551,14 @@ function buildStep6(coll,sub){
 }
 
 function pickOutdoorPole(el,profile,maxIn){
-  document.querySelectorAll('#s6body .opt-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#s6body .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   S.poleProfile=profile;
   document.getElementById('pole-len').max=maxIn;
 }
 
 function pickSteelPole(el,profile,maxIn){
-  document.querySelectorAll('#s6body .opt-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#s6body .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   S.poleProfile=profile;
   document.getElementById('pole-len').max=maxIn;
@@ -578,7 +577,7 @@ function pickSteelPole(el,profile,maxIn){
 }
 
 function pickPoleLen(el,ft,label){
-  document.querySelectorAll('#s6body .opt-card:not(.blocked)').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#s6body .opt-btn:not(.blocked)').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   S.poleLen=ft*12;
   finalizePoleLen(ft*12,ft+' ft ('+(ft*12)+'″)');
@@ -620,40 +619,44 @@ function buildStep7(coll,sub){
 
   if(coll==='traverse'){
     html+='<div class="sub-label" style="margin-top:10px">Mount type</div>'
-      +'<div class="opt-grid" style="grid-template-columns:1fr 1fr"><div class="opt-card" onclick="pickBrkt(this,\'Wall mount\',\'Standard adj 3½″–4½″ return (6″ return available at no charge)\',false)"><div class="opt-card-title">Wall Mount</div><div class="opt-card-desc">Standard: 3½″–4½″ adj. 6″ available.</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Ceiling mount\',\'CMBC clip for track-only; CMTB for custom ceiling\',false)"><div class="opt-card-title">Ceiling Mount</div><div class="opt-card-desc">CMBC clip (no fascia) or CMTB custom</div></div></div>'
+      +'<div class="opt-row"><button class="opt-btn" onclick="pickBrkt(this,\'Wall mount\',\'Standard adj 3½″–4½″ return (6″ return available at no charge)\',false)">Wall mount</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Ceiling mount\',\'CMBC clip for track-only; CMTB for custom ceiling\',false)">Ceiling mount</button></div>'
+      +'<div class="step-note">Wall mount: Standard 3½″–4½″ adj. 6″ available. · Ceiling mount: CMBC clip (no fascia) or CMTB custom</div>'
       +'<div class="step-note">Single brackets: HDTB35 (adj 3½″–4½″). Double/single 6″: HDTB. Custom up to 10″: HDTB10. Stationary front pole: order TBKT214 or TBKT300 separately.</div>';
   } else if(coll==='modern-metal'){
-    html+='<div class="opt-grid">'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Single 3½″ return\',S.sub===\'1-1/8\'?\'TFCM118420 · 2″Dia backplate\':\'TFCM138420 · 2½″Dia backplate\',false)"><div class="opt-card-title">Single 3½″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Single 6″ return\',S.sub===\'1-1/8\'?\'TFCM118420L\':\'TFCM138420L\',false)"><div class="opt-card-title">Single 6″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Double 6½″/3½″\',S.sub===\'1-1/8\'?\'TFCM118424 (6½″ front, 3½″ back)\':\'TFCM138424 (6½″ front, 3½″ back)\',false)"><div class="opt-card-title">Double 6½″/3½″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Eyelet single 3½″\',S.sub===\'1-1/8\'?\'TFCM118426\':\'TFCM138426\',false)"><div class="opt-card-title">Eyelet 3½″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Eyelet single 6″\',S.sub===\'1-1/8\'?\'TFCM118427\':\'TFCM138427\',false)"><div class="opt-card-title">Eyelet 6″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Bypass single 3½″\',S.sub===\'1-1/8\'?\'TFCM118428 · CAUTION: add standard brackets at each end\':\'TFCM138428 · CAUTION: add standard brackets at each end\',true)"><div class="opt-card-title">Bypass 3½″</div><div class="opt-card-desc" style="color:#dc2626">Standard brackets at each end required</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Inside mount (pairs)\',S.sub===\'1-1/8\'?\'TFCM118401 (1¾″W, 1¼″ deep)\':\'TFCM138401 (2″W, 1⅝″ deep)\',false)"><div class="opt-card-title">Inside Mount</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Hinged elbow\',S.sub===\'1-1/8\'?\'TFCM118402 (2″L)\':\'TFCM138402 (2″L)\',false)"><div class="opt-card-title">Hinged Elbow</div></div>'
-      +'</div>';
+    html+='<div class="opt-row">'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Single 3½″ return\',S.sub===\'1-1/8\'?\'TFCM118420 · 2″Dia backplate\':\'TFCM138420 · 2½″Dia backplate\',false)">Single 3½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Single 6″ return\',S.sub===\'1-1/8\'?\'TFCM118420L\':\'TFCM138420L\',false)">Single 6″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Double 6½″/3½″\',S.sub===\'1-1/8\'?\'TFCM118424 (6½″ front, 3½″ back)\':\'TFCM138424 (6½″ front, 3½″ back)\',false)">Double 6½″/3½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Eyelet single 3½″\',S.sub===\'1-1/8\'?\'TFCM118426\':\'TFCM138426\',false)">Eyelet 3½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Eyelet single 6″\',S.sub===\'1-1/8\'?\'TFCM118427\':\'TFCM138427\',false)">Eyelet 6″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Bypass single 3½″\',S.sub===\'1-1/8\'?\'TFCM118428 · CAUTION: add standard brackets at each end\':\'TFCM138428 · CAUTION: add standard brackets at each end\',true)">Bypass 3½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Inside mount (pairs)\',S.sub===\'1-1/8\'?\'TFCM118401 (1¾″W, 1¼″ deep)\':\'TFCM138401 (2″W, 1⅝″ deep)\',false)">Inside mount</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Hinged elbow\',S.sub===\'1-1/8\'?\'TFCM118402 (2″L)\':\'TFCM138402 (2″L)\',false)">Hinged Elbow</button>'
+      +'</div>'
+      +'<div class="step-note">Bypass 3½″: Standard brackets at each end required.</div>';
   } else if(coll==='metal-138'){
-    html+='<div class="opt-grid">'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Single 3½″–4½″\',\'TFCM138400 · 2″Dia backplate\',false)"><div class="opt-card-title">Single 3½″–4½″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Single 5″–6½″\',\'TFCM138400L · 2″Dia backplate\',false)"><div class="opt-card-title">Single 5″–6½″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Double 6″/3½″\',\'TFCM138404\',false)"><div class="opt-card-title">Double 6″/3½″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Eyelet single 3½″\',\'TFCM138406\',false)"><div class="opt-card-title">Eyelet 3½″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Bypass single 3½″\',\'TFCM138408 · CAUTION: add standard brackets at each end\',true)"><div class="opt-card-title">Bypass 3½″</div><div class="opt-card-desc" style="color:#dc2626">Standard brackets at each end required</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Inside mount (pairs)\',\'TFCM138401\',false)"><div class="opt-card-title">Inside Mount</div></div>'
-      +'</div>';
+    html+='<div class="opt-row">'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Single 3½″–4½″\',\'TFCM138400 · 2″Dia backplate\',false)">Single 3½″–4½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Single 5″–6½″\',\'TFCM138400L · 2″Dia backplate\',false)">Single 5″–6½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Double 6″/3½″\',\'TFCM138404\',false)">Double 6″/3½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Eyelet single 3½″\',\'TFCM138406\',false)">Eyelet 3½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Bypass single 3½″\',\'TFCM138408 · CAUTION: add standard brackets at each end\',true)">Bypass 3½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Inside mount (pairs)\',\'TFCM138401\',false)">Inside mount</button>'
+      +'</div>'
+      +'<div class="step-note">Bypass 3½″: Standard brackets at each end required.</div>';
   } else {
-    html+='<div class="opt-grid">'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Standard single 3½″ return\',\'(model depends on profile selected)\',false)"><div class="opt-card-title">Single 3½″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Standard single 6″ return\',\'(model depends on profile)\',false)"><div class="opt-card-title">Single 6″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Double bracket 6″ front / 3″ back\',\'(model depends on profile)\',false)"><div class="opt-card-title">Double 6″/3″</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Adjustable single bracket\',\'(model depends on profile — various returns)\',false)"><div class="opt-card-title">Adjustable</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Ceiling mount bracket\',\'BL4 or TFCS___MCMBK — specify drop needed\',false)"><div class="opt-card-title">Ceiling Mount</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Inside mount brackets (pairs)\',\'IM125 / IM175 / IMB050 — sold in pairs\',false)"><div class="opt-card-title">Inside Mount</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Bypass bracket\',\'SCB35 (3½″) or SCB6 (6″) · Standard brackets at each end required · use with correct c-ring\',true)"><div class="opt-card-title">Bypass</div><div class="opt-card-desc" style="color:#dc2626">Std brackets at ends required</div></div>'
-      +'<div class="opt-card" onclick="pickBrkt(this,\'Custom bracket\',\'FBKT / TBKT / DBL1 · Returns over 8″ = additional fees + support arm\',false)"><div class="opt-card-title">Custom Bracket</div></div>'
-      +'</div>';
+    html+='<div class="opt-row">'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Standard single 3½″ return\',\'(model depends on profile selected)\',false)">Single 3½″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Standard single 6″ return\',\'(model depends on profile)\',false)">Single 6″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Double bracket 6″ front / 3″ back\',\'(model depends on profile)\',false)">Double 6″/3″</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Adjustable single bracket\',\'(model depends on profile — various returns)\',false)">Adjustable</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Ceiling mount bracket\',\'BL4 or TFCS___MCMBK — specify drop needed\',false)">Ceiling mount</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Inside mount brackets (pairs)\',\'IM125 / IM175 / IMB050 — sold in pairs\',false)">Inside mount</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Bypass bracket\',\'SCB35 (3½″) or SCB6 (6″) · Standard brackets at each end required · use with correct c-ring\',true)">Bypass</button>'
+      +'<button class="opt-btn" onclick="pickBrkt(this,\'Custom bracket\',\'FBKT / TBKT / DBL1 · Returns over 8″ = additional fees + support arm\',false)">Custom Bracket</button>'
+      +'</div>'
+      +'<div class="step-note">Bypass: Std brackets at ends required.</div>';
   }
   html+='<div id="brkt-warn-area" style="margin-top:8px"></div>';
   html+='<div class="sub-label">Number of brackets</div><div style="display:flex;gap:10px;align-items:center;margin-top:4px"><input class="dim-input" type="number" id="brkt-qty" style="width:80px" min="2" max="20" value="3" oninput="S.brktQty=parseInt(this.value)||3;sp(\'sp-brkt\',S.brktType+\' × \'+S.brktQty)"><span style="font-size:12px;color:#666">brackets</span></div>'
@@ -662,7 +665,7 @@ function buildStep7(coll,sub){
 }
 
 function pickBrkt(el,type,note,isBypass){
-  document.querySelectorAll('#s7body .opt-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#s7body .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   S.brktType=type; S.bypassUsed=isBypass;
   showWarn('sp-warn-bp',isBypass);
@@ -737,14 +740,15 @@ function buildStep9(coll,sub){
   var body=document.getElementById('s9body');
   document.getElementById('step9').style.display='block';
   body.innerHTML='<div class="sub-label" style="margin-top:4px">Baton (optional)</div>'
-    +'<div class="opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(130px,1fr))">'
-    +'<div class="opt-card" onclick="pickBaton(this,\'None\')"><div class="opt-card-title" style="font-size:12px">No baton</div></div>'
-    +'<div class="opt-card" onclick="pickBaton(this,\'Steel baton (SBTN) — specify finish and length up to 60″\')"><div class="opt-card-title" style="font-size:12px">Steel baton</div><div class="opt-card-desc">3/8″ dia · up to 60″</div></div>'
-    +'<div class="opt-card" onclick="pickBaton(this,\'Steel baton 60″+ (SBTN60) — up to 96″\')"><div class="opt-card-title" style="font-size:12px">Steel 60″+</div><div class="opt-card-desc">3/8″ dia · up to 96″</div></div>'
-    +(coll!=='outdoor'?'<div class="opt-card" onclick="pickBaton(this,\'Fiberglass baton white (FBTN) — up to 48″\')"><div class="opt-card-title" style="font-size:12px">Fiberglass</div><div class="opt-card-desc">White · up to 48″</div></div>':'')
-    +'<div class="opt-card" onclick="pickBaton(this,\'Clear acrylic baton (ABTN-36 or ABTN-48)\')"><div class="opt-card-title" style="font-size:12px">Clear acrylic</div><div class="opt-card-desc">36″ or 48″</div></div>'
-    +((coll==='wood'||coll==='metal-138')?'<div class="opt-card" onclick="pickBaton(this,\'Wood baton (WBTN) — specify finish, 3/8″, up to 48″\')"><div class="opt-card-title" style="font-size:12px">Wood baton</div><div class="opt-card-desc">3/8″ · up to 48″</div></div>':'')
+    +'<div class="opt-row">'
+    +'<button class="opt-btn" onclick="pickBaton(this,\'None\')">No baton</button>'
+    +'<button class="opt-btn" onclick="pickBaton(this,\'Steel baton (SBTN) — specify finish and length up to 60″\')">Steel baton</button>'
+    +'<button class="opt-btn" onclick="pickBaton(this,\'Steel baton 60″+ (SBTN60) — up to 96″\')">Steel 60″+</button>'
+    +(coll!=='outdoor'?'<button class="opt-btn" onclick="pickBaton(this,\'Fiberglass baton white (FBTN) — up to 48″\')">Fiberglass</button>':'')
+    +'<button class="opt-btn" onclick="pickBaton(this,\'Clear acrylic baton (ABTN-36 or ABTN-48)\')">Clear acrylic</button>'
+    +((coll==='wood'||coll==='metal-138')?'<button class="opt-btn" onclick="pickBaton(this,\'Wood baton (WBTN) — specify finish, 3/8″, up to 48″\')">Wood baton</button>':'')
     +'</div>'
+    +'<div class="step-note">Steel baton: 3/8″ dia · up to 60″ · Steel 60″+: 3/8″ dia · up to 96″'+(coll!=='outdoor'?' · Fiberglass: White · up to 48″':'')+' · Clear acrylic: 36″ or 48″'+((coll==='wood'||coll==='metal-138')?' · Wood baton: 3/8″ · up to 48″':'')+'</div>'
     +(coll==='modern-metal'?'<div class="msg-info" style="margin-top:8px">Modern Metal batons: TFCM312S (36″), TFCM314S (48″), TFCM316S (60″) in 5 modern finishes. Acrylic baton ABTN-36/ABTN-48 also available.</div>':'')
     +'<div class="sub-label">Tieback (optional)</div>'
     +'<div class="finish-row"><div class="fin-chip" onclick="pickTieback(this,\'None\')">None</div>'
@@ -763,7 +767,7 @@ function buildStep9(coll,sub){
 }
 
 function pickBaton(el,val){
-  document.querySelectorAll('#step9 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#step9 .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   S.baton=val;
   document.getElementById('s9val').textContent=val==='None'?'Optional':'Baton selected';
@@ -783,6 +787,25 @@ function buildAccSummary(){
   return parts.length?parts.join(' · '):'None';
 }
 
+// ═══════════════════════════════════════════════════════════
+// STEP 1: ROD WIDTH & QUANTITY (shared dim-box)
+// ═══════════════════════════════════════════════════════════
+function updateRodWidth(){
+  var e=document.getElementById('rod-width');
+  S.rodWidth=e?parseFloat(e.value)||0:0;
+  var mv=document.getElementById('sMval');
+  if(mv) mv.textContent=S.rodWidth?S.rodWidth+'″ wide':'—';
+}
+function adjQty(d){
+  var e=document.getElementById('qty');
+  if(!e) return;
+  var v=(parseInt(e.value)||1)+d;
+  if(v<1) v=1;
+  if(v>99) v=99;
+  e.value=v;
+  updateSpec();
+}
+
 function updateSpec(){
   var qty=parseInt(document.getElementById('qty').value)||1;
   S.qty=qty;
@@ -793,7 +816,7 @@ function updateSpec(){
 
 function pickRush(el,val,label){
   S.rush=val;
-  document.querySelectorAll('#step11 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#step11 .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   document.getElementById('rush-warn').style.display=val==='yes'?'block':'none';
   updateSpec();
@@ -801,7 +824,7 @@ function pickRush(el,val,label){
 
 function pickDel(el,val){
   S.del=val;
-  document.querySelectorAll('#step11 .opt-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#step11 .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
 }
 
@@ -809,10 +832,10 @@ function pickDel(el,val){
 // SUBMIT
 // ═══════════════════════════════════════════════════════════
 function submitQuote(){
-  var name=document.getElementById('q-name').value.trim();
-  var phone=document.getElementById('q-phone').value.trim();
-  var err=document.getElementById('q-err');
-  if(!name||!phone){err.style.display='block';return;}
+  var name=document.getElementById('cf-name').value.trim();
+  var phone=document.getElementById('cf-phone').value.trim();
+  var err=document.getElementById('cf-contact-err');
+  if(!name||!phone){err.textContent='Please enter your name and phone number.';err.style.display='block';return;}
   err.style.display='none';
   var qty=parseInt(document.getElementById('qty').value)||1;
   var collLabels={'modern-metal':'Modern Metal','metal-138':'1⅜″ Metal','steel':'Steel','wood':'Wood & Resin','outdoor':'Outdoor Hardware','traverse':'Traverse Systems'};
@@ -836,6 +859,7 @@ function submitQuote(){
     S.coll==='modern-metal'?'Cuff / Collar: '+(S.cuff||'—'):'',
     '',
     'POLE:',
+    'Rod width (overall): '+(S.rodWidth?S.rodWidth+'″':'—'),
     'Pole length: '+(S.poleLen?S.poleLen+'″ ('+(S.poleLen/12).toFixed(2)+' ft)':'—'),
     S.poleLen>96?'⚠ Over 96″ — common carrier shipping required':'',
     S.warnAcrylic?'⚠ Clear Acrylic selected — cannot be spliced':'',
@@ -855,28 +879,42 @@ function submitQuote(){
     '',
     'ORDER:',
     'Quantity: '+qty,
-    'Room / window: '+(document.getElementById('room-label').value.trim()||'—'),
     'Rush order: '+(S.rush==='yes'?'+30% rush (5 business days)':'Standard (10–15 business days for painted/custom)'),
-    'Delivery: '+(S.del==='ship'?'Ship to me (UPS/FedEx from Huntingdon Valley, PA)':'Will pick up'),
+    'Delivery: '+'Ship to me (UPS/FedEx)',
     '',
     'NOTES:',
-    document.getElementById('q-notes').value.trim()||'None',
+    document.getElementById('cf-notes').value.trim()||'None',
     '',
     'CUSTOMER:',
     'Name: '+name,
     'Phone: '+phone,
-    'Email: '+(document.getElementById('q-email').value.trim()||'—'),
+    'Email: '+(document.getElementById('cf-email').value.trim()||'—'),
     '',
     'Pricing: From The Finial Company Retail Price List. Not displayed publicly.',
     'No changes/cancellations after 24 hours of order confirmation.'
   ].filter(function(l){return l!==null&&l!==undefined;}).join('\n');
 
-  window.location.href='mailto:justin@blindznation.com'
+  window.location.href='mailto:blindznation@gmail.com'
     +'?subject='+encodeURIComponent('Finial Company Hardware Quote — '+name)
     +'&body='+encodeURIComponent(lines);
   document.getElementById('success-box').style.display='block';
 }
 
+function addFinialToCart() {
+  var collNames = {standard:'Standard Collection',steel:'Steel Collection',wood:'Wood Collection',glass:'Glass Collection'};
+  var collLabel = collNames[S.coll] || (S.coll || 'The Finial Company');
+  var lines = [
+    { label: 'Product', value: 'The Finial Company — ' + collLabel },
+    { label: 'Rod Width', value: S.rodWidth ? S.rodWidth + '″' : '—' },
+    { label: 'Finish', value: S.finish || '—' },
+    { label: 'Left Finial', value: S.finLeft || '—' },
+    { label: 'Right Finial', value: S.finRight || '—' },
+    { label: 'Pole Length', value: S.poleLen ? S.poleLen + '″' : '—' }
+  ];
+  pbAddToCart({ product: 'The Finial Company Hardware', lines: lines, specs: lines.map(function(l){ return l.label+': '+l.value; }).join(' | '), qty: 1 });
+  pbOpenCart();
+}
+
 // INIT
 document.getElementById('step11').style.display='block';
-document.getElementById('step12').style.display='block';
+document.getElementById('step12').style.display='block';

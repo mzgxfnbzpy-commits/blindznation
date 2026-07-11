@@ -7,15 +7,15 @@
 <meta property="og:title" content="Basic Roller Shades | Blindznation">
 <meta property="og:description" content="Basic roller shades — any fabric, any motor brand, customer fabric accepted.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.blindznation.com/pages/custom-roller-shades.html">
+<meta property="og:url" content="https://blindznation.com/pages/custom-roller-shades.html">
 <meta property="og:site_name" content="Blindznation">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Basic Roller Shades | Blindznation">
 <meta name="twitter:description" content="Basic roller shades — any fabric, any motor brand, customer fabric accepted.">
-<meta property="og:image" content="https://www.blindznation.com/img/social-preview.png">
+<meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://www.blindznation.com/img/social-preview.png">
+<meta name="twitter:image" content="https://blindznation.com/img/social-preview.png">
 <title>Basic Roller Shades — Blindznation</title>
 <link rel="stylesheet" href="../css/global.css">
 <style>
@@ -152,6 +152,10 @@
 .success-box{background:#1a3a2a;border:1px solid rgba(45,224,193,.4);border-radius:10px;padding:16px;text-align:center;display:none}
 .success-box h4{color:var(--gold);font-size:14px;margin-bottom:6px}
 .success-box p{color:var(--text-dark);font-size:12px;line-height:1.6}
+/* Teal bubble selection ring — consistent across all selectable cards */
+.type-card.sel,.opt-card.sel,.fabric-card.sel,.delivery-opt.sel,.openness-btn.sel{box-shadow:0 0 0 3px rgba(45,224,193,.15),0 2px 8px rgba(45,224,193,.18)}
+/* Hardware finish swatch dots */
+.hw-sw{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:7px;vertical-align:-2px;border:1px solid rgba(0,0,0,.18);box-shadow:inset 0 1px 2px rgba(255,255,255,.3)}
 </style>
 </head>
 <body data-page="Shades & blinds">
@@ -181,7 +185,7 @@
       <div class="vcard-body"><div class="vcard-name">Basic Roller Shades</div><div class="vcard-desc">In-house fabricated — any fabric, any motor brand. Exterior available.</div></div>
     </span>
     <a class="vcard" href="soluna-roller-shades.html">
-      <div class="vcard-img"><img src="../images/thumbnails/CUSTOM LARGE ROLLER SHADES.JPEG" alt="Premier Norman Roller Shades"><span class="vcard-badge" style="background:#C8973F;color:#1C1510">Norman</span></div>
+      <div class="vcard-img"><img src="../images/thumbnails/CUSTOM LARGE ROLLER SHADES.JPEG" alt="Premier Norman Roller Shades"><span class="vcard-badge" style="background:#C9A96E;color:#111110">Norman</span></div>
       <div class="vcard-body"><div class="vcard-name">Premier Norman Roller Shades</div><div class="vcard-desc">Premium collection — 7 price groups, cassette &amp; fascia headrail options.</div></div>
     </a>
     <a class="vcard" href="wallace-natural-roller-shades.html">
@@ -199,14 +203,15 @@
 <div class="config-layout">
 <div id="configurator">
 
-<!-- STEP 1: SIZE & QUANTITY -->
-<div class="step-block active" id="step-4">
-  <div class="step-head" onclick="crsToggle('step-4')">
+<!-- STEP 1: MEASUREMENTS & MOUNT -->
+<div class="step-block active" id="step-1">
+  <div class="step-head" onclick="crsToggle('step-1')">
     <div class="step-num">1</div>
-    <div class="step-title">Window size &amp; quantity</div>
-    <div class="step-val" id="sv-4"></div>
+    <div class="step-title">Window measurements &amp; mount</div>
+    <div class="step-val" id="sv-1"></div>
   </div>
   <div class="step-body">
+    <!-- Width + Height -->
     <div class="dim-box">
       <div class="dim-box-label">Enter your window size</div>
       <div class="form-row">
@@ -217,47 +222,46 @@
         </div>
         <div class="form-group">
           <label>Height</label>
-          <input type="number" id="crs-inp-h" min="12" max="132" step="0.5" placeholder="72" oninput="crsDimChanged()">
-          <div class="dim-unit">inches &mdash; 12″ min · 132″ max</div>
+          <input type="number" id="crs-inp-h" min="12" max="144" step="0.5" placeholder="72" oninput="crsDimChanged()">
+          <div class="dim-unit">inches &mdash; 12″ min · 144″ max</div>
         </div>
       </div>
     </div>
-    <div class="tooltip-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Inside mount: give us exact frame — we deduct for fit.</div>
+    <div class="step-note" style="margin-bottom:12px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Inside mount: give us exact frame — we deduct ¼″ for fit.</div>
     <div class="dim-msg warn" id="dim-warn"></div>
     <div class="dim-msg info" id="dim-info"></div>
-    <div class="spinner-row" style="margin-top:14px">
-      <span class="spin-label" style="margin-right:8px">Qty:</span>
-      <button class="spin-btn" onclick="crsAdjQty(-1)">−</button>
-      <input class="spin-num" type="number" id="qty-num" min="1" max="20" value="1" oninput="crsQtyInput()">
-      <button class="spin-btn" onclick="crsAdjQty(1)">+</button>
-      <span class="spin-label">shade(s)</span>
-    </div>
-  </div>
-</div>
 
-<!-- STEP 2: MOUNT TYPE -->
-<div class="step-block" id="step-2">
-  <div class="step-head" onclick="crsToggle('step-2')">
-    <div class="step-num">2</div>
-    <div class="step-title">Mount type</div>
-    <div class="step-val" id="sv-2"></div>
-  </div>
-  <div class="step-body">
-    <div class="opt-row" id="grp-mount">
+    <!-- Mount type -->
+    <div class="dim-label" style="margin-top:16px;margin-bottom:8px">Mount type</div>
+    <div class="opt-row" id="crs-grp-mount">
       <button class="opt-btn" id="mc-inside" onclick="crsPickMount('inside','Inside mount')">Inside mount</button>
       <button class="opt-btn" id="mc-outside" onclick="crsPickMount('outside','Outside mount')">Outside mount</button>
     </div>
+    <div class="step-note">Inside mount fits inside the window frame — clean, built-in look, min frame depth required. Outside mount mounts on wall or ceiling above the frame — covers more area, good for shallow frames.</div>
     <div class="mount-note" id="mount-note-im">Inside mount: give us your exact frame width and height — we'll deduct 1/4" from width for a proper fit.</div>
     <div class="mount-note" id="mount-note-om">Outside mount: add 2–4" to each side of the opening for full coverage. Mount 2–4" above the frame to maximize the look.</div>
+
+    <!-- Quantity -->
+    <div class="dim-label" style="margin-top:18px;margin-bottom:6px">Quantity</div>
+    <p style="font-size:12px;color:#666;margin-bottom:6px;line-height:1.6">Number of shades with these same specs. Different sizes or rooms? Add notes below or submit separate orders.</p>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:12px;color:#666">Qty:</span>
+      <div class="qty-btns">
+        <button class="qty-btn" onclick="crsAdjQty(-1)">&#8722;</button>
+        <input class="qty-num" type="number" id="qty-num" value="1" min="1" max="20" oninput="crsQtyInput()">
+        <button class="qty-btn" onclick="crsAdjQty(1)">&#43;</button>
+      </div>
+      <span style="font-size:12px;color:#666">shade(s)</span>
+    </div>
   </div>
 </div>
 
-<!-- STEP 3: SHADE TYPE -->
-<div class="step-block" id="step-1">
-  <div class="step-head" onclick="crsToggle('step-1')">
-    <div class="step-num">3</div>
+<!-- STEP 2: SHADE TYPE -->
+<div class="step-block" id="step-2">
+  <div class="step-head" onclick="crsToggle('step-2')">
+    <div class="step-num">2</div>
     <div class="step-title">Shade type</div>
-    <div class="step-val" id="sv-1"></div>
+    <div class="step-val" id="sv-2"></div>
   </div>
   <div class="step-body">
     <div class="type-grid" style="grid-template-columns:1fr 1fr">
@@ -276,7 +280,8 @@
     <!-- Solar openness sub-options -->
     <div class="sub-opts" id="solar-opts">
       <div class="sub-opts-label">Openness factor — how much you see through the fabric</div>
-      <div class="openness-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="openness-grid" style="grid-template-columns:repeat(4,1fr)">
+        <button class="openness-btn" id="ob-1" onclick="crsPickOpenness('1','1%')"><span class="openness-pct">1%</span><span class="openness-label">Near blackout</span></button>
         <button class="openness-btn" id="ob-3" onclick="crsPickOpenness('3','3%')"><span class="openness-pct">3%</span><span class="openness-label">Max privacy</span></button>
         <button class="openness-btn" id="ob-5" onclick="crsPickOpenness('5','5%')"><span class="openness-pct">5%</span><span class="openness-label">Good balance</span></button>
         <button class="openness-btn" id="ob-10" onclick="crsPickOpenness('10','10%')"><span class="openness-pct">10%</span><span class="openness-label">Open feel</span></button>
@@ -286,55 +291,44 @@
     <!-- Color sub-options (shown after type + openness selected) -->
     <div class="sub-opts" id="color-opts">
       <div class="sub-opts-label">Color</div>
-      <div class="opt-row" id="crs-grp-color">
-        <button class="opt-btn" onclick="crsPickColor(this,'White')">White</button>
-        <button class="opt-btn" onclick="crsPickColor(this,'Off-White')">Off-White</button>
-        <button class="opt-btn" onclick="crsPickColor(this,'Cream')">Cream</button>
-        <button class="opt-btn" onclick="crsPickColor(this,'Gray')">Gray</button>
-        <button class="opt-btn" onclick="crsPickColor(this,'Charcoal')">Charcoal</button>
-        <button class="opt-btn" onclick="crsPickColor(this,'Black')">Black</button>
-      </div>
+      <div id="crs-fabric-picker"></div>
     </div>
   </div>
 </div>
 
-<!-- STEP 4: HEADRAIL / VALANCE -->
+<!-- STEP 3: HEADRAIL / VALANCE -->
 <div class="step-block" id="step-3">
   <div class="step-head" onclick="crsToggle('step-3')">
-    <div class="step-num">4</div>
-    <div class="step-title">Headrail &amp; valance</div>
+    <div class="step-num">3</div>
+    <div class="step-title">Headrail</div>
     <div class="step-val" id="sv-3"></div>
   </div>
   <div class="step-body">
-    <div class="opt-grid-2">
-      <div class="opt-card" id="hc-open" onclick="crsPickHeadrail('open','Open roll')">
-        <div class="opt-card-title">Open roll</div>
-        <div class="opt-card-desc">No valance — clean and minimal. Fabric tube is visible at the top.</div>
-      </div>
-      <div class="opt-card" id="hc-cassette" onclick="crsPickHeadrail('cassette','Cassette')">
-        <div class="opt-badge">Most popular</div>
-        <div class="opt-card-title">Cassette</div>
-        <div class="opt-card-desc">Enclosed headrail box hides the tube completely. Best for blackout.</div>
-      </div>
-      <div class="opt-card" id="hc-fascia" onclick="crsPickHeadrail('fascia','Fascia')">
-        <div class="opt-card-title">Fascia</div>
-        <div class="opt-card-desc">Decorative flat valance that drops in front of the tube. Slim, modern look.</div>
-      </div>
-      <div class="opt-card" id="hc-valance" onclick="crsPickHeadrail('valance','Wood valance box')">
-        <div class="opt-card-title">Wood valance box</div>
-        <div class="opt-card-desc">Premium chunky wood frame. Traditional look, great for custom paint or stain.</div>
+    <div class="opt-row" id="crs-grp-headrail">
+      <button class="opt-btn" id="hc-open" onclick="crsPickHeadrail('open','Open roll')">Open roll</button>
+      <button class="opt-btn" id="hc-fascia" onclick="crsPickHeadrail('fascia','Metal fascia')">Metal fascia</button>
+    </div>
+    <div class="step-note">Open roll: no valance — clean and minimal, fabric tube visible at the top. Metal fascia (most popular): slim metal valance covers the tube for a clean, finished look; color matches hardware.</div>
+    <!-- Hardware / fascia color (shown after headrail selected) -->
+    <div id="hw-color-section" style="display:none;margin-top:14px;padding-top:12px;border-top:1px solid #f0ede8">
+      <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:8px;text-transform:uppercase;letter-spacing:.3px" id="hw-color-label">Hardware color</div>
+      <div class="opt-row" id="crs-grp-hw-color">
+        <button class="opt-btn" onclick="crsPickHwColor(this,'Brass')"><span class="hw-sw" style="background:linear-gradient(135deg,#e3c279,#b8902f)"></span>Brass</button>
+        <button class="opt-btn" onclick="crsPickHwColor(this,'Bronze')"><span class="hw-sw" style="background:linear-gradient(135deg,#a06f3e,#5e3f23)"></span>Bronze</button>
+        <button class="opt-btn" onclick="crsPickHwColor(this,'Brushed Black')"><span class="hw-sw" style="background:linear-gradient(135deg,#4a4a4a,#161616)"></span>Brushed Black</button>
+        <button class="opt-btn" onclick="crsPickHwColor(this,'Matte Silver')"><span class="hw-sw" style="background:linear-gradient(135deg,#dcdcdc,#a4a4a4)"></span>Matte Silver</button>
+        <button class="opt-btn" onclick="crsPickHwColor(this,'White')"><span class="hw-sw" style="background:#f8f8f5"></span>White</button>
       </div>
     </div>
-    <p style="font-size:11px;color:#999;margin-top:10px;line-height:1.6">For blackout shades, cassette is recommended — it eliminates the light gap around the tube.</p>
   </div>
 </div>
 
-<!-- STEP 5: FABRIC SUPPLY -->
-<div class="step-block" id="step-5">
-  <div class="step-head" onclick="crsToggle('step-5')">
-    <div class="step-num">5</div>
+<!-- STEP 4: FABRIC SUPPLY -->
+<div class="step-block" id="step-4">
+  <div class="step-head" onclick="crsToggle('step-4')">
+    <div class="step-num">4</div>
     <div class="step-title">Fabric</div>
-    <div class="step-val" id="sv-5"></div>
+    <div class="step-val" id="sv-4"></div>
   </div>
   <div class="step-body">
     <div class="fabric-grid">
@@ -360,92 +354,80 @@
   </div>
 </div>
 
-<!-- STEP 6: MOTORIZATION -->
-<div class="step-block" id="step-6">
-  <div class="step-head" onclick="crsToggle('step-6')">
-    <div class="step-num">6</div>
-    <div class="step-title">Operation &amp; motorization</div>
-    <div class="step-val" id="sv-6"></div>
+<!-- STEP 5: OPERATION -->
+<div class="step-block" id="step-5">
+  <div class="step-head" onclick="crsToggle('step-5')">
+    <div class="step-num">5</div>
+    <div class="step-title">Operation</div>
+    <div class="step-val" id="sv-5"></div>
   </div>
   <div class="step-body">
-    <div class="opt-grid-2">
-      <div class="opt-card" id="motor-cord" onclick="crsPickMotor('cord','Manual cord loop')">
-        <div class="opt-card-title">Manual cord loop</div>
-        <div class="opt-card-desc">Continuous cord loop, left or right side. Standard, reliable.</div>
+    <div class="opt-row" id="crs-grp-motor">
+      <button class="opt-btn" id="motor-cord" onclick="crsPickMotor('cord','Manual chain')">Manual chain</button>
+      <button class="opt-btn" id="motor-cordless" onclick="crsPickMotor('cordless','Cordless')">Cordless</button>
+      <button class="opt-btn" id="motor-motorized" onclick="crsPickMotor('motorized','Motorized')">Motorized</button>
+    </div>
+    <div class="step-note">Manual chain: continuous bead chain, left or right side — standard and reliable. Cordless: push-up, no cords — safe for children &amp; pets. Motorized: smart motor with app, remote, voice control — multiple brands available.</div>
+
+    <!-- Cordless → Norman Soluna redirect -->
+    <div id="cordless-redirect" style="display:none;margin-top:14px;padding:14px 16px;background:#FFF8EC;border:1px solid #e8c96b;border-radius:10px">
+      <div style="font-size:13px;font-weight:700;color:#5a3a00;margin-bottom:6px">Better fit: Norman Soluna Roller Shades</div>
+      <div style="font-size:12px;color:#5a3a00;line-height:1.7;margin-bottom:10px">Norman Soluna includes a factory-engineered cordless spring-lift with tighter tolerances and a full manufacturer warranty — a better choice than in-house cordless fabrication.</div>
+      <a href="soluna-roller-shades.html" style="display:inline-block;font-size:13px;font-weight:600;color:#111110;background:var(--gold);padding:9px 18px;border-radius:8px;text-decoration:none;margin-right:10px">Go to Norman Soluna →</a>
+      <span style="font-size:11px;color:#888">or scroll down to submit a custom quote here</span>
+    </div>
+
+    <!-- Motorized sub-options -->
+    <div id="motor-subopts" style="display:none;margin-top:14px;padding-top:12px;border-top:1px solid #f0ede8">
+      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.3px;margin-bottom:10px">Motor brand</div>
+      <div class="opt-row">
+        <button class="opt-btn" id="msub-norman" onclick="crsPickMotorSub('norman-motor','Norman Smart')">Norman</button>
+        <button class="opt-btn" id="msub-rollease" onclick="crsPickMotorSub('rollease-motor','Rollease Automate')">Rollease Automate</button>
+        <button class="opt-btn" id="msub-lutron" onclick="crsPickMotorSub('lutron','Lutron')">Lutron</button>
+        <button class="opt-btn" id="msub-somfy" onclick="crsPickMotorSub('somfy','Somfy')">Somfy</button>
+        <button class="opt-btn" id="msub-other" onclick="crsPickMotorSub('other','Other / not sure')">Other / not sure</button>
       </div>
-      <div class="opt-card" id="motor-cordless" onclick="crsPickMotor('cordless','Cordless lift')">
-        <div class="opt-card-title">Cordless lift</div>
-        <div class="opt-card-desc">Push-up, spring-assisted. No cords — safe for children &amp; pets.</div>
-      </div>
-      <div class="opt-card" id="motor-lutron" onclick="crsPickMotor('lutron','Lutron Serena')">
-        <div class="opt-card-title">Lutron Serena</div>
-        <div class="opt-card-desc">Smart motor. App, voice, remote. Integrates with Lutron Caseta system.</div>
-      </div>
-      <div class="opt-card" id="motor-somfy" onclick="crsPickMotor('somfy','Somfy')">
-        <div class="opt-card-title">Somfy</div>
-        <div class="opt-card-desc">Smart motor. TaHoma app, remote, voice. Wide smart home compatibility.</div>
-      </div>
-      <div class="opt-card" id="motor-rollease" onclick="crsPickMotor('rollease','Rollease Acmeda')">
-        <div class="opt-card-title">Rollease Acmeda</div>
-        <div class="opt-card-desc">Smart motor. Automate app, remote. Rechargeable battery or hardwired.</div>
-      </div>
-      <div class="opt-card" id="motor-other" onclick="crsPickMotor('other','Other — specify in notes')">
-        <div class="opt-card-title">Other / not sure</div>
-        <div class="opt-card-desc">Specify brand preference in notes or ask during consultation.</div>
+      <div class="step-note">Norman Smart: app, voice (Alexa / Google / HomeKit), rechargeable or hardwired. Rollease Automate: app &amp; remote, rechargeable or hardwired, offered through Norman. Lutron: Caseta / RadioRA integration — custom quote. Somfy: TaHoma app &amp; remote, wide smart home compatibility — custom quote. Other / not sure: specify brand in notes or we'll discuss during consultation.</div>
+      <!-- Norman / Rollease → redirect to Norman Soluna -->
+      <div id="motor-soluna-redirect" style="display:none;margin-top:14px;padding:14px 16px;background:#FFF8EC;border:1px solid #e8c96b;border-radius:10px">
+        <div style="font-size:13px;font-weight:700;color:#5a3a00;margin-bottom:6px">Continue on Norman Soluna</div>
+        <div style="font-size:12px;color:#5a3a00;line-height:1.7;margin-bottom:10px">Norman and Rollease Automate motors are available directly in the Norman Soluna configurator — with full Norman warranty and factory pricing.</div>
+        <a href="soluna-roller-shades.html" style="display:inline-block;font-size:13px;font-weight:600;color:#111110;background:var(--gold);padding:9px 18px;border-radius:8px;text-decoration:none;margin-right:10px">Go to Norman Soluna →</a>
+        <span style="font-size:11px;color:#888">or scroll down to submit a custom quote here</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- STEP 8: DELIVERY -->
-<div class="step-block" id="step-8">
-  <div class="step-head" onclick="crsToggle('step-8')">
-    <div class="step-num">7</div>
+<!-- STEP 6: DELIVERY -->
+<div class="step-block done" id="step-6">
+  <div class="step-head" onclick="crsToggle('step-6')">
+    <div class="step-num">6</div>
     <div class="step-title">Delivery</div>
-    <div class="step-val" id="sv-8"></div>
+    <div class="step-val" id="sv-6">Ship (UPS/FedEx)</div>
   </div>
   <div class="step-body">
-    <div class="delivery-opt" id="del-ship" onclick="crsPickDelivery('ship')">
-      <div class="del-radio"></div>
+    <div class="delivery-opt sel" id="del-ship" onclick="crsPickDelivery('ship')">
+      <div class="del-radio" style="border-color:var(--gold);background:var(--gold)"></div>
       <div>
-        <div class="del-label">Ship to me</div>
-        <div class="del-sub">UPS or FedEx from Huntingdon Valley, PA. Lead time provided at quote.</div>
+        <div class="del-label">Shipped to me</div>
+        <div class="del-sub">UPS or FedEx. Lead time provided at quote.</div>
         <div class="tariff-note">Note: U.S. import tariffs may apply on some products. Any applicable duties are disclosed in your quote before payment.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- STEP 9: CONTACT & SUBMIT -->
-<div class="step-block" id="step-9">
-  <div class="step-head" onclick="crsToggle('step-9')">
-    <div class="step-num">8</div>
+<!-- STEP 7: CONTACT & SUBMIT -->
+<div class="step-block" id="step-7">
+  <div class="step-head" onclick="crsToggle('step-7')">
+    <div class="step-num">7</div>
     <div class="step-title">Your contact info</div>
-    <div class="step-val" id="sv-9"></div>
+    <div class="step-val" id="sv-7"></div>
   </div>
   <div class="step-body">
-    <div id="contact-form">
-      <div class="form-group">
-        <label>Your name *</label>
-        <input type="text" id="q-name" placeholder="Jane Smith" autocomplete="name">
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="q-email" placeholder="jane@example.com" autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" id="q-phone" placeholder="(215) 555-0100" autocomplete="tel">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Notes / questions</label>
-        <textarea id="q-notes" placeholder="Window location, existing hardware, cord side preference, timeline, any questions…"></textarea>
-      </div>
-      <!-- Honeypot -->
-      <input type="text" id="q-hp" style="display:none" tabindex="-1" autocomplete="off">
-    </div>
+    <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
+    <div id="pb-final-step"></div>
     <div class="success-box" id="success-box">
       <h4>Order submitted!</h4>
       <p>Justin will review your specs and get back to you with a custom quote — usually within a few hours. Call or text anytime: <a href="tel:6097421720" style="color:var(--gold)">(609) 742-1720</a>.</p>
@@ -458,15 +440,21 @@
 <!-- ── QUOTE PANEL ── -->
 <div class="quote-panel" id="quote-panel">
   <div class="qp-title">Your order</div>
-  <div class="qp-pending" id="qp-pending">Enter your window size above to start building your order.</div>
+  <div class="qp-pending" id="qp-pending">Enter your window measurements above to start building your order.</div>
   <div id="qp-rows"></div>
   <div class="qdiv" id="qp-div" style="display:none"></div>
-  <div class="qnote" id="qp-note" style="display:none">No pricing shown — Justin quotes each custom shade personally after reviewing your specs.</div>
+  <!-- Price breakdown (shown when dims + type selected) -->
+  <div id="qp-price" style="display:none;margin-top:4px;background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px">
+    <div id="qp-price-rows"></div>
+    <div style="border-top:.5px solid var(--border-dark);margin-top:8px;padding-top:8px;display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:var(--cream)">
+      <span>Estimated total</span><span id="qp-total">—</span>
+    </div>
+    <div style="font-size:10px;color:var(--text-faint);margin-top:6px;line-height:1.5;font-style:italic">Estimate — confirmed at quote. No payment until you approve.</div>
+  </div>
+  <div class="qnote" id="qp-note" style="display:none">Add dimensions above to see your price estimate.</div>
 
   <div id="submit-wrap">
-    <button onclick="addCustomRollerToCart()" class="btn-cart-add" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
-    <button onclick="crsSubmit()" id="submit-btn" class="btn-gold" style="width:100%;padding:14px;font-size:15px;font-weight:600;margin-top:16px;border:none;cursor:pointer;border-radius:10px">Submit Order for Review</button>
-    <div class="submit-note">No payment required now. Justin reviews your specs and sends a custom quote.</div>
+    <div class="submit-note">No payment required now. Justin reviews your specs and sends a custom quote. Complete your details in Step 7 to submit.</div>
   </div>
 </div>
 
@@ -474,6 +462,12 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
+<script src="../js/fabric-picker.js"></script>
 <script src="../js/pages/custom-roller-shades.js"></script>
+<script>
+// Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-final-step').innerHTML =
+  pbContactStepHTML({ bare: true, cartFn: 'addCustomRollerToCart()', submitFn: 'crsSubmit()' });
+</script>
 </body>
 </html>

@@ -1,21 +1,21 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Wallace Portfolio Collection Dual Sheer Shades — light-filtering and room-darkening fabrics, 95+ patterns, full control and cassette options. Custom quote.">
+<meta name="description" content="Wallace Portfolio Dual Sheer Shades — 95+ light-filtering &amp; Blackout patterns, full control &amp; cassette options. Philadelphia area.">
 <meta property="og:url" content="https://blindznation.com/pages/portfolio-dual-sheer.html">
 <meta property="og:title" content="Portfolio Collection™ Dual Sheer Shades — Blindznation">
-<meta property="og:description" content="Wallace Portfolio Collection Dual Sheer Shades — light-filtering and room-darkening fabrics, 95+ patterns, full control and cassette options. Custom quote.">
+<meta property="og:description" content="Wallace Portfolio Dual Sheer Shades — 95+ light-filtering &amp; Blackout patterns, full control &amp; cassette options. Philadelphia area.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Blindznation">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Portfolio Collection™ Dual Sheer Shades — Blindznation">
-<meta name="twitter:description" content="Wallace Portfolio Collection Dual Sheer Shades — light-filtering and room-darkening fabrics, 95+ patterns, full control and cassette options. Custom quote.">
+<meta name="twitter:description" content="Wallace Portfolio Dual Sheer Shades — 95+ light-filtering &amp; Blackout patterns, full control &amp; cassette options. Philadelphia area.">
 <meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="https://blindznation.com/img/social-preview.png">
-<meta property="og:site_name" content="Blindznation">
 <title>Portfolio Collection™ Dual Sheer Shades — Blindznation</title>
 <link rel="stylesheet" href="../css/global.css">
 <style>
@@ -30,16 +30,13 @@
 
 /* STEP CARDS */
 .cfg-wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
-.step-card{background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:22px 24px;margin-bottom:16px;display:block}
-.step-card.active{border-color:rgba(200,151,63,.35);box-shadow:0 2px 18px rgba(200,151,63,.1)}
-.step-card.done{border-color:#e8e8e4}
-.step-card.done .step-body{display:block}
-.step-card.done .step-done-row{display:none}
+.step-block.done{border-color:#e8e8e4}
+.step-block.done:not(.active) .step-body{display:none}
+.step-block.done .step-done-row{display:flex}
 .step-done-row{display:none;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .step-done-val{font-size:13px;color:#444;font-weight:500}
 .step-edit-btn{font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;font-family:var(--font);padding:0;text-decoration:underline}
 .step-hd{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .step-title{font-size:14px;font-weight:600;color:#111;margin:0}
 .step-sub{font-size:12px;color:#777;margin-top:3px}
 .step-note{font-size:11px;color:#888;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px;padding:9px 12px;margin-bottom:14px;line-height:1.6}
@@ -50,7 +47,7 @@
 .opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
 .opt-btn{background:#fff;border:1.5px solid #e0e0db;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:500;color:#333;cursor:pointer;transition:border-color .15s,background .15s;font-family:var(--font);text-align:left}
 .opt-btn:hover{border-color:var(--gold)}
-.opt-btn.sel{border:2px solid var(--gold);background:#fef9ef;color:var(--espresso)}
+.opt-btn.sel{border:2px solid var(--gold);background:var(--gold-mid);color:var(--espresso)}
 .opt-btn.disabled{opacity:.35;pointer-events:none;text-decoration:line-through}
 .opt-btn-lg{min-width:160px;padding:12px 18px}
 .opt-btn-sm{padding:7px 12px;font-size:12px;border-radius:8px}
@@ -60,7 +57,7 @@
 @media(max-width:520px){.type-cards{grid-template-columns:1fr}}
 .type-card{background:#fff;border:1.5px solid #e0e0db;border-radius:12px;padding:16px 18px;cursor:pointer;transition:border-color .15s,box-shadow .15s;font-family:var(--font)}
 .type-card:hover{border-color:var(--gold)}
-.type-card.sel{border:2px solid var(--gold);background:#fef9ef}
+.type-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .type-card-name{font-size:14px;font-weight:700;color:#111;margin-bottom:4px}
 .type-card.sel .type-card-name{color:var(--espresso)}
 .type-card-desc{font-size:12px;color:#888;line-height:1.5}
@@ -73,7 +70,7 @@
 .color-chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px}
 .color-chip{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid #e0e0db;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:500;color:#333;cursor:pointer;transition:border-color .12s;font-family:var(--font)}
 .color-chip:hover{border-color:var(--gold)}
-.color-chip.sel{border:2px solid var(--gold);background:#fef9ef;color:var(--espresso)}
+.color-chip.sel{border:2px solid var(--gold);background:var(--gold-mid);color:var(--espresso)}
 .color-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
 .tory-note{font-size:10px;color:#888;padding:0 12px 8px;font-style:italic}
 
@@ -136,16 +133,6 @@
 .form-input:focus{outline:none;border-color:var(--gold)}
 textarea.form-input{resize:vertical;min-height:80px}
 
-/* DELIVERY */
-.delivery-block{background:#f7f4ef;border-radius:10px;padding:16px;margin-bottom:16px}
-.delivery-title{font-size:12px;font-weight:700;color:#333;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
-.delivery-opts{display:flex;flex-direction:column;gap:8px}
-.delivery-opt{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
-.delivery-opt input[type=radio]{margin-top:3px;flex-shrink:0;accent-color:var(--gold)}
-.delivery-opt-body{font-size:12px;color:#444;line-height:1.6}
-.delivery-opt-body strong{display:block;font-size:13px;color:#111;margin-bottom:2px}
-.tariff-note{font-size:10px;color:#888;margin-top:4px;padding:6px 8px;background:#fff;border-radius:6px;border:1px solid #e8e8e4}
-
 /* SUBMIT */
 .submit-btn{display:block;width:100%;background:var(--gold);color:var(--espresso);font-size:15px;font-weight:700;padding:14px 20px;border:none;border-radius:10px;cursor:pointer;font-family:var(--font);letter-spacing:0.2px;transition:opacity .15s}
 .submit-btn:hover{opacity:.88}
@@ -170,15 +157,15 @@ textarea.form-input{resize:vertical;min-height:80px}
 .tier-btn.tier-active .tier-badge-premium{background:rgba(255,255,255,.18);color:var(--gold)}
 </style>
 </head>
-<body>
+<body data-page="Shades & blinds">
 
 <nav class="site-nav" id="site-nav"></nav>
 
 <div class="page-hero">
   <div class="hero-inner">
-    <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="shades.html">Shades &amp; Blinds</a> &rsaquo; Portfolio Dual Sheer Shades</div>
+    <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; <a href="wallace-banded-shades.html">Banded Shades</a> &rsaquo; Portfolio Dual Sheer</div>
     <h1>Portfolio Collection™<br>Dual Sheer Shades</h1>
-    <p>Wallace · 95+ fabrics · Light-filtering &amp; room-darkening · Bands 3" – 4¾" · Up to 110" wide</p>
+    <p>Wallace · 95+ fabrics · Light-filtering &amp; Blackout · Bands 3" – 4¾" · Up to 110" wide</p>
     <div class="hero-badges">
       <span class="badge badge-quote">Configure &amp; quote</span>
       <span class="badge badge-motor">Clutch · Cordless · Pro Wand · Remote Motor</span>
@@ -198,11 +185,55 @@ textarea.form-input{resize:vertical;min-height:80px}
 
 <div class="cfg-wrap">
 
-  <!-- STEP 1: Fabric Type -->
-  <div class="step-card active" id="s1">
+  <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT -->
+  <div class="step-block active" id="s1">
     <div class="step-hd">
       <div class="step-num">1</div>
-      <div><div class="step-title">Fabric Type</div><div class="step-sub">Choose light-filtering or room-darkening</div></div>
+      <div><div class="step-title">Window measurements &amp; mount</div><div class="step-sub">Enter your window size — order to the nearest 1/8"</div></div>
+    </div>
+    <div class="step-body">
+      <div class="dim-box">
+        <div class="dim-box-label">Enter your window size</div>
+        <div class="form-row">
+          <div class="form-group"><label>Width</label><input type="number" id="inp-w" min="16" max="110" step="0.125" placeholder="e.g. 36" oninput="dimChanged()"><div class="dim-unit">inches &middot; 16&Prime; min &middot; 110&Prime; max</div></div>
+          <div class="form-group"><label>Height</label><input type="number" id="inp-h" min="20" max="108" step="0.125" placeholder="e.g. 72" oninput="dimChanged()"><div class="dim-unit">inches &middot; 20&Prime; min &middot; 108&Prime; max (99&Prime; for cordless)</div></div>
+        </div>
+      </div>
+      <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine — we confirm at the home visit.</div>
+      <div class="step-note" id="dim-note-mount">Measure your window opening. For Inside mount, ¼" will be deducted from width.</div>
+      <div class="dim-hint" id="w-hint">Max width 110" · varies slightly by fabric</div>
+      <div class="dim-err" id="w-err"></div>
+      <div class="dim-err" id="h-err"></div>
+      <div class="step-warn" id="dim-warn-sbs">If ordering side-by-side, all shades must be the exact same length for band matching.</div>
+
+      <!-- Mount type -->
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
+      <div class="opt-row" id="mount-opts" style="margin-bottom:6px">
+        <button class="opt-btn opt-btn-lg" onclick="pickMount('inside',this)">Inside mount</button>
+        <button class="opt-btn opt-btn-lg" onclick="pickMount('outside',this)">Outside mount</button>
+      </div>
+      <div class="step-note" style="margin-bottom:12px">Inside mount: shade installs inside the window frame — ¼" deducted from ordered width. Outside mount: shade mounts on the wall or frame above the window.</div>
+
+      <!-- Quantity (shared stepper) -->
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:12px;color:#666">Qty:</span>
+        <div class="qty-btns">
+          <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
+          <input class="qty-num" type="number" id="qty-inp" value="1" min="1" max="50" oninput="S.qty=parseInt(this.value)||1;updatePrice()">
+          <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+        </div>
+        <span style="font-size:12px;color:#666">shade(s) of this size &amp; fabric</span>
+      </div>
+      <button class="next-btn" onclick="confirmStep1()" id="dim-next-btn">Continue</button>
+    </div>
+    <div class="step-done-row"><span class="step-done-val" id="d1"></span><button class="step-edit-btn" onclick="editStep(1)">Edit</button></div>
+  </div>
+
+  <!-- STEP 2: Fabric Type -->
+  <div class="step-block" id="s2">
+    <div class="step-hd">
+      <div class="step-num">2</div>
+      <div><div class="step-title">Fabric Type</div><div class="step-sub">Choose light-filtering or Blackout</div></div>
     </div>
     <div class="step-body">
       <div class="type-cards">
@@ -211,74 +242,30 @@ textarea.form-input{resize:vertical;min-height:80px}
           <div class="type-card-desc">16 pattern families · Addison, Alaia, Albion, Asher, Theo &amp; more · Bands 3"–4¾"</div>
         </div>
         <div class="type-card" onclick="pickType('RD',this)" id="tc-RD">
-          <div class="type-card-name">Room-Darkening</div>
+          <div class="type-card-name">Blackout</div>
           <div class="type-card-desc">9 pattern families · Brantley, Briggs, Evlin, Kane, Lena &amp; more · Large bottom bar included</div>
         </div>
       </div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d1"></span><button class="step-edit-btn" onclick="editStep(1)">Edit</button></div>
+    <div class="step-done-row"><span class="step-done-val" id="d2"></span><button class="step-edit-btn" onclick="editStep(2)">Edit</button></div>
   </div>
 
-  <!-- STEP 2: Fabric Pattern -->
-  <div class="step-card" id="s2">
+  <!-- STEP 3: Fabric Pattern -->
+  <div class="step-block" id="s3">
     <div class="step-hd">
-      <div class="step-num">2</div>
+      <div class="step-num">3</div>
       <div><div class="step-title">Select Fabric &amp; Color</div><div class="step-sub">Group A is best value · Group E is premium</div></div>
     </div>
     <div class="step-body">
       <div id="fabric-grid" class="pattern-grid"></div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d2"></span><button class="step-edit-btn" onclick="editStep(2)">Edit</button></div>
-  </div>
-
-  <!-- STEP 3: Mount Type -->
-  <div class="step-card" id="s3">
-    <div class="step-hd">
-      <div class="step-num">3</div>
-      <div><div class="step-title">Mount Type</div></div>
-    </div>
-    <div class="step-body">
-      <div class="step-note">Inside Mount: shade installs inside the window frame — ¼" deducted from ordered width.<br>Outside Mount: shade mounts on the wall or frame above the window.</div>
-      <div class="opt-row">
-        <button class="opt-btn opt-btn-lg" onclick="pickMount('inside',this)">Inside Mount</button>
-        <button class="opt-btn opt-btn-lg" onclick="pickMount('outside',this)">Outside Mount</button>
-      </div>
-    </div>
     <div class="step-done-row"><span class="step-done-val" id="d3"></span><button class="step-edit-btn" onclick="editStep(3)">Edit</button></div>
   </div>
 
-  <!-- STEP 4: Dimensions -->
-  <div class="step-card" id="s4">
+  <!-- STEP 4: Cassette Profile -->
+  <div class="step-block" id="s4">
     <div class="step-hd">
       <div class="step-num">4</div>
-      <div><div class="step-title">Dimensions</div><div class="step-sub">Enter your window size — order to the nearest 1/8"</div></div>
-    </div>
-    <div class="step-body">
-      <div class="step-note" id="dim-note-mount">Measure your window opening. For Inside Mount, ¼" will be deducted from width.</div>
-      <div class="dims-grid">
-        <div class="dim-group">
-          <label>Width (inches)</label>
-          <input class="dim-input" type="number" id="inp-w" min="1" max="110" step="0.125" placeholder="e.g. 36" oninput="dimChanged()">
-          <div class="dim-hint" id="w-hint">Max width for selected fabric</div>
-          <div class="dim-err" id="w-err"></div>
-        </div>
-        <div class="dim-group">
-          <label>Height / Length (inches)</label>
-          <input class="dim-input" type="number" id="inp-h" min="1" max="108" step="0.125" placeholder="e.g. 72" oninput="dimChanged()">
-          <div class="dim-hint">Min 20" · Max 108" (99" for cordless)</div>
-          <div class="dim-err" id="h-err"></div>
-        </div>
-      </div>
-      <div class="step-warn" id="dim-warn-sbs">If ordering side-by-side, all shades must be the exact same length for band matching.</div>
-      <button class="next-btn" onclick="confirmDims()" id="dim-next-btn">Continue</button>
-    </div>
-    <div class="step-done-row"><span class="step-done-val" id="d4"></span><button class="step-edit-btn" onclick="editStep(4)">Edit</button></div>
-  </div>
-
-  <!-- STEP 5: Cassette Profile -->
-  <div class="step-card" id="s5">
-    <div class="step-hd">
-      <div class="step-num">5</div>
       <div><div class="step-title">Cassette Profile</div></div>
     </div>
     <div class="step-body">
@@ -288,13 +275,13 @@ textarea.form-input{resize:vertical;min-height:80px}
         <button class="opt-btn opt-btn-lg" onclick="pickCassette('square',this)">Square <span style="font-size:11px;color:#888">(unwrapped standard)</span></button>
       </div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d5"></span><button class="step-edit-btn" onclick="editStep(5)">Edit</button></div>
+    <div class="step-done-row"><span class="step-done-val" id="d4"></span><button class="step-edit-btn" onclick="editStep(4)">Edit</button></div>
   </div>
 
-  <!-- STEP 6: Cassette Color -->
-  <div class="step-card" id="s6">
+  <!-- STEP 5: Cassette Color -->
+  <div class="step-block" id="s5">
     <div class="step-hd">
-      <div class="step-num">6</div>
+      <div class="step-num">5</div>
       <div><div class="step-title">Cassette &amp; Hardware Color</div><div class="step-sub">Bottom bar and cord color will match</div></div>
     </div>
     <div class="step-body">
@@ -309,13 +296,13 @@ textarea.form-input{resize:vertical;min-height:80px}
       </div>
       <div class="step-note" style="margin-top:8px">Tip: choose the color that matches your selected fabric's recommended component color: <strong id="rec-comp-color">—</strong></div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d6"></span><button class="step-edit-btn" onclick="editStep(6)">Edit</button></div>
+    <div class="step-done-row"><span class="step-done-val" id="d5"></span><button class="step-edit-btn" onclick="editStep(5)">Edit</button></div>
   </div>
 
-  <!-- STEP 7: Cassette Wrap (Square only) -->
-  <div class="step-card" id="s7">
+  <!-- STEP 6: Cassette Wrap (Square only) -->
+  <div class="step-block" id="s6">
     <div class="step-hd">
-      <div class="step-num">7</div>
+      <div class="step-num">6</div>
       <div><div class="step-title">Square Cassette — Fabric Wrap</div></div>
     </div>
     <div class="step-body">
@@ -325,13 +312,13 @@ textarea.form-input{resize:vertical;min-height:80px}
         <button class="opt-btn opt-btn-lg" onclick="pickCassWrap(true,this)">Fabric Wrapped <span style="font-size:11px;color:#888">(+$80)</span></button>
       </div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d7"></span><button class="step-edit-btn" onclick="editStep(7)">Edit</button></div>
+    <div class="step-done-row"><span class="step-done-val" id="d6"></span><button class="step-edit-btn" onclick="editStep(6)">Edit</button></div>
   </div>
 
-  <!-- STEP 8: Bottom Bar -->
-  <div class="step-card" id="s8">
+  <!-- STEP 7: Bottom Bar -->
+  <div class="step-block" id="s7">
     <div class="step-hd">
-      <div class="step-num">8</div>
+      <div class="step-num">7</div>
       <div><div class="step-title">Bottom Bar</div></div>
     </div>
     <div class="step-body">
@@ -352,13 +339,13 @@ textarea.form-input{resize:vertical;min-height:80px}
         </div>
       </div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d8"></span><button class="step-edit-btn" onclick="editStep(8)">Edit</button></div>
+    <div class="step-done-row"><span class="step-done-val" id="d7"></span><button class="step-edit-btn" onclick="editStep(7)">Edit</button></div>
   </div>
 
-  <!-- STEP 9: Control Type -->
-  <div class="step-card" id="s9">
+  <!-- STEP 8: Control Type -->
+  <div class="step-block" id="s8">
     <div class="step-hd">
-      <div class="step-num">9</div>
+      <div class="step-num">8</div>
       <div><div class="step-title">Control Type</div></div>
     </div>
     <div class="step-body">
@@ -382,14 +369,26 @@ textarea.form-input{resize:vertical;min-height:80px}
       </div>
       <div class="step-warn" id="cordless-tory-warn">Cordless is not available with Tory fabrics.</div>
     </div>
+    <div class="step-done-row"><span class="step-done-val" id="d8"></span><button class="step-edit-btn" onclick="editStep(8)">Edit</button></div>
+  </div>
+
+  <!-- STEP 9: Control Accessories -->
+  <div class="step-block" id="s9">
+    <div class="step-hd">
+      <div class="step-num">9</div>
+      <div><div class="step-title" id="s9-title">Control Options</div></div>
+    </div>
+    <div class="step-body" id="s9-body">
+      <!-- Populated by JS -->
+    </div>
     <div class="step-done-row"><span class="step-done-val" id="d9"></span><button class="step-edit-btn" onclick="editStep(9)">Edit</button></div>
   </div>
 
-  <!-- STEP 10: Control Accessories -->
-  <div class="step-card" id="s10">
+  <!-- STEP 10: Remote Motor Accessories -->
+  <div class="step-block" id="s10">
     <div class="step-hd">
       <div class="step-num">10</div>
-      <div><div class="step-title" id="s10-title">Control Options</div></div>
+      <div><div class="step-title">Motor Accessories</div><div class="step-sub">Add remotes, hubs, power supplies &amp; extensions</div></div>
     </div>
     <div class="step-body" id="s10-body">
       <!-- Populated by JS -->
@@ -397,22 +396,10 @@ textarea.form-input{resize:vertical;min-height:80px}
     <div class="step-done-row"><span class="step-done-val" id="d10"></span><button class="step-edit-btn" onclick="editStep(10)">Edit</button></div>
   </div>
 
-  <!-- STEP 11: Remote Motor Accessories -->
-  <div class="step-card" id="s11">
+  <!-- STEP 11: Side-by-Side -->
+  <div class="step-block" id="s11">
     <div class="step-hd">
       <div class="step-num">11</div>
-      <div><div class="step-title">Motor Accessories</div><div class="step-sub">Add remotes, hubs, power supplies &amp; extensions</div></div>
-    </div>
-    <div class="step-body" id="s11-body">
-      <!-- Populated by JS -->
-    </div>
-    <div class="step-done-row"><span class="step-done-val" id="d11"></span><button class="step-edit-btn" onclick="editStep(11)">Edit</button></div>
-  </div>
-
-  <!-- STEP 12: Side-by-Side -->
-  <div class="step-card" id="s12">
-    <div class="step-hd">
-      <div class="step-num">12</div>
       <div><div class="step-title">Side-by-Side Ordering</div></div>
     </div>
     <div class="step-body">
@@ -430,31 +417,13 @@ textarea.form-input{resize:vertical;min-height:80px}
         </div>
       </div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d12"></span><button class="step-edit-btn" onclick="editStep(12)">Edit</button></div>
+    <div class="step-done-row"><span class="step-done-val" id="d11"></span><button class="step-edit-btn" onclick="editStep(11)">Edit</button></div>
   </div>
 
-  <!-- STEP 13: Quantity -->
-  <div class="step-card" id="s13">
+  <!-- STEP 12: Price + Quote -->
+  <div class="step-block" id="s12">
     <div class="step-hd">
-      <div class="step-num">13</div>
-      <div><div class="step-title">Quantity</div></div>
-    </div>
-    <div class="step-body">
-      <div class="qty-wrap" style="margin-bottom:10px">
-        <button class="qty-btn" onclick="adjQty(-1)">−</button>
-        <input class="qty-num" type="number" id="qty-inp" value="1" min="1" max="50" oninput="S.qty=parseInt(this.value)||1;updatePrice()">
-        <button class="qty-btn" onclick="adjQty(1)">+</button>
-      </div>
-      <div style="font-size:11px;color:#888">Shades configured the same. Use separate quote requests for different configurations.</div>
-      <button class="next-btn" onclick="advanceFromQty()">Continue to Quote</button>
-    </div>
-    <div class="step-done-row"><span class="step-done-val" id="d13"></span><button class="step-edit-btn" onclick="editStep(13)">Edit</button></div>
-  </div>
-
-  <!-- STEP 14: Price + Quote -->
-  <div class="step-card" id="s14">
-    <div class="step-hd">
-      <div class="step-num">14</div>
+      <div class="step-num">12</div>
       <div><div class="step-title">Price Estimate &amp; Quote Request</div></div>
     </div>
     <div class="step-body">
@@ -466,36 +435,28 @@ textarea.form-input{resize:vertical;min-height:80px}
         <div class="price-note">Estimated retail — confirmed with current Wallace Blinds 2026 price book. Final pricing confirmed at time of order. Freight not included.</div>
       </div>
 
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input class="form-input" type="text" id="inp-name" placeholder="First &amp; last name" oninput="S.name=this.value">
-        </div>
-        <div class="form-group">
-          <label>Phone / Email</label>
-          <input class="form-input" type="text" id="inp-phone" placeholder="Best way to reach you" oninput="S.phone=this.value">
+      <div class="delivery-opt-grid" id="delivery-grid">
+        <div class="delivery-opt-card sel" onclick="pickDelivery('ship',this)">
+          <div class="delivery-opt-title">Ship to me</div>
+          <div class="delivery-opt-body">UPS or FedEx. We'll confirm shipping cost with your quote. Tariffs may apply.</div>
         </div>
       </div>
-      <div class="form-group" style="margin-bottom:12px">
-        <label>Notes (optional)</label>
-        <textarea class="form-input" id="inp-notes" placeholder="Room, window name, installation notes, questions..." oninput="S.notes=this.value"></textarea>
-      </div>
 
-      <div class="delivery-section">
-        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA. We'll confirm shipping cost with your quote.<div class="delivery-tariff">Note: tariffs and import fees are additional and will be itemized separately.</div></div>
-      </div>
-
-      <button class="btn-cart-add" onclick="addPortfolioDualSheerToCart()" style="margin-bottom:8px">+ Add to Cart</button>
-      <button class="submit-btn" onclick="submitQuote()">Send Quote Request →</button>
+      <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
+      <div id="pb-final-step"></div>
       <div style="font-size:11px;color:#aaa;margin-top:10px;text-align:center">Opens your email with all specs pre-filled</div>
     </div>
   </div>
 
 </div><!-- /cfg-wrap -->
 
+<footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/portfolio-dual-sheer.js"></script>
 <script>
+// Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-final-step').innerHTML =
+  pbContactStepHTML({ bare: true, cartFn: 'addPortfolioDualSheerToCart()', submitFn: 'submitQuote()' });
 (function() {
   pbCtx.prefill('inp-w',   'w',   function(v) { if (typeof dimChanged === 'function') dimChanged(); });
   pbCtx.prefill('inp-h',   'h',   function(v) { if (typeof dimChanged === 'function') dimChanged(); });

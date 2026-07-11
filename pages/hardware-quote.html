@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Configure and price drapery hardware online — rods, finials, brackets, rings, and motorized traverse. Paris Texas, Select Metal, Kirsch.">
+<meta name="description" content="Configure and price drapery hardware online — rods, finials, brackets, rings, and motorized traverse. Paris Texas, Select Metal, Kirsch. Serving Philadelphia area.">
 <meta property="og:title" content="Drapery Hardware Configurator | Blindznation">
-<meta property="og:description" content="Configure and price drapery hardware online — rods, finials, brackets, rings, and motorized traverse. Paris Texas, Select Metal, Kirsch.">
+<meta property="og:description" content="Configure and price drapery hardware online — rods, finials, brackets, rings, and motorized traverse. Paris Texas, Select Metal, Kirsch. Serving Philadelphia area.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Drapery Hardware Configurator | Blindznation">
-<meta name="twitter:description" content="Custom window treatments by Blindznation.">
+<meta name="twitter:description" content="Custom window treatments.">
 <meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -26,19 +26,11 @@
 .page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:18px}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
-.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 
 .config-layout{display:grid;grid-template-columns:1fr 308px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
 
-.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden}
-.step-block.active{box-shadow:0 2px 18px rgba(200,151,63,.1);border-color:rgba(200,151,63,.3)}
-.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
-.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
-.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
-.step-head-val{font-size:12px;color:var(--gold);font-weight:500;max-width:180px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.step-body{padding:4px 20px 20px;display:none}
 .step-block.active .step-body,.step-block.open .step-body{display:block}
 
 .opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
@@ -47,9 +39,9 @@
 @media(max-width:520px){.opt-grid-3{grid-template-columns:1fr 1fr}.opt-grid-4{grid-template-columns:1fr 1fr}}
 .opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:12px 11px;cursor:pointer;text-align:center;transition:all .15s}
 .opt-card:hover{border-color:var(--gold)}
-.opt-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px}
-.opt-card.sel .opt-card-title{color:#7A4F00}
+.opt-card.sel .opt-card-title{color:#0A4A42}
 .opt-card-desc{font-size:11px;color:#666;line-height:1.4}
 .opt-card-price{font-size:11px;font-weight:600;color:var(--gold);margin-top:4px}
 
@@ -64,11 +56,11 @@
 .finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin-top:10px}
 .finish-card{border:1.5px solid #e8e8e4;border-radius:8px;padding:6px 5px;cursor:pointer;text-align:center;transition:all .15s}
 .finish-card:hover{border-color:var(--gold)}
-.finish-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.06)}
+.finish-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .finish-swatch{height:28px;border-radius:4px;margin-bottom:4px}
 .finish-name{font-size:9px;color:#333;line-height:1.3;font-weight:500}
 
-.info-box{background:rgba(200,151,63,.08);border:1px solid rgba(200,151,63,.25);border-radius:8px;padding:10px 13px;font-size:12px;color:#7A4F00;margin-top:8px;line-height:1.6}
+.info-box{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:10px 13px;font-size:12px;color:#0A4A42;margin-top:8px;line-height:1.6}
 .warn-box{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:10px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.6}
 
 /* Quote panel */
@@ -83,7 +75,7 @@
 .qtotal-label{color:var(--cream)}
 .qtotal-val{color:var(--gold)}
 .qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.5}
-.qbrand{font-size:10px;background:rgba(200,151,63,.15);color:var(--gold);padding:1px 6px;border-radius:3px;margin-left:4px}
+.qbrand{font-size:10px;background:rgba(45,224,193,.15);color:var(--gold);padding:1px 6px;border-radius:3px;margin-left:4px}
 
 /* Form */
 .form-group{margin-bottom:14px}
@@ -93,12 +85,7 @@
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
 .delivery-wrap{background:#F9F7F4;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px;margin-bottom:14px}
-.del-btns{display:flex;gap:8px;margin:8px 0 10px}
-.del-btn{flex:1;padding:8px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;background:#fff;transition:all .15s}
-.del-btn.sel{border-color:var(--gold);color:var(--gold);background:rgba(200,151,63,.05)}
-.del-note{font-size:11px;color:#555;line-height:1.6}
-.del-tariff{font-size:10px;color:#888;margin-top:4px;font-style:italic}
-.submit-btn{width:100%;padding:14px;background:var(--gold);color:#1C1510;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;margin-top:2px}
+.submit-btn{width:100%;padding:14px;background:var(--gold);color:#111110;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;margin-top:2px}
 .submit-btn:hover{opacity:.88}
 .form-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-bottom:10px;display:none}
 .success-box{background:#EEFBE8;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;display:none}
@@ -106,7 +93,7 @@
 .success-box p{font-size:13px;color:#166534;line-height:1.6}
 </style>
 </head>
-<body>
+<body data-page="Hardware">
 <nav class="site-nav" id="site-nav"></nav>
 
 <div class="page-hero">
@@ -135,31 +122,21 @@
       <div class="step-head-val" id="s1val">—</div>
     </div>
     <div class="step-body">
-      <div class="opt-grid-2">
-        <div class="opt-card" onclick="pickBrand(this,'pt','Paris Texas','Decorative')">
-          <div class="opt-card-title">Paris Texas Hardware</div>
-          <div class="opt-card-desc">Premium decorative rods · 35 finishes · 1⅝&Prime; &amp; 1⅞&Prime; · Retail pricing</div>
-        </div>
-        <div class="opt-card" onclick="pickBrand(this,'sm','Select Metal','Decorative')">
-          <div class="opt-card-title">Select Metal</div>
-          <div class="opt-card-desc">Brass &amp; steel decorative rods · ¾&Prime; &amp; 1⅜&Prime; · 8 finishes</div>
-        </div>
-        <div class="opt-card" onclick="pickBrand(this,'kdm','Kirsch Designer Metals','Decorative')">
-          <div class="opt-card-title">Kirsch Designer Metals</div>
-          <div class="opt-card-desc">Decorative metal rods · 1&Prime; diameter · 6 classic finishes</div>
-        </div>
-        <div class="opt-card" onclick="pickBrand(this,'kb','Kirsch Basic','Traverse')">
-          <div class="opt-card-title">Kirsch Superfine Pro</div>
-          <div class="opt-card-desc">Functional traverse rods · split draw &amp; one-way · white only</div>
-        </div>
-        <div class="opt-card" onclick="pickBrand(this,'moto','Motorized Traverse','Motorized')">
-          <div class="opt-card-title">Motorized Drapery Track</div>
-          <div class="opt-card-desc">Sonoran motorized track · app / remote / wall switch control</div>
-        </div>
-        <div class="opt-card" onclick="pickBrand(this,'other','Other / Not Sure','Custom')">
-          <div class="opt-card-title">Other / Not Sure</div>
-          <div class="opt-card-desc">Orion, The Finial Company, or not sure — we&rsquo;ll recommend</div>
-        </div>
+      <div class="opt-row">
+        <button class="opt-btn" onclick="pickBrand(this,'pt','Paris Texas','Decorative')">Paris Texas Hardware</button>
+        <button class="opt-btn" onclick="pickBrand(this,'sm','Select Metal','Decorative')">Select Metal</button>
+        <button class="opt-btn" onclick="pickBrand(this,'kdm','Kirsch Designer Metals','Decorative')">Kirsch Designer Metals</button>
+        <button class="opt-btn" onclick="pickBrand(this,'kb','Kirsch Basic','Traverse')">Kirsch Superfine Pro</button>
+        <button class="opt-btn" onclick="pickBrand(this,'moto','Motorized Traverse','Motorized')">Motorized Drapery Track</button>
+        <button class="opt-btn" onclick="pickBrand(this,'other','Other / Not Sure','Custom')">Other / Not Sure</button>
+      </div>
+      <div class="step-note">
+        <strong>Paris Texas Hardware</strong> — Premium decorative rods · 35 finishes · 1⅝&Prime; &amp; 1⅞&Prime; · Retail pricing<br>
+        <strong>Select Metal</strong> — Brass &amp; steel decorative rods · ¾&Prime; &amp; 1⅜&Prime; · 8 finishes<br>
+        <strong>Kirsch Designer Metals</strong> — Decorative metal rods · 1&Prime; diameter · 6 classic finishes<br>
+        <strong>Kirsch Superfine Pro</strong> — Functional traverse rods · split draw &amp; one-way · white only<br>
+        <strong>Motorized Drapery Track</strong> — Sonoran motorized track · app / remote / wall switch control<br>
+        <strong>Other / Not Sure</strong> — Orion, The Finial Company, or not sure — we&rsquo;ll recommend
       </div>
     </div>
   </div>
@@ -268,23 +245,17 @@
         <div id="checklist-items" style="font-size:12px;color:#78350F;line-height:1.8"></div>
       </div>
 
-      <div class="form-row">
-        <div class="form-group"><label>Name *</label><input type="text" id="f-name" placeholder="Jane Smith" oninput="updateSubmitState()"></div>
-        <div class="form-group"><label>Phone *</label><input type="tel" id="f-phone" placeholder="(215) 555-0100" oninput="updateSubmitState()"></div>
-      </div>
-      <div class="form-group"><label>Email *</label><input type="email" id="f-email" placeholder="jane@example.com" oninput="updateSubmitState()"></div>
-      <div class="form-group"><label>Notes <span style="font-weight:400;color:#999">(room, fabric weight, existing hardware, etc.)</span></label><textarea id="f-notes" placeholder="e.g. master bedroom, 96&quot; panels, replacing brass rods…"></textarea></div>
       <div class="delivery-wrap">
         <div style="font-size:13px;font-weight:500;color:#333;margin-bottom:8px">Delivery</div>
-        <div class="del-btns">
-          <button class="del-btn sel" id="del-ship" onclick="pickDel('ship')">Ship to me</button>
-        </div>
-        <div class="del-note" id="del-ship-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.
-          <div class="del-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately.</div>
+        <div class="delivery-opt-grid">
+          <div class="delivery-opt-card sel" id="del-ship" onclick="pickDel('ship',this)">
+            <div class="delivery-opt-title">Ship to me</div>
+            <div class="delivery-opt-body">UPS or FedEx. Tariffs and import fees additional.</div>
+          </div>
         </div>
       </div>
-      <div class="form-err" id="form-err"></div>
-      <button class="submit-btn" id="submit-btn" onclick="submitForm()" style="opacity:.45;cursor:not-allowed" disabled>Complete required fields to submit &rarr;</button>
+      <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
+      <div id="pb-final-step"></div>
       <div class="success-box" id="success-box">
         <h3>Quote request sent!</h3>
         <p>We&rsquo;ll follow up within a few hours to confirm your specs. Call <strong>(609) 742-1720</strong> 24/7 for anything urgent.</p>
@@ -313,10 +284,15 @@
 
 </div>
 
+<footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
-<script>renderNav('Hardware'); renderFooter(false);</script>
+
 
 <script src="../js/pages/hardware-quote.js"></script>
+<script>
+// Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-final-step').innerHTML =
+  pbContactStepHTML({ bare: true, cartFn: 'addHardwareQuoteToCart()', submitFn: 'submitForm()' });
+</script>
 </body>
 </html>
-

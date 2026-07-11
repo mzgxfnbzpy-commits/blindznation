@@ -282,22 +282,15 @@ function calcPrice(){
 
   $('qp-pending').style.display='none';
   $('qp-detail').style.display='block';
+  // Detail hidden per owner request — base/printed/valance/side-mount/shims/overage roll silently
+  // into the retail subtotal. Customer sees retail → 35% off → your price → freight. (No motor/TDBU/D&N surcharges on faux wood.)
   $('q-base').textContent=fmt(base);
-
-  $('q-printed-row').style.display = S.isPrinted ? 'flex' : 'none';
-  if(S.isPrinted) $('q-printed').textContent='+'+fmt(printedAdd);
-
-  $('q-valance-row').style.display = valAdd>0 ? 'flex' : 'none';
-  if(valAdd>0) $('q-valance').textContent='+'+fmt(valAdd);
-
-  $('q-side-row').style.display = S.sideMt ? 'flex' : 'none';
-  if(S.sideMt) $('q-side').textContent='+'+fmt(sideAdd);
-
-  $('q-shim-row').style.display = S.shims>0 ? 'flex' : 'none';
-  if(S.shims>0) $('q-shim').textContent='+'+fmt(shimAdd)+' ('+S.shims+'×)';
-
-  const overageRow=$('q-overage-row');
-  if(overageRow){ overageRow.style.display=overageSqft>0?'flex':'none'; if(overageSqft>0) $('q-overage').textContent='+'+fmt(overageAdd)+' ('+overageSqft+' sq ft × $18)'; }
+  const _baseRow = $('q-base').closest ? $('q-base').closest('.qrow') : null; if(_baseRow) _baseRow.style.display='none';
+  $('q-printed-row').style.display='none';
+  $('q-valance-row').style.display='none';
+  $('q-side-row').style.display='none';
+  $('q-shim-row').style.display='none';
+  const overageRow=$('q-overage-row'); if(overageRow) overageRow.style.display='none';
 
   $('q-qty').textContent='× '+S.qty;
 

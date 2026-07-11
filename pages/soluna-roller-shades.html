@@ -33,7 +33,7 @@
 .page-hero h1{font-size:34px;font-weight:500;color:var(--cream);letter-spacing:-0.5px;margin-bottom:12px;line-height:1.2}
 .page-hero p{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:480px;margin-bottom:22px}
 .hero-stats{display:flex;gap:24px;flex-wrap:wrap}
-.hero-stat{border-left:2px solid rgba(201,169,110,0.4);padding-left:12px}
+.hero-stat{border-left:2px solid rgba(45,224,193,0.4);padding-left:12px}
 .hero-stat-val{font-size:18px;font-weight:500;color:var(--cream)}
 .hero-stat-lbl{font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
@@ -56,7 +56,7 @@
 /* ─── OPERATING SYSTEMS ─────────────────────────────────────── */
 .op-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
 .op-card{background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:20px;transition:border-color 0.15s,box-shadow 0.15s}
-.op-card:hover{border-color:var(--gold);box-shadow:0 2px 10px rgba(201,169,110,0.1)}
+.op-card:hover{border-color:var(--gold);box-shadow:0 2px 10px rgba(45,224,193,0.1)}
 .op-card.featured{border:2px solid var(--gold);background:var(--gold-mid)}
 .op-diagram{height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
 .op-name{font-size:14px;font-weight:600;color:#111;margin-bottom:4px}
@@ -114,13 +114,13 @@
 /* ─── CONFIGURATOR ──────────────────────────────────────────── */
 .config-wrap{background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:28px}
 .config-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
-.step-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:6px}
+.step-block{padding:14px 16px}
 .step-title{font-size:14px;font-weight:500;color:#111;margin-bottom:10px}
-.step-block{margin-bottom:22px}
 .tooltip-note{font-size:11px;color:#888;margin-top:4px;line-height:1.5}
 .dim-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
 .motor-sub{display:none;margin-top:10px;padding:12px;background:var(--gold-mid);border-radius:8px;border:1px solid #E8DCC8}
 .motor-sub.show{display:block}
+.hw-sw{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:7px;vertical-align:-2px;border:1px solid rgba(0,0,0,.18);box-shadow:inset 0 1px 2px rgba(255,255,255,.3)}
 .qty-btns{display:flex;align-items:center}
 .qty-btn{width:32px;height:32px;border:1px solid #ddd;background:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--font)}
 .qty-btn:first-child{border-radius:8px 0 0 8px}
@@ -173,18 +173,18 @@
 <div class="page-hero">
   <div class="hero-deco">
     <svg viewBox="0 0 320 600" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-      <rect x="20" y="0" width="8" height="600" rx="4" fill="#C9A96E"/>
-      <rect x="50" y="0" width="4" height="600" rx="2" fill="#C9A96E"/>
-      <rect x="70" y="0" width="8" height="600" rx="4" fill="#C9A96E"/>
-      <rect x="100" y="0" width="4" height="600" rx="2" fill="#C9A96E"/>
-      <rect x="120" y="0" width="8" height="600" rx="4" fill="#C9A96E"/>
-      <rect x="155" y="0" width="4" height="600" rx="2" fill="#C9A96E"/>
-      <rect x="175" y="0" width="6" height="600" rx="3" fill="#C9A96E"/>
-      <rect x="200" y="0" width="8" height="600" rx="4" fill="#C9A96E"/>
-      <rect x="230" y="0" width="3" height="600" rx="1.5" fill="#C9A96E"/>
-      <rect x="250" y="0" width="8" height="600" rx="4" fill="#C9A96E"/>
-      <rect x="280" y="0" width="4" height="600" rx="2" fill="#C9A96E"/>
-      <rect x="300" y="0" width="6" height="600" rx="3" fill="#C9A96E"/>
+      <rect x="20" y="0" width="8" height="600" rx="4" fill="#2DE0C1"/>
+      <rect x="50" y="0" width="4" height="600" rx="2" fill="#2DE0C1"/>
+      <rect x="70" y="0" width="8" height="600" rx="4" fill="#2DE0C1"/>
+      <rect x="100" y="0" width="4" height="600" rx="2" fill="#2DE0C1"/>
+      <rect x="120" y="0" width="8" height="600" rx="4" fill="#2DE0C1"/>
+      <rect x="155" y="0" width="4" height="600" rx="2" fill="#2DE0C1"/>
+      <rect x="175" y="0" width="6" height="600" rx="3" fill="#2DE0C1"/>
+      <rect x="200" y="0" width="8" height="600" rx="4" fill="#2DE0C1"/>
+      <rect x="230" y="0" width="3" height="600" rx="1.5" fill="#2DE0C1"/>
+      <rect x="250" y="0" width="8" height="600" rx="4" fill="#2DE0C1"/>
+      <rect x="280" y="0" width="4" height="600" rx="2" fill="#2DE0C1"/>
+      <rect x="300" y="0" width="6" height="600" rx="3" fill="#2DE0C1"/>
     </svg>
   </div>
   <div class="hero-inner">
@@ -224,21 +224,6 @@
   </div>
 </div>
 
-<!-- ═══ STICKY SPEC BAR ══════════════════════════════════════════ -->
-<div class="spec-bar">
-  <div class="spec-bar-item"><span class="sb-icon">📐</span><span class="sb-label">Width</span><span class="sb-val">12″ – 144″</span></div>
-  <div class="spec-bar-divider"></div>
-  <div class="spec-bar-item"><span class="sb-icon">📏</span><span class="sb-label">Height</span><span class="sb-val">12″ – 144″</span></div>
-  <div class="spec-bar-divider"></div>
-  <div class="spec-bar-item"><span class="sb-icon">🔧</span><span class="sb-label">Mount</span><span class="sb-val">Inside or Outside</span></div>
-  <div class="spec-bar-divider"></div>
-  <div class="spec-bar-item"><span class="sb-icon">☀️</span><span class="sb-label">Light control</span><span class="sb-val">Solar · LF · RD · Blackout</span></div>
-  <div class="spec-bar-divider"></div>
-  <div class="spec-bar-item"><span class="sb-icon">⚡</span><span class="sb-label">Motorized</span><span class="sb-val">Yes — Norman-brand only</span></div>
-  <div class="spec-bar-divider"></div>
-  <div class="spec-bar-item"><span class="sb-icon">🏭</span><span class="sb-label">Made</span><span class="sb-val">Custom-order</span></div>
-</div>
-
 <div class="variant-select">
   <div class="variant-select-label">Roller Shades — Choose your type</div>
   <div class="variant-cards">
@@ -262,6 +247,22 @@
   </div>
 </div>
 
+<!-- ═══ STICKY SPEC BAR ══════════════════════════════════════════ -->
+<div class="spec-bar">
+  <div class="spec-bar-item"><span class="sb-icon">📐</span><span class="sb-label">Width</span><span class="sb-val">12″ – 144″</span></div>
+  <div class="spec-bar-divider"></div>
+  <div class="spec-bar-item"><span class="sb-icon">📏</span><span class="sb-label">Height</span><span class="sb-val">12″ – 144″</span></div>
+  <div class="spec-bar-divider"></div>
+  <div class="spec-bar-item"><span class="sb-icon">🔧</span><span class="sb-label">Mount</span><span class="sb-val">Inside or Outside</span></div>
+  <div class="spec-bar-divider"></div>
+  <div class="spec-bar-item"><span class="sb-icon">☀️</span><span class="sb-label">Light control</span><span class="sb-val">Solar · LF · RD · Blackout</span></div>
+  <div class="spec-bar-divider"></div>
+  <div class="spec-bar-item"><span class="sb-icon">⚡</span><span class="sb-label">Motorized</span><span class="sb-val">Yes — Norman-brand only</span></div>
+  <div class="spec-bar-divider"></div>
+  <div class="spec-bar-item"><span class="sb-icon">🏭</span><span class="sb-label">Made</span><span class="sb-val">Custom-order</span></div>
+</div>
+
+
 <div class="snl-spec-wrap" id="snl-spec-wrap">
 <!-- ═══ OPERATING SYSTEMS ════════════════════════════════════════ -->
 <section class="section section-white">
@@ -276,11 +277,12 @@
       <div class="op-card">
         <div class="op-diagram">
           <svg viewBox="0 0 100 80" width="100" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="4" width="80" height="8" rx="4" fill="#C9A96E"/>
+            <rect x="10" y="4" width="80" height="8" rx="4" fill="#2DE0C1"/>
             <rect x="14" y="13" width="72" height="44" rx="2" fill="var(--gold-mid)" stroke="#E8DCC8" stroke-width="1"/>
-            <rect x="35" y="57" width="30" height="10" rx="5" fill="#C9A96E"/>
+            <rect x="35" y="57" width="30" height="10" rx="5" fill="#2DE0C1"/>
             <text x="50" y="65" text-anchor="middle" font-size="7" font-family="sans-serif" fill="#111110" font-weight="600">PUSH</text>
-            <path d="M44 73 Q50 76 56 73" stroke="#C9A96E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <!-- hand icon -->
+            <path d="M44 73 Q50 76 56 73" stroke="#2DE0C1" stroke-width="1.5" fill="none" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="op-name">PrecisionLift™ Cordless</div>
@@ -298,8 +300,9 @@
       <div class="op-card featured">
         <div class="op-diagram">
           <svg viewBox="0 0 100 80" width="100" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="4" width="80" height="8" rx="4" fill="#C9A96E"/>
+            <rect x="10" y="4" width="80" height="8" rx="4" fill="#2DE0C1"/>
             <rect x="14" y="13" width="72" height="44" rx="2" fill="var(--gold-mid)" stroke="#E8DCC8" stroke-width="1"/>
+            <!-- chain loop on right side -->
             <circle cx="82" cy="38" r="5" fill="none" stroke="#8B6914" stroke-width="1.5"/>
             <line x1="82" y1="13" x2="82" y2="33" stroke="#8B6914" stroke-width="1.5" stroke-dasharray="2,2"/>
             <line x1="82" y1="43" x2="82" y2="63" stroke="#8B6914" stroke-width="1.5" stroke-dasharray="2,2"/>
@@ -321,13 +324,15 @@
       <div class="op-card">
         <div class="op-diagram">
           <svg viewBox="0 0 100 80" width="100" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="4" width="80" height="8" rx="4" fill="#C9A96E"/>
+            <rect x="10" y="4" width="80" height="8" rx="4" fill="#2DE0C1"/>
             <rect x="14" y="13" width="72" height="44" rx="2" fill="var(--gold-mid)" stroke="#E8DCC8" stroke-width="1"/>
+            <!-- chain loop on right side -->
             <circle cx="82" cy="38" r="5" fill="none" stroke="#8B6914" stroke-width="1.5"/>
             <line x1="82" y1="13" x2="82" y2="33" stroke="#8B6914" stroke-width="1.5" stroke-dasharray="2,2"/>
             <line x1="82" y1="43" x2="82" y2="63" stroke="#8B6914" stroke-width="1.5" stroke-dasharray="2,2"/>
             <path d="M77 63 Q82 68 87 63" stroke="#8B6914" stroke-width="1.5" fill="none"/>
-            <path d="M50 55 L50 63 M46 59 L50 63 L54 59" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- release arrow -->
+            <path d="M50 55 L50 63 M46 59 L50 63 L54 59" stroke="#2DE0C1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div class="op-name">SmartRelease™</div>
@@ -345,10 +350,12 @@
       <div class="op-card">
         <div class="op-diagram">
           <svg viewBox="0 0 100 80" width="100" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="4" width="80" height="8" rx="4" fill="#C9A96E"/>
+            <!-- motor unit in tube -->
+            <rect x="10" y="4" width="80" height="8" rx="4" fill="#2DE0C1"/>
             <rect x="38" y="2" width="24" height="12" rx="3" fill="#1C3A6E"/>
-            <circle cx="50" cy="8" r="3" fill="#C9A96E"/>
+            <circle cx="50" cy="8" r="3" fill="#2DE0C1"/>
             <rect x="14" y="13" width="72" height="44" rx="2" fill="var(--gold-mid)" stroke="#E8DCC8" stroke-width="1"/>
+            <!-- wifi signal -->
             <path d="M42 65 Q50 60 58 65" stroke="#1C3A6E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
             <path d="M38 68 Q50 61 62 68" stroke="#1C3A6E" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.5"/>
             <circle cx="50" cy="73" r="2" fill="#1C3A6E"/>
@@ -383,15 +390,15 @@
       <div class="lc-card">
         <div class="lc-swatch" style="background:linear-gradient(135deg,var(--gold-mid) 0%,#EDD9AE 100%)">
           <svg viewBox="0 0 80 80" width="60" height="60" fill="none">
-            <circle cx="40" cy="40" r="16" fill="#C9A96E" opacity="0.9"/>
-            <line x1="40" y1="10" x2="40" y2="20" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
-            <line x1="40" y1="60" x2="40" y2="70" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
-            <line x1="10" y1="40" x2="20" y2="40" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
-            <line x1="60" y1="40" x2="70" y2="40" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
-            <line x1="18" y1="18" x2="25" y2="25" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
-            <line x1="55" y1="55" x2="62" y2="62" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
-            <line x1="62" y1="18" x2="55" y2="25" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
-            <line x1="18" y1="62" x2="25" y2="55" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="40" cy="40" r="16" fill="#2DE0C1" opacity="0.9"/>
+            <line x1="40" y1="10" x2="40" y2="20" stroke="#2DE0C1" stroke-width="2" stroke-linecap="round"/>
+            <line x1="40" y1="60" x2="40" y2="70" stroke="#2DE0C1" stroke-width="2" stroke-linecap="round"/>
+            <line x1="10" y1="40" x2="20" y2="40" stroke="#2DE0C1" stroke-width="2" stroke-linecap="round"/>
+            <line x1="60" y1="40" x2="70" y2="40" stroke="#2DE0C1" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18" y1="18" x2="25" y2="25" stroke="#2DE0C1" stroke-width="2" stroke-linecap="round"/>
+            <line x1="55" y1="55" x2="62" y2="62" stroke="#2DE0C1" stroke-width="2" stroke-linecap="round"/>
+            <line x1="62" y1="18" x2="55" y2="25" stroke="#2DE0C1" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18" y1="62" x2="25" y2="55" stroke="#2DE0C1" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <div class="lc-swatch-pct">1% – 10% openness</div>
         </div>
@@ -406,12 +413,13 @@
       <div class="lc-card">
         <div class="lc-swatch" style="background:linear-gradient(135deg,var(--gold-mid) 0%,#F0D8A8 50%,#E8C870 100%)">
           <svg viewBox="0 0 80 80" width="60" height="60" fill="none">
-            <rect x="20" y="5" width="40" height="70" rx="2" fill="#F5ECD7" opacity="0.7" stroke="#C9A96E" stroke-width="1"/>
-            <line x1="20" y1="20" x2="60" y2="20" stroke="#C9A96E" stroke-width="0.8" opacity="0.5"/>
-            <line x1="20" y1="32" x2="60" y2="32" stroke="#C9A96E" stroke-width="0.8" opacity="0.5"/>
-            <line x1="20" y1="44" x2="60" y2="44" stroke="#C9A96E" stroke-width="0.8" opacity="0.5"/>
-            <line x1="20" y1="56" x2="60" y2="56" stroke="#C9A96E" stroke-width="0.8" opacity="0.5"/>
-            <path d="M60 15 L72 10 M60 25 L74 25 M60 35 L72 40" stroke="#C9A96E" stroke-width="1.2" opacity="0.6" stroke-linecap="round"/>
+            <rect x="20" y="5" width="40" height="70" rx="2" fill="#FAF8F3" opacity="0.7" stroke="#2DE0C1" stroke-width="1"/>
+            <line x1="20" y1="20" x2="60" y2="20" stroke="#2DE0C1" stroke-width="0.8" opacity="0.5"/>
+            <line x1="20" y1="32" x2="60" y2="32" stroke="#2DE0C1" stroke-width="0.8" opacity="0.5"/>
+            <line x1="20" y1="44" x2="60" y2="44" stroke="#2DE0C1" stroke-width="0.8" opacity="0.5"/>
+            <line x1="20" y1="56" x2="60" y2="56" stroke="#2DE0C1" stroke-width="0.8" opacity="0.5"/>
+            <!-- diffused rays -->
+            <path d="M60 15 L72 10 M60 25 L74 25 M60 35 L72 40" stroke="#2DE0C1" stroke-width="1.2" opacity="0.6" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="lc-body">
@@ -421,33 +429,33 @@
         </div>
       </div>
 
-      <!-- Room Darkening -->
+      <!-- Blackout -->
       <div class="lc-card">
-        <div class="lc-swatch" style="background:linear-gradient(135deg,#3A2E22 0%,#251E16 100%)">
+        <div class="lc-swatch" style="background:linear-gradient(135deg,#3A2E22 0%,#1C1C1A 100%)">
           <svg viewBox="0 0 80 80" width="60" height="60" fill="none">
-            <rect x="20" y="5" width="40" height="70" rx="2" fill="#1C1510"/>
-            <path d="M58 15 L66 12 M58 25 L67 25 M58 35 L66 38" stroke="#C9A96E" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
-            <path d="M22 20 L14 17 M22 30 L13 30 M22 40 L14 43" stroke="#C9A96E" stroke-width="0.8" opacity="0.2" stroke-linecap="round"/>
-            <text x="40" y="44" text-anchor="middle" font-size="9" fill="#C9A96E" font-family="sans-serif" opacity="0.8">98%</text>
+            <rect x="20" y="5" width="40" height="70" rx="2" fill="#111110"/>
+            <path d="M58 15 L66 12 M58 25 L67 25 M58 35 L66 38" stroke="#2DE0C1" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+            <path d="M22 20 L14 17 M22 30 L13 30 M22 40 L14 43" stroke="#2DE0C1" stroke-width="0.8" opacity="0.2" stroke-linecap="round"/>
+            <text x="40" y="44" text-anchor="middle" font-size="9" fill="#2DE0C1" font-family="sans-serif" opacity="0.8">98%</text>
             <text x="40" y="54" text-anchor="middle" font-size="7" fill="#A89880" font-family="sans-serif">light block</text>
           </svg>
         </div>
         <div class="lc-body">
-          <div class="lc-name">Room Darkening</div>
-          <p class="lc-desc">Blocks approximately 98% of light. Small amount of light may pass at edges. Ideal for bedrooms, media rooms, and shift workers.</p>
+          <div class="lc-name">Blackout</div>
+          <p class="lc-desc">Blocks approximately 98% of light. Small amount of light may pass at edges. Ideal for bedrooms, media rooms, and shift workers. </p>
           <div class="lc-collections">Multiple fabric collections — call for current options</div>
         </div>
       </div>
 
       <!-- Blackout -->
       <div class="lc-card">
-        <div class="lc-swatch" style="background:#1C1510">
+        <div class="lc-swatch" style="background:#111110">
           <svg viewBox="0 0 80 80" width="60" height="60" fill="none">
-            <rect x="20" y="5" width="40" height="70" rx="2" fill="#120E09"/>
+            <rect x="20" y="5" width="40" height="70" rx="2" fill="#0A0A09"/>
             <rect x="22" y="7" width="36" height="66" rx="1" fill="#0A0806"/>
-            <circle cx="40" cy="38" r="12" fill="none" stroke="#C9A96E" stroke-width="1.5"/>
-            <line x1="34" y1="38" x2="46" y2="38" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M36 34 L40 30 L44 34" stroke="#C9A96E" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+            <circle cx="40" cy="38" r="12" fill="none" stroke="#2DE0C1" stroke-width="1.5"/>
+            <line x1="34" y1="38" x2="46" y2="38" stroke="#2DE0C1" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M36 34 L40 30 L44 34" stroke="#2DE0C1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
           </svg>
         </div>
         <div class="lc-body">
@@ -478,31 +486,39 @@
       <div class="mount-card">
         <div class="mount-diagram">
           <svg viewBox="0 0 160 100" width="160" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- wall -->
             <rect x="0" y="0" width="20" height="100" fill="#E8DCC8"/>
             <rect x="140" y="0" width="20" height="100" fill="#E8DCC8"/>
+            <!-- window recess -->
             <rect x="20" y="10" width="120" height="80" fill="#EEF6FF" stroke="#C0D8EF" stroke-width="1"/>
-            <rect x="30" y="10" width="100" height="6" rx="3" fill="#C9A96E"/>
+            <!-- shade mounted INSIDE recess -->
+            <rect x="30" y="10" width="100" height="6" rx="3" fill="#2DE0C1"/>
             <rect x="34" y="16" width="92" height="60" rx="1" fill="var(--gold-mid)" stroke="#E8DCC8" stroke-width="0.8"/>
+            <!-- inside mount arrows -->
             <line x1="30" y1="85" x2="34" y2="85" stroke="#1C3A6E" stroke-width="1.5" stroke-linecap="round"/>
             <line x1="126" y1="85" x2="130" y2="85" stroke="#1C3A6E" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="mount-name">Inside Mount</div>
+        <div class="mount-name">Inside mount</div>
         <p class="mount-desc">The shade fits within the window opening. Clean, recessed look that shows off the window trim. Most popular choice for windows with depth.</p>
         <div class="mount-req">Minimum 2¾″ window depth required for headrail. Deductions applied at order.</div>
       </div>
       <div class="mount-card">
         <div class="mount-diagram">
           <svg viewBox="0 0 160 100" width="160" height="100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- wall -->
             <rect x="0" y="0" width="160" height="100" fill="#E8DCC8"/>
+            <!-- window opening -->
             <rect x="30" y="15" width="100" height="70" fill="#EEF6FF" stroke="#C0D8EF" stroke-width="1"/>
-            <rect x="15" y="8" width="130" height="6" rx="3" fill="#C9A96E"/>
+            <!-- shade mounted OUTSIDE, wider than window -->
+            <rect x="15" y="8" width="130" height="6" rx="3" fill="#2DE0C1"/>
             <rect x="19" y="14" width="122" height="72" rx="1" fill="var(--gold-mid)" stroke="#E8DCC8" stroke-width="0.8"/>
+            <!-- outside mount arrows — wider -->
             <line x1="15" y1="88" x2="19" y2="88" stroke="#1C3A6E" stroke-width="1.5" stroke-linecap="round"/>
             <line x1="141" y1="88" x2="145" y2="88" stroke="#1C3A6E" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="mount-name">Outside Mount</div>
+        <div class="mount-name">Outside mount</div>
         <p class="mount-desc">The shade is mounted on the wall or trim above the window opening. The shade hangs wider and taller than the opening, maximizing light blockage and making windows appear larger.</p>
         <div class="mount-req">Recommended: extend 2–3″ beyond opening on each side and 3–4″ above.</div>
       </div>
@@ -617,106 +633,12 @@
       <div class="config-grid">
         <div>
 
-          <!-- Step 1: Fabric type -->
+          <!-- Step 1: Window measurements & mount -->
           <div class="step-block">
-            <div class="step-label">Step 1</div>
-            <div class="step-title">Fabric type</div>
-            <div class="opt-row" id="grp-light">
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('solar');updateSummary()">Solar Screen</button>
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-light');showFabricColls('lf');updateSummary()">Light Filtering Designer</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('sheer');updateSummary()">Sheer &amp; Naturals</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('rd');updateSummary()">Room Darkening</button>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">1</div>
+              <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
             </div>
-            <div class="tooltip-note">Room Darkening blocks most light — pair with LightGuard 360™ cassette for true blackout. Solar Screen includes residential and commercial NA-series fabrics.</div>
-            <!-- Fabric collection picker — populated dynamically by showFabricColls() -->
-            <div id="fabric-coll-wrap" style="display:none;margin-top:12px;border:1px solid #e8e4de;border-radius:8px;overflow:hidden">
-              <div style="background:#f5f2ed;padding:7px 12px;font-size:10px;font-weight:600;color:#666;letter-spacing:.8px;text-transform:uppercase">Fabric Collection &amp; Color <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">(optional — select or skip)</span></div>
-              <div id="fabric-coll-inner" style="padding:10px 12px;max-height:280px;overflow-y:auto"></div>
-            </div>
-          </div>
-
-          <!-- Step 2: Operating system -->
-          <div class="step-block">
-            <div class="step-label">Step 2</div>
-            <div class="step-title">Operating system</div>
-            <div class="opt-row" id="grp-op">
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('cordless');updateSummary()">PrecisionLift™ Cordless</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('loop');updateSummary()">Continuous Cord Loop</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('smartrelease');updateSummary()">SmartRelease™</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(true);solCheckCoupledOpWarn();solShowOpDesc('motor');updateSummary()">Motorized</button>
-            </div>
-            <div id="op-desc-box" style="margin-top:10px;padding:10px 13px;border-radius:8px;font-size:12px;line-height:1.6;background:#edf7ed;border-left:3px solid #2e7d32">
-              <strong style="color:#1a6b1a">⭐ PrecisionLift™ Cordless — Recommended</strong> — Pull the handle down to lower, push the hem bar up to raise. No cords, no chains. Norman's best-in-class cordless system. WCMA Best for Kids™ certified. Max 118″ W × 144″ H.
-            </div>
-            <div class="motor-sub" id="motor-sub">
-
-              <!-- Motor brand -->
-              <div class="form-group" style="margin-bottom:10px">
-                <label style="font-size:12px;font-weight:500;color:#555;margin-bottom:5px;display:block">Motor system</label>
-                <select id="sel-motor" onchange="solUpdateMotorBrand();updateSummary()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font)">
-                  <option value="Norman Smart">Norman Smart — Recommended (app, voice, remote)</option>
-                  <option value="Rollease Acmeda Automate">Rollease Acmeda Automate — custom priced (existing Rollease systems)</option>
-                </select>
-              </div>
-
-              <!-- Power source (Norman Smart only) -->
-              <div id="motor-power-wrap">
-                <div style="font-size:12px;font-weight:500;color:#555;margin-bottom:6px">Power source</div>
-                <div class="opt-row" id="grp-motor-power" style="flex-wrap:wrap">
-                  <button class="opt-btn sel" onclick="selOpt(this,'grp-motor-power');solShowPowerOpts('rechargeable');updateSummary()">Rechargeable battery</button>
-                  <button class="opt-btn" onclick="selOpt(this,'grp-motor-power');solShowPowerOpts('hardwired');updateSummary()">Hardwired (DC)</button>
-                  <button class="opt-btn" onclick="selOpt(this,'grp-motor-power');solShowPowerOpts('plugin');updateSummary()">AC plug-in</button>
-                </div>
-
-                <!-- Charging wand (rechargeable only) -->
-                <div id="motor-wand-wrap" style="margin-top:10px;padding:10px 12px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
-                  <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Charging wand</div>
-                  <div class="opt-row" id="grp-wand-type" style="margin-bottom:8px">
-                    <button class="opt-btn sel" onclick="selOpt(this,'grp-wand-type');solShowWandExt(false);updateSummary()">Corded</button>
-                    <button class="opt-btn" onclick="selOpt(this,'grp-wand-type');solShowWandExt(true);updateSummary()">Cordless</button>
-                  </div>
-                  <div id="wand-ext-wrap" style="display:none;margin-bottom:8px">
-                    <label style="font-size:11px;color:#444;display:flex;align-items:center;gap:7px;cursor:pointer">
-                      <input type="checkbox" id="wand-ext-chk" onchange="updateSummary()"> Add extension wand
-                    </label>
-                    <div style="font-size:10px;color:#999;margin-top:2px;margin-left:21px">Extends reach for high-mounted shades. Available for cordless wand only.</div>
-                  </div>
-                  <div style="display:flex;align-items:center;gap:10px">
-                    <span style="font-size:11px;color:#666">Qty:</span>
-                    <div class="qty-btns">
-                      <button class="qty-btn" onclick="solAdjWandQty(-1)">&#8722;</button>
-                      <input class="qty-num" type="number" id="inp-wand-qty" value="1" min="1" max="20" oninput="updateSummary()" style="width:40px">
-                      <button class="qty-btn" onclick="solAdjWandQty(1)">&#43;</button>
-                    </div>
-                    <span style="font-size:10px;color:#999">default 1 per shade</span>
-                  </div>
-                  <div style="font-size:10px;color:#c0392b;margin-top:6px">⚠ Not available with cassette headrail or dual shades.</div>
-                </div>
-              </div>
-
-              <!-- Rollease note (shown when Rollease selected) -->
-              <div id="motor-rollease-wrap" style="display:none">
-                <div class="tooltip-note">Rollease Acmeda Automate is custom priced — confirmed at quote. Uses the Automate Pulse 2 hub. For customers with an existing Rollease Acmeda smart home system.</div>
-              </div>
-
-              <div class="tooltip-note" style="margin-top:8px">Norman Smart estimate: $482/shade. Supports Alexa, Google Home, Apple HomeKit via the Norman Smart Hub. Exact power source and accessories confirmed at measurement visit.</div>
-            </div>
-          </div>
-
-          <!-- Step 3: Mount -->
-          <div class="step-block">
-            <div class="step-label">Step 3</div>
-            <div class="step-title">Mount type</div>
-            <div class="opt-row" id="grp-mount">
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-mount');updateSummary()">Inside mount</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-mount');updateSummary()">Outside mount</button>
-            </div>
-          </div>
-
-          <!-- Step 4: Dimensions -->
-          <div class="step-block">
-            <div class="step-label">Step 4</div>
-            <div class="step-title">Window measurements</div>
             <div class="dim-box">
               <div class="dim-box-label">Enter your window size</div>
               <div class="form-row">
@@ -733,6 +655,15 @@
               </div>
             </div>
             <div class="tooltip-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine — we confirm at the home visit.</div>
+
+            <!-- Mount type -->
+            <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Mount type</div>
+            <div class="opt-row" id="grp-mount" style="margin-bottom:14px">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-mount');updateSummary()">Inside mount</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-mount');updateSummary()">Outside mount</button>
+            </div>
+
+            <!-- Quantity -->
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
               <span style="font-size:12px;color:#666">Qty:</span>
               <div class="qty-btns">
@@ -746,8 +677,8 @@
             <!-- Coupled shades panel -->
             <div id="coupled-wrap" style="display:none;margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
               <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:6px">Coupled Shades configuration</div>
-              <div id="coupled-op-warn" style="display:none;font-size:11px;color:#c0392b;background:#fdf0ee;border:1px solid #f1c0bb;border-radius:6px;padding:7px 10px;margin-bottom:8px">⚠ PrecisionLift™ Cordless and SmartRelease™ are not available for coupled shades. Please select Continuous Cord Loop or Motorized.</div>
-              <div style="font-size:11px;color:#666;margin-bottom:10px;line-height:1.5">Shades are linked side by side on a shared headrail, ordered left to right. Requires Continuous Cord Loop or Motorized lift system.</div>
+              <div id="coupled-op-warn" style="display:none;font-size:11px;color:#c0392b;background:#fdf0ee;border:1px solid #f1c0bb;border-radius:6px;padding:7px 10px;margin-bottom:8px">⚠ PrecisionLift™ Cordless and SmartRelease™ are not available for coupled shades. Please select Manual with chain or Motorized.</div>
+              <div style="font-size:11px;color:#666;margin-bottom:10px;line-height:1.5">Shades are linked side by side on a shared headrail, ordered left to right. Requires Manual with chain or Motorized lift system.</div>
               <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Are the shades the same size?</div>
               <div class="opt-row" id="grp-coupled-type" style="margin-bottom:10px">
                 <button class="opt-btn sel" onclick="selOpt(this,'grp-coupled-type');solShowCoupledSame();updateSummary()">Same size</button>
@@ -778,49 +709,148 @@
             </div>
           </div>
 
-          <!-- Step 5: Shade type -->
+          <!-- Step 2: Fabric type -->
           <div class="step-block">
-            <div class="step-label">Step 5</div>
-            <div class="step-title">Shade type</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">2</div>
+              <div class="step-title" style="margin-bottom:0">Fabric type</div>
+            </div>
+            <div class="opt-row" id="grp-light">
+              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('solar');updateSummary()">Solar Screen</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-light');showFabricColls('lf');updateSummary()">Light Filtering Designer</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('sheer');updateSummary()">Sheer &amp; Naturals</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('rd');updateSummary()">Room Darkening</button>
+            </div>
+            <div class="tooltip-note">Room Darkening blocks most light — pair with LightGuard 360™ cassette for true blackout. Solar Screen includes residential and commercial NA-series fabrics.</div>
+            <!-- Fabric collection picker — populated dynamically by showFabricColls() -->
+            <div id="fabric-coll-wrap" style="display:none;margin-top:12px;border:1px solid #e8e4de;border-radius:8px;overflow:hidden">
+              <div style="background:#f5f2ed;padding:7px 12px;font-size:10px;font-weight:600;color:#666;letter-spacing:.8px;text-transform:uppercase">Fabric Collection &amp; Color <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">(optional — select or skip)</span></div>
+              <div id="fabric-coll-inner" style="padding:10px 12px;max-height:280px;overflow-y:auto"></div>
+            </div>
+          </div>
+
+          <!-- Step 3: Operating system -->
+          <div class="step-block">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">3</div>
+              <div class="step-title" style="margin-bottom:0">Operating system</div>
+            </div>
+            <div class="opt-row" id="grp-op">
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('cordless');updateSummary()">PrecisionLift™ Cordless</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('loop');updateSummary()">Manual with chain</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('smartrelease');updateSummary()">SmartRelease™</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(true);solCheckCoupledOpWarn();solShowOpDesc('motor');updateSummary()">Motorized</button>
+            </div>
+            <div id="op-desc-box" style="margin-top:10px;padding:10px 13px;border-radius:8px;font-size:12px;line-height:1.6;background:#f5f2ed;border-left:3px solid var(--gold)">
+              <strong style="color:#333">Manual with chain</strong> — Side-mounted bead chain operates the shade smoothly in both directions. Works for any size window. Best choice when cordless isn't required.
+            </div>
+            <div class="motor-sub" id="motor-sub">
+              <!-- Shared Norman motor UI (rendered by normanMotorSection in shared.js) -->
+              <div id="sol-motor-config"></div>
+              <div class="tooltip-note" style="margin-top:8px">Norman Smart estimate: $482/shade. Supports Alexa, Google Home, Apple HomeKit via the Norman Smart Hub. Exact power source and accessories confirmed at measurement visit.</div>
+            </div>
+          </div>
+
+          <!-- Step 4: Shade type -->
+          <div class="step-block">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">4</div>
+              <div class="step-title" style="margin-bottom:0">Shade type</div>
+            </div>
             <div class="opt-row" id="grp-shade-type">
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-shade-type');document.getElementById('dual-shade-note').style.display='none';updateSummary()">Standard</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-shade-type');document.getElementById('dual-shade-note').style.display='block';updateSummary()">Dual Shade</button>
+              <button class="opt-btn sel" onclick="solPickShadeType('standard',this)">Standard</button>
+              <button class="opt-btn" onclick="solPickShadeType('dual',this)">Dual Shade</button>
             </div>
-            <div id="dual-shade-note" class="tooltip-note" style="display:none;color:var(--gold)">Dual shade: two rollers in one headrail — combine Sheer &amp; Room Darkening for full light control. Cassette headrail is required.</div>
+            <!-- Dual shade fabric pickers -->
+            <div id="dual-shade-fabrics" style="display:none;margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
+              <div style="margin-bottom:12px">
+                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Front shade — daytime</div>
+                <div class="opt-row" id="grp-dual-front" style="flex-wrap:wrap">
+                  <button class="opt-btn sel" onclick="selOpt(this,'grp-dual-front');updateSummary()">Light Filtering</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-dual-front');updateSummary()">Solar Screen</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-dual-front');updateSummary()">Sheer / Naturals</button>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Back shade — night</div>
+                <div class="opt-row" id="grp-dual-back">
+                  <button class="opt-btn sel" onclick="selOpt(this,'grp-dual-back');updateSummary()">Room Darkening</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-dual-back');updateSummary()">Blackout</button>
+                </div>
+              </div>
+              <div style="font-size:10px;color:#888;margin-top:8px;line-height:1.5">Cassette headrail is required for dual shade — auto-selected in Step 5 below.</div>
+            </div>
           </div>
 
-          <!-- Step 6: Add-ons -->
+          <!-- Step 5: Options -->
           <div class="step-block">
-            <div class="step-label">Step 6</div>
-            <div class="step-title">Add-ons <span style="font-weight:400;color:#888">(optional)</span></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">5</div>
+              <div class="step-title" style="margin-bottom:0">Headrail &amp; add-ons <span style="font-weight:400;color:#888">(optional)</span></div>
+            </div>
             <div class="opt-row" id="grp-addons" style="flex-wrap:wrap">
-              <button class="opt-btn" onclick="selOrToggle(this,'grp-addons');updateSummary()">Cassette headrail</button>
-              <button class="opt-btn" onclick="selOrToggle(this,'grp-addons');updateSummary()">Fascia / valance</button>
-              <button class="opt-btn" onclick="selOrToggle(this,'grp-addons');updateSummary()">LightGuard 360™ (blackout)</button>
+              <button class="opt-btn" id="sol-addon-openroll" onclick="solPickAddon('openroll',this)">Open roll</button>
+              <button class="opt-btn" id="sol-addon-cassette" onclick="solPickAddon('cassette',this)">Cassette headrail</button>
+              <button class="opt-btn" id="sol-addon-fascia" onclick="solPickAddon('fascia',this)">Fascia / valance</button>
+              <button class="opt-btn" id="sol-addon-lightguard" onclick="solPickAddon('lightguard',this)">LightGuard 360™ (blackout)</button>
             </div>
-            <div class="tooltip-note">Headrail options are mutually exclusive — select one or none.</div>
+            <div class="tooltip-note">Headrail options are mutually exclusive — select one or none. LightGuard 360™ requires Room Darkening fabric.</div>
+
+            <!-- Open roll → Premium hardware color picker -->
+            <div id="sol-hw-subopts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
+              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Premium hardware color</div>
+              <div class="opt-row" id="grp-hw-color" style="flex-wrap:wrap">
+                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#e3c279,#b8902f)"></span>Brass</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#a06f3e,#5e3f23)"></span>Bronze</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#4a4a4a,#161616)"></span>Brushed Black</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#dcdcdc,#a4a4a4)"></span>Matte Silver</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:#f8f8f5"></span>White</button>
+              </div>
+              <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">Premium hardware (brackets, clutches, chains &amp; hem bars) in a preset matching finish. Open roll single shades only — no valance or raceway. Inside mount side-mount bracket not available with premium hardware.</div>
+            </div>
+
+            <!-- Fascia sub-options (shown when Fascia / valance selected) -->
+            <div id="sol-fascia-subopts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
+              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Fascia / valance style</div>
+              <div class="opt-row" id="grp-fascia-style" style="flex-wrap:wrap">
+                <button class="opt-btn" onclick="selOpt(this,'grp-fascia-style');updateSummary()">Flat Metal Fascia</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-fascia-style');updateSummary()">Flat Fabric Wrapped Fascia</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-fascia-style');updateSummary()">Curved Fabric Wrapped Fascia</button>
+              </div>
+              <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">Flat Metal Fascia: slim aluminum cover in your hardware color. Flat Fabric Wrapped Fascia: flat aluminum base wrapped in your shade fabric. Curved Fabric Wrapped Fascia: curved aluminum base wrapped in shade fabric. Style confirmed at order.</div>
+            </div>
           </div>
 
-          <!-- Step 7: Delivery -->
+          <!-- Step 6: Delivery -->
           <div class="step-block">
-            <div class="step-label">Step 7</div>
-            <div class="step-title">Delivery</div>
-            <div class="delivery-section">
-              <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> from Huntingdon Valley, PA.<div class="delivery-tariff">Note: tariffs and import fees are additional and will be itemized separately.</div></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">6</div>
+              <div class="step-title" style="margin-bottom:0">Delivery</div>
+            </div>
+            <div class="delivery-opt-grid">
+              <div class="delivery-opt-card sel" onclick="solPickDel('ship',this)">
+                <div class="delivery-opt-title">Ship to me</div>
+                <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>
+              </div>
             </div>
           </div>
 
-          <!-- Step 8: Contact -->
+          <!-- Step 7: Contact -->
           <div class="step-block" id="contact-block">
-            <div class="step-label">Step 8</div>
-            <div class="step-title">Your details</div>
-            <div class="dim-row">
-              <div class="form-group"><label>Name *</label><input type="text" id="cf-name" placeholder="Jane Smith"></div>
-              <div class="form-group"><label>Phone *</label><input type="tel" id="cf-phone" placeholder="(215) 555-0100"></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">7</div>
+              <div class="step-title" style="margin-bottom:0">Your details</div>
             </div>
-            <div class="form-group"><label>Email</label><input type="email" id="cf-email" placeholder="jane@example.com"></div>
+            <div class="dim-row">
+              <div class="form-group"><label>Name *</label><input type="text" id="cf-name" data-pb-contact="name" placeholder="Jane Smith"></div>
+              <div class="form-group"><label>Phone *</label><input type="tel" id="cf-phone" data-pb-contact="phone" placeholder="(215) 555-0100"></div>
+            </div>
+            <div class="form-group"><label>Email *</label><input type="email" id="cf-email" data-pb-contact="email" placeholder="jane@example.com"></div>
+            <div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="cf-address" data-pb-contact="address" placeholder="123 Main St, Philadelphia PA"></div>
             <div class="form-group"><label>Notes</label><textarea id="cf-notes" placeholder="Room name, ceiling height, fabric ideas, timeline — anything helpful" style="min-height:60px"></textarea></div>
-            <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:13px;margin-top:4px">Send quote request &rarr;</button>
+            <div id="cf-contact-err" style="display:none;background:#FEE2E2;border-radius:8px;padding:9px 13px;font-size:12px;color:#991B1B;margin-bottom:8px"></div>
+            <button class="btn-cart-add" onclick="addSolunaToCart()" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
+            <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:13px;margin-top:4px" data-pb-require-contact="cf-contact-err">Submit Order for Review &rarr;</button>
           </div>
 
           <div class="success-state" id="quote-success">
@@ -836,11 +866,8 @@
           <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Norman Soluna Roller</span></div>
           <div class="summary-row"><span class="sr-key">Light control</span><span class="sr-val" id="s-light">Light Filtering</span></div>
           <div class="summary-row" id="s-fabric-row" style="display:none"><span class="sr-key">Fabric</span><span class="sr-val" id="s-fabric">—</span></div>
-          <div class="summary-row"><span class="sr-key">Operation</span><span class="sr-val" id="s-op">Continuous Cord Loop</span></div>
-          <div class="summary-row"><span class="sr-key">Motor</span><span class="sr-val" id="s-motor" style="display:none">—</span></div>
-          <div class="summary-row" id="s-motor-row" style="display:none"><span class="sr-key">Motor brand</span><span class="sr-val" id="s-motor-brand">—</span></div>
-          <div class="summary-row" id="s-power-row" style="display:none"><span class="sr-key">Power source</span><span class="sr-val" id="s-power">—</span></div>
-          <div class="summary-row" id="s-wand-row" style="display:none"><span class="sr-key">Charging wand</span><span class="sr-val" id="s-wand">—</span></div>
+          <div class="summary-row"><span class="sr-key">Operation</span><span class="sr-val" id="s-op">Manual with chain</span></div>
+          <div class="summary-row" id="s-motor-row" style="display:none"><span class="sr-key">Motor</span><span class="sr-val" id="s-motor-brand">—</span></div>
           <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="s-mount">Inside mount</span></div>
           <div class="summary-row"><span class="sr-key">Shade type</span><span class="sr-val" id="s-shade-type">Standard</span></div>
           <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="s-size">—</span></div>
@@ -851,7 +878,7 @@
             <span class="sr-key" style="font-weight:600;color:#111">Est. retail</span>
             <span class="sr-val" id="s-price" style="font-weight:700;font-size:15px;color:#111">—</span>
           </div>
-          <div class="summary-note">Norman retail base prices — select a fabric in Step 3 for an instant estimate. SmartRelease™ adds $89. Final price confirmed at quote.</div>
+          <div class="summary-note">Norman retail base prices — select a fabric in Step 2 for an instant estimate. SmartRelease™ adds $89. Final price confirmed at quote.</div>
         </div>
 
       </div>
@@ -874,35 +901,35 @@
 
       <a class="related-card" href="product-specs.html#tab-cellular">
         <div class="related-img" style="background:#EFF5F8">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#C9A96E"/><polygon points="12,11 15,9 18,11 18,15 15,17 12,15" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><polygon points="20,11 23,9 26,11 26,15 23,17 20,15" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><polygon points="28,11 31,9 34,11 34,15 31,17 28,15" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><polygon points="16,18 19,16 22,18 22,22 19,24 16,22" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><polygon points="24,18 27,16 30,18 30,22 27,24 24,22" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><line x1="22" y1="33" x2="22" y2="41" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#2DE0C1"/><polygon points="12,11 15,9 18,11 18,15 15,17 12,15" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><polygon points="20,11 23,9 26,11 26,15 23,17 20,15" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><polygon points="28,11 31,9 34,11 34,15 31,17 28,15" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><polygon points="16,18 19,16 22,18 22,22 19,24 16,22" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><polygon points="24,18 27,16 30,18 30,22 27,24 24,22" fill="#BDD9E8" stroke="#7AB4CC" stroke-width="0.6"/><line x1="22" y1="33" x2="22" y2="41" stroke="#2DE0C1" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
         <div class="related-body"><div class="related-name">Norman Portrait Cellular</div><div class="related-sub">Insulating honeycomb</div></div>
       </a>
 
       <a class="related-card" href="product-specs.html#tab-banded">
         <div class="related-img" style="background:#F0EDF8">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#C9A96E"/><rect x="7" y="11" width="30" height="4" rx="1" fill="#C8B4F0"/><rect x="7" y="16" width="30" height="3.5" rx="1" fill="#F0EDF8" stroke="#A882D8" stroke-width="0.4"/><rect x="7" y="20.5" width="30" height="4" rx="1" fill="#C8B4F0"/><rect x="7" y="25.5" width="30" height="3.5" rx="1" fill="#F0EDF8" stroke="#A882D8" stroke-width="0.4"/></svg>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#2DE0C1"/><rect x="7" y="11" width="30" height="4" rx="1" fill="#C8B4F0"/><rect x="7" y="16" width="30" height="3.5" rx="1" fill="#F0EDF8" stroke="#A882D8" stroke-width="0.4"/><rect x="7" y="20.5" width="30" height="4" rx="1" fill="#C8B4F0"/><rect x="7" y="25.5" width="30" height="3.5" rx="1" fill="#F0EDF8" stroke="#A882D8" stroke-width="0.4"/></svg>
         </div>
         <div class="related-body"><div class="related-name">Zebra / Banded Shades</div><div class="related-sub">Dual-layer banded sheer</div></div>
       </a>
 
       <a class="related-card" href="product-specs.html#tab-sheer">
         <div class="related-img" style="background:#EEEEFD">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#C9A96E"/><ellipse cx="22" cy="16" rx="13" ry="3.5" fill="#B8B0EA" opacity="0.7"/><ellipse cx="22" cy="16" rx="13" ry="1.5" fill="#D0CCF5"/><ellipse cx="22" cy="24" rx="13" ry="3.5" fill="#B8B0EA" opacity="0.7"/><ellipse cx="22" cy="24" rx="13" ry="1.5" fill="#D0CCF5"/></svg>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#2DE0C1"/><ellipse cx="22" cy="16" rx="13" ry="3.5" fill="#B8B0EA" opacity="0.7"/><ellipse cx="22" cy="16" rx="13" ry="1.5" fill="#D0CCF5"/><ellipse cx="22" cy="24" rx="13" ry="3.5" fill="#B8B0EA" opacity="0.7"/><ellipse cx="22" cy="24" rx="13" ry="1.5" fill="#D0CCF5"/></svg>
         </div>
         <div class="related-body"><div class="related-name">Norman PerfectSheer</div><div class="related-sub">Soft vane shadings</div></div>
       </a>
 
       <a class="related-card" href="product-specs.html#tab-roman">
         <div class="related-img" style="background:var(--gold-mid)">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#C9A96E"/><rect x="7" y="10" width="30" height="24" rx="2" fill="#F5ECD7" stroke="#C9A96E" stroke-width="0.8"/><line x1="7" y1="17" x2="37" y2="17" stroke="#C9A96E" stroke-width="1" opacity="0.4"/><line x1="7" y1="24" x2="37" y2="24" stroke="#C9A96E" stroke-width="1" opacity="0.4"/></svg>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#2DE0C1"/><rect x="7" y="10" width="30" height="24" rx="2" fill="#FAF8F3" stroke="#2DE0C1" stroke-width="0.8"/><line x1="7" y1="17" x2="37" y2="17" stroke="#2DE0C1" stroke-width="1" opacity="0.4"/><line x1="7" y1="24" x2="37" y2="24" stroke="#2DE0C1" stroke-width="1" opacity="0.4"/></svg>
         </div>
         <div class="related-body"><div class="related-name">Norman Centerpiece Roman</div><div class="related-sub">Flat fold Roman shades</div></div>
       </a>
 
       <a class="related-card" href="product-specs.html#tab-woven">
         <div class="related-img" style="background:#FAF0E0">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#C9A96E"/><rect x="7" y="10" width="30" height="24" rx="2" fill="#FAEBD7"/><line x1="7" y1="14" x2="37" y2="14" stroke="#8B5E2E" stroke-width="1.2" opacity="0.7"/><line x1="7" y1="18" x2="37" y2="18" stroke="#A0713C" stroke-width="0.8" opacity="0.5"/><line x1="7" y1="22" x2="37" y2="22" stroke="#8B5E2E" stroke-width="1.2" opacity="0.6"/><line x1="7" y1="26" x2="37" y2="26" stroke="#C4894E" stroke-width="0.7" opacity="0.4"/></svg>
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="5" y="4" width="34" height="5" rx="2.5" fill="#2DE0C1"/><rect x="7" y="10" width="30" height="24" rx="2" fill="#FAEBD7"/><line x1="7" y1="14" x2="37" y2="14" stroke="#8B5E2E" stroke-width="1.2" opacity="0.7"/><line x1="7" y1="18" x2="37" y2="18" stroke="#A0713C" stroke-width="0.8" opacity="0.5"/><line x1="7" y1="22" x2="37" y2="22" stroke="#8B5E2E" stroke-width="1.2" opacity="0.6"/><line x1="7" y1="26" x2="37" y2="26" stroke="#C4894E" stroke-width="0.7" opacity="0.4"/></svg>
         </div>
         <div class="related-body"><div class="related-name">Woven Wood Shades</div><div class="related-sub">Natural bamboo &amp; jute</div></div>
       </a>

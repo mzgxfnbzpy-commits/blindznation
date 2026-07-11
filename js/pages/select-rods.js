@@ -1,6 +1,4 @@
-renderNav('Hardware'); renderFooter(false);
-
-// ── DATA ──────────────────────────────────────────────────────────
+﻿// ── DATA ──────────────────────────────────────────────────────────
 var BRASS_FINISHES = [
   {code:'07',name:'Bronze',color:'#8B6344',surcharge:false},
   {code:'22',name:'Satin Brass',color:'#C4A03A',surcharge:false},
@@ -226,7 +224,7 @@ function submitWoodQuote(){
   var notes=document.getElementById('wd-q-notes').value.trim();
   var sys=SS.system==='traverse'?'Select Wood Traverse':'Select Wood Stationary Pole';
   var body='SELECT WOOD HARDWARE QUOTE REQUEST\n\nType: '+sys+'\nName: '+name+'\nPhone: '+phone+'\n\nProject notes:\n'+(notes||'None')+'\n\n--- blindznation.com/pages/select-rods.html ---';
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Select Wood Quote — '+name)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent('Select Wood Quote — '+name)+'&body='+encodeURIComponent(body);
   document.getElementById('wd-q-form').style.display='none';
   document.getElementById('wd-q-success').style.display='block';
 }
@@ -320,7 +318,7 @@ function ringQtyChanged(inp){
   if(qty>0&&est){
     var impliedWidth=Math.round(qty*15/5);
     est.textContent='≈ '+qty+' rings for a ~'+impliedWidth+'" wide panel';
-    inp.style.borderColor='var(--gold,#C8973F)';
+    inp.style.borderColor='var(--gold)';
   } else if(est){
     est.textContent='';
     inp.style.borderColor='#d8d8d4';
@@ -495,20 +493,26 @@ function addSelectToCart(){
 }
 
 function submitSelect(){
-  var name=document.getElementById('sel-name').value.trim();
-  var phone=document.getElementById('sel-phone').value.trim();
-  if(!name||!phone){alert('Please enter your name and phone number.');return;}
+  var name=document.getElementById('cf-name').value.trim();
+  var phone=document.getElementById('cf-phone').value.trim();
+  var errEl=document.getElementById('cf-contact-err');
+  if(errEl)errEl.style.display='none';
+  if(!name||!phone){
+    if(errEl){errEl.textContent='Please enter your name and phone number.';errEl.style.display='block';}
+    else{alert('Please enter your name and phone number.');}
+    return;
+  }
   var delivery=getOpt('grp-del-sel');
   var spec=getSummaryText();
   var body='SELECT HARDWARE QUOTE REQUEST\n\n'
     +'Name: '+name+'\nPhone: '+phone
-    +'\nEmail: '+(document.getElementById('sel-email').value.trim()||'—')+'\n\n'
+    +'\nEmail: '+(document.getElementById('cf-email').value.trim()||'—')+'\n\n'
     +'SPECIFICATION:\n'+spec+'\n\n'
     +'Delivery: '+delivery+'\n\n'
-    +'Notes:\n'+(document.getElementById('sel-notes').value.trim()||'None');
-  window.location.href='mailto:justin@blindznation.com'
+    +'Notes:\n'+(document.getElementById('cf-notes').value.trim()||'None');
+  window.location.href='mailto:blindznation@gmail.com'
     +'?subject='+encodeURIComponent('Select Hardware Quote — '+(SS.collection||'')+(SS.finish||SS.woodFinish?' · '+(SS.finish||SS.woodFinish):'')+' — '+name)
     +'&body='+encodeURIComponent(body);
   document.getElementById('sel-form').style.display='none';
   document.getElementById('sel-success').style.display='block';
-}
+}

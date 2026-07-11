@@ -1,7 +1,4 @@
-renderNav('Fabric calculator');
-renderFooter(false);
-
-// ── Tab switching ──────────────────────────────────────────────
+﻿// ── Tab switching ──────────────────────────────────────────────
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -321,4 +318,4 @@ function setDefault(groupId, val) {
   document.querySelectorAll('#' + groupId + ' .opt-btn').forEach(b => {
     b.classList.toggle('sel', b.getAttribute('data-val') === val);
   });
-}
+}

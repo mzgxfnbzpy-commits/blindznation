@@ -44,7 +44,7 @@
 .tab-nav-wrap{background:var(--espresso-mid);border-bottom:1px solid var(--border-dark);padding:0 28px}
 .tab-nav{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
 .tab-nav::-webkit-scrollbar{display:none}
-.tab-btn{background:none;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,0.5);font-size:13px;font-family:var(--font);font-weight:400;padding:17px 20px;cursor:pointer;white-space:nowrap;transition:color 0.15s,border-color 0.15s;letter-spacing:0.2px}
+.tab-btn{background:none;border:none;border-bottom:2px solid transparent;color:rgba(255,255,255,0.5);font-size:16px;font-family:var(--font);font-weight:400;padding:17px 22px;cursor:pointer;white-space:nowrap;transition:color 0.15s,border-color 0.15s;letter-spacing:0.2px}
 .tab-btn:hover{color:#fff}
 .tab-btn.active{color:#fff;font-weight:600;border-bottom-color:var(--gold)}
 
@@ -59,43 +59,43 @@
 
 /* ---- INPUT CARD ---- */
 .input-card{background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:22px 24px}
-.input-card h3{font-size:14px;font-weight:600;color:#111;margin-bottom:4px}
-.input-card .card-sub{font-size:12px;color:#888;margin-bottom:20px}
-.field-label{font-size:12px;color:#555;font-weight:500;margin-bottom:5px;display:block}
-.field-hint{font-size:11px;color:#999;margin-top:3px}
+.input-card h3{font-size:20px;font-weight:600;color:#111;margin-bottom:6px}
+.input-card .card-sub{font-size:15px;color:#888;margin-bottom:20px}
+.field-label{font-size:15px;color:#555;font-weight:500;margin-bottom:6px;display:block}
+.field-hint{font-size:13px;color:#999;margin-top:4px}
 .num-input{display:flex;align-items:center;gap:0;width:100%}
-.num-input input{flex:1;padding:9px 12px;border:1px solid #ddd;border-radius:8px 0 0 8px;font-size:13px;color:#1a1a1a;font-family:var(--font);background:#fff;border-right:none}
+.num-input input{flex:1;padding:10px 13px;border:1px solid #ddd;border-radius:8px 0 0 8px;font-size:16px;color:#1a1a1a;font-family:var(--font);background:#fff;border-right:none}
 .num-input input:focus{outline:none;border-color:var(--gold);border-right:none}
-.num-unit{padding:9px 12px;background:#f8f7f5;border:1px solid #ddd;border-radius:0 8px 8px 0;font-size:12px;color:#888;white-space:nowrap}
-.field-group{margin-bottom:16px}
-.calc-divider{border:none;border-top:1px solid #eee;margin:18px 0}
-.calc-btn{width:100%;background:var(--gold);color:var(--espresso);border:none;padding:12px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;margin-top:4px;font-family:var(--font);letter-spacing:0.2px;transition:opacity 0.15s}
+.num-unit{padding:10px 13px;background:#f8f7f5;border:1px solid #ddd;border-radius:0 8px 8px 0;font-size:14px;color:#888;white-space:nowrap}
+.field-group{margin-bottom:18px}
+.calc-divider{border:none;border-top:1px solid #eee;margin:20px 0}
+.calc-btn{width:100%;background:var(--gold);color:var(--espresso);border:none;padding:14px;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer;margin-top:4px;font-family:var(--font);letter-spacing:0.2px;transition:opacity 0.15s}
 .calc-btn:hover{opacity:0.9}
-.reset-btn{width:100%;background:transparent;color:var(--text-muted);border:1px solid #e8e8e4;padding:9px;border-radius:8px;font-size:12px;cursor:pointer;margin-top:8px;font-family:var(--font)}
+.reset-btn{width:100%;background:transparent;color:var(--text-muted);border:1px solid #e8e8e4;padding:11px;border-radius:8px;font-size:14px;cursor:pointer;margin-top:8px;font-family:var(--font)}
 .reset-btn:hover{color:#555;border-color:#ccc}
 
 /* ---- RESULTS CARD ---- */
 .results-card{background:var(--espresso);border-radius:12px;padding:22px 24px;position:sticky;top:130px}
-.results-card h3{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
-.result-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:12px;padding-bottom:12px;border-bottom:0.5px solid var(--border-dark)}
+.results-card h3{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
+.result-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:14px;padding-bottom:14px;border-bottom:0.5px solid var(--border-dark)}
 .result-row:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.result-label{font-size:12px;color:var(--text-dark)}
-.result-val{font-size:18px;font-weight:500;color:var(--cream);white-space:nowrap}
-.result-val .val-unit{font-size:11px;color:var(--text-muted);font-weight:400;margin-left:2px}
+.result-label{font-size:15px;color:var(--text-dark)}
+.result-val{font-size:22px;font-weight:500;color:var(--cream);white-space:nowrap}
+.result-val .val-unit{font-size:13px;color:var(--text-muted);font-weight:400;margin-left:3px}
 .result-empty{text-align:center;padding:24px 0}
-.result-empty .empty-icon{font-size:28px;margin-bottom:8px}
-.result-empty p{font-size:12px;color:var(--text-faint);line-height:1.6}
-.result-note{background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.2);border-radius:8px;padding:10px 12px;margin-top:14px;font-size:11px;color:var(--gold);line-height:1.6}
-.result-breakdown{margin-top:14px;padding-top:14px;border-top:0.5px solid var(--border-dark)}
-.result-breakdown h4{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
-.breakdown-row{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-bottom:5px}
+.result-empty .empty-icon{font-size:32px;margin-bottom:10px}
+.result-empty p{font-size:14px;color:var(--text-faint);line-height:1.6}
+.result-note{background:rgba(45,224,193,0.1);border:1px solid rgba(45,224,193,0.2);border-radius:8px;padding:12px 14px;margin-top:16px;font-size:13px;color:var(--gold);line-height:1.6}
+.result-breakdown{margin-top:16px;padding-top:16px;border-top:0.5px solid var(--border-dark)}
+.result-breakdown h4{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px}
+.breakdown-row{display:flex;justify-content:space-between;font-size:14px;color:var(--text-muted);margin-bottom:6px}
 .breakdown-row span:last-child{color:var(--text-dark)}
 
 /* ---- INFO BOXES ---- */
 .info-box{background:var(--gold-mid);border:1px solid #B0EDE6;border-radius:10px;padding:16px 18px;margin-top:22px}
-.info-box h4{font-size:12px;font-weight:600;color:#333;margin-bottom:8px}
+.info-box h4{font-size:15px;font-weight:600;color:#333;margin-bottom:10px}
 .info-box ul{list-style:none;margin:0;padding:0}
-.info-box ul li{font-size:12px;color:#555;line-height:1.7;padding-left:14px;position:relative}
+.info-box ul li{font-size:14px;color:#555;line-height:1.7;padding-left:14px;position:relative}
 .info-box ul li::before{content:'·';position:absolute;left:0;color:var(--gold);font-weight:700}
 
 /* ---- WARNING CARD ---- */
@@ -118,7 +118,7 @@
 }
 </style>
 </head>
-<body>
+<body data-page="Fabric calculator">
 
 <nav class="site-nav" id="site-nav"></nav>
 
@@ -602,4 +602,3 @@
 <script src="../js/pages/fabric-calculator.js"></script>
 </body>
 </html>
-

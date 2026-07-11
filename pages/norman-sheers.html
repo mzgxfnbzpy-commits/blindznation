@@ -1,15 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Norman SmartDrape™ — vertical sheer vane system. Wand tilt or motorized. 72 fabric colors. Instant MSRP estimate. Salt Lake City, UT &amp; Philadelphia.">
+<meta name="description" content="Configure Norman SmartDrape™ — vertical sheer vane system. Wand tilt or motorized. 72 fabric colors. Instant MSRP estimate. Serving Philadelphia area.">
 <meta property="og:title" content="Norman SmartDrape™ Configurator | Blindznation">
-<meta property="og:description" content="Norman SmartDrape™ — vertical sheer vane system. Wand tilt or motorized. 72 fabric colors. Instant MSRP estimate. Salt Lake City, UT &amp; Philadelphia.">
+<meta property="og:description" content="Configure Norman SmartDrape™ — vertical sheer vane system. Wand tilt or motorized. 72 fabric colors. Instant MSRP estimate. Serving Philadelphia area.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Norman SmartDrape™ Configurator | Blindznation">
-<meta name="twitter:description" content="Custom window treatments by Blindznation.">
+<meta name="twitter:description" content="Custom window treatments.">
 <meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -26,21 +26,13 @@
 .page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:560px;margin-bottom:20px}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
-.hero-pill-gold{background:rgba(200,151,63,.12);border-color:rgba(200,151,63,.3);color:var(--gold)}
+.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 
 /* ── MAIN LAYOUT ── */
 .config-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:860px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
 
 /* ── STEPS ── */
-.step-block{background:#fff;border:1px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden;transition:box-shadow .15s}
-.step-block.active{box-shadow:0 2px 20px rgba(200,151,63,.1);border-color:rgba(200,151,63,.3)}
-.step-head{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;background:#fff;user-select:none}
-.step-num{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step-block.done .step-num{background:var(--gold);color:var(--espresso)}
-.step-head-title{font-size:14px;font-weight:500;color:#111;flex:1}
-.step-head-val{font-size:12px;color:var(--gold);font-weight:500;max-width:180px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.step-body{padding:4px 20px 20px;display:block}
 
 /* ── OPT CARDS ── */
 .opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
@@ -49,24 +41,24 @@
 @media(max-width:500px){.opt-grid-3{grid-template-columns:1fr 1fr}}
 .opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:14px 12px;cursor:pointer;transition:all .15s;text-align:center}
 .opt-card:hover{border-color:var(--gold)}
-.opt-card.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
+.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .opt-card-icon{font-size:22px;margin-bottom:6px}
 .opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px}
 .opt-card-desc{font-size:11px;color:#666;line-height:1.4}
-.opt-card.sel .opt-card-title{color:#7A4F00}
+.opt-card.sel .opt-card-title{color:#0A4A42}
 .opt-card.blocked{opacity:.35;pointer-events:none;cursor:default}
 
 /* ── FABRIC SWATCHES ── */
 .coll-filter-row{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
 .coll-btn{padding:6px 13px;border:1.5px solid #ddd;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;background:#fff;font-family:var(--font);transition:all .15s;color:#444;white-space:nowrap}
 .coll-btn:hover{border-color:var(--gold)}
-.coll-btn.sel{border:2px solid var(--gold);background:rgba(200,151,63,.07);color:#7A4F00}
+.coll-btn.sel{border:2px solid var(--gold);background:var(--gold-mid);color:#0A4A42}
 .fabric-section{margin-top:12px}
 .coll-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#999;margin-bottom:8px}
 .fabric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
 .swatch{border:1.5px solid #e8e8e4;border-radius:10px;overflow:hidden;cursor:pointer;transition:all .15s}
 .swatch:hover{border-color:var(--gold);transform:translateY(-1px)}
-.swatch.sel{border:2px solid var(--gold);box-shadow:0 2px 10px rgba(200,151,63,.2)}
+.swatch.sel{border:2px solid var(--gold);box-shadow:0 2px 10px rgba(45,224,193,.2)}
 .swatch-color{height:52px;width:100%;position:relative}
 .swatch-label{padding:5px 6px;background:#fff}
 .swatch-name{font-size:10px;font-weight:500;color:#222;line-height:1.3;margin-bottom:1px}
@@ -85,7 +77,7 @@
 .msg-ok{background:#DCFCE7;border:1px solid #86EFAC;border-radius:8px;padding:8px 12px;font-size:12px;color:#14532d;margin-top:8px}
 .msg-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:8px 12px;font-size:12px;color:#7f1d1d;margin-top:6px}
 .msg-warn{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:8px 12px;font-size:12px;color:#7d5a00;margin-top:6px;line-height:1.5}
-.msg-info{background:rgba(200,151,63,.08);border:1px solid rgba(200,151,63,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#7A4F00;margin-top:8px;line-height:1.55}
+.msg-info{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#0A4A42;margin-top:8px;line-height:1.55}
 .computed-info{background:#F9F5EE;border:1px solid #E8DFD0;border-radius:8px;padding:10px 14px;margin-top:10px}
 .computed-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#555}
 .computed-val{font-weight:500;color:#222}
@@ -122,12 +114,7 @@
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}.opt-grid-2{grid-template-columns:1fr}}
 
-/* ── DELIVERY ── */
-.del-opt{background:#fff;border:1.5px solid #e0dbd2;border-radius:9px;padding:12px 14px;margin-bottom:8px;cursor:pointer;transition:.15s}
-.del-opt:hover{border-color:var(--gold)}
-.del-opt.sel{border:2px solid var(--gold);background:rgba(200,151,63,.05)}
-.del-opt-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px}
-.del-opt-sub{font-size:11px;color:#777;line-height:1.5}
+/* ── DELIVERY — using global.css delivery-opt-card ── */
 
 /* ── DISCLAIMER ── */
 .disclaimer-toggle{background:none;border:none;font-size:12px;color:var(--gold);cursor:pointer;padding:0;font-family:var(--font);display:flex;align-items:center;gap:6px;margin-top:16px}
@@ -137,7 +124,7 @@
 .disclaimer-item::before{content:"·";position:absolute;left:4px;color:#aaa}
 </style>
 </head>
-<body>
+<body data-page="Shades & blinds">
 <nav class="site-nav" id="site-nav"></nav>
 
 <div class="page-hero">
@@ -156,39 +143,82 @@
 <div class="config-layout">
 <div><!-- left col -->
 
-<!-- STEP 1: OPERATION -->
+<!-- STEP 1: MEASUREMENTS & MOUNT -->
 <div class="step-block active" id="step1">
   <div class="step-head" onclick="toggleStep('step1')">
     <div class="step-num">1</div>
-    <div class="step-head-title">Operation</div>
+    <div class="step-head-title">Measurements &amp; mount</div>
     <div class="step-head-val" id="s1val">—</div>
   </div>
   <div class="step-body">
-    <div class="opt-grid-2">
-      <div class="opt-card" id="op-wand" onclick="pickOp('wand')">
-        <div class="opt-card-icon">🪄</div>
-        <div class="opt-card-title">Wand Tilt</div>
-        <div class="opt-card-desc">Manual wand. Left, right, or traveling center stack.</div>
-      </div>
-      <div class="opt-card" id="op-motor" onclick="pickOp('motor')">
-        <div class="opt-card-icon">⚡</div>
-        <div class="opt-card-title">Motorized</div>
-        <div class="opt-card-desc">Norman Smart motor. Center stack + center opening available.</div>
+    <div class="dim-box">
+      <div class="dim-box-label">Enter your measurements</div>
+      <div class="form-row">
+        <div class="form-group"><label>Track width (order width)</label><input type="number" id="inp-w" min="17.625" max="285.625" step="0.125" placeholder="48" oninput="calcDims()"><div class="dim-unit">inches · 17⅝″ min · 285⅝″ max</div></div>
+        <div class="form-group"><label>Height (order height)</label><input type="number" id="inp-h" min="24" max="144" step="0.125" placeholder="84" oninput="calcDims()"><div class="dim-unit">inches · 24″ min · 144″ max</div></div>
       </div>
     </div>
-    <div id="motor-note" class="msg-info" style="display:none;margin-top:10px">Motorized SmartDrape: Norman Smart Rechargeable Battery or AC Adapter. Min width confirmed in Norman motorization binder. Pricing confirmed at quote.</div>
+    <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure →</a> · SmartDrape™ is outside mount — order your desired finished track width.</div>
+    <div id="dim-msg" style="margin-top:8px"></div>
+    <div id="computed-panel" class="computed-info" style="display:none">
+      <div class="computed-row"><span>Shade fabric width</span><span class="computed-val" id="cp-fabric">—</span></div>
+      <div class="computed-row"><span>SmartJoints required</span><span class="computed-val" id="cp-joints">—</span></div>
+      <div class="computed-row"><span>Area</span><span class="computed-val" id="cp-area">—</span></div>
+    </div>
+    <div class="msg-info" style="margin-top:10px;font-size:11px">No deductions taken. Order your desired finished track width. For wand tilt: min 17⅝″, max 285⅝″. Height: 24″–144″, max 237 sq ft.</div>
+
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
+    <div class="msg-info" style="margin-top:4px;margin-bottom:10px">SmartDrape™ is <strong>Outside mount only</strong> — no inside mount. No deductions are taken. Order your desired finished track width.</div>
+    <div class="opt-row">
+      <button class="opt-btn sel" id="mc-wall" onclick="pickMount(this,'wall')">Wall mount</button>
+      <button class="opt-btn" id="mc-ceiling" onclick="pickMount(this,'ceiling')">Ceiling mount</button>
+    </div>
+    <div class="step-note">Wall mount: L bracket · standard, recommended for doors. Ceiling mount: direct mount or C clip.</div>
+    <div style="margin-top:12px;display:flex;align-items:center;gap:10px">
+      <input type="checkbox" id="door-check" onchange="onDoorChange()" style="width:16px;height:16px;cursor:pointer">
+      <label for="door-check" style="font-size:13px;color:#444;cursor:pointer">Patio door / slider application</label>
+    </div>
+    <div id="door-warn" class="msg-warn" style="display:none;margin-top:8px">Patio door: allow ≥4″ overlap beyond opening width, ≥3″ above opening height, ½″ floor clearance minimum. No magnetic hold-downs (SmartDrape doesn't use them).</div>
+
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <span style="font-size:12px;color:#666">Qty:</span>
+      <div class="qty-btns">
+        <button class="qty-btn" onclick="adjQty(-1)">−</button>
+        <input class="qty-num" type="number" id="inp-qty" value="1" min="1" max="50" oninput="calcDims()">
+        <button class="qty-btn" onclick="adjQty(1)">+</button>
+      </div>
+      <span style="font-size:12px;color:#666">shade(s) of this size &amp; color</span>
+    </div>
   </div>
 </div>
 
-<!-- STEP 2: STACK -->
+<!-- STEP 2: OPERATION -->
 <div class="step-block" id="step2">
   <div class="step-head" onclick="toggleStep('step2')">
     <div class="step-num">2</div>
-    <div class="step-head-title">Stack configuration</div>
+    <div class="step-head-title">Operation</div>
     <div class="step-head-val" id="s2val">—</div>
   </div>
   <div class="step-body">
-    <div class="opt-grid" id="stack-opts"><!-- filled by JS --></div>
+    <div class="opt-row">
+      <button class="opt-btn" id="op-wand" onclick="pickOp('wand')">Wand Tilt</button>
+      <button class="opt-btn" id="op-motor" onclick="pickOp('motor')">Motorized</button>
+    </div>
+    <div class="step-note">Wand Tilt: manual wand — left, right, or traveling center stack. Motorized: Norman Smart motor — center stack + center opening available.</div>
+    <div id="motor-note" class="msg-info" style="display:none;margin-top:10px">Motorized SmartDrape: Norman Smart Rechargeable Battery or AC Adapter. Min width confirmed in Norman motorization binder. Pricing confirmed at quote.</div>
+    <div id="smartdrape-motor-config" style="display:none;margin-top:12px"><!-- shared Norman Smart motor section (populated by normanMotorSection when Motorized) --></div>
+  </div>
+</div>
+
+<!-- STEP 3: STACK -->
+<div class="step-block" id="step3">
+  <div class="step-head" onclick="toggleStep('step3')">
+    <div class="step-num">3</div>
+    <div class="step-head-title">Stack configuration</div>
+    <div class="step-head-val" id="s3val">—</div>
+  </div>
+  <div class="step-body">
+    <div id="stack-opts"><!-- filled by JS --></div>
     <div id="sbs-wrap" style="display:none;margin-top:12px;display:flex;align-items:center;gap:10px">
       <input type="checkbox" id="sbs-check" onchange="onSBSChange()" style="width:16px;height:16px;cursor:pointer">
       <label for="sbs-check" style="font-size:13px;color:#444;cursor:pointer">Side-by-side configuration (wand tilt only — two independently operated shades)</label>
@@ -197,146 +227,62 @@
   </div>
 </div>
 
-<!-- STEP 3: MOUNT -->
-<div class="step-block" id="step3">
-  <div class="step-head" onclick="toggleStep('step3')">
-    <div class="step-num">3</div>
-    <div class="step-head-title">Mount type</div>
-    <div class="step-head-val" id="s3val">—</div>
-  </div>
-  <div class="step-body">
-    <div class="msg-info" style="margin-top:4px;margin-bottom:10px">SmartDrape™ is <strong>Outside Mount only</strong> — no inside mount. No deductions are taken. Order your desired finished track width.</div>
-    <div class="opt-grid-3">
-      <div class="opt-card sel" id="mc-wall" onclick="pickMount(this,'wall')">
-        <div class="opt-card-icon">🔲</div>
-        <div class="opt-card-title">Wall Mount</div>
-        <div class="opt-card-desc">L bracket · Standard. Recommended for doors.</div>
-      </div>
-      <div class="opt-card" id="mc-ceiling" onclick="pickMount(this,'ceiling')">
-        <div class="opt-card-icon">⬆</div>
-        <div class="opt-card-title">Ceiling Mount</div>
-        <div class="opt-card-desc">Direct mount or C clip.</div>
-      </div>
-      <div class="opt-card" id="mc-pocket" onclick="pickMount(this,'pocket')">
-        <div class="opt-card-icon">▫</div>
-        <div class="opt-card-title">Ceiling Pocket</div>
-        <div class="opt-card-desc">Recessed. Min pocket depth 4⅞″.</div>
-      </div>
-    </div>
-    <div style="margin-top:12px;display:flex;align-items:center;gap:10px">
-      <input type="checkbox" id="door-check" onchange="onDoorChange()" style="width:16px;height:16px;cursor:pointer">
-      <label for="door-check" style="font-size:13px;color:#444;cursor:pointer">Patio door / slider application</label>
-    </div>
-    <div id="door-warn" class="msg-warn" style="display:none;margin-top:8px">Patio door: allow ≥4″ overlap beyond opening width, ≥3″ above opening height, ½″ floor clearance minimum. No magnetic hold-downs (SmartDrape doesn't use them).</div>
-  </div>
-</div>
-
-<!-- STEP 4: DIMENSIONS -->
+<!-- STEP 4: LIGHT CONTROL -->
 <div class="step-block" id="step4">
   <div class="step-head" onclick="toggleStep('step4')">
     <div class="step-num">4</div>
-    <div class="step-head-title">Track width &amp; height</div>
+    <div class="step-head-title">Light control</div>
     <div class="step-head-val" id="s4val">—</div>
   </div>
   <div class="step-body">
-    <div class="dim-row">
-      <div class="dim-field">
-        <div class="dim-label">Track width (order width)</div>
-        <div class="dim-input-wrap">
-          <input class="dim-input" type="number" id="inp-w" min="17.625" max="285.625" step="0.125" placeholder="48" oninput="calcDims()">
-          <span class="dim-unit">in</span>
-        </div>
-      </div>
-      <div class="dim-field">
-        <div class="dim-label">Height (order height)</div>
-        <div class="dim-input-wrap">
-          <input class="dim-input" type="number" id="inp-h" min="24" max="144" step="0.125" placeholder="84" oninput="calcDims()">
-          <span class="dim-unit">in</span>
-        </div>
-      </div>
+    <div class="opt-row">
+      <button class="opt-btn" id="oc-lf" onclick="pickOpacity('lf')">Light Filtering</button>
+      <button class="opt-btn" id="oc-rd" onclick="pickOpacity('rd')">Blackout</button>
     </div>
-    <div class="dim-row" style="margin-top:6px">
-      <div class="dim-field">
-        <div class="dim-label">Quantity</div>
-        <div class="dim-input-wrap">
-          <input class="dim-input" type="number" id="inp-qty" min="1" max="50" value="1" oninput="calcDims()">
-          <span class="dim-unit">shades</span>
-        </div>
-      </div>
-    </div>
-    <div id="dim-msg" style="margin-top:8px"></div>
-    <div id="computed-panel" class="computed-info" style="display:none">
-      <div class="computed-row"><span>Shade fabric width</span><span class="computed-val" id="cp-fabric">—</span></div>
-      <div class="computed-row"><span>SmartJoints required</span><span class="computed-val" id="cp-joints">—</span></div>
-      <div class="computed-row"><span>Area</span><span class="computed-val" id="cp-area">—</span></div>
-    </div>
-    <div class="msg-info" style="margin-top:10px;font-size:11px">No deductions taken. Order your desired finished track width. For wand tilt: min 17⅝″, max 285⅝″. Height: 24″–144″, max 237 sq ft.</div>
-  </div>
-</div>
-
-<!-- STEP 5: LIGHT CONTROL -->
-<div class="step-block" id="step5">
-  <div class="step-head" onclick="toggleStep('step5')">
-    <div class="step-num">5</div>
-    <div class="step-head-title">Light control</div>
-    <div class="step-head-val" id="s5val">—</div>
-  </div>
-  <div class="step-body">
-    <div class="opt-grid-2">
-      <div class="opt-card" id="oc-lf" onclick="pickOpacity('lf')">
-        <div class="opt-card-icon">☀️</div>
-        <div class="opt-card-title">Light Filtering</div>
-        <div class="opt-card-desc">Diffuses light, maintains view. Standard pricing.</div>
-      </div>
-      <div class="opt-card" id="oc-rd" onclick="pickOpacity('rd')">
-        <div class="opt-card-icon">🌙</div>
-        <div class="opt-card-title">Blackout</div>
-        <div class="opt-card-desc">Significantly reduces light. Not blackout. +20% surcharge.</div>
-      </div>
-    </div>
+    <div class="step-note">Light Filtering: diffuses light, maintains view — standard pricing. Blackout: significantly reduces light (not blackout) — +20% surcharge.</div>
     <div id="rd-warn" class="msg-warn" style="display:none;margin-top:8px">Blackout fabric reduces light significantly but is not a blackout product. Some light passes through edges and vane openings.</div>
   </div>
 </div>
 
-<!-- STEP 6: FABRIC -->
-<div class="step-block" id="step6">
-  <div class="step-head" onclick="toggleStep('step6')">
-    <div class="step-num">6</div>
+<!-- STEP 5: FABRIC -->
+<div class="step-block" id="step5">
+  <div class="step-head" onclick="toggleStep('step5')">
+    <div class="step-num">5</div>
     <div class="step-head-title">Fabric</div>
-    <div class="step-head-val" id="s6val">—</div>
+    <div class="step-head-val" id="s5val">—</div>
   </div>
   <div class="step-body">
     <div id="fabric-body"><!-- filled by JS --></div>
   </div>
 </div>
 
-<!-- STEP 7: HARDWARE COLOR -->
-<div class="step-block" id="step7">
-  <div class="step-head" onclick="toggleStep('step7')">
-    <div class="step-num">7</div>
+<!-- STEP 6: HARDWARE COLOR -->
+<div class="step-block" id="step6">
+  <div class="step-head" onclick="toggleStep('step6')">
+    <div class="step-num">6</div>
     <div class="step-head-title">Hardware color</div>
-    <div class="step-head-val" id="s7val">Fabric default</div>
+    <div class="step-head-val" id="s6val">Fabric default</div>
   </div>
   <div class="step-body">
     <div class="msg-info" style="margin-top:4px;margin-bottom:10px">Default hardware color is coordinated to your selected fabric. You may override below. Wand, brackets, motor, and keystone all match headrail color.</div>
-    <div class="opt-grid" id="hw-color-grid" style="grid-template-columns:repeat(3,1fr)">
-      <div class="opt-card" onclick="pickHW(this,'White')"><div class="opt-card-title" style="font-size:12px">White</div></div>
-      <div class="opt-card" onclick="pickHW(this,'Cottage White')"><div class="opt-card-title" style="font-size:12px">Cottage White</div></div>
-      <div class="opt-card" onclick="pickHW(this,'Matte Silver')"><div class="opt-card-title" style="font-size:12px">Matte Silver</div></div>
-      <div class="opt-card" onclick="pickHW(this,'Black')"><div class="opt-card-title" style="font-size:12px">Black</div></div>
-      <div class="opt-card" onclick="pickHW(this,'Bronze')"><div class="opt-card-title" style="font-size:12px">Bronze</div></div>
-      <div class="opt-card" onclick="pickHW(this,'Brass')"><div class="opt-card-title" style="font-size:12px">Brass</div></div>
+    <div class="opt-row" id="hw-color-grid">
+      <button class="opt-btn" onclick="pickHW(this,'White')">White</button>
+      <button class="opt-btn" onclick="pickHW(this,'Cottage White')">Cottage White</button>
+      <button class="opt-btn" onclick="pickHW(this,'Matte Silver')">Matte Silver</button>
+      <button class="opt-btn" onclick="pickHW(this,'Black')">Black</button>
+      <button class="opt-btn" onclick="pickHW(this,'Bronze')">Bronze</button>
+      <button class="opt-btn" onclick="pickHW(this,'Brass')">Brass</button>
     </div>
     <div class="msg-info" style="margin-top:8px;font-size:11px">Charging Extension Wand (motorized accessory) defaults to selected fabric color. Override available in: Cloud Cream, Day Light, Silver, Black, Chocolate, Moonbeam.</div>
   </div>
 </div>
 
-<!-- STEP 8: ACCESSORIES -->
-<div class="step-block" id="step8">
-  <div class="step-head" onclick="toggleStep('step8')">
-    <div class="step-num">8</div>
+<!-- STEP 7: ACCESSORIES -->
+<div class="step-block" id="step7">
+  <div class="step-head" onclick="toggleStep('step7')">
+    <div class="step-num">7</div>
     <div class="step-head-title">Accessories</div>
-    <div class="step-head-val" id="s8val">Optional</div>
+    <div class="step-head-val" id="s7val">Optional</div>
   </div>
   <div class="step-body" style="padding-top:8px">
     <div class="acc-row">
@@ -370,29 +316,22 @@
   </div>
 </div>
 
-<!-- STEP 9: DELIVERY + CONTACT -->
-<div class="step-block" id="step9">
-  <div class="step-head" onclick="toggleStep('step9')">
-    <div class="step-num">9</div>
+<!-- STEP 8: DELIVERY + CONTACT -->
+<div class="step-block" id="step8">
+  <div class="step-head" onclick="toggleStep('step8')">
+    <div class="step-num">8</div>
     <div class="step-head-title">Delivery &amp; quote</div>
   </div>
   <div class="step-body">
-    <div class="form-row" style="margin-bottom:12px">
-      <div class="del-opt sel" id="del-ship" onclick="pickDel('ship')">
-        <div class="del-opt-title">📦 Ship to me</div>
-        <div class="del-opt-sub">UPS or FedEx from Huntingdon Valley, PA. Tariffs additional.</div>
+    <div class="delivery-opt-grid" style="margin-bottom:12px">
+      <div class="delivery-opt-card sel" onclick="pickDel('ship',this)">
+        <div class="delivery-opt-title">Ship to me</div>
+        <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-group"><label>Name *</label><input type="text" id="q-name" placeholder="Jane Smith"></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" id="q-phone" placeholder="(215) 555-0100"></div>
-    </div>
-    <div class="form-group"><label>Email</label><input type="email" id="q-email" placeholder="jane@example.com"></div>
-    <div class="form-group"><label>Notes / questions</label><textarea id="q-notes" placeholder="Timeline, room details, alternating color preference, patio door details, anything else..."></textarea></div>
-    <div id="q-err" class="msg-err" style="display:none">Please enter your name and phone number.</div>
     <button onclick="reqMoreInfo('Norman SmartDrape™')" class="req-info-link" style="display:block;margin-bottom:10px;font-size:12px;color:var(--gold);background:none;border:none;cursor:pointer;text-align:left;padding:0">Request more information about SmartDrape™ →</button>
-    <button class="btn-cart-add" onclick="addNormanSheersToCart()" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
-    <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:13px;font-size:14px;font-weight:600">Submit SmartDrape™ Specification &amp; Request Quote →</button>
+    <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
+    <div id="pb-final-step"></div>
     <div id="quote-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
       <strong>Specification submitted!</strong><br>Your email app opened with the complete spec pre-filled. We'll follow up within a few hours.<br><br>
       Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> · 24/7.
@@ -422,7 +361,7 @@
     <div class="spec-title">Configuration</div>
     <div class="spec-row"><span class="spec-key">Operation</span><span class="spec-val empty" id="sp-op">—</span></div>
     <div class="spec-row"><span class="spec-key">Stack</span><span class="spec-val empty" id="sp-stack">—</span></div>
-    <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val" id="sp-mount">Wall Mount</span></div>
+    <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val" id="sp-mount">Wall mount</span></div>
     <div class="spec-row"><span class="spec-key">Width × Height</span><span class="spec-val empty" id="sp-dims">—</span></div>
     <div class="spec-row"><span class="spec-key">Qty</span><span class="spec-val empty" id="sp-qty">—</span></div>
     <div class="spec-row"><span class="spec-key">Light control</span><span class="spec-val empty" id="sp-opacity">—</span></div>
@@ -432,15 +371,15 @@
     <div class="spec-divider"></div>
     <div id="price-pending" style="font-size:11px;color:var(--text-muted);text-align:center;padding:8px 0;font-style:italic">Select operation, dimensions &amp; fabric then submit for a custom quote.</div>
     <div id="price-box" style="display:none">
-      <div class="price-box">
-        <div class="price-box-label">Price Estimate</div>
-        <div class="price-line"><span>Base (per shade)</span><span style="color:var(--cream)" id="pr-base"></span></div>
+      <div style="background:#1a1208;border-radius:10px;padding:13px;margin-top:12px">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Price Estimate</div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>Base (per shade)</span><span style="color:var(--cream)" id="pr-base"></span></div>
         <div id="pr-rd-row" style="display:none;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>Room darkening +20%</span><span style="color:var(--cream)" id="pr-rd"></span></div>
         <div id="pr-alt-row" style="display:none;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>Alternating colors +10%</span><span style="color:var(--cream)" id="pr-alt"></span></div>
         <div id="pr-motor-row" style="display:none;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>Norman Smart motor</span><span style="color:var(--cream)">+$642</span></div>
-        <div class="price-line"><span>Qty</span><span style="color:var(--cream)" id="pr-qty"></span></div>
-        <div class="price-line"><span>MSRP subtotal</span><span style="color:var(--cream)" id="pr-retail"></span></div>
-        <div class="price-line"><span>Discount (−15%)</span><span style="color:var(--gold)" id="pr-disc"></span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>Qty</span><span style="color:var(--cream)" id="pr-qty"></span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>MSRP subtotal</span><span style="color:var(--cream)" id="pr-retail"></span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;padding:3px 0;color:#7A6A58"><span>Discount (−15%)</span><span style="color:var(--gold)" id="pr-disc"></span></div>
         <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-top:8px;padding-top:8px;border-top:.5px solid #3A2E24"><span style="color:var(--cream)">Est. total</span><span style="color:var(--gold)" id="pr-total"></span></div>
         <div style="font-size:9px;color:#5A4A38;margin-top:6px;line-height:1.6">Estimate based on Norman MSRP −15%. Freight additional. Final price confirmed at quote.</div>
       </div>
@@ -448,7 +387,7 @@
   </div>
   <div style="background:var(--gold-mid);border:1px solid #e8e8e4;border-radius:12px;padding:16px;margin-top:14px">
     <div style="font-size:11px;font-weight:600;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:6px">Norman® Authorized</div>
-    <div style="font-size:12px;color:#555;line-height:1.6">SmartDrape™ uses Norman's proprietary motor system only. Looking for PerfectSheer™? <a href="shades.html#card-perfectsheer" style="color:var(--gold)">Configure it here →</a></div>
+    <div style="font-size:12px;color:#555;line-height:1.6">SmartDrape™ uses Norman's proprietary motor system only. Looking for PerfectSheer™? <a href="perfectsheer.html" style="color:var(--gold)">Configure it here →</a></div>
   </div>
 </div>
 
@@ -465,6 +404,10 @@
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/norman-sheers.js"></script>
+<script>
+// Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-final-step').innerHTML =
+  pbContactStepHTML({ bare: true, cartFn: 'addNormanSheersToCart()', submitFn: 'submitQuote()' });
+</script>
 </body>
 </html>
-

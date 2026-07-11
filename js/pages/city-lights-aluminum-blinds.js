@@ -60,7 +60,7 @@ function filterColorsBySlat(slatKey){
 }
 
 function pickSlat(el,key,label){
-  document.querySelectorAll('#step1 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step1 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   state.slat=key;
   document.getElementById('s1val').textContent=label;
@@ -84,10 +84,10 @@ function pickColor(el,code,name,surcharge){
   document.getElementById('color-compat-warn').style.display='none';
   markDone('step2');
   calcPrice();
-  goNext('step2','step3');
+  goNext('step2','step5');
 }
 function pickMount(el,key,label){
-  document.querySelectorAll('#step3 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step3 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   state.mount=key;
   document.getElementById('s3val').textContent=label;
@@ -98,15 +98,12 @@ function pickMount(el,key,label){
   document.getElementById('shim-wrap').style.display=(key==='outside')?'block':'none';
   if(key==='inside'){state.shim=false;document.getElementById('shim-addon').classList.remove('sel');document.getElementById('shim-qty-wrap').style.display='none';}
   calcPrice();
-  goNext('step3','step4');
+  goNext('step3','step1');
 }
 
 function calcPrice(){
-  const wW=parseFloat(document.getElementById('w-whole').value)||0;
-  const wF=parseFloat(document.getElementById('w-frac').value)||0;
-  const hW=parseFloat(document.getElementById('h-whole').value)||0;
-  const hF=parseFloat(document.getElementById('h-frac').value)||0;
-  state.w=wW+wF; state.h=hW+hF;
+  state.w=parseFloat(document.getElementById('w-whole').value)||0;
+  state.h=parseFloat(document.getElementById('h-whole').value)||0;
 
   const dimMsg=document.getElementById('dim-msg');
   const sizeBox=document.getElementById('size-box');
@@ -152,14 +149,13 @@ function calcPrice(){
     updateQuote();return;
   }
 
-  // all good
-  document.getElementById('s4val').textContent=`${state.w}″ × ${state.h}″`;
-  markDone('step4');
+  // all good — size lives in the merged Step 1 (Window measurements & mount)
+  markDone('step3');
   sizeBox.style.display='block';
-  // Auto-open steps 5-8 the first time dimensions are valid
-  ['step5','step6','step7','step8'].forEach(id=>{
+  // Auto-open the remaining steps the first time dimensions are valid
+  ['step1','step2','step5','step7','step8'].forEach(id=>{
     const el=document.getElementById(id);
-    if(!el.classList.contains('active')&&!el.classList.contains('open'))el.classList.add('active');
+    if(el&&!el.classList.contains('active')&&!el.classList.contains('open'))el.classList.add('active');
   });
   document.getElementById('cv-size').textContent=`${state.w}″ W × ${state.h}″ H`;
   document.getElementById('cv-sqft').textContent=sqft.toFixed(2)+' sq ft';
@@ -182,8 +178,6 @@ function adjQty(d){
   const el=document.getElementById('qty');
   el.value=Math.max(1,Math.min(99,(parseInt(el.value)||1)+d));
   state.qty=parseInt(el.value);
-  document.getElementById('s6val').textContent=state.qty+' blind'+(state.qty>1?'s':'');
-  markDone('step6');
   calcPrice();
 }
 function adjShim(d){
@@ -205,7 +199,6 @@ function pickDel(btn,key){
 function updateQuote(){
   const qty=parseInt(document.getElementById('qty').value)||1;
   state.qty=qty;
-  document.getElementById('s6val').textContent=qty+' blind'+(qty>1?'s':'');
 
   const ready=state.slat&&state.colorCode&&state.mount&&state.w&&state.h;
   if(!ready){document.getElementById('qp-pending').style.display='block';document.getElementById('qp-detail').style.display='none';return;}
@@ -255,18 +248,17 @@ function updateQuote(){
 
   const slatLabels={half:'½″ Micro Slats',one:'1″ Standard Slats',two:'2″ SmartPrivacy®'};
   document.getElementById('qr-slat').textContent=slatLabels[state.slat];
-  document.getElementById('qr-finish').textContent=state.colorName+(state.colorSurcharge?' (+'+state.colorSurcharge+'%)':'');
-  document.getElementById('qr-mount').textContent=state.mount==='inside'?'Inside Mount':'Outside Mount';
+  document.getElementById('qr-finish').textContent=state.colorName;
+  document.getElementById('qr-mount').textContent=state.mount==='inside'?'Inside mount':'Outside mount';
   document.getElementById('qr-dims').textContent=state.w+'″ × '+state.h+'″';
   document.getElementById('qr-qty').textContent=qty+(qty>1?' blinds':' blind');
   document.getElementById('qr-base').textContent='$'+basePrice.toFixed(0);
 
-  const showRow=(id,show,val)=>{document.getElementById(id).style.display=show?'flex':'none';if(val)document.getElementById(id.replace('-row','-s')).textContent=val;};
-  showRow('qr-slat-row',state.slat!=='one',state.slat==='half'?'+10% (½″ micro)':'+20% (2″ SmartPrivacy)');
-  showRow('qr-finish-row',state.colorSurcharge>0,'+'+state.colorSurcharge+'%');
-  showRow('qr-privacy-row',state.privacy,'+10%');
-  showRow('qr-sm-row',state.sidemount,'+$25');
-  showRow('qr-shim-row',state.shim,'$'+(state.shimQty*7));
+  // Detail hidden per owner request — slat/finish/privacy/side-mount/shim surcharges + base roll silently
+  // into the retail subtotal. Customer sees retail → 35% off → your price → freight. (Cordless-only; no motor/TDBU/D&N.)
+  const _hideRow=(id)=>{const e=document.getElementById(id);if(e)e.style.display='none';};
+  const _qrBase=document.getElementById('qr-base'); if(_qrBase&&_qrBase.closest){const r=_qrBase.closest('.qrow'); if(r)r.style.display='none';}
+  ['qr-slat-row','qr-finish-row','qr-privacy-row','qr-sm-row','qr-shim-row'].forEach(_hideRow);
 
   // Retail subtotal row
   let retailRow=document.getElementById('qr-retail-row');
@@ -280,7 +272,7 @@ function updateQuote(){
     firstDiv.parentNode.insertBefore(retailRow,firstDiv);
     discRow=document.createElement('div');
     discRow.className='qrow';discRow.id='qr-disc-row';
-    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">15% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
+    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">35% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
     firstDiv.parentNode.insertBefore(discRow,firstDiv);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='qr-yourprice-row';
@@ -311,7 +303,7 @@ function addCityLightsToCart(){
     {label:'Product',value:'Norman City Lights™ Aluminum Blinds'},
     {label:'Slat Size',value:slatLabels[state.slat]||state.slat},
     {label:'Color',value:state.colorName+(state.colorSurcharge?' (+'+state.colorSurcharge+'% surcharge)':'')},
-    {label:'Mount',value:state.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Mount',value:state.mount==='inside'?'Inside mount':'Outside mount'},
     {label:'Width',value:state.w+'″'},
     {label:'Height',value:state.h+'″'},
     {label:'Privacy Slats',value:state.privacy?'Yes (+10%)':'No'},
@@ -325,9 +317,9 @@ function addCityLightsToCart(){
 }
 
 function submitQuote(){
-  const name=document.getElementById('f-name').value.trim();
-  const phone=document.getElementById('f-phone').value.trim();
-  const err=document.getElementById('form-err');
+  const name=document.getElementById('cf-name').value.trim();
+  const phone=document.getElementById('cf-phone').value.trim();
+  const err=document.getElementById('cf-contact-err');
   if(!name||!phone){err.style.display='block';return;}
   err.style.display='none';
 
@@ -338,7 +330,7 @@ function submitQuote(){
     '','Product: Norman Citylights™ Aluminum Blinds',
     'Slat size: '+(slatLabels[state.slat]||'—'),
     'Color: '+(state.colorName||'—')+' ('+state.colorCode+')'+(state.colorSurcharge?' +'+state.colorSurcharge+'%':''),
-    'Mount: '+(state.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Mount: '+(state.mount==='inside'?'Inside mount':'Outside mount'),
     'Width: '+state.w+'″',
     'Height: '+state.h+'″',
     'Privacy slats: '+(state.privacy?'Yes':'No'),
@@ -347,14 +339,14 @@ function submitQuote(){
     'Quantity: '+qty,
     'Delivery: '+(state.del==='ship'?'Ship to me':'Pick up'),
     '',
-    'Notes: '+(document.getElementById('f-notes').value.trim()||'None'),
+    'Notes: '+(document.getElementById('cf-notes').value.trim()||'None'),
     '',
     'Name: '+name,
     'Phone: '+phone,
-    'Email: '+(document.getElementById('f-email').value.trim()||'—')
+    'Email: '+(document.getElementById('cf-email').value.trim()||'—')
   ];
   const body=encodeURIComponent(lines.join('\n'));
   const subject=encodeURIComponent('Citylights Aluminum Blinds Quote — '+name);
-  window.location.href='mailto:justin@blindznation.com?subject='+subject+'&body='+body;
+  window.location.href='mailto:blindznation@gmail.com?subject='+subject+'&body='+body;
   document.getElementById('success-box').style.display='block';
 }

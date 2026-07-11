@@ -1,6 +1,3 @@
-renderNav('Soft treatments');
-renderFooter(false);
-
 // ═══════════════════════════════════════════════════════════
 // GALAXY PATTERN DATA — Source: 2025 Galaxy Woven Collection PDF (Wallace)
 // ═══════════════════════════════════════════════════════════
@@ -186,6 +183,17 @@ const LINER_DUAL_P = {
   108:[257,285,312,344,462,562,632,698,773],114:[261,290,319,351,472,574,646,715,799],120:[265,295,324,358,481,585,660,737,824]
 };
 
+// Dual shade liner (blackout)
+const LINER_DUAL_BO = {
+  36:[177,195,213,234,275,338,378,417,455],42:[182,201,221,244,286,352,395,436,477],
+  48:[188,208,229,253,298,366,412,456,500],54:[193,215,237,261,309,380,429,476,522],
+  60:[198,221,246,271,320,394,446,495,545],66:[203,228,252,280,331,408,463,515,567],
+  72:[208,234,260,289,343,422,480,535,590],78:[273,304,335,371,483,588,664,737,809],
+  84:[279,312,345,381,496,606,685,761,838],90:[285,319,354,392,511,623,707,786,866],
+  96:[292,327,363,402,525,641,728,812,895],102:[297,335,372,413,540,659,749,836,924],
+  108:[304,342,381,424,554,677,771,862,952],114:[309,350,390,435,568,695,793,887,981],
+  120:[316,357,399,445,582,713,814,912,1010]
+};
 // Valance surcharges by group and width bracket [24,36,48,60,72,84,96]
 const VAL_W = [24,36,48,60,72,84,96];
 const VALANCE_6 = {1:[59,74,94,116,131,152,167],2:[62,79,99,122,139,161,179],3:[81,106,136,169,194,229,255],4:[90,119,154,191,221,260,292],5:[97,130,168,211,245,289,324],6:[110,149,194,241,280,327,366]};
@@ -206,7 +214,7 @@ const S = {
   control:null, liner:'none', linerType:'P', linerColor:'White', linerCode:'2294',
   edge:'none', valance:'standard', qty:1, del:'ship',
   holdDown:false, sideReturn:false, cutOut:false, twoOn1:false,
-  accHub:false, accRemote:false, accCharger:false, accSolar:false
+  accHub:false, accRemote:false, accCharger:false, accSolar:false, accExt:false
 };
 
 // ── BUILD PATTERN GRID ────────────────────────────────────────────────────────
@@ -236,7 +244,7 @@ function markDone(id){document.getElementById(id).classList.add('done');}
 
 // ── STEP 1: STYLE ─────────────────────────────────────────────────────────────
 function pickStyle(el,key,label){
-  document.querySelectorAll('#step1 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step1 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.style=key;
   document.getElementById('s1val').textContent=label;
@@ -287,7 +295,7 @@ function checkPatternCompat(){
 
 // ── STEP 3: DIMENSIONS ────────────────────────────────────────────────────────
 function pickMount(el,key){
-  document.querySelectorAll('#step3 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step3 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.mount=key;
   calcPrice();
@@ -315,15 +323,15 @@ function updateControlOptions(){
 
 function pickControl(el,key){
   if(el.classList.contains('disabled')) return;
-  document.querySelectorAll('#step4 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step4 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   pickControlByKey(key);
 }
 
 function pickControlByKey(key){
   S.control=key;
-  // Highlight the matching control card (this is also called programmatically from pickStyle).
-  document.querySelectorAll('#step4 .opt-card').forEach(c=>c.classList.remove('sel'));
+  // Highlight the matching control button (this is also called programmatically from pickStyle).
+  document.querySelectorAll('#step4 .opt-btn').forEach(c=>c.classList.remove('sel'));
   var _cb=document.getElementById('ctrl-'+key); if(_cb) _cb.classList.add('sel');
   const label={loop:'Loop Control',cordless:'Cordless',motor:'Motorized'}[key]||key;
   document.getElementById('s4val').textContent=label;
@@ -339,7 +347,7 @@ function pickControlByKey(key){
 
 // ── STEP 5: LINER ─────────────────────────────────────────────────────────────
 function pickLiner(el,type,label,code){
-  document.querySelectorAll('#step5 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step5 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.liner=type;
   document.getElementById('s5val').textContent=label;
@@ -365,7 +373,7 @@ function pickLinerColor(el,name,code){
 
 // ── STEP 6: EDGE BINDING ─────────────────────────────────────────────────────
 function pickEdge(el,key,label){
-  document.querySelectorAll('#step6 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step6 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.edge=key;
   document.getElementById('s6val').textContent=label;
@@ -382,7 +390,7 @@ function updateValanceNote(){
 }
 
 function pickValance(el,key,label){
-  document.querySelectorAll('#step7 .opt-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step7 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.valance=key;
   document.getElementById('s7val').textContent=label;
@@ -395,18 +403,16 @@ function toggleAddon(el,key){
   el.classList.toggle('sel');
   S[key]=el.classList.contains('sel');
   const check=el.querySelector('.addon-check');
-  if(check) check.style.color=S[key]?'#1C1510':'transparent';
+  if(check) check.style.color=S[key]?'#111110':'transparent';
   calcPrice();
 }
 
 // ── STEP 9 ────────────────────────────────────────────────────────────────────
 function pickDel(btn,key){
-  document.querySelectorAll('.del-btn').forEach(b=>b.classList.remove('sel'));
+  document.querySelectorAll('.delivery-opt-card').forEach(b=>b.classList.remove('sel'));
   btn.classList.add('sel');
   S.del=key;
-  document.getElementById('del-ship').style.display=key==='ship'?'block':'none';
-  document.getElementById('del-pickup').style.display=key==='pickup'?'block':'none';
-  calcPrice();
+      calcPrice();
 }
 
 // ── PRICE LOOKUP HELPERS ──────────────────────────────────────────────────────
@@ -429,11 +435,8 @@ function valWIdx(w){const v=lookupValW(w);return VAL_W.indexOf(v);}
 
 // ── MAIN CALC ─────────────────────────────────────────────────────────────────
 function calcPrice(){
-  const wW=parseFloat(document.getElementById('w-whole').value)||0;
-  const wF=parseFloat(document.getElementById('w-frac').value)||0;
-  const hW=parseFloat(document.getElementById('h-whole').value)||0;
-  const hF=parseFloat(document.getElementById('h-frac').value)||0;
-  S.w=wW+wF; S.h=hW+hF;
+  S.w=parseFloat(document.getElementById('w-whole').value)||0;
+  S.h=parseFloat(document.getElementById('h-whole').value)||0;
   S.qty=parseInt(document.getElementById('qty').value)||1;
   document.getElementById('s9val').textContent=S.qty+' shade'+(S.qty>1?'s':'');
 
@@ -522,8 +525,7 @@ function updateQuote(){
   // liner
   let linerAdd=0;
   if(S.liner!=='none'){
-    let ltable=(S.style==='dual')?(S.liner==='blackout'?LINER_DUAL_P:LINER_DUAL_P):(S.liner==='blackout'?LINER_BO:LINER_P);
-    // Note: dual shade uses dual liner table — simplified here
+    let ltable=(S.style==='dual')?(S.liner==='blackout'?LINER_DUAL_BO:LINER_DUAL_P):(S.liner==='blackout'?LINER_BO:LINER_P);
     const row=ltable[hrow];
     if(row) linerAdd=row[wi]||0;
     if(isHobbled) linerAdd=Math.round(linerAdd*1.30);
@@ -555,6 +557,7 @@ function updateQuote(){
   if(S.accRemote) motorAccAdd+=68;
   if(S.accCharger) motorAccAdd+=52;
   if(S.accSolar) motorAccAdd+=130;
+  if(S.accExt) motorAccAdd+=21;
   total+=motorAccAdd;
 
   // freight
@@ -589,6 +592,7 @@ function updateQuote(){
   document.getElementById('qr-total').textContent='$'+Math.round(grandTotal).toLocaleString();
 }
 
+// ── SUBMIT ────────────────────────────────────────────────────────────────────
 function addGalaxyToCart(){
   if(!S.patternName){ alert('Please select a pattern before adding to cart.'); return; }
   if(!S.w||!S.h){ alert('Please enter valid dimensions before adding to cart.'); return; }
@@ -609,7 +613,7 @@ function addGalaxyToCart(){
     {label:'Pattern',value:S.patternName+(S.sku?' ('+S.sku+')':'')},
     {label:'Price Group',value:S.pg||'—'},
     {label:'Style',value:styleLabel},
-    {label:'Mount',value:S.mount==='inside'?'Inside Mount':'Outside Mount'},
+    {label:'Mount',value:S.mount==='inside'?'Inside mount':'Outside mount'},
     {label:'Width',value:(S.w||'—')+'″'},
     {label:'Height',value:(S.h||'—')+'″'},
     {label:'Control',value:ctrlLabel},
@@ -623,12 +627,11 @@ function addGalaxyToCart(){
   pbOpenCart();
 }
 
-// ── SUBMIT ────────────────────────────────────────────────────────────────────
 function submitQuote(){
-  const name=document.getElementById('f-name').value.trim();
-  const phone=document.getElementById('f-phone').value.trim();
-  const err=document.getElementById('form-err');
-  if(!name||!phone){err.style.display='block';return;}
+  const name=document.getElementById('cf-name').value.trim();
+  const phone=document.getElementById('cf-phone').value.trim();
+  const err=document.getElementById('cf-contact-err');
+  if(!name||!phone){err.textContent='Please enter your name and phone number.';err.style.display='block';return;}
   err.style.display='none';
 
   const qty=S.qty||1;
@@ -647,6 +650,7 @@ function submitQuote(){
   if(S.accRemote) motorAccs.push('15-Ch RF Remote ($68)');
   if(S.accCharger) motorAccs.push('Li-Ion Charger ($52)');
   if(S.accSolar) motorAccs.push('Solar Panel ($130)');
+  if(S.accExt) motorAccs.push('Extension Cable 1.2M ($21)');
 
   const lines=[
     'WALLACE GALAXY WOVEN WOODS QUOTE REQUEST',
@@ -660,7 +664,7 @@ function submitQuote(){
     'Style: '+styleLabel,
     'Width: '+(S.w||'—')+'″',
     'Height: '+(S.h||'—')+'″',
-    'Mount: '+(S.mount==='inside'?'Inside Mount':'Outside Mount'),
+    'Mount: '+(S.mount==='inside'?'Inside mount':'Outside mount'),
     'Quantity: '+qty,
     '',
     'Control: '+ctrlLabel,
@@ -671,22 +675,21 @@ function submitQuote(){
     'Motor accessories: '+(motorAccs.length?motorAccs.join(', '):'None'),
     'Accessories: '+(accs.length?accs.join(', '):'None'),
     '',
-    'Room/window: '+(document.getElementById('room-label').value.trim()||'—'),
-    'Delivery: '+(S.del==='ship'?'Ship to me (UPS/FedEx)':'Will pick up'),
+    'Delivery: '+'Ship to me (UPS/FedEx)',
     '',
-    'Notes: '+(document.getElementById('f-notes').value.trim()||'None'),
+    'Notes: '+(document.getElementById('cf-notes').value.trim()||'None'),
     '',
     'CUSTOMER:',
     'Name: '+name,
     'Phone: '+phone,
-    'Email: '+(document.getElementById('f-email').value.trim()||'—'),
+    'Email: '+(document.getElementById('cf-email').value.trim()||'—'),
     '',
     'Pricing is an internal estimate only. Final price confirmed with current Wallace Galaxy price book.'
   ];
 
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Galaxy Woven Woods Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent('Galaxy Woven Woods Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
   document.getElementById('success-box').style.display='block';
 }
 
 // Init: set mount default
-document.getElementById('mc-inside').classList.add('sel');
+document.getElementById('mc-inside').classList.add('sel');

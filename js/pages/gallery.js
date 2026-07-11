@@ -1,6 +1,4 @@
-renderNav('Our work'); renderFooter(false);
-
-const base='../';
+﻿const base='../';
 const drapeFiles=['IMG_4927.JPEG','IMG_2861.JPEG','IMG_3018.JPEG','IMG_3023.JPEG','IMG_3032.JPEG','IMG_3034.JPEG','IMG_3367.JPEG','IMG_3575.JPEG','IMG_3578.JPEG','IMG_3615.JPEG','IMG_3616.JPEG','IMG_4767.JPEG','IMG_4791.JPEG','IMG_4792.JPEG','IMG_4920.JPEG','IMG_4922.JPEG','IMG_4924.JPEG','IMG_4925.JPEG','IMG_2716.JPEG','IMG_2723.JPEG','IMG_2726.JPEG','IMG_2732.JPEG','IMG_2733.JPEG','IMG_2747.JPEG','IMG_2754.JPEG','IMG_2806.JPEG','IMG_2850.JPEG','IMG_2851.JPEG','IMG_2853.JPEG','IMG_2854.JPEG','IMG_2684.JPEG','IMG_1959.JPEG','IMG_1962.JPEG','IMG_1965.JPEG','IMG_1966.JPEG','IMG_2014.JPEG','IMG_2016.JPEG','IMG_2017.JPEG','IMG_2019.JPEG','IMG_2020.JPEG','IMG_2022.JPEG','IMG_2681.JPEG','0BD8C37F-98A4-4B7D-9703-B72D4FC1AE31.JPG','1AAF691A-868D-4B47-B05A-79582C62D55C.jpg','05F1958F-2CF3-4A9D-83A3-2D84A050AA54.JPG','5A65FBE6-7AB9-4535-8D62-64482C37378D.jpg','5CA381D9-4644-42EA-8977-14BCEE517279.JPEG','6AB7DA55-1C77-45B6-874D-1C48DC0DE414.JPEG','8A171BD2-2D59-4D91-8055-76B9EEF0D9B3.JPEG','09F3C90B-FC44-42D9-A881-B976E9F35567.JPEG','624C1D52-5E26-40F4-A216-96525F35677A.jpg','844F7124-DA35-4094-974E-9A2B1B795040.JPG','42544ACF-F287-4F3F-810B-B98A92843CBB.JPG','1044365A-6787-4095-90B3-4F82011BBA3C.JPG','64507409-6249-4D66-8BBD-DE1A62796429.JPEG','74313161-6696-4E7C-A596-3CC597861783.JPG','A4EC67A6-44DF-47F3-83D2-B414652EA94F.JPG','B80FD70C-AFA3-4D5A-8003-3E7D6C2EC6B0-1.JPG','C25AC8C2-D5E1-430E-992C-A4732D98E1FA.JPEG','41231734-8063-434D-A4B9-FB33AE52C342.JPG','PINCH_PLEAT_2PRONG.JPEG','PINCH_PLEAT_TRAVERSE.JPEG'];
 const romanFiles=['CB132874-2AF3-4EEA-B87F-B1587D04A309.JPG','IMG_0592.JPEG','IMG_0599.JPEG','IMG_0603.JPEG','IMG_0604.JPEG','IMG_0699.JPEG','IMG_0732.JPEG','448E74BE-9249-43A5-94DB-F3092460702C.JPG','506E0E70-EFA5-4132-880C-9B678A67B9FF.JPEG','5048388E-1B01-4F2A-B6CC-9450F9EB3388.JPG','60217592364__67DA8A85-9CCF-42C0-B741-F0F3C33FDB36.JPG','ROMAN_FLAT_UNLINED.JPG','ROMAN_TDBU.JPEG','ROMAN_TRIM.JPG','ROMAN_TRIM_GREEK.JPG'];
 const rollerFiles=['u3916193617_custom_roller_shades_high_end_in_hpuse_motorized__5be2f23c-3f34-47dc-86d1-3cbbbda7fc96_0.png','u3916193617_custom_roller_shades_high_end_in_hpuse_motorized__5be2f23c-3f34-47dc-86d1-3cbbbda7fc96_1.png','u3916193617_custom_roller_shades_high_end_in_hpuse_motorized__5be2f23c-3f34-47dc-86d1-3cbbbda7fc96_2.png','u3916193617_custom_roller_shades_high_end_in_hpuse_motorized__5be2f23c-3f34-47dc-86d1-3cbbbda7fc96_3.png','DUAL_ROLLER_SHADES.JPG','ROLLER_METAL_VALANCE.JPEG','IMG_5442.JPEG','IMG_5277.JPEG','IMG_5278.JPEG','IMG_5279.JPEG','IMG_5280.JPEG','IMG_5281.JPEG','IMG_5282.JPEG','IMG_5283.JPEG','IMG_5284.JPEG','IMG_5285.JPEG'];
@@ -20,7 +18,7 @@ const videos=[
   {file:'custom_drapes.MOV',name:'Motorized custom drapes',cat:'Drapes',motor:true,color:'#FBEAF0',stroke:'#993556'},
   {file:'drapes.MP4',name:'Motorized drapes',cat:'Drapes',motor:true,color:'#F4C0D1',stroke:'#72243E'},
   {file:'triangle_drapes.MP4',name:'Motorized triangle drapes',cat:'Drapes',motor:true,color:'#ED93B1',stroke:'#993556'},
-  {file:'IMG_1649.MP4',name:'2-prong tack top pinch pleat',cat:'Drapes',motor:false,color:'#F5ECD7',stroke:'#8B6A3E'},
+  {file:'IMG_1649.MP4',name:'2-prong tack top pinch pleat',cat:'Drapes',motor:false,color:'#FAF8F3',stroke:'#8B6A3E'},
   {file:'IMG_1387.MOV',name:'Custom roller shades — bedroom install',cat:'Roller',motor:false,color:'#E6F1FB',stroke:'#185FA5'},
 ];
 
@@ -37,7 +35,7 @@ function buildVideoGrid(){
     <div class="pcard" onclick="openVideo(${i})">
       <div class="vthumb" style="background:${v.color}">
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="5" y="8" width="38" height="26" rx="2" fill="${v.color}" stroke="${v.stroke}" stroke-width="1"/><line x1="5" y1="14" x2="43" y2="14" stroke="${v.stroke}" stroke-width="0.7" opacity="0.4"/><line x1="5" y1="21" x2="43" y2="21" stroke="${v.stroke}" stroke-width="0.7" opacity="0.4"/><line x1="5" y1="28" x2="43" y2="28" stroke="${v.stroke}" stroke-width="0.7" opacity="0.4"/></svg>
-        <div class="play-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M3 1.5l7 4-7 4V1.5z" fill="#1C1510"/></svg></div>
+        <div class="play-btn"><svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M3 1.5l7 4-7 4V1.5z" fill="#111110"/></svg></div>
         <div class="vtag" style="background:${v.color};color:${v.stroke}">${v.cat}</div>
         ${v.motor?'<div class="motor-badge">Motorized</div>':'<div class="motor-badge" style="background:#F1EFE8;color:#444">Manual</div>'}
       </div>
@@ -109,4 +107,4 @@ buildPhotoGrid('grid-roller', rollerFiles, '../images/portfolio/');
 buildPhotoGrid('grid-specialty', specialtyFiles, '../images/portfolio/');
 buildPhotoGrid('grid-upholstery', upholsteryFiles, '../images/upholstery/');
 buildPhotoGrid('grid-recent', recentFiles, '../images/portfolio/');
-buildVideoGrid();
+buildVideoGrid();

@@ -1,7 +1,4 @@
-renderNav('Paris Texas');
-renderFooter(false);
-
-/* ─── STATE ─── */
+﻿/* ─── STATE ─── */
 const S = {
   type:'', finishType:'', diameter:'', finish:'', finishCode:'', finishTrackColor:'',
   finial:'', poleDia:'', width:'', qty:1,
@@ -391,6 +388,16 @@ document.addEventListener('input', e => {
   if(e.target.id==='width-in'||e.target.id==='qty-in') updatePriceEstimate();
 });
 
+/* ─── QTY STEPPER (shared .qty-btns) ─── */
+function adjQty(d){
+  const q=document.getElementById('qty-in');
+  if(!q) return;
+  let v=(parseInt(q.value,10)||1)+d;
+  if(v<1)v=1; if(v>50)v=50;
+  q.value=v;
+  updatePriceEstimate();
+}
+
 /* ─── STEP 7 ─── */
 function prep7() {
   const isTrav = S.type!=='static';
@@ -435,7 +442,7 @@ function typeLabel() {
 function selectDelivery(opt, prefix) {
   S.delivery=opt;
   const pre = prefix||'';
-  ['install','ship','pickup'].forEach(o=>{
+  ['install','ship'].forEach(o=>{
     const el=document.getElementById((pre?pre+'-':'')+'del-'+o);
     if(el) el.classList.toggle('sel',o===opt);
   });
@@ -468,12 +475,17 @@ function addParisTexasToCart(){
 }
 
 function submitQuote() {
-  const name=document.getElementById('q-name').value.trim();
-  const contact=document.getElementById('q-contact').value.trim();
-  if(!name||!contact){alert('Please enter your name and contact information.');return;}
+  const name=document.getElementById('cf-name').value.trim();
+  const phone=document.getElementById('cf-phone').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const errEl=document.getElementById('cf-contact-err');
+  errEl.style.display='none';
+  if(!name){ errEl.textContent='Please enter your name.'; errEl.style.display='block'; return; }
+  if(!phone&&!email){ errEl.textContent='Please enter a phone number or email address.'; errEl.style.display='block'; return; }
+  const contact=[phone,email].filter(Boolean).join(' / ');
 
-  const notes=document.getElementById('q-notes').value;
-  const addr=document.getElementById('q-address').value;
+  const notes=document.getElementById('cf-notes').value;
+  const addr=document.getElementById('cf-address').value;
   const w=document.getElementById('width-in')?.value||'';
   const qty=document.getElementById('qty-in')?.value||'1';
 
@@ -520,7 +532,7 @@ function submitQuote() {
     'Smart Controls: '+(S.controls||'None'),
     '',
     'DELIVERY',
-    'Preference: '+(S.delivery==='install'?'Professional Installation':S.delivery==='ship'?'Ship to Customer':'Pick Up'),
+    'Preference: '+(S.delivery==='install'?'Professional Installation':'Ship to Customer'),
     '',
     'ADDITIONAL NOTES',
     notes||'None',
@@ -532,7 +544,7 @@ function submitQuote() {
   ].join('\n');
 
   const subject='Paris Texas Hardware Quote — '+typeLabel()+' — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
   document.getElementById('success-box').style.display='block';
   document.getElementById('step-bar').style.display='none';
@@ -551,7 +563,7 @@ function submitUnsure() {
     'Delivery: '+(S.delivery||'Not selected'),'','PROJECT DETAILS',notes||'No details provided',
     '','--- Sent from blindznation.com/pages/paris-texas-rods.html ---'
   ].join('\n');
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Paris Texas Help — '+name)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent('Paris Texas Help — '+name)+'&body='+encodeURIComponent(body);
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
   document.getElementById('success-box').style.display='block';
   document.getElementById('step-bar').style.display='none';
@@ -562,4 +574,4 @@ function submitUnsure() {
 function show(id){const el=document.getElementById(id);if(el)el.style.display='';}
 function hide(id){const el=document.getElementById(id);if(el)el.style.display='none';}
 
-renderStepBar(1);
+renderStepBar(1);

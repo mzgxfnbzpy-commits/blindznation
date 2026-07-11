@@ -1,5 +1,3 @@
-renderNav('Hardware'); renderFooter(false);
-
 // ═══════════════════════════════════════════════════════════════
 // DATA
 // ═══════════════════════════════════════════════════════════════
@@ -122,7 +120,7 @@ var STACK_TABLE = [
 // ═══════════════════════════════════════════════════════════════
 var S = {
   coll: '', finish: '', header: '', fullness: '100%',
-  draw: '', mount: '', trackLen: 0, qty: 1, room: '',
+  draw: '', mount: '', trackLen: 0, qty: 1,
   finial: '', motorized: false, motorSide: '',
   accessories: [], delivery: 'ship'
 };
@@ -134,21 +132,21 @@ function selectColl(c) {
   S.coll = c; S.finish = ''; S.finial = '';
   ['dm','wt','wi'].forEach(function(id){ document.getElementById('coll-'+id).classList.toggle('sel', id===c); });
   var label = COLLECTIONS[c].label;
-  completeStep('step-1', label);
+  completeStep('step-2', label);
   updateSpec('sp-coll', label);
   updateSpec('sp-finish', '—'); document.getElementById('sp-finish').classList.add('empty');
   updateSpec('sp-finial', '—'); document.getElementById('sp-finial').classList.add('empty');
   buildFinishStep(c);
   buildFinialStep(c);
   buildAccStep(c);
-  activateStep('step-2');
+  activateStep('step-3');
 }
 
 // ═══════════════════════════════════════════════════════════════
 // FINISH
 // ═══════════════════════════════════════════════════════════════
 function buildFinishStep(c) {
-  var body = document.getElementById('s2-body');
+  var body = document.getElementById('s3-body');
   var finishes = COLLECTIONS[c].finishes;
   var warn = c === 'wt' ? '<div class="err-box" style="margin-bottom:10px"><span>⚠️</span><span><strong>Unfinished is not available for Estate™ Traverse Rods</strong> — stationary poles only. All 8 wood finishes above are available.</span></div>' : '';
   body.innerHTML = warn + '<div class="finish-grid">' +
@@ -167,9 +165,9 @@ function selectFinish(name) {
   var id = 'fin-' + name.replace(/\s/g,'-');
   var el = document.getElementById(id);
   if (el) el.classList.add('sel');
-  completeStep('step-2', name);
+  completeStep('step-3', name);
   updateSpec('sp-finish', name);
-  activateStep('step-3');
+  activateStep('step-4');
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -181,9 +179,9 @@ function selectHeader(h) {
   document.getElementById('hdr-ripple').classList.toggle('sel', h==='ripplefold');
   document.getElementById('ripple-fullness-wrap').style.display = h==='ripplefold' ? 'block' : 'none';
   var label = h==='pleated' ? 'Pleated Carriers' : 'Ripplefold™ Carriers (' + S.fullness + ' fullness)';
-  completeStep('step-3', label);
+  completeStep('step-4', label);
   updateSpec('sp-header', label);
-  activateStep('step-4');
+  activateStep('step-5');
 }
 
 function selectFullness(f) {
@@ -193,7 +191,7 @@ function selectFullness(f) {
     if (el) el.classList.toggle('sel', v===f);
   });
   var label = 'Ripplefold™ Carriers (' + f + ' fullness)';
-  completeStep('step-3', label);
+  completeStep('step-4', label);
   updateSpec('sp-header', label);
 }
 
@@ -205,11 +203,11 @@ function selectDraw(d) {
   ['two-way','one-right','one-left'].forEach(function(id){ document.getElementById('draw-'+id).classList.remove('sel'); });
   document.getElementById('draw-'+d).classList.add('sel');
   var labels = {'two-way':'Two-Way / Split Draw','one-way-right':'One-Way Right','one-way-left':'One-Way Left'};
-  completeStep('step-4', labels[d]);
+  completeStep('step-5', labels[d]);
   updateSpec('sp-draw', labels[d]);
   document.getElementById('draw-amp-note').style.display = S.motorized ? 'block' : 'none';
   calcTrack();
-  activateStep('step-5');
+  activateStep('step-6');
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -219,7 +217,7 @@ function selectMount(m) {
   S.mount = m;
   ['wall','ceil','double'].forEach(function(id){ document.getElementById('mnt-'+id).classList.remove('sel'); });
   document.getElementById('mnt-'+m).classList.add('sel');
-  var labels = {wall:'Wall Mount',ceiling:'Ceiling Mount',double:'Double Rod'};
+  var labels = {wall:'Wall mount',ceiling:'Ceiling mount',double:'Double Rod'};
   var detail = document.getElementById('mount-detail');
   if (m === 'wall') {
     detail.innerHTML = '<div class="info-box">Wall mount bracket #94129061 (Zinc) · #1856973 (Satin Nickel) · #1856978 (Brushed Bronze) · #1857324 (Black). Adjustable projection 3¼"–4¾". AMP™ compatible.</div>';
@@ -231,9 +229,9 @@ function selectMount(m) {
       '• 1⅜" + 1⅜" using #71132062/110/006/012 (height 3⅛") — projections 9¼" / 5¼", returns 8¼" / 4¼"<br>' +
       'Specify front and back finish/collection separately if mixing. Both AMP™ compatible on the same double bracket.</div>';
   }
-  completeStep('step-5', labels[m]);
+  completeStep('step-6', labels[m]);
   updateSpec('sp-mount', labels[m]);
-  activateStep('step-6');
+  activateStep('step-7');
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -246,12 +244,20 @@ function calcTrackFt() {
   calcTrack();
 }
 
+function adjQty(d) {
+  var inp = document.getElementById('track-qty-inp');
+  var v = (parseInt(inp.value) || 1) + d;
+  if (v < 1) v = 1;
+  if (v > 20) v = 20;
+  inp.value = v;
+  calcTrack();
+}
+
 function calcTrack() {
   var len = parseFloat(document.getElementById('track-len').value) || 0;
   if (len > 0) document.getElementById('track-ft').value = (len/12).toFixed(2);
   S.trackLen = len;
   S.qty = parseInt(document.getElementById('track-qty-inp').value) || 1;
-  S.room = document.getElementById('track-room-inp').value.trim();
 
   var msgs = document.getElementById('track-msgs');
   msgs.innerHTML = '';
@@ -304,8 +310,8 @@ function calcTrack() {
 
   updateSpec('sp-len', len + '"');
   updateSpec('sp-brackets', brackets + ' (est.)');
-  document.getElementById('s6-val').textContent = len + '"';
-  completeStep('step-6', len + '" (' + (len/12).toFixed(1) + ' ft)');
+  document.getElementById('s1-val').textContent = len + '"';
+  completeStep('step-1', len + '" (' + (len/12).toFixed(1) + ' ft)');
 }
 
 function getStackback(len, isTwoWay) {
@@ -425,10 +431,7 @@ function calcWeight() {
 // ═══════════════════════════════════════════════════════════════
 function selectDel(m) {
   S.delivery = m;
-  document.getElementById('del-ship').classList.toggle('sel', m==='ship');
-  document.getElementById('del-pickup').classList.toggle('sel', m==='pickup');
-  document.getElementById('del-ship-note').style.display = m==='ship' ? 'block' : 'none';
-  document.getElementById('del-pickup-note').style.display = m==='pickup' ? 'block' : 'none';
+  document.getElementById('del-ship').classList.toggle('sel', true);
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -443,13 +446,13 @@ function getAMPAcc() {
 }
 
 function submitQuote() {
-  var name  = document.getElementById('q-name').value.trim();
-  var phone = document.getElementById('q-phone').value.trim();
+  var name  = document.getElementById('cf-name').value.trim();
+  var phone = document.getElementById('cf-phone').value.trim();
   if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
 
   var len    = S.trackLen;
   var brackets = len <= 48 ? 2 : len <= 96 ? 3 : len <= 144 ? 4 : 5;
-  var delivery = S.delivery === 'pickup' ? "I'll pick up (Huntingdon Valley, PA)" : 'Ship to me (UPS/FedEx)';
+  var delivery = 'Ship to me (UPS/FedEx)';
   var ampAcc = S.motorized ? getAMPAcc() : [];
   var stack  = (S.draw && S.header && len) ? getStackback(len, S.draw==='two-way') : '—';
 
@@ -461,16 +464,15 @@ function submitQuote() {
   var body = 'KIRSCH 1⅜" ESTATE™ TRAVERSE ROD — SPECIFICATION REQUEST\n\n'
     + '── CUSTOMER ──\n'
     + 'Name: ' + name + '\nPhone: ' + phone
-    + '\nEmail: ' + (document.getElementById('q-email').value.trim() || '—')
-    + '\nAddress: ' + (document.getElementById('q-address').value.trim() || '—') + '\n\n'
+    + '\nEmail: ' + (document.getElementById('cf-email').value.trim() || '—')
+    + '\nAddress: ' + (document.getElementById('cf-address').value.trim() || '—') + '\n\n'
     + '── PRODUCT SPECIFICATION ──\n'
     + 'Product: Kirsch 1⅜" Estate™ Traverse Rod\n'
-    + 'Room / window: ' + (S.room || '—') + '\n'
     + 'Collection: ' + (COLLECTIONS[S.coll] ? COLLECTIONS[S.coll].label : '—') + '\n'
     + 'Finish: ' + (S.finish || '—') + '\n'
     + 'Header / carrier: ' + (S.header === 'ripplefold' ? 'Ripplefold™ Carriers — ' + S.fullness + ' fullness' : S.header === 'pleated' ? 'Pleated Carriers (16mm ball-bearing)' : '—') + '\n'
     + 'Draw type: ' + (S.draw === 'two-way' ? 'Two-Way / Split Draw' : S.draw === 'one-way-right' ? 'One-Way Right' : S.draw === 'one-way-left' ? 'One-Way Left' : '—') + '\n'
-    + 'Mount type: ' + (S.mount === 'wall' ? 'Wall Mount' : S.mount === 'ceiling' ? 'Ceiling Mount' : S.mount === 'double' ? 'Double Rod' : '—') + '\n'
+    + 'Mount type: ' + (S.mount === 'wall' ? 'Wall mount' : S.mount === 'ceiling' ? 'Ceiling mount' : S.mount === 'double' ? 'Double Rod' : '—') + '\n'
     + 'Track length: ' + (len ? len + '" (' + (len/12).toFixed(2) + ' ft)' : '—') + '\n'
     + 'Quantity: ' + S.qty + ' rod(s)\n'
     + 'Splice required: ' + (len > 96 ? 'Yes — 1 splice + 1 keystone' : len ? 'No' : '—') + '\n'
@@ -488,9 +490,9 @@ function submitQuote() {
     + (S.accessories.length ? S.accessories.map(function(a){ return '• ' + a; }).join('\n') : 'None') + '\n'
     + (warns.length ? '\n── NOTES / WARNINGS ──\n' + warns.map(function(w){ return '• ' + w; }).join('\n') + '\n' : '')
     + '\n── DELIVERY ──\n' + delivery + '\n\n'
-    + '── CUSTOMER NOTES ──\n' + (document.getElementById('q-notes').value.trim() || 'None');
+    + '── CUSTOMER NOTES ──\n' + (document.getElementById('cf-notes').value.trim() || 'None');
 
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.location.href = 'mailto:blindznation@gmail.com'
     + '?subject=' + encodeURIComponent('Kirsch 1⅜" Estate Traverse — ' + (S.finish||'') + ' ' + (COLLECTIONS[S.coll]?COLLECTIONS[S.coll].label:'') + ' — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('quote-success').style.display = 'block';
@@ -510,4 +512,19 @@ function completeStep(id,val){
 function updateSpec(id,val){
   var el=document.getElementById(id); if(!el) return;
   el.textContent=val; el.classList.remove('empty');
-}
+}
+
+function addKirschEstateTraverseToCart() {
+  var collLabel = COLLECTIONS[S.coll] ? COLLECTIONS[S.coll].label : (S.coll || '—');
+  var len = S.trackLen ? S.trackLen + '″' : '—';
+  var lines = [
+    { label: 'Product', value: 'Kirsch 1⅜" Estate™ Traverse Rod' },
+    { label: 'Collection', value: collLabel },
+    { label: 'Finish', value: S.finish || '—' },
+    { label: 'Track Length', value: len },
+    { label: 'Draw', value: S.draw || '—' },
+    { label: 'Quantity', value: String(S.qty || 1) }
+  ];
+  pbAddToCart({ product: 'Kirsch 1⅜" Estate™ Traverse Rod', lines: lines, specs: lines.map(function(l){ return l.label+': '+l.value; }).join(' | '), qty: S.qty || 1 });
+  pbOpenCart();
+}

@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Exterior roller shades for decks, patios, pergolas and outdoor spaces. Cassette headrail standard. Solar screen 5% and 10% — instant quote online. Serving Salt Lake City area.">
+<meta name="description" content="Exterior roller shades for decks, patios, pergolas and outdoor spaces. Cassette headrail standard. Solar screen 5% and 10% — instant quote online. Serving Philadelphia area.">
 <meta property="og:title" content="Exterior Roller Shades | Blindznation">
 <meta property="og:description" content="Outdoor roller shades — cassette headrail, solar screen 5% & 10%, zipper track or cable options. Instant quotes online.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.blindznation.com/pages/exterior-roller-shades.html">
+<meta property="og:url" content="https://blindznation.com/pages/exterior-roller-shades.html">
 <meta property="og:site_name" content="Blindznation">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Exterior Roller Shades | Blindznation">
 <meta name="twitter:description" content="Outdoor roller shades — cassette headrail, solar screen 5% & 10%, zipper track or cable options.">
-<meta property="og:image" content="https://www.blindznation.com/img/social-preview.png">
+<meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta name="twitter:image" content="https://www.blindznation.com/img/social-preview.png">
+<meta name="twitter:image" content="https://blindznation.com/img/social-preview.png">
 <title>Exterior Roller Shades — Blindznation</title>
 <link rel="stylesheet" href="../css/global.css">
 <style>
@@ -31,10 +31,10 @@
 .config-layout{display:grid;grid-template-columns:1fr 308px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
 
-/* collapsible step-head system */
-.step-val{font-size:12px;color:var(--gold);font-weight:500;text-align:right;flex-shrink:0;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.step-body{padding:0 20px 20px;display:block}
-
+/* step-block local overrides */
+.step-body{padding-top:16px}
+.step-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:4px}
+.step-title{font-size:15px;font-weight:600;color:#111;margin-bottom:10px}
 /* color swatch dot */
 .csw{display:inline-block;width:10px;height:10px;border-radius:50%;border:1px solid;vertical-align:middle;margin-right:5px;flex-shrink:0}
 
@@ -63,12 +63,6 @@
 .qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
 .qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6;font-style:italic}
-.price-est{margin-top:14px;padding:12px;background:rgba(255,255,255,.06);border-radius:8px;display:none}
-.price-est.show{display:block}
-.price-line{display:flex;justify-content:space-between;font-size:12px;color:var(--text-dark);padding:3px 0;border-bottom:.5px solid rgba(255,255,255,.07)}
-.price-line:last-child{border-bottom:none}
-.price-line-total{display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:var(--cream);padding:8px 0 0;border-top:.5px solid var(--border-dark);margin-top:6px}
-.price-disclaimer{font-size:10px;color:var(--text-faint);margin-top:6px;line-height:1.5;font-style:italic}
 .submit-note{font-size:10px;color:var(--text-muted);text-align:center;margin-top:8px;line-height:1.5}
 .success-box{background:#1a3a2a;border:1px solid rgba(45,224,193,.4);border-radius:10px;padding:18px;text-align:center;display:none}
 .success-box h3{color:var(--gold);font-size:20px;margin-bottom:8px;line-height:1.3}
@@ -117,15 +111,14 @@
 <div class="config-layout">
 <div><!-- left column -->
 
-<!-- STEP 1: SIZE & QUANTITY -->
-<div class="step-block active" id="step-6">
-  <div class="step-head" onclick="ersToggle('step-6')">
-    <div class="step-num">1</div>
-    <div class="step-head-title">Window size &amp; quantity</div>
-    <div class="step-val" id="sv-6">—</div>
-  </div>
+<!-- STEP 1: MEASUREMENTS & MOUNT -->
+<div class="step-block active" id="step-1">
   <div class="step-body">
-    <p class="step-subhead">Measure the opening you want to cover. Zipper track: measure exact opening width. Without track: add 2–4″ per side for coverage.</p>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">1</div>
+      <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
+    </div>
+    <p class="step-subhead">Measure the opening you want to cover. Zipper track: measure the exact opening width. Without track: add 2–4″ per side for coverage.</p>
     <div class="dim-box">
       <div class="dim-box-label">Opening size</div>
       <div class="form-row">
@@ -141,9 +134,22 @@
         </div>
       </div>
     </div>
+    <div style="margin-top:8px;font-size:11px;color:#8a6d1f;background:#fdf6e3;border:1px solid #ecdca8;border-radius:8px;padding:9px 12px;line-height:1.55">
+      <strong>Please note:</strong> exterior roller shades are built to the <strong>exact size you enter</strong> — we do <strong>not</strong> take any deductions. Make sure your width and drop already include any clearances you need. The finished shade will be manufactured to these exact measurements.
+    </div>
     <div id="ers-dim-msg" class="dim-msg"></div>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
-      <span style="font-size:13px;color:#666;margin-right:2px">Qty:</span>
+
+    <!-- Mount type -->
+    <div class="step-subhead" style="font-weight:600;color:#555;margin-top:16px;margin-bottom:4px">Mount type</div>
+    <p class="step-subhead" style="margin-top:0">Both use the cassette headrail. Wall mount attaches to wall or fascia above the opening. Ceiling / soffit mount attaches overhead — ideal for pergolas and covered patios.</p>
+    <div class="opt-row">
+      <button class="opt-btn" id="mount-wall" onclick="ersPickMount('wall','Wall mount')">Wall mount</button>
+      <button class="opt-btn" id="mount-ceiling" onclick="ersPickMount('ceiling','Ceiling / Soffit mount')">Ceiling / Soffit mount</button>
+    </div>
+
+    <!-- Quantity -->
+    <div class="step-subhead" style="font-weight:600;color:#555;margin-top:16px;margin-bottom:6px">Quantity</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
       <div class="qty-btns">
         <button class="qty-btn" onclick="ersAdjQty(-1)">&#8722;</button>
         <input class="qty-num" type="number" id="ers-qty" min="1" max="20" value="1" oninput="ersQtyChange()">
@@ -154,32 +160,13 @@
   </div>
 </div>
 
-<!-- STEP 2: MOUNT -->
-<div class="step-block" id="step-4">
-  <div class="step-head" onclick="ersToggle('step-4')">
-    <div class="step-num">2</div>
-    <div class="step-head-title">Mount type</div>
-    <div class="step-val" id="sv-4">—</div>
-  </div>
+<!-- STEP 2: OPENNESS -->
+<div class="step-block" id="step-2">
   <div class="step-body">
-    <p class="step-subhead">All use the cassette headrail. Inside / Outside mount fit within or over the window frame; Wall mount attaches to wall or fascia; Ceiling / soffit mount attaches overhead — ideal for pergolas and covered patios.</p>
-    <div class="opt-row">
-      <button class="opt-btn" id="mount-inside" onclick="ersPickMount('inside','Inside Mount')">Inside Mount</button>
-      <button class="opt-btn" id="mount-outside" onclick="ersPickMount('outside','Outside Mount')">Outside Mount</button>
-      <button class="opt-btn" id="mount-wall" onclick="ersPickMount('wall','Wall Mount')">Wall Mount</button>
-      <button class="opt-btn" id="mount-ceiling" onclick="ersPickMount('ceiling','Ceiling / Soffit Mount')">Ceiling / Soffit Mount</button>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">2</div>
+      <div class="step-title" style="margin-bottom:0">Openness factor</div>
     </div>
-  </div>
-</div>
-
-<!-- STEP 3: OPENNESS -->
-<div class="step-block" id="step-1">
-  <div class="step-head" onclick="ersToggle('step-1')">
-    <div class="step-num">3</div>
-    <div class="step-head-title">Openness factor</div>
-    <div class="step-val" id="sv-1">—</div>
-  </div>
-  <div class="step-body">
     <p class="step-subhead">Lower % = tighter weave, more shade and glare control. ±10% is industry-standard tolerance.</p>
     <div class="opt-row">
       <button class="opt-btn" id="op-5" onclick="ersPickOpenness('5','5% — high shade')">5% &mdash; High shade</button>
@@ -188,14 +175,13 @@
   </div>
 </div>
 
-<!-- STEP 4: COLOR -->
-<div class="step-block" id="step-2">
-  <div class="step-head" onclick="ersToggle('step-2')">
-    <div class="step-num">4</div>
-    <div class="step-head-title">Fabric color</div>
-    <div class="step-val" id="sv-2">—</div>
-  </div>
+<!-- STEP 3: COLOR -->
+<div class="step-block" id="step-3">
   <div class="step-body">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">3</div>
+      <div class="step-title" style="margin-bottom:0">Fabric color</div>
+    </div>
     <p class="step-subhead">Solar screen fabric in your chosen openness. Actual color may vary slightly — request a swatch before ordering for the best match.</p>
     <div class="opt-row" id="color-grid">
       <button class="opt-btn" onclick="ersPickColor(this,'White')"><span class="csw" style="background:#f5f5f5;border-color:#ccc"></span>White</button>
@@ -208,86 +194,62 @@
   </div>
 </div>
 
-<!-- STEP 5: SIDE TRACK -->
-<div class="step-block" id="step-3">
-  <div class="step-head" onclick="ersToggle('step-3')">
-    <div class="step-num">5</div>
-    <div class="step-head-title">Side track / hold-down</div>
-    <div class="step-val" id="sv-3">—</div>
-  </div>
+<!-- STEP 4: SIDE TRACK -->
+<div class="step-block" id="step-4">
   <div class="step-body">
-    <p class="step-subhead">None is fine for sheltered areas. Cables guide the hem bar straight. Zipper track zips the fabric into aluminum channels for the tightest seal and maximum wind resistance.</p>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">4</div>
+      <div class="step-title" style="margin-bottom:0">Side track</div>
+    </div>
+    <p class="step-subhead">Cables guide the hem bar straight — good for exposed areas without a full zipper seal. Zipper track zips the fabric edge into an aluminum channel on each side for the tightest seal and maximum wind resistance.</p>
     <div class="opt-row">
-      <button class="opt-btn" id="track-none" onclick="ersPickTrack('none','None')">None</button>
-      <button class="opt-btn" id="track-cables" onclick="ersPickTrack('cables','Cables')">Cables</button>
+      <button class="opt-btn sel" id="track-cables" onclick="ersPickTrack('cables','Cables')">Cables</button>
       <button class="opt-btn" id="track-zipper" onclick="ersPickTrack('zipper','Zipper Track')">Zipper Track</button>
     </div>
   </div>
 </div>
 
-<!-- STEP 6: OPERATION -->
+<!-- STEP 5: OPERATION -->
 <div class="step-block" id="step-5">
-  <div class="step-head" onclick="ersToggle('step-5')">
-    <div class="step-num">6</div>
-    <div class="step-head-title">Operation</div>
-    <div class="step-val" id="sv-5">—</div>
-  </div>
   <div class="step-body">
-    <p class="step-subhead">Manual uses a continuous cord loop with stainless chain — no power required. Any motor brand (Lutron, Somfy, Rollease Acmeda) — specify preference in notes, priced at quote.</p>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">5</div>
+      <div class="step-title" style="margin-bottom:0">Operation</div>
+    </div>
+    <p class="step-subhead">Manual uses a hand crank — no power required, reliable and low-maintenance. Motor brand and specs are confirmed at quote; add your preference in the notes.</p>
     <div class="opt-row">
-      <button class="opt-btn" id="op-manual" onclick="ersPickOperation('manual','Manual — chain')">Manual &mdash; chain</button>
+      <button class="opt-btn" id="op-manual" onclick="ersPickOperation('manual','Manual — hand crank')">Manual &mdash; hand crank</button>
       <button class="opt-btn" id="op-motorized" onclick="ersPickOperation('motorized','Motorized')">Motorized</button>
     </div>
   </div>
 </div>
 
-<!-- STEP 8: DELIVERY -->
-<div class="step-block" id="step-8">
-  <div class="step-head" onclick="ersToggle('step-8')">
-    <div class="step-num">7</div>
-    <div class="step-head-title">Delivery</div>
-    <div class="step-val" id="sv-8"></div>
-  </div>
+<!-- STEP 6: DELIVERY -->
+<div class="step-block" id="step-6">
   <div class="step-body">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">6</div>
+      <div class="step-title" style="margin-bottom:0">Delivery</div>
+    </div>
     <div class="delivery-opt-grid" style="grid-template-columns:1fr">
       <div class="delivery-opt-card sel" id="del-ship" onclick="ersPickDelivery('ship')">
         <div class="delivery-opt-title">Shipped to me</div>
-        <div class="delivery-opt-body">UPS or FedEx from Huntingdon Valley, PA. Lead time provided at quote.</div>
+        <div class="delivery-opt-body">UPS or FedEx. Lead time provided at quote.</div>
         <div class="delivery-opt-body" style="margin-top:4px;font-size:10px;color:#bbb">Note: U.S. import tariffs may apply on some products. Any applicable duties are disclosed in your quote before payment.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- STEP 9: CONTACT & SUBMIT -->
-<div class="step-block" id="step-9">
-  <div class="step-head" onclick="ersToggle('step-9')">
-    <div class="step-num">8</div>
-    <div class="step-head-title">Your contact info</div>
-    <div class="step-val" id="sv-9"></div>
-  </div>
+<!-- STEP 7: CONTACT & SUBMIT -->
+<div class="step-block" id="step-7">
   <div class="step-body">
-    <div id="contact-form">
-      <div class="form-group">
-        <label>Your name *</label>
-        <input type="text" id="q-name" placeholder="Jane Smith" autocomplete="name">
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="q-email" placeholder="jane@example.com" autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label>Phone</label>
-          <input type="tel" id="q-phone" placeholder="(801) 555-0100" autocomplete="tel">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Notes / questions</label>
-        <textarea id="q-notes" placeholder="Location of shades, motor brand preference, mounting surface, timeline, any questions…"></textarea>
-      </div>
-      <input type="text" id="q-hp" style="display:none" tabindex="-1" autocomplete="off">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">7</div>
+      <div class="step-title" style="margin-bottom:0">Your contact info</div>
     </div>
+    <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
+    <div id="pb-final-step"></div>
     <div class="success-box" id="success-box">
       <h3>Request for Quote Submitted!</h3>
       <p>Your email opened with your full spec pre-filled — just hit Send. We'll review your order and send you an invoice within a few hours.</p>
@@ -301,99 +263,82 @@
 <!-- ── QUOTE PANEL ── -->
 <div class="quote-panel" id="quote-panel">
   <div class="qp-title">Your order</div>
-  <div class="qp-pending" id="qp-pending">Select openness factor above to start.</div>
+  <div class="qp-pending" id="qp-pending">Select your options above to start building your quote.</div>
   <div id="qp-rows"></div>
   <div class="qdiv" id="qp-div" style="display:none"></div>
-  <div class="price-est" id="price-est">
-    <div id="price-lines"></div>
-    <div class="price-line-total">
-      <span>Estimated total</span>
-      <span id="price-total">—</span>
-    </div>
-    <div class="price-disclaimer">Estimate only — confirmed at order. Motorized pricing quoted separately. Freight: $25 first + $11 each, or $80 oversized (&gt;90″).</div>
-  </div>
-  <div class="qnote" id="qp-note" style="display:none">Pricing estimate shown above. Final quote confirmed by Justin before any payment.</div>
+  <div class="qnote" id="qp-note" style="display:none">Fill in your details above and submit — Justin will send you a custom quote.</div>
   <div id="submit-wrap">
-    <button onclick="addExteriorRollerToCart()" class="btn-cart-add" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
-    <button onclick="ersSubmit()" id="submit-btn" class="btn-gold" style="width:100%;padding:14px;font-size:15px;font-weight:600;margin-top:16px;border:none;cursor:pointer;border-radius:10px">Submit Order for Review</button>
-    <div class="submit-note">No payment required now. Justin reviews your specs and sends a custom quote.</div>
+    <div class="submit-note">No payment required now. Complete your details on the left and submit — Justin reviews your specs and sends a custom quote.</div>
   </div>
 </div>
 
 </div><!-- /config-layout -->
 
-<footer id="site-footer"></footer>
+<footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script>
+// Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-final-step').innerHTML =
+  pbContactStepHTML({ bare: true, cartFn: 'addExteriorRollerToCart()', submitFn: 'ersSubmit()' });
+
 renderNav('Shades & blinds');
 renderFooter(false);
 
-var ERS = { openness:'', color:'', track:'', mount:'', operation:'', width:0, height:0, qty:1, delivery:'ship' };
-var ERS_SQFT_RATE = { '5': 12, '10': 10 };
-
-function ersToggle(id) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  var isOpen = el.classList.contains('active') || el.classList.contains('open');
-  if (isOpen) { el.classList.remove('active','open'); } else { el.classList.add('open'); }
-}
+var ERS = { openness:'', color:'', track:'cables', mount:'', operation:'', width:0, height:0, qty:1, delivery:'ship' };
 
 function ersOpen(id) {
   var el = document.getElementById(id);
   if (!el) return;
   el.classList.add('active');
-  setTimeout(function() { el.scrollIntoView({ behavior:'smooth', block:'nearest' }); }, 120);
+  setTimeout(function() {
+    var navH = (document.getElementById('site-nav') || {}).offsetHeight || 60;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navH - 14, behavior: 'smooth' });
+  }, 80);
 }
 
-function ersDone(id, label) {
+function ersDone(id) {
   var el = document.getElementById(id);
-  if (!el) return;
-  el.classList.remove('active','open');
-  el.classList.add('done');
-  var sv = document.getElementById('sv-' + id.replace('step-',''));
-  if (sv) sv.textContent = label;
+  if (el) el.classList.remove('active');
+}
+
+function ersPickMount(val, label) {
+  ERS.mount = val;
+  document.querySelectorAll('#step-1 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
+  var card = document.getElementById('mount-' + val);
+  if (card) card.classList.add('sel');
+  // Mount, dimensions & quantity all live in Step 1 — advancing is owned by ersDimChange()
+  ersUpdatePanel();
 }
 
 function ersPickOpenness(val, label) {
   ERS.openness = val;
   ERS.color = '';
-  document.querySelectorAll('#step-1 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
+  document.querySelectorAll('#step-2 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   var card = document.getElementById('op-' + val);
   if (card) card.classList.add('sel');
   document.querySelectorAll('#color-grid .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
-  ersDone('step-1', label);
+  ersDone('step-2');
   ersUpdatePanel();
-  ersOpen('step-2');
+  ersOpen('step-3');
 }
 
 function ersPickColor(btn, color) {
   ERS.color = color;
   document.querySelectorAll('#color-grid .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   btn.classList.add('sel');
-  ersDone('step-2', color);
+  ersDone('step-3');
   ersUpdatePanel();
-  setTimeout(function() { ersOpen('step-3'); }, 300);
+  setTimeout(function() { ersOpen('step-4'); }, 300);
 }
 
 function ersPickTrack(val, label) {
   ERS.track = val;
-  document.querySelectorAll('#step-3 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
+  document.querySelectorAll('#step-4 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   var card = document.getElementById('track-' + val);
   if (card) card.classList.add('sel');
-  ersDone('step-3', label);
+  ersDone('step-4');
   ersUpdatePanel();
   setTimeout(function() { ersOpen('step-5'); }, 300);
-}
-
-function ersPickMount(val, label) {
-  ERS.mount = val;
-  ERS.mountLabel = label;
-  document.querySelectorAll('#step-4 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
-  var card = document.getElementById('mount-' + val);
-  if (card) card.classList.add('sel');
-  ersDone('step-4', label);
-  ersUpdatePanel();
-  setTimeout(function() { ersOpen('step-1'); }, 300);
 }
 
 function ersPickOperation(val, label) {
@@ -401,9 +346,9 @@ function ersPickOperation(val, label) {
   document.querySelectorAll('#step-5 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   var card = document.getElementById('op-' + val);
   if (card) card.classList.add('sel');
-  ersDone('step-5', label);
+  ersDone('step-5');
   ersUpdatePanel();
-  setTimeout(function() { ersOpen('step-8'); }, 300);
+  setTimeout(function() { ersOpen('step-6'); }, 300);
 }
 
 function ersDimChange() {
@@ -421,11 +366,8 @@ function ersDimChange() {
     } else if (ERS.width > 0 && ERS.height > 0) {
       msg.className = 'dim-msg show info';
       msg.textContent = ERS.width + '″W × ' + ERS.height + '″H — ' + (ERS.width * ERS.height / 144).toFixed(1) + ' sq ft';
-      var sv6 = document.getElementById('sv-6');
-      if (sv6) sv6.textContent = ERS.width + '″ × ' + ERS.height + '″';
-      var el6 = document.getElementById('step-6');
-      if (el6) { el6.classList.add('done'); el6.classList.remove('active','open'); }
-      setTimeout(function() { ersOpen('step-4'); }, 300);
+      ersDone('step-1');
+      setTimeout(function() { ersOpen('step-2'); }, 600);
     }
   }
   ersUpdatePanel();
@@ -437,26 +379,20 @@ function ersAdjQty(delta) {
   v = Math.max(1, Math.min(20, v + delta));
   inp.value = v;
   ERS.qty = v;
-  var sv7 = document.getElementById('sv-7');
-  if (sv7) sv7.textContent = v + ' shade' + (v > 1 ? 's' : '');
   ersUpdatePanel();
 }
 
 function ersQtyChange() {
   var v = parseInt(document.getElementById('ers-qty').value) || 1;
   ERS.qty = Math.max(1, Math.min(20, v));
-  var sv7 = document.getElementById('sv-7');
-  if (sv7) sv7.textContent = ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : '');
   ersUpdatePanel();
 }
 
 function ersPickDelivery(val) {
   ERS.delivery = val;
   document.getElementById('del-ship').classList.toggle('sel', val === 'ship');
-  var sv8 = document.getElementById('sv-8');
-  if (sv8) sv8.textContent = 'Ship to me';
-  var el8 = document.getElementById('step-8');
-  if (el8) { el8.classList.add('done'); el8.classList.remove('active','open'); }
+  var el6 = document.getElementById('step-6');
+  if (el6) { el6.classList.add('done'); el6.classList.remove('active'); }
   ersUpdatePanel();
 }
 
@@ -465,7 +401,6 @@ function ersUpdatePanel() {
   var rows = document.getElementById('qp-rows');
   var div = document.getElementById('qp-div');
   var note = document.getElementById('qp-note');
-  var priceEst = document.getElementById('price-est');
 
   var r = '';
   function qr(label, val) { r += '<div class="qrow"><span class="qrow-label">'+label+'</span><span class="qrow-val">'+val+'</span></div>'; }
@@ -474,9 +409,9 @@ function ersUpdatePanel() {
     pending.style.display = 'none';
     qr('Openness', ERS.openness + '% solar screen');
     if (ERS.color) qr('Color', ERS.color);
-    if (ERS.track) qr('Side track', ERS.track === 'none' ? 'None' : ERS.track === 'zipper' ? 'Zipper Track' : 'Cables');
-    if (ERS.mount) qr('Mount', ERS.mountLabel || ERS.mount);
-    if (ERS.operation) qr('Operation', ERS.operation === 'manual' ? 'Manual — chain' : 'Motorized');
+    if (ERS.track) qr('Side track', ERS.track === 'zipper' ? 'Zipper Track' : 'Cables');
+    if (ERS.mount) qr('Mount', ERS.mount === 'wall' ? 'Wall mount' : 'Ceiling / Soffit mount');
+    if (ERS.operation) qr('Operation', ERS.operation === 'manual' ? 'Manual — hand crank' : 'Motorized');
     if (ERS.width && ERS.height) qr('Size', ERS.width + '″ × ' + ERS.height + '″');
     qr('Qty', ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : ''));
     if (ERS.delivery) qr('Delivery', ERS.delivery === 'ship' ? 'Ship to me' : 'Pickup');
@@ -489,26 +424,6 @@ function ersUpdatePanel() {
     div.style.display = 'none';
     note.style.display = 'none';
   }
-
-  // Price estimate (only for 5% and 10% with dimensions)
-  var rate = ERS_SQFT_RATE[ERS.openness];
-  if (rate && ERS.width > 0 && ERS.height > 0) {
-    var sqft = ERS.width * ERS.height / 144;
-    var shadePrice = Math.round(sqft * rate * ERS.qty);
-    var isOversized = ERS.width > 90 || ERS.height > 90;
-    var freight = isOversized ? (80 + Math.max(0, ERS.qty - 1) * 50) : (25 + Math.max(0, ERS.qty - 1) * 11);
-    var lines = '';
-    function pl(lbl, val) { lines += '<div class="price-line"><span style="color:var(--text-muted)">'+lbl+'</span><span style="color:var(--cream)">'+val+'</span></div>'; }
-    pl(ERS.openness + '% solar · ' + ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : ''), '$' + shadePrice.toLocaleString());
-    if (ERS.operation === 'motorized') pl('Motor (estimate)', 'quoted separately');
-    pl((isOversized ? 'Oversized freight' : 'Standard freight'), '$' + freight.toLocaleString());
-    var grandTotal = shadePrice + freight;
-    document.getElementById('price-lines').innerHTML = lines;
-    document.getElementById('price-total').textContent = ERS.operation === 'motorized' ? ('$' + grandTotal.toLocaleString() + ' + motor') : ('$' + grandTotal.toLocaleString());
-    priceEst.classList.add('show');
-  } else {
-    priceEst.classList.remove('show');
-  }
 }
 
 function addExteriorRollerToCart(){
@@ -517,7 +432,7 @@ function addExteriorRollerToCart(){
   if(!ERS.width||!ERS.height){ alert('Please enter dimensions before adding to cart.'); return; }
 
   var trackLabel=ERS.track==='zipper'?'Zipper Track':ERS.track==='cables'?'Cables':'—';
-  var mountLabel=ERS.mountLabel||'—';
+  var mountLabel=ERS.mount==='wall'?'Wall mount':ERS.mount==='ceiling'?'Ceiling / Soffit mount':'—';
   var opLabel=ERS.operation==='manual'?'Manual — hand crank':ERS.operation==='motorized'?'Motorized':'—';
 
   var lines=[
@@ -537,16 +452,18 @@ function addExteriorRollerToCart(){
 }
 
 function ersSubmit() {
-  if (document.getElementById('q-hp').value) return;
-  var name = (document.getElementById('q-name').value || '').trim();
-  if (!name) { alert('Please enter your name.'); return; }
-  var email = (document.getElementById('q-email').value || '').trim();
-  var phone = (document.getElementById('q-phone').value || '').trim();
-  if (!email && !phone) { alert('Please enter at least an email or phone number.'); return; }
+  var errEl = document.getElementById('cf-contact-err');
+  if (errEl) errEl.style.display = 'none';
+  function showErr(m) { if (errEl) { errEl.textContent = m; errEl.style.display = 'block'; } else { alert(m); } }
+  var name = (document.getElementById('cf-name').value || '').trim();
+  if (!name) { showErr('Please enter your name.'); return; }
+  var email = (document.getElementById('cf-email').value || '').trim();
+  var phone = (document.getElementById('cf-phone').value || '').trim();
+  if (!email && !phone) { showErr('Please enter a phone number or email address.'); return; }
 
-  var trackLabel = ERS.track === 'none' ? 'None' : ERS.track === 'zipper' ? 'Zipper Track' : ERS.track === 'cables' ? 'Cables' : '—';
-  var mountLabel = ERS.mountLabel || '—';
-  var opLabel = ERS.operation === 'manual' ? 'Manual — chain' : ERS.operation === 'motorized' ? 'Motorized' : '—';
+  var trackLabel = ERS.track === 'zipper' ? 'Zipper Track' : ERS.track === 'cables' ? 'Cables' : '—';
+  var mountLabel = ERS.mount === 'wall' ? 'Wall mount' : ERS.mount === 'ceiling' ? 'Ceiling / Soffit mount' : '—';
+  var opLabel = ERS.operation === 'manual' ? 'Manual — hand crank' : ERS.operation === 'motorized' ? 'Motorized' : '—';
   var dimLabel = (ERS.width && ERS.height) ? (ERS.width + '″W × ' + ERS.height + '″H') : '—';
   var sqft = (ERS.width && ERS.height) ? (ERS.width * ERS.height / 144).toFixed(1) + ' sq ft' : '—';
 
@@ -560,12 +477,12 @@ function ersSubmit() {
     'Operation:      ' + opLabel + '\n' +
     'Dimensions:     ' + dimLabel + ' (' + sqft + ')\n' +
     'Quantity:       ' + ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : '') + '\n' +
-    'Delivery:       Ship to me (UPS/FedEx from Huntingdon Valley PA)\n' +
+    'Delivery:       Ship to me (UPS/FedEx)\n' +
     '── CUSTOMER ─────────────────────────────\n' +
     'Name:           ' + name + '\n' +
     'Email:          ' + (email || '—') + '\n' +
     'Phone:          ' + (phone || '—') + '\n' +
-    'Notes:          ' + (document.getElementById('q-notes').value || '—') + '\n\n' +
+    'Notes:          ' + (document.getElementById('cf-notes').value || '—') + '\n\n' +
     '── SOURCE ───────────────────────────────\n' +
     'Form:           blindznation.com/pages/exterior-roller-shades.html';
 
@@ -574,9 +491,8 @@ function ersSubmit() {
     '&body=' + encodeURIComponent(body);
   window.location.href = mailto;
 
-  document.getElementById('contact-form').style.display = 'none';
   document.getElementById('success-box').style.display = 'block';
-  document.getElementById('submit-wrap').style.display = 'none';
+  if (errEl) errEl.style.display = 'none';
 }
 </script>
 </body>

@@ -1,7 +1,4 @@
-renderNav('Natural Woven Shades');
-renderFooter(false);
-
-// Anchor-based auto-selection: #roman-woven-choice or #roller-woven-choice
+﻿// Anchor-based auto-selection: #roman-woven-choice or #roller-woven-choice
 (function(){
   var hash = window.location.hash;
   if(hash === '#roman-woven-choice' || hash === '#roller-woven-choice') {
@@ -264,7 +261,7 @@ function getStack(w) {
 
 /* ── State ── */
 const S = {
-  collection:'', productType:'', qty:1, roomLabel:'',
+  collection:'', productType:'', qty:1,
   mountType:'', w:0, h:0, pattern:null,
   shadeStyle:'', multi:'none', twin:false,
   openingStyle:'', trackColor:'', bracketType:'',
@@ -326,7 +323,7 @@ function pickStyle(s, el) {
 function rPill(el, grpId) {
   // For opt-pill groups, remove sel from siblings; for delivery-opt groups remove sel
   if(grpId==='r-del-grp') {
-    ['r-del-install','r-del-ship','r-del-pickup'].forEach(function(id){
+    ['r-del-install','r-del-ship'].forEach(function(id){
       var e=document.getElementById(id); if(e) e.classList.remove('sel');
     });
     el.classList.add('sel');
@@ -367,7 +364,7 @@ function submitRollerQuote() {
     +'  Address : '+((document.getElementById('r-address')||{}).value||'—')+'\n'
     +'  Notes   : '+((document.getElementById('r-notes')||{}).value||'—');
 
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.location.href = 'mailto:blindznation@gmail.com'
     +'?subject='+encodeURIComponent('Natural Woven Roller Shades Quote — '+name)
     +'&body='+encodeURIComponent(body);
 
@@ -411,9 +408,16 @@ function pickType(t, el) {
 /* ── Step 3: Mount ── */
 function pickMount(m, el) {
   S.mountType = m;
-  document.querySelectorAll('#mount-opts .opt-pill').forEach(function(p){p.classList.remove('sel');});
+  document.querySelectorAll('#mount-opts .opt-btn').forEach(function(p){p.classList.remove('sel');});
   el.classList.add('sel');
   $('warn-im-deduction').style.display = m==='inside' ? 'block' : 'none';
+}
+
+/* ── Step 3: Quantity stepper ── */
+function adjQty(d) {
+  var el = $('qty'); if(!el) return;
+  var v = Math.max(1, Math.min(50, (parseInt(el.value,10)||1) + d));
+  el.value = v; S.qty = v;
 }
 
 /* ── Step 4: Dimensions ── */
@@ -783,14 +787,17 @@ function toggleMotorAcc(el, key) {
 /* ── Delivery ── */
 function pickDel(opt) {
   S.delivery=opt;
-  ['install','ship','pickup'].forEach(function(o){
+  ['install','ship'].forEach(function(o){
     $('del-'+o).classList.toggle('sel', o===opt);
   });
 }
 
 /* ── Submit ── */
 function submitQuote() {
-  var name=$('q-name').value.trim(), contact=$('q-contact').value.trim();
+  var name=$('cf-name').value.trim();
+  var phone=($('cf-phone')||{value:''}).value.trim();
+  var email=($('cf-email')||{value:''}).value.trim();
+  var contact=phone||(email)||'';
   if(!name||!contact){alert('Please enter your name and contact info.'); return;}
   if(!S.pattern){alert('Please select a fabric pattern.'); return;}
 
@@ -802,15 +809,15 @@ function submitQuote() {
     '',
     'CONTACT',
     'Name: '+name,
-    'Phone/Email: '+contact,
-    'Location: '+($('q-address').value||'Not provided'),
+    'Phone: '+(phone||'—'),
+    'Email: '+(email||'—'),
+    'Location: '+($('cf-address').value||'Not provided'),
     '',
     'PRODUCT CONFIGURATION',
     'Collection: Wallace '+coll,
     'Product Type: '+prod,
-    'Room / Label: '+(S.roomLabel||'Not specified'),
     'Quantity: '+S.qty,
-    'Mount Type: '+S.mountType,
+    'Mount type: '+S.mountType,
     'Width: '+S.w+'"',
     'Height: '+S.h+'"',
     '',
@@ -828,7 +835,7 @@ function submitQuote() {
     'Opening Style: '+(S.openingStyle||'N/A'),
     'Track Color: '+(S.trackColor||'N/A'),
     'Track Profile: '+(S.trackProfile||'N/A'),
-    'Wall or Ceiling Mount: '+(S.wallOrCeiling||S.mountType),
+    'Wall or Ceiling mount: '+(S.wallOrCeiling||S.mountType),
     'Valance Board: '+(S.valanceBoard?'Yes':'No'),
     '',
     'CONTROL',
@@ -853,18 +860,35 @@ function submitQuote() {
     'Motor Accessories: '+(S.motorAccs.length?S.motorAccs.join(', '):'None'),
     '',
     'DELIVERY / SERVICE',
-    'Preference: '+(S.delivery==='install'?'Professional Installation':S.delivery==='ship'?'Ship to Customer':'Pick Up'),
+    'Preference: '+(S.delivery==='install'?'Professional Installation':'Ship to Customer'),
     '',
     'NOTES',
-    $('q-notes').value||'None',
+    $('cf-notes').value||'None',
     '',
     '--- Sent from blindznation.com/pages/wallace-woven.html ---'
   ];
 
   var subj='Wallace '+coll+' Quote — '+prod+' — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(bodyLines.join('\n'));
+  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(bodyLines.join('\n'));
 
   $('success-box').style.display='block';
   $('success-box').scrollIntoView({behavior:'smooth'});
   document.querySelectorAll('.step-block').forEach(function(b){b.style.display='none';});
-}
+}
+
+function addWallaceWovenToCart() {
+  var collMap = {portfolio:'Wallace Portfolio Natural Woven',galaxy:'Wallace Galaxy Woven',premier:'Walden Premier',select:'Walden Select'};
+  var prodMap = {roman:'Roman Shade',panel:'Sliding Panel',drapery:'Natural Drapery',valance:'Valance Only'};
+  var coll = collMap[S.collection] || (S.collection || 'Natural Woven');
+  var prod = prodMap[S.productType] || (S.productType || '—');
+  var lines = [
+    { label: 'Product', value: coll },
+    { label: 'Type', value: prod },
+    { label: 'Pattern', value: S.pattern ? S.pattern.name : '—' },
+    { label: 'Size', value: (S.w||'—') + '″ × ' + (S.h||'—') + '″' },
+    { label: 'Control', value: S.control || '—' },
+    { label: 'Quantity', value: String(S.qty||1) }
+  ];
+  pbAddToCart({ product: coll, lines: lines, specs: lines.map(function(l){ return l.label+': '+l.value; }).join(' | '), qty: S.qty||1 });
+  pbOpenCart();
+}

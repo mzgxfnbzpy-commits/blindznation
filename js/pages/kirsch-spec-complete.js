@@ -1,10 +1,26 @@
-renderNav('Hardware'); renderFooter(false);
-
-var _delivery = 'ship';
+﻿var _delivery = 'ship';
 
 /* ── dim label helper ── */
 function dim_label(){}
 document.querySelectorAll('.dim-label').forEach(function(){});
+
+/* ── quantity stepper (shared, reuses #q-qty) ── */
+function adjQty(d) {
+  var el = document.getElementById('q-qty');
+  if (!el) return;
+  var v = (parseInt(el.value) || 1) + d;
+  if (v < 1) v = 1;
+  if (v > 50) v = 50;
+  el.value = v;
+}
+function updateQty() {
+  var el = document.getElementById('q-qty');
+  if (!el) return;
+  var v = parseInt(el.value) || 1;
+  if (v < 1) v = 1;
+  if (v > 50) v = 50;
+  el.value = v;
+}
 
 /* ── opt pill selector ── */
 function selPill(el, grp) {
@@ -15,13 +31,10 @@ function selPill(el, grp) {
 /* ── delivery ── */
 function selDel(m) {
   _delivery = m;
-  var ship = document.getElementById('del-ship'), pick = document.getElementById('del-pickup');
-  ship.style.border = m==='ship' ? '2px solid var(--gold)' : '1.5px solid #e8e8e4';
-  ship.style.background = m==='ship' ? 'rgba(201,169,110,.05)' : '';
-  pick.style.border = m==='pickup' ? '2px solid var(--gold)' : '1.5px solid #e8e8e4';
-  pick.style.background = m==='pickup' ? 'rgba(201,169,110,.05)' : '';
-  document.getElementById('del-ship-note').style.display = m==='ship' ? 'block' : 'none';
-  document.getElementById('del-pickup-note').style.display = m==='pickup' ? 'block' : 'none';
+  var ship = document.getElementById('del-ship');
+  if (ship) { ship.style.border = '2px solid var(--gold)'; ship.style.background = 'rgba(45,224,193,.05)'; }
+  var note = document.getElementById('del-ship-note');
+  if (note) note.style.display = 'block';
 }
 
 /* ── weight calc ── */
@@ -46,18 +59,18 @@ function wCalc() {
 
 /* ── submit ── */
 function submitQ() {
-  var name=document.getElementById('q-name').value.trim();
-  var phone=document.getElementById('q-phone').value.trim();
+  var name=document.getElementById('cf-name').value.trim();
+  var phone=document.getElementById('cf-phone').value.trim();
   if(!name||!phone){alert('Please enter your name and phone number.');return;}
 
   function gp(grp){ var s=document.querySelector('#'+grp+' .opt-pill.sel'); return s?s.textContent.trim():'—'; }
-  var delivery=_delivery==='pickup'?"I'll pick up (Huntingdon Valley, PA)":'Ship to me (UPS/FedEx)';
+  var delivery='Ship to me (UPS/FedEx)';
 
   var body='KIRSCH DRAPERY HARDWARE — SPECIFICATION REQUEST\n\n'
     +'── CUSTOMER ──\n'
     +'Name: '+name+'\nPhone: '+phone
-    +'\nEmail: '+(document.getElementById('q-email').value.trim()||'—')
-    +'\nAddress: '+(document.getElementById('q-address').value.trim()||'—')+'\n\n'
+    +'\nEmail: '+(document.getElementById('cf-email').value.trim()||'—')
+    +'\nAddress: '+(document.getElementById('cf-address').value.trim()||'—')+'\n\n'
     +'── PRODUCT SPECIFICATION ──\n'
     +'Rod / track type: '+gp('grp-rod-type')+'\n'
     +'Collection: '+gp('grp-coll')+'\n'
@@ -69,12 +82,29 @@ function submitQ() {
     +'Finial: '+(document.getElementById('q-finial').value.trim()||'—')+'\n'
     +'Motorization: '+gp('grp-motor')+'\n'
     +'Motor accessories: '+(document.getElementById('q-motor-acc').value.trim()||'None')+'\n'
-    +'Room / window: '+(document.getElementById('q-room').value.trim()||'—')+'\n'
     +'\n── DELIVERY ──\n'+delivery+'\n\n'
-    +'── NOTES ──\n'+(document.getElementById('q-notes').value.trim()||'None');
+    +'── NOTES ──\n'+(document.getElementById('cf-notes').value.trim()||'None');
 
-  window.location.href='mailto:justin@blindznation.com'
+  window.location.href='mailto:blindznation@gmail.com'
     +'?subject='+encodeURIComponent('Kirsch Hardware Spec — '+gp('grp-rod-type')+' — '+name)
     +'&body='+encodeURIComponent(body);
   document.getElementById('q-success').style.display='block';
-}
+}
+
+function addKirschSpecToCart() {
+  function gp(grp){ var s=document.querySelector('#'+grp+' .opt-pill.sel'); return s?s.textContent.trim():'—'; }
+  var rodType = gp('grp-rod-type');
+  var coll = gp('grp-coll');
+  var len = (document.getElementById('q-len')||{value:''}).value || '—';
+  var qty = parseInt((document.getElementById('q-qty')||{value:'1'}).value) || 1;
+  var lines = [
+    { label: 'Product', value: 'Kirsch ' + rodType },
+    { label: 'Collection', value: coll },
+    { label: 'Length', value: len + '″' },
+    { label: 'Draw', value: gp('grp-draw') },
+    { label: 'Mount', value: gp('grp-mount') },
+    { label: 'Quantity', value: String(qty) }
+  ];
+  pbAddToCart({ product: 'Kirsch ' + rodType, lines: lines, specs: lines.map(function(l){ return l.label+': '+l.value; }).join(' | '), qty: qty });
+  pbOpenCart();
+}
