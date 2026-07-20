@@ -298,6 +298,18 @@
           </div>
         </a>
 
+        <!-- Wallace Aluminum Mini-Blinds -->
+        <a class="product-card" href="wallace-aluminum-blinds.html">
+          <div class="product-img-photo">
+            <img src="../images/thumbnails/MINIBLIND.JPEG" alt="Wallace Aluminum Mini-Blinds" loading="lazy" style="object-position:center center">
+          </div>
+          <div class="product-body">
+            <div class="product-name">Wallace Aluminum Mini-Blinds</div>
+            <div class="product-sub">Wallace — 1&Prime; aluminum · bracket &amp; valance options</div>
+            <span class="badge badge-instant">Instant price</span>
+          </div>
+        </a>
+
         <div class="product-card" id="card-exterior" onclick="selectProduct('exterior','Exterior Roller Shades',false)">
           <div class="product-img-photo">
             <img src="../images/thumbnails/exterior-roller-shade.JPEG" alt="Exterior Roller Shades" loading="lazy" style="object-position:center 20%">
@@ -737,14 +749,11 @@
               <button class="opt-btn" onclick="selOpt(this,'rn-grp-lift');rnSetLift('smart')">AutoLift™</button>
               <button class="opt-btn" onclick="selOpt(this,'rn-grp-lift');rnSetLift('motor')">Motorized</button>
             </div>
-            <div id="rn-lift-note" class="tooltip-note" style="margin-top:5px">Continuous Cord Loop handles large widths &amp; heavy fabrics — child-safe tensioner required. Cordless max width varies by fabric weight. AutoLift™ is Norman's spring-tension pull system (+$89 AutoLift™ upgrade available for controlled descent).</div>
+            <div id="rn-lift-note" class="tooltip-note" style="margin-top:5px">Continuous Cord Loop handles large widths &amp; heavy fabrics — child-safe tensioner required. Cordless max width varies by fabric weight. AutoLift™ is Norman's spring-tension pull system (+$86 AutoLift™ upgrade available for controlled descent).</div>
             <div id="rn-motor-wrap" style="display:none;margin-top:8px">
-              <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Motor system:</div>
-              <div class="opt-row" id="grp-rn-motor-type">
-                <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-motor-type');rnSetMotorType(482)">Norman Smart — $482 <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 6px;border-radius:4px;font-weight:700;vertical-align:middle">Recommended</span><br><span style="font-size:10px;font-weight:400;color:#888">App, voice, remote &middot; rechargeable or hardwired</span></button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-rn-motor-type');rnSetMotorType(682)">Rollease Acmeda Automate — $682<br><span style="font-size:10px;font-weight:400;color:#888">For existing Rollease smart home systems &middot; rechargeable or hardwired</span></button>
-              </div>
-              <div class="tooltip-note" style="color:var(--gold);margin-top:8px">&#9889; Motor surcharge per shade. Power source (battery/hardwired) and remote confirmed at your measurement visit.</div>
+              <!-- Shared Norman Smart motor section (matches cellular + standalone pages). Rendered by rnSetLift('motor') via normanMotorSection('rn-motor-config','Roller Shade'). -->
+              <div id="rn-motor-config"></div>
+              <div class="tooltip-note" style="color:var(--gold);margin-top:8px">&#9889; Norman Smart motorization is $482/shade. Rollease Acmeda Automate is custom-priced (for customers integrating an existing Rollease smart-home system). Power source (battery/hardwired) and remote confirmed at your measurement visit.</div>
             </div>
           </div>
 
@@ -1351,7 +1360,7 @@
     </div><!-- /step-block measure -->
     </div><!-- /brand-norman-content -->
 
-    <!-- ── BLINDZNATION CUSTOM FORM (roller only) ────────────── -->
+    <!-- ── PHILLY BLINDS CUSTOM FORM (roller only) ────────────── -->
     <div id="brand-pb-content" style="display:none">
       <!-- Intro -->
       <div style="background:var(--gold-mid);border:1px solid #E8DCC8;border-radius:10px;padding:14px 18px;margin-bottom:20px">

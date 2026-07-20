@@ -66,7 +66,6 @@ const PATTERNS = [
   {code:'ZH-55E',name:'Eze',     color:'Teak',          group:'B',comp:'60% Jute, 40% Bamboo',                    sp:true,nd:false,ebReq:false,edgeSeal:false,ebColor:['Cedar'],      motorSqFtLiner:36,motorSqFtNoLiner:44,book:'R21'},
   {code:'ZH-010',name:'Lille',   color:'Mocha',         group:'B',comp:'50% Jute, 50% Polyester',                 sp:true,nd:false,ebReq:true, edgeSeal:false,ebColor:['Linen'],      motorSqFtLiner:56,motorSqFtNoLiner:64,book:'L25'},
   {code:'ZH-027',name:'Lyon',    color:'Gray Mist',     group:'B',comp:'100% Jute',                               sp:true,nd:true, ebReq:false,edgeSeal:true, ebColor:['Linen'],      motorSqFtLiner:56,motorSqFtNoLiner:64,book:'R12'},
-  {code:'ZH-030',name:'Maddox',  color:'Earth',         group:'B',comp:'80% Paper, 20% Ramie',                    sp:true,nd:false,ebReq:true, edgeSeal:false,ebColor:['Silver Gray'], motorSqFtLiner:56,motorSqFtNoLiner:64,book:'L32'},
   // ── Group C ─────────────────────────────────────────────────────────────────
   {code:'ZH-193',name:'Acacia',  color:'Chalk',         group:'C',comp:'80% Flax, 20% Jute',                      sp:true,nd:true, ebReq:true, edgeSeal:false,ebColor:['Ivory'],      motorSqFtLiner:56,motorSqFtNoLiner:64,book:'L8'},
   {code:'ZH-243',name:'Acacia',  color:'Mist',          group:'C',comp:'80% Flax, 20% Jute',                      sp:true,nd:true, ebReq:true, edgeSeal:false,ebColor:['Marble'],     motorSqFtLiner:56,motorSqFtNoLiner:64,book:'L16'},
@@ -290,6 +289,27 @@ function renderPatterns(group) {
 
   // Filter by group
   if(group && group !== 'all') filtered = filtered.filter(p => p.group === group);
+
+  // Consistent shared picker: families grouped into price-group sections.
+  // Colors/codes come straight from PATTERNS — nothing changed, only presentation.
+  if(window.pbFabricPicker){
+    var byFam={};
+    filtered.forEach(function(p){
+      var key=p.group+'|'+p.name;
+      if(!byFam[key]) byFam[key]={grp:p.group,name:p.name,colors:[]};
+      var extra=(p.ebReq?' · Binding Req':'')+(p.edgeSeal?' · Sealed Edge':'');
+      byFam[key].colors.push({n:p.color+extra, c:p.code, hex:colorToCSS(p.color)});
+    });
+    var collections=Object.keys(byFam).map(function(k){ return {type:'nat', pg:byFam[k].grp, name:byFam[k].name, colors:byFam[k].colors}; });
+    pbFabricPicker.render('pattern-grid', {
+      hideTabs:true, showPriceGroups:true,
+      types:[{key:'nat',label:'Natural Woven'}],
+      collections:collections,
+      onSelect:function(sel){ pickPattern(PATTERNS.findIndex(function(p){return p.code===sel.code;})); }
+    });
+    if(W.pattern){ grid.querySelectorAll('.pbfp-sw').forEach(function(b){ if(b.title===W.pattern.code) b.classList.add('sel'); }); }
+    return;
+  }
 
   grid.innerHTML = filtered.map(p => {
     const bg = colorToCSS(p.color);

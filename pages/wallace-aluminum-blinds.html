@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Wallace 1-inch Aluminum Mini-Blinds — configure size, bracket type, valance, and controls for an instant estimate. Custom made, shipped to you.">
+<meta property="og:title" content="Wallace Aluminum Mini-Blinds | Blindznation">
+<meta property="og:description" content="Custom 1-inch aluminum mini-blinds by Wallace — instant estimate configurator.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wallace Aluminum Mini-Blinds | Blindznation">
+<meta name="twitter:description" content="Custom window treatments.">
+<meta property="og:image" content="https://blindznation.com/img/social-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://blindznation.com/img/social-preview.png">
+<meta property="og:url" content="https://blindznation.com/pages/wallace-aluminum-blinds.html">
+<meta property="og:site_name" content="Blindznation">
+<title>Wallace Aluminum Mini-Blinds | Blindznation</title>
+<link rel="stylesheet" href="../css/global.css">
+<style>
+.cfg-hero{background:var(--espresso);padding:40px 28px 32px}
+.cfg-wrap{max-width:820px;margin:0 auto;padding:28px 22px 90px}
+.opt-desc{font-size:12px;color:#888;line-height:1.6;margin:2px 0 12px}
+#al-price-box{background:#faf9f6;border:1px solid #e8e5de;border-radius:12px;padding:16px 18px;margin-top:18px}
+</style>
+</head>
+<body data-page="Shades & blinds">
+<nav class="site-nav" id="site-nav"></nav>
+
+<div class="cfg-hero">
+  <div style="font-size:11px;color:var(--text-faint);margin-bottom:12px">
+    <a href="../index.html" style="color:var(--text-faint);text-decoration:none">Home</a>
+    <span style="margin:0 6px">&rsaquo;</span>
+    <a href="shades.html" style="color:var(--text-faint);text-decoration:none">Shades &amp; blinds</a>
+    <span style="margin:0 6px">&rsaquo;</span>
+    <span style="color:var(--cream)">Wallace Aluminum Mini-Blinds</span>
+  </div>
+  <h1 style="font-size:27px;font-weight:600;color:var(--cream);margin-bottom:8px">Wallace 1&Prime; Aluminum Mini-Blinds</h1>
+  <p style="font-size:13px;color:var(--text-dark);max-width:620px;line-height:1.6">Durable 1&Prime; aluminum slats with a wand tilt. Choose your bracket / gauge, valance, and options for an instant estimate. Custom made and shipped to you &mdash; final price and colors confirmed at order.</p>
+</div>
+
+<div class="cfg-wrap">
+
+  <!-- Step 1 — canonical size + mount -->
+  <div id="step-size"></div>
+
+  <!-- Step 2 — bracket / gauge -->
+  <div class="step-block" id="step2">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">2</div><div class="step-title" style="margin-bottom:0">Bracket &amp; gauge</div>
+    </div>
+    <div class="opt-desc">Heavier gauges and box-bracket styles add rigidity. Not sure? Leave the standard Customiser 6-gauge &mdash; we confirm the best fit at measurement.</div>
+    <div class="opt-row" style="flex-direction:column;align-items:stretch;gap:8px">
+      <button class="opt-btn sel" style="text-align:left" onclick="alSetBracket(this,'t1')">Customiser Box Brackets &mdash; 6 ga, 1&Prime;&times;1&Prime; <span style="color:#999;font-weight:400">(standard &middot; single-slat valance incl.)</span></button>
+      <button class="opt-btn" style="text-align:left" onclick="alSetBracket(this,'t2')">Customiser 8 ga (1&Prime;&times;1&Prime;) / Classic 6 ga (1&Prime;&times;1&frac12;&Prime;) <span style="color:#999;font-weight:400">(double-slat valance incl.)</span></button>
+      <button class="opt-btn" style="text-align:left" onclick="alSetBracket(this,'t3')">Classic 8 ga (1&Prime;&times;1&frac12;&Prime;) / Micro Box Brackets <span style="color:#999;font-weight:400">(double-slat valance incl.)</span></button>
+    </div>
+  </div>
+
+  <!-- Step 3 — color -->
+  <div class="step-block" id="step3">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">3</div><div class="step-title" style="margin-bottom:0">Color</div>
+    </div>
+    <div class="opt-desc">Wallace aluminum comes in a range of standard colors. Tell us a color preference below (or leave blank) &mdash; we'll match it to the current color card and confirm at order.</div>
+    <div class="form-group"><label>Color preference <span style="font-weight:400;color:#888">(optional)</span></label>
+      <input type="text" id="al-color" placeholder="e.g. White, Alabaster, Silver, Bronze…" oninput="S.color=this.value">
+    </div>
+  </div>
+
+  <!-- Step 4 — valance -->
+  <div class="step-block" id="step4">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">4</div><div class="step-title" style="margin-bottom:0">Valance</div>
+    </div>
+    <div class="opt-desc">A slat valance conceals the headrail. The included valance depends on your bracket choice; upgrade if you'd like a fuller look. Valance returns are not standard on inside mount.</div>
+    <div class="opt-row" id="al-val-row">
+      <button class="opt-btn sel" onclick="alSetValance(this,'included')">Included valance</button>
+      <button class="opt-btn" onclick="alSetValance(this,'double')">Double Slat (upgrade)</button>
+      <button class="opt-btn" onclick="alSetValance(this,'deluxe')">Deluxe Slat (upgrade)</button>
+    </div>
+  </div>
+
+  <!-- Step 5 — options -->
+  <div class="step-block" id="step5">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">5</div><div class="step-title" style="margin-bottom:0">Options</div>
+    </div>
+    <div class="opt-desc">Standard control is a tilt wand with corded lift. Add options as needed &mdash; some are only available on certain bracket types.</div>
+    <div class="opt-row" style="flex-wrap:wrap">
+      <button class="opt-btn" id="al-opt-cordless" onclick="alTgl('cordless',this)">Cordless lift</button>
+      <button class="opt-btn" id="al-opt-concealed" onclick="alTgl('concealed',this)">Concealed headrail (S-3000)</button>
+      <button class="opt-btn" id="al-opt-micro" onclick="alTgl('micro',this)">Micro box bracket</button>
+      <button class="opt-btn" onclick="alTgl('perforated',this)">Perforated slats</button>
+      <button class="opt-btn" id="al-opt-privacy" onclick="alTgl('privacy',this)">Privacy (S-3000)</button>
+      <button class="opt-btn" onclick="alTgl('twoOn1',this)">2-on-1 headrail</button>
+    </div>
+    <div class="opt-desc" style="margin-top:10px">Ordering 2&Prime; aluminum blinds instead? Those are quote-only &mdash; add a note in your details below and we'll price them for you.</div>
+  </div>
+
+  <!-- live estimate -->
+  <div id="al-price-box" style="display:none"></div>
+
+  <!-- Final step — canonical contact + files -->
+  <div class="step-block active" id="step6">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">6</div><div class="step-title" style="margin-bottom:0">Your details</div>
+    </div>
+    <div id="pb-final-step"></div>
+  </div>
+
+  <div id="success-box" style="display:none;background:#E8FBF6;border:1px solid #b8e6da;border-radius:12px;padding:22px;text-align:center;margin-top:16px">
+    <div style="font-size:34px;margin-bottom:6px">&#10003;</div>
+    <div style="font-size:17px;font-weight:700;color:var(--espresso);margin-bottom:6px">Order submitted for review!</div>
+    <div style="font-size:13px;color:#555;line-height:1.7">We have your Wallace Aluminum Blinds configuration and will confirm final pricing, colors, and options by email and phone &mdash; usually within a few hours.<br>A copy of the Terms of Agreement was emailed to you.</div>
+    <a href="tel:6097421720" style="display:inline-block;margin-top:14px;background:var(--espresso);color:var(--gold);font-size:14px;font-weight:700;padding:11px 22px;border-radius:8px;text-decoration:none">&#128222; (609) 742-1720 &mdash; 24/7</a>
+  </div>
+
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../js/shared.js"></script>
+<script src="../js/pages/wallace-aluminum-blinds.js"></script>
+<script>
+  document.getElementById('step-size').innerHTML =
+    pbSizeMountStepHTML({ stepNum:1, title:'Window measurements &amp; mount', calc:'calcPrice()',
+      widthMin:12, widthMax:142, heightMin:12, heightMax:144, widthPlaceholder:'36', heightPlaceholder:'48' });
+  document.getElementById('pb-final-step').innerHTML =
+    pbContactStepHTML({ bare:true, cartFn:'addAluminumToCart()', submitFn:'submitQuote()' });
+</script>
+
+</body>
+</html>

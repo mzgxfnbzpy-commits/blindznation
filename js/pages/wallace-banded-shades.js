@@ -133,6 +133,8 @@ var CTRL_LIM={clutch:{minW:16,maxW:110,minH:20,maxH:108},cordless:{minW:24,maxW:
 var WRAP_P=[31,38,47,54,61,69,77,84,92,108,123,138]; // by width bracket
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
+// Tier bar: 'basic' is THIS page (Banded 2D); other tiers are direct <a> links. No-op keeps active state.
+function selectTier(t){ var b=document.getElementById('tier-basic'); if(b) b.classList.add('tier-active'); }
 function selB(el,g){document.getElementById(g).querySelectorAll('.opt-btn').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');}
 function tog(id){var e=document.getElementById(id);e.classList.toggle('active');}
 function openNext(id){
@@ -523,7 +525,8 @@ function updateCalc(){
   showR('pr-ctrl-row',ctrlUp>0); if(ctrlUp)setV('pr-ctrl','+$'+ctrlUp);
   showR('pr-wrap-row',wrapUp>0); if(wrapUp)setV('pr-wrap','+$'+wrapUp+'/shade');
   showR('pr-acc-row',accUp>0);   if(accUp)setV('pr-acc','+$'+accUp);
-  var freight=(S.del==='install')?0:25+(S.qty>1?(S.qty-1)*11:0);
+  var _bmax=Math.max(S.w||0,S.h||0), _bos=(_bmax>=100?80:_bmax>=90?40:0);
+  var freight=(S.del==='install')?0:25+(S.qty>1?(S.qty-1)*10:0)+_bos*S.qty;
   showR('pr-frt-row',freight>0); if(freight)setV('pr-frt','$'+freight);
   var total=(base+ctrlUp+wrapUp+accUp)*S.qty+freight;
   setV('pr-total','~$'+Math.round(total).toLocaleString());
@@ -593,7 +596,8 @@ function submitQ(){
   var wrapUp=S.cassette==='square'?80:0;
   var bbW=document.querySelector('#grp-bar-wrap .opt-btn.sel');if(bbW&&bbW.textContent.includes('wrap'))wrapUp+=getWrapP(S.w);
   var accUp=(document.getElementById('acc-bat')?.checked?160:0)+(document.getElementById('acc-plug')?.checked?60:0)+(document.getElementById('acc-charger')?.checked?83:0)+(document.getElementById('acc-ext6')?.checked?32:0)+(document.getElementById('acc-ext48')?.checked?43:0)+(document.getElementById('acc-pole')?.checked?80:0);
-  var freight=(S.del==='install')?0:25+(S.qty>1?(S.qty-1)*11:0);
+  var _bmax=Math.max(S.w||0,S.h||0), _bos=(_bmax>=100?80:_bmax>=90?40:0);
+  var freight=(S.del==='install')?0:25+(S.qty>1?(S.qty-1)*10:0)+_bos*S.qty;
 
   var body=[
     '=== WALLACE ZEBRA / BANDED SHADE QUOTE ===','',
