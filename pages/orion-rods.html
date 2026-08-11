@@ -375,6 +375,8 @@ textarea.inp-field{resize:vertical;min-height:80px}
     <div class="btn-row">
       <button class="btn-back" onclick="goStep(7)">← Back</button>
     </div>
+        <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
+    <div id="pb-rod-spec"></div>
     <div id="pb-final-step"></div>
   </div>
 </div>
@@ -384,6 +386,8 @@ textarea.inp-field{resize:vertical;min-height:80px}
 <script src="../js/pages/orion-rods.js"></script>
 <script>
 document.getElementById('pb-final-step').innerHTML = pbContactStepHTML({ bare: true, cartFn: 'addOrionToCart()', submitFn: 'submitQuote()' });
+
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
 </script>
 </body>
 </html>

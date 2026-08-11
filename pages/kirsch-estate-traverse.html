@@ -441,6 +441,8 @@
     </div>
 
     <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
+        <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
+    <div id="pb-rod-spec"></div>
     <div id="pb-final-step"></div>
     <div id="quote-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
       <strong>Specification submitted!</strong> Your email app opened with the complete spec. We'll follow up within a few hours.<br>Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
@@ -509,6 +511,8 @@
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML = pbContactStepHTML({ bare: true, cartFn: 'addKirschEstateTraverseToCart()', submitFn: 'submitQuote()' });
+
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
 </script>
 </body>
 </html>

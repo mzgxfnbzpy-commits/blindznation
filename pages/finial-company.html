@@ -332,6 +332,8 @@
     <div class="step-head-title">Your info &amp; submit</div>
   </div>
   <div class="step-body">
+        <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
+    <div id="pb-rod-spec"></div>
     <div id="pb-final-step"></div>
     <div class="success-box" id="success-box">
       <strong>Quote request sent!</strong><br>We'll follow up within a few hours. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a>
@@ -380,6 +382,8 @@
 <script src="../js/pages/finial-company.js"></script>
 <script>
 document.getElementById('pb-final-step').innerHTML = pbContactStepHTML({ bare: true, cartFn: 'addFinialToCart()', submitFn: 'submitQuote()' });
+
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
 </script>
 </body>
 </html>

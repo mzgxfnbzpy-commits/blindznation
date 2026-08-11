@@ -749,7 +749,9 @@
       </div>
 
       <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-      <div id="pb-final-step"></div>
+          <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
+    <div id="pb-rod-spec"></div>
+    <div id="pb-final-step"></div>
     </div>
     <div class="success-box" id="sel-success" style="display:none">
       <strong>Quote request sent!</strong> We'll follow up within a few hours.<br>
@@ -777,6 +779,8 @@
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML = pbContactStepHTML({ bare: true, cartFn: 'addSelectToCart()', submitFn: 'submitSelect()' });
+
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
 </script>
 </body>
 </html>

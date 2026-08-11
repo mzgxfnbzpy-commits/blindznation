@@ -650,6 +650,8 @@ textarea.inp-field{resize:vertical;min-height:90px}
     </div>
 
     <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
+        <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
+    <div id="pb-rod-spec"></div>
     <div id="pb-final-step"></div>
   </div>
 
@@ -700,6 +702,8 @@ textarea.inp-field{resize:vertical;min-height:90px}
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addParisTexasToCart()', submitFn: 'submitQuote()' });
+
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
 </script>
 </body>
 </html>

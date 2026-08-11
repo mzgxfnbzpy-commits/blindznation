@@ -582,6 +582,113 @@ function pbAdjQty(id, delta, min, max) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ROD SPEC — exact finished rod length + bracket count, shared by every hardware
+// configurator (Kirsch, Paris Texas, Orion, Select, Finial Company, Architrac,
+// Estate Traverse, hardware quote).
+//
+// Window width alone does not tell the workroom how long to cut a rod: returns,
+// overlap, stack-back and centre supports all move the number. So the customer
+// gets to state the exact rod length, and the bracket count is a recommendation
+// they can override — some installs need an extra centre support (heavy drapery,
+// a bay, a stud that won't cooperate), some need fewer.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Recommended bracket count for a finished rod/track length in inches.
+ * Reproduces the Select spacing table (≤57″=2, 58–85″=3, 86–113″=4, 114–140″=5,
+ * 141–168″=6, 169–192″=7) and keeps ~28″ centres beyond it.
+ */
+function pbRecommendedBrackets(lengthIn) {
+  var len = parseFloat(lengthIn);
+  if (!len || len <= 0) return 2;
+  var BREAKS = [57, 85, 113, 140, 168, 192];
+  for (var i = 0; i < BREAKS.length; i++) if (len <= BREAKS[i]) return i + 2;
+  return 8 + Math.floor((len - 193) / 28);
+}
+
+/**
+ * The shared "Rod length & brackets" block.
+ * opts: { idPrefix ('rod-'), stepNum, title, calc (expr run on change),
+ *         widthId (field to seed the length hint from), bare(false),
+ *         note (extra guidance line) }
+ */
+function pbRodSpecHTML(opts) {
+  opts = opts || {};
+  var p    = opts.idPrefix || 'rod-';
+  var calc = opts.calc || '';
+  var onCh = calc ? (';' + calc) : '';
+  var inner =
+    '<div class="dim-box">' +
+      '<div class="form-row">' +
+        '<div class="form-group">' +
+          '<label>Exact rod length <span style="font-weight:400;color:#888">(inches)</span></label>' +
+          '<input type="number" step="0.125" min="12" max="480" id="' + p + 'length" ' +
+            'data-pb-rod="length" placeholder="e.g. 96.5" ' +
+            'oninput="pbSyncRodBrackets(\'' + p + '\')' + onCh + '">' +
+          '<div class="dim-unit">Finished rod, end to end &mdash; not the window width.</div>' +
+        '</div>' +
+        '<div class="form-group">' +
+          '<label>Brackets</label>' +
+          '<div class="qty-btns">' +
+            '<button type="button" class="qty-btn" onclick="pbAdjQty(\'' + p + 'brackets\',-1,2,20)' + onCh + '">&minus;</button>' +
+            '<input type="number" class="qty-num" id="' + p + 'brackets" data-pb-rod="brackets" ' +
+              'value="2" min="2" max="20" oninput="' + (calc || 'void 0') + '">' +
+            '<button type="button" class="qty-btn" onclick="pbAdjQty(\'' + p + 'brackets\',1,2,20)' + onCh + '">+</button>' +
+          '</div>' +
+          '<div class="dim-unit" id="' + p + 'brackets-hint">Ends only &mdash; add centre supports for heavy drapery.</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="step-note">Leave the length blank and we will cut to your window width plus standard returns. ' +
+      'The bracket count starts from the recommended spacing for the length you enter &mdash; adjust it if your install needs more or fewer.' +
+      (opts.note ? ' ' + opts.note : '') + '</div>';
+  if (opts.bare) return inner;
+  return '' +
+    '<div class="step-block">' +
+      '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">' +
+        (opts.stepNum != null ? '<div class="step-num">' + opts.stepNum + '</div>' : '') +
+        '<div class="step-title" style="margin-bottom:0">' + (opts.title || 'Rod length &amp; brackets') + '</div>' +
+      '</div>' + inner +
+    '</div>';
+}
+
+// Re-seed the bracket count from the entered length, but never fight a customer
+// who has already set it by hand.
+function pbSyncRodBrackets(prefix) {
+  var p   = prefix || 'rod-';
+  var len = document.getElementById(p + 'length');
+  var br  = document.getElementById(p + 'brackets');
+  if (!len || !br) return;
+  var rec = pbRecommendedBrackets(len.value);
+  var hint = document.getElementById(p + 'brackets-hint');
+  if (!br._pbTouched) br.value = rec;
+  if (hint) {
+    hint.textContent = len.value
+      ? 'Recommended for ' + len.value + '″: ' + rec + ' brackets.'
+      : 'Ends only — add centre supports for heavy drapery.';
+  }
+}
+
+// Read the rod spec for a quote body. Returns '' when the page has no rod block.
+function pbGetRodSpec(prefix) {
+  var p   = prefix || 'rod-';
+  var len = document.getElementById(p + 'length');
+  var br  = document.getElementById(p + 'brackets');
+  if (!len && !br) return '';
+  var lenTxt = (len && len.value) ? len.value + '"' : 'Not specified — cut to window width plus standard returns';
+  var brTxt  = (br && br.value) ? br.value : '—';
+  var rec    = (len && len.value) ? pbRecommendedBrackets(len.value) : null;
+  var flag   = (rec != null && br && parseInt(br.value, 10) !== rec)
+    ? ' (customer override — recommended ' + rec + ')' : '';
+  return 'Exact rod length: ' + lenTxt + '\nBrackets: ' + brTxt + flag;
+}
+
+// Mark a bracket field as hand-set so length changes stop overwriting it.
+document.addEventListener('input', function (e) {
+  var t = e.target;
+  if (t && t.getAttribute && t.getAttribute('data-pb-rod') === 'brackets') t._pbTouched = true;
+}, true);
+
 // CANONICAL STEP 1 — "Window measurements & mount" (ported from Philly Blinds).
 // opts: { stepNum(1), title, widthId, heightId, qtyId, mountGroupId, widthMin/Max/Placeholder/Hint,
 //         heightMin/Max/Placeholder/Hint, calc (default 'updateSummary()'), mountOnclick,
@@ -2601,6 +2708,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var _n = document.getElementById('cf-notes');
     if (_lbl && _n && (_n.value || '').indexOf(_lbl) < 0) {
       _n.value = (_n.value ? _n.value.replace(/\n?Labels: .*/,'') + '\n' : '') + 'Labels: ' + _lbl;
+    }
+    // Same for the hardware rod spec — exact length + bracket count reach the
+    // workroom through the notes, so no per-page quote builder has to know about it.
+    var _rod = (typeof pbGetRodSpec === 'function') ? pbGetRodSpec() : '';
+    if (_rod && _n && (_n.value || '').indexOf('Exact rod length:') < 0) {
+      _n.value = (_n.value ? _n.value.replace(/\n?Exact rod length:[\s\S]*?(?=\n\w|$)/, '') + '\n' : '') + _rod;
     }
   }, true);
 });
