@@ -205,7 +205,6 @@ function psCalc() {
   document.getElementById('ps-price-breakdown').innerHTML = lines.join('<br>');
   pb.style.display = 'block';
   document.getElementById('qp-pending').style.display    = 'none';
-  document.getElementById('ps-cart-wrap').style.display  = 'block';
 }
 
 // ── Add to cart ───────────────────────────────────────────────

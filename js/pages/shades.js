@@ -884,20 +884,23 @@ function updatePrice() {
     cellRow('pb-freight-row', null, 'pb-freight', '', '$' + cellFreight + (w >= 90 ? ' (90″+ oversize)' : ''));
 
     const perShadeAll = tableBase + rdAdd + opAdd + liftAdd;
-    const activeMotorUp = cellMotorUpcharge;
-    const motorCost = motorOn ? activeMotorUp * qty : 0;
+    // Motor charged at full Norman retail (NOT discounted). D&N / TDBU cellular = $642 dual motor.
+    const cellMotorBase = (fabTxt === 'Day & Night' || liftTxt === 'Top Down / Bottom Up') ? 642 : 482;
+    const motorCost = motorOn
+      ? ((typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('Cellular Shade', qty, cellMotorBase) : cellMotorUpcharge * qty)
+      : 0;
     const NORMAN_DISC_CELL = 0.35;
-    const cellProductSub = (perShadeAll * qty) + motorCost;
+    const cellProductSub = (perShadeAll * qty);                 // shade only — motor not discounted
     const cellDiscountAmt = Math.round(cellProductSub * NORMAN_DISC_CELL);
     const cellYourPrice = cellProductSub - cellDiscountAmt;
-    const total = cellYourPrice + cellFreight;
+    const total = cellYourPrice + motorCost + cellFreight;
 
     document.getElementById('pb-dims').textContent = w + '" W × ' + h + '" H';
     document.getElementById('pb-sqft').textContent = res.name + '  ·  table: ' + res.pricedAt;
     document.getElementById('pb-base').textContent = '$' + tableBase + '/shade retail (Norman Portrait' + String.fromCharCode(0x2122) + ' MSRP)';
     if (motorOn) {
       document.getElementById('pb-motor-row').style.display = 'flex';
-      document.getElementById('pb-motor').textContent = '+$' + activeMotorUp + ' × ' + qty + ' = $' + (activeMotorUp * qty);
+      document.getElementById('pb-motor').textContent = nmMotorLineText(motorCost, qty);
     } else {
       document.getElementById('pb-motor-row').style.display = 'none';
     }
@@ -920,7 +923,7 @@ function updatePrice() {
   document.getElementById('pb-sqft').textContent = sqft.toFixed(2) + ' sqft';
   document.getElementById('pb-base').textContent = '$' + rate + '/sqft → $' + basePerShade.toFixed(0) + ' est.';
   if (motorOn) {
-    document.getElementById('pb-motor').textContent = '+$' + activeMotorUp + ' × ' + qty + ' = $' + (activeMotorUp * qty).toFixed(0);
+    document.getElementById('pb-motor').textContent = nmMotorLineText(motorCost, qty);
   }
   document.getElementById('pb-total').textContent = '$' + total.toFixed(0) + ' est.';
 
@@ -2985,7 +2988,7 @@ function rnUpdatePrice() {
     document.getElementById('rn-pb-sqft').textContent = '—';
     document.getElementById('rn-pb-base').textContent = '—';
     document.getElementById('rn-pb-total').textContent = '—';
-    if (isMotor) { document.getElementById('rn-pb-motor-row').style.display = 'flex'; document.getElementById('rn-pb-motor').textContent = '+$' + rnMotorUpcharge + '/shade'; }
+    if (isMotor) { document.getElementById('rn-pb-motor-row').style.display = 'flex'; document.getElementById('rn-pb-motor').textContent = '—'; }
     else { document.getElementById('rn-pb-motor-row').style.display = 'none'; }
     return;
   }
@@ -3002,7 +3005,10 @@ function rnUpdatePrice() {
   var rnUnitMult = isDualSystem ? 2 : (rnSystemType === 'coupled2' ? 2 : rnSystemType === 'coupled3' ? 3 : rnSystemType === 'coupled4' ? 4 : 1);
   if (perShade) perShade = perShade * rnUnitMult;
   // Motorized dual shade needs 2 motors (one per roll)
-  const motorCost = isMotor ? rnMotorUpcharge * qty * (isDualSystem ? 2 : 1) : 0;
+  // Motorized dual shade needs 2 motors (one per roll). Full Norman retail, incl. accessories.
+  const motorCost = isMotor
+    ? ((typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('Roller Shade', qty * (isDualSystem ? 2 : 1)) : rnMotorUpcharge * qty * (isDualSystem ? 2 : 1))
+    : 0;
 
   // ── Headrail / fascia surcharge ──────────────────────────────
   var hrBtn2     = document.querySelector('#rn-grp-headrail .opt-btn.sel');
@@ -3101,10 +3107,11 @@ function rnUpdatePrice() {
 
   // ── Grand total with 35% Norman discount on product subtotal only ──
   const NORMAN_DISC_RN = 0.35;
-  const productSubtotalRN = perShade ? (perShade * qty) + motorCost + hrSurcharge + sysSur + liftSur + lgSur + hdSur : null;
+  // Motor stays out of the discount base — motorization is always full retail.
+  const productSubtotalRN = perShade ? (perShade * qty) + hrSurcharge + sysSur + liftSur + lgSur + hdSur : null;
   const discountAmtRN = productSubtotalRN ? Math.round(productSubtotalRN * NORMAN_DISC_RN) : 0;
   const yourPriceRN = productSubtotalRN ? productSubtotalRN - discountAmtRN : null;
-  const total = yourPriceRN !== null ? yourPriceRN + freightAmt : null;
+  const total = yourPriceRN !== null ? yourPriceRN + motorCost + freightAmt : null;
 
   // Update standard chain label (75% of height)
   updateChainStdLabel('rn-clen-std-label', 'rn-height');
@@ -3137,9 +3144,9 @@ function rnUpdatePrice() {
   document.getElementById('rn-pb-total').textContent = total ? '\$' + total.toFixed(0) + ' est.' : '—';
   document.getElementById('rn-pb-min-note').style.display = (perShade === RN_MIN) ? 'block' : 'none';
   if (isMotor) {
-    var motorQtyLabel = isDualSystem ? qty + ' × 2 shades' : qty + ' shade' + (qty > 1 ? 's' : '');
     document.getElementById('rn-pb-motor-row').style.display = 'flex';
-    document.getElementById('rn-pb-motor').textContent = '+\$' + rnMotorUpcharge + ' × ' + motorQtyLabel + ' = \$' + motorCost.toFixed(0);
+    // Divided by shades, not motors — a dual system carries two motors per shade.
+    document.getElementById('rn-pb-motor').textContent = nmMotorLineText(motorCost, qty);
   } else {
     document.getElementById('rn-pb-motor-row').style.display = 'none';
   }

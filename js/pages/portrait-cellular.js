@@ -616,21 +616,26 @@ function cellCalcPrice() {
   // Per-unit price (handles Day & Night = two shades, fabric/op/config surcharges — details hidden)
   var ps       = cellPerShadePrice(tableBase);
   var perShade = ps.price;
-  var motorTotal = cellMotorOn ? cellMotorCost * CELL.qty : 0;
+  // Motor: charged at full Norman retail (NOT discounted). D&N / TDBU cellular use the
+  // $642 dual motor; standard = $482. Accessories (hub, remotes, charging wand) via shared fn.
+  var cellMotorBase = (CELL.lift === 'dn' || CELL.lift === 'tdbu') ? 642 : 482;
+  var motorTotal = cellMotorOn
+    ? ((typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('Cellular Shade', CELL.qty, cellMotorBase) : cellMotorCost * CELL.qty)
+    : 0;
 
-  // Apply 35% Norman discount to product cost (not to freight)
-  var productSub  = perShade * CELL.qty + motorTotal;
+  // Apply 35% Norman discount to the shade cost only (motor + freight not discounted)
+  var productSub  = perShade * CELL.qty;
   var discountAmt = Math.round(productSub * 0.35);
   var yourPrice   = productSub - discountAmt;
   var freight    = w >= 90 ? (80 + Math.max(0, CELL.qty - 1) * 50) : (25 + Math.max(0, CELL.qty - 1) * 11);
-  var grandTotal = yourPrice + freight;
+  var grandTotal = yourPrice + motorTotal + freight;
 
   // ── Customer-facing breakdown: only add-on surcharges, then retail → discount → price ──
   // (base table price, +20% fabric, cord-loop, D&N two-shade math are intentionally hidden)
   var lines = [];
   if (CELL.lift === 'tdbu')    lines.push('Top Down / Bottom Up: +$89');
   else if (CELL.lift === 'dn') lines.push('Day &amp; Night: +$89');
-  if (motorTotal) lines.push('Motorization ($' + cellMotorCost + ' × ' + CELL.qty + '): +$' + motorTotal.toLocaleString());
+  if (motorTotal) lines.push('Motorization: ' + nmMotorLineText(motorTotal, CELL.qty));
   if (lines.length) lines.push('<hr style="border:none;border-top:1px solid rgba(255,255,255,.15);margin:7px 0">');
   lines.push('Retail: $' + productSub.toLocaleString());
   lines.push('<span style="color:var(--gold)">35% Norman discount: −$' + discountAmt.toLocaleString() + '</span>');
@@ -645,7 +650,6 @@ function cellCalcPrice() {
   document.getElementById('cell-size-info').style.display  = 'block';
   pb.style.display = 'block';
   document.getElementById('qp-cell-pending').style.display = 'none';
-  document.getElementById('cell-cart-wrap').style.display  = 'block';
 }
 
 // ── Add to cart ───────────────────────────────────────────────
@@ -659,9 +663,12 @@ function cellAddToCart() {
   if (!res.price) { alert('Size is out of the pricing table range. Please call us: (609) 742-1720.'); return; }
 
   var perShade    = cellPerShadePrice(res.price).price;
-  var motorTotal  = cellMotorOn ? cellMotorCost * CELL.qty : 0;
-  var productSub  = perShade * CELL.qty + motorTotal;
-  var yourPrice   = productSub - Math.round(productSub * 0.35);
+  var cellMotorBase2 = (CELL.lift === 'dn' || CELL.lift === 'tdbu') ? 642 : 482;
+  var motorTotal  = cellMotorOn
+    ? ((typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('Cellular Shade', CELL.qty, cellMotorBase2) : cellMotorCost * CELL.qty)
+    : 0;
+  var productSub  = perShade * CELL.qty;
+  var yourPrice   = (productSub - Math.round(productSub * 0.35)) + motorTotal;
   var freight     = w >= 90 ? (80 + Math.max(0, CELL.qty - 1) * 50) : (25 + Math.max(0, CELL.qty - 1) * 11);
 
   var liftLabel = CELL.lift === 'bu' ? 'Bottom Up' : CELL.lift === 'tdbu' ? 'Top Down / Bottom Up' : 'Day & Night';

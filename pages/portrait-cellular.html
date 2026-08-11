@@ -301,9 +301,8 @@
       <div class="qnote">Norman retail pricing with 35% discount. Freight at retail rate. Final price confirmed at order.</div>
     </div>
 
-    <div id="cell-cart-wrap" style="display:none;margin-top:16px">
-      <button class="btn-cart-add" onclick="cellAddToCart()" style="width:100%">+ Add to Cart</button>
-    </div>
+    <!-- Add to Cart lives in the final step, directly above Submit Order for Review —
+         a second copy here left the pair split across the page. -->
   </div>
 </div>
 
@@ -355,7 +354,7 @@ function pickCellOp(el, sysName) {
     note.textContent   = 'Cord Loop: handles up to 120″W × 144″H (80 sqft max). Available in Bottom Up, TDBU, and Day & Night.';
   } else if (sysName === 'Motorized') {
     note.style.display = 'block';
-    note.textContent   = 'Norman Smart Motorization — power source, remote, and smart home confirmed at measurement visit. (+$' + cellMotorCost + '/shade)';
+    note.textContent   = 'Norman Smart Motorization — power source, remote, and smart home confirmed at measurement visit.';
     // Show motor step
     document.getElementById('step7').style.display = 'block';
     if (typeof normanMotorSection === 'function') normanMotorSection('cell-motor-config', 'Cellular Shade');
