@@ -16,8 +16,7 @@
 
 /* ─────────────────────────────────────────────
    PORTFOLIO NATURAL WOVEN pattern data
-   NOTE: ZH- codes and price groups need
-   verification from Portfolio PDF.
+   Real ZH- codes and price groups A-E (2026 Portfolio PDF).
    Sliding panels and draperies available.
 ───────────────────────────────────────────── */
 const PORT_LINERS = {
@@ -25,27 +24,72 @@ const PORT_LINERS = {
   bo: [{code:'BO-BG', name:'Beige'},{code:'BO-WH', name:'White'},{code:'BO-CH', name:'Chocolate'}]
 };
 const PORT_EB_COLORS = ['Natural','Wheat','Camel','Onyx','Pearl','Stone','Ivory','White'];
-// Portfolio patterns — ZH- codes placeholder, verify from PDF
+// Portfolio patterns — real ZH- codes and price groups A-E, taken from the same
+// data the standalone Portfolio Natural configurator uses (2026 Portfolio PDF).
 const PORT_PATTERNS = [
-  'Abaca Grain','Antilles Natural','Bamboo Tokyo','Bontae Wheat','Briar Bone',
-  'Buckeye Flax','Burma Grass','Camelot Straw','Cebu Seagrass','Celeste Ivory',
-  'Cezanne Fog','Charade Natural','Chimayo Cotton','Cocoa Beach Tortoiseshell',
-  'Cora Natural','Delray Natural','Dune Wheat','Fuji Natural','Grassy Knoll Natural',
-  'Hatteras Natural','Java Cocoa','Kauai Natural','Kilauea Bark','Kona Coffee',
-  'La Palma Natural','Lagos Seagrass','Lahinch Dune','Lomas Natural','Maui Driftwood',
-  'Mayan Weave','Mykonos Natural','Nantucket Natural','Nassau Natural','Nepal Stone',
-  'Outer Banks Natural','Palapa Wheat','Palmetto Natural','Papyrus Natural',
-  'Pashmina Ivory','Prairie Natural','Richmond Natural','Sahara Gold','Samoa Natural',
-  'Savanna Natural','Seagrass Ivory','Serpentine Natural','Shoji Wheat','Siena Natural',
-  'Singapore Natural','Sonoma Dusk','Tivoli Wheat','Toscana Natural','Vail Natural',
-  'Waikiki Natural','Waterfall Birch','Whistler Natural','Yucatan Natural'
-].map((n,i)=>({
-  code:'ZH-'+(101+i).toString().padStart(3,'0'), // placeholder — verify from PDF
-  name:n, group:'TBD', // verify price group from PDF
-  cordlessTDBU:true, slidingPanel:true, naturalDrapery:true,
-  edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false,
-  motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''
-}));
+  {code:'ZH-49B', name:'Aucoin White Sand', group:'A', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Ivory'},
+  {code:'ZH-48E', name:'Collina Static', group:'A', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Chalk'},
+  {code:'ZH-48D', name:'Collina White Pine', group:'A', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Chalk'},
+  {code:'ZH-49D', name:'Gilles Weathered Gray', group:'A', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Titanium'},
+  {code:'ZH-79D', name:'Jettie Ginger Snap', group:'A', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Cedar'},
+  {code:'ZH-N2C', name:'Kaia Boucle', group:'A', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Ivory'},
+  {code:'ZH-N2A', name:'Kaia Moss', group:'A', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Stone'},
+  {code:'ZH-N2D', name:'Kaia Spice', group:'A', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Brown'},
+  {code:'ZH-N2B', name:'Kaia Teak', group:'A', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Sable'},
+  {code:'ZH-41B', name:'Amie Ashberry', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Stone'},
+  {code:'ZH-41C', name:'Amie Charcoal', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Graphite'},
+  {code:'ZH-41D', name:'Amie Truffle', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Satin Black'},
+  {code:'ZH-25D', name:'Avalon Dusk', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Stone'},
+  {code:'ZH-25C', name:'Avalon Morning', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Stone'},
+  {code:'ZH-50D', name:'Covington Deep Blue', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Navy'},
+  {code:'ZH-50A', name:'Covington Parchment', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Chalk'},
+  {code:'ZH-55C', name:'Eze Amethyst', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Stone'},
+  {code:'ZH-55D', name:'Eze Cinnamon', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Camel'},
+  {code:'ZH-55A', name:'Eze Moonlight', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Stone'},
+  {code:'ZH-55B', name:'Eze Natural', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Camel'},
+  {code:'ZH-55F', name:'Eze Night Sky', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Cedar'},
+  {code:'ZH-55E', name:'Eze Teak', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Cedar'},
+  {code:'ZH-010', name:'Lille Mocha', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen'},
+  {code:'ZH-027', name:'Lyon Gray Mist', group:'B', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:true, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen'},
+  {code:'ZH-193', name:'Acacia Chalk', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Ivory'},
+  {code:'ZH-243', name:'Acacia Mist', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Marble'},
+  {code:'ZH-61A', name:'Arista Black', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:true, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Midnight'},
+  {code:'ZH-61W', name:'Arista Sugar', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:true, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Chalk'},
+  {code:'ZH-21E', name:'Calloway Canyon', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Stone'},
+  {code:'ZH-21A', name:'Calloway Cotton', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Chalk'},
+  {code:'ZH-21D', name:'Calloway Light Gray', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Ivory'},
+  {code:'ZH-21C', name:'Calloway Twine', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen'},
+  {code:'ZH-041', name:'Chantelle Mist', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Stone'},
+  {code:'ZH-R1A', name:'Duval Coconut', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Ivory'},
+  {code:'ZH-R1B', name:'Duval Driftwood', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Stone'},
+  {code:'ZH-02B', name:'Gleam Fog', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Silver Gray'},
+  {code:'ZH-005', name:'Lucia Beige', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Camel'},
+  {code:'ZH-04A', name:'Lucia Sand', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Linen'},
+  {code:'ZH-133', name:'Provence Beige', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Marble'},
+  {code:'ZH-373', name:'Provence Chalk', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Ivory'},
+  {code:'ZH-173', name:'Provence Soft Gray', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Ivory'},
+  {code:'ZH-P1C', name:'Tuscany Gray', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Titanium'},
+  {code:'ZH-P1A', name:'Tuscany White', group:'C', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:44, motorMaxWithLiner:36, coordEB:'Chalk'},
+  {code:'ZH-200', name:'Batiste Light', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Stone'},
+  {code:'ZH-E64', name:'Cécile Bronze', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Marble'},
+  {code:'ZH-213', name:'Emele Contrast', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Marble'},
+  {code:'ZH-031', name:'Emele Ivory', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Ivory'},
+  {code:'ZH-032', name:'Emele Mist', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Marble'},
+  {code:'ZH-033', name:'Emele Pearl', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Ivory'},
+  {code:'ZH-003', name:'Emele Soft White', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Ivory'},
+  {code:'ZH-187', name:'Milla Graphite', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Cedar'},
+  {code:'ZH-M02', name:'Mirielle Bronze', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Marble'},
+  {code:'ZH-M11', name:'Mirielle Champagne', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Marble'},
+  {code:'ZH-M01', name:'Mirielle Golden', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Marble'},
+  {code:'ZH-M31', name:'Mirielle Onyx', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Satin Black'},
+  {code:'ZH-M03', name:'Mirielle Tourmaline', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Satin Black'},
+  {code:'ZH-624', name:'Nael Lavender Mist', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Stone'},
+  {code:'ZH-QE4', name:'Pascal Antique', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Bronze'},
+  {code:'ZH-QE3', name:'Pascal Harbor', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:55, motorMaxWithLiner:44, coordEB:'Stone'},
+  {code:'ZH-QE2', name:'Pascal Powder', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:true, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Chalk'},
+  {code:'ZH-11A', name:'Rochelle Iron', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Silver Gray'},
+  {code:'ZH-R31', name:'Ventana Dunes', group:'D', cordlessTDBU:true, slidingPanel:true, naturalDrapery:false, edgeBindingRequired:true, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:56, coordEB:'Marble'}
+];
 
 /* ─────────────────────────────────────────────
    GALAXY WOVEN pattern data
@@ -59,27 +103,83 @@ const GAL_LINERS = {
   bo: [{code:'BO-BG',name:'Beige'},{code:'BO-WH',name:'White'}]
 };
 const GAL_EB_COLORS = ['Natural','Wheat','Camel','Onyx','Pearl','Stone','Ivory'];
-// Galaxy patterns — G- codes placeholder, verify from Galaxy PDF
+// Galaxy patterns — real SKUs and price groups 1-6, taken from the same data the
+// standalone Galaxy configurator uses. Headrail and chain colour are set by pattern.
 const GAL_PATTERNS = [
-  'Arusha Wheat','Aurora Grain','Bali Gold','Borneo Bark','Bounty Natural',
-  'Canton Ivory','Capetown Natural','Caribe Natural','Ceylon Ivory','Congo Natural',
-  'Delhi Wheat','Driftwood Sandy','Dublin Natural','Essex Natural','Finca Wheat',
-  'Flores Natural','Galaxy Gold','Galaxy Natural','Galaxy White','Geneva Linen',
-  'Havana Natural','Hong Kong Natural','Honolulu Natural','Ibiza Natural','Indigo Sky',
-  'Jakarta Natural','Java Natural','Juniper Wheat','Kenya Natural','Kingston Natural',
-  'Lagos Natural','Lucerne Natural','Manila Natural','Maui Natural','Milan Linen',
-  'Monaco Linen','Nassau Wheat','Nepal Natural','Oslo Ivory','Pacific Natural',
-  'Palermo Natural','Panama Natural','Perth Natural','Porto Natural','Prague Natural',
-  'Queensland Natural','Rio Natural','Roma Natural','Samoa Wheat','Santiago Natural',
-  'Seoul Natural','Shanghai Natural','Sofia Natural','Sydney Natural','Tahiti Natural',
-  'Taipei Natural','Tokyo Natural','Trinidad Natural','Tuscan Natural','Valencia Natural'
-].map((n,i)=>({
-  code:'G-'+(101+i).toString().padStart(3,'0'), // placeholder — verify from Galaxy PDF
-  name:n, group:'TBD', // verify price group from Galaxy 2025 PDF
-  cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true,
-  edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false,
-  motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:'' // verify per-pattern from PDF
-}));
+  {code:'BB1080', name:'Zagoli Sienna', group:'1', headrail:'Chestnut', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BB1001', name:'Argos', group:'1', headrail:'Chestnut', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BB1266', name:'Kyoto Russet', group:'1', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BB1268', name:'Kyoto Frost', group:'1', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BB2253', name:'Mesabi White', group:'2', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BB2264', name:'Bamboo Harvest', group:'2', headrail:'Chestnut', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BB2780', name:'Aris Wheat', group:'2', headrail:'Chestnut', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BB2090', name:'Edessa Cream', group:'2', headrail:'Walnut', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BJ3403', name:'Lulea Snow', group:'3', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4250', name:'Luxor Chestnut', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4260', name:'Luxor Sand', group:'4', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4270', name:'Luxor Silver Charm', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4363', name:'Lyon Taupe', group:'4', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4373', name:'Lyon Glacier', group:'4', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4383', name:'Lyon Chalk', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BY4201', name:'Arroyo Thunder', group:'4', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BY4202', name:'Arroyo Gray', group:'4', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BY4203', name:'Arroyo Pale Smoke', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4160', name:'Essex White Cloud', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4170', name:'Essex Sage', group:'4', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4180', name:'Essex Straw', group:'4', headrail:'Walnut', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4190', name:'Essex Latte', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4101', name:'Lakeshore White Sands', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4102', name:'Lakeshore Latte', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4103', name:'Lakeshore Straw', group:'4', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PP4701', name:'Sanoma Snow', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PP4702', name:'Sanoma Sands', group:'4', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PP4703', name:'Sanoma Caramel', group:'4', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PP4704', name:'Sanoma Rust', group:'4', headrail:'Walnut', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PP4705', name:'Sanoma Concrete', group:'4', headrail:'Greywash', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PP4706', name:'Sanoma Ginger', group:'4', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4210', name:'Hudson Pebble', group:'4', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4212', name:'Hudson Flax', group:'4', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4240', name:'Timmins Cream', group:'4', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4220', name:'Timmins Fossil', group:'4', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB4230', name:'Timmins Seal', group:'4', headrail:'Greywash', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BJ4523', name:'Serenity Mist', group:'4', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BJ4350', name:'Avedon', group:'4', headrail:'Chestnut', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PP5720', name:'Kingston Smoke', group:'5', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PP5730', name:'Kingston Rock', group:'5', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PP5740', name:'Kingston Rice', group:'5', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB5420', name:'Giza Midnight', group:'5', headrail:'Greywash', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB5430', name:'Giza Wheat', group:'5', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB5440', name:'Giza Snow', group:'5', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB5460', name:'Chatou Star', group:'5', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB5470', name:'Chatou Stone', group:'5', headrail:'Greywash', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PB5480', name:'Chatou Snow', group:'5', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PY5520', name:'Dawson White', group:'5', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PY5510', name:'Dawson Marble', group:'5', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PY5530', name:'Dawson Tea', group:'5', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PY5313', name:'Zaria Mink', group:'5', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PY5311', name:'Zaria Silver White', group:'5', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BJ5514', name:'Boras Snow', group:'5', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BJ5525', name:'Amour Wheat', group:'5', headrail:'Chestnut', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'BJ5240', name:'Bengali Sand', group:'5', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JJ5010', name:'Goya Dawn', group:'5', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JJ5050', name:'Goya Wheat', group:'5', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6777', name:'Moncton Granite', group:'6', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6778', name:'Moncton Snow White', group:'6', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6779', name:'Moncton Snow Gray', group:'6', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6333', name:'Zeffa Mushroom', group:'6', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6335', name:'Zeffa Whitish Gray', group:'6', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6334', name:'Zeffa White', group:'6', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6336', name:'Zeffa Grayish White', group:'6', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6870', name:'Kuwada Stone', group:'6', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6872', name:'Kuwada Lava', group:'6', headrail:'Greywash', chain:'Bronze', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6874', name:'Kuwada Cotton', group:'6', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6810', name:'Surroy Amber', group:'6', headrail:'Natural', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6811', name:'Surroy Whiterock', group:'6', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6812', name:'Surroy Tea', group:'6', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'JP6813', name:'Surroy Pearl', group:'6', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PY6830', name:'Winnipeg Silver', group:'6', headrail:'Greywash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''},
+  {code:'PY6832', name:'Winnipeg Cream', group:'6', headrail:'Whitewash', chain:'Stainless', cordlessTDBU:true, slidingPanel:false, naturalDrapery:false, hobbledEligible:true, edgeBindingRequired:false, edgeBindingRecommended:false, edgeSeal:false, motorMaxNoLiner:64, motorMaxWithLiner:64, coordEB:''}
+];
 
 /* ─────────────────────────────────────────────
    WALDEN PREMIER pattern data
@@ -475,10 +575,10 @@ function buildFabricGrid() {
   var grid = $('fabric-grid');
   grid.innerHTML = '';
   var collNotes = {
-    portfolio:'<strong>Wallace Portfolio Natural Woven</strong> — ZH- fabric codes. Codes require PDF verification before ordering.',
-    galaxy:'<strong>Wallace Galaxy Woven</strong> — G- fabric codes. Hobbled style available. Motor/size limits are pattern-specific — verify from PDF.',
-    premier:'<strong>Walden Premier</strong> — 47 fabrics. E- codes require PDF verification.',
-    select:'<strong>Walden Select</strong> — 56 fabrics with WS- fabric codes.'
+    portfolio:'<strong>Wallace Portfolio Natural Woven</strong> — 62 fabrics, price groups A&ndash;E. Sliding panels and draperies available on most patterns.',
+    galaxy:'<strong>Wallace Galaxy Woven</strong> — 73 fabrics, price groups 1&ndash;6. Hobbled style available. Headrail and chain colour are set by pattern.',
+    premier:'<strong>Walden Premier</strong> — 47 fabrics, price groups A&ndash;F.',
+    select:'<strong>Walden Select</strong> — 57 fabrics, price groups with WS- fabric codes.'
   };
   $('fabric-collection-note').innerHTML = collNotes[S.collection]||'';
   patterns.forEach(function(p){
