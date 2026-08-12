@@ -127,7 +127,7 @@ function pickDel(btn,key){
   calcPrice();
 }
 
-const NORMAN_DISC = 0.35; // 35% off retail subtotal — not applied to shipping
+const NORMAN_DISC = 0.25; // 25% off retail subtotal — not applied to shipping
 
 function updateQuote(){
   const qty=parseInt(document.getElementById('qty').value)||1;
@@ -158,7 +158,7 @@ function updateQuote(){
   document.getElementById('qr-mount').textContent=state.mount==='inside'?'Inside mount':state.mount==='semi'?'Semi-inside mount':'Outside mount';
   document.getElementById('qr-dims').textContent=state.w+'″ × '+state.h+'″';
   document.getElementById('qr-qty').textContent=qty+(qty>1?' blinds':' blind');
-  document.getElementById('qr-price').innerHTML='<s style="color:var(--text-dark);font-weight:400">$'+pricePerBlind+' retail</s> &rarr; $'+Math.round(pricePerBlind*0.65)+' your price';
+  document.getElementById('qr-price').innerHTML='<s style="color:var(--text-dark);font-weight:400">$'+pricePerBlind+' retail</s> &rarr; $'+Math.round(pricePerBlind*0.75)+' your price';
   const showRow=(id,show,val)=>{document.getElementById(id).style.display=show?'flex':'none';if(val)document.getElementById(id.replace('-row','-s')).textContent=val;};
   showRow('qr-shim-row',state.shim,'$'+(state.shimQty*7));
 
@@ -169,7 +169,7 @@ function updateQuote(){
   if(!discRow){
     discRow=document.createElement('div');
     discRow.className='qrow';discRow.id='qr-disc-row';
-    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">35% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
+    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">25% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
     qdiv.parentNode.insertBefore(discRow,qdiv);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='qr-yourprice-row';

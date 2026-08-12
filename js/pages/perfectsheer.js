@@ -21,7 +21,7 @@ const PS_PRICES  = [
 ];
 const PS_WOOD_V   = [117,122,133,139,150,161,171,188,204,216,232,249,277,282,304];
 const PS_FABRIC_V = [133,139,155,161,171,183,199,216,232,249,271,288,315,326,349];
-const PS_NORM_DISC  = 0.35;
+const PS_NORM_DISC  = 0.25;
 const PS_MOTOR_COST = 482;
 
 // ── State ─────────────────────────────────────────────────────
@@ -192,7 +192,7 @@ function psCalc() {
   var discAmt   = Math.round(total * PS_NORM_DISC);
   var yourPrice = total - discAmt;
   lines.push('<span style="color:var(--gold)">Retail: $' + total.toLocaleString()
-    + ' → 35% off: −$' + discAmt.toLocaleString()
+    + ' → 25% off: −$' + discAmt.toLocaleString()
     + ' → Your price: $' + yourPrice.toLocaleString() + '/shade</span>');
 
   var freight    = w >= 90 ? (80 + Math.max(0, PS.qty - 1) * 50) : (25 + Math.max(0, PS.qty - 1) * 11);

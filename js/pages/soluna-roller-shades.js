@@ -480,11 +480,11 @@ function updateSummary() {
       priceEl2.textContent = 'Size exceeds our standard price chart (max 120″W × 144″H) — we’ll prepare a manual quote.';
       priceRow.style.display = '';
     } else if (priceResult) {
-      // Norman retail → 35% off → your price (35% applies to all Norman products; not to shipping).
+      // Norman retail → 25% off → your price (35% applies to all Norman products; not to shipping).
       var _solRetail = priceResult.total;
-      var _solYour   = Math.round(_solRetail * 0.65);
-      var pTxt = '$' + _solRetail.toLocaleString() + ' retail → $' + _solYour.toLocaleString() + ' your price (35% off)';
-      if (priceResult.qty > 1 && !_solCoupledActive) pTxt += ' · ' + priceResult.qty + ' × $' + Math.round(priceResult.unit * 0.65).toLocaleString();
+      var _solYour   = Math.round(_solRetail * 0.75);
+      var pTxt = '$' + _solRetail.toLocaleString() + ' retail → $' + _solYour.toLocaleString() + ' your price (25% off)';
+      if (priceResult.qty > 1 && !_solCoupledActive) pTxt += ' · ' + priceResult.qty + ' × $' + Math.round(priceResult.unit * 0.75).toLocaleString();
       if (priceResult.motor) pTxt += ' + motor est.';
       priceEl2.textContent = pTxt;
       priceRow.style.display = '';
@@ -532,7 +532,7 @@ function submitQuote() {
   const priceEstLine = (priceEst && priceEst.review)
     ? 'Size exceeds standard price chart (max 120"W x 144"H) — MANUAL QUOTE REQUIRED'
     : priceEst
-    ? 'Est. retail: $' + priceEst.total.toLocaleString() + ' → 35% off → your price: $' + Math.round(priceEst.total * 0.65).toLocaleString() + ' (freight/motor additional, not discounted)' + (priceEst.motor ? ' (motor priced separately)' : '') + (priceEst.qty > 1 && !_solCoupledActive ? ' (' + priceEst.qty + ' × $' + priceEst.unit.toLocaleString() + ')' : '')
+    ? 'Est. retail: $' + priceEst.total.toLocaleString() + ' → 25% off → your price: $' + Math.round(priceEst.total * 0.75).toLocaleString() + ' (freight/motor additional, not discounted)' + (priceEst.motor ? ' (motor priced separately)' : '') + (priceEst.qty > 1 && !_solCoupledActive ? ' (' + priceEst.qty + ' × $' + priceEst.unit.toLocaleString() + ')' : '')
     : '';
   const body = [
     '=== PREMIER NORMAN ROLLER SHADE QUOTE REQUEST ===',

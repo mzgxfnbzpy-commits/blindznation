@@ -220,7 +220,7 @@ function updateQuote(){
   const basePrice=MATRIX[hRow][W_COLS.indexOf(wCol)];
   if(!basePrice){document.getElementById('qp-pending').style.display='block';document.getElementById('qp-detail').style.display='none';return;}
 
-  const NORMAN_DISC = 0.35; // 35% off retail subtotal — not applied to shipping
+  const NORMAN_DISC = 0.25; // 25% off retail subtotal — not applied to shipping
 
   // slat multiplier + color finish surcharge + optional privacy
   const slatMult={half:1.10,one:1.00,two:1.20}[state.slat];
@@ -255,7 +255,7 @@ function updateQuote(){
   document.getElementById('qr-base').textContent='$'+basePrice.toFixed(0);
 
   // Detail hidden per owner request — slat/finish/privacy/side-mount/shim surcharges + base roll silently
-  // into the retail subtotal. Customer sees retail → 35% off → your price → freight. (Cordless-only; no motor/TDBU/D&N.)
+  // into the retail subtotal. Customer sees retail → 25% off → your price → freight. (Cordless-only; no motor/TDBU/D&N.)
   const _hideRow=(id)=>{const e=document.getElementById(id);if(e)e.style.display='none';};
   const _qrBase=document.getElementById('qr-base'); if(_qrBase&&_qrBase.closest){const r=_qrBase.closest('.qrow'); if(r)r.style.display='none';}
   ['qr-slat-row','qr-finish-row','qr-privacy-row','qr-sm-row','qr-shim-row'].forEach(_hideRow);
@@ -272,7 +272,7 @@ function updateQuote(){
     firstDiv.parentNode.insertBefore(retailRow,firstDiv);
     discRow=document.createElement('div');
     discRow.className='qrow';discRow.id='qr-disc-row';
-    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">35% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
+    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">25% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
     firstDiv.parentNode.insertBefore(discRow,firstDiv);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='qr-yourprice-row';

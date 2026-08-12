@@ -443,8 +443,8 @@ function calcPrice(){
   var isMotor=S.op==='motor';
   document.getElementById('pr-motor-row').style.display=isMotor?'flex':'none';
   if(isMotor) per+=642;
-  // 35% Norman discount on product subtotal (not applied to shipping)
-  var NORMAN_DISC_SD=0.35;
+  // 25% Norman discount on product subtotal (not applied to shipping)
+  var NORMAN_DISC_SD=0.25;
   var sdRetailSub=Math.round(per*S.qty);
   var sdDiscountAmt=Math.round(sdRetailSub*NORMAN_DISC_SD);
   var sdYourPrice=sdRetailSub-sdDiscountAmt;

@@ -525,7 +525,7 @@ function updateCalc() {
   var isOversized=w>=90;
   var freight=S.delivery==='install'?0:isOversized?(80+(qty>1?(qty-1)*50:0)):(25+(qty>1?(qty-1)*11:0));
   showRow('pr-freight-row',freight>0); if(freight>0)setVal('pr-freight','$'+freight);
-  var NORMAN_DISC_CP=0.35;
+  var NORMAN_DISC_CP=0.25;
   var cpRetailSub=(per*qty)+(srAdd*qty)+(dnAdd*qty)+(vSur*qty)+(accT*qty);
   var cpDiscountAmt=Math.round(cpRetailSub*NORMAN_DISC_CP);
   var cpYourPrice=cpRetailSub-cpDiscountAmt;

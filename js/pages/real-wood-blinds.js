@@ -21,7 +21,7 @@ const NW_MATRIX = {
 const NW_VAL_CROWN   = [50,56,62,75,87,93,106,118,130,143,155,161,174,186];
 const NW_VAL_CONTEMPO = [62,68,81,87,99,118,124,143,155,167,180,198,211,223];
 
-const NORMAN_DISC = 0.35; // 35% off retail
+const NORMAN_DISC = 0.25; // 25% off retail
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
 const S = {
@@ -222,7 +222,7 @@ function calcPrice() {
   $('qp-detail').style.display = 'block';
 
   // Detail hidden per owner request — base/color/valance roll silently into the retail subtotal.
-  // Customer sees retail → 35% off → your price → freight. (Cordless-only; no motor/TDBU/D&N.)
+  // Customer sees retail → 25% off → your price → freight. (Cordless-only; no motor/TDBU/D&N.)
   $('q-base').textContent = fmt(base);
   const _baseRow = $('q-base').closest ? $('q-base').closest('.qrow') : null; if(_baseRow) _baseRow.style.display='none';
   const colorRow = $('q-color-row'); if (colorRow) colorRow.style.display='none';
@@ -238,7 +238,7 @@ function calcPrice() {
   $('q-note').textContent = (isOversized
     ? 'Oversized freight: $80 first blind + $50 each additional (width 90″+). '
     : 'Freight: $25 first blind + $11 each additional. ')
-    + 'Norman retail pricing — 35% off. Estimated price — confirmed at order. No charge until Justin reviews.';
+    + 'Norman retail pricing — 25% off. Estimated price — confirmed at order. No charge until Justin reviews.';
 }
 
 // ── ADD TO CART ───────────────────────────────────────────────────────────────
@@ -344,12 +344,12 @@ function submitForm() {
     'Wand: ' + wandLabel,
     'Quantity: ' + S.qty,
     '',
-    'PRICING (Norman retail → 35% off)',
+    'PRICING (Norman retail → 25% off)',
     'Base price (retail, per blind): $' + base,
     'Color surcharge (retail): ' + (colorAdd ? '+$' + colorAdd : '—'),
     'Valance (retail): ' + (valRetail ? '+$' + valRetail : '—'),
     'Retail subtotal: $' + retailSub,
-    '35% Norman discount: -$' + (retailSub - yourPrice),
+    '25% Norman discount: -$' + (retailSub - yourPrice),
     'Your price (subtotal): $' + yourPrice,
     'Freight: $' + freight,
     'TOTAL ESTIMATE: $' + total

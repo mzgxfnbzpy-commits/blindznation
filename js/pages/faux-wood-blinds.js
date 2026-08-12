@@ -246,7 +246,7 @@ function pickDel(v){
   $('del-'+v).classList.add('sel');
 }
 
-const NORMAN_DISC = 0.35; // 35% off retail subtotal — not applied to shipping
+const NORMAN_DISC = 0.25; // 25% off retail subtotal — not applied to shipping
 
 // ── PRICE CALC ────────────────────────────────────────────────────────────────
 function calcPrice(){
@@ -283,7 +283,7 @@ function calcPrice(){
   $('qp-pending').style.display='none';
   $('qp-detail').style.display='block';
   // Detail hidden per owner request — base/printed/valance/side-mount/shims/overage roll silently
-  // into the retail subtotal. Customer sees retail → 35% off → your price → freight. (No motor/TDBU/D&N surcharges on faux wood.)
+  // into the retail subtotal. Customer sees retail → 25% off → your price → freight. (No motor/TDBU/D&N surcharges on faux wood.)
   $('q-base').textContent=fmt(base);
   const _baseRow = $('q-base').closest ? $('q-base').closest('.qrow') : null; if(_baseRow) _baseRow.style.display='none';
   $('q-printed-row').style.display='none';
@@ -306,7 +306,7 @@ function calcPrice(){
     subEl.parentNode.insertBefore(retailSubDiv,subEl);
     discRow=document.createElement('div');
     discRow.className='qrow';discRow.id='q-disc-row';
-    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">35% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="q-disc-val">—</span>';
+    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">25% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="q-disc-val">—</span>';
     subEl.parentNode.insertBefore(discRow,subEl);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='q-yourprice-row';
@@ -323,7 +323,7 @@ function calcPrice(){
   $('q-note').textContent = (isOversized
     ? 'Oversized freight: $80 first blind + $50 each additional (width 90″+).'
     : 'Freight: $25 first blind + $11 each additional.')
-    + ' Norman retail pricing — 35% off. ⓘ Estimated price only — tariffs, import fees, and exact shipping confirmed at order. No charge until Justin reviews and confirms your price.';
+    + ' Norman retail pricing — 25% off. ⓘ Estimated price only — tariffs, import fees, and exact shipping confirmed at order. No charge until Justin reviews and confirms your price.';
 }
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────────

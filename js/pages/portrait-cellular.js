@@ -623,9 +623,9 @@ function cellCalcPrice() {
     ? ((typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('Cellular Shade', CELL.qty, cellMotorBase) : cellMotorCost * CELL.qty)
     : 0;
 
-  // Apply 35% Norman discount to the shade cost only (motor + freight not discounted)
+  // Apply 25% Norman discount to the shade cost only (motor + freight not discounted)
   var productSub  = perShade * CELL.qty;
-  var discountAmt = Math.round(productSub * 0.35);
+  var discountAmt = Math.round(productSub * 0.25);
   var yourPrice   = productSub - discountAmt;
   var freight    = w >= 90 ? (80 + Math.max(0, CELL.qty - 1) * 50) : (25 + Math.max(0, CELL.qty - 1) * 11);
   var grandTotal = yourPrice + motorTotal + freight;
@@ -638,7 +638,7 @@ function cellCalcPrice() {
   if (motorTotal) lines.push('Motorization: ' + nmMotorLineText(motorTotal, CELL.qty));
   if (lines.length) lines.push('<hr style="border:none;border-top:1px solid rgba(255,255,255,.15);margin:7px 0">');
   lines.push('Retail: $' + productSub.toLocaleString());
-  lines.push('<span style="color:var(--gold)">35% Norman discount: −$' + discountAmt.toLocaleString() + '</span>');
+  lines.push('<span style="color:var(--gold)">25% Norman discount: −$' + discountAmt.toLocaleString() + '</span>');
   lines.push('<span style="color:var(--gold);font-weight:600">Your price: $' + yourPrice.toLocaleString() + '</span>');
   lines.push('Freight (not discounted): +$' + freight.toLocaleString());
 
@@ -668,7 +668,7 @@ function cellAddToCart() {
     ? ((typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('Cellular Shade', CELL.qty, cellMotorBase2) : cellMotorCost * CELL.qty)
     : 0;
   var productSub  = perShade * CELL.qty;
-  var yourPrice   = (productSub - Math.round(productSub * 0.35)) + motorTotal;
+  var yourPrice   = (productSub - Math.round(productSub * 0.25)) + motorTotal;
   var freight     = w >= 90 ? (80 + Math.max(0, CELL.qty - 1) * 50) : (25 + Math.max(0, CELL.qty - 1) * 11);
 
   var liftLabel = CELL.lift === 'bu' ? 'Bottom Up' : CELL.lift === 'tdbu' ? 'Top Down / Bottom Up' : 'Day & Night';
