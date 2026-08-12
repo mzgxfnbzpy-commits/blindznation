@@ -557,14 +557,16 @@ function pbContactStepHTML(opts) {
     : '';
   var inner = '' +
       '<div class="pb-cart-extras">' +
-        '<div class="dim-row">' +
-          '<div class="form-group"><label>Name *</label><input type="text" id="' + p + 'name" data-pb-contact="name" placeholder="Jane Smith"></div>' +
-          '<div class="form-group"><label>Phone *</label><input type="tel" id="' + p + 'phone" data-pb-contact="phone" placeholder="(215) 555-0100"></div>' +
-        '</div>' +
-        '<div class="form-group"><label>Email *</label><input type="email" id="' + p + 'email" data-pb-contact="email" placeholder="jane@example.com"></div>' +
-        // ZIP prompted here rather than as a separate field, so every product asks
-        // for the same thing (shutters used to carry its own city/zip inputs).
+        // Field order is fixed for every product: name, address, phone, email,
+        // notes, files. ZIP is prompted inside the address rather than as a
+        // separate field, so every product asks for the same thing (shutters
+        // used to carry its own city/zip inputs).
+        '<div class="form-group"><label>Name *</label><input type="text" id="' + p + 'name" data-pb-contact="name" autocomplete="name" placeholder="Jane Smith"></div>' +
         '<div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="' + p + 'address" data-pb-contact="address" autocomplete="street-address" placeholder="123 Main St, Philadelphia PA 19106"></div>' +
+        '<div class="dim-row">' +
+          '<div class="form-group"><label>Phone *</label><input type="tel" id="' + p + 'phone" data-pb-contact="phone" autocomplete="tel" placeholder="(215) 555-0100"></div>' +
+          '<div class="form-group"><label>Email *</label><input type="email" id="' + p + 'email" data-pb-contact="email" autocomplete="email" placeholder="jane@example.com"></div>' +
+        '</div>' +
         '<div class="form-group"><label>Notes</label><textarea id="' + p + 'notes" data-pb-contact="notes" placeholder="Room name, ceiling height, fabric ideas, timeline &mdash; anything helpful" style="min-height:60px"></textarea></div>' +
         '<div style="border:1.5px dashed #ddd;border-radius:10px;padding:14px 16px;margin-bottom:12px;background:#fafaf8">' +
           '<div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">&#128206; Attach photos or files <span style="font-weight:400;color:#999">(optional)</span></div>' +

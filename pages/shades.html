@@ -1321,12 +1321,10 @@
           </div>
         </div>
 
-        <!-- Step F: Add to quote / submit -->
-        <button class="btn-cart-add" onclick="addToCart()" style="width:100%;padding:13px;margin-top:4px;font-size:14px">+ Add to Cart</button>
-        <div style="text-align:center;margin-top:8px">
-          <button onclick="showShadeForm()" style="font-size:12px;color:var(--gold);border:none;background:none;cursor:pointer;text-decoration:underline;font-family:var(--font)">Or request a quote for just this shade &rarr;</button>
-        </div>
-        <div class="submit-form" id="shade-submit-form">
+        <!-- Step F: Your details — always visible at the bottom of the configurator,
+             same as every other product. Add to Cart and Submit Order for Review are
+             rendered by pbContactStepHTML below so they stay stacked as one pair. -->
+        <div class="submit-form show" id="shade-submit-form">
           <div class="step-title" style="margin-bottom:14px">Your contact details</div>
           <div class="delivery-opt-grid" id="grp-del-sf">
             <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
@@ -2467,7 +2465,7 @@ function selectSheerCat(cat, el) {
   { mount: 'fwb-final-step',   prefix: 'fwb-',   submit: 'submitFWBForm(this)' },
   { mount: 'rwb-final-step',   prefix: 'rwb-',   submit: 'submitRWBForm(this)' },
   { mount: 'rn-sf-final-step', prefix: 'rn-sf-', submit: 'rnSubmitForm(this)' },
-  { mount: 'sf-final-step',    prefix: 'sf-',    submit: 'submitShadeForm(this)' },
+  { mount: 'sf-final-step',    prefix: 'sf-',    submit: 'submitShadeForm(this)', cart: 'addToCart()' },
   { mount: 'pb-final-step',    prefix: 'pb-',    submit: 'submitPBForm(this)' },
   { mount: 'hd-final-step',    prefix: 'hd-',    submit: 'submitQuoteForm(this)' },
   { mount: 'ps-final-step',    prefix: 'ps-',    submit: 'submitPSForm(this)' },
@@ -2479,7 +2477,8 @@ function selectSheerCat(cat, el) {
     bare: true,
     idPrefix: t.prefix,
     errId: t.prefix + 'contact-err',
-    submitFn: t.submit
+    submitFn: t.submit,
+    cartFn: t.cart || null
   });
 });
 </script>
