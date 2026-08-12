@@ -523,46 +523,68 @@ function _pbInjectTermsCheckboxes() {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CANONICAL FINAL STEP — identical "Your details" contact + files step on every
-// product configurator (ported from Philly Blinds — one source of truth).
-// Usage:  <div id="pb-final-step"></div>
-//   document.getElementById('pb-final-step').innerHTML =
-//     pbContactStepHTML({ stepNum: 7, cartFn: "addFooToCart()", submitFn: "submitFooQuote()" });
-// opts: { stepNum, submitFn (default "submitQuote()"), cartFn (omit to hide Add to Cart), bare }
+// product configurator. Mirrors the Norman Soluna Roller Step 7 exactly, so it
+// must always be the LAST step, after all product options are chosen.
+// One source of truth: change here → updates on every product.
+//
+// Usage on a page:
+//   <div id="pb-final-step"></div>
+//   <script>document.getElementById('pb-final-step').innerHTML =
+//       pbContactStepHTML({ stepNum: 7, cartFn: "addFooToCart()", submitFn: "submitFooQuote()" });
+//   </script>
+// The contact inputs (cf-name/phone/email/address/notes) feed pbGetContact()/
+// pbContactValid(); the file input feeds the cart via _pbMergeCartExtras. Wrapping
+// the fields in .pb-cart-extras makes the shared file/install auto-injectors skip
+// this block (no duplicate uploader).
+//
+// opts: { stepNum (number|string, required unless bare), submitFn (string, default "submitQuote()"),
+//         cartFn (string|null — omit to hide the "+ Add to Cart" button),
+//         bare (bool — return just the fields/files/buttons with no step-block wrapper or
+//               "Your details" header, for pages that supply their own step chrome/accordion) }
 function pbContactStepHTML(opts) {
   opts = opts || {};
   var stepNum  = opts.stepNum != null ? opts.stepNum : '';
   var submitFn = opts.submitFn || 'submitQuote()';
+  // idPrefix lets one page host several contact steps without duplicate ids —
+  // soft-treatments keeps a separate form per tab. Omitting it leaves the markup
+  // byte-identical to before, so the 33 single-form pages are untouched.
+  var p        = opts.idPrefix || 'cf-';
+  var errId    = opts.errId || (p + 'contact-err');
+  var hpId     = opts.idPrefix ? p + 'hp' : 'pb-hp';
+  var blockId  = opts.idPrefix ? p + 'contact-block' : 'contact-block';
   var cartBtn  = opts.cartFn
     ? '<button class="btn-cart-add" onclick="' + opts.cartFn + '" style="width:100%;margin-bottom:8px">+ Add to Cart</button>'
     : '';
   var inner = '' +
       '<div class="pb-cart-extras">' +
         '<div class="dim-row">' +
-          '<div class="form-group"><label>Name *</label><input type="text" id="cf-name" data-pb-contact="name" placeholder="Jane Smith"></div>' +
-          '<div class="form-group"><label>Phone *</label><input type="tel" id="cf-phone" data-pb-contact="phone" placeholder="(215) 555-0100"></div>' +
+          '<div class="form-group"><label>Name *</label><input type="text" id="' + p + 'name" data-pb-contact="name" placeholder="Jane Smith"></div>' +
+          '<div class="form-group"><label>Phone *</label><input type="tel" id="' + p + 'phone" data-pb-contact="phone" placeholder="(215) 555-0100"></div>' +
         '</div>' +
-        '<div class="form-group"><label>Email *</label><input type="email" id="cf-email" data-pb-contact="email" placeholder="jane@example.com"></div>' +
-        '<div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="cf-address" data-pb-contact="address" placeholder="123 Main St, Philadelphia PA"></div>' +
-        '<div class="form-group"><label>Notes</label><textarea id="cf-notes" placeholder="Room name, ceiling height, fabric ideas, timeline &mdash; anything helpful" style="min-height:60px"></textarea></div>' +
+        '<div class="form-group"><label>Email *</label><input type="email" id="' + p + 'email" data-pb-contact="email" placeholder="jane@example.com"></div>' +
+        // ZIP prompted here rather than as a separate field, so every product asks
+        // for the same thing (shutters used to carry its own city/zip inputs).
+        '<div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="' + p + 'address" data-pb-contact="address" autocomplete="street-address" placeholder="123 Main St, Philadelphia PA 19106"></div>' +
+        '<div class="form-group"><label>Notes</label><textarea id="' + p + 'notes" data-pb-contact="notes" placeholder="Room name, ceiling height, fabric ideas, timeline &mdash; anything helpful" style="min-height:60px"></textarea></div>' +
         '<div style="border:1.5px dashed #ddd;border-radius:10px;padding:14px 16px;margin-bottom:12px;background:#fafaf8">' +
           '<div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">&#128206; Attach photos or files <span style="font-weight:400;color:#999">(optional)</span></div>' +
-          '<input type="file" id="cf-files" class="pb-ce-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" style="width:100%;font-size:12px;color:#555;font-family:inherit;cursor:pointer;padding:4px 0" onchange="pbShowFileNames(this,\'cf-files-names\')">' +
-          '<div id="cf-files-names" style="font-size:11px;color:#555;margin-top:6px;line-height:1.8"></div>' +
+          '<input type="file" id="' + p + 'files" class="pb-ce-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" style="width:100%;font-size:12px;color:#555;font-family:inherit;cursor:pointer;padding:4px 0" onchange="pbShowFileNames(this,\'' + p + 'files-names\')">' +
+          '<div id="' + p + 'files-names" style="font-size:11px;color:#555;margin-top:6px;line-height:1.8"></div>' +
           '<div style="font-size:11px;color:#aaa;margin-top:5px;line-height:1.5">Window photos, room photos, measurements, inspiration &mdash; anything that helps.</div>' +
         '</div>' +
         // Honeypot — hidden from humans; bots that fill it are blocked in the submit interceptor.
-        '<input type="text" id="pb-hp" name="pb-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;pointer-events:none">' +
-        '<div id="cf-contact-err" style="display:none;background:#FEE2E2;border-radius:8px;padding:9px 13px;font-size:12px;color:#991B1B;margin-bottom:8px"></div>' +
+        '<input type="text" id="' + hpId + '" name="pb-hp" class="pb-hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;opacity:0;pointer-events:none">' +
+        '<div id="' + errId + '" style="display:none;background:#FEE2E2;border-radius:8px;padding:9px 13px;font-size:12px;color:#991B1B;margin-bottom:8px"></div>' +
         // Required Terms of Agreement acceptance — gates "Submit Order for Review" only
         // (not Add to Cart). It sits above both buttons rather than between them, so the
         // two buttons stay one directly on top of the other on every surface.
-        pbTermsCheckboxHTML('cf-terms') +
+        pbTermsCheckboxHTML(p + 'terms') +
         cartBtn +
-        '<button class="btn-gold" onclick="' + submitFn + '" style="width:100%;padding:13px" data-pb-require-contact="cf-contact-err">Submit Order for Review &rarr;</button>' +
+        '<button class="btn-gold" onclick="' + submitFn + '" style="width:100%;padding:13px" data-pb-require-contact="' + errId + '">Submit Order for Review &rarr;</button>' +
       '</div>';
   if (opts.bare) return inner;
   return '' +
-    '<div class="step-block" id="contact-block">' +
+    '<div class="step-block" id="' + blockId + '">' +
       '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">' +
         '<div class="step-num">' + stepNum + '</div>' +
         '<div class="step-title" style="margin-bottom:0">Your details</div>' +
@@ -570,6 +592,7 @@ function pbContactStepHTML(opts) {
       inner +
     '</div>';
 }
+
 
 // Adjust a numeric quantity <input id=id> by delta, clamped to [min,max]. Shared qty stepper.
 function pbAdjQty(id, delta, min, max) {

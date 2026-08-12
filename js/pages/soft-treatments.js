@@ -56,9 +56,6 @@ function _rnCaptureState(styleName) {
   ['rn-w','rn-h','rn-qty','rn-return','roman-clen-in','roman-ring-size','roman-ring-color','val-folds','val-fold-size'].forEach(function(id) {
     var el = document.getElementById(id); if (el) s[id] = el.value;
   });
-  ['rn-w-frac','rn-h-frac'].forEach(function(id) {
-    var el = document.getElementById(id); if (el) s[id] = el.value;
-  });
   ['grp-roman-mount','grp-roman-tdbu','grp-roman-color','grp-roman-liner','grp-roman-lining-type',
    'grp-roman-rings','grp-roman-op','grp-roman-clen','grp-roman-motor-brand',
    'grp-roman-motor-power','grp-roman-motor-hardwire','grp-roman-control',
@@ -77,13 +74,13 @@ function _rnRestoreState(styleName, fromState) {
   var saved = _rnStyleCache[styleName];
   if (!saved) {
     if (fromState) {
-      ['rn-w','rn-h','rn-qty','rn-w-frac','rn-h-frac'].forEach(function(id) {
+      ['rn-w','rn-h','rn-qty'].forEach(function(id) {
         var el = document.getElementById(id); if (el && fromState[id] !== undefined) el.value = fromState[id];
       });
     }
     return;
   }
-  ['rn-w','rn-h','rn-qty','rn-return','roman-clen-in','roman-ring-size','roman-ring-color','val-folds','val-fold-size','rn-w-frac','rn-h-frac'].forEach(function(id) {
+  ['rn-w','rn-h','rn-qty','rn-return','roman-clen-in','roman-ring-size','roman-ring-color','val-folds','val-fold-size'].forEach(function(id) {
     var el = document.getElementById(id); if (el && saved[id] !== undefined) el.value = saved[id];
   });
   ['grp-roman-mount','grp-roman-tdbu','grp-roman-color','grp-roman-liner','grp-roman-lining-type',
