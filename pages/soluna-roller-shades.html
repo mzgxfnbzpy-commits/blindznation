@@ -835,23 +835,11 @@
             </div>
           </div>
 
-          <!-- Step 7: Contact -->
-          <div class="step-block" id="contact-block">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div class="step-num">7</div>
-              <div class="step-title" style="margin-bottom:0">Your details</div>
-            </div>
-            <div class="dim-row">
-              <div class="form-group"><label>Name *</label><input type="text" id="cf-name" data-pb-contact="name" placeholder="Jane Smith"></div>
-              <div class="form-group"><label>Phone *</label><input type="tel" id="cf-phone" data-pb-contact="phone" placeholder="(215) 555-0100"></div>
-            </div>
-            <div class="form-group"><label>Email *</label><input type="email" id="cf-email" data-pb-contact="email" placeholder="jane@example.com"></div>
-            <div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="cf-address" data-pb-contact="address" placeholder="123 Main St, Philadelphia PA"></div>
-            <div class="form-group"><label>Notes</label><textarea id="cf-notes" placeholder="Room name, ceiling height, fabric ideas, timeline — anything helpful" style="min-height:60px"></textarea></div>
-            <div id="cf-contact-err" style="display:none;background:#FEE2E2;border-radius:8px;padding:9px 13px;font-size:12px;color:#991B1B;margin-bottom:8px"></div>
-            <button class="btn-cart-add" onclick="addSolunaToCart()" style="width:100%;margin-bottom:8px">+ Add to Cart</button>
-            <button class="btn-gold" onclick="submitQuote()" style="width:100%;padding:13px;margin-top:4px" data-pb-require-contact="cf-contact-err">Submit Order for Review &rarr;</button>
-          </div>
+          <!-- Step 7: Contact — renders from the shared pbContactStepHTML() so the
+               Add to Cart / Submit Order for Review pair stacks identically to every
+               other configurator, and the page gains the Terms checkbox, honeypot
+               and file upload it never had. -->
+          <div id="soluna-final-step"></div>
 
           <div class="success-state" id="quote-success">
             <h3>Quote request sent!</h3>
@@ -956,6 +944,15 @@
 <script src="../js/shared.js"></script>
 <script src="../js/pages/soluna-roller-shades.js"></script>
 <script>
+// Step 7 contact block. The generated ids (cf-name/phone/email/address/notes,
+// cf-contact-err, contact-block) are exactly what this page used by hand, so
+// submitQuote() and addSolunaToCart() are unchanged.
+document.getElementById('soluna-final-step').innerHTML = pbContactStepHTML({
+  stepNum: 7,
+  cartFn: 'addSolunaToCart()',
+  submitFn: 'submitQuote()'
+});
+
 (function() {
   pbCtx.prefill('inp-width',  'w',   function() { if (typeof updateSummary === 'function') updateSummary(); });
   pbCtx.prefill('inp-height', 'h',   function() { if (typeof updateSummary === 'function') updateSummary(); });
