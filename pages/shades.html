@@ -935,12 +935,6 @@
           <button class="btn-gold" onclick="rnShowForm()" style="width:100%;padding:13px;margin-top:4px">Get exact quote &rarr;</button>
           <div class="submit-form" id="rn-submit-form">
             <div class="step-title" style="margin-bottom:14px">Your contact details</div>
-            <div class="form-row">
-              <div class="form-group"><label>Your name *</label><input type="text" id="rn-sf-name" placeholder="Jane Smith"></div>
-              <div class="form-group"><label>Phone *</label><input type="tel" id="rn-sf-phone" placeholder="(215) 555-0100"></div>
-            </div>
-            <div class="form-group"><label>Email</label><input type="email" id="rn-sf-email" placeholder="jane@example.com"></div>
-            <div class="form-group"><label>Notes / fabric preference</label><textarea id="rn-sf-notes" placeholder="e.g. prefer neutral tone, looking for blackout, interested in motorization"></textarea></div>
             <div class="delivery-opt-grid" id="grp-del-rn">
               <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
                 <div class="delivery-opt-title">Ship to me</div>
@@ -948,7 +942,7 @@
               </div>
             </div>
             <button onclick="reqMoreInfo('Norman Roller Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Norman Roller Shades →</button>
-        <button class="btn-gold" onclick="rnSubmitForm(this)" style="width:100%;padding:13px">Submit Order for Review &rarr;</button>
+            <div id="rn-sf-final-step"></div>
           </div>
           <div class="success-state" id="rn-success">
             <h3>Quote request sent!</h3>
@@ -1334,12 +1328,6 @@
         </div>
         <div class="submit-form" id="shade-submit-form">
           <div class="step-title" style="margin-bottom:14px">Your contact details</div>
-          <div class="form-row">
-            <div class="form-group"><label>Your name *</label><input type="text" id="sf-name" placeholder="Jane Smith"></div>
-            <div class="form-group"><label>Phone *</label><input type="tel" id="sf-phone" placeholder="(215) 555-0100"></div>
-          </div>
-          <div class="form-group"><label>Email</label><input type="email" id="sf-email" placeholder="jane@example.com"></div>
-          <div class="form-group"><label>Any notes?</label><textarea id="sf-notes" placeholder="e.g. looking for blackout in bedroom, open to fabric samples"></textarea></div>
           <div class="delivery-opt-grid" id="grp-del-sf">
             <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
               <div class="delivery-opt-title">Ship to me</div>
@@ -1347,7 +1335,7 @@
             </div>
           </div>
           <button onclick="reqMoreInfo('Norman Cellular / Zebra / Woven Wood Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Norman Cellular / Zebra / Woven Wood Shades →</button>
-        <button class="btn-gold" onclick="submitShadeForm(this)" style="width:100%;padding:13px">Submit Order for Review &rarr;</button>
+          <div id="sf-final-step"></div>
         </div>
         <div class="success-state" id="shade-success">
           <h3>Quote request sent!</h3>
@@ -1441,12 +1429,18 @@
         <button class="opt-btn" onclick="selOpt(this,'pb-grp-fascia');pbToggleFasciaColor(false)">Fabric Wrapped fascia</button>
         <button class="opt-btn" onclick="selOpt(this,'pb-grp-fascia');pbToggleFasciaColor(true)">Metal fascia</button>
       </div>
-      <div class="tooltip-note" style="margin-top:4px">Open Roll: exposed tube, minimal profile. Fabric Wrapped: fabric-covered headrail. Metal: aluminum fascia — select color below.</div>
+      <div class="tooltip-note" style="margin-top:4px">Open Roll: exposed tube, minimal profile. Fabric Wrapped: fabric-covered headrail (matches your shade fabric). Metal: aluminum fascia — select its color below.</div>
 
-      <!-- Hardware color — always shown; fascia color also applies when Metal Fascia selected -->
+      <!-- Metal fascia color — shown only for Metal fascia; uses the shared Norman metal-fascia palette -->
+      <div id="pb-fascia-color-wrap" style="display:none;margin-top:12px;padding:10px 12px;background:#faf7f2;border:1px solid #ece5d8;border-radius:8px">
+        <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:6px">Metal fascia color</div>
+        <div id="pb-fascia-color-slot"></div>
+      </div>
+
+      <!-- Decorative hardware color — brackets, hem bar, end caps -->
       <div style="margin-top:12px">
         <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:4px" id="pb-hw-color-label">Hardware color</div>
-        <div id="pb-hw-color-note" style="display:none;font-size:11px;color:#888;margin-bottom:6px">Also applies to metal fascia finish.</div>
+        <div id="pb-hw-color-note" style="display:none;font-size:11px;color:#888;margin-bottom:6px">Decorative finish for brackets, hem bar &amp; end caps. The metal fascia has its own color above.</div>
         <div class="opt-row" id="pb-grp-hw-color" style="flex-wrap:wrap">
           <button class="opt-btn" onclick="selOpt(this,'pb-grp-hw-color')" style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:50%;background:#C8A84A;flex-shrink:0;display:inline-block;border:1px solid rgba(0,0,0,.1)"></span>Brass</button>
           <button class="opt-btn" onclick="selOpt(this,'pb-grp-hw-color')" style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:50%;background:#6B4423;flex-shrink:0;display:inline-block"></span>Bronze</button>
@@ -1508,11 +1502,6 @@
 
       <!-- Contact + Delivery -->
       <hr class="price-divider" style="margin:18px 0">
-      <div class="form-row">
-        <div class="form-group"><label>Your name *</label><input type="text" id="pb-name" placeholder="Jane Smith"></div>
-        <div class="form-group"><label>Phone *</label><input type="tel" id="pb-phone" placeholder="(215) 555-0100"></div>
-      </div>
-      <div class="form-group"><label>Email</label><input type="email" id="pb-email" placeholder="jane@example.com"></div>
       <div class="delivery-opt-grid" id="grp-del-pb">
         <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
           <div class="delivery-opt-title">Ship to me</div>
@@ -1520,7 +1509,7 @@
         </div>
       </div>
       <button onclick="reqMoreInfo('Basic Roller Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Basic Roller Shades →</button>
-        <button class="btn-gold" onclick="submitPBForm(this)" style="width:100%;padding:13px;margin-top:4px">Send custom fabrication request &rarr;</button>
+      <div id="pb-final-step"></div>
       <div class="success-state" id="pb-success">
         <h3>Request received!</h3>
         <p>We'll follow up within a few hours with fabric options and a quote. Call <strong>(609) 742-1720</strong> for anything urgent — available 24/7.</p>
@@ -1545,14 +1534,6 @@
         <a href="mailto:justin@blindznation.com" style="display:inline-flex;align-items:center;font-size:13px;color:var(--gold);padding:11px 0;text-decoration:none;font-weight:500">justin@blindznation.com</a>
       </div>
     </div>
-    <div class="form-group">
-      <label>Your name *</label>
-      <input type="text" id="hd-name" placeholder="Jane Smith">
-    </div>
-    <div class="form-row">
-      <div class="form-group"><label>Phone *</label><input type="tel" id="hd-phone" placeholder="(215) 555-0100"></div>
-      <div class="form-group"><label>Email</label><input type="email" id="hd-email" placeholder="jane@example.com"></div>
-    </div>
     <div class="form-row">
       <div class="form-group">
         <label>Product interested in</label>
@@ -1575,10 +1556,7 @@
         </select>
       </div>
     </div>
-    <div class="form-group">
-      <label>Notes / questions</label>
-      <textarea id="hd-notes" placeholder="e.g. interested in PowerView motorization, have 3 large arch windows in living room"></textarea>
-    </div>
+    <!-- Notes come from the shared final step below (id hd-notes). -->
     <div class="delivery-opt-grid" id="grp-del-hd">
       <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
         <div class="delivery-opt-title">Ship to me</div>
@@ -1586,7 +1564,7 @@
       </div>
     </div>
     <button onclick="reqMoreInfo('Hunter Douglas Silhouette / Pirouette Shadings')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Hunter Douglas Silhouette / Pirouette Shadings →</button>
-        <button class="btn-gold" onclick="submitQuoteForm(this)" style="width:100%;padding:13px">Request custom quote</button>
+        <div id="hd-final-step"></div>
     <div class="success-state" id="hd-success">
       <h3>Quote request received!</h3>
       <p>A Hunter Douglas specialist will reach out within 24 hours. For anything urgent, call <strong>(609) 742-1720</strong> &mdash; available 24/7.</p>
@@ -1683,6 +1661,15 @@
         <button class="opt-btn sel" onclick="selOpt(this,'ext-grp-op');extToggleMotor(false)">Manual — handcrank</button>
         <button class="opt-btn" onclick="selOpt(this,'ext-grp-op');extToggleMotor(true)">Motorized</button>
       </div>
+      <!-- Side selector: hand crank side (manual) or motor side (motorized) -->
+      <div id="ext-side-wrap" style="margin-top:10px">
+        <div id="ext-side-label" style="font-size:12px;font-weight:500;color:#333;margin-bottom:6px">Hand crank side</div>
+        <div class="opt-row" id="ext-grp-control">
+          <button class="opt-btn sel" onclick="selOpt(this,'ext-grp-control')">Left</button>
+          <button class="opt-btn" onclick="selOpt(this,'ext-grp-control')">Right</button>
+        </div>
+        <div id="ext-side-note" style="font-size:11px;color:#888;margin-top:5px">Which side of the window you want the hand crank on.</div>
+      </div>
       <div id="ext-motor-note" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
         <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:6px">Motor preference (optional)</div>
         <input type="text" id="ext-motor-req" placeholder="e.g. Somfy, Rollease Acmeda — or leave blank and we'll recommend one" style="width:100%;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
@@ -1716,19 +1703,13 @@
     <div class="step-block">
       <div class="step-label">Step 9</div>
       <div class="step-title">Your details</div>
-      <div class="form-row">
-        <div class="form-group"><label>Your name *</label><input type="text" id="ext-name" placeholder="Jane Smith"></div>
-        <div class="form-group"><label>Phone *</label><input type="tel" id="ext-phone" placeholder="(215) 555-0100"></div>
-      </div>
-      <div class="form-group"><label>Email</label><input type="email" id="ext-email" placeholder="jane@example.com"></div>
-      <div class="form-group"><label>Notes</label><textarea id="ext-notes" placeholder="Deck, patio, porch, pergola — any special mounting requirements..."></textarea></div>
       <div class="delivery-opt-grid" id="grp-del-ext">
         <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
           <div class="delivery-opt-title">Ship to me</div>
           <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>
         </div>
       </div>
-      <button class="btn-gold" onclick="submitExteriorForm(this)" style="width:100%;padding:13px;margin-top:12px">Request exterior shade quote &rarr;</button>
+      <div id="ext-final-step"></div>
     </div>
 
     <div class="success-state" id="ext-success">
@@ -1887,19 +1868,13 @@
     <div class="step-block">
       <div class="step-label">Step 6</div>
       <div class="step-title">Your details</div>
-      <div class="form-row">
-        <div class="form-group"><label>Your name *</label><input type="text" id="fwb-name" placeholder="Jane Smith"></div>
-        <div class="form-group"><label>Phone *</label><input type="tel" id="fwb-phone" placeholder="(215) 555-0100"></div>
-      </div>
-      <div class="form-group"><label>Email</label><input type="email" id="fwb-email" placeholder="jane@example.com"></div>
-      <div class="form-group"><label>Notes</label><textarea id="fwb-notes" placeholder="e.g. specific color, existing hardware to reuse, special installation requirements"></textarea></div>
       <div class="delivery-opt-grid" id="grp-del-fwb">
         <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
           <div class="delivery-opt-title">Ship to me</div>
           <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>
         </div>
       </div>
-      <button class="btn-gold" onclick="submitFWBForm(this)" style="width:100%;padding:13px;margin-top:12px">Request faux wood blinds quote &rarr;</button>
+      <div id="fwb-final-step"></div>
     </div>
 
     <div class="success-state" id="fwb-success">
@@ -2046,19 +2021,13 @@
     <div class="step-block">
       <div class="step-label">Step 7</div>
       <div class="step-title">Your details</div>
-      <div class="form-row">
-        <div class="form-group"><label>Your name *</label><input type="text" id="rwb-name" placeholder="Jane Smith"></div>
-        <div class="form-group"><label>Phone *</label><input type="tel" id="rwb-phone" placeholder="(215) 555-0100"></div>
-      </div>
-      <div class="form-group"><label>Email</label><input type="email" id="rwb-email" placeholder="jane@example.com"></div>
-      <div class="form-group"><label>Notes</label><textarea id="rwb-notes" placeholder="e.g. specific color, existing hardware to reuse, special installation requirements"></textarea></div>
       <div class="delivery-opt-grid" id="grp-del-rwb">
         <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
           <div class="delivery-opt-title">Ship to me</div>
           <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>
         </div>
       </div>
-      <button class="btn-gold" onclick="submitRWBForm(this)" style="width:100%;padding:13px;margin-top:12px">Submit Order for Review &rarr;</button>
+      <div id="rwb-final-step"></div>
     </div>
 
     <div class="success-state" id="rwb-success">
@@ -2271,14 +2240,6 @@
     <div class="step-block">
       <div class="step-label">Step 8</div>
       <div class="step-title">Your details</div>
-      <div class="form-group">
-        <label>Your name *</label>
-        <input type="text" id="ps-name" placeholder="Jane Smith">
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Phone *</label><input type="tel" id="ps-phone" placeholder="(215) 555-0100"></div>
-        <div class="form-group"><label>Email</label><input type="email" id="ps-email" placeholder="jane@example.com"></div>
-      </div>
       <div class="form-row">
         <div class="form-group">
           <label>Number of shades</label>
@@ -2289,10 +2250,7 @@
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <label>Notes / questions</label>
-        <textarea id="ps-notes" placeholder="e.g. three windows side by side, open to common valance, prefer right cord side"></textarea>
-      </div>
+      <!-- Notes come from the shared final step below (id ps-notes). -->
       <div class="delivery-opt-grid" id="grp-del-ps">
         <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
           <div class="delivery-opt-title">Ship to me</div>
@@ -2300,7 +2258,7 @@
         </div>
       </div>
       <button onclick="reqMoreInfo('Norman PerfectSheer™ Shades')" class="req-info-link" style="display:block;margin-top:10px;margin-bottom:10px">Request more information about Norman PerfectSheer™ Shades →</button>
-      <button class="btn-gold" onclick="submitPSForm(this)" style="width:100%;padding:13px;margin-top:4px">Send quote request &rarr;</button>
+      <div id="ps-final-step"></div>
     </div>
 
     <div class="success-state" id="ps-success" style="display:none">
@@ -2335,13 +2293,7 @@
         <div id="cart-contact-wrap" style="display:none">
           <div class="cart-contact">
             <div class="cart-contact-head">Your contact details</div>
-            <div class="form-row">
-              <div class="form-group"><label style="color:var(--text-dark)">Name *</label><input type="text" id="cq-name" placeholder="Jane Smith" style="background:#fff"></div>
-              <div class="form-group"><label style="color:var(--text-dark)">Phone *</label><input type="tel" id="cq-phone" placeholder="(215) 555-0100" style="background:#fff"></div>
-            </div>
-            <div class="form-group"><label style="color:var(--text-dark)">Email</label><input type="email" id="cq-email" placeholder="jane@example.com" style="background:#fff"></div>
-            <div class="form-group"><label style="color:var(--text-dark)">Notes</label><textarea id="cq-notes" placeholder="Room names, timeline, any special instructions" style="background:#fff"></textarea></div>
-            <button class="btn-gold" onclick="submitCart(this)" style="width:100%;padding:13px">Send full quote request &rarr;</button>
+            <div id="cq-final-step"></div>
           </div>
           <div class="success-state" id="cart-success">
             <h3>Quote request sent!</h3>
@@ -2502,6 +2454,34 @@ function selectSheerCat(cat, el) {
     title.style.marginBottom = '0';
   });
 })();
+</script>
+<script>
+// Canonical final "Your details" step. This page hosts several product
+// configurators, so each gets its own idPrefix — which regenerates the same
+// {prefix}-name/phone/email/notes ids the submit functions already read, and
+// adds the address field, Terms checkbox, honeypot and file upload none of
+// them had. Before this, these forms carried no data-pb-require-contact at
+// all, so the shared submit guard never ran on them.
+[
+  { mount: 'ext-final-step',   prefix: 'ext-',   submit: 'submitExteriorForm(this)' },
+  { mount: 'fwb-final-step',   prefix: 'fwb-',   submit: 'submitFWBForm(this)' },
+  { mount: 'rwb-final-step',   prefix: 'rwb-',   submit: 'submitRWBForm(this)' },
+  { mount: 'rn-sf-final-step', prefix: 'rn-sf-', submit: 'rnSubmitForm(this)' },
+  { mount: 'sf-final-step',    prefix: 'sf-',    submit: 'submitShadeForm(this)' },
+  { mount: 'pb-final-step',    prefix: 'pb-',    submit: 'submitPBForm(this)' },
+  { mount: 'hd-final-step',    prefix: 'hd-',    submit: 'submitQuoteForm(this)' },
+  { mount: 'ps-final-step',    prefix: 'ps-',    submit: 'submitPSForm(this)' },
+  { mount: 'cq-final-step',    prefix: 'cq-',    submit: 'submitCart(this)' }
+].forEach(function (t) {
+  var el = document.getElementById(t.mount);
+  if (!el) return;
+  el.innerHTML = pbContactStepHTML({
+    bare: true,
+    idPrefix: t.prefix,
+    errId: t.prefix + 'contact-err',
+    submitFn: t.submit
+  });
+});
 </script>
 </body>
 </html>

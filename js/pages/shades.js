@@ -483,7 +483,7 @@ function cellularOpChange(type) {
       var noteEl = document.getElementById('cellular-op-note');
       if (noteEl && noteEl.parentElement) noteEl.after(cellMotorWrap);
     }
-    if (typeof normanMotorSection === 'function') normanMotorSection('cell-motor-section', 'Cellular Shade');
+    if (typeof normanMotorSection === 'function') normanMotorSection('cell-motor-section', 'Cellular Shade', typeof updatePrice === 'function' ? updatePrice : null);
     else cellMotorWrap.innerHTML = '<div style="background:var(--espresso-mid);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:12px;color:var(--text-dark)">Norman Smart Motorization: power source (battery/hardwired), remote, and smart home options confirmed at measurement visit.</div>';
   } else {
     if (motorOn) toggleMotor(false);
@@ -1012,7 +1012,11 @@ async function submitPBForm(btn) {
   const w     = document.getElementById('pb-width').value;   // fixed: was inp-width
   const h     = document.getElementById('pb-height').value;  // fixed: was inp-height
   const gPB   = function(id) { const b = document.querySelector('#' + id + ' .opt-btn.sel'); return b ? b.textContent.trim() : '—'; };
-  const notes = (document.getElementById('pb-fabric-notes') || {}).value || '';
+  // Two note fields on this product: the fabric description mid-form, and the
+  // general notes in the canonical final step. Send both.
+  const fabricNotes = (document.getElementById('pb-fabric-notes') || {}).value || '';
+  const generalNotes = (document.getElementById('pb-notes') || {}).value || '';
+  const notes = [fabricNotes, generalNotes].filter(function (s) { return s.trim(); }).join('\n');
   const body =
     'CUSTOM ROLLER SHADE REQUEST\n' +
     '══════════════════════════════════════════\n' +
@@ -1026,6 +1030,7 @@ async function submitPBForm(btn) {
     'Operation:      ' + gPB('pb-grp-operation') + '\n' +
     'Control side:   ' + gPB('pb-grp-control') + '\n' +
     'Fascia type:    ' + gPB('pb-grp-fascia') + '\n' +
+    (gPB('pb-grp-fascia') === 'Metal fascia' ? 'Fascia color:   ' + gPB('pb-grp-fascia-color') + '\n' : '') +
     'Hardware color: ' + gPB('pb-grp-hw-color') + '\n' +
     'End caps:       ' + gPB('pb-grp-endcap') + '\n' +
     'Fabric type:    ' + gPB('pb-grp-fabric-type') + '\n' +
@@ -2111,7 +2116,7 @@ function pbCalcPrice() {
     { label:'Fabric type', value: fabType },
     { label:'Size',        value: w+'″ W × '+h+'″ H → '+result.rw+'″ × '+result.rh+'"' },
     { label:'Operation',   value: gPB('pb-grp-operation') || '—' },
-    { label:'Fascia',      value: gPB('pb-grp-fascia') || '—' },
+    { label:'Fascia',      value: (gPB('pb-grp-fascia') || '—') + (gPB('pb-grp-fascia') === 'Metal fascia' && gPB('pb-grp-fascia-color') ? ' (' + gPB('pb-grp-fascia-color') + ')' : '') },
     { label:'End caps',    value: gPB('pb-grp-endcap') || '—' },
     { label:'Mount',       value: gPB('pb-grp-mount') || '—' },
     { label:'Quantity',    value: (parseInt(document.getElementById('pb-qty-inp').value)||1)+' shade(s)' },
@@ -2129,14 +2134,22 @@ function pbCalcPrice() {
 }
 
 const PB_FABRICS = {
-  'Light Filtering': ['White','Cream','Off-White','Gray','Linen','Beige'],
-  'Blackout':        ['White','Black','Cream','Off-White','Gray','Charcoal']
+  // Basic Roller core palette — same five on both light-filtering and blackout,
+  // and identical to CRS_BASIC_SOLIDS on the standalone Basic Roller page.
+  'Light Filtering': ['White','Off-White','Gray','Black','Brown'],
+  'Blackout':        ['White','Off-White','Gray','Black','Brown']
 };
 function pbToggleFasciaColor(isMetal) {
-  var lbl  = document.getElementById('pb-hw-color-label');
   var note = document.getElementById('pb-hw-color-note');
-  if (lbl)  lbl.textContent  = isMetal ? 'Hardware & metal fascia color' : 'Hardware color';
   if (note) note.style.display = isMetal ? 'block' : 'none';
+  // Metal fascia gets its own color picker (shared Norman metal-fascia palette),
+  // separate from the decorative hardware color for brackets/hem bar/end caps.
+  var wrap = document.getElementById('pb-fascia-color-wrap');
+  var slot = document.getElementById('pb-fascia-color-slot');
+  if (wrap) wrap.style.display = isMetal ? 'block' : 'none';
+  if (isMetal && slot && !slot.hasChildNodes() && typeof pbColorRow === 'function') {
+    slot.innerHTML = pbColorRow('pb-grp-fascia-color', 'metalFascia', 'pbCalcPrice');
+  }
 }
 function pbToggleMotor(show) {
   var el = document.getElementById('pb-motor-system-wrap');
@@ -3256,6 +3269,14 @@ function showCartForm() {
 function extToggleMotor(show) {
   var el = document.getElementById('ext-motor-note');
   if (el) el.style.display = show ? 'block' : 'none';
+  // The Left/Right side selector applies to both operation modes — only its wording changes:
+  // hand crank side when manual, motor side when motorized.
+  var lbl  = document.getElementById('ext-side-label');
+  var note = document.getElementById('ext-side-note');
+  if (lbl)  lbl.textContent  = show ? 'Motor side' : 'Hand crank side';
+  if (note) note.textContent = show
+    ? 'Which side of the window the motor head sits on (also where the charging port / power lead exits).'
+    : 'Which side of the window you want the hand crank on.';
 }
 function extChannelNote(btn) {
   var note = document.getElementById('ext-channel-note');
