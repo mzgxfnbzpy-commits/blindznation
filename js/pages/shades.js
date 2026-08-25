@@ -1942,10 +1942,10 @@ function rwbCalc() {
   var totalRetail = colorRetail + valRetail;
   var customerEach = Math.round(totalRetail * 0.75);
   var totalCustomer = customerEach * qty;
-  var lines = '<div class="price-line"><span>Retail (1 blind)</span><span>$' + totalRetail.toLocaleString() + '</span></div>';
-  if (colorMult > 1) lines += '<div class="price-line"><span>Color surcharge</span><span>' + (colorMult === 1.5 ? '+50%' : '+10%') + ' included</span></div>';
-  if (valRetail > 0) lines += '<div class="price-line"><span>Valance surcharge</span><span>+$' + valRetail + '</span></div>';
-  lines += '<div class="price-line"><span>Your price (25% off)</span><span style="color:var(--gold)">$' + customerEach.toLocaleString() + ' / blind</span></div>';
+  // Detail hidden per owner request — color/valance surcharges roll into retail (no motor/TDBU/D&N on wood blinds).
+  var lines = '<div class="price-line"><span><s>Retail (1 blind)</s></span><span style="text-decoration:line-through">$' + totalRetail.toLocaleString() + '</span></div>';
+  lines += '<div class="price-line"><span>25% Norman discount</span><span style="color:var(--gold)">&minus;$' + (totalRetail - customerEach).toLocaleString() + '</span></div>';
+  lines += '<div class="price-line"><span>Your price</span><span style="color:var(--gold)">$' + customerEach.toLocaleString() + ' / blind</span></div>';
   if (qty > 1) lines += '<div class="price-line"><span>Quantity</span><span>&times; ' + qty + '</span></div>';
   document.getElementById('rwb-price-lines').innerHTML = lines;
   document.getElementById('rwb-price-total').textContent = '$' + totalCustomer.toLocaleString();
@@ -2352,8 +2352,8 @@ function rnLookupPrice(w, h, overrideFabType) {
   return { price: price || null, pricedAt: pW + '″ W × ' + pH + '″ H', group: pg };
 }
 
-var rnMotorUpcharge = 482; // Norman Smart default; updated by rnSetMotorType()
-function rnSetMotorType(price){ rnMotorUpcharge = price; rnUpdatePrice(); }
+var rnMotorUpcharge = 482; // Norman Smart base surcharge ($482/shade). Brand pick now lives in the shared normanMotorSection; Rollease Acmeda is custom priced, so the estimate stays at the $482 base (no double charge).
+function rnSetMotorType(price){ rnMotorUpcharge = price; rnUpdatePrice(); } // retained for pricing wiring; no longer bound to UI buttons
 const RN_MIN       = 85;   // minimum per shade
 
 const RN_SYSTEM_NOTES = {
@@ -2541,9 +2541,21 @@ function rnSetLift(type) {
   const motorWrap = document.getElementById('rn-motor-wrap');
   if (motorWrap) {
     motorWrap.style.display = type === 'motor' ? 'block' : 'none';
+    var rnMotorCfg = document.getElementById('rn-motor-config');
     if (type === 'motor') {
+      // Base surcharge stays Norman Smart $482/shade. The shared section lets the
+      // customer pick Norman Smart vs Rollease Acmeda (Rollease is custom priced),
+      // so it does NOT change the estimate — no double charge.
       rnMotorUpcharge = 482;
-      document.querySelectorAll('#grp-rn-motor-type .opt-btn').forEach(function(b,i){b.classList.toggle('sel',i===0);});
+      // Render the shared Norman motor UI (same as cellular + standalone pages).
+      if (typeof normanMotorSection === 'function') {
+        normanMotorSection('rn-motor-config', 'Roller Shade', typeof rnUpdatePrice === 'function' ? rnUpdatePrice : null);
+      } else if (rnMotorCfg) {
+        rnMotorCfg.innerHTML = '<div style="background:var(--espresso-mid);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:12px;color:var(--text-dark)">Norman Smart Motorization: power source (battery/hardwired), remote, and smart home options confirmed at measurement visit.</div>';
+      }
+    } else if (rnMotorCfg) {
+      // Clear the shared section when a non-motor lift is chosen.
+      rnMotorCfg.innerHTML = '';
     }
   }
 
@@ -3017,8 +3029,8 @@ function rnUpdatePrice() {
   // shades (base x N), then add the coupled surcharge x (N-1) via sysSur below.
   var rnUnitMult = isDualSystem ? 2 : (rnSystemType === 'coupled2' ? 2 : rnSystemType === 'coupled3' ? 3 : rnSystemType === 'coupled4' ? 4 : 1);
   if (perShade) perShade = perShade * rnUnitMult;
-  // Motorized dual shade needs 2 motors (one per roll)
-  // Motorized dual shade needs 2 motors (one per roll). Full Norman retail, incl. accessories.
+  // Motor charged at full Norman retail (NOT discounted) via shared nmGetMotorPrice.
+  // Motorized dual shade needs 2 motors (one per roll).
   const motorCost = isMotor
     ? ((typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('Roller Shade', qty * (isDualSystem ? 2 : 1)) : rnMotorUpcharge * qty * (isDualSystem ? 2 : 1))
     : 0;
@@ -3311,7 +3323,7 @@ async function submitExteriorForm(btn) {
     'Side channels: '+ gExt('ext-grp-channels') + '\n' +
     'Operation: '   + gExt('ext-grp-op')       + '\n' +
     (motorReq ? 'Motor preference: ' + motorReq + '\n' : '') +
-    'Control side: '+ gExt('ext-grp-control')  + '\n' +
+    (/motor/i.test(gExt('ext-grp-op')) ? 'Motor side: ' : 'Hand crank side: ') + gExt('ext-grp-control')  + '\n' +
     'Fabric: '      + gExt('ext-grp-fabric')   + '\n' +
     'Delivery: '    + delivery                  + '\n\n' +
     'Notes:\n' + (document.getElementById('ext-notes').value.trim() || 'None');
