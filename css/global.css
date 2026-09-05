@@ -791,22 +791,69 @@ html, body { overflow-x: hidden; }
 }
 
 /* ============================================================
-   LIVE MODE — hide all public pricing displays
+   QUOTE-ONLY PRODUCTS — hide every public pricing display
+   ------------------------------------------------------------
+   Scoped to .pb-quote-only, which shared.js puts on <html> for the
+   pages listed in PB_QUOTE_ONLY_PAGES. It catches the surcharge
+   chips ("+$45", "$7 each") as well as the estimate boxes, so a
+   quote-only product shows no dollar figure anywhere.
+
+   This block used to have no scope, which meant it hid these class
+   names on EVERY page — so whether a product showed a price came
+   down to whether it happened to use one of these class names.
+   Faux wood was priced in JS but silenced here; cellular survived
+   only because its classes are named differently. The six priced
+   products (soft treatments, Basic Roller, Norman Soluna roller,
+   Portrait cellular, faux wood, real wood) now keep their prices.
    ============================================================ */
-.addon-price, .mo-price, .opt-card-price,
-.qtotal, .price-box, .price-pending,
-.price-estimate, .price-est-label,
-.price-line, .price-total-line, .price-note,
-.calc-price, .price-result, .price-display,
-.price-row, .price-summary, .price-breakdown,
-.price-out, .step-price, .configurator-price,
-#price-box, #price-pending, #qr-total, #q-total,
-#inline-total, #cv-pricesize, #pr-total,
-[class*="price-val"], [class*="qtotal-val"],
-[id^="pr-base"], [id^="pr-lining"], [id^="pr-soft"],
-[id^="pr-banding"], [id^="pr-sr"], [id^="pr-dn"],
-[id^="pr-valance"], [id^="pr-acc"], [id^="pr-freight"],
-[id^="pr-rd"], [id^="pr-motor"], [id^="pr-cargo"] {
+.pb-quote-only .addon-price,
+.pb-quote-only .mo-price,
+.pb-quote-only .opt-card-price,
+.pb-quote-only .qtotal,
+.pb-quote-only .price-box,
+.pb-quote-only .price-pending,
+.pb-quote-only .price-estimate,
+.pb-quote-only .price-est-label,
+.pb-quote-only .price-line,
+.pb-quote-only .price-total-line,
+.pb-quote-only .price-note,
+.pb-quote-only .calc-price,
+.pb-quote-only .price-result,
+.pb-quote-only .price-display,
+.pb-quote-only .price-row,
+.pb-quote-only .price-summary,
+.pb-quote-only .price-breakdown,
+.pb-quote-only .price-out,
+.pb-quote-only .step-price,
+.pb-quote-only .configurator-price,
+.pb-quote-only #price-box,
+.pb-quote-only #price-pending,
+.pb-quote-only #qr-total,
+.pb-quote-only #q-total,
+.pb-quote-only #inline-total,
+.pb-quote-only #cv-pricesize,
+.pb-quote-only #pr-total,
+.pb-quote-only [class*="price-val"],
+.pb-quote-only [class*="qtotal-val"],
+.pb-quote-only [id^="pr-base"],
+.pb-quote-only [id^="pr-lining"],
+.pb-quote-only [id^="pr-soft"],
+.pb-quote-only [id^="pr-banding"],
+.pb-quote-only [id^="pr-sr"],
+.pb-quote-only [id^="pr-dn"],
+.pb-quote-only [id^="pr-valance"],
+.pb-quote-only [id^="pr-acc"],
+.pb-quote-only [id^="pr-freight"],
+.pb-quote-only [id^="pr-rd"],
+.pb-quote-only [id^="pr-motor"],
+.pb-quote-only [id^="pr-cargo"],
+/* Catch-all for the surcharge chips — pages have coined .check-price,
+   .addon-price, .mo-price and more over time, and enumerating them one at a
+   time keeps missing new ones. Matched on CLASS only, deliberately: several
+   pages carry size and compatibility warnings in elements whose *id* contains
+   "price" (#ps-price-note is the "width over 110in, call us" message), and
+   those must keep showing on a quote-only product. */
+.pb-quote-only [class*="price"] {
   display: none !important;
 }
 

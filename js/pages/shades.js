@@ -776,6 +776,20 @@ function clampQty() {
 function updatePrice() {
   if (!currentProduct || !(currentProduct in RATES)) return;
 
+  // ── Live pricing scope (see PB_QUOTE_ONLY_PAGES in shared.js) ──────────────
+  // Of the products routed through this shared form, only the Norman Portrait
+  // cellular shade quotes a real price. Roller/zebra/woven were running on the
+  // placeholder $/sqft rates in RATES — numbers that never came from a vendor
+  // book — so they now collect the spec and go out as a quote request instead.
+  // The size warnings below still run for every product; only the money stops.
+  // Re-evaluated on every call so switching products flips the box correctly.
+  const pricedHere = (currentProduct === 'cellular');
+  const priceBoxEl = document.getElementById('price-box');
+  if (priceBoxEl) {
+    if (pricedHere) priceBoxEl.removeAttribute('data-pb-price-hidden');
+    else            priceBoxEl.setAttribute('data-pb-price-hidden', '1');
+  }
+
   const w = parseFloat(document.getElementById('inp-width').value);
   const h = parseFloat(document.getElementById('inp-height').value);
   const qty = parseInt(document.getElementById('inp-qty').value) || 1;
@@ -911,6 +925,11 @@ function updatePrice() {
 
   // Update custom roller standard chain label (75% of inp-height)
   updateChainStdLabel('chain-std-label', 'inp-height');
+
+  // Quote-only from here down — stop before any dollar figure is calculated or
+  // written. The box is already hidden above; returning keeps stale numbers from
+  // sitting in it if the customer switches back from cellular.
+  if (!pricedHere) return;
 
   // ── ALL OTHER PRODUCTS: sqft estimate ────────────────────────
   const sqft = (w / 12) * (h / 12);
@@ -3416,6 +3435,10 @@ function psCalc() {
   var h  = parseFloat(document.getElementById('ps-height').value) || 0;
   var pb = document.getElementById('ps-price-box');
   var pn = document.getElementById('ps-price-note');
+  // PerfectSheer is quote-only (see PB_QUOTE_ONLY_PAGES in shared.js). The size
+  // and compatibility warnings below still run — they are what keep an order
+  // from being submitted at an impossible size — but the price box stays down.
+  if (pb) pb.setAttribute('data-pb-price-hidden', '1');
   pb.style.display = 'none'; pn.style.display = 'none';
   if (!w || !h) return;
 

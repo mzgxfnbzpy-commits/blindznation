@@ -477,6 +477,99 @@ function pbTermsHref() {
   var p = location.pathname || '';
   return /\/pages\//i.test(p) ? 'terms-of-agreement.html' : 'pages/terms-of-agreement.html';
 }
+// ── LIVE PRICING SCOPE (Justin, Sept 2026) ──────────────────────────────────
+// The site quotes a real price for six products only:
+//   soft treatments · Basic Roller · Norman Soluna roller · Norman Portrait
+//   cellular · Norman faux wood blinds · Norman real wood blinds
+// Every other product collects the full spec and goes out as a quote request —
+// no dollar figure on the page, in the cart line, or in the total we email.
+//
+// The price ENGINES are deliberately left running. This gates DISPLAY only, so
+// turning a product back on is a one-line edit here rather than a rebuild. The
+// main thing it switches off is the placeholder $/sqft rates in shades.js
+// (roller / zebra / woven), which were never real vendor numbers.
+//
+// Pages listed here get their price box removed on load. shades.html is mixed —
+// priced and quote-only forms live side by side — so it gates per form inside
+// shades.js instead of appearing in this list.
+var PB_QUOTE_ONLY_PAGES = {
+  'perfectsheer'                    : ['#ps-price-box'],
+  'norman-sheers'                   : ['#price-box', '#price-pending'],
+  'portfolio-dual-sheer'            : ['#price-box-final', '.price-box'],
+  'wallace-banded-shades'           : ['#pr-total-row', '#pr-total'],
+  'wallace-3d-sheer'                : ['#sp-price', '#sp-price-breakdown'],
+  'wallace-aluminum-blinds'         : ['#al-price-box'],
+  'city-lights-aluminum-blinds'     : ['#qr-total-row', '#qr-total'],
+  'custom-roller-shades'            : ['#qp-price', '#qp-price-rows', '#qp-total'],
+  'galaxy-woven-woods'              : ['#qr-total-row', '#qr-total'],
+  'dynasty-woven-woods'             : ['#qr-total-row', '#qr-total'],
+  'synchrony-verticals'             : ['#cv-price', '#qr-price', '#qr-total-row', '#qr-total'],
+  'norman-centerpiece-roman'        : ['#pr-total-row', '#pr-total'],
+  'wallace-natural-roller-shades'   : [],
+  'wallace-portfolio-natural-shades': [],
+  'wallace-portfolio-roman'         : [],
+  'exterior-roller-shades'          : [],
+  'walden-premier-woven'            : [],
+  'walden-select-woven'             : [],
+  'wallace-woven'                   : [],
+  'wallace-verticals'               : [],
+  'shutters'                        : [],
+  'hardware'                        : [],
+  'hardware-quote'                  : [],
+  'kirsch-rods'                     : [],
+  'kirsch-estate-traverse'          : [],
+  'kirsch-2in-estate-traverse'      : [],
+  'kirsch-spec-complete'            : [],
+  'orion-rods'                      : [],
+  'paris-texas-rods'                : [],
+  'select-rods'                     : [],
+  'finial-company'                  : [],
+  'upholstery'                      : []
+};
+// Current page's filename with no extension — 'perfectsheer' for /pages/perfectsheer.html.
+function pbPageKey() {
+  var last = (location.pathname || '').split('/').pop() || '';
+  return last.replace(/\.html?$/i, '').toLowerCase();
+}
+// True when the CURRENT page shows no prices at all. shades.html always returns
+// false here — it decides per form, since it hosts both kinds.
+function pbPageIsQuoteOnly() {
+  return Object.prototype.hasOwnProperty.call(PB_QUOTE_ONLY_PAGES, pbPageKey());
+}
+// Hide every price surface a quote-only page declares. Safe to call more than
+// once, and silently skips selectors the page doesn't have — the lists above
+// cover several page generations and not every id exists everywhere.
+function pbApplyPricingScope() {
+  // The rule goes in on every page, not just the quote-only ones: shades.html
+  // hosts both kinds of form and flips the attribute per product as you switch.
+  // It has to be a stylesheet rule rather than an inline style, because the price
+  // calcs re-run on every keystroke and several of them do box.style.display=
+  // 'block'. An !important rule in a stylesheet outranks that inline write.
+  if (!document.getElementById('pb-quote-only-css')) {
+    var st = document.createElement('style');
+    st.id = 'pb-quote-only-css';
+    st.textContent = '[data-pb-price-hidden]{display:none !important}';
+    document.head.appendChild(st);
+  }
+  if (!pbPageIsQuoteOnly()) return;
+  // On <html>, not <body> — this runs the moment shared.js is parsed, before
+  // <body> necessarily exists, so the CSS above is already in force by the time
+  // the price markup is laid out. Putting it on body instead let a price flash
+  // on screen until DOMContentLoaded.
+  document.documentElement.classList.add('pb-quote-only');
+  (PB_QUOTE_ONLY_PAGES[pbPageKey()] || []).forEach(function(sel) {
+    var nodes;
+    try { nodes = document.querySelectorAll(sel); } catch (e) { return; }
+    Array.prototype.forEach.call(nodes, function(el) {
+      el.setAttribute('data-pb-price-hidden', '1');
+    });
+  });
+}
+// Run once as soon as this file is parsed so the class and the stylesheet rule
+// land before any price markup renders, then again on DOMContentLoaded to tag
+// the elements themselves (they do not exist yet on this first pass).
+try { pbApplyPricingScope(); } catch (e) {}
+
 var _pbTermsSeq = 0;
 // Shared checkbox block. id defaults to 'cf-terms'; pass a unique id for other contexts.
 function pbTermsCheckboxHTML(id) {
@@ -915,6 +1008,11 @@ var _pbPendingExtras = null;
 
 function pbAddToCart(item) {
   item.cartId = Date.now() + '-' + Math.floor(Math.random()*9999);
+  // Quote-only product → drop the price before it ever reaches the cart. The cart
+  // and checkout already render a priceless item as "Custom quote" and leave it
+  // out of the estimated total, so this is all it takes. Pages set item.quoteOnly
+  // themselves when one page mixes priced and quote-only forms (shades.html).
+  if (item.quoteOnly || pbPageIsQuoteOnly()) { item.price = 0; item.quoteOnly = true; }
   // Merge any extras captured from the estimate panel (notes/files) if the item didn't set them
   if (_pbPendingExtras) {
     if (!item.notes && _pbPendingExtras.notes) item.notes = _pbPendingExtras.notes;
@@ -2705,6 +2803,7 @@ function reqMoreInfo(product) {
 // Runs on every page that includes shared.js.
 document.addEventListener('DOMContentLoaded', function() {
   pbAutoFillContact();
+  pbApplyPricingScope();
   // Add the required Terms of Agreement checkbox to any inline submit-for-review form.
   try { _pbInjectTermsCheckboxes(); } catch(e) {}
   // Intercept clicks on [data-pb-require-contact] buttons (capture phase = before onclick handler).
