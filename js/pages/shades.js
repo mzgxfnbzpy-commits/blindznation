@@ -202,6 +202,17 @@ function selectProduct(productId, productName, isInstant) {
   currentProduct = productId;
   currentBrand   = null;
 
+  // The shared configurator header carries one badge for whichever product is
+  // open. Only roller and cellular still quote a price through this form (see
+  // PB_QUOTE_ONLY_PAGES in shared.js) — zebra and woven ran on the placeholder
+  // sqft rates that are now switched off, so promising them a price is wrong.
+  const badge = document.getElementById('config-badge');
+  if (badge) {
+    const pricedProduct = (productId === 'roller' || productId === 'cellular');
+    badge.textContent = pricedProduct ? 'Instant price' : 'Custom quote';
+    badge.className   = 'badge ' + (pricedProduct ? 'badge-instant' : 'badge-quote');
+  }
+
   const sec = document.getElementById('configurator-section');
   sec.style.display = 'block';
 
