@@ -306,7 +306,7 @@ function buildFabricGrid(type){
     });
     pbFabricPicker.render('fabric-grid', {
       hideTabs:true, showPriceGroups:true,
-      types:[{key:type, label:(type==='LF'?'Light Filtering':'Room Darkening')}],
+      types:[{key:type, label:(type==='LF'?'Light Filtering':'Blackout')}],
       collections:collections,
       onSelect:function(sel){ pickFabric(sel.code); }
     });
@@ -604,7 +604,7 @@ function addPortfolioDualSheerToCart(){
   const ctrlLabel=S.control==='clutch'?'Clutch (beaded chain)':S.control==='cordless'?'Cordless (+$192)':S.control==='prowand'?'Pro Wand (+$232)':'Remote Motor (+$460)';
   const lines=[
     {label:'Product',value:'Wallace Portfolio Collection™ Dual Sheer Shades'},
-    {label:'Fabric Type',value:f.type==='LF'?'Light-Filtering':'Room-Darkening'},
+    {label:'Fabric Type',value:f.type==='LF'?'Light-Filtering':'Blackout'},
     {label:'Pattern',value:f.name},
     {label:'Color',value:f.color},
     {label:'Code',value:f.code},

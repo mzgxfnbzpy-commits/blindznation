@@ -84,7 +84,7 @@ function psUpdateColors(type) {
   }
   PS.color = sel.value;
   document.getElementById('qr-color').textContent  = PS.color.split('(')[0].trim();
-  document.getElementById('qr-opacity').textContent = type === 'rd' ? 'Room Darkening (+20%)' : 'Light Filtering';
+  document.getElementById('qr-opacity').textContent = type === 'rd' ? 'Blackout (+20%)' : 'Light Filtering';
   psCalc();
 }
 
@@ -166,7 +166,7 @@ function psCalc() {
   if (isRD) {
     var rdAdd = Math.round(base * 0.20);
     total += rdAdd;
-    lines.push('Room Darkening (+20%): +$' + rdAdd.toLocaleString());
+    lines.push('Blackout (+20%): +$' + rdAdd.toLocaleString());
   }
 
   // Valance
@@ -236,7 +236,7 @@ function psAddToCart() {
     {label:'Mount',         value: PS.mount},
     {label:'Width',         value: w + '″'},
     {label:'Height',        value: h + '″'},
-    {label:'Light control', value: isRD ? 'Room Darkening (+20%)' : 'Light Filtering'},
+    {label:'Light control', value: isRD ? 'Blackout (+20%)' : 'Light Filtering'},
     {label:'Color',         value: PS.color || '—'},
     {label:'Lift',          value: PS.lift === 'ccl' ? 'Continuous Cord Loop' : 'Norman Motorization'},
     {label:'Valance',       value: PS.valance},
@@ -283,7 +283,7 @@ async function submitPSQuote(btn) {
     + 'SPECS\n'
     + 'Width: ' + w + '"  Height: ' + h + '"\n'
     + 'Mount: ' + (PS.mount || '—') + '\n'
-    + 'Light control: ' + (PS.fabric === 'rd' ? 'Room Darkening (+20%)' : 'Light Filtering') + '\n'
+    + 'Light control: ' + (PS.fabric === 'rd' ? 'Blackout (+20%)' : 'Light Filtering') + '\n'
     + 'Color: ' + (PS.color || '—') + '\n'
     + 'Lift: ' + (PS.lift === 'ccl' ? 'Continuous Cord Loop' : 'Norman Motorization') + '\n'
     + motorLine

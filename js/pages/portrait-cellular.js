@@ -159,7 +159,7 @@ const CELL_COLLECTIONS = {
 };
 
 const CELL_FABRIC_LABELS = {
-  'lf':'Light Filtering','rd':'Room Darkening','sheer':'Sheer','dn':'Day & Night'
+  'lf':'Light Filtering','rd':'Blackout','sheer':'Sheer','dn':'Day & Night'
 };
 
 // ── Day & Night valid fabric combinations (Norman Portrait catalog, p.11) ──
@@ -314,7 +314,7 @@ function cellDNComboObj() {
 }
 // Per-shade fabric surcharge: +20% for Sheer / Room Darkening (blackout) / Solus.
 function cellDNFabAdd(fabName, base) {
-  return (fabName === 'Sheer' || fabName === 'Room Darkening' || fabName === 'Solus')
+  return (fabName === 'Sheer' || pbIsBlackoutLabel(fabName) || fabName === 'Solus')
     ? Math.round(base * 0.20) : 0;
 }
 // Per-UNIT price (before qty/motor/discount/freight), plus breakdown lines.
@@ -330,8 +330,8 @@ function cellPerShadePrice(tableBase) {
     var botShade = tableBase + cellDNFabAdd(botName, tableBase);
     perShade = topShade + botShade;
     lines.push('Day &amp; Night — two shades, priced together:');
-    lines.push('&nbsp;&nbsp;Day / top (' + topName + '): $' + topShade.toLocaleString());
-    lines.push('&nbsp;&nbsp;Night / bottom (' + botName + '): $' + botShade.toLocaleString());
+    lines.push('&nbsp;&nbsp;Day / top (' + pbLightLabel(topName) + '): $' + topShade.toLocaleString());
+    lines.push('&nbsp;&nbsp;Night / bottom (' + pbLightLabel(botName) + '): $' + botShade.toLocaleString());
   } else {
     perShade = tableBase;
     var fabAdd = (CELL.fabric === 'rd' || CELL.fabric === 'sheer') ? Math.round(tableBase * 0.20) : 0;
@@ -372,7 +372,7 @@ function _dnCardHTML(name, group, selected, disabled) {
             + (disabled ? ';opacity:.3;pointer-events:none' : '');
   return '<button class="opt-btn' + (selected ? ' sel' : '') + '" style="' + style + '"'
     + ' onclick="' + handler + '(\'' + name + '\')">'
-    + '<span style="font-weight:600">' + name + '</span>'
+    + '<span style="font-weight:600">' + pbLightLabel(name) + '</span>'
     + '<span style="font-size:10px;opacity:.7;font-weight:400">' + (CELL_DN_DESC[name] || '') + '</span>'
     + '</button>';
 }
@@ -388,14 +388,14 @@ function _dnColorGridHTML(layer, treatment) {
   var handler = layer === 'top' ? 'selCellDNTopColor' : 'selCellDNBottomColor';
   var html = '';
   colls.forEach(function(coll) {
-    if (coll.name) html += '<div style="font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;margin:8px 0 4px">' + coll.name + '</div>';
+    if (coll.name) html += '<div style="font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;margin:8px 0 4px">' + pbLightLabel(coll.name) + '</div>';
     html += '<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px">';
     coll.colors.forEach(function(color) {
       if (typeof color !== 'object') return;
       var isSel = selName === color.n;
       html += '<button class="opt-btn' + (isSel ? ' sel' : '') + '" style="font-size:11px;display:inline-flex;align-items:center;gap:0"'
         + ' onclick="' + handler + '(\'' + color.n.replace(/'/g, "\\'") + '\',\'' + (color.c || '') + '\')">'
-        + colorDot(color.n) + color.n + (color.c ? ' <span style="font-size:9px;color:#aaa;margin-left:2px">' + color.c + '</span>' : '') + '</button>';
+        + colorDot(color.n) + pbLightLabel(color.n) + (color.c ? ' <span style="font-size:9px;color:#aaa;margin-left:2px">' + color.c + '</span>' : '') + '</button>';
     });
     html += '</div>';
   });
@@ -419,7 +419,7 @@ function renderCellDNCombos() {
   var topColors = CELL.dnTop ? _dnColorPanel('top', CELL.dnTop) : '';
   var botColors = (CELL.dnTop && CELL.dnBottom) ? _dnColorPanel('bottom', CELL.dnBottom) : '';
   var summary = (CELL.dnTop && CELL.dnBottom && CELL.dnCombo)
-    ? '<div class="step-note" style="margin-top:12px;color:var(--gold);font-weight:600">&#10003; ' + CELL.dnTop + (CELL.dnTopColor ? ' &mdash; ' + CELL.dnTopColor : '') + ' (day) over ' + CELL.dnBottom + (CELL.dnBottomColor ? ' &mdash; ' + CELL.dnBottomColor : '') + ' (night)</div>'
+    ? '<div class="step-note" style="margin-top:12px;color:var(--gold);font-weight:600">&#10003; ' + pbLightLabel(CELL.dnTop) + (CELL.dnTopColor ? ' &mdash; ' + CELL.dnTopColor : '') + ' (day) over ' + pbLightLabel(CELL.dnBottom) + (CELL.dnBottomColor ? ' &mdash; ' + CELL.dnBottomColor : '') + ' (night)</div>'
     : '<div class="step-note" style="margin-top:12px">Pick a day layer, then a night layer &mdash; then choose a color for each.</div>';
   wrap.innerHTML =
     '<div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Step 1 &middot; Day layer <span style="font-weight:400;color:#888">(top &mdash; filtered light &amp; view)</span></div>'
@@ -468,7 +468,7 @@ function cellCheckDNSize() {
   if (!warn) return;
   if (CELL_DN_RD_LIMITED[CELL.dnCombo] && CELL.sizeCode !== '34s' && CELL.sizeCode !== '114s') {
     warn.style.display = 'block';
-    warn.textContent   = 'The Light Filtering + Room Darkening combination is only available in 3⁄4″ Single or 1¼″ Single cell size — please pick one of those cell sizes above.';
+    warn.textContent   = 'The Light Filtering + Blackout combination is only available in 3⁄4″ Single or 1¼″ Single cell size — please pick one of those cell sizes above.';
   } else {
     warn.style.display = 'none';
   }
@@ -495,10 +495,10 @@ function filterCellSizes() {
   });
   // Update size note
   var notes = {
-    '38s':'3⁄8″S: Light Filtering and Sheer only. Room Darkening not available.',
+    '38s':'3⁄8″S: Light Filtering and Sheer only. Blackout not available.',
     '916s':'9⁄16″S has a limited colour palette — 15 LF and 16 RD colors. Sheer not available.',
-    '12d':'1⁄2″D: Light Filtering and Room Darkening. Sheer not available in double-cell.',
-    '34d':'3⁄4″D: Light Filtering and Room Darkening. Sheer not available in double-cell.',
+    '12d':'1⁄2″D: Light Filtering and Blackout. Sheer not available in double-cell.',
+    '34d':'3⁄4″D: Light Filtering and Blackout. Sheer not available in double-cell.',
     '34s':'3⁄4″S: All fabric categories available.',
     '114s':'1 1⁄4″S: All fabric categories available.'
   };
@@ -514,8 +514,8 @@ function renderCellColorGrid() {
   if (!gridEl) return;
   // Day & Night: two fabrics — layers + their colors are chosen in the Fabric step above.
   if (CELL.fabric === 'dn') {
-    var day   = CELL.dnTop ? (CELL.dnTop + (CELL.dnTopColor ? ' — ' + CELL.dnTopColor : '')) : '—';
-    var night = CELL.dnBottom ? (CELL.dnBottom + (CELL.dnBottomColor ? ' — ' + CELL.dnBottomColor : '')) : '—';
+    var day   = CELL.dnTop ? (pbLightLabel(CELL.dnTop) + (CELL.dnTopColor ? ' — ' + CELL.dnTopColor : '')) : '—';
+    var night = CELL.dnBottom ? (pbLightLabel(CELL.dnBottom) + (CELL.dnBottomColor ? ' — ' + CELL.dnBottomColor : '')) : '—';
     // Any layer that has a palette but no color chosen yet → nudge; else consultation note for Windsong/Solus.
     var needColor = (_dnCollKey(CELL.dnTop) && !CELL.dnTopColor) || (CELL.dnBottom && _dnCollKey(CELL.dnBottom) && !CELL.dnBottomColor);
     var note = needColor
@@ -525,7 +525,7 @@ function renderCellColorGrid() {
       + '<br>Night layer: ' + night + '<br><span style="color:#888">' + note + '</span></div>';
     CELL.color     = day + ' / ' + night;
     CELL.colorCode = CELL.dnCombo || '';
-    document.getElementById('s6val').textContent = (CELL.dnTop && CELL.dnBottom) ? (CELL.dnTop + ' + ' + CELL.dnBottom) : 'Day & Night';
+    document.getElementById('s6val').textContent = (CELL.dnTop && CELL.dnBottom) ? (pbLightLabel(CELL.dnTop) + ' + ' + pbLightLabel(CELL.dnBottom)) : 'Day & Night';
     document.getElementById('qr-cell-color').textContent = CELL.color;
     markDone('step6');
     return;
@@ -538,7 +538,7 @@ function renderCellColorGrid() {
   var html = '';
   colls.forEach(function(coll) {
     if (coll.name) {
-      html += '<div style="font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;margin:10px 0 5px">' + coll.name + '</div>';
+      html += '<div style="font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;margin:10px 0 5px">' + pbLightLabel(coll.name) + '</div>';
     }
     html += '<div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px">';
     coll.colors.forEach(function(color) {
@@ -553,7 +553,7 @@ function renderCellColorGrid() {
       var isSel = CELL.color === color.n;
       html += '<button class="opt-btn' + (isSel ? ' sel' : '') + '" style="font-size:11px;display:inline-flex;align-items:center;gap:0"'
             + ' onclick="selCellColor(\'' + color.n.replace(/'/g,"\\'") + '\',\'' + (color.c||'') + '\')">'
-            + dot + color.n + code + '</button>';
+            + dot + pbLightLabel(color.n) + code + '</button>';
     });
     html += '</div>';
   });

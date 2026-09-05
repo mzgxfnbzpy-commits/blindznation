@@ -441,12 +441,12 @@ function cellCheckConflict(source) {
 
   if (isTDBU && isDNFab) {
     if (source === 'tdbu') {
-      // User just selected TDBU while D&N fabric was active → switch fabric to Room Darkening
+      // User just selected TDBU while D&N fabric was active → switch fabric to the blackout option
       var rdBtn = Array.from(document.querySelectorAll('#grp-cell-fabric .opt-btn'))
-        .find(function(b){ return b.textContent.trim() === 'Room Darkening'; });
+        .find(function(b){ return pbIsBlackoutLabel(b.textContent); });
       if (rdBtn) { selOpt(rdBtn, 'grp-cell-fabric'); filterCellSizes('rd'); }
       el.style.cssText = 'display:block;background:#FEF9C3;border:1px solid #FDE68A;border-radius:8px;padding:10px 13px;font-size:12px;color:#92400E;margin-top:8px;line-height:1.5';
-      el.textContent = '⚠ Day & Night is not compatible with Top Down / Bottom Up — fabric auto-switched to Room Darkening. To use Day & Night, select Bottom Up lift.';
+      el.textContent = '⚠ Day & Night is not compatible with Top Down / Bottom Up — fabric auto-switched to Blackout. To use Day & Night, select Bottom Up lift.';
     } else if (source === 'dn_fabric') {
       // User just selected D&N fabric while TDBU was active → switch lift to Bottom Up
       var buBtn = Array.from(document.querySelectorAll('#grp-cellular-lift .opt-btn'))
@@ -681,10 +681,10 @@ function selectCellSz(sizeCode) {
     if (lfBtn) { lfBtn.classList.add('sel'); filterCellSizes('lf'); return; }
   }
   var msgs = {
-    '38s':'3⁄8″S: Light Filtering and Sheer available. Room Darkening not available in 3⁄8″S.',
-    '916s':'9⁄16″S has a limited colour palette — 15 Light Filtering and 16 Room Darkening colors. Sheer not available.',
-    '12d':'1⁄2″D: Light Filtering and Room Darkening available. Sheer not available in double-cell.',
-    '34d':'3⁄4″D: Light Filtering and Room Darkening available. Sheer not available in double-cell.',
+    '38s':'3⁄8″S: Light Filtering and Sheer available. Blackout not available in 3⁄8″S.',
+    '916s':'9⁄16″S has a limited colour palette — 15 Light Filtering and 16 Blackout colors. Sheer not available.',
+    '12d':'1⁄2″D: Light Filtering and Blackout available. Sheer not available in double-cell.',
+    '34d':'3⁄4″D: Light Filtering and Blackout available. Sheer not available in double-cell.',
     '34s':'3⁄4″S: All fabric categories available.',
     '114s':'1 1⁄4″S: All fabric categories available.'
   };
@@ -704,7 +704,7 @@ const CELL_COMPAT = {
 };
 const FABRIC_NOTES = {
   'lf':   'Light Filtering: available in all 6 cell sizes.',
-  'rd':   'Room Darkening: available in 9⁄16″S (16-color limited palette), 1⁄2″D, 3⁄4″S, 3⁄4″D, and 1 1⁄4″S. Not available in 3⁄8″S.',
+  'rd':   'Blackout: available in 9⁄16″S (16-color limited palette), 1⁄2″D, 3⁄4″S, 3⁄4″D, and 1 1⁄4″S. Not available in 3⁄8″S.',
   'sheer':'Sheer is available in 3⁄8″S only as a single shade. 9⁄16″S Sheer is available as the top (day) shade in Day &amp; Night mode.',
   'dn':   'Day &amp; Night: two shades in one headrail — all 6 cell sizes available. Top &amp; bottom use the same cell size. 1⁄2″D or 3⁄4″D bottom pairs with nearest single-cell Sheer top.',
 };
@@ -1466,10 +1466,10 @@ const SOLUNA_COLLECTIONS = {
       {n:'Powder',c:'F1532'},{n:'Steel',c:'F1533'},{n:'Silver Satin',c:'F1534'},
       {n:'Golden Straw',c:'F1535'},{n:'Coffee Bean',c:'F1536'},{n:'Coal',c:'F1550'}
     ]},
-    {name:'Summerland Linen — Room Darkening (PG3)', colors:[
+    {name:'Summerland Linen — Blackout (PG3)', colors:[
       {n:'Pearl',c:'F1510'},{n:'Maize',c:'F1511'},{n:'Sterling',c:'F1512'}
     ]},
-    {name:'Breeze Linen — Room Darkening (PG3)', colors:[
+    {name:'Breeze Linen — Blackout (PG3)', colors:[
       {n:'Linen Flax',c:'F1768'},{n:'Linen Natural',c:'F1769'},{n:'Linen Khaki',c:'F1770'},
       {n:'Linen Dune',c:'F1771'},{n:'Linen Graphite',c:'F1772'},{n:'Linen Almond Milk',c:'F1773'},
       {n:'Linen Stone',c:'F1779'},{n:'Linen Cloud',c:'F1848'},{n:'Linen Warm Ivory',c:'F1852'}
@@ -1605,12 +1605,12 @@ const CELL_COLLECTIONS = {
     ]}
   ],
   'dn': [
-    {name:'Sheer + Room Darkening', colors:[]},
+    {name:'Sheer + Blackout', colors:[]},
     {name:'Sheer + Light Filtering', colors:[]},
-    {name:'Light Filtering + Room Darkening', colors:[]},
+    {name:'Light Filtering + Blackout', colors:[]},
     {name:'Light Filtering + Light Filtering', colors:[]},
     {name:'Woven Windsong + Light Filtering', colors:[]},
-    {name:'Woven Windsong + Room Darkening', colors:[]}
+    {name:'Woven Windsong + Blackout', colors:[]}
   ]
 };
 
@@ -1626,10 +1626,10 @@ CELL_COLLECTIONS['windsong'] = [
 // ─── Fabric type → human label maps ──────────────────────────
 const RN_FABRIC_LABELS = {
   'sheer':'Sheer','lf':'Light Filtering','natural':'Natural',
-  'rd':'Room Darkening','solar':'Solar Screen','commercial':'Commercial Solar','designer':'Designer'
+  'rd':'Blackout','solar':'Solar Screen','commercial':'Commercial Solar','designer':'Designer'
 };
 const CELL_FABRIC_LABELS = {
-  'lf':'Light Filtering','rd':'Room Darkening','sheer':'Sheer','dn':'Day & Night','windsong':'Woven Windsong'
+  'lf':'Light Filtering','rd':'Blackout','sheer':'Sheer','dn':'Day & Night','windsong':'Woven Windsong'
 };
 
 // ─── Color swatch map ────────────────────────────────────────
@@ -2377,18 +2377,18 @@ const RN_MIN       = 85;   // minimum per shade
 
 const RN_SYSTEM_NOTES = {
   standard:  'Standard: single shade per bracket set — most straightforward.',
-  dual:      'Dual shade: Blackout (Room Darkening) back shade + your choice of Light Filtering, Sheer, or Solar Screen front shade — two rolls in one headrail. Priced as two individual shades. Extra mounting depth required.',
+  dual:      'Dual shade: Blackout back shade + your choice of Light Filtering, Sheer, or Solar Screen front shade — two rolls in one headrail. Priced as two individual shades. Extra mounting depth required.',
   coupled2:  'Coupled 2: two panels linked, operated together. Must use same lift system. Center gap applies.',
   coupled3:  'Coupled 3: three panels linked. Two coupled surcharges apply.',
   coupled4:  'Coupled 4: four panels linked. Three coupled surcharges apply.',
   sidebyside:'Side-by-Side: independent shades installed adjacent. Separate operation. Gap rules apply.',
-  dn:        'Day & Night: two fabrics in one headrail — sheer or light filtering on the day roll, Room Darkening on the night roll. Choose which roll faces the glass vs. the room.'
+  dn:        'Day & Night: two fabrics in one headrail — sheer or light filtering on the day roll, Blackout on the night roll. Choose which roll faces the glass vs. the room.'
 };
 const RN_FABRIC_NOTES = {
   sheer:      'Sheer: minimal privacy, maximum view-through. Works with all standard systems.',
   lf:         'Light Filtering: diffused light, medium privacy. Works with all systems.',
   natural:    '⚠ Natural fabrics (bamboo, jute, paper blends) may show variation, bowing, fraying, color shift over time — these are normal material characteristics and not defects.',
-  rd:         'Room Darkening: high privacy, coated backing. ⚠ Alone it still allows edge light gaps — add LightGuard 360™ in Step 7 for true blackout.',
+  rd:         'Blackout: high privacy, coated backing. ⚠ Alone it still allows edge light gaps — add Full Blackout Side Channels in Step 7 for the darkest result.',
   designer:   '⚠ Linen weaves: natural variation in texture, color, and drape is normal. LF designer fabrics at PG3–PG4 pricing; RD linen varieties also available. Breeze Screen (solar linen) is in the Solar Screen category.',
   solar:      'Solar Screen: UV and glare control. Openness factor = % of light allowed through. ⚠ ±10% tolerance is industry standard — not a defect.',
   commercial: 'Commercial Solar (NA series): PVC/polyester construction rated for high UV environments. Same openness rules as residential solar.'
@@ -2861,9 +2861,9 @@ function rnSetHeadrail(type) {
   document.getElementById('rn-cassette-opts').style.display = type === 'cassette' ? 'block' : 'none';
   // Note
   const notes = {
-    open:     'Open Roll: exposed tube, most compact profile. Brackets are visible. Not compatible with LightGuard 360™.',
+    open:     'Open Roll: exposed tube, most compact profile. Brackets are visible. Not compatible with Full Blackout Side Channels.',
     fascia:   'Fascia System: covers the tube with a decorative front panel. Choose shape and material below.',
-    cassette: 'Cassette System: fully enclosed headrail. Required for LightGuard 360™ and most Room Darkening/blackout setups.'
+    cassette: 'Cassette System: fully enclosed headrail. Required for Full Blackout Side Channels and most blackout setups.'
   };
   const n = document.getElementById('rn-headrail-note');
   if (n) n.textContent = notes[type] || '';
@@ -2934,9 +2934,9 @@ function rnRunValidation() {
     warnings.push('Cordless lift may not support widths over ~72″ depending on fabric weight. Consider Continuous Cord Loop or Motorized.');
   }
   var isRdFabric = rnFabricType === 'rd' ||
-    (rnFabricType === 'designer' && (currentRollerColl || '').toLowerCase().includes('room darkening'));
-  if (lgType === 'LightGuard 360™' && !isRdFabric) {
-    errors.push('LightGuard 360™ requires Room Darkening fabric to be effective. Select Room Darkening (or a Designer Room Darkening collection) in Step 2.');
+    (rnFabricType === 'designer' && pbIsBlackoutLabel(currentRollerColl || ''));
+  if (pbIsFullBlackoutLabel(lgType) && !isRdFabric) {
+    errors.push('Full Blackout Side Channels require a Blackout fabric to be effective. Select Blackout (or a Designer Blackout collection) in Step 2.');
   }
   if (rnSystemType === 'dual' || rnSystemType === 'dn') {
     warnings.push('Dual / Day & Night shades require extra mounting depth — confirm depth at order. Price calculated as two individual shades.');
@@ -2960,7 +2960,7 @@ function rnRunValidation() {
     warnings.push('Natural fabrics may show variation, bowing, fraying, shrinkage, stretching, or color change over time. These are normal material characteristics — not defects.');
   }
   if (rnFabricType === 'rd') {
-    warnings.push('Room Darkening fabrics may show temporary creases or dents near the roller tube, especially after shipping or when left partially raised. Leave fully lowered to resolve.');
+    warnings.push('Blackout fabrics may show temporary creases or dents near the roller tube, especially after shipping or when left partially raised. Leave fully lowered to resolve.');
   }
   if (rnFabricType === 'solar' || rnFabricType === 'commercial') {
     warnings.push('Solar openness tolerance is approximately ±10%. Actual visibility and glare control will vary by lighting conditions.');
@@ -3023,7 +3023,7 @@ function rnUpdatePrice() {
 
   document.getElementById('rn-pb-fabric').textContent = {
     sheer:'Sheer', lf:'Light Filtering', natural:'Natural',
-    rd:'Room Darkening', solar:'Solar Screen', commercial:'Commercial Solar', designer:'Designer'
+    rd:'Blackout', solar:'Solar Screen', commercial:'Commercial Solar', designer:'Designer'
   }[rnFabricType] || rnFabricType;
   document.getElementById('rn-pb-qty').textContent = qty;
 
@@ -3260,7 +3260,7 @@ async function rnSubmitForm(btn) {
       'Room Dark pos:  ' + g('rn-grp-bo-pos')  + '\n' +
       'Day roll type:  ' + g('rn-grp-day-type') + '\n' +
       'Day roll fabric:' + (currentRollerColl ? ' ' + currentRollerColl + (currentRollerColor ? ' – ' + currentRollerColor : '') : ' —') + '\n' +
-      'Night roll:     Room Darkening\n' +
+      'Night roll:     Blackout\n' +
       'Night fabric:   (see notes / confirmation)\n'
     ) : (
       'Fabric type:    ' + g('rn-grp-fabric')   + '\n' +
@@ -3484,10 +3484,10 @@ function psCalc() {
   var lines = ['Base price (' + PS_WIDTHS[wi] + '″W × ' + PS_HEIGHTS[hi] + '″H): $' + base.toLocaleString()];
   var total = base;
 
-  // Room Darkening +20%
+  // Blackout (vendor: Room Darkening) +20% — match on meaning, not visible wording.
   var rdBtn = document.querySelector('#grp-ps-opacity .opt-btn.sel');
-  var isRD = rdBtn && rdBtn.textContent.indexOf('Room Darkening') >= 0;
-  if (isRD) { var rdAdd = Math.round(base*0.20); total+=rdAdd; lines.push('Room Darkening (+20%): +$'+rdAdd.toLocaleString()); }
+  var isRD = rdBtn && pbIsBlackoutLabel(rdBtn.textContent);
+  if (isRD) { var rdAdd = Math.round(base*0.20); total+=rdAdd; lines.push('Blackout (+20%): +$'+rdAdd.toLocaleString()); }
 
   // Metal Fascia surcharge
   var valBtn = document.querySelector('#grp-ps-valance .opt-btn.sel');

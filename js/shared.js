@@ -359,6 +359,7 @@ function renderFooter(isHome) {
         <a href="${pre}measure-drapes.html">Measure: drapery</a>
         <a href="${pre}gallery.html">Our work</a>
         <a href="${pre}consult.html">Book consultation</a>
+        <a href="${pre}blackout-disclaimer.html">What blackout really means</a>
         <a href="${pre}about.html">About us</a>
         <a href="${pre}privacy.html">Privacy policy</a>
       </div>
@@ -476,6 +477,63 @@ function pbContactValid(errId) {
 function pbTermsHref() {
   var p = location.pathname || '';
   return /\/pages\//i.test(p) ? 'terms-of-agreement.html' : 'pages/terms-of-agreement.html';
+}
+
+// ── Blackout terminology — DISPLAY ONLY ──────────────────────────────────────
+// Norman (and the rest of the trade) call this fabric "Room Darkening". Customers
+// call it blackout, so that is what we show them. This is a rendering layer ONLY:
+// price keys, the +20% surcharge lookup, the T-suffix fabric colour codes and the
+// CELL_COMPAT tables all still say "Room Darkening" and must keep saying it.
+// Map at the moment of display; never rewrite the stored value.
+var PB_LIGHT_LABELS = {
+  'Room Darkening': 'Blackout',
+  'Room-Darkening': 'Blackout',
+  'room darkening': 'blackout'
+};
+function pbLightLabel(name) {
+  if (name == null) return name;
+  var s = String(name);
+  if (PB_LIGHT_LABELS[s]) return PB_LIGHT_LABELS[s];
+  // Also handles composite labels such as "Sheer + Room Darkening".
+  return s.replace(/Room[- ]Darkening/g, 'Blackout').replace(/room[- ]darkening/g, 'blackout');
+}
+// Recognises a light-control label as the blackout/room-darkening one, whichever
+// wording it is written in. Use this instead of comparing against a literal
+// string — several price calcs read the SELECTED BUTTON'S TEXT to decide whether
+// to add the +20% surcharge, so a label change must never break the match.
+function pbIsBlackoutLabel(txt) {
+  return /(^|\b)(room[- ]darkening|blackout)(\b|$)/i.test(String(txt || '').trim());
+}
+// Norman's "LightGuard 360™" side-channel system is sold to customers as
+// "Full Blackout Side Channels". Same landmine as above — the $364 surcharge and
+// the fabric-compatibility check both read the selected button's text.
+function pbIsFullBlackoutLabel(txt) {
+  return /lightguard\s*360|full\s+blackout\s+side\s+channels/i.test(String(txt || ''));
+}
+var PB_LIGHTGUARD_LABEL = 'Full Blackout Side Channels';
+function pbBlackoutHref() {
+  var p = location.pathname || '';
+  return /\/pages\//i.test(p) ? 'blackout-disclaimer.html' : 'pages/blackout-disclaimer.html';
+}
+// Small muted note shown only while a blackout option is selected. One shared
+// sentence + one shared page — do not paste long disclaimer copy per product.
+function pbBlackoutNoteHTML() {
+  return '<div class="pb-blackout-note" style="font-size:11.5px;color:#666;margin-top:8px;line-height:1.6">' +
+    'Blackout describes the fabric. Light can still enter around the edges of any window treatment &mdash; ' +
+    '<a href="' + pbBlackoutHref() + '" target="_blank" rel="noopener" style="color:#666;text-decoration:underline">' +
+    'what to expect from blackout</a>.' +
+  '</div>';
+}
+// Show/hide that note inside a container, driven by whether blackout is selected.
+function pbToggleBlackoutNote(containerId, isBlackout) {
+  var box = document.getElementById(containerId);
+  if (!box) return;
+  if (isBlackout) {
+    if (!box.innerHTML) box.innerHTML = pbBlackoutNoteHTML();
+    box.style.display = '';
+  } else {
+    box.style.display = 'none';
+  }
 }
 // ── LIVE PRICING SCOPE (Justin, Sept 2026) ──────────────────────────────────
 // The site quotes a real price for six products only:

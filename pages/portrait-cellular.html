@@ -156,7 +156,7 @@
       </div>
       <div class="step-note">Bottom Up — Standard operation &middot; all fabrics available. Top Down / Bottom Up — Opens from top or bottom &middot; max 60 sqft area. Day &amp; Night — Two fabrics in one headrail (a day shade + a night shade); pick the combination in the Fabric step below.</div>
       <div id="tdbu-note" class="msg-box msg-info" style="display:none;margin-top:8px">Top Down / Bottom Up: max area is 60 sqft (width × height).</div>
-      <div id="dn-note"   class="msg-box msg-info" style="display:none;margin-top:8px">Day &amp; Night: two shades in one headrail — a sheer/light-filtering &ldquo;day&rdquo; shade on top and a room-darkening &ldquo;night&rdquo; shade on the bottom. Choose your fabric combination in the Fabric step below. Top and bottom use the same cell size.</div>
+      <div id="dn-note"   class="msg-box msg-info" style="display:none;margin-top:8px">Day &amp; Night: two shades in one headrail — a sheer/light-filtering &ldquo;day&rdquo; shade on top and a blackout &ldquo;night&rdquo; shade on the bottom. Choose your fabric combination in the Fabric step below. Top and bottom use the same cell size.</div>
     </div>
   </div>
 
@@ -193,10 +193,10 @@
         <div class="sub-label">Fabric Type</div>
         <div id="grp-cell-fabric" class="opt-row">
           <button class="opt-btn sel" onclick="pickCellFabric(this,'lf')">Light Filtering</button>
-          <button class="opt-btn" onclick="pickCellFabric(this,'rd')">Room Darkening <span style="font-size:10px;opacity:.65">+20%</span></button>
+          <button class="opt-btn" onclick="pickCellFabric(this,'rd')">Blackout <span style="font-size:10px;opacity:.65">+20%</span></button>
           <button class="opt-btn" onclick="pickCellFabric(this,'sheer')">Sheer <span style="font-size:10px;opacity:.65">+20%</span></button>
         </div>
-        <div class="step-note">Light Filtering — Softens light &middot; privacy &middot; available in all cell sizes. Room Darkening — Near-blackout &middot; not 3⁄8″S &middot; 9⁄16″S has limited palette. Sheer — View-through when down &middot; 3⁄8″S, 3⁄4″S or 1¼″S &middot; 5 colors.</div>
+        <div class="step-note">Light Filtering — Softens light &middot; privacy &middot; available in all cell sizes. Blackout — Near-blackout &middot; not 3⁄8″S &middot; 9⁄16″S has limited palette. Sheer — View-through when down &middot; 3⁄8″S, 3⁄4″S or 1¼″S &middot; 5 colors.</div>
       </div>
 
       <!-- Day & Night fabric combination (shown when Lift = Day & Night) -->
@@ -374,7 +374,7 @@ function pickCellFabric(el, type) {
   document.querySelectorAll('#grp-cell-fabric .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
   el.classList.add('sel');
   CELL.fabric = type;
-  var labels = {lf:'Light Filtering', rd:'Room Darkening', sheer:'Sheer'};
+  var labels = {lf:'Light Filtering', rd:'Blackout', sheer:'Sheer'};
   document.getElementById('qr-cell-fabric').textContent = labels[type] || type;
   filterCellSizes();
   renderCellColorGrid();

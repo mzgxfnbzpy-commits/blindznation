@@ -163,9 +163,9 @@
     <div class="step-body">
       <div class="opt-row">
         <button class="opt-btn sel" onclick="pickFabric(this,'lf')">Light Filtering</button>
-        <button class="opt-btn" onclick="pickFabric(this,'rd')">Room Darkening <span style="font-size:10px;opacity:.65">+20%</span></button>
+        <button class="opt-btn" onclick="pickFabric(this,'rd')">Blackout <span style="font-size:10px;opacity:.65">+20%</span></button>
       </div>
-      <div class="step-note">Light Filtering: 22 colors &middot; sheer vanes diffuse daylight &middot; view-through when open. Room Darkening: 10 colors &middot; more privacy when closed &middot; adds a liner to reduce light, best for bedrooms &middot; not a true blackout.</div>
+      <div class="step-note">Light Filtering: 22 colors &middot; sheer vanes diffuse daylight &middot; view-through when open. Blackout: 10 colors &middot; more privacy when closed &middot; adds a liner to reduce light, best for bedrooms &middot; not a true blackout.</div>
     </div>
   </div>
 
@@ -202,7 +202,7 @@
           <option value="Frosty Asphalt">Frosty Asphalt (F1194) — sheer dark</option>
           <option value="Nightfall">Nightfall (F1191) — deep charcoal</option>
         </optgroup>
-        <optgroup label="Room Darkening (10 colors — +20%)" id="ps-rd-group" style="display:none">
+        <optgroup label="Blackout (10 colors — +20%)" id="ps-rd-group" style="display:none">
           <option value="Moon">Moon (F1200) — white</option>
           <option value="Silk">Silk (F1201) — warm white</option>
           <option value="Chai Latte">Chai Latte (F1202) — blush cream</option>
@@ -433,7 +433,7 @@ function pickFabric(el, type) {
   document.querySelectorAll('#step2 .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
   el.classList.add('sel');
   PS.fabric = type;
-  document.getElementById('s3val').textContent = type === 'rd' ? 'Room Darkening' : 'Light Filtering';
+  document.getElementById('s3val').textContent = type === 'rd' ? 'Blackout' : 'Light Filtering';
   markDone('step2');
   psUpdateColors(type);
 }
