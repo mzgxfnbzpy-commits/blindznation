@@ -584,6 +584,21 @@ var PB_QUOTE_ONLY_PAGES = {
   'finial-company'                  : [],
   'upholstery'                      : []
 };
+// ── Oversize freight — Justin, Sept 2026 ────────────────────────────────────
+// Anything wider than 80″ ships oversize, at a $500 minimum. This is OUR freight
+// and applies to what we fabricate in house: Basic Roller, Romans, cornices and
+// valances. It does NOT apply to:
+//   · Norman products — they carry Norman's own table ($25 first + $11 each, or
+//     $80 + $50 each over 90″) and must never get this on top.
+//   · Drapery — soft goods fold into a carton and ship parcel at any width
+//     (Justin, 2026-09-07, asked and answered explicitly).
+// A cornice or valance can also avoid it by being spliced: the board is jointed,
+// the fabric stays one piece.
+// Lives here rather than per page so the $500 is defined once — it was about to
+// be duplicated across shades.js and soft-treatments.js.
+var PB_OVERSIZE_W   = 80;
+var PB_OVERSIZE_MIN = 500;
+
 // Current page's filename with no extension — 'perfectsheer' for /pages/perfectsheer.html.
 function pbPageKey() {
   var last = (location.pathname || '').split('/').pop() || '';

@@ -2108,8 +2108,11 @@ function pbCalcPrice() {
   }
 
   var shadeTotal = result.price * qty;
-  var isOversized = result.oversized;
-  var freight = isOversized ? (80 + Math.max(0,qty-1)*50) : (25 + Math.max(0,qty-1)*11);
+  // Basic Roller is our own in-house fabrication, not Norman, so it takes our
+  // oversize freight: over 80″ wide is a flat $500 minimum (see PB_OVERSIZE_W /
+  // PB_OVERSIZE_MIN in shared.js). Under that it ships parcel at the normal rate.
+  var isOversized = (w > PB_OVERSIZE_W);
+  var freight = isOversized ? PB_OVERSIZE_MIN : (25 + Math.max(0,qty-1)*11);
 
   // Metal Fascia
   var valTotal = 0;
@@ -2128,19 +2131,25 @@ function pbCalcPrice() {
   // Display: shade first, then valance, then freight
   pRow((isBlackout?'Blackout (+20%)':'Solar Screen')+' ('+w+'→'+result.rw+'" × '+h+'→'+result.rh+'") × '+qty, shadeTotal);
   rows += valRows;
-  pRow((isOversized?'Oversized freight (over 90")':'Standard freight')+' — '+qty+' shade'+(qty>1?'s':''), freight, true);
+  pRow((isOversized?'Oversized freight (over '+PB_OVERSIZE_W+'" wide)':'Standard freight — '+qty+' shade'+(qty>1?'s':'')), freight, true);
 
   document.getElementById('pb-price-rows').innerHTML = rows;
   document.getElementById('pb-price-total').textContent = '$'+grandTotal.toFixed(0);
   var note = 'Dimensions rounded up to next standard size. ' +
     (isBlackout ? 'Blackout includes +20% upcharge. ' : '') +
-    (isOversized ? 'Oversized freight: $80 first + $50 each additional. ' : 'Freight: $25 first + $11 each additional. ') +
+    (isOversized ? 'Over ' + PB_OVERSIZE_W + '" wide ships oversize — $' + PB_OVERSIZE_MIN + ' minimum. ' : 'Freight: $25 first + $11 each additional. ') +
     'Retail prices — installation quoted separately. Final confirmed at order.';
   document.getElementById('pb-price-note').textContent = note;
   box.style.display='block';
 
   // Line-by-line estimate panel
-  var gPBs = function(id){ var b=document.querySelector('#'+id+' .pmm-opt.sel'); return b?b.textContent.trim():''; };
+  // gPB reads the selected option button in a group. It used to be spelled gPBs
+  // here while every line below called gPB — and the only real gPB is a const
+  // scoped inside submitPBForm, so this function threw ReferenceError the moment
+  // it reached selLines. The dark price box rendered, then the estimate panel and
+  // Add to Cart never did. Same selector as submitPBForm's copy (.opt-btn.sel);
+  // the old .pmm-opt.sel selector matched nothing in this form.
+  var gPB = function(id){ var b=document.querySelector('#'+id+' .opt-btn.sel'); return b?b.textContent.trim():''; };
   var selLines = [
     { label:'Product',     value:'Basic Roller Shade' },
     { label:'Fabric type', value: fabType },
@@ -2150,7 +2159,7 @@ function pbCalcPrice() {
     { label:'End caps',    value: gPB('pb-grp-endcap') || '—' },
     { label:'Mount',       value: gPB('pb-grp-mount') || '—' },
     { label:'Quantity',    value: (parseInt(document.getElementById('pb-qty-inp').value)||1)+' shade(s)' },
-    { label:'Freight',     value: isOversized ? 'Oversized rate ($80 first + $50 ea.)' : 'Standard ($25 first + $11 ea.)' }
+    { label:'Freight',     value: isOversized ? 'Oversize — over ' + PB_OVERSIZE_W + '" wide ($' + PB_OVERSIZE_MIN + ' min.)' : 'Standard ($25 first + $11 ea.)' }
   ];
   pbRenderEstimate('pb-price-box', selLines, grandTotal, '', function(checkout) {
     pbCollectItem('Basic Roller Shade', selLines, grandTotal, gPB('pb-grp-operation')==='Motorized');
