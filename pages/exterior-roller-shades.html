@@ -217,9 +217,21 @@
       <div class="step-title" style="margin-bottom:0">Operation</div>
     </div>
     <p class="step-subhead">Manual uses a hand crank — no power required, reliable and low-maintenance. Motor brand and specs are confirmed at quote; add your preference in the notes.</p>
-    <div class="opt-row">
+    <div class="opt-row" id="ers-op-row">
       <button class="opt-btn" id="op-manual" onclick="ersPickOperation('manual','Manual — hand crank')">Manual &mdash; hand crank</button>
       <button class="opt-btn" id="op-motorized" onclick="ersPickOperation('motorized','Motorized')">Motorized</button>
+    </div>
+
+    <!-- Which end of the shade the hardware sits on. The wording follows the
+         operation — a hand crank has a crank side, a motor has a motor side —
+         but it is the same field either way, and fabrication needs it. -->
+    <div id="ers-side-wrap" style="display:none;margin-top:16px">
+      <div class="step-title" style="font-size:13px;margin-bottom:4px" id="ers-side-label">Crank side</div>
+      <p class="step-subhead" style="margin-bottom:8px" id="ers-side-hint">Standing outside and facing the shade, which side should the crank be on?</p>
+      <div class="opt-row" id="ers-side-row">
+        <button class="opt-btn" id="ers-side-left"  onclick="ersPickSide('left')">Left</button>
+        <button class="opt-btn" id="ers-side-right" onclick="ersPickSide('right')">Right</button>
+      </div>
     </div>
   </div>
 </div>
@@ -284,7 +296,7 @@ document.getElementById('pb-final-step').innerHTML =
 renderNav('Shades & blinds');
 renderFooter(false);
 
-var ERS = { openness:'', color:'', track:'cables', mount:'', operation:'', width:0, height:0, qty:1, delivery:'ship' };
+var ERS = { openness:'', color:'', track:'cables', mount:'', operation:'', side:'', width:0, height:0, qty:1, delivery:'ship' };
 
 function ersOpen(id) {
   var el = document.getElementById(id);
@@ -343,12 +355,46 @@ function ersPickTrack(val, label) {
 
 function ersPickOperation(val, label) {
   ERS.operation = val;
-  document.querySelectorAll('#step-5 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
+  // Scoped to the operation row — an unscoped query here would also clear the
+  // crank/motor side buttons that now live in this same step.
+  document.querySelectorAll('#ers-op-row .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   var card = document.getElementById('op-' + val);
   if (card) card.classList.add('sel');
+
+  // Switching operation invalidates any side already chosen — the question is
+  // "crank side" or "motor side" depending on this answer.
+  ERS.side = '';
+  document.querySelectorAll('#ers-side-row .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
+  var isManual = (val === 'manual');
+  var lbl  = document.getElementById('ers-side-label');
+  var hint = document.getElementById('ers-side-hint');
+  var wrap = document.getElementById('ers-side-wrap');
+  if (lbl)  lbl.textContent  = isManual ? 'Crank side' : 'Motor side';
+  if (hint) hint.textContent = isManual
+    ? 'Standing outside and facing the shade, which side should the crank be on?'
+    : 'Standing outside and facing the shade, which side should the motor be on?';
+  if (wrap) wrap.style.display = 'block';
+
+  ersUpdatePanel();
+  // Step 5 stays open until the side is picked — closing here would hide the
+  // question we just revealed.
+}
+
+// Crank side (manual) or motor side (motorized) — same field, label follows Step 5.
+function ersPickSide(val) {
+  ERS.side = val;
+  document.querySelectorAll('#ers-side-row .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
+  var b = document.getElementById('ers-side-' + val);
+  if (b) b.classList.add('sel');
   ersDone('step-5');
   ersUpdatePanel();
   setTimeout(function() { ersOpen('step-6'); }, 300);
+}
+// "Left"/"Right" plus the word for whichever hardware it is — used by the panel,
+// the cart line and the quote email so all three read the same.
+function ersSideLabel() {
+  if (!ERS.side) return '';
+  return (ERS.side === 'left' ? 'Left' : 'Right') + ' (' + (ERS.operation === 'motorized' ? 'motor' : 'crank') + ' side)';
 }
 
 function ersDimChange() {
@@ -412,6 +458,7 @@ function ersUpdatePanel() {
     if (ERS.track) qr('Side track', ERS.track === 'zipper' ? 'Zipper Track' : 'Cables');
     if (ERS.mount) qr('Mount', ERS.mount === 'wall' ? 'Wall mount' : 'Ceiling / Soffit mount');
     if (ERS.operation) qr('Operation', ERS.operation === 'manual' ? 'Manual — hand crank' : 'Motorized');
+    if (ERS.side) qr(ERS.operation === 'motorized' ? 'Motor side' : 'Crank side', ERS.side === 'left' ? 'Left' : 'Right');
     if (ERS.width && ERS.height) qr('Size', ERS.width + '″ × ' + ERS.height + '″');
     qr('Qty', ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : ''));
     if (ERS.delivery) qr('Delivery', ERS.delivery === 'ship' ? 'Ship to me' : 'Pickup');
@@ -442,6 +489,7 @@ function addExteriorRollerToCart(){
     {label:'Side Track',value:trackLabel},
     {label:'Mount',value:mountLabel},
     {label:'Operation',value:opLabel},
+    {label:(ERS.operation==='motorized'?'Motor side':'Crank side'),value:(ERS.side?(ERS.side==='left'?'Left':'Right'):'—')},
     {label:'Width',value:(ERS.width||'—')+'″'},
     {label:'Height',value:(ERS.height||'—')+'″'},
     {label:'Quantity',value:String(ERS.qty||1)}
@@ -475,6 +523,7 @@ function ersSubmit() {
     'Side track:     ' + trackLabel + '\n' +
     'Mount:          ' + mountLabel + '\n' +
     'Operation:      ' + opLabel + '\n' +
+    (ERS.operation === 'motorized' ? 'Motor side:     ' : 'Crank side:     ') + (ersSideLabel() || '—') + '\n' +
     'Dimensions:     ' + dimLabel + ' (' + sqft + ')\n' +
     'Quantity:       ' + ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : '') + '\n' +
     'Delivery:       Ship to me (UPS/FedEx)\n' +

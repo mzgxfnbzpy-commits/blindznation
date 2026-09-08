@@ -2782,19 +2782,22 @@ function reqMoreInfo(product) {
 (function () {
   if (window.location.hostname !== 'blindznation.com' && window.location.hostname !== 'www.blindznation.com') return;
 
-  var CONF_PAGES = [
-    'shades','hardware','norman-sheers',
-    'faux-wood-blinds','soluna-roller-shades','norman-centerpiece-roman',
-    'select-rods','kirsch-rods','paris-texas-rods','orion-rods','finial-company',
-    'hardware-quote','synchrony-verticals','city-lights-aluminum-blinds',
-    'wallace-3d-sheer','galaxy-woven-woods','dynasty-woven-woods',
-    'portfolio-dual-sheer','wallace-portfolio-roman',
-    'wallace-portfolio-natural-shades','wallace-natural-roller-shades',
-    'wallace-banded-shades','wallace-woven','wallace-verticals',
-    'kirsch-spec-complete','kirsch-estate-traverse','kirsch-2in-estate-traverse',
-    'walden-premier-woven','walden-select-woven','wallace-dynasty-woven',
-    'woven-wood-shades','sheer-shades'
-  ]; // shutters, soft-treatments, upholstery removed — open for real quotes
+  // EMPTY — every configurator is open on the live site (Justin, Sept 2026).
+  //
+  // This list used to name 32 pages whose configurator was deleted on load and
+  // replaced with the "call us" panel below. That predated real pricing. It is
+  // what made cellular, Soluna roller and faux wood look like they had no
+  // pricing on the live domain — the configurator was never rendered at all,
+  // so there was nothing to price.
+  //
+  // Pricing is now gated on its own, per product, by PB_QUOTE_ONLY_PAGES: the
+  // six priced products quote a number, everything else configures fully and
+  // submits for a custom quote with no price shown. That is the correct control
+  // for this, so the page-level block is no longer needed.
+  //
+  // To take a page off the live site again, put its slug back in here — the
+  // block-and-redirect machinery below still works exactly as before.
+  var CONF_PAGES = [];
 
   var slug = window.location.pathname.split('/').pop().replace(/\.html$/i, '').toLowerCase();
   var isConfPage = CONF_PAGES.indexOf(slug) !== -1;
