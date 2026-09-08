@@ -538,8 +538,20 @@ function romanRingsToggle() {
   if (opts) opts.style.display = (choice === 'We supply rings') ? 'block' : 'none';
   if (custNote) custNote.style.display = (choice === 'I supply rings') ? 'block' : 'none';
 }
+// pbRenderEstimate builds a sibling panel (<boxId>-checkout-panel) holding the
+// line items, the total and Add to Cart. Rewriting the price box alone leaves
+// that panel on screen still showing the LAST price that calculated — so a
+// customer who types an out-of-range size sees "custom quote required" with a
+// stale dollar total sitting right underneath it. Clear it whenever we bail out.
+function _clearEstimatePanel(box) {
+  if (!box || !box.id) return;
+  var panel = document.getElementById(box.id + '-checkout-panel');
+  if (panel) { panel.innerHTML = ''; panel.style.display = 'none'; }
+}
+
 function _motorCustomMsg(box, label) {
   if (!box) return;
+  _clearEstimatePanel(box);
   box.style.display = 'block';
   box.innerHTML =
     '<div style="padding:2px 0">' +
@@ -550,6 +562,7 @@ function _motorCustomMsg(box, label) {
 
 function _customSizeMsg(box, label, maxW, maxH) {
   if (!box) return;
+  _clearEstimatePanel(box);
   box.style.display = 'block';
   box.innerHTML =
     '<div style="padding:2px 0">' +
