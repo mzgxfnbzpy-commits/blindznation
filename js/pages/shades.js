@@ -2109,10 +2109,12 @@ function pbCalcPrice() {
 
   var shadeTotal = result.price * qty;
   // Basic Roller is our own in-house fabrication, not Norman, so it takes our
-  // oversize freight: over 80″ wide is a flat $500 minimum (see PB_OVERSIZE_W /
-  // PB_OVERSIZE_MIN in shared.js). Under that it ships parcel at the normal rate.
-  var isOversized = (w > PB_OVERSIZE_W);
-  var freight = isOversized ? PB_OVERSIZE_MIN : (25 + Math.max(0,qty-1)*11);
+  // freight. A roller ships in a tube: the carton is set by WIDTH alone and the
+  // length never affects it. Tiers live in pbRollerFreight() in shared.js —
+  // ≤80″ parcel, 81–100″ $200, 101–150″ $300, 151″+ $500 minimum.
+  var rollerFreight = pbRollerFreight(w, qty);
+  var isOversized = rollerFreight.oversize;
+  var freight = rollerFreight.fee;
 
   // Metal Fascia
   var valTotal = 0;
@@ -2131,13 +2133,16 @@ function pbCalcPrice() {
   // Display: shade first, then valance, then freight
   pRow((isBlackout?'Blackout (+20%)':'Solar Screen')+' ('+w+'→'+result.rw+'" × '+h+'→'+result.rh+'") × '+qty, shadeTotal);
   rows += valRows;
-  pRow((isOversized?'Oversized freight (over '+PB_OVERSIZE_W+'" wide)':'Standard freight — '+qty+' shade'+(qty>1?'s':'')), freight, true);
+  pRow(rollerFreight.label, freight, true);
 
   document.getElementById('pb-price-rows').innerHTML = rows;
   document.getElementById('pb-price-total').textContent = '$'+grandTotal.toFixed(0);
   var note = 'Dimensions rounded up to next standard size. ' +
     (isBlackout ? 'Blackout includes +20% upcharge. ' : '') +
-    (isOversized ? 'Over ' + PB_OVERSIZE_W + '" wide ships oversize — $' + PB_OVERSIZE_MIN + ' minimum. ' : 'Freight: $25 first + $11 each additional. ') +
+    (isOversized
+      ? 'Oversize freight by width: 81–100" $200 · 101–150" $300 · over 150" $500 minimum' +
+        (rollerFreight.tbd ? ', confirmed at order. ' : '. ')
+      : 'Freight: $25 first + $11 each additional. ') +
     'Retail prices — installation quoted separately. Final confirmed at order.';
   document.getElementById('pb-price-note').textContent = note;
   box.style.display='block';
@@ -2159,7 +2164,7 @@ function pbCalcPrice() {
     { label:'End caps',    value: gPB('pb-grp-endcap') || '—' },
     { label:'Mount',       value: gPB('pb-grp-mount') || '—' },
     { label:'Quantity',    value: (parseInt(document.getElementById('pb-qty-inp').value)||1)+' shade(s)' },
-    { label:'Freight',     value: isOversized ? 'Oversize — over ' + PB_OVERSIZE_W + '" wide ($' + PB_OVERSIZE_MIN + ' min.)' : 'Standard ($25 first + $11 ea.)' }
+    { label:'Freight',     value: isOversized ? rollerFreight.label + ' — $' + freight : 'Standard ($25 first + $11 ea.)' }
   ];
   pbRenderEstimate('pb-price-box', selLines, grandTotal, '', function(checkout) {
     pbCollectItem('Basic Roller Shade', selLines, grandTotal, gPB('pb-grp-operation')==='Motorized');

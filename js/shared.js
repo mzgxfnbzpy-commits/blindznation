@@ -599,6 +599,38 @@ var PB_QUOTE_ONLY_PAGES = {
 var PB_OVERSIZE_W   = 80;
 var PB_OVERSIZE_MIN = 500;
 
+// ── Roller shade oversize freight — Justin, Sept 2026 ───────────────────────
+// A roller ships in a tube, so the carton is set by WIDTH alone: the length is
+// rolled up and never changes the freight. Tiers, by ordered width:
+//   ≤ 80″      standard parcel ($25 first + $11 each additional)
+//   81–100″    $200
+//   101–150″   $300
+//   151″+      $500 minimum, confirmed at order (Justin: "500 or more, TBD")
+// Norman rollers are NOT priced from this — they carry Norman's own freight.
+var PB_ROLLER_FREIGHT = [
+  { maxW: 100,      fee: 200 },
+  { maxW: 150,      fee: 300 },
+  { maxW: Infinity, fee: 500, tbd: true }
+];
+// Returns { fee, oversize, tbd, label } for an ordered width and quantity.
+function pbRollerFreight(widthIn, qty) {
+  var w = parseFloat(widthIn) || 0;
+  var n = parseInt(qty, 10) || 1;
+  if (w <= PB_OVERSIZE_W) {
+    return { fee: 25 + Math.max(0, n - 1) * 11, oversize: false, tbd: false,
+             label: 'Standard freight — ' + n + ' shade' + (n > 1 ? 's' : '') };
+  }
+  for (var i = 0; i < PB_ROLLER_FREIGHT.length; i++) {
+    var t = PB_ROLLER_FREIGHT[i];
+    if (w <= t.maxW) {
+      return { fee: t.fee, oversize: true, tbd: !!t.tbd,
+               label: 'Oversize freight (' + Math.round(w) + '″ wide)' +
+                      (t.tbd ? ' — minimum, confirmed at order' : '') };
+    }
+  }
+  return { fee: 500, oversize: true, tbd: true, label: 'Oversize freight — confirmed at order' };
+}
+
 // Current page's filename with no extension — 'perfectsheer' for /pages/perfectsheer.html.
 function pbPageKey() {
   var last = (location.pathname || '').split('/').pop() || '';
