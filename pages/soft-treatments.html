@@ -199,7 +199,7 @@
           <div class="form-group">
             <label>Finished length</label>
             <div style="display:flex;align-items:center;gap:6px">
-              <input type="number" id="rp-l" step="0.125" placeholder="96" min="12" max="150" oninput="calcDrapePrice()" style="width:90px">
+              <input type="number" id="rp-l" step="0.125" placeholder="96" min="12" max="185" oninput="calcDrapePrice()" style="width:90px">
               <span style="font-size:12px;color:#666">inches</span>
             </div>
           </div>
@@ -295,7 +295,7 @@
         <div class="form-group">
           <label>Finished length</label>
           <div style="display:flex;align-items:center;gap:6px">
-            <input type="number" id="d-exact-length" step="0.125" placeholder="96" min="12" max="150" oninput="calcDrapePrice()" style="width:90px">
+            <input type="number" id="d-exact-length" step="0.125" placeholder="96" min="12" max="185" oninput="calcDrapePrice()" style="width:90px">
             <span style="font-size:12px;color:#666">inches</span>
           </div>
         </div>
@@ -655,6 +655,16 @@
                 <input type="number" id="d-cornice-width" placeholder="84" min="48" max="360" oninput="calcDrapePrice()" style="font-size:14px">
                 <div class="dim-unit">inches (4 ft / 48" min.)</div>
               </div>
+              <div class="form-group">
+                <label style="font-size:12px">Cornice height (inches)</label>
+                <input type="number" id="d-cornice-height" placeholder="15" min="4" max="120" oninput="calcDrapePrice()" style="font-size:14px">
+                <div class="dim-unit">face height &mdash; over 15&Prime; costs more per foot</div>
+              </div>
+            </div>
+            <div style="font-size:11px;color:#666;margin-top:8px;line-height:1.6">
+              $35 per linear foot up to 15&Prime; high, $200 minimum. Taller boards step up per foot
+              (16&ndash;35&Prime; $70 &middot; 36&ndash;55&Prime; $95 &middot; 56&ndash;75&Prime; $120).
+              <strong>Fabric is not included</strong> &mdash; quoted separately.
             </div>
             <div style="margin-top:10px">
               <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on cornice?</div>
@@ -680,6 +690,16 @@
                 <input type="number" id="d-valance-width" placeholder="84" min="12" max="360" oninput="calcDrapePrice()" style="font-size:14px">
                 <div class="dim-unit">inches</div>
               </div>
+              <div class="form-group">
+                <label style="font-size:12px">Valance height (inches)</label>
+                <input type="number" id="d-valance-height" placeholder="15" min="4" max="120" oninput="calcDrapePrice()" style="font-size:14px">
+                <div class="dim-unit">face height &mdash; over 15&Prime; costs more per foot</div>
+              </div>
+            </div>
+            <div style="font-size:11px;color:#666;margin-top:8px;line-height:1.6">
+              $35 per linear foot up to 15&Prime; high, $200 minimum. Taller boards step up per foot
+              (16&ndash;35&Prime; $70 &middot; 36&ndash;55&Prime; $95 &middot; 56&ndash;75&Prime; $120).
+              <strong>Fabric is not included</strong> &mdash; quoted separately.
             </div>
             <div style="margin-top:10px">
               <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on valance?</div>
@@ -690,14 +710,13 @@
           </div>
         </div>
       </div>
-      <!-- Notes live in the shared final step below (id d-notes), so this tab no
-           longer carries its own box — two of them meant a duplicate id. -->
+      <!-- Notes now live in the canonical final step below (id d-notes, unchanged). -->
 
       <!-- CORNICE / VALANCE → CV TAB RECOMMENDATION -->
       <div id="drape-cv-rec" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:10px;padding:14px 16px;margin-bottom:16px">
         <div style="font-size:13px;font-weight:600;color:#7d5a00;margin-bottom:6px">⚠ Configure your cornice / valance before submitting</div>
         <div style="font-size:12px;color:#7d5a00;line-height:1.6;margin-bottom:10px">You've added a cornice or valance to this drapery. For accurate sizing and pricing, please set up the full details in the <strong>Cornices &amp; Valances tab</strong> before checking out.</div>
-        <button onclick="(function(){var b=Array.from(document.querySelectorAll('.type-tab')).find(function(t){return(t.getAttribute('onclick')||'').indexOf(&quot;'cornval'&quot;)!==-1;});if(b)switchTab('cornval',b);})()" style="font-size:12px;font-weight:600;background:#111110;color:var(--gold);border:none;padding:8px 16px;border-radius:8px;cursor:pointer">Go to Cornices &amp; Valances tab &rarr;</button>
+        <button onclick="(function(){var b=Array.from(document.querySelectorAll('.type-tab')).find(function(t){return(t.getAttribute('onclick')||'').indexOf(&quot;'cornval'&quot;)!==-1;});if(b)switchTab('cornval',b);})()" style="font-size:12px;font-weight:600;background:#1C1510;color:var(--gold);border:none;padding:8px 16px;border-radius:8px;cursor:pointer">Go to Cornices &amp; Valances tab &rarr;</button>
       </div>
 
       <!-- HARDWARE QUESTION -->
@@ -733,8 +752,8 @@
 
       <div style="border-top:1px solid #e8e8e4;margin:20px 0 16px"></div>
       <button onclick="reqMoreInfo('Custom Drapery')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Drapery →</button>
-      <!-- Canonical final step — injected at the bottom of this page with
-           idPrefix 'd-', which reproduces the ids this tab's submit fn already reads. -->
+      <!-- Canonical final step — injected at the bottom of this page with idPrefix 'd-',
+           which reproduces the original d-name/d-phone/d-email/d-address/d-notes ids. -->
       <div id="drape-final-step"></div>
     </div>
     <div class="success-box" id="drape-success">
@@ -952,8 +971,6 @@
       <!-- Contact -->
       <div style="border-top:1px solid #e8e8e4;margin:16px 0 12px"></div>
       <button onclick="reqMoreInfo('Custom Roman Valance')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Valance &rarr;</button>
-      <!-- Canonical final step — injected at the bottom of this page with
-           idPrefix 'val-', which reproduces the ids this tab's submit fn already reads. -->
       <div id="valance-final-step"></div>
     </div>
     <div id="valance-success" style="display:none;background:#EAF3DE;border-radius:10px;padding:18px;text-align:center;margin-top:10px">
@@ -1251,8 +1268,6 @@
 
           <div style="border-top:1px solid #e8e8e4;margin:20px 0 16px"></div>
           <button onclick="reqMoreInfo('Custom Roman Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Shades →</button>
-          <!-- Canonical final step — injected at the bottom of this page with
-               idPrefix 'rn-', which reproduces the ids this tab's submit fn already reads. -->
           <div id="roman-final-step"></div>
         </div>
         <div class="success-box" id="roman-success">
@@ -1300,6 +1315,15 @@
       <div style="margin-top:12px"><label style="font-size:12px;font-weight:600;color:#333;display:block;margin-bottom:5px">Return size <span style="font-weight:400;color:#999">default 4"</span></label>
         <input type="number" id="cv-corn-return" value="4" min="1" max="18" oninput="calcCornice()" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
         <span style="font-size:12px;color:#888;margin-left:8px">inches</span></div>
+      <!-- Over 80" the board will not ship parcel. Splicing joints the board so it
+           can; the fabric stays a single piece either way. -->
+      <div id="corn-splice-wrap" style="margin-top:12px">
+        <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#444;cursor:pointer">
+          <input type="checkbox" id="corn-splice" onchange="calcCornice()" style="margin-top:2px">
+          <span>Over 80&Prime; wide &mdash; splice the board so it ships normally
+            <span style="color:#888">(board jointed, fabric still one piece; avoids the $500 oversize freight)</span></span>
+        </label>
+      </div>
     </div>
 
     <!-- Mount type -->
@@ -1384,7 +1408,7 @@
     <!-- Fabric yardage estimate — standalone display -->
     <div id="corn-yardage-display" style="display:none;margin-bottom:14px;padding:14px 16px;background:var(--gold-mid);border:1.5px solid var(--gold);border-radius:10px">
       <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:6px">&#129514; Estimated fabric needed</div>
-      <div id="corn-yardage-text" style="font-size:18px;font-weight:700;color:#111110;margin-bottom:4px"></div>
+      <div id="corn-yardage-text" style="font-size:18px;font-weight:700;color:#1C1510;margin-bottom:4px"></div>
       <div id="corn-yardage-sub" style="font-size:11px;color:#666;line-height:1.5"></div>
     </div>
 
@@ -1404,8 +1428,6 @@
         <span><strong>Specialty shapes</strong> — angled cornices, rounded returns, or heavily carved / decorative valances require a custom quote. Call <a href="tel:6097421720" style="color:#7a5c00;font-weight:600">(609) 742-1720</a> or use the <strong>Specialty ✦</strong> tab above.</span>
       </div>
       <div style="border-top:1px solid #e8e8e4;margin:20px 0 16px"></div>
-      <!-- Canonical final step — injected at the bottom of this page with
-           idPrefix 'cn-', which reproduces the ids this tab's submit fn already reads. -->
       <div id="cornice-final-step"></div>
     </div>
     <div class="success-box" id="corn-success"><strong>Order submitted!</strong> Your email opened with your spec — hit Send. We'll review and send you an invoice. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a></div>
@@ -1429,7 +1451,7 @@
 
       <a href="wallace-woven.html#roman-woven-choice" style="text-decoration:none">
         <div class="opt-card" style="border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s">
-          <div class="opt-art" style="height:140px;background:#FAF8F3">
+          <div $1#FAF8F3">
             <img loading="lazy" src="../images/thumbnails/woven-wood-shades.png" alt="Wallace Walden Natural Woven" style="object-fit:cover;width:100%;height:100%">
           </div>
           <div class="opt-label-bar" style="padding:14px 16px">
@@ -1485,6 +1507,15 @@
       <div style="margin-top:12px"><label style="font-size:12px;font-weight:600;color:#333;display:block;margin-bottom:5px">Return size <span style="font-weight:400;color:#999">default 4"</span></label>
         <input type="number" id="cv-val-return" value="4" min="1" max="18" oninput="calcValance()" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
         <span style="font-size:12px;color:#888;margin-left:8px">inches</span></div>
+      <!-- Over 80" the board will not ship parcel. Splicing joints the board so it
+           can; the fabric stays a single piece either way. -->
+      <div id="val-splice-wrap" style="margin-top:12px">
+        <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#444;cursor:pointer">
+          <input type="checkbox" id="val-splice" onchange="calcValance()" style="margin-top:2px">
+          <span>Over 80&Prime; wide &mdash; splice the board so it ships normally
+            <span style="color:#888">(board jointed, fabric still one piece; avoids the $500 oversize freight)</span></span>
+        </label>
+      </div>
     </div>
     <!-- Mount type -->
     <div style="margin-bottom:14px">
@@ -1545,8 +1576,6 @@
         <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong>.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
       </div>
       <div style="border-top:1px solid #e8e8e4;margin:20px 0 16px"></div>
-      <!-- Canonical final step — injected at the bottom of this page with
-           idPrefix 'vn-', which reproduces the ids this tab's submit fn already reads. -->
       <div id="valance-cv-final-step"></div>
     </div>
     <div class="success-box" id="val-cv-success"><strong>Quote sent!</strong> We'll follow up soon. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a></div>
@@ -1614,10 +1643,12 @@
 <script src="../js/shared.js"></script>
 <script src="../js/pages/soft-treatments.js"></script>
 <script>
-// Canonical final step for all five tabs. idPrefix keeps each tab's ids unique while
-// reproducing the ids this page's submit functions already read, so no JS below had to
-// change. Every tab now carries the Terms checkbox, the spam honeypot and file upload,
-// which none of them had. cartFn is set only where an add-to-cart function exists.
+// Canonical final "Your details" step — the SAME markup on all five tabs, so a
+// customer fills out an identical form whichever product they configure. idPrefix
+// keeps each tab's ids unique while reproducing the ids this page's submit
+// functions already read, so no JS below had to change. Every tab now carries the
+// Terms checkbox, the spam honeypot and file upload, which none of them had.
+// cartFn is set only where an add-to-cart function actually exists.
 [
   { mount: 'drape-final-step',      prefix: 'd-',   err: 'drape-contact-err', submit: 'submitDrape()',     cart: 'addDrapeToCart()' },
   { mount: 'roman-final-step',      prefix: 'rn-',  err: 'roman-contact-err', submit: 'submitRoman()',     cart: 'addRomanToCart()' },

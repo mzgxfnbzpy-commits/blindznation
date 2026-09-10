@@ -496,6 +496,15 @@ var RN_RATES = {
   'Relaxed Roman':            40,
   'Roman Valance':            40
 };
+// Lining a Roman adds $5/sqft on top of the style rate (Justin, Sept 2026).
+var RN_LINING_PER_SQFT = 5;
+
+// Oversize freight: defined once in shared.js (PB_OVERSIZE_W / PB_OVERSIZE_MIN)
+// so the $500 cannot drift between here and shades.js. Applies to Romans and to
+// cornices/valances — NOT to drapery, which folds into a carton and ships parcel
+// at any width (Justin, 2026-09-07). Falls back if shared.js has not loaded.
+var D_OVERSIZE_W    = (typeof PB_OVERSIZE_W   !== 'undefined') ? PB_OVERSIZE_W   : 80;
+var D_OVERSIZE_MIN  = (typeof PB_OVERSIZE_MIN !== 'undefined') ? PB_OVERSIZE_MIN : 500;
 
 function rnGetRate() {
   var style = romanState.style || 'Flat Roman';
@@ -590,11 +599,14 @@ function calcRoman() {
   // Custom quote for over 120″
   if (w > 120 || h > 120) { _customSizeMsg(box, 'Roman Shade', 120, 120); return; }
 
-  // Oversized freight flag (>96″ wide = 8 ft)
-  var isRomanOversized = w > 96;
+  // Oversized freight flag — anything over 80″ wide (see D_OVERSIZE_W).
+  var isRomanOversized = w > D_OVERSIZE_W;
 
   var rate     = rnGetRate();
   var isPleated = romanState.style === 'Permanently Pleated Roman';
+  // Lining adds $5/sqft on top of the style rate (Justin, Sept 2026).
+  var romanLined = (romanState.liningType && romanState.liningType !== 'unlined');
+  if (romanLined) rate += RN_LINING_PER_SQFT;
   var sqft     = (w / 12) * (h / 12);
   var perShade = Math.max(rnGetMin(), sqft * rate);
   var laborTotal = perShade * qty;
@@ -638,7 +650,7 @@ function calcRoman() {
   var shipEst = 0;
   if (isShippingRn) {
     if (isRomanOversized) {
-      shipEst = 200;
+      shipEst = D_OVERSIZE_MIN;
     } else {
       var rnShipBase = Math.ceil((w / 12) * (h / 12) * qty * 3 / 5) * 5;
       shipEst = Math.max(75, rnShipBase);
@@ -693,7 +705,7 @@ function calcRoman() {
     }
   }
   if (trimTotal) rnLines.push({ label: 'Trim', value: getOpt('grp-roman-trim') || 'Selected' });
-  if (shipEst)   rnLines.push({ label: isRomanOversized ? 'Oversized freight est. (>96″ wide)' : 'Shipping est. (FedEx/UPS, Philadelphia)', value: '~$' + shipEst });
+  if (shipEst)   rnLines.push({ label: isRomanOversized ? 'Oversized freight (over ' + D_OVERSIZE_W + '″ wide)' : 'Shipping est. (FedEx/UPS, Philadelphia)', value: '~$' + shipEst });
   var rnAtMin = perShade === rnGetMin();
   if (rnAtMin) rnLines.push({ label: 'Note', value: 'At ' + (isPleated ? 'pleated' : 'flat/relaxed') + ' minimum — $' + rnGetMin() + '/shade' });
   pbRenderEstimate('roman-pricebox', rnLines, grandTotal, '', function(checkout) {
@@ -706,20 +718,93 @@ function calcRoman() {
 }
 
 // ── DRAPERY PRICING CALCULATOR ───────────────────────────────
-// Rates (Justin confirmed): $120/width unlined · $130/width lined (liner included, BO=LF same price)
-// Goblet/Barrel: +$20/width · Interlining: +$10/width · Height >100": +$10/width per 10"
-// Width = ceil((rod width × fullness) ÷ 54), min 2
-var D_RATE_UNLINED = 120;   // per cut/width — unlined
-var D_RATE_LINED   = 130;   // per cut/width — liner included (BO or LF, same price)
+// ── Drapery rates — Justin, Sept 2026 ───────────────────────────────────────
+// Priced per cut (one 54" width of fabric). The rate climbs with finished
+// length, because a longer drape is more fabric handling and more labour per
+// cut. Bands, on top of whichever base applies:
+//   ≤ 99″     base            (125 unlined / 135 lined)
+//   100–115″  +$20            (145 / 155)
+//   116–130″  +$35            (160 / 170)
+//   131–141″  +$70            (195 / 205)
+//   142–151″  +$105           (230 / 240)   ← +$35 per further 10″
+//   152–161″  +$140  … and so on to 185″
+//   over 185″ NOT auto-priced — quoted by hand
+var D_RATE_UNLINED = 125;   // per cut/width — unlined
+var D_RATE_LINED   = 135;   // per cut/width — liner included (BO or LF, same price)
+var D_SPECIALTY_PLEAT_ADD = 20;  // Goblet / Barrel, on top of the base rate
+var D_LEN_BAND_ADD = 35;    // added per 10" band above 141"
+var D_LEN_MAX_AUTO = 185;   // longer than this is a manual quote, no number shown
 var D_MIN_WIDTHS   = 2;
 var D_FABRIC_WIDTH = 54;    // standard fabric width (inches)
-var D_LEN_SURCHARGE = 10;   // per width per 10" over 100"
+
+// ── Width (cut) calculation ─────────────────────────────────────────────────
+// Rod width × fullness is only the visible face. A real cut list also has to
+// cover the returns back to the wall and the centre overlap on a pair, and each
+// 54" cut does not yield 54" of finished panel — side hems and the seams
+// between widths eat into it. Under-counting here loses a whole width on jobs
+// that sit just over a boundary, which is money out of pocket every time.
+// Justin's workroom formula:
+//   cuts = ceil( (rod width + allowance) × fullness ÷ fabric width )
+// The allowance covers returns/leads and side hems, and it is added BEFORE the
+// fullness multiplier — that ordering matters, it is what the fullness is
+// actually applied to. Standard 4″ returns with 2″ hems = +12″; 6″ returns = +18″.
+var D_RETURN_IN    = 4;     // standard return/lead
+var D_SIDE_HEM_IN  = 2;     // standard side hem
+var D_FABRIC_CUT_W = 54;    // solid goods; 118″ fabric and railroading are quoted by hand
+var D_YARD_ALLOW   = 16;    // added to finished length for header + hems, before ÷36
+
+// Width allowance for a given return size. Anchored on Justin's two numbers —
+// 4″ returns → +12″, 6″ returns → +18″ — which is three times the return.
+// Anything larger scales the same way; "more than that, accommodate it" per Justin.
+function dWidthAllowance(returnIn) {
+  var r = parseFloat(returnIn) || D_RETURN_IN;
+  return r * 3;
+}
+
+// Per-cut rate for a finished length, or null when it is past the auto-price
+// ceiling and has to be quoted by hand.
+function dDrapeRatePerWidth(heightIn, baseRate) {
+  var h = parseFloat(heightIn) || 0;
+  if (h <= 99)  return baseRate;
+  if (h <= 115) return baseRate + 20;
+  if (h <= 130) return baseRate + 35;
+  if (h <= 141) return baseRate + 70;
+  if (h >  D_LEN_MAX_AUTO) return null;
+  // Every further 10" past the 131–141 band adds another $35.
+  return baseRate + 70 + Math.ceil((h - 141) / 10) * D_LEN_BAND_ADD;
+}
 var D_INTERLINING_PER_WIDTH = 10; // interlining surcharge per width (on top of lined rate)
 var D_LINING_PER_YD = 10;   // when we supply lining (White or Cream) — same yardage as face fabric
 var D_FABRIC_PER_YD = 25;   // placeholder — face fabric custom per spec
-var D_CORNICE_PER_FT = 38.50; // per linear ft (cost $25 ÷ 0.65)
+// ── Cornice / valance — Justin, Sept 2026 ───────────────────────────────────
+// $35 per linear foot at standard height, $200 minimum per piece, and the rate
+// steps up with the face height: a deeper board is more material and more
+// labour per running foot.
+//   ≤ 15″   $35/ft
+//   16–35″  $70/ft   (doubles once past 15″)
+//   36–55″  $95/ft   (+$25)
+//   56–75″  $120/ft  (+$25 for each further 20″, and so on)
+// FABRIC IS NOT INCLUDED in these rates — it is quoted separately, same as the
+// drapery face fabric. Do not fold a fabric estimate into these totals.
+var D_CORNICE_PER_FT = 35;    // base rate, standard height
 var D_CORNICE_MIN_FT = 4;
-var D_VALANCE_PER_FT = 38.50; // same as cornice
+var D_VALANCE_PER_FT = 35;    // same as cornice
+var D_BOARD_MIN      = 200;   // minimum per cornice / per valance
+var D_BOARD_STD_H    = 15;    // at or under this height, the base rate applies
+var D_BOARD_STEP_IN  = 20;    // height band width above the standard
+var D_BOARD_STEP_ADD = 25;    // added per band after the initial doubling
+
+// Per-linear-foot rate for a cornice/valance of a given face height (inches).
+// Height 0 / blank falls back to the base rate so a half-filled form still
+// shows a sensible number.
+function dBoardRatePerFt(heightIn, baseRate) {
+  var base = baseRate || D_CORNICE_PER_FT;
+  var h = parseFloat(heightIn) || 0;
+  if (h <= D_BOARD_STD_H) return base;
+  // First band past the standard height doubles; each further band adds $25.
+  var band = Math.floor((h - (D_BOARD_STD_H + 1)) / D_BOARD_STEP_IN);
+  return (base * 2) + (band * D_BOARD_STEP_ADD);
+}
 var D_TRIM_PER_FT   = 15;
 
 function _getDim(wholeId, fracId) {
@@ -769,18 +854,21 @@ function calcDrapePrice() {
     } else if (tooShort) {
       minWarn.textContent = '⚠ Minimum finished length is 10″. Call (609) 742-1720 to confirm.';
       minWarn.style.display = 'block';
-    } else if (w > 200 || h > 150) {
+    } else if (w > 200 || h > D_LEN_MAX_AUTO) {
       minWarn.textContent = w > 200
         ? '⚠ Width over 200″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.'
-        : '⚠ Length over 150″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.';
+        : '⚠ Length over ' + D_LEN_MAX_AUTO + '″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.';
       minWarn.style.display = 'block';
     } else {
       minWarn.style.display = 'none';
     }
   }
 
-  // Oversized → custom quote (max 200″ wide × 150″ tall)
-  if (w > 200 || h > 150) { _customSizeMsg(box, 'Custom Drapery', 200, 150); return; }
+  // Oversized → custom quote. The length limit is D_LEN_MAX_AUTO, the same 185″
+  // the rate ladder tops out at, so the cap and the pricing cannot drift apart:
+  // raise one and the other follows. It was 150″, which put the top four bands
+  // of the ladder (152–161, 162–171, 172–181, 182–185) out of reach.
+  if (w > 200 || h > D_LEN_MAX_AUTO) { _customSizeMsg(box, 'Custom Drapery', 200, D_LEN_MAX_AUTO); return; }
 
   // Fullness factor
   var isRipple   = drapeState.pleat === 'Ripple Fold';
@@ -804,8 +892,18 @@ function calcDrapePrice() {
     fullness = fBtn ? (parseFloat(fBtn.textContent) || 2.0) : 2.0;
   }
 
-  // Widths
-  var numWidths = Math.max(D_MIN_WIDTHS, Math.ceil((w * fullness) / D_FABRIC_WIDTH));
+  // Widths (cuts) — Justin's workroom formula:
+  //   (rod width + allowance) × fullness ÷ 54″ , rounded up
+  // The allowance covers returns/leads and side hems and goes on BEFORE the
+  // fullness multiplier. It follows the return size the customer picked
+  // (4″ → +12″, 6″ → +18″), because that is the number that decides whether a
+  // job needs one more width of fabric.
+  var _retEl = document.getElementById('d-return');
+  var returnEach  = parseFloat(_retEl && _retEl.value) || D_RETURN_IN;
+  var widthAllowance = dWidthAllowance(returnEach);
+  // Allowance goes on BEFORE the fullness multiplier, then divide by the cut width.
+  var faceWidthNeeded = (w + widthAllowance) * fullness;
+  var numWidths = Math.max(D_MIN_WIDTHS, Math.ceil(faceWidthNeeded / D_FABRIC_CUT_W));
 
   // Lining — type chosen before fabric (unlined/lf/blackout); color from inline picker
   var liningType = drapeState.liningType || 'unlined';
@@ -817,13 +915,15 @@ function calcDrapePrice() {
   var isInterlining = interCheck ? interCheck.checked : false;
   // Goblet and Barrel pleat: +$20/width over base rate
   var isSpecialtyPleat = drapeState.pleat === 'Goblet Pleat' || drapeState.pleat === 'Barrel Pleat';
-  var ratePerWidth = isSpecialtyPleat
-    ? (isLined ? 150 : 140)
-    : (isLined ? D_RATE_LINED : D_RATE_UNLINED);
+  var ratePerWidth = (isLined ? D_RATE_LINED : D_RATE_UNLINED)
+                   + (isSpecialtyPleat ? D_SPECIALTY_PLEAT_ADD : 0);
 
-  // Length surcharge (over 100")
-  var lenSurcharge = h > 100 ? Math.ceil((h - 100) / 10) * D_LEN_SURCHARGE : 0;
-  var effectiveRate = ratePerWidth + lenSurcharge;
+  // Length bands. Past 185" there is no published rate — the job is quoted by
+  // hand, so we show no number rather than inventing one.
+  var effectiveRate = dDrapeRatePerWidth(h, ratePerWidth);
+  var overMaxLength = (effectiveRate === null);
+  var lenSurcharge  = overMaxLength ? 0 : (effectiveRate - ratePerWidth);
+  if (overMaxLength) effectiveRate = 0;
   var laborTotal = numWidths * effectiveRate;
   var interlineTotal = isInterlining ? numWidths * D_INTERLINING_PER_WIDTH : 0;
 
@@ -843,8 +943,12 @@ function calcDrapePrice() {
   var corniceCheck = document.getElementById('d-cornice-check');
   if (corniceCheck && corniceCheck.checked) {
     var cw = parseFloat(document.getElementById('d-cornice-width').value) || 0;
+    var chEl = document.getElementById('d-cornice-height');
+    var ch  = chEl ? (parseFloat(chEl.value) || 0) : 0;
     var cFt = Math.max(D_CORNICE_MIN_FT, cw / 12);
-    corniceTotal = Math.ceil(cFt) * D_CORNICE_PER_FT;
+    var cRate = dBoardRatePerFt(ch, D_CORNICE_PER_FT);
+    // $200 minimum applies to the board itself, before trim is added.
+    corniceTotal = Math.max(D_BOARD_MIN, Math.ceil(cFt) * cRate);
     // Cornice trim
     if (document.getElementById('d-cornice-trim-check') && document.getElementById('d-cornice-trim-check').checked) {
       corniceTotal += Math.ceil(cFt) * D_TRIM_PER_FT;
@@ -856,12 +960,13 @@ function calcDrapePrice() {
   var valanceCheck = document.getElementById('d-valance-check');
   if (valanceCheck && valanceCheck.checked) {
     var vw = parseFloat(document.getElementById('d-valance-width').value) || 0;
+    var vhEl = document.getElementById('d-valance-height');
+    var vh  = vhEl ? (parseFloat(vhEl.value) || 0) : 0;
     var vFt = Math.max(1, vw / 12);
-    valanceTotal = Math.ceil(vFt) * D_VALANCE_PER_FT;
-    if (drapeState.fabric === 'We supply the fabric') {
-      var vYards = Math.ceil(vFt * 0.75); // rough valance yardage estimate
-      valanceTotal += vYards * D_FABRIC_PER_YD;
-    }
+    var vRate = dBoardRatePerFt(vh, D_VALANCE_PER_FT);
+    // $200 minimum applies to the board itself, before trim is added.
+    // Fabric is deliberately NOT added here — it is not included in the rate.
+    valanceTotal = Math.max(D_BOARD_MIN, Math.ceil(vFt) * vRate);
     // Valance trim
     if (document.getElementById('d-valance-trim-check') && document.getElementById('d-valance-trim-check').checked) {
       valanceTotal += Math.ceil(vFt) * D_TRIM_PER_FT;
@@ -948,7 +1053,17 @@ function calcDrapePrice() {
   if (dShipEst)     drapeLines.push({ label: 'Shipping est.', value: '~$' + dShipEst + (qty > 1 ? ' × ' + qty + ' sets' : '') });
   drapeLines.push({ label: 'Fabric needed est.', value: '~' + (totalFabYds * qty).toFixed(1) + ' yds (pattern repeats add more)' });
   if (perSetTotal === 200) drapeLines.push({ label: 'Note', value: '$200 minimum per drapery set' });
-  pbRenderEstimate('drape-price-box', drapeLines, grandTotal, '', function(checkout) {
+  // Past the published length ladder there is no rate to apply, so show the
+  // spec without a price rather than a number we would have to walk back.
+  if (overMaxLength) {
+    drapeLines.push({ label: 'Length', value: h + '″ — over ' + D_LEN_MAX_AUTO + '″' });
+  }
+  pbRenderEstimate('drape-price-box', drapeLines,
+    overMaxLength ? null : grandTotal,
+    overMaxLength
+      ? 'Drapery longer than ' + D_LEN_MAX_AUTO + '″ is priced by hand — send your specs and we\'ll quote it, usually within one business day.'
+      : '',
+    function(checkout) {
     pbCollectItem(drapeState.pleat || 'Custom Drapery', drapeLines, grandTotal, false);
     pbOpenCart();
     if (checkout) setTimeout(function(){
@@ -983,12 +1098,14 @@ function drapeToggleSingle(show) {
   if (el) el.style.display = show ? 'block' : 'none';
 }
 // ── CORNICE & VALANCE PRICING ─────────────────────────────
-// Cost $25/linear ft incl. returns ÷ 0.65 margin = $38.50/ft
-var CV_PER_FT     = 38.50; // cost $25/LF ÷ 0.65
+// Justin, Sept 2026: $35/linear ft at standard height with a $200 minimum per
+// piece, and the per-foot rate steps up with face height — see dBoardRatePerFt
+// above for the ladder (35 / 70 / 95 / 120 …). Fabric is NOT included at these
+// rates; when we supply it, it is quoted separately rather than estimated here.
+var CV_PER_FT     = 35;    // base rate at standard height
 var CV_MIN_FT     = 4;
-var CV_MIN_PRICE  = 154;   // 4 ft × $38.50
+var CV_MIN_PRICE  = 200;   // minimum per cornice / per valance
 var CV_TRIM_PER_FT= 15;
-var CV_FABRIC_YD  = 30;    // placeholder — fabric custom per spec
 
 function cvSetType(type) {
   var isCorn = type === 'cornice';
@@ -1074,7 +1191,9 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
   // Total linear footage includes width + both end returns, always round UP to full foot
   var rawFt   = (w + ret * 2) / 12;
   var ft      = Math.max(CV_MIN_FT, Math.ceil(rawFt));
-  var labor   = Math.max(CV_MIN_PRICE, ft * CV_PER_FT);
+  // Per-foot rate steps up with face height; $200 minimum applies to the board.
+  var cvRate  = dBoardRatePerFt(h, CV_PER_FT);
+  var labor   = Math.max(CV_MIN_PRICE, ft * cvRate);
   var selTrimBtn = document.querySelector('#' + trimGrp + ' .opt-btn.sel');
   var selTrimTxt = selTrimBtn ? selTrimBtn.textContent.trim() : '';
   var hasTrim  = selTrimTxt.indexOf('Applied trim') !== -1;
@@ -1084,32 +1203,24 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
   var trimCost = Math.ceil(trimFt) * CV_TRIM_PER_FT;
   var fabricSup = document.querySelector('#' + fabricGrp + ' .opt-btn.sel');
   var weSupply  = fabricSup && fabricSup.textContent.trim() === 'We supply fabric';
-  var fabricCost = 0; var fabricYds = 0;
-  if (weSupply) {
-    // Cornice: wrap width + 2 returns + 2 depths (est 12" depth)
-    // Valance: width + 2 returns + 1.5x fullness
-    var perimInches = isCorn ? (w + ret*2 + 24) : (w + ret*2);
-    fabricYds = Math.ceil((perimInches * (h + 12)) / 1296 * 4) / 4;
-    fabricYds = Math.max(fabricYds, 1);
-    // Add welt fabric: self welt ~0.25 yd per 10ft of perimeter; double welt ~0.5 yd
-    if (isCorn && isSelfWelt) {
-      var weltPerim = (w + ret * 2) / 12;
-      var weltYds = Math.ceil(weltPerim * (isDblWelt ? 0.05 : 0.025) * 4) / 4;
-      fabricYds = Math.round((fabricYds + weltYds) * 4) / 4;
-    }
-    fabricCost = fabricYds * CV_FABRIC_YD;
-  }
-  var heightSurcharge = 0;
-  if (h > 15) {
-    var heightMult = Math.ceil((h - 15) / 10);
-    heightSurcharge = heightMult * 10 * ft;
-  }
-  var total = labor + trimCost + fabricCost + heightSurcharge;
+  // Fabric is not included in the per-foot rate and is not estimated here — it
+  // is quoted separately once the fabric is chosen. Estimating it off a
+  // placeholder yard price produced a number we could not stand behind.
+  //
+  // Over 80″ the board will not ship parcel. It can be spliced — jointed board,
+  // fabric still one piece — or shipped whole at oversize freight. The customer
+  // answers that in the form; default is unspliced, so we quote the freight
+  // rather than quietly leaving it out of the price.
+  var spliceEl   = document.getElementById(boxId.replace('-price-box', '') + '-splice');
+  var willSplice = spliceEl ? spliceEl.checked : false;
+  var isOversizeCV = (w > D_OVERSIZE_W) && !willSplice;
+  var oversizeFreight = isOversizeCV ? D_OVERSIZE_MIN : 0;
+  var total = labor + trimCost + oversizeFreight;
   var rows = '';
-  rows += '<div style="font-size:12px;color:var(--text-dark);padding:4px 0">' + ft + ' linear ft (incl. ends) × $' + CV_PER_FT.toFixed(2) + '/ft</div>';
-  if (heightSurcharge) {
-    var hMult = Math.ceil((h - 15) / 10);
-    rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Height over 15″ (+' + hMult + ' × $10/ft) <span style="color:var(--gold)">+$' + heightSurcharge.toFixed(2) + '</span></div>';
+  rows += '<div style="font-size:12px;color:var(--text-dark);padding:4px 0">' + ft + ' linear ft (incl. ends) × $' + cvRate + '/ft' +
+          (h > 15 ? ' <span style="color:var(--gold)">(' + h + '″ high)</span>' : '') + '</div>';
+  if (labor > ft * cvRate) {
+    rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">$' + CV_MIN_PRICE + ' minimum applied</div>';
   }
   if (hasTrim) {
     var trimEdges = _cvEdges(trimClass);
@@ -1118,8 +1229,15 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
     var weltEdges = _cvEdges(trimClass.replace('-trim-', '-welt-'));
     rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">' + selTrimTxt + (weltEdges ? ' — ' + weltEdges : '') + '</div>';
   }
-  if (fabricCost) rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">We supply fabric (~' + fabricYds + ' yds est.)</div>';
-  rows += '<div style="font-size:11px;font-weight:700;color:var(--cream);padding-top:8px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)">Est. total: $' + total.toFixed(2) + '</div>';
+  rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Fabric ' +
+          (weSupply ? '(we supply)' : '(you supply)') +
+          ' <span style="color:var(--gold)">not included &mdash; quoted separately</span></div>';
+  if (w > D_OVERSIZE_W) {
+    rows += willSplice
+      ? '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Spliced board &mdash; ships parcel <span style="color:var(--gold)">(no oversize freight)</span></div>'
+      : '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Oversize freight (over ' + D_OVERSIZE_W + '&Prime;, not spliced) <span style="color:var(--gold)">+$' + D_OVERSIZE_MIN + '</span></div>';
+  }
+  rows += '<div style="font-size:11px;font-weight:700;color:var(--cream);padding-top:8px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)">Est. total: $' + total.toFixed(2) + '<span style="font-weight:400;color:var(--text-dark)"> + fabric</span></div>';
   document.getElementById(rowsId).innerHTML = rows;
   var noteEl = document.getElementById(noteId);
   if (noteEl) noteEl.textContent = 'Estimated pricing — confirmed at order. Fabric and trim pricing confirmed during consultation.';
