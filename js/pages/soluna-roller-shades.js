@@ -480,7 +480,7 @@ function updateSummary() {
       priceEl2.textContent = 'Size exceeds our standard price chart (max 120″W × 144″H) — we’ll prepare a manual quote.';
       priceRow.style.display = '';
     } else if (priceResult) {
-      // Norman retail → 25% off → your price (35% applies to all Norman products; not to shipping).
+      // Norman retail → 25% off → your price. 25% is the rate on every Norman product; it never applies to shipping.
       var _solRetail = priceResult.total;
       var _solYour   = Math.round(_solRetail * 0.75);
       var pTxt = '$' + _solRetail.toLocaleString() + ' retail → $' + _solYour.toLocaleString() + ' your price (25% off)';

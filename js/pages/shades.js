@@ -2079,9 +2079,13 @@ function pbCalcPrice() {
 
   var fabBtn  = document.querySelector('#pb-grp-fabric-type .opt-btn.sel');
   var fabType = fabBtn ? fabBtn.textContent.trim() : '';
-  var isSolar   = fabType === 'Solar Screen';
+  // One chart (PB_SOLAR) covers both fabric types: Light Filtering is the base
+  // price, Blackout is the same chart +20%. The button read 'Solar Screen' until
+  // the June rename and that old label is still accepted, so a stale cached page
+  // keeps pricing instead of silently going blank.
   var isBlackout = fabType === 'Blackout';
-  var hasPricing = isSolar || isBlackout;
+  var isBase     = fabType === 'Light Filtering' || fabType === 'Solar Screen';
+  var hasPricing = isBase || isBlackout;
 
   // Show valance add-on when width known
   if (vWrap) vWrap.style.display = (hasPricing && w) ? 'block' : 'none';
@@ -2131,7 +2135,7 @@ function pbCalcPrice() {
   var grandTotal = shadeTotal + freight + valTotal;
 
   // Display: shade first, then valance, then freight
-  pRow((isBlackout?'Blackout (+20%)':'Solar Screen')+' ('+w+'→'+result.rw+'" × '+h+'→'+result.rh+'") × '+qty, shadeTotal);
+  pRow((isBlackout?'Blackout (+20%)':fabType)+' ('+w+'→'+result.rw+'" × '+h+'→'+result.rh+'") × '+qty, shadeTotal);
   rows += valRows;
   pRow(rollerFreight.label, freight, true);
 
