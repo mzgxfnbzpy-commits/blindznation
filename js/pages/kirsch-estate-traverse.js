@@ -200,8 +200,12 @@ function selectFullness(f) {
 // ═══════════════════════════════════════════════════════════════
 function selectDraw(d) {
   S.draw = d;
-  ['two-way','one-right','one-left'].forEach(function(id){ document.getElementById('draw-'+id).classList.remove('sel'); });
-  document.getElementById('draw-'+d).classList.add('sel');
+  var DRAW_EL = {'two-way':'two-way','one-way-right':'one-right','one-way-left':'one-left'};
+  ['two-way','one-right','one-left'].forEach(function(id){
+    var el=document.getElementById('draw-'+id); if(el) el.classList.remove('sel');
+  });
+  var drawEl = document.getElementById('draw-' + (DRAW_EL[d] || d));
+  if (drawEl) drawEl.classList.add('sel');
   var labels = {'two-way':'Two-Way / Split Draw','one-way-right':'One-Way Right','one-way-left':'One-Way Left'};
   completeStep('step-5', labels[d]);
   updateSpec('sp-draw', labels[d]);
@@ -215,8 +219,12 @@ function selectDraw(d) {
 // ═══════════════════════════════════════════════════════════════
 function selectMount(m) {
   S.mount = m;
-  ['wall','ceil','double'].forEach(function(id){ document.getElementById('mnt-'+id).classList.remove('sel'); });
-  document.getElementById('mnt-'+m).classList.add('sel');
+  var MNT_EL = {wall:'wall', ceiling:'ceil', double:'double'};
+  ['wall','ceil','double'].forEach(function(id){
+    var el=document.getElementById('mnt-'+id); if(el) el.classList.remove('sel');
+  });
+  var mntEl = document.getElementById('mnt-' + (MNT_EL[m] || m));
+  if (mntEl) mntEl.classList.add('sel');
   var labels = {wall:'Wall mount',ceiling:'Ceiling mount',double:'Double Rod'};
   var detail = document.getElementById('mount-detail');
   if (m === 'wall') {

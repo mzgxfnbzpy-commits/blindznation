@@ -65,13 +65,19 @@ var allImgs = theaterImgs.concat(closetImgs).concat(softImgs);
 // Current lightbox state
 var lbImages = [];
 var lbIndex  = 0;
+// Image sets registered by grid id. The click handler names a set instead of
+// carrying the images inline: JSON.stringify emits double quotes, which closed
+// the double-quoted onclick attribute and left every tile with a truncated,
+// unparseable handler, so the lightbox never opened.
+var lbSets = {};
 
 function buildGrid(containerId, imgs) {
   var el = document.getElementById(containerId);
   if (!el) return;
+  lbSets[containerId] = imgs;
   var html = '';
   imgs.forEach(function(img, i) {
-    html += '<div class="gitem" onclick="lbOpen(' + JSON.stringify(imgs) + ',' + i + ')">'
+    html += '<div class="gitem" onclick="lbOpen(&quot;' + containerId + '&quot;,' + i + ')">'
           + '<img src="' + img.src + '" alt="' + img.label + '" loading="lazy">'
           + '<div class="gitem-overlay"><div class="gitem-label">' + img.label + '</div></div>'
           + '</div>';
@@ -91,14 +97,17 @@ function showGallery(id, btn) {
   btn.classList.add('active');
 }
 
-function lbOpen(imgs, idx) {
-  lbImages = imgs;
+function lbOpen(setId, idx) {
+  lbImages = lbSets[setId] || [];
   lbIndex  = idx;
+  if (!lbImages.length || !lbImages[lbIndex]) return;
   lbShow();
   document.getElementById('lb-overlay').classList.add('open');
 }
 function lbShow() {
-  document.getElementById('lb-img').src = lbImages[lbIndex].src;
+  var cur = lbImages[lbIndex];
+  if (!cur) return;
+  document.getElementById('lb-img').src = cur.src;
   document.getElementById('lb-counter').textContent = (lbIndex + 1) + ' / ' + lbImages.length;
 }
 function lbNav(dir) {
