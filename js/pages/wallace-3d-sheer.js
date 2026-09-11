@@ -205,6 +205,20 @@ function pickCollection(idx){
 function buildColorGrid(){
   if(!S.coll) return;
   const g=document.getElementById('color-grid');
+  // Consistent shared swatch style for choosing a color (colors come straight from S.coll — unchanged).
+  if(window.pbFabricPicker){
+    var cols=S.coll.colors.map(function(c){ return {n:c.label, c:c.code, hex:(CHIP_SWATCHES[c.hw]||'#ccc')}; });
+    pbFabricPicker.render('color-grid', {
+      hideTabs:true, showPriceGroups:false,
+      types:[{key:'clr', label:S.coll.name}],
+      collections:[{type:'clr', name:'', colors:cols}],
+      onSelect:function(sel){ pick3DColor(sel.code); }
+    });
+    S.color=null;
+    document.getElementById('s2val').textContent='—';
+    return;
+  }
+  // Fallback — original chips (component unavailable)
   g.innerHTML=S.coll.colors.map(c=>`
     <div class="color-chip" onclick="pickColor(this,'${c.code}','${c.label}','${c.hw}')">
       <div class="chip-swatch" style="background:${CHIP_SWATCHES[c.hw]||'#ccc'}"></div>
@@ -212,6 +226,18 @@ function buildColorGrid(){
     </div>`).join('');
   S.color=null;
   document.getElementById('s2val').textContent='—';
+}
+
+// Select a color from the shared picker (mirrors pickColor without needing the clicked element)
+function pick3DColor(code){
+  var c=(S.coll&&S.coll.colors||[]).find(function(x){return x.code===code;});
+  if(!c) return;
+  S.color={code:c.code,label:c.label};
+  document.getElementById('s2val').textContent=c.label+' ('+c.code+')';
+  markDone('step2');
+  buildHWColors(c.hw);
+  updateSpec();
+  openStep('step3');
 }
 
 function pickColor(el,code,label,hwSuggested){

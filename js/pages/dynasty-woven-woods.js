@@ -327,6 +327,50 @@ function pickPattern(num,name,grp,el){
   validateLift(); calcPrice(); updateQuote();
 }
 
+// Consistent shared picker — parse the existing HTML pattern grids (data read
+// straight from the correct markup, zero transcription) and render as swatches
+// grouped into price-group sections. Original grids hidden; used as fallback.
+function dynBuildPicker(){
+  if(!window.pbFabricPicker) return;           // fallback: keep original HTML grids
+  var heads=Array.prototype.slice.call(document.querySelectorAll('.group-head'));
+  if(!heads.length || document.getElementById('dynasty-pattern-picker')) return;
+  var collections=[]; window._dynPatMap={};
+  var container=document.createElement('div');
+  container.id='dynasty-pattern-picker';
+  heads[0].parentNode.insertBefore(container, heads[0]);
+  heads.forEach(function(gh){
+    var grid=gh.nextElementSibling;
+    while(grid && !grid.classList.contains('pattern-grid')) grid=grid.nextElementSibling;
+    var m=gh.textContent.match(/Price Group\s*(\d+)\s*[—-]\s*(.+)/);
+    var grp=m?parseInt(m[1]):null, mat=m?m[2].trim():'';
+    var colors=[];
+    if(grid) grid.querySelectorAll('.pat-card').forEach(function(c){
+      var codeEl=c.querySelector('.pat-num'), nameEl=c.querySelector('.pat-name');
+      var code=codeEl?codeEl.textContent.trim():'', name=nameEl?nameEl.textContent.trim():'';
+      if(code){ colors.push({n:name, c:code}); window._dynPatMap[code]={name:name, grp:grp}; }
+    });
+    if(grp && colors.length) collections.push({type:'woven', pg:grp, pgLabel:mat, name:'', colors:colors});
+    gh.style.display='none'; if(grid) grid.style.display='none';
+  });
+  pbFabricPicker.render('dynasty-pattern-picker', {
+    hideTabs:true, showPriceGroups:true, priceGroupTabs:true,
+    types:[{key:'woven',label:'Pattern'}],
+    collections:collections,
+    onSelect:function(sel){ pickDynastyPattern(sel.code); }
+  });
+}
+
+function pickDynastyPattern(code){
+  var p=(window._dynPatMap||{})[code]; if(!p) return;
+  S.patNum=code; S.patName=p.name; S.grp=p.grp;
+  document.getElementById('s1val').textContent=code+' '+p.name+' (Grp '+p.grp+')';
+  markDone('step1');
+  var tdbuCard=document.getElementById('lc-tdbu');
+  if(p.grp<=2){tdbuCard.classList.add('disabled');} else {tdbuCard.classList.remove('disabled');}
+  validateLift(); calcPrice(); updateQuote();
+}
+dynBuildPicker();
+
 function pickStyle(el,style){
   document.querySelectorAll('#step2 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');

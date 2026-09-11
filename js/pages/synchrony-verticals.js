@@ -39,6 +39,50 @@ function pickFabric(el,collection,colorName,group){
 
 // Legacy alias in case anything still references pickGroup
 function pickGroup(el,g,label){}
+
+// Consistent shared picker — parse the existing HTML fabric sections (data read
+// straight from the correct markup) and render as swatches grouped into
+// price-group sections. Original sections hidden; used as fallback.
+function synBuildPicker(){
+  if(!window.pbFabricPicker) return;
+  var sections=Array.prototype.slice.call(document.querySelectorAll('.fabric-section'));
+  if(!sections.length || document.getElementById('syn-fabric-picker')) return;
+  var collections=[]; window._synMap={};
+  var container=document.createElement('div'); container.id='syn-fabric-picker';
+  sections[0].parentNode.insertBefore(container, sections[0]);
+  sections.forEach(function(sec){
+    var cards=sec.querySelectorAll('.color-card'); if(!cards.length) return;
+    var collName=null, grp=null, colors=[];
+    Array.prototype.forEach.call(cards, function(card){
+      var oc=card.getAttribute('onclick')||'';
+      var m=oc.match(/pickFabric\(this,\s*'([^']*)'\s*,\s*'([^']*)'\s*,\s*(\d+)\)/);
+      if(!m) return;
+      var coll=m[1], color=m[2], g=parseInt(m[3]);
+      var vane=card.getAttribute('data-vane')||'Traditional Curved';
+      var swEl=card.querySelector('.color-swatch'); var hex='';
+      if(swEl){ var hm=(swEl.getAttribute('style')||'').match(/background:\s*([^;]+)/); if(hm) hex=hm[1].trim(); }
+      collName=coll; grp=g;
+      colors.push({n:color, hex:hex});
+      window._synMap[coll+'|'+color]={collection:coll,colorName:color,group:g,vane:vane};
+    });
+    if(collName && colors.length) collections.push({type:'vert', pg:grp, name:collName, colors:colors});
+    sec.style.display='none';
+  });
+  pbFabricPicker.render('syn-fabric-picker', {
+    hideTabs:true, showPriceGroups:true,
+    types:[{key:'vert',label:'Fabric'}],
+    collections:collections,
+    onSelect:function(sel){ pickSynFabric(sel.collection, sel.name); }
+  });
+}
+function pickSynFabric(collection,colorName){
+  var m=(window._synMap||{})[collection+'|'+colorName]; if(!m) return;
+  state.group=m.group; state.collection=m.collection; state.colorName=m.colorName; state.vane=m.vane;
+  document.getElementById('s1val').textContent=m.collection+' — '+m.colorName;
+  markDone('step1'); calcPrice();
+}
+synBuildPicker();
+
 function pickMount(el,key,label){
   document.querySelectorAll('#step2 .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');

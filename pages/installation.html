@@ -284,6 +284,9 @@
       </div>
     </div>
     <div id="inst-contact-err" class="warn-box warn-box-red" style="display:none;margin-bottom:8px"></div>
+    <!-- Terms acceptance — required before any "Submit Order for Review", same as
+         every other form on the site. -->
+    <div id="inst-terms-wrap"></div>
     <button class="btn-gold" onclick="submitInstall()" data-pb-require-contact="inst-contact-err" style="width:100%;padding:14px;font-size:14px;font-weight:600">Submit Order for Review &rarr;</button>
   </div>
 
@@ -316,6 +319,11 @@
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/installation.js"></script>
+<script>
+// Terms acceptance for the installation form — the only "Submit Order for Review"
+// on the site that wasn't gated.
+document.getElementById('inst-terms-wrap').innerHTML = pbTermsCheckboxHTML('inst-terms');
+</script>
 </body>
 </html>
 

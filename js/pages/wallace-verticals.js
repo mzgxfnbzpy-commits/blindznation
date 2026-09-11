@@ -6,6 +6,34 @@ function pickColor(name, card) {
   card.classList.add('sel');
 }
 
+// Consistent shared picker — parse the existing HTML color cards (data unchanged)
+// and render as swatches. Original grid hidden; used as fallback.
+function wvBuildPicker(){
+  if(!window.pbFabricPicker) return;
+  var grid=document.querySelector('.color-grid');
+  if(!grid || document.getElementById('wv-color-picker')) return;
+  var cards=grid.querySelectorAll('.color-card'); if(!cards.length) return;
+  var colors=[];
+  Array.prototype.forEach.call(cards, function(card){
+    var m=(card.getAttribute('onclick')||'').match(/pickColor\('([^']*)'/);
+    var lbl=card.querySelector('.color-label');
+    var name=(m?m[1]:(lbl?lbl.textContent:'')).trim();
+    var swEl=card.querySelector('.color-swatch'); var hex='';
+    if(swEl){ var hm=(swEl.getAttribute('style')||'').match(/background:\s*([^;]+)/); if(hm) hex=hm[1].trim(); }
+    if(name) colors.push({n:name, hex:hex});
+  });
+  var container=document.createElement('div'); container.id='wv-color-picker';
+  grid.parentNode.insertBefore(container, grid);
+  grid.style.display='none';
+  pbFabricPicker.render('wv-color-picker', {
+    hideTabs:true,
+    types:[{key:'v',label:'Color'}],
+    collections:[{type:'v', name:'', colors:colors}],
+    onSelect:function(sel){ vwColor=sel.name; }
+  });
+}
+wvBuildPicker();
+
 function adjQty(d) {
   var el = document.getElementById('vw-qty');
   el.value = Math.max(1, Math.min(20, (parseInt(el.value) || 1) + d));
