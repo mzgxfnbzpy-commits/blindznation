@@ -78,6 +78,29 @@ verified, and now identical on Blindznation):
 
 ### Resolved 2026-09-10
 
+- **All eleven Norman products price again.** Justin reversed the September
+  six-product scope: PerfectSheer, SmartDrape, Centerpiece Roman, Synchrony
+  Verticals and City Lights came out of `PB_QUOTE_ONLY_PAGES`. Reference
+  figures at 36x60, identical on both sites: PerfectSheer $695, SmartDrape
+  ~$760, Centerpiece $288 retail -> ~$241, Synchrony $221, City Lights $275.
+  **Removing the gate entry was not enough — three of the five were silently
+  broken behind it**, which is the thing to remember: a product behind the gate
+  gets no exercise, so its renderer rots unnoticed.
+    - Centerpiece Roman hid its whole price panel (`updateCalc` hid
+      `#pr-base`'s *parentElement*, but that span sits directly inside
+      `.price-estimate`), and `#pr-total` still had an inline `display:none`
+      from May that `setVal` never cleared.
+    - City Lights and Synchrony anchored their discount rows with
+      `#qp-detail .qdiv:last-of-type`, a selector that can never match — every
+      child of `#qp-detail` is a div, so `:last-of-type` only matches `.qnote`.
+      Null, then a throw on `.parentNode`, aborting the render one line before
+      the total. City Lights also called `showRow` without declaring it.
+    - Stale labels exposed by opening the gate: City Lights, Synchrony and
+      Centerpiece all said **15% Norman discount** over a 25% calculation.
+    - BZ's Centerpiece JS had forked (no motor refresh, no detail-hiding, a
+      "-35%" total line) and was replaced from the master copy.
+    - Copy sweep, 16 spots per site: all five still sold themselves as "Free
+      custom quote" in hero pills and in the meta descriptions Google shows.
 - **Every quote form on both sites now emails the whole team** (Justin's call):
   justin / sarah / mike / tarin @phillyblinds.com, plus justin@blindznation.com
   on Blindznation. `blindznation@gmail.com` is retired and appears nowhere.
