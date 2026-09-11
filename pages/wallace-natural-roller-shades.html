@@ -255,11 +255,12 @@
       <button class="fab-tab" onclick="filterFab('E',this)">Group E</button>
     </div>
     <div class="fab-grid" id="fab-grid"></div>
+    <div id="rhea-warn" class="err-box" style="display:none;margin-top:8px"><span>⚠️</span><span>Rhea is not available with Square Cassette fabric wrap or Fabric-Wrapped Box Valance. These options will be blocked.</span></div>
+    <!-- Free-text color entry retained as fallback only (picker fills the color now) -->
     <div id="fab-color-wrap" style="display:none;margin-top:14px">
       <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:6px">Fabric color / PR code</div>
       <div style="font-size:11px;color:#888;margin-bottom:6px;line-height:1.6">Enter the specific color name and PR code from the Wallace sample book or swatch card. Call us for swatches if needed.</div>
       <input type="text" id="fab-color-inp" placeholder="e.g. Ash · PR-017" style="width:100%;padding:9px 11px;border:1px solid #ddd;border-radius:8px;font-size:13px" oninput="updateFabColor(this.value)">
-      <div id="rhea-warn" class="err-box" style="display:none;margin-top:8px"><span>⚠️</span><span>Rhea is not available with Square Cassette fabric wrap or Fabric-Wrapped Box Valance. These options will be blocked.</span></div>
     </div>
   </div>
 </div>
@@ -447,6 +448,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
+<script src="../js/fabric-picker.js"></script>
 <script src="../js/pages/wallace-natural-roller-shades.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.

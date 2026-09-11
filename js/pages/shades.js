@@ -888,7 +888,10 @@ function updatePrice() {
     const tableBase = res.price;
 
     // Fabric surcharge (+20%)
-    const rdAdd = (fabTxt === 'Room Darkening' || fabTxt === 'Sheer') ? Math.round(tableBase * 0.20) : 0;
+    // Match on meaning, not on the visible wording — the button now reads "Blackout".
+    // Comparing against the old 'Room Darkening' label meant the +20% surcharge never
+    // fired here, undercharging every blackout cellular sold through this form.
+    const rdAdd = (pbIsBlackoutLabel(fabTxt) || fabTxt === 'Sheer') ? Math.round(tableBase * 0.20) : 0;
     cellRow('pb-sur-rd-row', 'pb-sur-rd-label', 'pb-sur-rd',
       fabTxt + ' fabric (+20%)', rdAdd > 0 ? '+$' + rdAdd : null);
 

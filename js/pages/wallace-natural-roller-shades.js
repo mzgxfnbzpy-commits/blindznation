@@ -208,8 +208,29 @@ function getDeduction() {
 // ═══════════════════════════════════════════════════════════════
 function buildFabGrid(filter) {
   var grid = document.getElementById('fab-grid');
-  var list = filter === 'all' ? FABRICS : FABRICS.filter(function(f){ return f.group === filter; });
-  grid.innerHTML = list.map(function(f, i) {
+  // Consistent shared picker: family collections grouped into price-group sections.
+  // Real colors from Wallace Natural Woven Rollers PDF; pattern metadata preserved.
+  if (window.pbFabricPicker && typeof WNR_COLORS !== 'undefined') {
+    var list = (!filter || filter === 'all') ? WNR_COLORS : WNR_COLORS.filter(function(c){ return c.g === filter; });
+    var byKey = {};
+    list.forEach(function(c){
+      var k = c.g + '|' + c.f;
+      if (!byKey[k]) byKey[k] = { g:c.g, f:c.f, colors:[] };
+      byKey[k].colors.push({ n: (c.n.slice(c.f.length).trim() || c.n), c: c.c });
+    });
+    var collections = Object.keys(byKey).map(function(k){ return { type:'w', pg:byKey[k].g, name:byKey[k].f, colors:byKey[k].colors }; });
+    pbFabricPicker.render('fab-grid', {
+      hideTabs:true, showPriceGroups:true,
+      types:[{key:'w',label:'Natural Roller'}],
+      collections:collections,
+      onSelect:function(sel){ wnrPickColor(sel.code); }
+    });
+    if (S.fabColorCode) grid.querySelectorAll('.pbfp-sw').forEach(function(b){ if (b.title === S.fabColorCode) b.classList.add('sel'); });
+    return;
+  }
+  // Fallback — original pattern cards
+  var flist = filter === 'all' ? FABRICS : FABRICS.filter(function(f){ return f.group === filter; });
+  grid.innerHTML = flist.map(function(f, i) {
     var idx = FABRICS.indexOf(f);
     var sel = S.fabric && S.fabric.name === f.name ? ' sel' : '';
     return '<div class="fab-card' + sel + '" onclick="selectFabric(' + idx + ')">' +
@@ -218,6 +239,26 @@ function buildFabGrid(filter) {
       '<div class="fab-meta">Max ' + f.maxW + '"W × ' + f.maxH + '"H' + (f.note ? '<br>' + f.note : '') + '</div>' +
     '</div>';
   }).join('');
+}
+
+// Select a specific pattern-color from the shared picker (real PDF colors).
+// Sets S.fabric to the pattern family (for size validation + Rhea rules) and
+// S.fabColor to the exact color + PR code, then runs the same downstream logic.
+function wnrPickColor(code){
+  var c = WNR_COLORS.find(function(x){ return x.c === code; });
+  if (!c) return;
+  var isRhea = (c.f === 'Rhea');
+  S.fabric = { name:c.f, group:c.g, maxW:c.mw, maxH:c.mh, rhea:isRhea };
+  S.fabColor = (c.n.slice(c.f.length).trim()) + ' (' + c.c + ')';
+  S.fabColorCode = c.c;
+  var fcInp = document.getElementById('fab-color-inp'); if (fcInp) fcInp.value = S.fabColor;
+  var rw = document.getElementById('rhea-warn'); if (rw) rw.style.display = isRhea ? 'flex' : 'none';
+  updateSpec('sp-front', c.n + ' · Group ' + c.g);
+  updateSpec('sp-group', 'Group ' + c.g);
+  validateSize();
+  buildTopTreatmentStep();
+  completeStep('step-5', c.n);
+  if (S.shadeType === 'double') activateStep('step-6'); else activateStep('step-7');
 }
 
 function filterFab(f, btn) {
@@ -764,3 +805,10 @@ buildFabGrid('all');
 buildBackGrids();
 buildTopTreatmentStep();
 buildControlStep();
+
+
+// ── Real colors from Wallace Natural Woven Rollers PDF (53 pattern-colors, groups A-E) ──
+// {c:PR code, n:full name, f:family, g:price group, mw:maxW, mh:maxH}
+var WNR_COLORS = [{c:"PR-017",n:"Alston Ash",f:"Alston",g:"A",mw:90,mh:108},{c:"PR-015",n:"Alston Peppered White",f:"Alston",g:"A",mw:90,mh:108},{c:"PR-016",n:"Alston Russet",f:"Alston",g:"A",mw:90,mh:108},{c:"PR-031",n:"Easton Charcoal",f:"Easton",g:"A",mw:90,mh:108},{c:"PR-032",n:"Easton Iron",f:"Easton",g:"A",mw:90,mh:108},{c:"PR-030",n:"Easton Smoke",f:"Easton",g:"A",mw:90,mh:108},{c:"PR-025",n:"Hampton Graphite",f:"Hampton",g:"A",mw:90,mh:108},{c:"PR-024",n:"Hampton Pebble",f:"Hampton",g:"A",mw:90,mh:108},{c:"PR-023",n:"Hampton Snowfall",f:"Hampton",g:"A",mw:90,mh:108},{c:"PR-022",n:"Isla Rockside",f:"Isla",g:"A",mw:90,mh:108},{c:"PR-026",n:"Isla Seashell",f:"Isla",g:"A",mw:90,mh:108},{c:"PR-021",n:"Marco Contrast",f:"Marco",g:"A",mw:90,mh:108},{c:"PR-018",n:"Mason Grove",f:"Mason",g:"A",mw:90,mh:108},{c:"PR-019",n:"Mason Lumber",f:"Mason",g:"A",mw:90,mh:108},{c:"PR-020",n:"Mason Shade",f:"Mason",g:"A",mw:90,mh:108},{c:"PR-027",n:"Clifton Silver",f:"Clifton",g:"B",mw:90,mh:108},{c:"PR-013",n:"Iris Cream",f:"Iris",g:"B",mw:72,mh:108},{c:"PR-131",n:"Iris Fossil",f:"Iris",g:"B",mw:72,mh:108},{c:"PR-014",n:"Iris Khaki",f:"Iris",g:"B",mw:72,mh:108},{c:"PR-093",n:"Keys Almond",f:"Keys",g:"B",mw:90,mh:108},{c:"PR-094",n:"Keys Harbor Gray",f:"Keys",g:"B",mw:90,mh:108},{c:"PR-095",n:"Keys Hazelnut",f:"Keys",g:"B",mw:90,mh:108},{c:"PR-034",n:"Seville Earth",f:"Seville",g:"B",mw:90,mh:108},{c:"PR-033",n:"Seville Wisp",f:"Seville",g:"B",mw:90,mh:108},{c:"PR-291",n:"Cyprus Crystal",f:"Cyprus",g:"C",mw:90,mh:96},{c:"PR-292",n:"Cyprus Morning Mist",f:"Cyprus",g:"C",mw:90,mh:96},{c:"PR-029",n:"Cyprus Thunder",f:"Cyprus",g:"C",mw:90,mh:96},{c:"PR-028",n:"Lace Snow",f:"Lace",g:"C",mw:90,mh:108},{c:"PR-089",n:"Layla Natural White",f:"Layla",g:"C",mw:90,mh:108},{c:"PR-090",n:"Layla Truffle",f:"Layla",g:"C",mw:90,mh:108},{c:"PR-881",n:"Wyatt Almond",f:"Wyatt",g:"C",mw:90,mh:96},{c:"PR-883",n:"Wyatt Antique White",f:"Wyatt",g:"C",mw:90,mh:96},{c:"PR-088",n:"Wyatt Marble",f:"Wyatt",g:"C",mw:90,mh:96},{c:"PR-882",n:"Wyatt Slate",f:"Wyatt",g:"C",mw:90,mh:96},{c:"PR-Z4C",n:"Ashton Camel",f:"Ashton",g:"D",mw:114,mh:108},{c:"PR-Z4A",n:"Ashton Dove",f:"Ashton",g:"D",mw:114,mh:108},{c:"PR-Z3A",n:"Brenna Cloud",f:"Brenna",g:"D",mw:114,mh:108},{c:"PR-Z3B",n:"Brenna Mirage",f:"Brenna",g:"D",mw:114,mh:108},{c:"PR-Y3C",n:"Mallory Fog",f:"Mallory",g:"D",mw:114,mh:108},{c:"PR-Y3A",n:"Mallory Frost",f:"Mallory",g:"D",mw:114,mh:108},{c:"PR-Z1D",n:"Torrey Twine",f:"Torrey",g:"D",mw:114,mh:108},{c:"PR-M8A",n:"Rhea Champagne",f:"Rhea",g:"E",mw:90,mh:108},{c:"PR-M8C",n:"Rhea Moonlight",f:"Rhea",g:"E",mw:90,mh:108},{c:"PR-M8E",n:"Rhea Sapphire",f:"Rhea",g:"E",mw:90,mh:108},{c:"PR-Z5F",n:"Sophie Birch",f:"Sophie",g:"E",mw:114,mh:108},{c:"PR-Z5J",n:"Sophie Limestone",f:"Sophie",g:"E",mw:114,mh:108},{c:"PR-Z5K",n:"Sophie Linen",f:"Sophie",g:"E",mw:114,mh:108},{c:"PR-Z5B",n:"Sophie Papyrus",f:"Sophie",g:"E",mw:114,mh:108},{c:"PR-Z5A",n:"Sophie Pearl",f:"Sophie",g:"E",mw:114,mh:108},{c:"PR-Z5E",n:"Sophie Sand",f:"Sophie",g:"E",mw:114,mh:108},{c:"PR-Z5G",n:"Sophie Sea Breeze",f:"Sophie",g:"E",mw:114,mh:108},{c:"PR-Z5M",n:"Sophie Skyline",f:"Sophie",g:"E",mw:114,mh:108},{c:"PR-Z5H",n:"Sophie Twig",f:"Sophie",g:"E",mw:114,mh:108}];
+// Render the picker now that color data is defined
+if (document.getElementById("fab-grid")) buildFabGrid("all");

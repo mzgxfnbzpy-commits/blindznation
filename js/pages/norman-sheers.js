@@ -172,7 +172,7 @@ function pickOp(op){
   if(motorCfg){
     if(op==='motor'){
       motorCfg.style.display='block';
-      if(typeof normanMotorSection==='function') normanMotorSection('smartdrape-motor-config','SmartDrape');
+      if(typeof normanMotorSection==='function') normanMotorSection('smartdrape-motor-config','SmartDrape', typeof calcPrice==='function'?calcPrice:null);
     } else {
       motorCfg.style.display='none';
       motorCfg.innerHTML='';
@@ -427,23 +427,25 @@ function calcPrice(){
 
   var per=base;
   document.getElementById('pr-base').textContent='$'+base.toLocaleString();
-  // RD surcharge
+  // Detail hidden per owner request — base + RD/alternating-color surcharges roll into retail.
+  // Only the allowed add-on surcharge (motor) stays visible; customer sees retail → 25% off → price.
+  var _sdBase=document.getElementById('pr-base'); if(_sdBase&&_sdBase.parentElement) _sdBase.parentElement.style.display='none';
   var isRD=S.opacity==='rd';
   var rdAdd=isRD?Math.round(base*0.20):0;
-  document.getElementById('pr-rd-row').style.display=isRD?'flex':'none';
-  if(isRD) document.getElementById('pr-rd').textContent='+$'+rdAdd;
+  document.getElementById('pr-rd-row').style.display='none';
   per+=rdAdd;
-  // Alternating colors
   var isAlt=document.getElementById('acc-alt-colors')&&document.getElementById('acc-alt-colors').checked;
   var altAdd=isAlt?Math.round(base*0.10):0;
-  document.getElementById('pr-alt-row').style.display=isAlt?'flex':'none';
-  if(isAlt) document.getElementById('pr-alt').textContent='+$'+altAdd;
+  document.getElementById('pr-alt-row').style.display='none';
   per+=altAdd;
-  // Motor
+  // Motor — priced at full Norman retail (NOT discounted), added AFTER the shade discount.
+  // (Previously $642 was folded into the discounted subtotal; now motor + accessories are
+  //  charged at full price via the shared nmGetMotorPrice.)
   var isMotor=S.op==='motor';
+  var sdMotor=(isMotor&&typeof nmGetMotorPrice==='function')?nmGetMotorPrice('SmartDrape', S.qty):0;
   document.getElementById('pr-motor-row').style.display=isMotor?'flex':'none';
-  if(isMotor) per+=642;
-  // 25% Norman discount on product subtotal (not applied to shipping)
+  var _sdMotorEl=document.getElementById('pr-motor'); if(_sdMotorEl&&isMotor)_sdMotorEl.textContent=nmMotorLineText(sdMotor,S.qty);
+  // 25% Norman discount on product subtotal (not applied to shipping/motor)
   var NORMAN_DISC_SD=0.25;
   var sdRetailSub=Math.round(per*S.qty);
   var sdDiscountAmt=Math.round(sdRetailSub*NORMAN_DISC_SD);
@@ -451,7 +453,7 @@ function calcPrice(){
   document.getElementById('pr-qty').textContent=S.qty+' shade'+(S.qty>1?'s':'');
   document.getElementById('pr-retail').textContent='$'+sdRetailSub.toLocaleString();
   document.getElementById('pr-disc').textContent='−$'+sdDiscountAmt.toLocaleString();
-  document.getElementById('pr-total').textContent='~$'+sdYourPrice.toLocaleString();
+  document.getElementById('pr-total').textContent='~$'+(sdYourPrice+sdMotor).toLocaleString();
 }
 
 // ═══════════════════════════════════════════════════════════

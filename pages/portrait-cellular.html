@@ -228,7 +228,7 @@
       <div class="step-head-val" id="s6val">—</div>
     </div>
     <div class="step-body">
-      <div id="cell-color-grid" style="margin-top:4px"></div>
+      <div id="cell-color-grid" class="pb-scrollbox" style="margin-top:4px"></div>
       <div class="step-note" style="margin-top:10px">80+ colors available. Actual swatches at your free in-home consultation. Colors shown are digital approximations.</div>
     </div>
   </div>
@@ -357,7 +357,7 @@ function pickCellOp(el, sysName) {
     note.textContent   = 'Norman Smart Motorization — power source, remote, and smart home confirmed at measurement visit.';
     // Show motor step
     document.getElementById('step7').style.display = 'block';
-    if (typeof normanMotorSection === 'function') normanMotorSection('cell-motor-config', 'Cellular Shade');
+    if (typeof normanMotorSection === 'function') normanMotorSection('cell-motor-config', 'Cellular Shade', typeof cellCalcPrice === 'function' ? cellCalcPrice : null);
   } else {
     note.style.display = 'none';
     document.getElementById('step7').style.display = 'none';

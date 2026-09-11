@@ -158,6 +158,7 @@ const CELL_COLLECTIONS = {
   ]
 };
 
+// Customer-facing labels. 'rd' is Norman's "Room Darkening"; we show "Blackout".
 const CELL_FABRIC_LABELS = {
   'lf':'Light Filtering','rd':'Blackout','sheer':'Sheer','dn':'Day & Night'
 };
@@ -312,7 +313,9 @@ function cellDNComboObj() {
   }
   return null;
 }
-// Per-shade fabric surcharge: +20% for Sheer / Room Darkening (blackout) / Solus.
+// Per-shade fabric surcharge: +20% for Sheer / Room Darkening (shown as Blackout) / Solus.
+// fabName is the INTERNAL Norman name held in CELL_DN_COMBOS — matched leniently so
+// the surcharge survives any change to what the customer sees.
 function cellDNFabAdd(fabName, base) {
   return (fabName === 'Sheer' || pbIsBlackoutLabel(fabName) || fabName === 'Solus')
     ? Math.round(base * 0.20) : 0;
@@ -377,8 +380,10 @@ function _dnCardHTML(name, group, selected, disabled) {
     + '</button>';
 }
 // Treatment → color collection key (Woven Windsong & Solus have no online palette).
+// Accepts the internal name or the customer-facing one.
 function _dnCollKey(treatment) {
-  return { 'Sheer':'sheer', 'Light Filtering':'lf', 'Room Darkening':'rd' }[treatment] || null;
+  if (pbIsBlackoutLabel(treatment)) return 'rd';
+  return { 'Sheer':'sheer', 'Light Filtering':'lf' }[treatment] || null;
 }
 function _dnColorGridHTML(layer, treatment) {
   var key = _dnCollKey(treatment);
@@ -635,11 +640,11 @@ function cellCalcPrice() {
   var lines = [];
   if (CELL.lift === 'tdbu')    lines.push('Top Down / Bottom Up: +$89');
   else if (CELL.lift === 'dn') lines.push('Day &amp; Night: +$89');
-  if (motorTotal) lines.push('Motorization: ' + nmMotorLineText(motorTotal, CELL.qty));
   if (lines.length) lines.push('<hr style="border:none;border-top:1px solid rgba(255,255,255,.15);margin:7px 0">');
   lines.push('Retail: $' + productSub.toLocaleString());
   lines.push('<span style="color:var(--gold)">25% Norman discount: −$' + discountAmt.toLocaleString() + '</span>');
-  lines.push('<span style="color:var(--gold);font-weight:600">Your price: $' + yourPrice.toLocaleString() + '</span>');
+  lines.push('<span style="color:var(--gold);font-weight:600">Your shade price: $' + yourPrice.toLocaleString() + '</span>');
+  if (motorTotal) lines.push('Motorization: ' + nmMotorLineText(motorTotal, CELL.qty));
   lines.push('Freight (not discounted): +$' + freight.toLocaleString());
 
   // Update panel
