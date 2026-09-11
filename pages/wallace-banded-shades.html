@@ -35,8 +35,13 @@
 .product-card{border:1.5px solid #e8e8e4;border-radius:14px;padding:22px 18px;cursor:pointer;transition:all .15s;background:#fff}
 .product-card:hover{border-color:var(--gold);box-shadow:0 2px 14px rgba(45,224,193,.12)}
 .product-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.product-card h3{font-size:15px;font-weight:500;color:#111;margin-bottom:5px}
-.product-card p{font-size:12px;color:#555;line-height:1.6}
+.product-card{padding:0;overflow:hidden}
+.product-card h3{font-size:15px;font-weight:500;color:#111;margin-bottom:5px;padding:0 18px}
+.product-card p{font-size:12px;color:#555;line-height:1.6;padding:0 18px}
+.product-card .product-badge{margin:8px 18px 18px}
+.product-thumb{width:100%;aspect-ratio:16/10;overflow:hidden;background:#f0ece4;margin-bottom:12px}
+.product-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.product-card h3{margin-top:14px}
 .product-badge{font-size:10px;padding:2px 8px;border-radius:6px;background:var(--gold-mid);color:#0A4A42;font-weight:500;display:inline-block;margin-top:8px}
 .opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .opt-btn{padding:8px 16px;border:1.5px solid #e8e8e4;border-radius:24px;font-size:13px;color:#333;cursor:pointer;background:#fff;font-family:inherit;transition:.15s;white-space:nowrap}
@@ -145,9 +150,9 @@
   <button class="tier-btn tier-active" id="tier-basic" onclick="selectTier('basic')">
     <span class="tier-badge tier-badge-basic">Basic</span> Banded 2D
   </button>
-  <a class="tier-btn" href="portfolio-dual-sheer.html">
+  <button class="tier-btn" id="tier-dual" onclick="selectTier('premium')">
     <span class="tier-badge tier-badge-premium">Premium</span> Portfolio Dual Sheer
-  </a>
+  </button>
 </div>
 
 <div class="config-layout">
@@ -157,16 +162,19 @@
 <div class="step-block active" id="step1">
   <div class="step-head" onclick="tog('step1')"><div class="step-num">1</div><div class="step-head-title">Choose your shade</div><div class="step-head-val" id="val1">&mdash;</div></div>
   <div class="step-body">
+    <p class="step-note" style="margin:0 0 12px">Both options stay on this page — switch between them any time; your size and options carry over.</p>
     <div class="product-grid">
-      <div class="product-card" id="prod-2d" onclick="setProd('2d',this)">
+      <div class="product-card sel" id="prod-2d" onclick="setProd('2d',this)">
+        <div class="product-thumb"><img loading="lazy" src="../images/thumbnails/ZEBRA SHADE.JPEG" alt="Banded 2D zebra shades"></div>
         <h3>Banded 2D Shades <span style="font-size:10px;font-weight:700;letter-spacing:.5px;color:#0A4A42;background:rgba(45,224,193,.15);padding:2px 8px;border-radius:10px;margin-left:6px">BASIC</span></h3>
         <p>Woven 2D-pattern banded shades. Alternating sheer and solid fabric bands with textured visual depth. Cordless, motorized, and wand options.</p>
-        <span class="product-badge">Custom quote</span>
+        <span class="product-badge">Great value</span>
       </div>
       <div class="product-card" id="prod-dual" onclick="setProd('dual',this)">
+        <div class="product-thumb"><img loading="lazy" src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Portfolio Dual Sheer premium zebra shades"></div>
         <h3>Portfolio Dual Sheer <span style="font-size:10px;font-weight:700;letter-spacing:.5px;color:#7a5a10;background:rgba(200,151,63,.20);padding:2px 8px;border-radius:10px;margin-left:6px">PREMIUM</span></h3>
         <p>Classic zebra/dual-sheer. Horizontal bands open for light, close for privacy. 5 price groups, 95 fabrics, up to 110&Prime; wide. Light filtering and Blackout. Live pricing estimate.</p>
-        <span class="product-badge" style="background:rgba(45,224,193,.15);color:#0A4A42">Opens full configurator →</span>
+        <span class="product-badge" style="background:rgba(200,151,63,.20);color:#7a5a10">Premium fabric &amp; finish</span>
       </div>
     </div>
   </div>
@@ -445,6 +453,12 @@ document.getElementById('pb-final-step').innerHTML =
   pbCtx.prefill('inp-w',   'w',   function(v) { validateDims(); });
   pbCtx.prefill('inp-h',   'h',   function(v) { validateDims(); });
   pbCtx.prefill('qty-inp', 'qty', function(v) { setQtyInp(v); });
+  // Deep-link: ?tier=dual|premium opens straight into Portfolio Dual Sheer (Premium).
+  // Entry points that used to navigate to portfolio-dual-sheer.html now land here.
+  try {
+    var tier = new URLSearchParams(window.location.search).get('tier');
+    if (/dual|premium/i.test(tier || '')) setProd('dual', document.getElementById('prod-dual'));
+  } catch (e) {}
 })();
 </script>
 </body>

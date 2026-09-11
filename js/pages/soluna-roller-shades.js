@@ -246,8 +246,13 @@ function solPickShadeType(type, btn) {
     if (cassetteBtn) cassetteBtn.classList.add('sel');
     var hwOpts = document.getElementById('sol-hw-subopts');
     var fasciaOpts = document.getElementById('sol-fascia-subopts');
+    var lgOpts = document.getElementById('sol-lg-subopts');
     if (hwOpts) hwOpts.style.display = 'none';
     if (fasciaOpts) fasciaOpts.style.display = 'none';
+    if (lgOpts) lgOpts.style.display = 'none';
+    // Cassette is the active headrail on dual, so the hem bar picker still applies.
+    var hemWrap = document.getElementById('sol-hembar-wrap');
+    if (hemWrap) hemWrap.style.display = 'block';
   }
   updateSummary();
 }
@@ -264,9 +269,96 @@ function solPickAddon(type, btn) {
   // Show/hide sub-panels
   var hwOpts = document.getElementById('sol-hw-subopts');
   var fasciaOpts = document.getElementById('sol-fascia-subopts');
+  var lgOpts = document.getElementById('sol-lg-subopts');
   if (hwOpts) hwOpts.style.display = (activeType === 'openroll') ? 'block' : 'none';
   if (fasciaOpts) fasciaOpts.style.display = (activeType === 'fascia') ? 'block' : 'none';
+  if (lgOpts) lgOpts.style.display = (activeType === 'lightguard') ? 'block' : 'none';
+  // Open roll's premium hardware finish already covers the hem bar, so the separate
+  // hem bar picker only applies to the other headrail types.
+  var hemWrap = document.getElementById('sol-hembar-wrap');
+  var hemNote = document.getElementById('sol-hembar-note');
+  if (hemWrap) hemWrap.style.display = (activeType === 'openroll') ? 'none' : 'block';
+  if (hemNote && activeType === 'lightguard') {
+    hemNote.textContent = 'Full Blackout Side Channels hem bar — fabric wrapped (matches shade fabric) or metal in the color you pick.';
+  } else if (hemNote) {
+    hemNote.textContent = 'Fabric wrapped: front matches your shade fabric, back matches the standard hardware color. Metal: painted hem bar in the color you pick above.';
+  }
   updateSummary();
+}
+
+// ─── Component material pickers ──────────────────────────────
+// Metal fascia / metal cassette / metal hem bar each reveal their own Norman
+// palette (see PB_PALETTES in shared.js). Fabric-wrapped parts take the shade
+// fabric instead, so no color picker is shown for them.
+function solPickFascia(material, btn) {
+  selOpt(btn, 'grp-fascia-style');
+  var wrap = document.getElementById('sol-fascia-color-wrap');
+  if (wrap) wrap.style.display = (material === 'metal') ? 'block' : 'none';
+  updateSummary();
+}
+
+function solPickLgCassette(material, btn) {
+  selOpt(btn, 'grp-lg-cassette-mat');
+  var wrap = document.getElementById('sol-lg-cassette-color-wrap');
+  if (wrap) wrap.style.display = (material === 'metal') ? 'block' : 'none';
+  updateSummary();
+}
+
+function solPickHemBar(material, btn) {
+  selOpt(btn, 'grp-hembar-mat');
+  var wrap = document.getElementById('sol-hembar-color-wrap');
+  if (wrap) wrap.style.display = (material === 'metal') ? 'block' : 'none';
+  updateSummary();
+}
+
+// Populate the color rows from the shared palettes so every metal part on this
+// page stays in sync with shades.js / Basic Roller.
+function solInitColorRows() {
+  var slots = [
+    ['sol-fascia-color-slot',      'grp-fascia-color',      'metalFascia'],
+    ['sol-lg-cassette-color-slot', 'grp-lg-cassette-color', 'lightGuard360'],
+    ['sol-lg-rail-color-slot',     'grp-lg-rail-color',     'lightGuard360'],
+    ['sol-hembar-color-slot',      'grp-hembar-color',      'plainHemBar']
+  ];
+  slots.forEach(function(s) {
+    var el = document.getElementById(s[0]);
+    if (el) el.innerHTML = pbColorRow(s[1], s[2], 'updateSummary');
+  });
+}
+document.addEventListener('DOMContentLoaded', solInitColorRows);
+
+// Material + color choices for the parts whose panel is actually on screen.
+// Shared by the live summary and the quote email so they can't drift apart.
+function solComponentParts() {
+  var vis = function(id) { var el = document.getElementById(id); return !!el && el.style.display !== 'none'; };
+  var out = [];
+  if (vis('sol-fascia-subopts')) {
+    var fStyle = getOpt('grp-fascia-style');
+    if (fStyle) out.push(fStyle);
+    if (vis('sol-fascia-color-wrap')) {
+      var fCol = getOpt('grp-fascia-color');
+      if (fCol) out.push('Fascia color: ' + fCol);
+    }
+  }
+  if (vis('sol-lg-subopts')) {
+    var cMat = getOpt('grp-lg-cassette-mat');
+    if (cMat) out.push('LG360 cassette: ' + cMat);
+    if (vis('sol-lg-cassette-color-wrap')) {
+      var cCol = getOpt('grp-lg-cassette-color');
+      if (cCol) out.push('Cassette color: ' + cCol);
+    }
+    var rCol = getOpt('grp-lg-rail-color');
+    if (rCol) out.push('Side rails (metal): ' + rCol);
+  }
+  if (vis('sol-hembar-wrap')) {
+    var hMat = getOpt('grp-hembar-mat');
+    if (hMat) out.push('Hem bar: ' + hMat);
+    if (vis('sol-hembar-color-wrap')) {
+      var hCol = getOpt('grp-hembar-color');
+      if (hCol) out.push('Hem bar color: ' + hCol);
+    }
+  }
+  return out;
 }
 
 function solPickDel(v, card) {
@@ -282,7 +374,7 @@ function toggleMotor(on) {
   var cfg = document.getElementById('sol-motor-config');
   if (on) {
     // Render the shared Norman motor UI (Soluna is a roller → Rollease + Charging Wand allowed)
-    if (typeof normanMotorSection === 'function') normanMotorSection('sol-motor-config', 'Soluna Roller Shade');
+    if (typeof normanMotorSection === 'function') normanMotorSection('sol-motor-config', 'Soluna Roller Shade', updateSummary);
   } else if (cfg) {
     cfg.innerHTML = '';
   }
@@ -308,11 +400,11 @@ var _SOL_GRIDS = {
   s3:[[281,312,335,363,392,417,446,473,506,558,590,635,669,732,798],[312,343,373,406,440,480,517,556,593,653,692,745,781,865,934],[338,373,410,455,500,544,587,632,680,747,791,853,891,970,1047],[365,407,456,509,560,614,663,716,767,837,878,940,983,1072,1159],[394,448,503,562,622,678,739,794,842,912,976,1026,1073,1170,1273],[423,486,553,617,680,747,804,859,910,987,1058,1112,1165,1274,1384],[455,528,601,672,743,804,864,917,980,1059,1138,1200,1256,1375,1496],[488,569,648,723,797,859,922,985,1048,1134,1219,1286,1348,1478,1608],[525,608,693,775,843,912,980,1048,1118,1209,1301,1371,1438,1580,1720],[557,649,741,819,893,963,1038,1112,1186,1281,1380,1455,1530,1681,1833]]
 };
 var _SOL_COLL_GROUP = {
-  // Solar PG1: higher-openness screents + commercial NA400
+  // Solar PG1 (book May 2026): Serene 7%, Flow 7%, Windsong 5%, NA400 3/5/10%, NA300 3/5%
   'Serene 7%':'s1','Flow 7%':'s1','Windsong 5%':'s1',
   'NA400 3%':'s1','NA400 5%':'s1','NA400 10%':'s1',
   'NA300 3%':'s1','NA300 5%':'s1', // ⚠ book PG1 but NOT yet in swatch data (no color codes on site)
-  // Solar PG2: lower-openness screens, Moon, Breeze Screen + NA820
+  // Solar PG2 (book May 2026): Serene 1/3%, Flow 1/5%, Windsong 1%, W120 12%, Moon 5%, Breeze 1&3%, NA300 1%, NA400 1%, NA820 3%
   'Serene 1%':'s2','Serene 3%':'s2','Flow 1%':'s2','Flow 5%':'s2',
   'Windsong 1%':'s2','Moon 5%':'s2','Breeze Screen 1%':'s2','Breeze Screen 3%':'s2',
   'NA820 3%':'s2',
@@ -320,7 +412,7 @@ var _SOL_COLL_GROUP = {
   // Solar PG3: Lakeview, Meadows, Jubilee, Galaxy
   'Lakeview 3%':'s3','Lakeview 7%':'s3','Lakeview 10%':'s3',
   'Meadows 1%':'s3','Meadows 3%':'s3','Jubilee 3%':'s3','Galaxy 3%':'s3',
-  // Fabric PG1: Scarlett, Catalina, Brook, Chelsea, Callie, Elements
+  // Fabric PG1 (book May 2026): Scarlett, Catalina, Brook, Chelsea, Verona LF, Callie, Callie RD, Elements
   'Scarlett':'f1','Catalina (Natural)':'f1','Brook':'f1','Chelsea':'f1',
   'Callie':'f1','Callie RD':'f1','Elements':'f1','Elements White Backing':'f1',
   'Verona LF':'f1', // ⚠ book PG1 but NOT yet in swatch data
@@ -458,10 +550,9 @@ function updateSummary() {
 
   const addons = [...document.querySelectorAll('#grp-addons .opt-btn.sel')].map(b => b.textContent.trim());
   const hwColor = getOpt('grp-hw-color');
-  const fasciaStyle = getOpt('grp-fascia-style');
   var addonParts = addons.slice();
   if (hwColor) addonParts.push('Premium HW: ' + hwColor);
-  if (fasciaStyle) addonParts.push(fasciaStyle);
+  addonParts = addonParts.concat(solComponentParts());
   document.getElementById('s-addons').textContent = addonParts.length ? addonParts.join(', ') : 'None';
 
   var coupledRow = document.getElementById('s-coupled-row');
@@ -485,7 +576,13 @@ function updateSummary() {
       var _solYour   = Math.round(_solRetail * 0.75);
       var pTxt = '$' + _solRetail.toLocaleString() + ' retail → $' + _solYour.toLocaleString() + ' your price (25% off)';
       if (priceResult.qty > 1 && !_solCoupledActive) pTxt += ' · ' + priceResult.qty + ' × $' + Math.round(priceResult.unit * 0.75).toLocaleString();
-      if (priceResult.motor) pTxt += ' + motor est.';
+      if (priceResult.motor && typeof nmGetMotorPrice === 'function') {
+        var _mShades = (_solCoupledActive ? _solCoupledCount : (priceResult.qty || 1)) * (shadeType === 'Dual Shade' ? 2 : 1);
+        var _mPrice = nmGetMotorPrice('Soluna Roller Shade', _mShades);
+        if (_mPrice > 0) {
+          pTxt += ' + motorization ' + nmMotorLineText(_mPrice, priceResult.qty || 1) + ' = $' + (_solYour + _mPrice).toLocaleString() + ' total';
+        }
+      }
       priceEl2.textContent = pTxt;
       priceRow.style.display = '';
     } else {
@@ -514,9 +611,8 @@ function submitQuote() {
   const motorSummary = (motorOn && typeof nmGetMotorSummary === 'function') ? nmGetMotorSummary() : '';
   const addons    = [...document.querySelectorAll('#grp-addons .opt-btn.sel')].map(b => b.textContent.trim());
   const hwColor   = getOpt('grp-hw-color');
-  const fasciaStyle = getOpt('grp-fascia-style');
   if (hwColor) addons.push('Premium hardware: ' + hwColor);
-  if (fasciaStyle) addons.push('Fascia style: ' + fasciaStyle);
+  solComponentParts().forEach(function(p) { addons.push(p); });
   const fabricColor = getSelectedFabricColor();
   const deliveryLabel = 'Ship to me — UPS / FedEx (freight TBD)';
 
@@ -532,7 +628,14 @@ function submitQuote() {
   const priceEstLine = (priceEst && priceEst.review)
     ? 'Size exceeds standard price chart (max 120"W x 144"H) — MANUAL QUOTE REQUIRED'
     : priceEst
-    ? 'Est. retail: $' + priceEst.total.toLocaleString() + ' → 25% off → your price: $' + Math.round(priceEst.total * 0.75).toLocaleString() + ' (freight/motor additional, not discounted)' + (priceEst.motor ? ' (motor priced separately)' : '') + (priceEst.qty > 1 && !_solCoupledActive ? ' (' + priceEst.qty + ' × $' + priceEst.unit.toLocaleString() + ')' : '')
+    ? 'Est. retail: $' + priceEst.total.toLocaleString() + ' → 25% off → shade price: $' + Math.round(priceEst.total * 0.75).toLocaleString() + (function(){
+        if (priceEst.motor && typeof nmGetMotorPrice === 'function') {
+          var _ms = (_solCoupledActive ? _solCoupledCount : (priceEst.qty || 1)) * (shadeType === 'Dual Shade' ? 2 : 1);
+          var _mp = nmGetMotorPrice('Soluna Roller Shade', _ms);
+          if (_mp > 0) return ' + motorization ' + nmMotorLineText(_mp, priceEst.qty || 1) + ' = TOTAL $' + (Math.round(priceEst.total * 0.75) + _mp).toLocaleString();
+        }
+        return '';
+      })() + ' (freight additional)' + (priceEst.qty > 1 && !_solCoupledActive ? ' (' + priceEst.qty + ' × $' + priceEst.unit.toLocaleString() + ')' : '')
     : '';
   const body = [
     '=== PREMIER NORMAN ROLLER SHADE QUOTE REQUEST ===',

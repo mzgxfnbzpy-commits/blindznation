@@ -109,11 +109,13 @@ function crsPickType(val, label) {
   var solarOpts = _crsEl('solar-opts');
   var colorOpts = _crsEl('color-opts');
   if (solarOpts) solarOpts.classList.toggle('show', val === 'solar');
-  // Blackout shows color immediately; solar shows color after openness picked
-  if (colorOpts) colorOpts.classList.toggle('show', val === 'blackout');
+  // Show colors immediately for both Solar and Blackout
+  if (colorOpts) colorOpts.classList.toggle('show', val === 'solar' || val === 'blackout');
 
-  // Reset color selection
+  // Ensure swatches are rendered, then reset any prior color selection
+  crsRenderColors();
   if (window.pbFabricPicker) pbFabricPicker.clearSelection('crs-fabric-picker');
+  document.querySelectorAll('#crs-fabric-picker button.sel').forEach(function(b) { b.classList.remove('sel'); });
 
   if (val === 'solar') return; // wait for openness + color before advancing
   // Blackout: wait for color pick before advancing
@@ -124,40 +126,71 @@ function crsPickOpenness(val, label) {
   document.querySelectorAll('.openness-btn').forEach(function(b) { b.classList.remove('sel'); });
   var btn = _crsEl('ob-' + val);
   if (btn) btn.classList.add('sel');
-  // Show color options after openness selected
+  // Colors are already visible for solar; keep them shown
   var colorOpts = _crsEl('color-opts');
   if (colorOpts) colorOpts.classList.add('show');
+  crsRenderColors();
+  // If a color was already chosen, the step is now complete → finish + advance.
+  if (CRS.color) { crsSelectColor(CRS.color); return; }
   setTimeout(function() { if (colorOpts) colorOpts.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
 }
 
 // Expanded basic solids — same palette for Solar Screen & Blackout lines.
+// Basic Roller keeps a deliberately short core palette. Hexes match the shared
+// COLOR_HEX map in shades.js so the same colour looks identical on both surfaces.
 var CRS_BASIC_SOLIDS = [
-  {n:'White',     hex:'#ffffff'}, {n:'Ivory',    hex:'#f5efe0'}, {n:'Cream',   hex:'#f3e9d2'},
-  {n:'Beige',     hex:'#e8dcc4'}, {n:'Sand',     hex:'#ddcba6'}, {n:'Taupe',   hex:'#b8a98f'},
-  {n:'Linen',     hex:'#d9cbb2'}, {n:'Gray',     hex:'#9e9e9e'}, {n:'Slate',   hex:'#6e7377'},
-  {n:'Charcoal',  hex:'#4a4a4a'}, {n:'Black',    hex:'#1a1a1a'}, {n:'Chocolate',hex:'#4b3a2b'},
-  {n:'Navy',      hex:'#24324a'}
+  {n:'White',   hex:'#FFFFFF'}, {n:'Off-White', hex:'#F3EEE6'}, {n:'Gray', hex:'#888888'},
+  {n:'Black',   hex:'#1C1C1C'}, {n:'Brown',     hex:'#885030'}
 ];
 
 // Render the shared fabric picker into the color step (single type → no tabs here;
 // Solar vs Blackout is the type-card choice above, openness handled separately).
+// Renders once (idempotent); falls back to plain swatches if the shared
+// component ever fails to load, so colors are NEVER blank.
 function crsRenderColors() {
-  if (!window.pbFabricPicker) return;
-  pbFabricPicker.render('crs-fabric-picker', {
-    hideTabs: true,
-    types: [{ key: 'solids', label: 'Colors' }],
-    collections: [{ type: 'solids', name: '', colors: CRS_BASIC_SOLIDS }],
-    onSelect: function(sel) { crsSelectColor(sel.name); }
-  });
+  var host = document.getElementById('crs-fabric-picker');
+  if (!host) return;
+  if (host.children && host.children.length) return; // already rendered
+  if (window.pbFabricPicker) {
+    pbFabricPicker.render('crs-fabric-picker', {
+      hideTabs: true,
+      types: [{ key: 'solids', label: 'Colors' }],
+      collections: [{ type: 'solids', name: '', colors: CRS_BASIC_SOLIDS }],
+      onSelect: function(sel) { crsSelectColor(sel.name); }
+    });
+  } else {
+    // Fallback — plain swatch buttons (component unavailable)
+    var html = '<div style="display:flex;flex-wrap:wrap;gap:6px">';
+    CRS_BASIC_SOLIDS.forEach(function(c) {
+      html += '<button type="button" class="opt-btn" style="display:inline-flex;align-items:center;gap:7px;padding:5px 10px 5px 6px" ' +
+        'onclick="crsFallbackColor(this,\'' + c.n + '\')">' +
+        '<span style="width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.18);background:' + c.hex + '"></span>' +
+        c.n + '</button>';
+    });
+    host.innerHTML = html + '</div>';
+  }
+}
+
+function crsFallbackColor(btn, color) {
+  var host = document.getElementById('crs-fabric-picker');
+  if (host) host.querySelectorAll('button').forEach(function(b) { b.classList.remove('sel'); });
+  btn.classList.add('sel');
+  crsSelectColor(color);
 }
 
 function crsSelectColor(color) {
   CRS.color = color;
+  crsUpdatePanel();
+  // Solar needs an openness % before the step is complete — nudge the openness picker.
+  if (CRS.type === 'solar' && !CRS.openness) {
+    var so = _crsEl('solar-opts');
+    if (so) setTimeout(function() { so.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
+    return;
+  }
   var label = CRS.type === 'solar'
     ? 'Solar · ' + CRS.openness + '% · ' + color
     : 'Blackout · ' + color;
   crsDone('step-2', label);
-  crsUpdatePanel();
   setTimeout(function() { crsOpen('step-3'); }, 350);
 }
 

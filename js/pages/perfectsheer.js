@@ -158,47 +158,38 @@ function psCalc() {
   var hi = psGetIdx(PS_HEIGHTS, h); if (hi < 0) hi = PS_HEIGHTS.length - 1;
 
   var base  = PS_PRICES[hi][wi];
-  var lines = ['Base (' + PS_WIDTHS[wi] + '″W × ' + PS_HEIGHTS[hi] + '″H): $' + base.toLocaleString()];
   var total = base;
 
-  // Room Darkening +20%
+  // Room Darkening +20% (hidden — rolls into retail)
   var isRD = PS.fabric === 'rd';
-  if (isRD) {
-    var rdAdd = Math.round(base * 0.20);
-    total += rdAdd;
-    lines.push('Blackout (+20%): +$' + rdAdd.toLocaleString());
-  }
+  if (isRD) total += Math.round(base * 0.20);
 
-  // Valance
+  // Valance (hidden)
   var vi = psGetIdx(PS_WIDTHS, w); if (vi < 0) vi = PS_WIDTHS.length - 1;
-  if (PS.valance.indexOf('Fabric valance') >= 0) {
-    var fv = PS_FABRIC_V[vi]; total += fv;
-    lines.push('Fabric valance: +$' + fv.toLocaleString());
-  } else if (PS.valance.indexOf('Wood valance') >= 0) {
-    var wv = PS_WOOD_V[vi]; total += wv;
-    lines.push('Wood valance: +$' + wv.toLocaleString());
-  }
+  if (PS.valance.indexOf('Fabric valance') >= 0) total += PS_FABRIC_V[vi];
+  else if (PS.valance.indexOf('Wood valance') >= 0) total += PS_WOOD_V[vi];
 
-  // Accessories
-  if (PS.lgBasic)   { total += 45;  lines.push('Basic light guard: +$45'); }
-  if (PS.lgPrem)    { total += 117; lines.push('Premium wood light guard: +$117'); }
-  if (PS.holddown)  { total += 28;  lines.push('Magnetic hold-down: +$28'); }
-  if (PS.shims > 0) { var sv = PS.shims * 7; total += sv; lines.push('Shims (' + PS.shims + '×$7): +$' + sv); }
+  // Accessories (hidden)
+  if (PS.lgBasic)   total += 45;
+  if (PS.lgPrem)    total += 117;
+  if (PS.holddown)  total += 28;
+  if (PS.shims > 0) total += PS.shims * 7;
 
-  if (!isCCL) {
-    lines.push('Motorization (+$' + PS_MOTOR_COST + '/shade): added to final quote');
-  }
-
+  // ── Customer-facing breakdown: retail → 25% off → price; motor+accessories at full price ──
+  // (base table price, +20% fabric, valance, light-guard, hold-down, shims are intentionally hidden)
+  var lines = [];
   var discAmt   = Math.round(total * PS_NORM_DISC);
   var yourPrice = total - discAmt;
-  lines.push('<span style="color:var(--gold)">Retail: $' + total.toLocaleString()
-    + ' → 25% off: −$' + discAmt.toLocaleString()
-    + ' → Your price: $' + yourPrice.toLocaleString() + '/shade</span>');
+  lines.push('Retail: $' + total.toLocaleString());
+  lines.push('<span style="color:var(--gold)">25% Norman discount: −$' + discAmt.toLocaleString() + '</span>');
+  lines.push('<span style="color:var(--gold);font-weight:600">Your shade price: $' + yourPrice.toLocaleString() + '/shade</span>');
 
+  // Motor charged at full Norman retail (NOT discounted) via shared nmGetMotorPrice
+  var psMotor    = (!isCCL && typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('PerfectSheer', PS.qty) : 0;
   var freight    = w >= 90 ? (80 + Math.max(0, PS.qty - 1) * 50) : (25 + Math.max(0, PS.qty - 1) * 11);
-  var grandTotal = (yourPrice * PS.qty) + freight;
-
-  lines.push('Freight (' + (w >= 90 ? '90″+ oversize' : 'standard') + '): +$' + freight);
+  var grandTotal = (yourPrice * PS.qty) + psMotor + freight;
+  if (psMotor) lines.push('Motorization: ' + nmMotorLineText(psMotor, PS.qty));
+  lines.push('Freight (not discounted): +$' + freight.toLocaleString());
 
   document.getElementById('ps-price-num').textContent   = '$' + yourPrice.toLocaleString() + '/shade';
   document.getElementById('ps-price-total').textContent = '$' + grandTotal.toLocaleString();
@@ -246,8 +237,9 @@ function psAddToCart() {
     var motorSummary = (typeof nmGetMotorSummary === 'function') ? nmGetMotorSummary() : 'Norman Smart Motorization';
     lines.splice(7, 0, {label:'Motor config', value: motorSummary});
   }
+  var psMotor = (PS.lift !== 'ccl' && typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('PerfectSheer', PS.qty) : 0;
   var specs = lines.map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
-  pbAddToCart({product:'Norman PerfectSheer™', lines:lines, specs:specs, price:yourPrice * PS.qty + freight, qty:PS.qty});
+  pbAddToCart({product:'Norman PerfectSheer™', lines:lines, specs:specs, price:yourPrice * PS.qty + psMotor + freight, qty:PS.qty});
   if (typeof pbOpenCart === 'function') pbOpenCart();
 }
 

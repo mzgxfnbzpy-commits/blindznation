@@ -134,7 +134,6 @@ var WRAP_P=[31,38,47,54,61,69,77,84,92,108,123,138]; // by width bracket
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
 // Tier bar: 'basic' is THIS page (Banded 2D); other tiers are direct <a> links. No-op keeps active state.
-function selectTier(t){ var b=document.getElementById('tier-basic'); if(b) b.classList.add('tier-active'); }
 function selB(el,g){document.getElementById(g).querySelectorAll('.opt-btn').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');}
 function tog(id){var e=document.getElementById(id);e.classList.toggle('active');}
 function openNext(id){
@@ -145,27 +144,39 @@ function spv(id,val){var e=document.getElementById(id);if(e){e.textContent=val||
 function showR(id,s){var e=document.getElementById(id);if(e)e.style.display=s?'':'none';}
 function setV(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
 
-// ── STEP 1 ────────────────────────────────────────────────────────────────────
+// ── STEP 1 / TIER ──────────────────────────────────────────────────────────────
+// Basic (Banded 2D) and Premium (Portfolio Dual Sheer) are BOTH hosted on this page.
+// Switching between them happens in place — no page navigation — so the customer can
+// flip back and forth with the tier bar / thumbnails always visible.
 function setProd(p,el){
-  if(p==='dual'){window.location.href='portfolio-dual-sheer.html';return;}
   S.prod=p;
+  var isDual=p==='dual';
+  // Sync the big Step-1 thumbnails.
   document.querySelectorAll('#step1 .product-card').forEach(function(c){c.classList.remove('sel');});
-  el.classList.add('sel');
-  document.getElementById('val1').textContent=p==='dual'?'Portfolio Dual Sheer':'Banded 2D Shades';
+  if(el&&el.classList){el.classList.add('sel');}
+  else{var card=document.getElementById(isDual?'prod-dual':'prod-2d');if(card)card.classList.add('sel');}
+  // Sync the compact tier bar.
+  var tb=document.getElementById('tier-basic'),td=document.getElementById('tier-dual');
+  if(tb)tb.classList.toggle('tier-active',!isDual);
+  if(td)td.classList.toggle('tier-active',isDual);
+
+  document.getElementById('val1').textContent=isDual?'Portfolio Dual Sheer':'Banded 2D Shades';
   document.getElementById('step1').classList.add('done');
 
-  document.getElementById('step2-dual').style.display=p==='dual'?'':'none';
-  document.getElementById('step2-2d').style.display=p==='2d'?'':'none';
-  document.getElementById('ctrl-dual').style.display=p==='dual'?'':'none';
-  document.getElementById('ctrl-2d').style.display=p==='2d'?'':'none';
-  document.getElementById('step5-dual').style.display=p==='dual'?'':'none';
-  document.getElementById('step5-2d').style.display=p==='2d'?'':'none';
-  var opts2d=document.getElementById('opts-2d');if(opts2d)opts2d.style.display=p==='2d'?'':'none';
-  document.getElementById('s2title').textContent=p==='dual'?'Fabric':'Fabric Preferences';
-  spv('sp-prod',p==='dual'?'Portfolio Dual Sheer':'Banded 2D Shades');
-  if(p==='2d'){render2dGrid();}
+  document.getElementById('step2-dual').style.display=isDual?'':'none';
+  document.getElementById('step2-2d').style.display=isDual?'none':'';
+  document.getElementById('ctrl-dual').style.display=isDual?'':'none';
+  document.getElementById('ctrl-2d').style.display=isDual?'none':'';
+  document.getElementById('step5-dual').style.display=isDual?'':'none';
+  document.getElementById('step5-2d').style.display=isDual?'none':'';
+  var opts2d=document.getElementById('opts-2d');if(opts2d)opts2d.style.display=isDual?'none':'';
+  document.getElementById('s2title').textContent=isDual?'Fabric':'Fabric Preferences';
+  spv('sp-prod',isDual?'Portfolio Dual Sheer':'Banded 2D Shades');
+  if(isDual){renderFabricGrid();}else{render2dGrid();}
   updateCalc();openNext('step3'); // product chosen → open size (Step 2)
 }
+// Compact tier-bar switcher → delegates to setProd so both stay in sync.
+function selectTier(t){ setProd(t==='premium'||t==='dual'?'dual':'2d'); }
 
 // ── BANDED 2D: COLLECTION + COLOR DATA ────────────────────────────────────────
 var COLL2D=[

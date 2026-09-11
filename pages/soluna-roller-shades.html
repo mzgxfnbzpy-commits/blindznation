@@ -431,7 +431,7 @@
 
       <!-- Blackout -->
       <div class="lc-card">
-        <div class="lc-swatch" style="background:linear-gradient(135deg,#3A2E22 0%,#1C1C1A 100%)">
+        <div class="lc-swatch" style="background:linear-gradient(135deg,#3A2E22 0%,#251E16 100%)">
           <svg viewBox="0 0 80 80" width="60" height="60" fill="none">
             <rect x="20" y="5" width="40" height="70" rx="2" fill="#111110"/>
             <path d="M58 15 L66 12 M58 25 L67 25 M58 35 L66 38" stroke="#2DE0C1" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
@@ -451,7 +451,7 @@
       <div class="lc-card">
         <div class="lc-swatch" style="background:#111110">
           <svg viewBox="0 0 80 80" width="60" height="60" fill="none">
-            <rect x="20" y="5" width="40" height="70" rx="2" fill="#0A0A09"/>
+            <rect x="20" y="5" width="40" height="70" rx="2" fill="#120E09"/>
             <rect x="22" y="7" width="36" height="66" rx="1" fill="#0A0806"/>
             <circle cx="40" cy="38" r="12" fill="none" stroke="#2DE0C1" stroke-width="1.5"/>
             <line x1="34" y1="38" x2="46" y2="38" stroke="#2DE0C1" stroke-width="1.5" stroke-linecap="round"/>
@@ -709,52 +709,11 @@
             </div>
           </div>
 
-          <!-- Step 2: Fabric type -->
+          <!-- Step 2: Shade type — chosen before fabric, because Dual Shade replaces the
+               single fabric picker with separate front/back pickers. -->
           <div class="step-block">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
               <div class="step-num">2</div>
-              <div class="step-title" style="margin-bottom:0">Fabric type</div>
-            </div>
-            <div class="opt-row" id="grp-light">
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('solar');updateSummary()">Solar Screen</button>
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-light');showFabricColls('lf');updateSummary()">Light Filtering Designer</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('sheer');updateSummary()">Sheer &amp; Naturals</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('rd');updateSummary()">Blackout</button>
-            </div>
-            <div class="tooltip-note">Blackout fabric blocks light through the material — pair it with the Full Blackout Side Channels cassette to get as close to dark as we can. Solar Screen includes residential and commercial NA-series fabrics.</div>
-            <!-- Fabric collection picker — populated dynamically by showFabricColls() -->
-            <div id="fabric-coll-wrap" style="display:none;margin-top:12px;border:1px solid #e8e4de;border-radius:8px;overflow:hidden">
-              <div style="background:#f5f2ed;padding:7px 12px;font-size:10px;font-weight:600;color:#666;letter-spacing:.8px;text-transform:uppercase">Fabric Collection &amp; Color <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">(optional — select or skip)</span></div>
-              <div id="fabric-coll-inner" style="padding:10px 12px;max-height:280px;overflow-y:auto"></div>
-            </div>
-          </div>
-
-          <!-- Step 3: Operating system -->
-          <div class="step-block">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div class="step-num">3</div>
-              <div class="step-title" style="margin-bottom:0">Operating system</div>
-            </div>
-            <div class="opt-row" id="grp-op">
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('cordless');updateSummary()">PrecisionLift™ Cordless</button>
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('loop');updateSummary()">Manual with chain</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('smartrelease');updateSummary()">SmartRelease™</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(true);solCheckCoupledOpWarn();solShowOpDesc('motor');updateSummary()">Motorized</button>
-            </div>
-            <div id="op-desc-box" style="margin-top:10px;padding:10px 13px;border-radius:8px;font-size:12px;line-height:1.6;background:#f5f2ed;border-left:3px solid var(--gold)">
-              <strong style="color:#333">Manual with chain</strong> — Side-mounted bead chain operates the shade smoothly in both directions. Works for any size window. Best choice when cordless isn't required.
-            </div>
-            <div class="motor-sub" id="motor-sub">
-              <!-- Shared Norman motor UI (rendered by normanMotorSection in shared.js) -->
-              <div id="sol-motor-config"></div>
-              <div class="tooltip-note" style="margin-top:8px">Norman Smart estimate: $482/shade. Supports Alexa, Google Home, Apple HomeKit via the Norman Smart Hub. Exact power source and accessories confirmed at measurement visit.</div>
-            </div>
-          </div>
-
-          <!-- Step 4: Shade type -->
-          <div class="step-block">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-              <div class="step-num">4</div>
               <div class="step-title" style="margin-bottom:0">Shade type</div>
             </div>
             <div class="opt-row" id="grp-shade-type">
@@ -778,6 +737,48 @@
                 </div>
               </div>
               <div style="font-size:10px;color:#888;margin-top:8px;line-height:1.5">Cassette headrail is required for dual shade — auto-selected in Step 5 below.</div>
+            </div>
+          </div>
+
+          <!-- Step 3: Fabric type -->
+          <div class="step-block">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">3</div>
+              <div class="step-title" style="margin-bottom:0">Fabric type</div>
+            </div>
+            <div class="opt-row" id="grp-light">
+              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('solar');updateSummary()">Solar Screen</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-light');showFabricColls('lf');updateSummary()">Light Filtering Designer</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('sheer');updateSummary()">Sheer &amp; Naturals</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('rd');updateSummary()">Blackout</button>
+            </div>
+            <div class="tooltip-note">Blackout fabric blocks light through the material — pair it with the Full Blackout Side Channels cassette to get as close to dark as we can. Solar Screen includes residential and commercial NA-series fabrics.</div>
+            <!-- Fabric collection picker — populated dynamically by showFabricColls() -->
+            <div id="fabric-coll-wrap" style="display:none;margin-top:12px;border:1px solid #e8e4de;border-radius:8px;overflow:hidden">
+              <div style="background:#f5f2ed;padding:7px 12px;font-size:10px;font-weight:600;color:#666;letter-spacing:.8px;text-transform:uppercase">Fabric Collection &amp; Color <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">(optional — select or skip)</span></div>
+              <div id="fabric-coll-inner" style="padding:10px 12px;max-height:280px;overflow-y:auto"></div>
+            </div>
+          </div>
+
+          <!-- Step 4: Operating system -->
+          <div class="step-block">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">4</div>
+              <div class="step-title" style="margin-bottom:0">Operating system</div>
+            </div>
+            <div class="opt-row" id="grp-op">
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('cordless');updateSummary()">PrecisionLift™ Cordless</button>
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('loop');updateSummary()">Manual with chain</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(false);solCheckCoupledOpWarn();solShowOpDesc('smartrelease');updateSummary()">SmartRelease™</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-op');toggleMotor(true);solCheckCoupledOpWarn();solShowOpDesc('motor');updateSummary()">Motorized</button>
+            </div>
+            <div id="op-desc-box" style="margin-top:10px;padding:10px 13px;border-radius:8px;font-size:12px;line-height:1.6;background:#f5f2ed;border-left:3px solid var(--gold)">
+              <strong style="color:#333">Manual with chain</strong> — Side-mounted bead chain operates the shade smoothly in both directions. Works for any size window. Best choice when cordless isn't required.
+            </div>
+            <div class="motor-sub" id="motor-sub">
+              <!-- Shared Norman motor UI (rendered by normanMotorSection in shared.js) -->
+              <div id="sol-motor-config"></div>
+              <div class="tooltip-note" style="margin-top:8px">Norman Smart estimate: $482/shade. Supports Alexa, Google Home, Apple HomeKit via the Norman Smart Hub. Exact power source and accessories confirmed at measurement visit.</div>
             </div>
           </div>
 
@@ -812,11 +813,48 @@
             <div id="sol-fascia-subopts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
               <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Fascia / valance style</div>
               <div class="opt-row" id="grp-fascia-style" style="flex-wrap:wrap">
-                <button class="opt-btn" onclick="selOpt(this,'grp-fascia-style');updateSummary()">Flat Metal Fascia</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-fascia-style');updateSummary()">Flat Fabric Wrapped Fascia</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-fascia-style');updateSummary()">Curved Fabric Wrapped Fascia</button>
+                <button class="opt-btn" onclick="solPickFascia('metal',this)">Flat Metal Fascia</button>
+                <button class="opt-btn" onclick="solPickFascia('fabric',this)">Flat Fabric Wrapped Fascia</button>
+                <button class="opt-btn" onclick="solPickFascia('fabric',this)">Curved Fabric Wrapped Fascia</button>
               </div>
-              <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">Flat Metal Fascia: slim aluminum cover in your hardware color. Flat Fabric Wrapped Fascia: flat aluminum base wrapped in your shade fabric. Curved Fabric Wrapped Fascia: curved aluminum base wrapped in shade fabric. Style confirmed at order.</div>
+              <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">Flat Metal Fascia: slim aluminum cover in a painted metal finish. Flat Fabric Wrapped Fascia: flat aluminum base wrapped in your shade fabric. Curved Fabric Wrapped Fascia: curved aluminum base wrapped in shade fabric. Style confirmed at order.</div>
+              <!-- Metal fascia colour — Norman metal-fascia palette (not the open-roll premium finishes) -->
+              <div id="sol-fascia-color-wrap" style="display:none;margin-top:12px;padding-top:10px;border-top:1px solid #e8e8e4">
+                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Metal fascia color</div>
+                <div id="sol-fascia-color-slot"></div>
+              </div>
+            </div>
+
+            <!-- LightGuard 360 sub-options (shown when LightGuard 360 selected) -->
+            <div id="sol-lg-subopts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
+              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Full Blackout Side Channels cassette</div>
+              <div class="opt-row" id="grp-lg-cassette-mat" style="flex-wrap:wrap">
+                <button class="opt-btn sel" onclick="solPickLgCassette('fabric',this)">Fabric wrapped</button>
+                <button class="opt-btn" onclick="solPickLgCassette('metal',this)">Metal</button>
+              </div>
+              <div id="sol-lg-cassette-color-wrap" style="display:none;margin-top:10px">
+                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Metal cassette color</div>
+                <div id="sol-lg-cassette-color-slot"></div>
+              </div>
+              <div style="margin-top:12px;padding-top:10px;border-top:1px solid #e8e8e4">
+                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Side rail color <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">(always metal)</span></div>
+                <div id="sol-lg-rail-color-slot"></div>
+              </div>
+              <div style="font-size:10px;color:#888;margin-top:8px;line-height:1.5">Full Blackout Side Channels require a Blackout fabric. The cassette may be fabric wrapped (matches your shade fabric) or metal. <strong>Side rails are always metal</strong> and are picked separately. Housing color is selected manually — fabric color coordination does not apply. Standard hardware is black.</div>
+            </div>
+
+            <!-- Hem bar — applies to LightGuard 360 and standard shades alike -->
+            <div id="sol-hembar-wrap" style="margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
+              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Hem bar</div>
+              <div class="opt-row" id="grp-hembar-mat" style="flex-wrap:wrap">
+                <button class="opt-btn sel" onclick="solPickHemBar('fabric',this)">Fabric wrapped</button>
+                <button class="opt-btn" onclick="solPickHemBar('metal',this)">Metal</button>
+              </div>
+              <div id="sol-hembar-color-wrap" style="display:none;margin-top:10px">
+                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Metal hem bar color</div>
+                <div id="sol-hembar-color-slot"></div>
+              </div>
+              <div id="sol-hembar-note" style="font-size:10px;color:#888;margin-top:8px;line-height:1.5">Fabric wrapped: front matches your shade fabric, back matches the standard hardware color. Metal: painted hem bar in the color you pick above.</div>
             </div>
           </div>
 
@@ -834,10 +872,9 @@
             </div>
           </div>
 
-          <!-- Step 7: Contact — renders from the shared pbContactStepHTML() so the
-               Add to Cart / Submit Order for Review pair stacks identically to every
-               other configurator, and the page gains the Terms checkbox, honeypot
-               and file upload it never had. -->
+          <!-- Step 7: Contact — this block is the original that pbContactStepHTML was
+               modelled on; it now renders from the shared function so the reference
+               and the copies can never drift apart. -->
           <div id="soluna-final-step"></div>
 
           <div class="success-state" id="quote-success">
@@ -943,9 +980,10 @@
 <script src="../js/shared.js"></script>
 <script src="../js/pages/soluna-roller-shades.js"></script>
 <script>
-// Step 7 contact block. The generated ids (cf-name/phone/email/address/notes,
-// cf-contact-err, contact-block) are exactly what this page used by hand, so
-// submitQuote() and addSolunaToCart() are unchanged.
+// Step 7 "Your details" — rendered from the shared helper. Default ids (cf-*,
+// contact-block) are exactly what this page used by hand, so submitQuote() and
+// addSolunaToCart() are unchanged; the page gains the Terms checkbox, honeypot
+// and file upload it never had.
 document.getElementById('soluna-final-step').innerHTML = pbContactStepHTML({
   stepNum: 7,
   cartFn: 'addSolunaToCart()',
