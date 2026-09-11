@@ -1435,7 +1435,7 @@
         <div id="pb-fascia-color-slot"></div>
       </div>
 
-      <!-- Decorative hardware color — brackets, hem bar, end caps -->
+      <!-- Hardware color — decorative finish for brackets, hem bar & end caps -->
       <div style="margin-top:12px">
         <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:4px" id="pb-hw-color-label">Hardware color</div>
         <div id="pb-hw-color-note" style="display:none;font-size:11px;color:#888;margin-bottom:6px">Decorative finish for brackets, hem bar &amp; end caps. The metal fascia has its own color above.</div>
@@ -1554,7 +1554,6 @@
         </select>
       </div>
     </div>
-    <!-- Notes come from the shared final step below (id hd-notes). -->
     <div class="delivery-opt-grid" id="grp-del-hd">
       <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
         <div class="delivery-opt-title">Ship to me</div>
@@ -1562,7 +1561,7 @@
       </div>
     </div>
     <button onclick="reqMoreInfo('Hunter Douglas Silhouette / Pirouette Shadings')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Hunter Douglas Silhouette / Pirouette Shadings →</button>
-        <div id="hd-final-step"></div>
+    <div id="hd-final-step"></div>
     <div class="success-state" id="hd-success">
       <h3>Quote request received!</h3>
       <p>A Hunter Douglas specialist will reach out within 24 hours. For anything urgent, call <strong>(609) 742-1720</strong> &mdash; available 24/7.</p>
@@ -2248,7 +2247,6 @@
           </div>
         </div>
       </div>
-      <!-- Notes come from the shared final step below (id ps-notes). -->
       <div class="delivery-opt-grid" id="grp-del-ps">
         <div class="delivery-opt-card sel" onclick="pickDelCard(this)">
           <div class="delivery-opt-title">Ship to me</div>
@@ -2409,6 +2407,34 @@
 <script src="../js/shared.js"></script>
 <script src="../js/pages/shades.js"></script>
 <script>
+// Canonical final "Your details" step. This page hosts several product
+// configurators, so each gets its own idPrefix — which regenerates the same
+// {prefix}-name/phone/email/notes ids the submit functions already read, and
+// adds the address field, Terms checkbox, honeypot and file upload none of
+// them had. Before this, these forms carried no data-pb-require-contact at
+// all, so the shared submit guard never ran on them.
+[
+  { mount: 'ext-final-step',   prefix: 'ext-',   submit: 'submitExteriorForm(this)' },
+  { mount: 'fwb-final-step',   prefix: 'fwb-',   submit: 'submitFWBForm(this)' },
+  { mount: 'rwb-final-step',   prefix: 'rwb-',   submit: 'submitRWBForm(this)' },
+  { mount: 'rn-sf-final-step', prefix: 'rn-sf-', submit: 'rnSubmitForm(this)' },
+  { mount: 'sf-final-step',    prefix: 'sf-',    submit: 'submitShadeForm(this)', cart: 'addToCart()' },
+  { mount: 'pb-final-step',    prefix: 'pb-',    submit: 'submitPBForm(this)' },
+  { mount: 'hd-final-step',    prefix: 'hd-',    submit: 'submitQuoteForm(this)' },
+  { mount: 'ps-final-step',    prefix: 'ps-',    submit: 'submitPSForm(this)' },
+  { mount: 'cq-final-step',    prefix: 'cq-',    submit: 'submitCart(this)' }
+].forEach(function (t) {
+  var el = document.getElementById(t.mount);
+  if (!el) return;
+  el.innerHTML = pbContactStepHTML({
+    bare: true,
+    idPrefix: t.prefix,
+    errId: t.prefix + 'contact-err',
+    submitFn: t.submit,
+    cartFn: t.cart || null
+  });
+});
+
 function selectSheerCat(cat, el) {
   if (cat === 'hd') {
     pbShowContact('Hunter Douglas Sheer Shadings — Silhouette · Pirouette · Luminette · Vignette — free consultation & custom quote');
@@ -2452,35 +2478,6 @@ function selectSheerCat(cat, el) {
     title.style.marginBottom = '0';
   });
 })();
-</script>
-<script>
-// Canonical final "Your details" step. This page hosts several product
-// configurators, so each gets its own idPrefix — which regenerates the same
-// {prefix}-name/phone/email/notes ids the submit functions already read, and
-// adds the address field, Terms checkbox, honeypot and file upload none of
-// them had. Before this, these forms carried no data-pb-require-contact at
-// all, so the shared submit guard never ran on them.
-[
-  { mount: 'ext-final-step',   prefix: 'ext-',   submit: 'submitExteriorForm(this)' },
-  { mount: 'fwb-final-step',   prefix: 'fwb-',   submit: 'submitFWBForm(this)' },
-  { mount: 'rwb-final-step',   prefix: 'rwb-',   submit: 'submitRWBForm(this)' },
-  { mount: 'rn-sf-final-step', prefix: 'rn-sf-', submit: 'rnSubmitForm(this)' },
-  { mount: 'sf-final-step',    prefix: 'sf-',    submit: 'submitShadeForm(this)', cart: 'addToCart()' },
-  { mount: 'pb-final-step',    prefix: 'pb-',    submit: 'submitPBForm(this)' },
-  { mount: 'hd-final-step',    prefix: 'hd-',    submit: 'submitQuoteForm(this)' },
-  { mount: 'ps-final-step',    prefix: 'ps-',    submit: 'submitPSForm(this)' },
-  { mount: 'cq-final-step',    prefix: 'cq-',    submit: 'submitCart(this)' }
-].forEach(function (t) {
-  var el = document.getElementById(t.mount);
-  if (!el) return;
-  el.innerHTML = pbContactStepHTML({
-    bare: true,
-    idPrefix: t.prefix,
-    errId: t.prefix + 'contact-err',
-    submitFn: t.submit,
-    cartFn: t.cart || null
-  });
-});
 </script>
 </body>
 </html>
