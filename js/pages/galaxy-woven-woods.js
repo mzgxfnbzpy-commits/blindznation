@@ -194,7 +194,7 @@ function buildPatternGrid(){
     pats.forEach(function(p){ var pg=p[0]; if(!byPg[pg]) byPg[pg]={pg:pg,colors:[]}; byPg[pg].colors.push({n:p[2], c:p[1]}); });
     var collections=Object.keys(byPg).map(function(k){ return {type:'woven', pg:byPg[k].pg, name:'', colors:byPg[k].colors}; });
     pbFabricPicker.render('pattern-grid', {
-      hideTabs:true, showPriceGroups:true,
+      hideTabs:true, showPriceGroups:true, priceGroupTabs:true,
       types:[{key:'woven',label:'Pattern'}],
       collections:collections,
       onSelect:function(sel){ pickGalaxyPattern(sel.code); }

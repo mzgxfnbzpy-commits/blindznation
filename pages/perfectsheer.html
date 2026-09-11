@@ -458,7 +458,7 @@ function pickLift(el, type) {
   if (mc) {
     if (type === 'motor') {
       mc.style.display = 'block';
-      if (typeof normanMotorSection === 'function') normanMotorSection('ps-motor-config', 'PerfectSheer');
+      if (typeof normanMotorSection === 'function') normanMotorSection('ps-motor-config', 'PerfectSheer', typeof psCalc === 'function' ? psCalc : null);
     } else {
       mc.style.display = 'none';
       mc.innerHTML = '';

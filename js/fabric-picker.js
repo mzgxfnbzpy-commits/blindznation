@@ -64,6 +64,9 @@ window.pbFabricPicker = (function () {
       '.pbfp-sw:focus-visible,.pbfp-tab:focus-visible{outline:2px solid var(--pbfp-accent);outline-offset:2px}' +
       '.pbfp-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.18)}' +
       '.pbfp-empty{font-size:12px;color:inherit;opacity:.55;font-style:italic;padding:8px 0}' +
+      // Long collections scroll inside a fixed-height window instead of stretching the
+      // page. The tab bar stays outside it so tabs never scroll out of reach.
+      '.pbfp-scroll{max-height:280px;overflow-y:auto;padding-right:4px;overscroll-behavior:contain}' +
       '@media (max-width:520px){.pbfp-tab{flex:1 1 auto;text-align:center}}';
     var s = document.createElement('style');
     s.setAttribute('data-pbfp', '1');
@@ -126,9 +129,13 @@ window.pbFabricPicker = (function () {
   // their own tab bar so a long fabric list collapses to one group at a time.
   function _paintGroups(container, config, typeKey, panel, groups) {
     if (!(config.priceGroupTabs && groups.length > 1)) {
+      // Every group stacked — this is the list that gets long, so it scrolls.
+      var stack = document.createElement('div');
+      stack.className = 'pbfp-scroll';
       groups.forEach(function (grp) {
-        panel.appendChild(_renderGroup(container, config, typeKey, grp, !!config.showPriceGroups));
+        stack.appendChild(_renderGroup(container, config, typeKey, grp, !!config.showPriceGroups));
       });
+      panel.appendChild(stack);
       return;
     }
     var sub = document.createElement('div');
@@ -136,6 +143,7 @@ window.pbFabricPicker = (function () {
     sub.setAttribute('role', 'tablist');
     sub.setAttribute('aria-label', 'Price group');
     var body = document.createElement('div');
+    body.className = 'pbfp-scroll';
     groups.forEach(function (grp) {
       var b = document.createElement('button');
       b.type = 'button';
