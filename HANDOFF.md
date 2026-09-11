@@ -19,7 +19,46 @@ here is a smaller delta; keep it that way.
 
 ## QUEUE
 
-0. **BLINDZNATION IS 64 FILES BEHIND — biggest open item.** A brand-normalised
+0. **MOTORIZATION IS PRICED DIFFERENTLY ON THE TWO SITES — needs Justin.**
+   Philly Blinds discounts Norman motorization 20% (`NM_MOTOR_DISC = 0.20`,
+   `nmGetMotorPrice = nmGetMotorRetail x 0.80`). Blindznation has neither the
+   constant nor `nmGetMotorRetail` and charges full retail. A motorized cellular
+   shade is **$420 on PB and $525 on BZ — $105 a shade**, and it scales with
+   quantity. This was left alone deliberately: it is a pricing decision, not
+   drift, and CLAUDE.md puts pricing behind Justin's explicit approval. One word
+   from him either way and it is a small change. Until then the two sites quote
+   motors differently.
+
+0b. **PARITY IS ESSENTIALLY DONE — 5 files remain, none of them a defect.**
+   Started at 39 genuinely drifted files; 34 ported. What is left, and why:
+   - `js/shared.js` — structurally divergent, NOT to be bulk-ported. Both sites
+     define 115 functions. The only real gaps are: PB-only
+     `nmGetMotorRetail`/`NM_MOTOR_DISC` (the pricing question above), PB-only
+     Google Business Profile + retargeting pixel config (`_PB_GBP_URL`,
+     `_PB_REVIEW_URL`, `_PB_META_PIXEL_ID`, `_PB_GOOGLE_ADS_ID` — BZ needs its
+     OWN Google listing and its own pixel ids, copying PB's would be wrong), and
+     BZ-only `_pbInjectTermsCheckboxes`, which BZ needs because it never
+     consolidated onto `pbContactStepHTML`. **Porting PB's shared.js would strip
+     the Terms checkbox off ~30 Blindznation pages.**
+   - `api/quote.js`, `api/chat.js` — correctly per-brand: recipient list, CORS
+     origins, sender, brand copy. Both have identical origin hardening. These
+     should stay divergent permanently; do not "fix" them.
+   - `js/pages/shades.js` (18 lines) and `pages/kirsch-rods.html` (2) — comment
+     wording and hex letter-case only. Cosmetic.
+
+   **The transform that made this safe** lives in the session scratchpad
+   (`rebrand.js`). It is validated by reproducing BZ byte-for-byte on 107 files
+   that were already correct. It carries two hard-won exceptions: the team
+   recipient list stays @phillyblinds.com on both sites and must be shielded
+   before the domain/slug rules run, and the sister-brand nav link is INVERTED
+   between the sites. Without those it silently reroutes every quote and points
+   BZ's nav at itself.
+
+0c. **Historical note on an earlier figure.** The "64 files / 2,002 lines" first
+   reported was inflated by bugs in the comparison itself; real drift was 39
+   files. Distrust a parity number until the transform behind it is validated.
+
+1. **BLINDZNATION IS 64 FILES BEHIND — superseded, see 0b.** A brand-normalised
    LCS diff (colour tokens, domain, brand name and slug all folded out) leaves
    **2,002 genuinely different lines across 64 files**. Prices are NOT affected —
    both sites return identical figures on all 13 surfaces and all 5 Norman
