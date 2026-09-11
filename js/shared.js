@@ -551,18 +551,13 @@ function pbToggleBlackoutNote(containerId, isBlackout) {
 // priced and quote-only forms live side by side — so it gates per form inside
 // shades.js instead of appearing in this list.
 var PB_QUOTE_ONLY_PAGES = {
-  'perfectsheer'                    : ['#ps-price-box'],
-  'norman-sheers'                   : ['#price-box', '#price-pending'],
   'portfolio-dual-sheer'            : ['#price-box-final', '.price-box'],
   'wallace-banded-shades'           : ['#pr-total-row', '#pr-total'],
   'wallace-3d-sheer'                : ['#sp-price', '#sp-price-breakdown'],
   'wallace-aluminum-blinds'         : ['#al-price-box'],
-  'city-lights-aluminum-blinds'     : ['#qr-total-row', '#qr-total'],
   'custom-roller-shades'            : ['#qp-price', '#qp-price-rows', '#qp-total'],
   'galaxy-woven-woods'              : ['#qr-total-row', '#qr-total'],
   'dynasty-woven-woods'             : ['#qr-total-row', '#qr-total'],
-  'synchrony-verticals'             : ['#cv-price', '#qr-price', '#qr-total-row', '#qr-total'],
-  'norman-centerpiece-roman'        : ['#pr-total-row', '#pr-total'],
   'wallace-natural-roller-shades'   : [],
   'wallace-portfolio-natural-shades': [],
   'wallace-portfolio-roman'         : [],

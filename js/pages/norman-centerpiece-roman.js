@@ -171,7 +171,7 @@ function setLift(lift, el) {
   document.getElementById('sp-motor-row').style.display = isMotor ? '' : 'none';
   if (isMotor) {
     // Standardized onto the SHARED Norman motor section (Norman Smart only for Centerpiece Roman — no Rollease).
-    if (typeof normanMotorSection === 'function') normanMotorSection('centerpiece-motor-config', 'Centerpiece Roman');
+    if (typeof normanMotorSection === 'function') normanMotorSection('centerpiece-motor-config', 'Centerpiece Roman', typeof updateCalc === 'function' ? updateCalc : null);
     sp('sp-motor','Norman Smart Motor');
     openNext('step13');
   } else {
@@ -525,12 +525,21 @@ function updateCalc() {
   var isOversized=w>=90;
   var freight=S.delivery==='install'?0:isOversized?(80+(qty>1?(qty-1)*50:0)):(25+(qty>1?(qty-1)*11:0));
   showRow('pr-freight-row',freight>0); if(freight>0)setVal('pr-freight','$'+freight);
+  // Detail hidden per owner request — base/lining/fold/banding/SmartRelease/valance/accessories roll into
+  // retail; only the Day & Night surcharge (an allowed add-on) stays visible.
+  ['pr-lining-row','pr-soft-row','pr-banding-row','pr-sr-row','pr-valance-row','pr-acc-row'].forEach(function(id){showRow(id,false);});
+  // Hide the itemised base figure, NOT its parent: #pr-base is a bare span sitting
+  // directly inside .price-estimate, so hiding parentElement blanked the whole price
+  // panel. That went unnoticed while this product was quote-only.
+  var _cpBaseRow=document.getElementById('pr-base'); if(_cpBaseRow)_cpBaseRow.style.display='none';
   var NORMAN_DISC_CP=0.25;
   var cpRetailSub=(per*qty)+(srAdd*qty)+(dnAdd*qty)+(vSur*qty)+(accT*qty);
   var cpDiscountAmt=Math.round(cpRetailSub*NORMAN_DISC_CP);
   var cpYourPrice=cpRetailSub-cpDiscountAmt;
-  var total=cpYourPrice+freight;
-  setVal('pr-total','~$'+Math.round(total).toLocaleString()+' (Norman retail -35%; shipping at retail rate)');
+  var isMotCp=(S.lift==='motor'||S.lift==='motor-dn');
+  var cpMotor=(isMotCp&&typeof nmGetMotorPrice==='function')?nmGetMotorPrice('Centerpiece Roman', qty*(isDN?2:1)):0;
+  var total=cpYourPrice+freight+cpMotor;
+  setVal('pr-total','Retail $'+Math.round(cpRetailSub).toLocaleString()+' → 25% off → ~$'+Math.round(cpYourPrice+freight).toLocaleString()+(cpMotor>0?' + motorization '+nmMotorLineText(cpMotor,qty)+' = ~$'+Math.round(total).toLocaleString()+' total':'')+' (freight at retail)');
 }
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
