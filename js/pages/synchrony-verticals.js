@@ -1,3 +1,11 @@
+// Insert a quote row before the anchor, or append into the panel if the anchor
+// is missing — an absent anchor must never abort the price render again.
+function _qInsert(row, anchor) {
+  if (anchor && anchor.parentNode) { anchor.parentNode.insertBefore(row, anchor); return; }
+  var panel = document.getElementById('qp-detail');
+  if (panel) panel.appendChild(row);
+}
+
 ﻿// ── PRICING DATA ──────────────────────────────────────────────────────────────
 const W_COLS=[24,36,48,60,72,84,92,100];
 const H_ROWS=[48,60,72,84,96,108];
@@ -165,16 +173,19 @@ function updateQuote(){
   // Add discount rows if not already present
   let discRow=document.getElementById('qr-disc-row');
   let yourPriceRow=document.getElementById('qr-yourprice-row');
-  const qdiv=document.querySelector('#qp-detail .qdiv:last-of-type');
+  // The LAST .qdiv inside #qp-detail. Was querySelector with :last-of-type,
+  // which matched nothing and threw on .parentNode (see _qInsert above).
+  var _qdivs = document.querySelectorAll('#qp-detail .qdiv');
+  const qdiv = _qdivs.length ? _qdivs[_qdivs.length - 1] : null;
   if(!discRow){
     discRow=document.createElement('div');
     discRow.className='qrow';discRow.id='qr-disc-row';
     discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">25% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
-    qdiv.parentNode.insertBefore(discRow,qdiv);
+    _qInsert(discRow, qdiv);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='qr-yourprice-row';
     yourPriceRow.innerHTML='<span class="qrow-label" style="font-weight:600;color:var(--cream)">Your price (before shipping)</span><span class="qrow-val" style="color:var(--cream);font-weight:600" id="qr-yourprice-s">—</span>';
-    qdiv.parentNode.insertBefore(yourPriceRow,qdiv);
+    _qInsert(yourPriceRow, qdiv);
   }
   document.getElementById('qr-disc-s').textContent='-$'+discountAmt;
   document.getElementById('qr-yourprice-s').textContent='$'+yourPrice.toLocaleString();

@@ -1,3 +1,11 @@
+// Insert a quote row before the anchor, or append into the panel if the anchor
+// is missing — an absent anchor must never abort the price render again.
+function _qInsert(row, anchor) {
+  if (anchor && anchor.parentNode) { anchor.parentNode.insertBefore(row, anchor); return; }
+  var panel = document.getElementById('qp-detail');
+  if (panel) panel.appendChild(row);
+}
+
 ﻿// ── PRICING DATA ──────────────────────────────────────────────────────────────
 const W_COLS = [24,28,32,36,42,48,54,60,66,72,78,84,90,96];
 const H_ROWS = [42,48,54,61,66,73,78,84,90,96];
@@ -200,6 +208,14 @@ function updateQuote(){
   const qty=parseInt(document.getElementById('qty').value)||1;
   state.qty=qty;
 
+  // Defined here because this file calls showRow but never declared it — the
+  // resulting ReferenceError aborted updateQuote just before #qr-total was set.
+  const showRow=(id,show,val)=>{
+    const row=document.getElementById(id); if(!row) return;
+    row.style.display=show?'flex':'none';
+    const valEl=document.getElementById(id.replace('-row','-s'));
+    if(val&&valEl) valEl.textContent=val;
+  };
   const ready=state.slat&&state.colorCode&&state.mount&&state.w&&state.h;
   if(!ready){document.getElementById('qp-pending').style.display='block';document.getElementById('qp-detail').style.display='none';return;}
 
@@ -230,7 +246,7 @@ function updateQuote(){
   let pricePerBlind=basePrice*slatMult*colorMult*privMult;
   let shimTotal=state.shim?(state.shimQty*7):0;
   let sideTotal=state.sidemount?25:0;
-  let retailSub=pricePerBlind*qty+shimTotal+sideTotal;
+  let retailSub=Math.round(pricePerBlind*qty+shimTotal+sideTotal);
   const discountAmt=Math.round(retailSub*NORMAN_DISC);
   const yourPrice=retailSub-discountAmt;
 
@@ -264,20 +280,23 @@ function updateQuote(){
   let retailRow=document.getElementById('qr-retail-row');
   let discRow=document.getElementById('qr-disc-row');
   let yourPriceRow=document.getElementById('qr-yourprice-row');
-  const firstDiv=document.querySelector('#qp-detail .qdiv:last-of-type');
+  // The LAST .qdiv inside #qp-detail. Was querySelector with :last-of-type,
+  // which matched nothing and threw on .parentNode (see _qInsert above).
+  var _qdivs = document.querySelectorAll('#qp-detail .qdiv');
+  const firstDiv = _qdivs.length ? _qdivs[_qdivs.length - 1] : null;
   if(!retailRow){
     retailRow=document.createElement('div');
     retailRow.className='qrow';retailRow.id='qr-retail-row';
     retailRow.innerHTML='<span class="qrow-label"><s style="color:var(--text-dark)">Retail subtotal</s></span><span class="qrow-val" style="text-decoration:line-through;color:var(--text-dark)" id="qr-retail-s">—</span>';
-    firstDiv.parentNode.insertBefore(retailRow,firstDiv);
+    _qInsert(retailRow, firstDiv);
     discRow=document.createElement('div');
     discRow.className='qrow';discRow.id='qr-disc-row';
     discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">25% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
-    firstDiv.parentNode.insertBefore(discRow,firstDiv);
+    _qInsert(discRow, firstDiv);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='qr-yourprice-row';
     yourPriceRow.innerHTML='<span class="qrow-label" style="font-weight:600;color:var(--cream)">Your price (before shipping)</span><span class="qrow-val" style="color:var(--cream);font-weight:600" id="qr-yourprice-s">—</span>';
-    firstDiv.parentNode.insertBefore(yourPriceRow,firstDiv);
+    _qInsert(yourPriceRow, firstDiv);
   }
   document.getElementById('qr-retail-s').textContent='$'+Math.round(retailSub).toLocaleString();
   document.getElementById('qr-disc-s').textContent='-$'+discountAmt;
