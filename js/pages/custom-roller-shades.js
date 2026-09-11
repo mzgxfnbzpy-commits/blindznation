@@ -562,7 +562,7 @@ function crsSubmit() {
     lines.push('Name: ' + name);
     if (email) lines.push('Email: ' + email);
     if (phone) lines.push('Phone: ' + phone);
-    window.location.href = 'mailto:blindznation@gmail.com?subject=' + encodeURIComponent('Basic Roller Quote — ' + name) + '&body=' + encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject=' + encodeURIComponent('Basic Roller Quote — ' + name) + '&body=' + encodeURIComponent(lines.join('\n'));
   });
 }
 

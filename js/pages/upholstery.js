@@ -140,7 +140,7 @@ function submitUpholstery() {
     + 'Delivery preference: ' + delivery + '\n\n'
     + 'Project details:\n' + (notes || 'None provided');
 
-  window.location.href = 'mailto:blindznation@gmail.com'
+  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Wall Upholstery Quote — ' + name)
     + '&body=' + encodeURIComponent(body);
 

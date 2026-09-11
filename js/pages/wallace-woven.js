@@ -464,7 +464,7 @@ function submitRollerQuote() {
     +'  Address : '+((document.getElementById('r-address')||{}).value||'—')+'\n'
     +'  Notes   : '+((document.getElementById('r-notes')||{}).value||'—');
 
-  window.location.href = 'mailto:blindznation@gmail.com'
+  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
     +'?subject='+encodeURIComponent('Natural Woven Roller Shades Quote — '+name)
     +'&body='+encodeURIComponent(body);
 
@@ -969,7 +969,7 @@ function submitQuote() {
   ];
 
   var subj='Wallace '+coll+' Quote — '+prod+' — '+name;
-  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(bodyLines.join('\n'));
+  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(bodyLines.join('\n'));
 
   $('success-box').style.display='block';
   $('success-box').scrollIntoView({behavior:'smooth'});

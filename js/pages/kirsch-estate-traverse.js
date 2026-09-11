@@ -492,7 +492,7 @@ function submitQuote() {
     + '\n── DELIVERY ──\n' + delivery + '\n\n'
     + '── CUSTOMER NOTES ──\n' + (document.getElementById('cf-notes').value.trim() || 'None');
 
-  window.location.href = 'mailto:blindznation@gmail.com'
+  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Kirsch 1⅜" Estate Traverse — ' + (S.finish||'') + ' ' + (COLLECTIONS[S.coll]?COLLECTIONS[S.coll].label:'') + ' — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('quote-success').style.display = 'block';

@@ -1275,7 +1275,7 @@ async function _stApiSubmit(formId, successId, name, email, phone, product, sele
   } catch(err) {
     if (btn) { btn.disabled = false; btn.textContent = 'Send Quote Request →'; }
     alert((err.message && err.message.length < 200 ? err.message + '\n\n' : '') +
-      'Please email us at blindznation@gmail.com or call (609) 742-1720.');
+      'Please email us at justin@blindznation.com or call (609) 742-1720.');
   }
 }
 
@@ -1488,7 +1488,7 @@ async function submitDrape() {
     + 'Delivery: ' + delivery + '\n'
     + pbInstallLine(document.getElementById('drape-form')) + '\n\n'
     + 'Notes:\n' + (document.getElementById('d-notes').value.trim() || 'None')
-    + (function(){ var fu = document.querySelector('#drape-form .pb-fu-wrap input[type="file"]'); var n = fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to blindznation@gmail.com)' : ''; return n; }());
+    + (function(){ var fu = document.querySelector('#drape-form .pb-fu-wrap input[type="file"]'); var n = fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@blindznation.com)' : ''; return n; }());
   var email = document.getElementById('d-email').value.trim();
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
   if (fabric === 'Customer supplies fabric') {

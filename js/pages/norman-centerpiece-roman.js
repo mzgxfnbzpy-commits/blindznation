@@ -612,7 +612,7 @@ function submitQuote() {
     '--- Sent from blindznation.com/pages/norman-centerpiece-roman.html ---'
   ].join('\n');
   var subj='Norman Centerpiece™ Roman — '+S.width+'"×'+S.height+'" '+(S.fabric?S.fabric.name:'')+' — '+name;
-  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
   document.getElementById('step15-body').querySelectorAll(':not(#success-box)').forEach(function(el){el.style.display='none';});
   document.getElementById('success-box').style.display='block';
 }

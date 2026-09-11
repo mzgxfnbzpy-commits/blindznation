@@ -401,7 +401,7 @@ function submitHardware() {
     + 'Finish: ' + document.getElementById('hw-finish').value + '\n'
     + 'Delivery: ' + delivery + '\n\n'
     + 'Notes:\n' + (document.getElementById('hw-notes').value.trim() || 'None');
-  window.location.href = 'mailto:blindznation@gmail.com'
+  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Hardware Quote — ' + (hwState.style || hwState.type) + ' — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('hw-form').style.display = 'none';

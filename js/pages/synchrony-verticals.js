@@ -237,6 +237,6 @@ function submitQuote(){
   ];
   const body=encodeURIComponent(lines.join('\n'));
   const subject=encodeURIComponent('Synchrony Verticals Quote — '+name);
-  window.location.href='mailto:blindznation@gmail.com?subject='+subject+'&body='+body;
+  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+subject+'&body='+body;
   document.getElementById('success-box').style.display='block';
 }

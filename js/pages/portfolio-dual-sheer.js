@@ -688,5 +688,5 @@ function submitQuote(){
   ].filter(l=>l!=='').join('\n');
 
   const sub='Portfolio Dual Sheer Quote — '+f.name+' '+f.color+' '+S.width+'"×'+S.height+'"';
-  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(lines);
+  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(lines);
 }

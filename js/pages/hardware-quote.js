@@ -686,6 +686,6 @@ function submitForm(){
   ].join('\n');
 
   const subj='Drapery Hardware Quote — '+name+' — '+S.brandLabel;
-  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
   $('success-box').style.display='block';
 }

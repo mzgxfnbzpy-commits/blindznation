@@ -677,7 +677,7 @@ function submitQuote(){
     'Pricing is an internal estimate only. Final price confirmed with current Wallace Galaxy price book.'
   ];
 
-  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent('Galaxy Woven Woods Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent('Galaxy Woven Woods Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
   document.getElementById('success-box').style.display='block';
 }
 

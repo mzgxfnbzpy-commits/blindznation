@@ -752,7 +752,7 @@ function submitQuote() {
     + '── NOTES ──\n'
     + (document.getElementById('cf-notes').value.trim() || 'None');
 
-  window.location.href = 'mailto:blindznation@gmail.com'
+  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Wallace Natural Roller Spec — ' + name + (fab ? ' · ' + fab.name : ''))
     + '&body=' + encodeURIComponent(body);
 

@@ -31,18 +31,12 @@ here is a smaller delta; keep it that way.
 4. Fabric width is hardcoded 54" in the drapery cut maths. Justin's 118" goods,
    drop repeats and railroading are NOT handled and are quoted by hand. Build
    this properly as its own piece of work.
-5. **FAQ structured data still quotes the old drapery and roman prices** — both
-   sites. The JSON-LD block at the top of soft-treatments.html says "$120-$140
-   per width panel", romans "start at $150 ... $250 permanently pleated" and
-   fabric "$25/yard". The ladder has been $125/$135 (+$20 goblet/barrel) since
-   2026-09-07. This is the text Google shows, so it is the same class of problem
-   as the "instant pricing" sweep. Check the roman minimums against `rnGetMin()`
-   before rewriting, and do both sites.
-6. **Philly Blinds JS tells customers to email blindznation@gmail.com** — 49
-   occurrences in `phillyblinds/js/`, against 15 for justin@phillyblinds.com.
-   Mostly the "something went wrong, email us instead" fallback in the submit
-   handlers. Wrong brand on the PB domain. Ask Justin whether that Gmail is the
-   inbox he actually watches before mass-changing it — it may be deliberate.
+5. **Migrate the mailto: recipient list to a shared constant.** The full team
+   list is now correct everywhere, but it is a literal repeated 58 times (PB) /
+   59 times (BZ) across ~43 files, and it must be kept in step with
+   `TEAM_EMAILS` in `api/quote.js` by hand. Worth collapsing to one constant in
+   `shared.js` — low risk, but it touches every configurator, so do it as its
+   own task with the price harness run before and after.
 
 ## IN PROGRESS
 
@@ -84,6 +78,22 @@ verified, and now identical on Blindznation):
 
 ### Resolved 2026-09-10
 
+- **Every quote form on both sites now emails the whole team** (Justin's call):
+  justin / sarah / mike / tarin @phillyblinds.com, plus justin@blindznation.com
+  on Blindznation. `blindznation@gmail.com` is retired and appears nowhere.
+  The API path already did this via `TEAM_EMAILS` in `api/quote.js`; it was the
+  58/59 `mailto:` fallbacks that were wrong, variously pointing at the Gmail,
+  justin@phillyblinds.com or justin@blindznation.com. Where an address is also
+  visible link text the page shows one readable brand address while the href
+  reaches everyone. CLAUDE.md's "Form backend" row and quote-email rule were
+  documenting the retired Gmail and have been corrected.
+- **FAQ structured data quoted superseded drapery labour rates.** The JSON-LD
+  said "$120-$140 per width panel"; it has been $125 unlined / $135 lined per
+  cut, +$20 goblet/barrel, since 2026-09-07. Rewritten on both sites and
+  re-parsed as valid JSON. The rest of that block was checked rather than
+  assumed and left alone — the $200 drapery minimum, the roman $150/$250
+  minimums and the $25/yd fabric and $10/yd lining rates are all still correct,
+  as are the cornice height steps and the meta-description minimums.
 - **Basic Roller quoted nothing on the fabric type it opens with.**
   `pbCalcPrice` gated on `fabType === 'Solar Screen'`; `ec5ed30` (Jun 8) renamed
   that button "Light Filtering" and left the guard alone. Light Filtering is the

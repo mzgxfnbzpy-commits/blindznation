@@ -37,7 +37,7 @@ function submitWPQuote() {
     'NOTES',
     document.getElementById('cf-notes').value || '(none)',
   ].join('\n'));
-  window.location.href = 'mailto:blindznation@gmail.com?subject=' + subject + '&body=' + body;
+  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject=' + subject + '&body=' + body;
 }
 
 function addWaldenPremierToCart() {

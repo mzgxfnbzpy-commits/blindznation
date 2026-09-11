@@ -224,7 +224,7 @@ function submitWoodQuote(){
   var notes=document.getElementById('wd-q-notes').value.trim();
   var sys=SS.system==='traverse'?'Select Wood Traverse':'Select Wood Stationary Pole';
   var body='SELECT WOOD HARDWARE QUOTE REQUEST\n\nType: '+sys+'\nName: '+name+'\nPhone: '+phone+'\n\nProject notes:\n'+(notes||'None')+'\n\n--- blindznation.com/pages/select-rods.html ---';
-  window.location.href='mailto:blindznation@gmail.com?subject='+encodeURIComponent('Select Wood Quote — '+name)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent('Select Wood Quote — '+name)+'&body='+encodeURIComponent(body);
   document.getElementById('wd-q-form').style.display='none';
   document.getElementById('wd-q-success').style.display='block';
 }
@@ -510,7 +510,7 @@ function submitSelect(){
     +'SPECIFICATION:\n'+spec+'\n\n'
     +'Delivery: '+delivery+'\n\n'
     +'Notes:\n'+(document.getElementById('cf-notes').value.trim()||'None');
-  window.location.href='mailto:blindznation@gmail.com'
+  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
     +'?subject='+encodeURIComponent('Select Hardware Quote — '+(SS.collection||'')+(SS.finish||SS.woodFinish?' · '+(SS.finish||SS.woodFinish):'')+' — '+name)
     +'&body='+encodeURIComponent(body);
   document.getElementById('sel-form').style.display='none';

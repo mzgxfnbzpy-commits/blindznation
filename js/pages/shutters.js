@@ -559,6 +559,6 @@ async function submitQuote() {
     qs('success-box').classList.add('show');
   } catch(err) {
     if (btn) { btn.disabled = false; btn.textContent = 'Submit Order for Review →'; }
-    alert('Something went wrong. Please call (609) 742-1720 or email blindznation@gmail.com');
+    alert('Something went wrong. Please call (609) 742-1720 or email justin@blindznation.com');
   }
 }

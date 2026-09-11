@@ -23,7 +23,7 @@ function submitInperson() {
     + 'Products interested in: ' + (products || '—') + '\n'
     + 'Number of windows: ' + windows + '\n\n'
     + 'Notes: ' + (notes || 'None');
-  window.location.href = 'mailto:blindznation@gmail.com'
+  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
     + '?subject=' + encodeURIComponent('In-Home Visit Request — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('card-inperson').style.display = 'none';
@@ -42,7 +42,7 @@ function submitCallback() {
     + 'Best time to call: ' + time + '\n'
     + 'Topic: ' + topic + '\n\n'
     + 'Notes: ' + (notes || 'None');
-  window.location.href = 'mailto:blindznation@gmail.com'
+  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Callback Request — ' + name)
     + '&body=' + encodeURIComponent(body);
   document.getElementById('card-callback').style.display = 'none';

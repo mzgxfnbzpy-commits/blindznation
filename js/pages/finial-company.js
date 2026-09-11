@@ -894,7 +894,7 @@ function submitQuote(){
     'No changes/cancellations after 24 hours of order confirmation.'
   ].filter(function(l){return l!==null&&l!==undefined;}).join('\n');
 
-  window.location.href='mailto:blindznation@gmail.com'
+  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
     +'?subject='+encodeURIComponent('Finial Company Hardware Quote — '+name)
     +'&body='+encodeURIComponent(lines);
   document.getElementById('success-box').style.display='block';
