@@ -19,6 +19,26 @@ here is a smaller delta; keep it that way.
 
 ## QUEUE
 
+0. **BLINDZNATION IS 64 FILES BEHIND — biggest open item.** A brand-normalised
+   LCS diff (colour tokens, domain, brand name and slug all folded out) leaves
+   **2,002 genuinely different lines across 64 files**. Prices are NOT affected —
+   both sites return identical figures on all 13 surfaces and all 5 Norman
+   products — so this is missing features and UI logic, not money. Worst first:
+     `js/shared.js` 998 · `pages/soluna-roller-shades.html` 130 ·
+     `js/pages/soluna-roller-shades.js` 125 · `pages/shades.html` 63 ·
+     `js/pages/custom-roller-shades.js` 57 · `js/pages/perfectsheer.js` 54 ·
+     `js/pages/wallace-natural-roller-shades.js` 54 · `dynasty-woven-woods.js` 46 ·
+     `synchrony-verticals.js` 46 · `wallace-banded-shades.js` 43
+   Spot-checked: BZ's `shared.js` has no Google Business Profile block, no
+   retargeting pixels and no `pbTrackEvent`; BZ's Soluna is missing ~114 lines of
+   headrail / hem-bar / LightGuard sub-option logic. Some differences ARE
+   legitimate and must be preserved — `api/quote.js` `TEAM_EMAILS` carries the
+   extra BZ address, `api/chat.js` is brand-specific, and a Google Business
+   Profile URL should be BZ's own listing, not a copy of PB's.
+   **Do this file by file with the price harness run before and after, not as a
+   bulk copy.** Four files exist only on BZ and need a decision:
+   `measure-drapes.js`, `measure-shutters.js`, `wallace-dynasty-woven.js`,
+   `woven-wood-shades.js`.
 1. Woven wood: condense the fabric lists into tabs by price group, Soluna style.
    Affects galaxy-woven-woods, dynasty-woven-woods, walden-premier-woven,
    walden-select-woven. None of the four has tabs today.
