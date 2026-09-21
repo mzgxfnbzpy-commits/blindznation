@@ -75,7 +75,8 @@ const CELL_SZ_IDX = {'38s':0,'916s':1,'12d':2,'34s':3,'34d':4,'114s':5};
 const CELL_COMPAT = {
   // indices: 0=3⁄8S · 1=9⁄16S · 2=1⁄2D · 3=3⁄4S · 4=3⁄4D · 5=1¼S
   'lf':   [0,1,2,3,4,5],
-  'rd':   [  1,2,3,4,5],
+  'rd':   [0,1,2,3,4,5],   // book: Room Darkening is available in ALL six cell sizes,
+                           // 3/8″S included. 3/8″S was missed when 9/16″S was restored.
   'sheer':[0,  3,  5],   // Sheer single shade: 3⁄8″S, 3⁄4″S, 1¼″S (9⁄16″S is D&N-only; not in double cells) — Norman Portrait chart
   'dn':   [0,1,2,3,4,5]
 };
