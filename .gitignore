@@ -38,3 +38,6 @@ pdfs/*.png
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# vendor price books must never reach the public web root
+_incoming/
