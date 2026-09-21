@@ -113,12 +113,17 @@ var SD_FABRICS = {
 };
 
 // ═══════════════════════════════════════════════════════════
-// PRICE TABLE — source: Norman Feb 2026 price book p.27
-// Track widths (W): 48, 60, 72, 84, 100, 120, 132, 144
-// Heights (H): 36, 48, 54, 60, 66, 72, 78, 84, 90, 96, 108, 120, 132, 148, 160, 172, 184
+// PRICE TABLE — source: Norman PerfectSheer/SmartDrape book, Sept 2026, p.23
+// Shade lengths / heights (rows): 48, 60, 72, 84, 100, 120, 132, 144
+// Track widths (columns): 36, 48, 54, 60, 66, 72, 78, 84, 90, 96, 108, 120, 132, 148, 160, 172, 184
 // ═══════════════════════════════════════════════════════════
-var SD_W = [48,60,72,84,100,120,132,144];
-var SD_H = [36,48,54,60,66,72,78,84,90,96,108,120,132,148,160,172,184];
+// Rows = SHADE LENGTH (height) 48-144"; columns = TRACK WIDTH 36-184", then a per-foot
+// adder beyond 184". The book prints "Height" down the left and "Track Width" across the
+// bottom (Sept 2026 book p.23) -- these were transposed here, which mispriced every
+// shade that was not square-ish. Width is the axis that runs to 285 5/8".
+var SD_LEN = [48,60,72,84,100,120,132,144];                                       // rows: height
+var SD_TW  = [36,48,54,60,66,72,78,84,90,96,108,120,132,148,160,172,184];         // cols: track width
+// Chart A -- Light Filtering collections: Plain, Net, Pacific, Circle, Coronado, Teardrop.
 var SD_PRICES = [
   [758,892,951,1013,1107,1171,1235,1306,1400,1484,1604,1821,2051,2305,2582,2834,3088],
   [842,998,1082,1156,1269,1342,1415,1499,1609,1705,1842,2071,2314,2575,2886,3146,3408],
@@ -129,21 +134,32 @@ var SD_PRICES = [
   [1310,1554,1695,1832,1984,2122,2263,2386,2563,2717,2966,3267,3589,3935,4409,4758,5107],
   [1382,1685,1835,1979,2146,2292,2450,2575,2769,2929,3069,3377,3711,4070,4560,4922,5285]
 ];
-var SD_ADD_PER_FT = [255,263,296,309,320,345,350,369]; // per extra foot over 184"
+var SD_ADD_PER_FT = [255,263,296,309,320,345,350,369]; // per extra foot of width over 184"
+// Chart B -- Lakeshore Stripe has its own (lower) chart in the book.
+var SD_PRICES_LS = [
+  [643,760,809,862,941,997,1051,1111,1191,1262,1364,1549,1744,1961,2195,2411,2626],
+  [716,849,920,984,1081,1140,1204,1276,1367,1451,1567,1760,1968,2191,2453,2675,2897],
+  [809,974,1054,1140,1242,1322,1397,1484,1588,1688,1936,2156,2395,2646,2963,3214,3463],
+  [873,1089,1176,1268,1381,1471,1559,1648,1768,1873,2025,2254,2500,2762,3094,3356,3617],
+  [949,1146,1242,1341,1458,1555,1651,1745,1873,1986,2200,2436,2694,2964,3319,3590,3861],
+  [1074,1236,1353,1462,1587,1697,1806,1909,2050,2176,2491,2743,3014,3306,3703,3995,4287],
+  [1138,1351,1474,1592,1726,1845,1968,2074,2229,2361,2580,2840,3120,3422,3834,4137,4442],
+  [1201,1464,1595,1721,1866,1994,2131,2240,2408,2548,2668,2937,3225,3539,3965,4280,4594]
+];
+var SD_ADD_PER_FT_LS = [217,224,252,264,273,293,304,321];
+function sdIsLakeshore(){ return !!(S.fabric && /lakeshore/i.test(S.fabric.coll || '')); }
 
 function lookupPrice(w,h){
-  var wi=SD_W.findIndex(function(v){return w<=v;}); if(wi<0)wi=SD_W.length-1;
-  var hi=SD_H.findIndex(function(v){return h<=v;});
-  var base;
-  if(hi>=0){
-    base=SD_PRICES[wi][hi];
-  } else {
-    // over 184" height
-    var extraFt=Math.ceil((h-184)/12);
-    base=SD_PRICES[wi][SD_H.length-1]+extraFt*SD_ADD_PER_FT[wi];
-  }
-  return base||0;
+  var ls    = sdIsLakeshore();
+  var grid  = ls ? SD_PRICES_LS : SD_PRICES;
+  var perFt = ls ? SD_ADD_PER_FT_LS : SD_ADD_PER_FT;
+  var li = SD_LEN.findIndex(function(v){ return h <= v; }); if (li < 0) li = SD_LEN.length - 1;
+  var wi = SD_TW.findIndex(function(v){ return w <= v; });
+  if (wi >= 0) return grid[li][wi] || 0;
+  var extraFt = Math.ceil((w - 184) / 12);                       // width beyond the chart
+  return (grid[li][SD_TW.length - 1] + extraFt * perFt[li]) || 0;
 }
+
 
 // ═══════════════════════════════════════════════════════════
 // STEP HELPERS
@@ -377,6 +393,43 @@ function pickHW(el,color){
 // ═══════════════════════════════════════════════════════════
 // STEP 8: ACCESSORIES
 // ═══════════════════════════════════════════════════════════
+// ── SmartDrape accessory pricing (Norman PerfectSheer/SmartDrape book, Sept 2026) ──
+//   Keystone $73 each · Additional wand $89 each · Aluminum shim $28 each
+//   Long L bracket $61 per shade · Charging Extension Wand $75 per shade
+//   Additional vane pack (6 vanes) by shade length; Room Darkening pack +20%.
+var SD_VANE_LEN   = [48,60,72,84,100,120,132,144];
+var SD_VANE_PRICE = [230,270,310,350,390,460,500,540];
+function sdVanePackPrice(h, isRD){
+  var i = 0;
+  while (i < SD_VANE_LEN.length - 1 && SD_VANE_LEN[i] < h) i++;   // .125 over a band -> next band
+  var p = SD_VANE_PRICE[i];
+  return isRD ? Math.round(p * 1.20) : p;
+}
+function sdAccQty(id){
+  var cb = document.getElementById(id);
+  if (!cb || !cb.checked) return 0;
+  var q = document.getElementById('qty-' + id.replace('acc-', ''));
+  var n = q ? parseInt(q.value, 10) : 1;
+  return (isFinite(n) && n > 0) ? n : 1;
+}
+// Per-shade accessories (multiplied by shade qty upstream).
+function sdAccPerShade(){
+  var t = 0;
+  var lb = document.getElementById('acc-long-bracket'); if (lb && lb.checked) t += 61;
+  var cw = document.getElementById('acc-charge-wand');
+  var cwRow = document.getElementById('acc-charge-row');
+  if (cw && cw.checked && cwRow && cwRow.style.display !== 'none') t += 75;
+  return t;
+}
+// Counted accessories priced "each" — independent of shade qty.
+function sdAccEach(){
+  var isRD = S.opacity === 'rd';
+  return sdAccQty('acc-keystone')   * 73
+       + sdAccQty('acc-extra-wand') * 89
+       + sdAccQty('acc-shims')      * 28
+       + sdAccQty('acc-vane-pack')  * sdVanePackPrice(S.h || 0, isRD);
+}
+
 function updateAcc(){
   var ids=['acc-keystone','acc-extra-wand','acc-alt-colors','acc-vane-pack','acc-shims','acc-long-bracket','acc-charge-wand'];
   var labels={
@@ -391,7 +444,12 @@ function updateAcc(){
   var checked=[];
   ids.forEach(function(id){
     var el=document.getElementById(id);
-    if(el&&el.checked) checked.push(labels[id]);
+    var wrap=document.getElementById('wrap-'+id.replace('acc-',''));
+    if(wrap) wrap.style.display=(el&&el.checked)?'inline':'none';
+    if(el&&el.checked){
+      var n=sdAccQty(id);
+      checked.push(labels[id]+(n>1?' ×'+n:''));
+    }
   });
   S.accs=checked;
   sp('sp-acc',checked.length>0?checked.join(', '):'None');
@@ -447,13 +505,25 @@ function calcPrice(){
   var _sdMotorEl=document.getElementById('pr-motor'); if(_sdMotorEl&&isMotor)_sdMotorEl.textContent=nmMotorLineText(sdMotor,S.qty);
   // 25% Norman discount on product subtotal (not applied to shipping/motor)
   var NORMAN_DISC_SD=0.25;
-  var sdRetailSub=Math.round(per*S.qty);
+  // Accessories are Norman retail line items, so they sit inside the discounted subtotal
+  // (same treatment as faux wood shims and PerfectSheer light guards).
+  per += sdAccPerShade();
+  var sdAccTotal=sdAccEach();
+  var sdRetailSub=Math.round(per*S.qty)+sdAccTotal;
   var sdDiscountAmt=Math.round(sdRetailSub*NORMAN_DISC_SD);
   var sdYourPrice=sdRetailSub-sdDiscountAmt;
+  var _accShown=sdAccTotal+sdAccPerShade()*S.qty;
+  var _accRow=document.getElementById('pr-acc-row');
+  if(_accRow){ _accRow.style.display=_accShown?'flex':'none';
+    var _accEl=document.getElementById('pr-acc'); if(_accEl) _accEl.textContent='$'+_accShown.toLocaleString(); }
+  // Freight: $25 first + $11 each additional; 90" or over in width OR length, $80 + $50 each.
+  var sdOversize=(S.w>=90||S.h>=90);
+  var sdFreight=sdOversize?(80+Math.max(0,S.qty-1)*50):(25+Math.max(0,S.qty-1)*11);
+  var _frEl=document.getElementById('pr-freight'); if(_frEl) _frEl.textContent='$'+sdFreight.toLocaleString();
   document.getElementById('pr-qty').textContent=S.qty+' shade'+(S.qty>1?'s':'');
   document.getElementById('pr-retail').textContent='$'+sdRetailSub.toLocaleString();
   document.getElementById('pr-disc').textContent='−$'+sdDiscountAmt.toLocaleString();
-  document.getElementById('pr-total').textContent='~$'+(sdYourPrice+sdMotor).toLocaleString();
+  document.getElementById('pr-total').textContent='~$'+(sdYourPrice+sdMotor+sdFreight).toLocaleString();
 }
 
 // ═══════════════════════════════════════════════════════════
