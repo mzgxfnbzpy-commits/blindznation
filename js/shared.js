@@ -95,7 +95,7 @@ function _injectHead(isHome) {
       "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
       "@id": "https://blindznation.com/#business",
       "name": "Blindznation",
-      "alternateName": "Michael J. Healy Installations LLC",
+      "alternateName": "Healy Installations LLC",
       "description": "Custom window treatments — roller shades, cellular shades, roman shades, drapery, and plantation shutters. Professional fabrication and installation serving Salt Lake City, Utah and Philadelphia, PA.",
       "url": "https://blindznation.com",
       "telephone": "+16097421720",
@@ -151,7 +151,7 @@ function _injectHead(isHome) {
       "@type": "Organization",
       "@id": "https://blindznation.com/#organization",
       "name": "Blindznation",
-      "legalName": "Michael J. Healy Installations LLC",
+      "legalName": "Healy Installations LLC",
       "url": "https://blindznation.com",
       "logo": "https://blindznation.com/img/social-preview.png",
       "telephone": "+16097421720",
@@ -261,7 +261,7 @@ function renderNav(activePage) {
 
   document.getElementById('site-nav').innerHTML = `
     <div class="nav-identity">
-      <span class="nav-company">Michael J. Healy Installations LLC</span>
+      <span class="nav-company">Healy Installations LLC</span>
       <div class="nav-brand-row">
         <a class="nav-brand-active" href="${root}">Blindznation</a>
         <span class="nav-brand-sep">·</span>
@@ -324,7 +324,7 @@ function renderFooter(isHome) {
           </svg>Blind<em>znation</em>
         </div>
         <div class="footer-brand-alt">Philly Blinds</div>
-        <div class="footer-company">Michael J. Healy Installations LLC</div>
+        <div class="footer-company">Healy Installations LLC</div>
         <div class="footer-tagline">Serving Philadelphia, South Jersey, Salt Lake City &amp; surrounding areas. Out-of-state available — product ships nationwide.</div>
         <a href="tel:6097421720" style="display:block;font-size:15px;font-weight:600;color:var(--gold);text-decoration:none;margin-bottom:2px">(609) 742-1720</a>
         <div style="font-size:11px;color:var(--text-faint);margin-bottom:6px">Justin Healy &mdash; call or text 24/7</div>

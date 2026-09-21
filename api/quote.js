@@ -265,7 +265,7 @@ module.exports = async function handler(req, res) {
     </p>
   </div>
   <div style="padding:14px 26px;font-size:11px;color:#aaa;text-align:center">
-    ${BRAND} &nbsp;·&nbsp; Michael J. Healy Installations LLC &nbsp;·&nbsp; ${PHONE}<br>
+    ${BRAND} &nbsp;·&nbsp; Healy Installations LLC &nbsp;·&nbsp; ${PHONE}<br>
     Salt Lake City, UT &nbsp;·&nbsp; Philadelphia, PA &nbsp;·&nbsp; Nationwide
   </div>
 </div></body></html>`;
