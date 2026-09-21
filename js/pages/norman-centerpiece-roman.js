@@ -88,26 +88,28 @@ var CP_H = [36,42,48,54,60,66,72,78,90,102];
 //
 // These three are the real charts, p.25-26, rows = height 36-102, cols = CP_W.
 // Group 3 is certain: Blake, Libeco, Rochelle, Bali, Breeze, Ellie ($173/yd).
-// OPEN: p.25 prints two charts side by side and the PDF text layer does not say
-// which is Group 1 (Scarlett alone) and which is Group 2 (the other 24
-// collections: Alma, Caroline, Windsor, Lakeside, Lorraine, Seabreeze, Taylor,
-// Patterns, Sheer Elegance, Francis, Valencia, Ella, Solids, Bora Bora, Catalina,
-// Java, Phuket, Riviera, Sumatra, Sierra, Ashley, Whispering Willow, Impressions,
-// Louise). Numbering convention says Group 1 is the cheaper 404 chart; the PDF
-// reading order says the opposite. Do not guess - it is 22% on nearly every order.
-var CP_BOOK_A = {
-  36:[492,613,698,807,916,1021,1092,1191,1283,1379,1699],
-  42:[566,697,793,897,1043,1147,1185,1264,1328,1444,1894],
-  48:[609,792,863,985,1140,1246,1297,1357,1448,1596,2008],
-  54:[684,901,995,1111,1219,1299,1344,1444,1502,1711,2179],
-  60:[760,995,1038,1211,1268,1364,1432,1535,1650,1824,2528],
-  66:[807,1029,1147,1259,1329,1416,1510,1693,1817,1973,2616],
-  72:[876,1112,1219,1320,1398,1489,1653,1845,1979,2166,2784],
-  78:[959,1167,1301,1392,1475,1627,1797,2035,2154,2329,2886],
-  90:[1037,1246,1364,1474,1551,1724,1934,2138,2241,2436,3064],
-  102:[1115,1322,1428,1555,1627,1821,2072,2241,2327,2543,3242]
-};
-var CP_BOOK_B = {
+// RESOLVED by reading the PDF text-item coordinates (see pdfpos.js): the two
+// charts on p.25 are stacked, not side by side, and each PRICE GROUP caption sits
+// below its own chart. So:
+//   Group 1 = CP_BOOK_G1 (404 at 36x24) — Scarlett, on its own
+//   Group 2 = CP_BOOK_G2 (492 at 36x24) — the 24 standard collections
+//   Group 3 = CP_BOOK_G3 (593 at 36x24) — Blake, Libeco, Rochelle, Bali, Breeze, Ellie
+// which is the monotonic 404 < 492 < 593 ladder. These three tables are correct.
+//
+// STILL BLOCKING the switch-on: the FABRICS list above is stale and its `g` values
+// cannot be trusted. Its "group 1" entries (Brook, Emery) and two of its "group 2"
+// entries (Hayes, Valerie) are not Roman collections at all — in the Sept 2026 book
+// those four are Day & Night ROLLER fabrics. Meanwhile ~20 real Roman collections
+// (Caroline, Windsor, Lorraine, Seabreeze, Taylor, Patterns, Sheer Elegance,
+// Valencia, Ella, Solids, Bora Bora, Catalina, Java, Phuket, Riviera, Sumatra,
+// Sierra, Ashley, Whispering Willow, Impressions, Louise, Scarlett ...) are missing.
+// Price is a function of the fabric's group, so correct tables do not help until the
+// fabric list is rebuilt from the book (147 colour rows, with their group digit).
+// Rebuild FABRICS first, then point CP_PRICE at G1/G2/G3 and drop the
+// PB_QUOTE_ONLY_PAGES entry.
+
+
+var CP_BOOK_G1 = {   // Price Group 1 — Scarlett (404 at 36x24)
   36:[404,453,587,655,685,765,938,988,1062,1120,1410],
   42:[430,626,715,792,863,951,983,1047,1102,1301,1568],
   48:[499,693,775,858,940,1029,1038,1080,1156,1380,1662],
@@ -119,7 +121,19 @@ var CP_BOOK_B = {
   90:[840,1029,1130,1222,1283,1357,1385,1564,1641,2089,2538],
   102:[888,1093,1184,1291,1343,1423,1454,1730,1702,2146,2688]
 };
-var CP_BOOK_G3 = {
+var CP_BOOK_G2 = {   // Price Group 2 — the 24 standard collections (492 at 36x24)
+  36:[492,613,698,807,916,1021,1092,1191,1283,1379,1699],
+  42:[566,697,793,897,1043,1147,1185,1264,1328,1444,1894],
+  48:[609,792,863,985,1140,1246,1297,1357,1448,1596,2008],
+  54:[684,901,995,1111,1219,1299,1344,1444,1502,1711,2179],
+  60:[760,995,1038,1211,1268,1364,1432,1535,1650,1824,2528],
+  66:[807,1029,1147,1259,1329,1416,1510,1693,1817,1973,2616],
+  72:[876,1112,1219,1320,1398,1489,1653,1845,1979,2166,2784],
+  78:[959,1167,1301,1392,1475,1627,1797,2035,2154,2329,2886],
+  90:[1037,1246,1364,1474,1551,1724,1934,2138,2241,2436,3064],
+  102:[1115,1322,1428,1555,1627,1821,2072,2241,2327,2543,3242]
+};
+var CP_BOOK_G3 = {   // Price Group 3 — Blake, Libeco, Rochelle, Bali, Breeze, Ellie (593)
   36:[593,740,840,971,1103,1228,1316,1433,1547,1661,2047],
   42:[682,839,954,1081,1256,1382,1427,1522,1601,1740,2280],
   48:[734,953,1041,1187,1372,1500,1562,1635,1744,1924,2418],
@@ -131,7 +145,6 @@ var CP_BOOK_G3 = {
   90:[1250,1500,1643,1776,1869,2078,2328,2575,2699,2934,3692],
   102:[1344,1594,1721,1873,1962,2194,2496,2699,2802,3064,3904]
 };
-// CP_BOOK_A = the 492 chart, CP_BOOK_B = the 404 chart, CP_BOOK_G3 = Group 3.
 
 var CP_PRICE = {
   1:[[148,162,176,190,204,218,232,246,274,302],[165,180,196,212,228,244,260,276,308,340],[181,198,215,232,250,268,285,302,337,371],[200,218,237,256,275,294,313,332,370,408],[218,238,259,280,301,322,342,363,405,446],[237,259,282,304,327,350,372,395,440,486],[256,280,304,329,354,378,403,427,476,526],[276,302,328,354,381,407,433,460,513,566],[295,323,351,379,408,436,464,492,549,606],[334,366,397,429,461,493,525,557,621,685],[374,409,444,479,515,550,585,621,692,763]],
