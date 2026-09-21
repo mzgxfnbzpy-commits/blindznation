@@ -7,11 +7,10 @@
 //                     "Blindznation <onboarding@resend.dev>"
 // Domain verification: resend.com → Domains → Add blindznation.com → add the DNS records.
 
+// Blindznation is its own business now — quote email goes to Justin at the
+// blindznation address only. Do NOT reintroduce the phillyblinds team list here;
+// the two sites are deliberately separate (Justin, 2026-09-20).
 const TEAM_EMAILS = [
-  'justin@phillyblinds.com',
-  'sarah@phillyblinds.com',
-  'mike@phillyblinds.com',
-  'tarin@phillyblinds.com',
   'justin@blindznation.com'
 ];
 const _rawFrom    = (process.env.RESEND_FROM || 'Blindznation <noreply@blindznation.com>').trim().replace(/^["']|["']$/g, '');
@@ -289,7 +288,8 @@ module.exports = async function handler(req, res) {
       from: FROM_QUOTES,
       to: TEAM_EMAILS,
       reply_to: hasValidEmail ? safeEmail : undefined,
-      subject: `📋 Quote Request — ${safeName} — ${safeProduct} — ${dateStr}`,
+      // Brand first, so a Blindznation submission is identifiable at a glance.
+      subject: `Blindznation — 📋 Quote Request — ${safeName} — ${safeProduct} — ${dateStr}`,
       html: teamHtml,
       attachments: attachments.length ? attachments : undefined
     });

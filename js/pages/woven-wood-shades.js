@@ -505,7 +505,7 @@ function submitRollerQuote() {
     'Please confirm pricing and availability. Customer is aware all prices are MSRP estimates confirmed at order.',
   ].join('\n'));
 
-  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject=' + subject + '&body=' + body;
+  window.location.href = 'mailto:justin@blindznation.com?subject=' + subject + '&body=' + body;
 }
 
 // Quantity input

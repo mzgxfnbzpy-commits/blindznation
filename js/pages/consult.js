@@ -23,9 +23,9 @@ function submitInperson() {
     + 'Products interested in: ' + (products || '—') + '\n'
     + 'Number of windows: ' + windows + '\n\n'
     + 'Notes: ' + (notes || 'None');
-  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
-    + '?subject=' + encodeURIComponent('In-Home Visit Request — ' + name)
-    + '&body=' + encodeURIComponent(body);
+  window.location.href = 'mailto:justin@blindznation.com'
+    + '?subject=' + encodeURIComponent('Blindznation — ' + 'In-Home Visit Request — ' + name)
+    + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('card-inperson').style.display = 'none';
   document.getElementById('success-inperson').style.display = 'block';
 }
@@ -42,9 +42,9 @@ function submitCallback() {
     + 'Best time to call: ' + time + '\n'
     + 'Topic: ' + topic + '\n\n'
     + 'Notes: ' + (notes || 'None');
-  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
-    + '?subject=' + encodeURIComponent('Callback Request — ' + name)
-    + '&body=' + encodeURIComponent(body);
+  window.location.href = 'mailto:justin@blindznation.com'
+    + '?subject=' + encodeURIComponent('Blindznation — ' + 'Callback Request — ' + name)
+    + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('card-callback').style.display = 'none';
   document.getElementById('success-callback').style.display = 'block';
 }

@@ -151,7 +151,7 @@ async function submitQuote(){
     try{ if(typeof pbSaveContact==='function') pbSaveContact({name:name,email:email,phone:phone}); }catch(e){}
   }catch(e){
     var body=encodeURIComponent(selections.map(function(l){return l.label+': '+l.value;}).join('\n')+'\n\nName: '+name+'\nPhone: '+phone+'\nEmail: '+email);
-    var mail='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent('Wallace Aluminum Blinds Quote — '+name)+'&body='+body;
+    var mail='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + 'Wallace Aluminum Blinds Quote — '+name)+'&body='+body;
     if(err){ err.innerHTML='<strong>Issue sending.</strong> <a href="'+mail+'" style="color:#991B1B;font-weight:700;text-decoration:underline">Email your quote directly →</a> or call <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a>.'; err.style.display='block'; }
     if(btn){ btn.disabled=false; btn.textContent='Submit Order for Review →'; }
   }

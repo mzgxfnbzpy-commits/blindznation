@@ -3411,7 +3411,7 @@ function handleQuickQuote(e) {
     'Timeline: ' + (timeline || 'Not specified'),
     'Notes: ' + (notes || 'None')
   ].join('\n');
-  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + subject) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
   form.style.display = 'none';
   document.getElementById('quick-quote-success').style.display = 'block';
 }
@@ -3645,7 +3645,7 @@ async function _apiSubmit(name, email, phone, productName, configText, successId
     if (sEl) { sEl.classList.add('show'); sEl.style.display = 'block'; sEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   } catch(err) {
     if (btn) { btn.disabled = false; btn.textContent = btn._origText || 'Send quote request'; }
-    var mh = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject=' + encodeURIComponent('Quote — ' + name) + '&body=' + encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nProduct: ' + productName + '\n\n' + configText);
+    var mh = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + 'Quote — ' + name) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + 'Name: ' + name + '\nPhone: ' + phone + '\nProduct: ' + productName + '\n\n' + configText);
     var eDiv = document.createElement('div');
     eDiv.style.cssText = 'background:#FEE2E2;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:12px;color:#991B1B;line-height:1.5';
     eDiv.innerHTML = '<strong>Issue sending.</strong> <a href="' + mh + '" style="color:#991B1B;font-weight:700;text-decoration:underline">Email directly →</a> or call <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a>';

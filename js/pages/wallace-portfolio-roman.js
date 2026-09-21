@@ -793,7 +793,7 @@ var p=isHob?getPriceHobbled(w,l,f.priceGroup):getPriceFlat(w,l,f.priceGroup);
   ].filter(function(l){return l!==undefined&&l!==null;}).join('\n');
 
   var subj='Wallace Portfolio Roman — '+S.width+'"×'+S.length+'" '+(S.fabric?S.fabric.pattern+' '+S.fabric.color:'')+' — '+name;
-  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
 
   document.getElementById('step16-body').querySelectorAll(':not(#success-box)').forEach(function(el){el.style.display='none';});
   document.getElementById('success-box').style.display='block';

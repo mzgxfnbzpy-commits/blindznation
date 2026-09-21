@@ -655,7 +655,7 @@ function submitQuote(){
     })(),
   ].filter(l=>l!==null&&l!==undefined&&l!=='');
 
-  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent('Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent(lines.join('\n'));
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + 'Wallace 3D Sheer Quote — '+name)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + lines.join('\n'));
   document.getElementById('success-box').style.display='block';
 }
 

@@ -793,9 +793,9 @@ function submitQuote() {
     + '── NOTES ──\n'
     + (document.getElementById('cf-notes').value.trim() || 'None');
 
-  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
-    + '?subject=' + encodeURIComponent('Wallace Natural Roller Spec — ' + name + (fab ? ' · ' + fab.name : ''))
-    + '&body=' + encodeURIComponent(body);
+  window.location.href = 'mailto:justin@blindznation.com'
+    + '?subject=' + encodeURIComponent('Blindznation — ' + 'Wallace Natural Roller Spec — ' + name + (fab ? ' · ' + fab.name : ''))
+    + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
 
   document.getElementById('quote-success').style.display = 'block';
 }

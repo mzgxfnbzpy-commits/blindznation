@@ -17,9 +17,9 @@
     + 'Product source: ' + source + '\nMotorization: ' + motor + '\n'
     + 'Delivery preference: ' + delivery + '\n\n'
     + 'Project details:\n' + (notes || 'None provided');
-  window.location.href = 'mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com'
-    + '?subject=' + encodeURIComponent('Installation Quote Request — ' + name)
-    + '&body=' + encodeURIComponent(body);
+  window.location.href = 'mailto:justin@blindznation.com'
+    + '?subject=' + encodeURIComponent('Blindznation — ' + 'Installation Quote Request — ' + name)
+    + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('quote-form-wrap').style.display = 'none';
   document.getElementById('inst-success').style.display = 'block';
 }

@@ -544,7 +544,7 @@ function submitQuote() {
   ].join('\n');
 
   const subject='Paris Texas Hardware Quote — '+typeLabel()+' — '+name;
-  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subject)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
   document.getElementById('success-box').style.display='block';
   document.getElementById('step-bar').style.display='none';
@@ -563,7 +563,7 @@ function submitUnsure() {
     'Delivery: '+(S.delivery||'Not selected'),'','PROJECT DETAILS',notes||'No details provided',
     '','--- Sent from blindznation.com/pages/paris-texas-rods.html ---'
   ].join('\n');
-  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent('Paris Texas Help — '+name)+'&body='+encodeURIComponent(body);
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + 'Paris Texas Help — '+name)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
   document.getElementById('success-box').style.display='block';
   document.getElementById('step-bar').style.display='none';

@@ -560,7 +560,7 @@ function submitQuote(){
   ].filter(l=>l!==undefined&&l!==null).join('\n');
 
   var subj='Orion Hardware Quote — '+typeLabel+' — '+S.collection+' — '+name;
-  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(bodyLines);
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + bodyLines);
 
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
   $('success-box').style.display='block';

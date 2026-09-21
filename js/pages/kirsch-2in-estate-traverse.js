@@ -412,7 +412,7 @@ function submitQuote(){
     'Name: '+name,'Phone: '+phone,
     'Email: '+(document.getElementById('cf-email').value.trim()||'—')
   ].filter(function(l){return l!==null&&l!==undefined;}).join('\n');
-  window.location.href='mailto:justin@phillyblinds.com,sarah@phillyblinds.com,mike@phillyblinds.com,tarin@phillyblinds.com,justin@blindznation.com?subject='+encodeURIComponent('Kirsch 2″ Estate Traverse Rod — '+name)+'&body='+encodeURIComponent(lines);
+  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + 'Kirsch 2″ Estate Traverse Rod — '+name)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + lines);
   document.getElementById('success-box').style.display='block';
 }
 
