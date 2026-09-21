@@ -264,8 +264,6 @@ function renderNav(activePage) {
       <span class="nav-company">Healy Installations LLC</span>
       <div class="nav-brand-row">
         <a class="nav-brand-active" href="${root}">Blindznation</a>
-        <span class="nav-brand-sep">·</span>
-        <a class="nav-brand-other" href="https://www.phillyblinds.com" target="_blank" rel="noopener">Philly Blinds</a>
       </div>
     </div>
     <div class="nav-main">
@@ -323,7 +321,6 @@ function renderFooter(isHome) {
             <path d="M20 130 C60 140, 120 50, 200 20 C230 8, 255 12, 265 30 C275 48, 260 68, 238 62 C220 58, 215 68, 240 72 C260 76, 270 90, 250 110 C230 130, 200 128, 180 115" stroke="#C9A96E" stroke-width="22" fill="none" stroke-linecap="round"/>
           </svg>Blind<em>znation</em>
         </div>
-        <div class="footer-brand-alt">Philly Blinds</div>
         <div class="footer-company">Healy Installations LLC</div>
         <div class="footer-tagline">Serving Philadelphia, South Jersey, Salt Lake City &amp; surrounding areas. Out-of-state available — product ships nationwide.</div>
         <a href="tel:6097421720" style="display:block;font-size:15px;font-weight:600;color:var(--gold);text-decoration:none;margin-bottom:2px">(609) 742-1720</a>
