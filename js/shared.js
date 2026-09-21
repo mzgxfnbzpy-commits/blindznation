@@ -574,6 +574,16 @@ var PB_QUOTE_ONLY_PAGES = {
   'paris-texas-rods'                : [],
   'select-rods'                     : [],
   'finial-company'                  : [],
+  // Centerpiece Roman — quote-only until Justin confirms one thing. The prices that
+  // were here were synthesised (clean arithmetic ladders), not transcribed, and ran
+  // 3-4x UNDER the Sept 2026 book. The book's three charts are now extracted and in
+  // norman-centerpiece-roman.js as CP_BOOK_G1/G2/G3; Group 3 (Blake, Libeco,
+  // Rochelle, Bali, Breeze, Ellie) is certain. What is NOT certain is which of the
+  // two charts on book p.25 is Group 1 (Scarlett, on its own) and which is Group 2
+  // (the other 24 collections) — the page puts them side by side and the text layer
+  // does not preserve which is which. One is 492 at 36x24, the other 404: a 22% swing
+  // on nearly every Centerpiece order. Answer that and this line comes out.
+  'norman-centerpiece-roman'        : ['#pr-total', '#pr-base', '#pr-freight-row'],
   'upholstery'                      : []
 };
 // ── Oversize freight — Justin, Sept 2026 ────────────────────────────────────
