@@ -114,9 +114,9 @@ function calcSize(){
   if(!w&&!h){ cbox.style.display='none'; $('s3val').textContent='—'; updateWandUI(); calcPrice(); return; }
 
   const errs=[];
-  if(w>0&&w<16.5) errs.push('Minimum width is 16½″.');
-  if(w>72)        errs.push('Maximum width is 72″ (inside/outside mount). Side mount brackets available — max 37″ wide. Call for anything wider.');
-  if(h>0&&h<24)   errs.push('Minimum height is 24″.');
+  if(w>0&&w<6.5)  errs.push('Minimum width is 6½″.');
+  if(w>96)        errs.push('Maximum width is 96″. Call for anything wider.');
+  if(h>0&&h<16)   errs.push('Minimum height is 16″.');
   if(h>96)        errs.push('Maximum height is 96″.');
   const area=(w*h)/144;
 
@@ -349,7 +349,9 @@ function submitForm(){
   const valAdd=(S.valance&&S.valance!=='none')?(VALANCE_PRICE[pW]||0):0;
   const sideAdd=S.sideMt?23:0;
   const shimAdd=S.shims*7;
-  const unit=base+printedAdd+valAdd+sideAdd+shimAdd;
+  // Area overage: +$18 per sq ft over 48 sq ft (must match calcPrice)
+  const overageAdd=Math.max(0,Math.ceil((S.w*S.h)/144-48))*18;
+  const unit=base+printedAdd+valAdd+sideAdd+shimAdd+overageAdd;
   const subtotal=unit*S.qty;
   const isOversized=S.w>=90;
   const freight=isOversized?(80+(S.qty>1?(S.qty-1)*50:0)):(25+(S.qty>1?(S.qty-1)*11:0));
@@ -420,7 +422,9 @@ function addFauxWoodToCart(){
   const valAdd=(S.valance&&S.valance!=='none')?(VALANCE_PRICE[pW]||0):0;
   const sideAdd=S.sideMt?23:0;
   const shimAdd=S.shims*7;
-  const unit=base+printedAdd+valAdd+sideAdd+shimAdd;
+  // Area overage: +$18 per sq ft over 48 sq ft (must match calcPrice)
+  const overageAdd=Math.max(0,Math.ceil((S.w*S.h)/144-48))*18;
+  const unit=base+printedAdd+valAdd+sideAdd+shimAdd+overageAdd;
   const subtotal=unit*S.qty;
   const isOversized=S.w>=90;
   const freight=isOversized?(80+(S.qty>1?(S.qty-1)*50:0)):(25+(S.qty>1?(S.qty-1)*11:0));
