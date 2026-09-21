@@ -54,8 +54,8 @@ function solRenderCoupledFields(n) {
     html += '<div style="margin-bottom:8px;padding:10px 12px;background:#fff;border:1px solid #e8e8e4;border-radius:8px">';
     html += '<div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Shade ' + i + ' — from left</div>';
     html += '<div class="form-row">';
-    html += '<div class="form-group"><label>Width</label><input type="number" id="coupled-w-' + i + '" min="12" max="144" step="0.5" placeholder="36" oninput="updateSummary()" style="width:100%"></div>';
-    html += '<div class="form-group"><label>Height</label><input type="number" id="coupled-h-' + i + '" min="12" max="144" step="0.5" placeholder="72" oninput="updateSummary()" style="width:100%"></div>';
+    html += '<div class="form-group"><label>Width</label><input type="number" id="coupled-w-' + i + '" min="12" max="144" step="0.125" placeholder="36" oninput="updateSummary()" style="width:100%"></div>';
+    html += '<div class="form-group"><label>Height</label><input type="number" id="coupled-h-' + i + '" min="12" max="144" step="0.125" placeholder="72" oninput="updateSummary()" style="width:100%"></div>';
     html += '</div></div>';
   }
   container.innerHTML = html;
@@ -400,11 +400,11 @@ var _SOL_GRIDS = {
   s3:[[290,322,346,374,404,430,460,488,522,575,608,655,690,754,822],[322,354,385,419,454,495,533,573,611,673,713,768,805,891,963],[349,385,423,469,515,561,605,651,701,770,815,879,918,1000,1079],[376,420,470,525,577,633,683,738,791,863,905,969,1013,1105,1194],[406,462,519,579,641,699,762,818,868,940,1006,1057,1106,1206,1312],[436,501,570,636,701,770,829,885,938,1017,1090,1146,1200,1313,1426],[469,544,620,693,766,829,890,945,1010,1091,1173,1236,1294,1417,1541],[503,587,668,745,821,885,950,1015,1080,1169,1256,1325,1389,1523,1657],[541,627,714,799,869,940,1010,1080,1152,1246,1341,1413,1482,1628,1772],[574,669,764,844,920,992,1070,1146,1222,1320,1422,1499,1576,1732,1888]]
 };
 var _SOL_COLL_GROUP = {
-  // Solar PG1 (book May 2026): Serene 7%, Flow 7%, Windsong 5%, NA400 3/5/10%, NA300 3/5%
+  // Solar PG1 (book Sept 2026): Serene 7%, Flow 7%, Windsong 5%, NA400 3/5/10%, NA300 3/5%
   'Serene 7%':'s1','Flow 7%':'s1','Windsong 5%':'s1',
   'NA400 3%':'s1','NA400 5%':'s1','NA400 10%':'s1',
   'NA300 3%':'s1','NA300 5%':'s1', // ⚠ book PG1 but NOT yet in swatch data (no color codes on site)
-  // Solar PG2 (book May 2026): Serene 1/3%, Flow 1/5%, Windsong 1%, W120 12%, Moon 5%, Breeze 1&3%, NA300 1%, NA400 1%, NA820 3%
+  // Solar PG2 (book Sept 2026): Serene 1/3%, Flow 1/5%, Windsong 1%, W120 12%, Moon 5%, Breeze 1&3%, NA300 1%, NA400 1%, NA820 3%
   'Serene 1%':'s2','Serene 3%':'s2','Flow 1%':'s2','Flow 5%':'s2',
   'Windsong 1%':'s2','Moon 5%':'s2','Breeze Screen 1%':'s2','Breeze Screen 3%':'s2',
   'NA820 3%':'s2',
@@ -412,7 +412,7 @@ var _SOL_COLL_GROUP = {
   // Solar PG3: Lakeview, Meadows, Jubilee, Galaxy
   'Lakeview 3%':'s3','Lakeview 7%':'s3','Lakeview 10%':'s3',
   'Meadows 1%':'s3','Meadows 3%':'s3','Jubilee 3%':'s3','Galaxy 3%':'s3',
-  // Fabric PG1 (book May 2026): Scarlett, Catalina, Brook, Chelsea, Verona LF, Callie, Callie RD, Elements
+  // Fabric PG1 (book Sept 2026): Scarlett, Catalina, Brook, Chelsea, Verona LF, Callie, Callie RD, Elements
   'Scarlett':'f1','Catalina (Natural)':'f1','Brook':'f1','Chelsea':'f1',
   'Callie':'f1','Callie RD':'f1','Elements':'f1','Elements White Backing':'f1',
   'Verona LF':'f1', // ⚠ book PG1 but NOT yet in swatch data
@@ -430,7 +430,7 @@ var _SOL_COLL_GROUP = {
   'Garden':'f3','Lola BO':'f3','Summerland':'f3','Cory':'f3',
   'Remy RD':'f3','Breeze RD':'f3',
   // Fabric PG4: Kendra only
-  'Kendra':'f4'
+  'Kendra':'f3'
 };
 
 function _solGridLookup(gKey, w, h) {
@@ -451,11 +451,11 @@ function getSelectedFabricColl() {
   return sel ? sel.getAttribute('data-coll') : null;
 }
 
-// Fascia / Wood Valance surcharge by width bucket (round UP). Norman book May 2026 p.18.
+// Fascia / Wood Valance surcharge by width bucket (round UP). Norman book Sept 2026 p.18.
 // All three fascia styles (flat metal, flat/curved fabric-wrapped) price off this row — they are
 // all fascias; hanging fabric valances aren't offered in this configurator. Raceway is included.
 var _SOL_FASCIA_W   = [24,30,36,42,48,54,60,66,72,78,84,90,96,108,120,132,144];
-var _SOL_FASCIA_SUR = [113,118,129,134,145,156,166,182,198,209,225,241,257,284,316,338,364];
+var _SOL_FASCIA_SUR = [117,122,133,139,150,161,171,188,204,216,232,249,265,293,326,349,375];
 function _solFasciaSurcharge(w) {
   for (var i = 0; i < _SOL_FASCIA_W.length; i++) { if (w <= _SOL_FASCIA_W[i]) return _SOL_FASCIA_SUR[i]; }
   return _SOL_FASCIA_SUR[_SOL_FASCIA_SUR.length - 1]; // >144" caught earlier by grid oversize → manual review
@@ -474,12 +474,12 @@ function _solEstimatePrice() {
   var base = _solGridLookup(gKey, w, h);
   if (base === null) return { review: true, qty: qty, motor: op === 'Motorized' };
   if (!base) return null;
-  var srFee = (op === 'SmartRelease™') ? 86 : 0;                 // book May 2026: SmartRelease $86
-  if (shadeType === 'Dual Shade') base = base * 2 + 70;          // book: price as 2 shades + $70 dual surcharge
+  var srFee = (op === 'SmartRelease™') ? 89 : 0;                 // book Sept 2026: SmartRelease $86
+  if (shadeType === 'Dual Shade') base = base * 2 + 73;          // book: price as 2 shades + $70 dual surcharge
   var unitPrice;
   if (_solCoupledActive) {
     if (_solCoupledSameSize) {
-      unitPrice = (base + srFee) * _solCoupledCount + 113 * (_solCoupledCount - 1);
+      unitPrice = (base + srFee) * _solCoupledCount + 117 * (_solCoupledCount - 1);
     } else {
       var tally = 0;
       for (var ci2 = 1; ci2 <= _solCoupledCount; ci2++) {
@@ -490,16 +490,16 @@ function _solEstimatePrice() {
         if (pcell === null) return { review: true, qty: qty, motor: op === 'Motorized' };
         tally += pcell + srFee;
       }
-      unitPrice = tally + 113 * (_solCoupledCount - 1);
+      unitPrice = tally + 117 * (_solCoupledCount - 1);
     }
   } else {
     unitPrice = base + srFee;
   }
-  // Headrail add-on surcharges (book May 2026): LightGuard 360™ $364 flat; fascia/valance by width.
+  // Headrail add-on surcharges (book Sept 2026): LightGuard 360™ $364 flat; fascia/valance by width.
   // Added once per shade unit / common headrail. Folded into the price, NOT itemized — owner rule
   // hides this detail from customers (only motor/remote/charger/hub/TDBU/D&N/trim show a surcharge).
   var lgEl = document.getElementById('sol-addon-lightguard');
-  if (lgEl && lgEl.classList.contains('sel')) unitPrice += 364;
+  if (lgEl && lgEl.classList.contains('sel')) unitPrice += 375;
   var fasEl = document.getElementById('sol-addon-fascia');
   if (fasEl && fasEl.classList.contains('sel')) unitPrice += _solFasciaSurcharge(w);
   var totalPrice = unitPrice * qty;
