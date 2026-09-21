@@ -22,18 +22,27 @@ It is NOT phillyblinds. Do not confuse them.
 
 ---
 
-## RELATIONSHIP TO PHILLYBLINDS
+## RELATIONSHIP TO PHILLYBLINDS — SEPARATED 2026-09-20
 
-Blindznation is a **sister brand** to Philly Blinds. Same company (Michael J. Healy Installations LLC), same products, same business rules. The website is a branded copy of phillyblinds with different:
-- Domain: blindznation.com
-- Brand colors / design tokens
-- Contact email
+**The two sites are separate businesses now, and Blindznation is the focus.**
+Justin, 2026-09-20: *"seperation of both sites is very important... our focus is
+blindznation.com... keep the phillyblinds separate and keep as is for now."*
 
-**phillyblinds is the MASTER.**
-All product specs, motorization rules, business logic, and configurator data originate in phillyblinds first. When a product rule changes, it changes in phillyblinds first, then gets ported to blindznation.
+- **Blindznation is where work happens.** It is no longer a branded copy of
+  phillyblinds and phillyblinds is **no longer the master** for this repo.
+- **Philly Blinds is frozen** — leave it exactly as it is unless Justin asks
+  for a specific change on that specific site.
+- **Do NOT mirror changes between the two repos in either direction.** The old
+  "every change applies to both sites" rule is retired.
+- **Email is fully split.** Everything here goes to `justin@blindznation.com`
+  and nothing else. Do not reintroduce the @phillyblinds.com team list.
+- **Every submission names the brand up front** so it is identifiable at a
+  glance: mailto subjects read "Blindznation — …", bodies open with a
+  BLINDZNATION line, and the API team notification is prefixed the same way.
 
-**Before working on any product configurator or business rule in blindznation:**
-Check phillyblinds's `CLAUDE.md` for the authoritative spec. The product audits (Norman, Paris Texas, Kirsch, Wallace, etc.) all live there.
+Historical product audits (Norman, Paris Texas, Kirsch, Wallace) still live in
+the phillyblinds CLAUDE.md and remain useful as vendor reference — but treat
+them as reference material, not as a master this repo must follow.
 
 ---
 
@@ -184,7 +193,7 @@ Everything below is IDENTICAL to phillyblinds unless explicitly listed as differ
 
 These rules are IDENTICAL between both projects. Do not deviate:
 
-- All quote forms → POST /api/quote (Resend API → TEAM_EMAILS: justin/sarah/mike/tarin @phillyblinds.com + justin@blindznation.com)
+- All quote forms → POST /api/quote (Resend API → TEAM_EMAILS: justin@blindznation.com ONLY — see RELATIONSHIP section; do not re-add phillyblinds addresses)
 - Every quote form MUST have delivery/pickup section above submit button
 - Pickup address disclosed AFTER order only
 - Norman brand → Norman Motorization ONLY (no Somfy/Lutron/Rollease on Norman pages)
