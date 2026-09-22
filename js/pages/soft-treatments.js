@@ -657,16 +657,11 @@ function calcRoman() {
   // Shipping estimate — FedEx/UPS from Philadelphia, $75 minimum. Over D_OVERSIZE_W″
   // wide it is oversize freight instead (Justin, Sept 2026) — the old rule here was
   // >96″ = $200 and the comment outlived it.
-  var isShippingRn = true;
-  var shipEst = 0;
-  if (isShippingRn) {
-    if (isRomanOversized) {
-      shipEst = D_OVERSIZE_MIN;
-    } else {
-      var rnShipBase = Math.ceil((w / 12) * (h / 12) * qty * 3 / 5) * 5;
-      shipEst = Math.max(75, rnShipBase);
-    }
-  }
+  // Flat by ordered width: $100 up to 80", $300 over 80", $500 over 120".
+  // Flat per order, not per shade.
+  var shipEst = (typeof pbSoftTreatmentFreight === 'function')
+    ? pbSoftTreatmentFreight(w)
+    : (w > 120 ? 500 : w > D_OVERSIZE_W ? 300 : 100);
 
   var grandTotal = laborTotal + trimTotal + fabricCost + linerCost + shipEst;
   if (box) box.style.display = 'block';
@@ -716,7 +711,12 @@ function calcRoman() {
     }
   }
   if (trimTotal) rnLines.push({ label: 'Trim', value: getOpt('grp-roman-trim') || 'Selected' });
-  if (shipEst)   rnLines.push({ label: isRomanOversized ? 'Oversized freight (over ' + D_OVERSIZE_W + '″ wide)' : 'Shipping est. (FedEx/UPS, Philadelphia)', value: '~$' + shipEst });
+  if (shipEst) {
+    rnLines.push({ label: (w > 120 ? 'Oversize freight (over 120″ wide)'
+                        : isRomanOversized ? 'Oversize freight (over ' + D_OVERSIZE_W + '″ wide)'
+                        : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + shipEst });
+    rnLines.push({ label: '', value: (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') });
+  }
   var rnAtMin = perShade === rnGetMin();
   if (rnAtMin) rnLines.push({ label: 'Note', value: 'At ' + (isPleated ? 'pleated' : 'flat/relaxed') + ' minimum — $' + rnGetMin() + '/shade' });
   pbRenderEstimate('roman-pricebox', rnLines, grandTotal, '', function(checkout) {
@@ -1000,13 +1000,11 @@ function calcDrapePrice() {
   }
 
   // Shipping estimate — FedEx/UPS from Philadelphia; min $75 for drapes
-  var isShippingDrape = true;
-  var dShipEst = 0;
-  if (isShippingDrape) {
-    // one shipment sized to the TOTAL number of widths across all sets
-    var dShipBase = Math.ceil(numWidths * qty * 12 / 5) * 5;
-    dShipEst = Math.max(75, dShipBase);
-  }
+  // $100 inside either envelope (150"w x 90"l, or 50"w x 120"l), $300 past both.
+  // A drape folds, so finished size decides it, not the cut count. No $500 tier.
+  var dShipEst = (typeof pbDraperyFreight === 'function')
+    ? pbDraperyFreight(w, h)
+    : (((w <= 150 && h <= 90) || (w <= 50 && h <= 120)) ? 100 : 300);
 
   // Per-window costs (labor, fabric, lining, trim) scale with quantity; the $200 minimum
   // applies per set. Cornice/valance are single shared pieces and shipping is one estimate —
@@ -1061,7 +1059,10 @@ function calcDrapePrice() {
   if (corniceTotal) drapeLines.push({ label: 'Cornice', value: '$' + corniceTotal.toFixed(0) });
   if (valanceTotal) drapeLines.push({ label: 'Valance', value: '$' + valanceTotal.toFixed(0) });
   if (trimTotal)    drapeLines.push({ label: 'Trim', value: '$' + trimTotal.toFixed(0) });
-  if (dShipEst)     drapeLines.push({ label: 'Shipping est.', value: '~$' + dShipEst + (qty > 1 ? ' × ' + qty + ' sets' : '') });
+  if (dShipEst) {
+    drapeLines.push({ label: (dShipEst > 100 ? 'Oversize freight' : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + dShipEst });
+    drapeLines.push({ label: '', value: (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') });
+  }
   drapeLines.push({ label: 'Fabric needed est.', value: '~' + (totalFabYds * qty).toFixed(1) + ' yds (pattern repeats add more)' });
   if (perSetTotal === 200) drapeLines.push({ label: 'Note', value: '$200 minimum per drapery set' });
   // Past the published length ladder there is no rate to apply, so show the
@@ -1224,9 +1225,14 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
   // rather than quietly leaving it out of the price.
   var spliceEl   = document.getElementById(boxId.replace('-price-box', '') + '-splice');
   var willSplice = spliceEl ? spliceEl.checked : false;
-  var isOversizeCV = (w > D_OVERSIZE_W) && !willSplice;
-  var oversizeFreight = isOversizeCV ? D_OVERSIZE_MIN : 0;
-  var total = labor + trimCost + oversizeFreight;
+  // Splicing brings a wide board back to the base rate: jointed board, fabric
+  // stays one piece, ships parcel.
+  var cvShipBase = (typeof PB_ST_SHIP_BASE !== 'undefined') ? PB_ST_SHIP_BASE : 100;
+  var cvFreight = willSplice ? cvShipBase
+    : ((typeof pbSoftTreatmentFreight === 'function') ? pbSoftTreatmentFreight(w)
+       : (w > 120 ? 500 : w > D_OVERSIZE_W ? 300 : cvShipBase));
+  var isOversizeCV = cvFreight > cvShipBase;
+  var total = labor + trimCost + cvFreight;
   var rows = '';
   rows += '<div style="font-size:12px;color:var(--text-dark);padding:4px 0">' + ft + ' linear ft (incl. ends) × $' + cvRate + '/ft' +
           (h > 15 ? ' <span style="color:var(--gold)">(' + h + '″ high)</span>' : '') + '</div>';
@@ -1243,11 +1249,15 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
   rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Fabric ' +
           (weSupply ? '(we supply)' : '(you supply)') +
           ' <span style="color:var(--gold)">not included &mdash; quoted separately</span></div>';
-  if (w > D_OVERSIZE_W) {
-    rows += willSplice
-      ? '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Spliced board &mdash; ships parcel <span style="color:var(--gold)">(no oversize freight)</span></div>'
-      : '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Oversize freight (over ' + D_OVERSIZE_W + '&Prime;, not spliced) <span style="color:var(--gold)">+$' + D_OVERSIZE_MIN + '</span></div>';
+  if (w > D_OVERSIZE_W && willSplice) {
+    rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Spliced board &mdash; ships parcel <span style="color:var(--gold)">(no oversize freight)</span></div>';
   }
+  rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">' + (isOversizeCV
+      ? 'Oversize freight (over ' + (cvFreight >= 500 ? 120 : D_OVERSIZE_W) + '&Prime; wide, not spliced)'
+      : 'Shipping (FedEx/UPS, Philadelphia)')
+    + ' <span style="color:var(--gold)">$' + cvFreight + '</span></div>';
+  rows += '<div style="font-size:11px;color:var(--text-dark);opacity:.75;padding:2px 0">' +
+    ((typeof PB_ST_SHIP_NOTE !== 'undefined') ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') + '</div>';
   rows += '<div style="font-size:11px;font-weight:700;color:var(--cream);padding-top:8px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)">Est. total: $' + total.toFixed(2) + '<span style="font-weight:400;color:var(--text-dark)"> + fabric</span></div>';
   document.getElementById(rowsId).innerHTML = rows;
   var noteEl = document.getElementById(noteId);
