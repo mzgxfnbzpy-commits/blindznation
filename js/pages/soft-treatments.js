@@ -1000,11 +1000,12 @@ function calcDrapePrice() {
   }
 
   // Shipping estimate — FedEx/UPS from Philadelphia; min $75 for drapes
-  // $100 up to 150x120, $300 up to 190x160, $500 past that. A drape folds, so
-  // the finished panel decides it, not the cut count.
+  // $200 up to 150x120, $300 up to 200x170, $500 past that. Drapery carries its
+  // own base (higher than the $100 on Romans and boards) because a made-up drape
+  // is bulkier. The finished panel decides it, not the cut count.
   var dShipEst = (typeof pbDraperyFreight === 'function')
     ? pbDraperyFreight(w, h)
-    : ((w <= 150 && h <= 120) ? 100 : (w <= 190 && h <= 160) ? 300 : 500);
+    : ((w <= 150 && h <= 120) ? 200 : (w <= 200 && h <= 170) ? 300 : 500);
 
   // Per-window costs (labor, fabric, lining, trim) scale with quantity; the $200 minimum
   // applies per set. Cornice/valance are single shared pieces and shipping is one estimate —
@@ -1060,8 +1061,8 @@ function calcDrapePrice() {
   if (valanceTotal) drapeLines.push({ label: 'Valance', value: '$' + valanceTotal.toFixed(0) });
   if (trimTotal)    drapeLines.push({ label: 'Trim', value: '$' + trimTotal.toFixed(0) });
   if (dShipEst) {
-    drapeLines.push({ label: (dShipEst >= 500 ? 'Oversize freight (over 190″ × 160″)'
-                           : dShipEst > 100 ? 'Oversize freight (over 150″ × 120″)'
+    drapeLines.push({ label: (dShipEst >= 500 ? 'Oversize freight (over 200″ × 170″)'
+                           : dShipEst > 200 ? 'Oversize freight (over 150″ × 120″)'
                            : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + dShipEst });
     drapeLines.push({ label: '', value: (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') });
   }
