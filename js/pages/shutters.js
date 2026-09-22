@@ -453,6 +453,71 @@ function selDelivery(type, card) {
 }
 
 /* ─── QUOTE SUMMARY ─────────────────────────────────────── */
+/* ─── BILLABLE AREA ──────────────────────────────────────────────────────────
+ * Norman prices shutters as  billable area x $/sq ft.  We do NOT have the
+ * $/sq ft rate: it is not in any shutter document we hold (all six manuals,
+ * Brightwood, the overview decks and the PO form were checked, including the
+ * image-only pages, which are all installation diagrams). The manuals DO give
+ * the area side of it in full, so that is modelled here — when Justin supplies
+ * the rate, pricing is this area x rate, with no other work.
+ *
+ * Source: Woodlore manual section "m. Pricing" (WL m-1..3), and the matching
+ * ND m- / WLP m- sections. Which adder belongs to which frame was confirmed
+ * from the PDF text coordinates, because the reading order interleaves the
+ * two Z-frame columns.
+ *
+ * Inside / frame-to-frame measurement is billed at the opening itself.
+ * Outside / by-window-size measurement adds the frame, and the adder depends
+ * on the frame style AND on how many sides are framed.
+ */
+var SH_FRAME_ADD = {
+  // width add is constant per frame; height add varies by how many sides are framed
+  '2″ Camber Deco Frame'   : {w:4,    h:{4:4,    '3s':4,    3:2,     '2s':2,     2:0, 1:0}, one:{w:2}},
+  '2″ Classic Deco Frame'  : {w:4,    h:{4:4,    '3s':4,    3:2,     '2s':2,     2:0, 1:0}, one:{h:2}},
+  '3″ Ridge Deco Frame'    : {w:6,    h:{4:6,    '3s':6,    3:3,     '2s':3,     2:0, 1:0}, one:{w:3}},
+  '2½″ Mission Deco Frame': {w:5,    h:{4:5,    '3s':5,    3:2.5,   '2s':2.5,   2:0, 1:0}, one:{w:2.5}},
+  '3″ Crown Z Frame'       : {w:4.5,  h:{4:4.5,  '3s':4.5,  3:2.25,  '2s':2.25,  2:0, 1:0}, one:{w:2.25}},
+  '2″ Bel Air / 2″ Bullnose Z Frame': {w:2.5, h:{4:2.5, '3s':2.5, 3:1.25, '2s':1.25, 2:0, 1:0}, one:{w:1.25}},
+  '1½″ Bullnose / 1¼″ Beaded / Bullnose Tilt-Out Z Frame': {w:2, h:{4:2, '3s':2, 3:1, '2s':1, 2:0, 1:0}, one:{w:1}},
+  'Beaded L Frame (standard)': {w:3,    h:{4:3,    '3s':3,    3:1.5,   '2s':1.5,   2:0, 1:0}, one:{w:1.5}},
+  'Vintage L Frame'          : {w:3,    h:{4:3,    '3s':3,    3:1.5,   '2s':1.5,   2:0, 1:0}, one:{w:1.5}},
+  'Plain L Frame'            : {w:3,    h:{4:3,    '3s':3,    3:1.5,   '2s':1.5,   2:0, 1:0}, one:{w:1.5}},
+  'Colonial L Frame'         : {w:2.25, h:{4:2.25, '3s':2.25, 3:1.125, '2s':1.125, 2:0, 1:0}, one:{w:1.125}},
+  'Hang strip (beside panel)': {w:3,    h:{4:3,    '3s':3,    3:1.5,   '2s':1.5,   2:0, 1:0}, one:{w:1.5}},
+  'Hang strip (behind panel)': {w:3,    h:{4:3,    '3s':3,    3:1.5,   '2s':1.5,   2:0, 1:0}, one:{w:1.5}}
+};
+// "4-sided (standard)" -> 4 ; "3-sided with sill plate" -> '3s' ; etc.
+function shSidesKey(v) {
+  v = (v || '4-sided').toLowerCase();
+  var sill = v.indexOf('sill plate') !== -1;
+  if (v.indexOf('1-sided') === 0) return 1;
+  if (v.indexOf('2-sided') === 0) return sill ? '2s' : 2;
+  if (v.indexOf('3-sided') === 0) return sill ? '3s' : 3;
+  return 4;
+}
+// Billable square feet for one opening. Returns null when it cannot be known
+// (no frame chosen yet, "Not sure", direct mount — all need a measure visit).
+function shBillableArea(w, h) {
+  w = parseFloat(w); h = parseFloat(h);
+  if (!(w > 0) || !(h > 0)) return null;
+  var inside = /inside/i.test(S.measureType || '');
+  if (inside) return (w * h) / 144;                  // frame-to-frame: the opening itself
+  var fr = SH_FRAME_ADD[S.frame];
+  if (!fr) return null;                              // "Not sure" / no frame / nothing picked
+  var k = shSidesKey(S.frameSides);
+  if (k === 1) return ((w + (fr.one.w || 0)) * (h + (fr.one.h || 0))) / 144;
+  return ((w + fr.w) * (h + fr.h[k])) / 144;
+}
+// Total across every opening entered; null if none can be computed.
+function shBillableTotal() {
+  var t = 0, any = false;
+  (S.dims || []).forEach(function(d) {
+    var a = shBillableArea(d.w, d.h);
+    if (a !== null) { t += a; any = true; }
+  });
+  return any ? t : null;
+}
+
 function updateQuote() {
   setText('qs-line', S.line || '—');
   setText('qs-count', S.count ? S.count + ' window' + (S.count !== 1 ? 's' : '') : '—');
@@ -473,10 +538,20 @@ function updateQuote() {
     if (d.w || d.h) {
       var li = document.createElement('li');
       li.className = 'q-opening-item';
-      li.textContent = (d.label || 'Opening '+(i+1)) + ': ' + (d.w || '?') + '″W × ' + (d.h || '?') + '″H';
+      var _a = shBillableArea(d.w, d.h);
+      li.textContent = (d.label || 'Opening '+(i+1)) + ': ' + (d.w || '?') + '″W × ' + (d.h || '?') + '″H'
+        + (_a !== null ? ' — ' + _a.toFixed(2) + ' sq ft billable' : '');
       list.appendChild(li);
     }
   });
+  var _tot = shBillableTotal();
+  if (_tot !== null && S.dims && S.dims.length > 1) {
+    var tli = document.createElement('li');
+    tli.className = 'q-opening-item';
+    tli.style.fontWeight = '600';
+    tli.textContent = 'Total billable area: ' + _tot.toFixed(2) + ' sq ft';
+    list.appendChild(tli);
+  }
 }
 
 /* ─── SUBMIT ─────────────────────────────────────────────── */
@@ -494,6 +569,8 @@ function addShuttersToCart(){
     {label:'Quantity',value:String(S.count||1)},
     {label:'Dimensions',value:dimsText||'—'},
     {label:'Panel Layout',value:S.layout||'—'},
+    {label:'Frame / sides',value:(S.frame||'—')+(S.frameSides?' · '+S.frameSides:'')},
+    {label:'Billable area',value:(function(){var t=shBillableTotal();return t!==null?t.toFixed(2)+' sq ft':'confirm at measurement';})()},
     {label:'Color / Finish',value:(S.colorType?S.colorType+' — ':'')+S.color}
   ];
   var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
