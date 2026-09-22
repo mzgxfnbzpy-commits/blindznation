@@ -555,7 +555,15 @@ function romanRingsToggle() {
 function _clearEstimatePanel(box) {
   if (!box || !box.id) return;
   var panel = document.getElementById(box.id + '-checkout-panel');
-  if (panel) { panel.innerHTML = ''; panel.style.display = 'none'; }
+  if (!panel) return;
+  panel.innerHTML = '';
+  panel.style.display = 'none';
+  // The add-to-cart buttons read these properties, not the markup. Emptying the
+  // panel without clearing them left the last valid price live: price a 185"
+  // drape, push it to 200", get "custom quote" on screen -- and Add to Cart
+  // still added the 185" price.
+  panel._pbEstimate = null;
+  panel._pbLines    = null;
 }
 
 function _motorCustomMsg(box, label) {
@@ -585,13 +593,14 @@ function calcRoman() {
   var h   = _getDim('rn-h', 'rn-h-frac');
   var qty = parseInt(document.getElementById('rn-qty').value) || 1;
   var box = document.getElementById('roman-pricebox');
-  if (!w || !h) { if(box) box.style.display = 'none'; return; }
+  if (!w || !h) { if(box) { _clearEstimatePanel(box); box.style.display = 'none'; } return; }
 
   // Motorized operation → no customer-facing estimate
   if (getOpt('grp-roman-op') === 'Motorized') { _motorCustomMsg(box, 'Motorized Roman Shade'); return; }
 
   // Minimum functional size — 12″
   if ((w > 0 && w < 12) || (h > 0 && h < 12)) {
+    _clearEstimatePanel(box);
     if (box) { box.style.display = 'block'; box.innerHTML = '<div style="padding:6px 0;font-size:12px;color:var(--text-dark)">&#9888; Roman shades require a minimum <strong>12&rdquo;</strong> width and height to operate correctly.</div>'; }
     return;
   }
@@ -638,14 +647,16 @@ function calcRoman() {
   var fabricCost = 0; var linerCost = 0;
   var isRomanLined = (romanState.liningType && romanState.liningType !== 'unlined');
   if (romanState.fabric === 'We supply the fabric') {
-    fabricCost = fabricYds * 25;
+    fabricCost = fabricYds * D_FABRIC_PER_YD;
     var linerVal = getOpt('grp-roman-liner') || 'White liner';
     if (isRomanLined && (linerVal === 'White liner' || linerVal === 'Cream liner')) {
       linerCost = liningYdsRn * D_LINING_PER_YD;
     }
   }
 
-  // Shipping estimate — FedEx/UPS from Philadelphia; min $75; >96″ wide = oversized freight $200
+  // Shipping estimate — FedEx/UPS from Philadelphia, $75 minimum. Over D_OVERSIZE_W″
+  // wide it is oversize freight instead (Justin, Sept 2026) — the old rule here was
+  // >96″ = $200 and the comment outlived it.
   var isShippingRn = true;
   var shipEst = 0;
   if (isShippingRn) {
@@ -831,7 +842,7 @@ function calcDrapePrice() {
   var qty = parseInt((document.getElementById('drape-qty') || {}).value) || 1;
   var box = document.getElementById('drape-price-box');
   if (!box) return;
-  if (!w || !h) { box.style.display = 'none'; return; }
+  if (!w || !h) { _clearEstimatePanel(box); box.style.display = 'none'; return; }
 
   // Motorized track hardware → no customer-facing estimate
   var hwNeedBtn = document.querySelector('#grp-drape-hw-need .opt-btn.sel');
@@ -1347,6 +1358,7 @@ function addDrapeToCart(){
   var pleat=drapeState.pleat||'';
   if(!pleat){ alert('Please select a pleat style before adding to cart.'); return; }
   var panel=document.getElementById('drape-price-box-checkout-panel');
+  if(panel&&panel.style.display==='none'){ panel=null; }   // out-of-range size: no live estimate
   if(panel&&panel._pbLines&&panel._pbEstimate){
     pbCollectItem(drapeState.pleat||'Custom Drapery',panel._pbLines,panel._pbEstimate,false);
     pbOpenCart();
@@ -1354,6 +1366,7 @@ function addDrapeToCart(){
     // Trigger calc which will build the estimate panel, then collect
     calcDrapePrice();
     var p2=document.getElementById('drape-price-box-checkout-panel');
+    if(p2&&p2.style.display==='none'){ p2=null; }
     if(p2&&p2._pbLines&&p2._pbEstimate){
       pbCollectItem(drapeState.pleat||'Custom Drapery',p2._pbLines,p2._pbEstimate,false);
       pbOpenCart();
@@ -1368,12 +1381,14 @@ function addRomanToCart(){
   var style=romanState.style||'';
   if(!style){ alert('Please select a roman shade style before adding to cart.'); return; }
   var panel=document.getElementById('roman-pricebox-checkout-panel');
+  if(panel&&panel.style.display==='none'){ panel=null; }   // out-of-range size: no live estimate
   if(panel&&panel._pbLines&&panel._pbEstimate){
     pbCollectItem(romanState.style||'Roman Shade',panel._pbLines,panel._pbEstimate,false);
     pbOpenCart();
   } else {
     calcRomanPrice();
     var p2=document.getElementById('roman-pricebox-checkout-panel');
+    if(p2&&p2.style.display==='none'){ p2=null; }
     if(p2&&p2._pbLines&&p2._pbEstimate){
       pbCollectItem(romanState.style||'Roman Shade',p2._pbLines,p2._pbEstimate,false);
       pbOpenCart();
