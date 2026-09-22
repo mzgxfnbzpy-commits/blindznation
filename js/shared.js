@@ -756,11 +756,44 @@ function pbTermsValid(scope, errId) {
   try { b.scrollIntoView({ behavior:'smooth', block:'center' }); } catch(e){}
   return false;
 }
-// Inject the terms checkbox just before any [data-pb-require-contact] submit button
-// that doesn't already have one in its container. Runs on load (inline forms exist then).
+// Every button that sends us an order, a quote request or a checkout. Covers the
+// canonical contact step ([data-pb-require-contact]) AND the ~20 per-page submit
+// buttons that call their own submitXxx() inline — those were never gated, so a
+// customer could send an order from most product pages without agreeing to
+// anything. Matching on the handler rather than editing each page keeps a new
+// page from quietly opening the same hole.
+// True when an inline handler calls a submitXxx() of ours. Written without a
+// regex on purpose: the escapes in one kept getting eaten in transit.
+function _pbIsSubmitHandler(h) {
+  if (!h) return false;
+  if (h.indexOf('_stApiSubmit') !== -1) return true;
+  var i = h.indexOf('submit');
+  while (i !== -1) {
+    var next = h.charAt(i + 6);
+    var prev = i === 0 ? '' : h.charAt(i - 1);
+    var prevIsWord = (prev >= 'a' && prev <= 'z') || (prev >= 'A' && prev <= 'Z') ||
+                     (prev >= '0' && prev <= '9') || prev === '_' || prev === '.';
+    if (!prevIsWord && next >= 'A' && next <= 'Z') return true;   // submitQuote(, submitDrape(
+    i = h.indexOf('submit', i + 1);
+  }
+  return false;
+}
+function _pbSubmitButtons() {
+  var out = [];
+  var seen = [];
+  function add(el) { if (el && seen.indexOf(el) === -1) { seen.push(el); out.push(el); } }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-pb-require-contact]'), add);
+  Array.prototype.forEach.call(document.querySelectorAll('[onclick]'), function(el) {
+    var h = el.getAttribute('onclick') || '';
+    // submitXxx(...) / pbSubmit... — but not addToCart, and not our own helpers
+    if (_pbIsSubmitHandler(h)) add(el);
+  });
+  return out;
+}
+// Put a terms checkbox above every one of them, once.
 function _pbInjectTermsCheckboxes() {
-  var btns = document.querySelectorAll('[data-pb-require-contact]');
-  Array.prototype.forEach.call(btns, function(btn) {
+  _pbSubmitButtons().forEach(function(btn) {
+    btn.setAttribute('data-pb-terms-gate', '1');   // read by the click guard below
     if (btn._pbTermsInjected) return;
     var scope = btn.closest('.pb-cart-extras') || btn.closest('form') || btn.parentNode;
     if (scope && scope.querySelector('.pb-terms-check')) { btn._pbTermsInjected = true; return; }
@@ -771,6 +804,69 @@ function _pbInjectTermsCheckboxes() {
     if (btn.parentNode) btn.parentNode.insertBefore(node, btn);
   });
 }
+// Configurator steps, cart panels and estimate boxes all render after load, so
+// re-run the injector whenever the DOM grows. Debounced; cheap.
+var _pbTermsObserver = null;
+function _pbWatchForSubmitButtons() {
+  if (_pbTermsObserver || typeof MutationObserver === 'undefined' || !document.body) return;
+  var pending = null;
+  _pbTermsObserver = new MutationObserver(function() {
+    if (pending) return;
+    pending = setTimeout(function() { pending = null;
+      try { _pbInjectTermsCheckboxes(); } catch (e) {}
+    }, 120);
+  });
+  _pbTermsObserver.observe(document.body, { childList: true, subtree: true });
+}
+// The gate itself. Capture phase, so it runs BEFORE the button's own onclick and
+// can stop it — that is what makes this work without editing every submit
+// function. stopImmediatePropagation is the important part: preventDefault alone
+// does not stop an inline onclick from firing.
+// Clear the warning as soon as the box is ticked.
+document.addEventListener('change', function (e) {
+  var b = e.target;
+  if (!b || !b.classList || !b.classList.contains('pb-terms-check') || !b.checked) return;
+  var row = b.closest('.pb-terms-row');
+  if (!row) return;
+  row.style.borderColor = ''; row.style.background = '';
+  var m = row.querySelector('.pb-terms-err'); if (m) m.remove();
+});
+function _pbTermsClickGuard(e) {
+  var t = e.target;
+  if (!t || !t.closest) return;
+  var btn = t.closest('[data-pb-terms-gate]');
+  if (!btn) return;
+  // Find THIS button's checkbox. Deliberately not pbTermsValid() here: that one
+  // only counts boxes it thinks are laid out on screen and returns true when it
+  // finds none, which is the right call for the cart but would mean "allowed"
+  // for a gate that is supposed to be unavoidable.
+  var scope = btn.closest('.pb-cart-extras') || btn.closest('form') || btn.parentNode;
+  var box = scope ? scope.querySelector('.pb-terms-check') : null;
+  if (!box) {
+    var all = document.querySelectorAll('.pb-terms-check');
+    if (all.length === 1) box = all[0];                 // unambiguous on a single-form page
+    else if (all.length > 1) {                          // pick the nearest preceding one
+      for (var i = all.length - 1; i >= 0; i--) {
+        if (all[i].compareDocumentPosition(btn) & Node.DOCUMENT_POSITION_FOLLOWING) { box = all[i]; break; }
+      }
+    }
+  }
+  if (!box || box.checked) return;                      // no gate here, or already agreed
+  e.preventDefault();
+  e.stopImmediatePropagation();
+  var row = box.closest('.pb-terms-row');
+  if (row) { row.style.borderColor = '#c0392b'; row.style.background = '#fff5f5'; }
+  // Inline message next to the box, so it reads where the user is looking.
+  if (row && !row.querySelector('.pb-terms-err')) {
+    var msg = document.createElement('div');
+    msg.className = 'pb-terms-err';
+    msg.style.cssText = 'flex-basis:100%;margin-top:6px;font-size:12px;font-weight:600;color:#c0392b';
+    msg.textContent = 'Please agree to the Terms of Agreement before submitting.';
+    row.appendChild(msg);
+  }
+  try { (row || box).scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (err) {}
+}
+document.addEventListener('click', _pbTermsClickGuard, true);
 
 // ─────────────────────────────────────────────────────────────────────────────
 // CANONICAL FINAL STEP — identical "Your details" contact + files step on every
@@ -2967,6 +3063,7 @@ document.addEventListener('DOMContentLoaded', function() {
   pbApplyPricingScope();
   // Add the required Terms of Agreement checkbox to any inline submit-for-review form.
   try { _pbInjectTermsCheckboxes(); } catch(e) {}
+  try { _pbWatchForSubmitButtons(); } catch(e) {}
   // Intercept clicks on [data-pb-require-contact] buttons (capture phase = before onclick handler).
   // Prevents submission when name / phone / email are missing, or the Terms box is unchecked.
   document.addEventListener('click', function(e) {
