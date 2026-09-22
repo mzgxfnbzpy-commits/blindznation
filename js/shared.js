@@ -612,12 +612,12 @@ var PB_OVERSIZE_MIN = 500;   // legacy — soft treatments now use the ladder be
 //       over 80"     $300
 //       over 120"    $500
 //
-//   Drapery — a drape folds, so a single width cut-off would be wrong. It stays
-//   at $100 inside either of two envelopes, and steps to $300 only past BOTH:
-//       up to 150" wide x  90" long   $100   (wide and short)
-//       up to  50" wide x 120" long   $100   (narrow and tall)
-//       anything larger               $300
-//   There is no $500 tier on drapery.
+//   Drapery — stepped on the finished panel rather than on width alone, because
+//   a drape folds and it is the whole panel that sets the carton:
+//       up to 150" wide x 120" long   $100
+//       up to 190" wide x 160" long   $300
+//       anything larger               $500
+//   Both dimensions have to fit a tier to earn it.
 //
 // Norman products are NOT covered by any of this — they carry their own table
 // ($25 first + $11 each, or $80 + $50 each over 90") and must never get both.
@@ -634,12 +634,19 @@ function pbSoftTreatmentFreight(widthIn) {
   if (w > PB_OVERSIZE_W)  return PB_ST_SHIP_MID;
   return PB_ST_SHIP_BASE;
 }
-// Drapery — inside either envelope it stays at the base rate.
+// Drapery — two envelopes, each needing BOTH dimensions to fit.
+var PB_DRAPE_SHIP_TIERS = [
+  { w: 150, h: 120, fee: PB_ST_SHIP_BASE },   // $100
+  { w: 190, h: 160, fee: PB_ST_SHIP_MID  }    // $300
+];                                            // past both -> PB_ST_SHIP_MAX ($500)
 function pbDraperyFreight(widthIn, lengthIn) {
   var w = parseFloat(widthIn)  || 0;
   var h = parseFloat(lengthIn) || 0;
-  var withinEnvelope = (w <= 150 && h <= 90) || (w <= 50 && h <= 120);
-  return withinEnvelope ? PB_ST_SHIP_BASE : PB_ST_SHIP_MID;
+  for (var i = 0; i < PB_DRAPE_SHIP_TIERS.length; i++) {
+    var t = PB_DRAPE_SHIP_TIERS[i];
+    if (w <= t.w && h <= t.h) return t.fee;
+  }
+  return PB_ST_SHIP_MAX;
 }
 
 // ── Roller shade oversize freight — Justin, Sept 2026 ───────────────────────
