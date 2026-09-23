@@ -1232,8 +1232,8 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
   // stays one piece, ships parcel.
   var cvShipBase = (typeof PB_ST_SHIP_BASE !== 'undefined') ? PB_ST_SHIP_BASE : 100;
   var cvFreight = willSplice ? cvShipBase
-    : ((typeof pbSoftTreatmentFreight === 'function') ? pbSoftTreatmentFreight(w)
-       : (w > 120 ? 500 : w > D_OVERSIZE_W ? 300 : cvShipBase));
+    : ((typeof pbBoardFreight === 'function') ? pbBoardFreight(w)
+       : (w > 250 ? 400 : w > 160 ? 300 : w > 120 ? 250 : w > 80 ? 200 : cvShipBase));
   var isOversizeCV = cvFreight > cvShipBase;
   var total = labor + trimCost + cvFreight;
   var rows = '';
@@ -1255,8 +1255,9 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
   if (w > D_OVERSIZE_W && willSplice) {
     rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">Spliced board &mdash; ships parcel <span style="color:var(--gold)">(no oversize freight)</span></div>';
   }
+  var cvBand = w > 250 ? 250 : w > 160 ? 160 : w > 120 ? 120 : 80;
   rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">' + (isOversizeCV
-      ? 'Oversize freight (over ' + (cvFreight >= 500 ? 120 : D_OVERSIZE_W) + '&Prime; wide, not spliced)'
+      ? 'Oversize freight (over ' + cvBand + '&Prime; wide, not spliced)'
       : 'Shipping (FedEx/UPS, Philadelphia)')
     + ' <span style="color:var(--gold)">$' + cvFreight + '</span></div>';
   rows += '<div style="font-size:11px;color:var(--text-dark);opacity:.75;padding:2px 0">' +

@@ -649,14 +649,30 @@ function pbRomanFreight(widthIn, heightIn) {
   }
   return 300;
 }
-// Cornices and valances — by ordered width only. A board is rigid, so its length
-// sets the carton and the face height is irrelevant to freight.
-function pbSoftTreatmentFreight(widthIn) {
+// Cornices and valances — by ordered WIDTH only. A board is rigid, so its length
+// sets the carton and the face height is irrelevant to freight. Finer steps than
+// the other two products because a board can run to 300" (Justin, 2026-09-22):
+//     up to  80"   $100
+//     over   80"   $200
+//     over  120"   $250
+//     over  160"   $300
+//     over  250"   $400
+// Splicing brings any of these back to the base rate.
+var PB_BOARD_SHIP_TIERS = [
+  { upTo:  80, fee: 100 },
+  { upTo: 120, fee: 200 },
+  { upTo: 160, fee: 250 },
+  { upTo: 250, fee: 300 }
+];                            // wider than the last -> 400
+function pbBoardFreight(widthIn) {
   var w = parseFloat(widthIn) || 0;
-  if (w > 120)            return PB_ST_SHIP_MAX;
-  if (w > PB_OVERSIZE_W)  return PB_ST_SHIP_MID;
-  return PB_ST_SHIP_BASE;
+  for (var i = 0; i < PB_BOARD_SHIP_TIERS.length; i++) {
+    if (w <= PB_BOARD_SHIP_TIERS[i].upTo) return PB_BOARD_SHIP_TIERS[i].fee;
+  }
+  return 400;
 }
+// Kept as the old name for anything still calling it.
+function pbSoftTreatmentFreight(widthIn) { return pbBoardFreight(widthIn); }
 // Drapery — its own base rate, higher than the Roman/board one.
 var PB_DRAPE_SHIP_BASE = 200;
 // Each tier needs BOTH dimensions to fit before it applies.
