@@ -496,6 +496,13 @@ var RN_RATES = {
   'Relaxed Roman':            40,
   'Roman Valance':            40
 };
+// ── Roman shades are CUSTOM QUOTE ONLY (Justin, 2026-09-22) ─────────────────
+// No figure is shown and nothing priced reaches the cart or the emailed spec.
+// Everything below still computes correctly — the rates, the $150/$250 minimum,
+// the whole-square-foot rounding and the 80x100 / 200x200 freight ladder are all
+// intact and tested. Flip this to false and Roman pricing comes straight back.
+var RN_QUOTE_ONLY = true;
+
 // Lining a Roman adds $5/sqft on top of the style rate (Justin, Sept 2026).
 var RN_LINING_PER_SQFT = 5;
 
@@ -709,15 +716,24 @@ function calcRoman() {
     }
   }
   if (trimTotal) rnLines.push({ label: 'Trim', value: getOpt('grp-roman-trim') || 'Selected' });
-  if (shipEst) {
-    rnLines.push({ label: (shipEst > 100 ? 'Oversize freight (over 80″ × 100″)'
-                        : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + shipEst });
-    rnLines.push({ label: '', value: (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') });
+  // Money lines only exist when Romans are priced. Quote-only keeps the spec
+  // lines, so the shade is still fully described in the cart and the email.
+  if (!RN_QUOTE_ONLY) {
+    if (shipEst) {
+      rnLines.push({ label: (shipEst > 100 ? 'Oversize freight (over 80″ × 100″)'
+                          : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + shipEst });
+      rnLines.push({ label: '', value: (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') });
+    }
+    if (perShade === rnGetMin()) {
+      rnLines.push({ label: 'Note', value: 'At ' + (isPleated ? 'pleated' : 'flat/relaxed') + ' minimum — $' + rnGetMin() + '/shade' });
+    }
   }
-  var rnAtMin = perShade === rnGetMin();
-  if (rnAtMin) rnLines.push({ label: 'Note', value: 'At ' + (isPleated ? 'pleated' : 'flat/relaxed') + ' minimum — $' + rnGetMin() + '/shade' });
-  pbRenderEstimate('roman-pricebox', rnLines, grandTotal, '', function(checkout) {
-    pbCollectItem(romanState.style || 'Roman Shade', rnLines, grandTotal, getOpt('grp-roman-op')==='Motorized');
+  var rnShown = RN_QUOTE_ONLY ? null : grandTotal;
+  var rnMsg   = RN_QUOTE_ONLY
+    ? 'Roman shades are custom quoted. Send your configuration and we will price it by hand — usually within one business day.'
+    : '';
+  pbRenderEstimate('roman-pricebox', rnLines, rnShown, rnMsg, function(checkout) {
+    pbCollectItem(romanState.style || 'Roman Shade', rnLines, rnShown, getOpt('grp-roman-op')==='Motorized');
     pbOpenCart();
     if (checkout) setTimeout(function(){
       var f=document.getElementById('pb-cart-foot'); if(f) f.style.display='block';
@@ -1393,14 +1409,15 @@ function addRomanToCart(){
   if(!style){ alert('Please select a roman shade style before adding to cart.'); return; }
   var panel=document.getElementById('roman-pricebox-checkout-panel');
   if(panel&&panel.style.display==='none'){ panel=null; }   // out-of-range size: no live estimate
-  if(panel&&panel._pbLines&&panel._pbEstimate){
+  // Quote-only Romans carry no estimate, so require only the spec lines.
+  if(panel&&panel._pbLines&&(panel._pbEstimate||RN_QUOTE_ONLY)){
     pbCollectItem(romanState.style||'Roman Shade',panel._pbLines,panel._pbEstimate,false);
     pbOpenCart();
   } else {
     calcRomanPrice();
     var p2=document.getElementById('roman-pricebox-checkout-panel');
     if(p2&&p2.style.display==='none'){ p2=null; }
-    if(p2&&p2._pbLines&&p2._pbEstimate){
+    if(p2&&p2._pbLines&&(p2._pbEstimate||RN_QUOTE_ONLY)){
       pbCollectItem(romanState.style||'Roman Shade',p2._pbLines,p2._pbEstimate,false);
       pbOpenCart();
     } else {
