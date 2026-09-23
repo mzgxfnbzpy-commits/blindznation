@@ -628,7 +628,29 @@ var PB_ST_SHIP_MAX  = 500;
 // Shown against every soft-treatment shipping figure.
 var PB_ST_SHIP_NOTE = 'Shipping is an estimate and may change.';
 
-// Romans, cornices and valances — by ordered width.
+// Roman shades — stepped on the whole shade, like drapery, because a Roman rolls
+// or folds into its carton and the drop matters as much as the width:
+//     up to  80" wide x 100" tall   $100
+//     up to 200" wide x 200" tall   $200
+//     anything larger               $300
+// Both dimensions must fit a step to earn it. (Justin, 2026-09-22.)
+// Note: a Roman is capped at 120" x 120" on the form, so the $300 step only
+// becomes reachable if that cap is raised.
+var PB_ROMAN_SHIP_TIERS = [
+  { w:  80, h: 100, fee: 100 },
+  { w: 200, h: 200, fee: 200 }
+];                                  // past both -> 300
+function pbRomanFreight(widthIn, heightIn) {
+  var w = parseFloat(widthIn)  || 0;
+  var h = parseFloat(heightIn) || 0;
+  for (var i = 0; i < PB_ROMAN_SHIP_TIERS.length; i++) {
+    var t = PB_ROMAN_SHIP_TIERS[i];
+    if (w <= t.w && h <= t.h) return t.fee;
+  }
+  return 300;
+}
+// Cornices and valances — by ordered width only. A board is rigid, so its length
+// sets the carton and the face height is irrelevant to freight.
 function pbSoftTreatmentFreight(widthIn) {
   var w = parseFloat(widthIn) || 0;
   if (w > 120)            return PB_ST_SHIP_MAX;

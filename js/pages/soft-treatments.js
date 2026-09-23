@@ -609,14 +609,16 @@ function calcRoman() {
   if (w > 120 || h > 120) { _customSizeMsg(box, 'Roman Shade', 120, 120); return; }
 
   // Oversized freight flag — anything over 80″ wide (see D_OVERSIZE_W).
-  var isRomanOversized = w > D_OVERSIZE_W;
+  var isRomanOversized = !(w <= 80 && h <= 100);   // past the base shipping step
 
   var rate     = rnGetRate();
   var isPleated = romanState.style === 'Permanently Pleated Roman';
   // Lining adds $5/sqft on top of the style rate (Justin, Sept 2026).
   var romanLined = (romanState.liningType && romanState.liningType !== 'unlined');
   if (romanLined) rate += RN_LINING_PER_SQFT;
-  var sqft     = (w / 12) * (h / 12);
+  // Square footage rounds UP to a whole square foot (Justin, 2026-09-22):
+  // we never price on a fraction of a foot. 24x22 = 3.67 -> 4 sq ft.
+  var sqft     = Math.ceil((w / 12) * (h / 12));
   var perShade = Math.max(rnGetMin(), sqft * rate);
   var laborTotal = perShade * qty;
   // Permanently pleated yardage uses 3× height (extra fabric for folds)
@@ -647,21 +649,20 @@ function calcRoman() {
   var fabricCost = 0; var linerCost = 0;
   var isRomanLined = (romanState.liningType && romanState.liningType !== 'unlined');
   if (romanState.fabric === 'We supply the fabric') {
-    fabricCost = fabricYds * D_FABRIC_PER_YD;
+    fabricCost = Math.ceil(fabricYds * D_FABRIC_PER_YD);      // whole dollars
     var linerVal = getOpt('grp-roman-liner') || 'White liner';
     if (isRomanLined && (linerVal === 'White liner' || linerVal === 'Cream liner')) {
-      linerCost = liningYdsRn * D_LINING_PER_YD;
+      linerCost = Math.ceil(liningYdsRn * D_LINING_PER_YD);   // whole dollars
     }
   }
 
   // Shipping estimate — FedEx/UPS from Philadelphia, $75 minimum. Over D_OVERSIZE_W″
   // wide it is oversize freight instead (Justin, Sept 2026) — the old rule here was
   // >96″ = $200 and the comment outlived it.
-  // Flat by ordered width: $100 up to 80", $300 over 80", $500 over 120".
-  // Flat per order, not per shade.
-  var shipEst = (typeof pbSoftTreatmentFreight === 'function')
-    ? pbSoftTreatmentFreight(w)
-    : (w > 120 ? 500 : w > D_OVERSIZE_W ? 300 : 100);
+  // $100 up to 80x100, $200 up to 200x200, $300 past that. Flat per order.
+  var shipEst = (typeof pbRomanFreight === 'function')
+    ? pbRomanFreight(w, h)
+    : ((w <= 80 && h <= 100) ? 100 : (w <= 200 && h <= 200) ? 200 : 300);
 
   var grandTotal = laborTotal + trimTotal + fabricCost + linerCost + shipEst;
   if (box) box.style.display = 'block';
@@ -712,8 +713,7 @@ function calcRoman() {
   }
   if (trimTotal) rnLines.push({ label: 'Trim', value: getOpt('grp-roman-trim') || 'Selected' });
   if (shipEst) {
-    rnLines.push({ label: (w > 120 ? 'Oversize freight (over 120″ wide)'
-                        : isRomanOversized ? 'Oversize freight (over ' + D_OVERSIZE_W + '″ wide)'
+    rnLines.push({ label: (shipEst > 100 ? 'Oversize freight (over 80″ × 100″)'
                         : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + shipEst });
     rnLines.push({ label: '', value: (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') });
   }
@@ -942,12 +942,12 @@ function calcDrapePrice() {
   var fabricCost = 0; var yardsTotal = 0;
   if (drapeState.fabric === 'We supply the fabric') {
     yardsTotal = Math.ceil(((h + 16) / 36) * numWidths * 10) / 10;
-    fabricCost = yardsTotal * D_FABRIC_PER_YD;
+    fabricCost = Math.ceil(yardsTotal * D_FABRIC_PER_YD);     // whole dollars
   }
   // Lining fabric — $10/yd when we supply White or Cream; same yardage as face fabric
   var liningYards = Math.ceil(((h + 16) / 36) * numWidths * 10) / 10;
   var weSupplyLiner = (lColor === 'White liner' || lColor === 'Cream liner');
-  var liningCost = (isLined && weSupplyLiner) ? liningYards * D_LINING_PER_YD : 0;
+  var liningCost = (isLined && weSupplyLiner) ? Math.ceil(liningYards * D_LINING_PER_YD) : 0;
 
   // Cornice
   var corniceTotal = 0;
@@ -1261,7 +1261,7 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
     + ' <span style="color:var(--gold)">$' + cvFreight + '</span></div>';
   rows += '<div style="font-size:11px;color:var(--text-dark);opacity:.75;padding:2px 0">' +
     ((typeof PB_ST_SHIP_NOTE !== 'undefined') ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') + '</div>';
-  rows += '<div style="font-size:11px;font-weight:700;color:var(--cream);padding-top:8px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)">Est. total: $' + total.toFixed(2) + '<span style="font-weight:400;color:var(--text-dark)"> + fabric</span></div>';
+  rows += '<div style="font-size:11px;font-weight:700;color:var(--cream);padding-top:8px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)">Est. total: $' + Math.ceil(total).toLocaleString() + '<span style="font-weight:400;color:var(--text-dark)"> + fabric</span></div>';
   document.getElementById(rowsId).innerHTML = rows;
   var noteEl = document.getElementById(noteId);
   if (noteEl) noteEl.textContent = 'Estimated pricing — confirmed at order. Fabric and trim pricing confirmed during consultation.';
