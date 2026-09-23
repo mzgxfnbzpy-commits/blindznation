@@ -586,31 +586,23 @@ var PB_QUOTE_ONLY_PAGES = {
   'norman-centerpiece-roman'        : ['#pr-total', '#pr-base', '#pr-freight-row'],
   'upholstery'                      : []
 };
-// ── Oversize freight — Justin, Sept 2026 ────────────────────────────────────
-// Anything wider than 80″ ships oversize, at a $500 minimum. This is OUR freight
-// and applies to what we fabricate in house: Basic Roller, Romans, cornices and
-// valances. It does NOT apply to:
-//   · Norman products — they carry Norman's own table ($25 first + $11 each, or
-//     $80 + $50 each over 90″) and must never get this on top.
-//   · Drapery — soft goods fold into a carton and ship parcel at any width
-//     (Justin, 2026-09-07, asked and answered explicitly).
-// A cornice or valance can also avoid it by being spliced: the board is jointed,
-// the fabric stays one piece.
-// Lives here rather than per page so the $500 is defined once — it was about to
-// be duplicated across shades.js and soft-treatments.js.
-var PB_OVERSIZE_W   = 80;
-var PB_OVERSIZE_MIN = 500;   // legacy — soft treatments now use the ladder below
+// ── Freight, in-house goods ─────────────────────────────────────────────────
+// SUPERSEDED 2026-09-22: there is no longer one flat "over 80″ = $500" rule.
+// Each product we fabricate steps differently, and each has its own function
+// below — pbDraperyFreight, pbRomanFreight, pbBoardFreight, pbRollerFreight.
+// PB_OVERSIZE_W (80″) survives because the roller table still starts there.
+// Norman products are never priced from any of these: they carry Norman's own
+// table ($25 first + $11 each, or $80 + $50 each over 90″) and must never get
+// both.
+var PB_OVERSIZE_W = 80;
 
 // ── Soft-treatment shipping — Justin, Sept 2026 ─────────────────────────────
 // One flat $100 covers every in-house soft treatment: drape, Roman, cornice or
 // valance, whatever the quantity. Past that the carton stops shipping parcel and
 // the freight steps up — but the two product families step up differently:
 //
-//   Romans, cornices, valances — stepped on ORDERED WIDTH, because the board or
-//   the headrail is rigid and its length sets the carton:
-//       up to 80"    $100
-//       over 80"     $300
-//       over 120"    $500
+//   Romans, cornices and valances each have their own ladder — see the three
+//   functions below. This block only defines the shared money values.
 //
 //   Drapery — its own ladder, and its own base: a made-up drape is bulkier than
 //   a Roman of the same width, so it starts at $200 rather than $100. Stepped on

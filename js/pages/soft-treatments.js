@@ -499,12 +499,11 @@ var RN_RATES = {
 // Lining a Roman adds $5/sqft on top of the style rate (Justin, Sept 2026).
 var RN_LINING_PER_SQFT = 5;
 
-// Oversize freight: defined once in shared.js (PB_OVERSIZE_W / PB_OVERSIZE_MIN)
-// so the $500 cannot drift between here and shades.js. Applies to Romans and to
-// cornices/valances — NOT to drapery, which folds into a carton and ships parcel
-// at any width (Justin, 2026-09-07). Falls back if shared.js has not loaded.
-var D_OVERSIZE_W    = (typeof PB_OVERSIZE_W   !== 'undefined') ? PB_OVERSIZE_W   : 80;
-var D_OVERSIZE_MIN  = (typeof PB_OVERSIZE_MIN !== 'undefined') ? PB_OVERSIZE_MIN : 500;
+// Freight lives in shared.js now, one function per product, because the three
+// no longer share a rule: pbDraperyFreight (whole panel), pbRomanFreight (whole
+// shade), pbBoardFreight (width only). 80″ is still the first step on a board,
+// which is all this constant is used for here.
+var D_OVERSIZE_W = (typeof PB_OVERSIZE_W !== 'undefined') ? PB_OVERSIZE_W : 80;
 
 function rnGetRate() {
   var style = romanState.style || 'Flat Roman';
@@ -608,7 +607,7 @@ function calcRoman() {
   // Custom quote for over 120″
   if (w > 120 || h > 120) { _customSizeMsg(box, 'Roman Shade', 120, 120); return; }
 
-  // Oversized freight flag — anything over 80″ wide (see D_OVERSIZE_W).
+  // Past the base shipping step — see pbRomanFreight (80″ × 100″ envelope).
   var isRomanOversized = !(w <= 80 && h <= 100);   // past the base shipping step
 
   var rate     = rnGetRate();
@@ -656,9 +655,7 @@ function calcRoman() {
     }
   }
 
-  // Shipping estimate — FedEx/UPS from Philadelphia, $75 minimum. Over D_OVERSIZE_W″
-  // wide it is oversize freight instead (Justin, Sept 2026) — the old rule here was
-  // >96″ = $200 and the comment outlived it.
+  // Shipping — FedEx/UPS from Philadelphia.
   // $100 up to 80x100, $200 up to 200x200, $300 past that. Flat per order.
   var shipEst = (typeof pbRomanFreight === 'function')
     ? pbRomanFreight(w, h)
