@@ -34,7 +34,6 @@
 /* step-block local overrides */
 .step-body{padding-top:16px}
 .step-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:4px}
-.step-title{font-size:15px;font-weight:600;color:#111;margin-bottom:10px}
 /* color swatch dot */
 .csw{display:inline-block;width:10px;height:10px;border-radius:50%;border:1px solid;vertical-align:middle;margin-right:5px;flex-shrink:0}
 
@@ -55,12 +54,7 @@
 .qty-num:focus{outline:none}
 
 /* quote panel */
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
 .qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:12px 0;font-style:italic;line-height:1.6}
-.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px;gap:8px;align-items:baseline}
-.qrow-label{color:var(--text-muted)}
-.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
 .qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6;font-style:italic}
 .submit-note{font-size:10px;color:var(--text-muted);text-align:center;margin-top:8px;line-height:1.5}
@@ -118,9 +112,8 @@
       <div class="step-num">1</div>
       <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
     </div>
-    <p class="step-subhead">Measure the opening you want to cover. Zipper track: measure the exact opening width. Without track: add 2–4″ per side for coverage.</p>
     <div class="dim-box">
-      <div class="dim-box-label">Opening size</div>
+      <div class="dim-box-label">Enter your opening size</div>
       <div class="form-row">
         <div class="form-group">
           <label>Width</label>
@@ -137,25 +130,27 @@
     <div style="margin-top:8px;font-size:11px;color:#8a6d1f;background:#fdf6e3;border:1px solid #ecdca8;border-radius:8px;padding:9px 12px;line-height:1.55">
       <strong>Please note:</strong> exterior roller shades are built to the <strong>exact size you enter</strong> — we do <strong>not</strong> take any deductions. Make sure your width and drop already include any clearances you need. The finished shade will be manufactured to these exact measurements.
     </div>
+    <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Zipper track: measure the exact opening width. Without track: add 2&ndash;4&Prime; per side for coverage.</div>
     <div id="ers-dim-msg" class="dim-msg"></div>
 
-    <!-- Mount type -->
-    <div class="step-subhead" style="font-weight:600;color:#555;margin-top:16px;margin-bottom:4px">Mount type</div>
-    <p class="step-subhead" style="margin-top:0">Both use the cassette headrail. Wall mount attaches to wall or fascia above the opening. Ceiling / soffit mount attaches overhead — ideal for pergolas and covered patios.</p>
-    <div class="opt-row">
+    <!-- Mount type (exterior: four mount pills) -->
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
+    <div class="opt-row" id="ers-grp-mount">
+      <button class="opt-btn sel" id="mount-inside" onclick="ersPickMount('inside','Inside mount')">Inside mount</button>
+      <button class="opt-btn" id="mount-outside" onclick="ersPickMount('outside','Outside mount')">Outside mount</button>
       <button class="opt-btn" id="mount-wall" onclick="ersPickMount('wall','Wall mount')">Wall mount</button>
-      <button class="opt-btn" id="mount-ceiling" onclick="ersPickMount('ceiling','Ceiling / Soffit mount')">Ceiling / Soffit mount</button>
+      <button class="opt-btn" id="mount-ceiling" onclick="ersPickMount('ceiling','Ceiling / soffit mount')">Ceiling / soffit mount</button>
     </div>
+    <div class="step-note" style="margin-bottom:12px">All mounts use the cassette headrail. Inside mount fits within the opening. Outside mount covers the opening from the face. Wall mount attaches to the wall or fascia above the opening. Ceiling / soffit mount attaches overhead &mdash; ideal for pergolas and covered patios.</div>
 
     <!-- Quantity -->
-    <div class="step-subhead" style="font-weight:600;color:#555;margin-top:16px;margin-bottom:6px">Quantity</div>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:4px">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:12px;color:#666">Qty:</span>
       <div class="qty-btns">
         <button class="qty-btn" onclick="ersAdjQty(-1)">&#8722;</button>
         <input class="qty-num" type="number" id="ers-qty" min="1" max="20" value="1" oninput="ersQtyChange()">
         <button class="qty-btn" onclick="ersAdjQty(1)">&#43;</button>
       </div>
-      <span style="font-size:13px;color:#666">shade(s)</span>
     </div>
   </div>
 </div>
@@ -204,7 +199,7 @@
     <p class="step-subhead">Cables guide the hem bar straight — good for exposed areas without a full zipper seal. Zipper track zips the fabric edge into an aluminum channel on each side for the tightest seal and maximum wind resistance.</p>
     <div class="opt-row">
       <button class="opt-btn sel" id="track-cables" onclick="ersPickTrack('cables','Cables')">Cables</button>
-      <button class="opt-btn" id="track-zipper" onclick="ersPickTrack('zipper','Zipper Track')">Zipper Track</button>
+      <button class="opt-btn" id="track-zipper" onclick="ersPickTrack('zipper','Zipper track')">Zipper track</button>
     </div>
   </div>
 </div>
@@ -236,29 +231,15 @@
   </div>
 </div>
 
-<!-- STEP 6: DELIVERY -->
-<div class="step-block" id="step-6">
-  <div class="step-body">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div class="step-num">6</div>
-      <div class="step-title" style="margin-bottom:0">Delivery</div>
-    </div>
-    <div class="delivery-opt-grid" style="grid-template-columns:1fr">
-      <div class="delivery-opt-card sel" id="del-ship" onclick="ersPickDelivery('ship')">
-        <div class="delivery-opt-title">Shipped to me</div>
-        <div class="delivery-opt-body">UPS or FedEx. Lead time provided at quote.</div>
-        <div class="delivery-opt-body" style="margin-top:4px;font-size:10px;color:#bbb">Note: U.S. import tariffs may apply on some products. Any applicable duties are disclosed in your quote before payment.</div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- STEP 6: DELIVERY (shared pbDeliveryStepHTML) -->
+<div id="ers-delivery"></div>
 
 <!-- STEP 7: CONTACT & SUBMIT -->
 <div class="step-block" id="step-7">
   <div class="step-body">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div class="step-num">7</div>
-      <div class="step-title" style="margin-bottom:0">Your contact info</div>
+      <div class="step-title" style="margin-bottom:0">Your details</div>
     </div>
     <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
     <div id="pb-final-step"></div>
@@ -273,10 +254,10 @@
 </div><!-- /left column -->
 
 <!-- ── QUOTE PANEL ── -->
-<div class="quote-panel" id="quote-panel">
-  <div class="qp-title">Your order</div>
-  <div class="qp-pending" id="qp-pending">Select your options above to start building your quote.</div>
+<div class="summary-card" id="quote-panel">
+  <div class="summary-head">Your configuration</div>
   <div id="qp-rows"></div>
+  <div class="qp-pending" id="qp-pending">Select your options above to start building your quote.</div>
   <div class="qdiv" id="qp-div" style="display:none"></div>
   <div class="qnote" id="qp-note" style="display:none">Fill in your details above and submit — Justin will send you a custom quote.</div>
   <div id="submit-wrap">
@@ -292,11 +273,16 @@
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addExteriorRollerToCart()', submitFn: 'ersSubmit()' });
+// Canonical Delivery step — choice lives in window.pbDelivery ('ship' | 'install').
+document.getElementById('ers-delivery').outerHTML = pbDeliveryStepHTML({ stepNum: 6, onPick: 'ersUpdatePanel()' });
 
 renderNav('Shades & blinds');
 renderFooter(false);
 
-var ERS = { openness:'', color:'', track:'cables', mount:'', operation:'', side:'', width:0, height:0, qty:1, delivery:'ship' };
+var ERS = { openness:'', color:'', track:'cables', mount:'inside', operation:'', side:'', width:0, height:0, qty:1 };
+// Exterior mount labels — one map shared by the panel, cart line and quote email.
+var ERS_MOUNT = { inside:'Inside mount', outside:'Outside mount', wall:'Wall mount', ceiling:'Ceiling / soffit mount' };
+function ersDelLabel() { return typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me'; }
 
 function ersOpen(id) {
   var el = document.getElementById(id);
@@ -315,7 +301,7 @@ function ersDone(id) {
 
 function ersPickMount(val, label) {
   ERS.mount = val;
-  document.querySelectorAll('#step-1 .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
+  document.querySelectorAll('#ers-grp-mount .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   var card = document.getElementById('mount-' + val);
   if (card) card.classList.add('sel');
   // Mount, dimensions & quantity all live in Step 1 — advancing is owned by ersDimChange()
@@ -434,13 +420,6 @@ function ersQtyChange() {
   ersUpdatePanel();
 }
 
-function ersPickDelivery(val) {
-  ERS.delivery = val;
-  document.getElementById('del-ship').classList.toggle('sel', val === 'ship');
-  var el6 = document.getElementById('step-6');
-  if (el6) { el6.classList.add('done'); el6.classList.remove('active'); }
-  ersUpdatePanel();
-}
 
 function ersUpdatePanel() {
   var pending = document.getElementById('qp-pending');
@@ -449,28 +428,24 @@ function ersUpdatePanel() {
   var note = document.getElementById('qp-note');
 
   var r = '';
-  function qr(label, val) { r += '<div class="qrow"><span class="qrow-label">'+label+'</span><span class="qrow-val">'+val+'</span></div>'; }
+  function qr(label, val) { r += '<div class="summary-row"><span class="sr-key">'+label+'</span><span class="sr-val">'+val+'</span></div>'; }
 
-  if (ERS.openness) {
-    pending.style.display = 'none';
-    qr('Openness', ERS.openness + '% solar screen');
-    if (ERS.color) qr('Color', ERS.color);
-    if (ERS.track) qr('Side track', ERS.track === 'zipper' ? 'Zipper Track' : 'Cables');
-    if (ERS.mount) qr('Mount', ERS.mount === 'wall' ? 'Wall mount' : 'Ceiling / Soffit mount');
-    if (ERS.operation) qr('Operation', ERS.operation === 'manual' ? 'Manual — hand crank' : 'Motorized');
-    if (ERS.side) qr(ERS.operation === 'motorized' ? 'Motor side' : 'Crank side', ERS.side === 'left' ? 'Left' : 'Right');
-    if (ERS.width && ERS.height) qr('Size', ERS.width + '″ × ' + ERS.height + '″');
-    qr('Qty', ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : ''));
-    if (ERS.delivery) qr('Delivery', ERS.delivery === 'ship' ? 'Ship to me' : 'Pickup');
-    rows.innerHTML = r;
-    div.style.display = 'block';
-    note.style.display = 'block';
-  } else {
-    pending.style.display = 'block';
-    rows.innerHTML = '';
-    div.style.display = 'none';
-    note.style.display = 'none';
-  }
+  // Standard summary rows — always Product · Size · Mount · Qty, then the key choices.
+  qr('Product', 'Exterior Roller Shades');
+  qr('Size', (ERS.width && ERS.height) ? ERS.width + '″ × ' + ERS.height + '″' : '—');
+  qr('Mount', ERS_MOUNT[ERS.mount] || '—');
+  qr('Qty', ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : ''));
+  if (ERS.openness) qr('Openness', ERS.openness + '% solar screen');
+  if (ERS.color) qr('Color', ERS.color);
+  if (ERS.track) qr('Side track', ERS.track === 'zipper' ? 'Zipper track' : 'Cables');
+  if (ERS.operation) qr('Operation', ERS.operation === 'manual' ? 'Manual — hand crank' : 'Motorized');
+  if (ERS.side) qr(ERS.operation === 'motorized' ? 'Motor side' : 'Crank side', ERS.side === 'left' ? 'Left' : 'Right');
+  qr('Delivery', ersDelLabel());
+  qr('Price', 'Custom quote — we confirm pricing');
+  rows.innerHTML = r;
+  pending.style.display = ERS.openness ? 'none' : 'block';
+  div.style.display = ERS.openness ? 'block' : 'none';
+  note.style.display = ERS.openness ? 'block' : 'none';
 }
 
 function addExteriorRollerToCart(){
@@ -478,8 +453,8 @@ function addExteriorRollerToCart(){
   if(!ERS.openness){ alert('Please select an openness factor before adding to cart.'); return; }
   if(!ERS.width||!ERS.height){ alert('Please enter dimensions before adding to cart.'); return; }
 
-  var trackLabel=ERS.track==='zipper'?'Zipper Track':ERS.track==='cables'?'Cables':'—';
-  var mountLabel=ERS.mount==='wall'?'Wall mount':ERS.mount==='ceiling'?'Ceiling / Soffit mount':'—';
+  var trackLabel=ERS.track==='zipper'?'Zipper track':ERS.track==='cables'?'Cables':'—';
+  var mountLabel=ERS_MOUNT[ERS.mount]||'—';
   var opLabel=ERS.operation==='manual'?'Manual — hand crank':ERS.operation==='motorized'?'Motorized':'—';
 
   var lines=[
@@ -509,8 +484,8 @@ function ersSubmit() {
   var phone = (document.getElementById('cf-phone').value || '').trim();
   if (!email && !phone) { showErr('Please enter a phone number or email address.'); return; }
 
-  var trackLabel = ERS.track === 'zipper' ? 'Zipper Track' : ERS.track === 'cables' ? 'Cables' : '—';
-  var mountLabel = ERS.mount === 'wall' ? 'Wall mount' : ERS.mount === 'ceiling' ? 'Ceiling / Soffit mount' : '—';
+  var trackLabel = ERS.track === 'zipper' ? 'Zipper track' : ERS.track === 'cables' ? 'Cables' : '—';
+  var mountLabel = ERS_MOUNT[ERS.mount] || '—';
   var opLabel = ERS.operation === 'manual' ? 'Manual — hand crank' : ERS.operation === 'motorized' ? 'Motorized' : '—';
   var dimLabel = (ERS.width && ERS.height) ? (ERS.width + '″W × ' + ERS.height + '″H') : '—';
   var sqft = (ERS.width && ERS.height) ? (ERS.width * ERS.height / 144).toFixed(1) + ' sq ft' : '—';
@@ -526,7 +501,7 @@ function ersSubmit() {
     (ERS.operation === 'motorized' ? 'Motor side:     ' : 'Crank side:     ') + (ersSideLabel() || '—') + '\n' +
     'Dimensions:     ' + dimLabel + ' (' + sqft + ')\n' +
     'Quantity:       ' + ERS.qty + ' shade' + (ERS.qty > 1 ? 's' : '') + '\n' +
-    'Delivery:       Ship to me (UPS/FedEx)\n' +
+    'Delivery:       ' + ersDelLabel() + '\n' +
     '── CUSTOMER ─────────────────────────────\n' +
     'Name:           ' + name + '\n' +
     'Email:          ' + (email || '—') + '\n' +
@@ -543,6 +518,9 @@ function ersSubmit() {
   document.getElementById('success-box').style.display = 'block';
   if (errEl) errEl.style.display = 'none';
 }
+
+// Init — show the standard summary rows (Inside mount + Ship to me pre-selected).
+ersUpdatePanel();
 </script>
 </body>
 </html>
