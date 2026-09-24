@@ -1,8 +1,19 @@
-let wpDelivery = 'ship';
-function wpSetDelivery(val) {
-  wpDelivery = val;
-  document.getElementById('wp-del-ship').classList.toggle('sel', true);
+// Summary card — mirrors every choice; this product is quote-only (no price shown).
+function wpVal(id){ var e=document.getElementById(id); return e ? (e.value||'') : ''; }
+function wpSummary() {
+  var set=function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
+  var w=wpVal('wp-width'), h=wpVal('wp-height'), qty=parseInt(wpVal('wp-qty'),10)||1;
+  var pick=function(id){ var s=document.getElementById(id); return (s && s.value) ? s.options[s.selectedIndex].textContent : '—'; };
+  set('wp-s-size', (w&&h) ? (w+'″ × '+h+'″') : '—');
+  set('wp-s-mount', getOpt('wp-mount-grp'));
+  set('wp-s-qty', String(qty));
+  set('wp-s-pattern', wpVal('wp-pattern') || '—');
+  set('wp-s-type', pick('wp-type'));
+  set('wp-s-style', pick('wp-style'));
+  set('wp-s-control', pick('wp-control'));
+  set('wp-s-del', (typeof pbDeliveryLabel==='function') ? pbDeliveryLabel() : 'Ship to me');
 }
+function wpDeliveryLabel(){ return (typeof pbDeliveryLabel==='function') ? pbDeliveryLabel() : 'Ship to me'; }
 
 function submitWPQuote() {
   const name = document.getElementById('cf-name').value.trim();
@@ -11,7 +22,7 @@ function submitWPQuote() {
   if (errEl) errEl.style.display = 'none';
   if (!name) { if (errEl) { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; } else { alert('Please enter your name.'); } return; }
   if (!phone) { if (errEl) { errEl.textContent = 'Please enter your phone number.'; errEl.style.display = 'block'; } else { alert('Please enter your phone number.'); } return; }
-  const mount = getOpt('grp-mount');
+  const mount = getOpt('wp-mount-grp');
   if (!mount || mount === '—') { if (errEl) { errEl.textContent = 'Please select a mount type (Inside or Outside).'; errEl.style.display = 'block'; } else { alert('Please select a mount type (Inside or Outside).'); } return; }
   const subject = encodeURIComponent('Walden Premier Woven Shade Quote — ' + name);
   const body = encodeURIComponent([
@@ -32,7 +43,7 @@ function submitWPQuote() {
     'Quantity: ' + (document.getElementById('wp-qty').value || '1'),
     'Control: ' + (document.getElementById('wp-control').value || 'Not selected'),
     'Mount: ' + mount,
-    'Delivery: ' + ('Ship via UPS/FedEx'),
+    'Delivery: ' + wpDeliveryLabel(),
     '',
     'NOTES',
     document.getElementById('cf-notes').value || '(none)',
@@ -47,7 +58,7 @@ function addWaldenPremierToCart() {
   const h = document.getElementById('wp-height').value || '—';
   const qty = parseInt(document.getElementById('wp-qty').value) || 1;
   const control = document.getElementById('wp-control').value || '—';
-  const mount = getOpt('grp-mount');
+  const mount = getOpt('wp-mount-grp');
   const lines = [
     { label: 'Product', value: 'Walden Premier Natural Woven Shade' },
     { label: 'Type', value: type },
@@ -55,6 +66,7 @@ function addWaldenPremierToCart() {
     { label: 'Size', value: w + '″ × ' + h + '″' },
     { label: 'Mount', value: mount },
     { label: 'Control', value: control },
+    { label: 'Style', value: document.getElementById('wp-style').value || '—' },
     { label: 'Quantity', value: String(qty) }
   ];
   pbAddToCart({ product: 'Walden Premier Natural Woven Shade', lines: lines, specs: lines.map(function(l){ return l.label+': '+l.value; }).join(' | '), qty: qty });
@@ -73,7 +85,7 @@ function wpBuildPicker(){
     hideTabs:true, showPriceGroups:true, priceGroupTabs:true,
     types:[{key:"w",label:"Pattern"}],
     collections:collections,
-    onSelect:function(sel){ var el=document.getElementById("wp-pattern"); if(el){ el.value=sel.name+" ("+sel.code+")"; } }
+    onSelect:function(sel){ var el=document.getElementById("wp-pattern"); if(el){ el.value=sel.name+" ("+sel.code+")"; } wpSummary(); }
   });
 }
 wpBuildPicker();

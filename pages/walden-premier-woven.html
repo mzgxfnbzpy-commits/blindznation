@@ -28,35 +28,16 @@
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
-.stub-content { max-width: 860px; margin: 0 auto; padding: 48px 28px; }
-.stub-desc-box { background: var(--espresso-mid); border: 1px solid rgba(45,224,193,0.1); border-radius: 12px; padding: 28px; margin-bottom: 32px; }
+.stub-content { max-width: 1100px; margin: 0 auto; padding: 40px 28px 24px; }
+.stub-desc-box { background: var(--espresso-mid); border: 1px solid rgba(45,224,193,0.1); border-radius: 12px; padding: 28px; margin-bottom: 0; }
 .stub-desc-box h2 { font-size: 18px; font-weight: 600; color: var(--cream); margin-bottom: 12px; }
 .stub-desc-box p { font-size: 14px; color: var(--text-dark); line-height: 1.65; margin-bottom: 10px; }
 .stub-desc-box ul { margin: 10px 0 0 20px; }
 .stub-desc-box li { font-size: 13px; color: var(--text-dark); margin-bottom: 5px; }
-.coming-soon-box { background: rgba(45,224,193,0.05); border: 2px dashed rgba(45,224,193,0.2); border-radius: 12px; padding: 28px; text-align: center; margin-bottom: 36px; }
-.coming-soon-box h3 { font-size: 16px; font-weight: 600; color: var(--cream); margin-bottom: 8px; }
-.coming-soon-box p { font-size: 13px; color: var(--text-dark); }
-.quote-section { background: var(--espresso-mid); border-radius: 12px; padding: 28px; }
-.quote-section h2 { font-size: 18px; font-weight: 600; color: var(--cream); margin-bottom: 6px; }
-.quote-section .sub { font-size: 13px; color: var(--text-dark); margin-bottom: 22px; }
-.field-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
-.field-group { flex: 1; min-width: 150px; }
-.field-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 5px; font-weight: 500; }
-.field-group input, .field-group select, .field-group textarea { width: 100%; background: var(--espresso); border: 1px solid rgba(45,224,193,0.15); border-radius: 7px; padding: 9px 12px; color: var(--cream); font-size: 13px; font-family: var(--font); }
-.field-group input:focus, .field-group select:focus, .field-group textarea:focus { outline: none; border-color: var(--gold); }
-.delivery-section { margin: 20px 0; }
-.delivery-title { font-size: 13px; font-weight: 600; color: var(--cream); margin-bottom: 12px; }
-.delivery-opts { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
-.del-opt { flex: 1; min-width: 200px; background: var(--espresso); border: 2px solid rgba(45,224,193,0.1); border-radius: 9px; padding: 14px; cursor: pointer; }
-.del-opt.sel { border-color: var(--gold); }
-.del-opt h4 { font-size: 13px; font-weight: 600; color: var(--cream); margin-bottom: 4px; }
-.del-opt p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
-.tariff-note { font-size: 11px; color: var(--text-faint); background: var(--gold-mid); border: 1px solid rgba(45,224,193,.15); border-radius: 6px; padding: 8px 12px; margin-top: 10px; line-height: 1.5; }
-.submit-btn { width: 100%; background: var(--gold); color: var(--espresso); font-size: 15px; font-weight: 700; padding: 15px 24px; border-radius: 9px; border: none; cursor: pointer; margin-top: 16px; transition: opacity 0.15s; }
-.submit-btn:hover { opacity: 0.88; }
-.req-note { font-size: 11px; color: var(--text-faint); margin-top: 8px; text-align: center; }
-</style>
+.cfg-outer { max-width: 1100px; margin: 0 auto; padding: 0 28px 56px; }
+.step-block { padding: 14px 16px; }
+@media (max-width: 600px) { .cfg-outer { padding: 0 16px 40px; } .stub-content { padding: 32px 16px; } }
+</style></style>
 </head>
 <body data-page="Shades & blinds">
 <nav class="site-nav" id="site-nav"></nav>
@@ -89,105 +70,98 @@
     </ul>
   </div>
 
-  <div class="coming-soon-box">
-    <h3>Full Configurator Coming Soon</h3>
-    <p>Our step-by-step Walden Premier pricing configurator is in development. Use the quote form below to get pricing &mdash; we respond within 24 hours.</p>
-  </div>
+</div>
 
-  <div class="quote-section">
-    <h2>Request a Quote</h2>
-    <div class="sub">Describe the look you want or share a pattern code, and we'll provide a confirmed price within 24 hours.</div>
+<div class="cfg-outer">
+  <div class="config-wrap">
+    <div class="config-grid">
+      <div>
 
-    <!-- Canonical Step 1: Window measurements & mount -->
-    <div class="delivery-title" style="margin-bottom:12px">Window measurements &amp; mount</div>
-    <div class="dim-box">
-      <div class="dim-box-label">Enter your window size</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Width</label>
-          <input type="number" id="wp-width" min="10" max="96" step="0.125" placeholder="36">
-          <div class="dim-unit">inches &mdash; 10&Prime; min &middot; 96&Prime; max</div>
-        </div>
-        <div class="form-group">
-          <label>Height</label>
-          <input type="number" id="wp-height" min="12" max="96" step="0.125" placeholder="72">
-          <div class="dim-unit">inches &mdash; 12&Prime; min &middot; 96&Prime; max</div>
-        </div>
-      </div>
-    </div>
-    <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
+          <!-- Step 1: Window measurements & mount (shared pbSizeMountStepHTML) -->
+          <div id="wp-size-slot"></div>
 
-    <!-- Mount type (required — Inside/Outside) -->
-    <div style="font-size:12px;font-weight:600;color:var(--cream);margin-bottom:6px">Mount type</div>
-    <div class="opt-row" id="grp-mount" style="margin-bottom:14px">
-      <button type="button" class="opt-btn sel" onclick="selOpt(this,'grp-mount')">Inside mount</button>
-      <button type="button" class="opt-btn" onclick="selOpt(this,'grp-mount')">Outside mount</button>
-    </div>
+          <!-- Step 2: Pattern & color -->
+          <div class="step-block">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">2</div>
+              <div class="step-title" style="margin-bottom:0">Pattern &amp; color</div>
+            </div>
+            <div id="wp-fabric-picker"></div>
+            <input type="hidden" id="wp-pattern">
+            <div class="step-note">Pick any pattern, or leave it open and describe the look you want in the notes &mdash; we will suggest matches.</div>
+          </div>
 
-    <!-- Quantity -->
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px">
-      <span style="font-size:12px;color:var(--text-muted)">Qty:</span>
-      <div class="qty-btns">
-        <button type="button" class="qty-btn" onclick="pbAdjQty('wp-qty',-1,1,50)">&#8722;</button>
-        <input class="qty-num" type="number" id="wp-qty" value="1" min="1" max="50">
-        <button type="button" class="qty-btn" onclick="pbAdjQty('wp-qty',1,1,50)">&#43;</button>
-      </div>
-    </div>
+          <!-- Step 3: Product type -->
+          <div class="step-block">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">3</div>
+              <div class="step-title" style="margin-bottom:0">Product type</div>
+            </div>
+            <select id="wp-type" data-pb-pills onchange="wpSummary()">
+              <option value="" disabled selected>Select product</option>
+              <option value="Roman Shade">Roman shade</option>
+              <option value="Sliding Panel">Sliding panel</option>
+              <option value="Natural Drapery">Natural drapery</option>
+            </select>
+          </div>
 
-    <div class="field-row">
-      <div class="field-group">
-        <label>Choose your pattern &amp; color</label>
-        <div id="wp-fabric-picker"></div>
-        <input type="hidden" id="wp-pattern">
-      </div>
-    </div>
-    <div class="field-row">
-      <div class="field-group">
-        <label>Product Type</label>
-        <select id="wp-type">
-          <option value="">-- Select product --</option>
-          <option>Roman Shade</option>
-          <option>Sliding Panel</option>
-          <option>Natural Drapery</option>
-        </select>
-      </div>
-    </div>
-    <div class="field-row">
-      <div class="field-group">
-        <label>Shade Style</label>
-        <select id="wp-style">
-          <option value="">-- Select style --</option>
-          <option>Standard (6″ valance on front)</option>
-          <option>Waterfall (flat panel, back valance)</option>
-        </select>
-      </div>
-      <div class="field-group">
-        <label>Control Type</label>
-        <select id="wp-control">
-          <option value="">-- Select control --</option>
-          <option>Cordless</option>
-          <option>Top-Down Bottom-Up (TDBU — cordless only, Standard style)</option>
-          <option>Clutch / Chain</option>
-          <option>Pro Wand Motorized (Standard style only)</option>
-          <option>Remote Motor</option>
-          <option>Not sure — please advise</option>
-        </select>
-      </div>
-    </div>
-    <div class="delivery-section">
-      <div class="delivery-title">Delivery</div>
-      <div class="delivery-opts">
-        <div class="del-opt sel" id="wp-del-ship" onclick="wpSetDelivery('ship')">
-          <h4>&#x1F4E6; Ship to me</h4>
-          <p>UPS or FedEx. Shipping calculated at order.</p>
-        </div>
-      </div>
-      <div class="tariff-note"><strong>Tariff notice:</strong> Products may be subject to U.S. government import tariffs. Surcharges disclosed at order confirmation.</div>
-    </div>
+          <!-- Step 4: Shade style -->
+          <div class="step-block">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">4</div>
+              <div class="step-title" style="margin-bottom:0">Shade style</div>
+            </div>
+            <select id="wp-style" data-pb-pills onchange="wpSummary()">
+              <option value="" disabled selected>Select style</option>
+              <option value="Standard (6″ valance on front)">Standard</option>
+              <option value="Waterfall (flat panel, back valance)">Waterfall</option>
+            </select>
+            <div class="step-note">Standard &mdash; 6&Prime; valance on the front. Waterfall &mdash; flat panel with a back valance.</div>
+          </div>
 
-    <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-    <div id="pb-final-step"></div>
-    <div class="req-note">* Required fields. Opens your email client with your selections pre-filled.</div>
+          <!-- Step 5: Control -->
+          <div class="step-block">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+              <div class="step-num">5</div>
+              <div class="step-title" style="margin-bottom:0">Control</div>
+            </div>
+            <select id="wp-control" data-pb-pills onchange="wpSummary()">
+              <option value="" disabled selected>Select control</option>
+                <option value="Cordless">Cordless</option>
+                <option value="Top-Down Bottom-Up (TDBU — cordless only, Standard style)">Top-down bottom-up</option>
+                <option value="Clutch / Chain">Clutch / chain</option>
+                <option value="Pro Wand Motorized (Standard style only)">Pro Wand motorized</option>
+                <option value="Remote Motor">Remote motor</option>
+                <option value="Not sure — please advise">Not sure — please advise</option>
+            </select>
+            <div class="step-note">Top-down bottom-up &mdash; cordless only, Standard style. Pro Wand motorized &mdash; Standard style only.</div>
+          </div>
+
+          <!-- Step 6: Delivery (shared pbDeliveryStepHTML) -->
+          <div id="wp-delivery-slot"></div>
+
+          <!-- Step 7: Your details (shared pbContactStepHTML) -->
+          <div id="pb-final-step"></div>
+
+      </div>
+
+      <!-- Summary card -->
+      <div class="summary-card" id="summary-card">
+        <div class="summary-head">Your configuration</div>
+        <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Walden Premier Natural Woven</span></div>
+        <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="wp-s-size">&mdash;</span></div>
+        <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="wp-s-mount">Inside mount</span></div>
+        <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="wp-s-qty">1</span></div>
+        <div class="summary-row"><span class="sr-key">Pattern</span><span class="sr-val" id="wp-s-pattern">&mdash;</span></div>
+        <div class="summary-row"><span class="sr-key">Type</span><span class="sr-val" id="wp-s-type">&mdash;</span></div>
+        <div class="summary-row"><span class="sr-key">Style</span><span class="sr-val" id="wp-s-style">&mdash;</span></div>
+        <div class="summary-row"><span class="sr-key">Control</span><span class="sr-val" id="wp-s-control">&mdash;</span></div>
+        <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="wp-s-del">Ship to me</span></div>
+        <div class="summary-row"><span class="sr-key">Estimate</span><span class="sr-val">Custom quote &mdash; we confirm pricing</span></div>
+        <div class="summary-note">Quote-only product &mdash; we reply with a confirmed price, usually within 24 hours. Products may be subject to U.S. import tariffs, disclosed at order confirmation.</div>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -196,9 +170,16 @@
 <script src="../js/fabric-picker.js"></script>
 <script src="../js/pages/walden-premier-woven.js"></script>
 <script>
-// Canonical final "Your details" contact + files step — identical on every product.
-document.getElementById('pb-final-step').innerHTML =
-  pbContactStepHTML({ bare: true, cartFn: 'addWaldenPremierToCart()', submitFn: 'submitWPQuote()' });
+// Canonical frame: Step 1, Delivery and Your details all come from shared.js.
+document.getElementById('wp-size-slot').outerHTML = pbSizeMountStepHTML({
+  stepNum: 1, widthId: 'wp-width', heightId: 'wp-height', qtyId: 'wp-qty', mountGroupId: 'wp-mount-grp',
+  widthMin: 10, widthMax: 96, heightMin: 12, heightMax: 96, widthPlaceholder: '36', heightPlaceholder: '72',
+  qtyMax: 50, calc: 'wpSummary()'
+});
+document.getElementById('wp-delivery-slot').outerHTML = pbDeliveryStepHTML({ stepNum: 6, onPick: 'wpSummary()' });
+document.getElementById('pb-final-step').outerHTML =
+  pbContactStepHTML({ stepNum: 7, cartFn: 'addWaldenPremierToCart()', submitFn: 'submitWPQuote()' });
+wpSummary();
 </script>
 </body>
 </html>
