@@ -1019,6 +1019,40 @@ function pbDeliveryStepHTML(opts) {
     '</div>' + inner + '</div>';
 }
 
+// ── SELECT → PILLS — the standard says customer choices are pills, not dropdowns. ──
+// Mark any <select> with data-pb-pills and it renders as an .opt-row of .opt-btn
+// pills. The <select> stays in the DOM (hidden) and remains the source of truth:
+// a pill click sets its value and fires 'change', so page code that reads
+// select.value or listens for onchange keeps working untouched. Runs on load and
+// can be re-run (pbPillifySelects(root)) after a page renders markup dynamically.
+function pbPillifySelects(root) {
+  var sels = (root || document).querySelectorAll('select[data-pb-pills]');
+  Array.prototype.forEach.call(sels, function(sel) {
+    if (sel._pbPills) return;
+    var row = document.createElement('div');
+    row.className = 'opt-row pb-pill-select';
+    row.style.flexWrap = 'wrap';
+    Array.prototype.forEach.call(sel.options, function(opt, i) {
+      if (opt.disabled && !opt.value) return; // "Choose…" placeholders
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'opt-btn' + (sel.selectedIndex === i && !(opt.disabled) ? ' sel' : '');
+      b.textContent = opt.textContent;
+      b.addEventListener('click', function() {
+        sel.selectedIndex = i;
+        Array.prototype.forEach.call(row.children, function(c) { c.classList.toggle('sel', c === b); });
+        sel.dispatchEvent(new Event('input', { bubbles: true }));
+        sel.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+      row.appendChild(b);
+    });
+    sel.style.display = 'none';
+    sel.parentNode.insertBefore(row, sel.nextSibling);
+    sel._pbPills = row;
+  });
+}
+document.addEventListener('DOMContentLoaded', function() { try { pbPillifySelects(); } catch (e) {} });
+
 // Adjust a numeric quantity <input id=id> by delta, clamped to [min,max]. Shared qty stepper.
 function pbAdjQty(id, delta, min, max) {
   var el = document.getElementById(id);

@@ -216,16 +216,16 @@
     <div class="form-heading">Request an installation quote</div>
     <div class="form-sub">Fill out the form below and we&rsquo;ll reach out to discuss your project. The more detail you can provide, the faster we can scope the job.</div>
 
+    <div class="form-group"><label>Name *</label><input type="text" id="inst-name" data-pb-contact="name" autocomplete="name" placeholder="Jane Smith"></div>
+    <div class="form-group"><label>Installation address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="inst-address" data-pb-contact="address" autocomplete="street-address" placeholder="123 Main St, Philadelphia, PA 19103"></div>
     <div class="form-row">
-      <div class="form-group"><label>Your name *</label><input type="text" id="inst-name" data-pb-contact="name" placeholder="Jane Smith"></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" id="inst-phone" data-pb-contact="phone" placeholder="(215) 555-0100"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="inst-phone" data-pb-contact="phone" autocomplete="tel" placeholder="(215) 555-0100"></div>
+      <div class="form-group"><label>Email *</label><input type="email" id="inst-email" data-pb-contact="email" autocomplete="email" placeholder="jane@example.com"></div>
     </div>
-    <div class="form-group"><label>Email *</label><input type="email" id="inst-email" data-pb-contact="email" placeholder="jane@example.com"></div>
-    <div class="form-group"><label>Installation address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="inst-address" data-pb-contact="address" placeholder="123 Main St, Philadelphia, PA 19103"></div>
 
-    <div class="form-row">
+    <div>
       <div class="form-group"><label>Product type</label>
-        <select id="inst-product">
+        <select id="inst-product" data-pb-pills>
           <option>Not sure yet</option>
           <option>Roller shades</option>
           <option>Cellular shades</option>
@@ -242,7 +242,7 @@
         </select>
       </div>
       <div class="form-group"><label>Number of windows</label>
-        <select id="inst-windows">
+        <select id="inst-windows" data-pb-pills>
           <option>Not sure yet</option>
           <option>1–3 windows</option>
           <option>4–6 windows</option>
@@ -254,7 +254,7 @@
     </div>
 
     <div class="form-group"><label>Product source</label>
-      <select id="inst-source">
+      <select id="inst-source" data-pb-pills>
         <option>I already have the product(s)</option>
         <option>I&rsquo;m purchasing from Blindznation</option>
         <option>I purchased elsewhere and need install help</option>
@@ -263,7 +263,7 @@
     </div>
 
     <div class="form-group"><label>Does the job involve motorization or smart home wiring?</label>
-      <select id="inst-motor">
+      <select id="inst-motor" data-pb-pills>
         <option>No motorization</option>
         <option>Yes — motor programming &amp; setup</option>
         <option>Yes — wiring / hardwired motor</option>

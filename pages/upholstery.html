@@ -259,16 +259,16 @@
     <div class="form-heading">Request a custom upholstery quote</div>
     <div class="form-sub">Wall panels, pillows, furniture, acoustic — tell us what you need and we&rsquo;ll reach out to discuss scope, fabric, and pricing. Every job is custom quoted.</div>
 
+    <div class="form-group"><label>Name *</label><input type="text" id="u-name" data-pb-contact="name" autocomplete="name" placeholder="Jane Smith"></div>
+    <div class="form-group"><label>Project address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="u-address" data-pb-contact="address" autocomplete="street-address" placeholder="123 Main St, Philadelphia, PA"></div>
     <div class="form-row">
-      <div class="form-group"><label>Your name *</label><input type="text" id="u-name" placeholder="Jane Smith"></div>
-      <div class="form-group"><label>Phone *</label><input type="tel" id="u-phone" placeholder="(215) 555-0100"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" id="u-phone" data-pb-contact="phone" autocomplete="tel" placeholder="(215) 555-0100"></div>
+      <div class="form-group"><label>Email <span style="font-weight:400;color:#888">(optional)</span></label><input type="email" id="u-email" data-pb-contact="email" autocomplete="email" placeholder="jane@example.com"></div>
     </div>
-    <div class="form-group"><label>Email</label><input type="email" id="u-email" placeholder="jane@example.com"></div>
-    <div class="form-group"><label>Project address</label><input type="text" id="u-address" placeholder="123 Main St, Philadelphia, PA"></div>
 
-    <div class="form-row">
+    <div>
       <div class="form-group"><label>Application type</label>
-        <select id="u-type">
+        <select id="u-type" data-pb-pills>
           <option>Decorative wall upholstery</option>
           <option>Acoustic wall upholstery — home theater / media room</option>
           <option>Acoustic wall upholstery — recording / studio space</option>
@@ -282,7 +282,7 @@
         </select>
       </div>
       <div class="form-group"><label>Approximate wall area</label>
-        <select id="u-area">
+        <select id="u-area" data-pb-pills>
           <option>Not sure yet</option>
           <option>Under 100 sq ft</option>
           <option>100–300 sq ft</option>
@@ -294,7 +294,7 @@
     </div>
 
     <div class="form-group"><label>Fabric</label>
-      <select id="u-fabric">
+      <select id="u-fabric" data-pb-pills>
         <option>I&rsquo;ll supply my own fabric</option>
         <option>I need fabric recommendations — please advise</option>
         <option>Open to both options</option>
