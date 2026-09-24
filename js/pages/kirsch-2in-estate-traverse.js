@@ -63,7 +63,7 @@ var S = {
   swivelSocket:false,
   remote15:false, gateway:false, wallswitch:false, wallswitchSurf:false,
   cable15:false, cable4:false, cable10:false, cable20:false,
-  qty:1, del:'ship'
+  qty:1
 };
 
 // ═══════════════════════════════════════════════════════════
@@ -93,6 +93,7 @@ function toggleStep(id){document.getElementById(id).classList.toggle('open');}
 function openStep(id){var e=document.getElementById(id);e.classList.add('active','open');}
 function markDone(id,txt){var e=document.getElementById(id);e.classList.add('done');var v=document.getElementById(id.replace('step','s')+'val');if(v&&txt)v.textContent=txt;}
 function sp(id,val){var e=document.getElementById(id);if(e){e.textContent=val||'—';}}
+function setv(id,txt){var e=document.getElementById(id);if(e)e.textContent=txt;}
 
 // ═══════════════════════════════════════════════════════════
 // STEP 1: COLLECTION & FINISH
@@ -106,7 +107,7 @@ function pickColl(el,coll){
   var collNames={dm:'Designer Metals',wt:'Wood Trends',wi:'Wrought Iron'};
   sp('sp-coll',collNames[coll]);
   sp('sp-fin','— select finish below');
-  document.getElementById('s1val').textContent=collNames[coll];
+  setv('s1val',collNames[coll]);
 }
 function pickFinish(name){
   S.finish=name; sp('sp-fin',name);
@@ -124,7 +125,7 @@ function clearFinChips(id){document.querySelectorAll('#'+id+' .fin-chip').forEac
 // ═══════════════════════════════════════════════════════════
 function pickDraw(el,key,label){
   S.draw=key; S.isMotor=(key==='motor');
-  document.querySelectorAll('#step2 .opt-btn').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#grp-draw-type .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   document.getElementById('motor-detail').style.display=S.isMotor?'block':'none';
   markDone('step2',label); sp('sp-draw',label);
@@ -146,7 +147,7 @@ function pickHeading(el,key,label){
   document.querySelectorAll('#step3 .opt-btn').forEach(function(c){if(!c.closest('#ripplefold-opts'))c.classList.remove('sel');});
   el.classList.add('sel');
   document.getElementById('ripplefold-opts').style.display=key==='ripplefold'?'block':'none';
-  if(key==='ripplefold'){document.getElementById('s3val').textContent='Ripplefold™ — select fullness';}
+  if(key==='ripplefold'){setv('s3val','Ripplefold™ — select fullness');}
   else{markDone('step3',label);sp('sp-heading',label);updateSpec();if(S.len>0)buildStackback(S.len);openStep('step4');}
   document.getElementById('sp-fullness-row').style.display=key==='ripplefold'?'flex':'none';
 }
@@ -291,11 +292,11 @@ function buildStackback(len){
 // ═══════════════════════════════════════════════════════════
 function pickFinial(el,key,label){
   S.finial=key;
-  document.querySelectorAll('#step6 > .step-body > .opt-row .opt-btn').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#grp-finial .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   document.getElementById('stratta-finishes').style.display=key==='stratta'?'block':'none';
   if(key==='none'){markDone('step6','No finial / endcap only');sp('sp-finial','Endcap only');updateSpec();openStep('step7');}
-  else{document.getElementById('s6val').textContent='Stratta — select finish';}
+  else{setv('s6val','Stratta — select finish');}
 }
 function pickStrattaFin(el,name){
   document.querySelectorAll('#stratta-fin-grid .fin-chip').forEach(function(c){c.classList.remove('sel');});
@@ -335,32 +336,12 @@ function calcWeight(){
 }
 
 // ═══════════════════════════════════════════════════════════
-// STEP 8: DELIVERY
-// ═══════════════════════════════════════════════════════════
-function pickDel(el,key){
-  S.del=key;
-  document.querySelectorAll('#step8 .opt-btn').forEach(function(c){c.classList.remove('sel');});
-  el.classList.add('sel');
-  markDone('step8',(parseInt(document.getElementById('qty').value)||1)+' rod(s) · '+(key==='ship'?'Ship':'Pickup'));
-  updateSpec();
-}
-
-// ═══════════════════════════════════════════════════════════
 // SPEC UPDATE
 // ═══════════════════════════════════════════════════════════
 function updateSpec(){
   var qty=parseInt(document.getElementById('qty').value)||1;
   sp('sp-qty',qty+' rod'+(qty>1?'s':''));
-  document.getElementById('s8val').textContent=qty+' rod'+(qty>1?'s':'')+' · '+'Ship';
 }
-// Shared canonical qty stepper — reuses id "qty" + updateSpec handler
-function adjQty(d){
-  var el=document.getElementById('qty'); if(!el) return;
-  var v=(parseInt(el.value,10)||1)+d;
-  if(v<1)v=1; if(v>50)v=50;
-  el.value=v; updateSpec();
-}
-
 // ═══════════════════════════════════════════════════════════
 // SUBMIT
 // ═══════════════════════════════════════════════════════════
@@ -403,7 +384,8 @@ function submitQuote(){
     '',
     'QUANTITY & DELIVERY:',
     'Qty: '+qty+' rod'+(qty>1?'s':''),
-    'Delivery: '+'Ship (UPS/FedEx)',
+    // Shared Delivery step (window.pbDelivery); the default keeps the original wording.
+    'Delivery: '+(window.pbDelivery==='install'?pbDeliveryLabel():'Ship (UPS/FedEx)'),
     '',
     'NOTES:',
     document.getElementById('cf-notes').value.trim()||'None',
