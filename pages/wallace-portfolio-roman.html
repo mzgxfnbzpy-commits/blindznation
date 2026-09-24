@@ -40,7 +40,6 @@
 .opt-btn.blocked{opacity:.35;cursor:not-allowed;text-decoration:line-through}
 .opt-btn.warn{border-color:#FFC107;background:#FFFBEA}
 
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
 .dim-field{display:flex;flex-direction:column;gap:4px}
 .dim-label{font-size:12px;font-weight:500;color:#444}
 .dim-input{width:90px;padding:9px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:16px;text-align:center;font-family:inherit}
@@ -67,11 +66,6 @@
 .coll-section{margin-top:14px}
 .coll-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:6px}
 
-.liner-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:14px 16px;cursor:pointer;transition:all .15s;margin-bottom:8px}
-.liner-card:hover{border-color:var(--gold)}
-.liner-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.liner-title{font-size:13px;font-weight:600;color:#111;margin-bottom:3px}
-.liner-sub{font-size:11px;color:#666;line-height:1.5}
 
 .motor-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:12px 14px;cursor:pointer;transition:all .15s;margin-bottom:8px}
 .motor-card:hover:not(.blocked){border-color:var(--gold)}
@@ -86,14 +80,6 @@
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:500px){.form-row{grid-template-columns:1fr}}
 
-.spec-panel{background:var(--espresso);border-radius:14px;padding:20px;position:sticky;top:80px}
-.spec-title{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
-.spec-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:12px;padding:5px 0;border-bottom:.5px solid #2A201A;gap:8px}
-.spec-row:last-of-type{border-bottom:none}
-.spec-key{color:#7A6A58;flex-shrink:0}
-.spec-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word}
-.spec-val.empty{color:#3A2E24;font-style:italic}
-.spec-divider{border:.5px solid #2A201A;margin:10px 0}
 
 .submit-btn{width:100%;padding:14px;background:var(--espresso);color:var(--cream);border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;margin-top:4px}
 .submit-btn:hover{background:#2c221a}
@@ -104,10 +90,7 @@
 
 /* ── DELIVERY — using global.css delivery-opt-card ── */
 
-.acc-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:.5px solid #f0f0ee}
-.acc-item:last-child{border-bottom:none}
-.acc-label{font-size:13px;font-weight:500;color:#111}
-.acc-sub{font-size:11px;color:#666;line-height:1.4;margin-top:2px}
+.summary-row .sr-val.empty{color:var(--text-faint,#888);font-style:italic}
 </style>
 </head>
 <body data-page="Soft treatments">
@@ -149,7 +132,7 @@
         <div class="dim-box-label">Enter your window size</div>
         <div class="form-row">
           <div class="form-group"><label>Width</label><input type="number" id="inp-w" min="12" max="96" step="0.125" placeholder="48" oninput="validateDims()"><div class="dim-unit">inches &middot; to nearest 1/8&Prime;</div></div>
-          <div class="form-group"><label>Length</label><input type="number" id="inp-l" min="12" max="96" step="0.125" placeholder="60" oninput="validateDims()"><div class="dim-unit">inches &middot; to nearest 1/8&Prime;</div></div>
+          <div class="form-group"><label>Height</label><input type="number" id="inp-l" min="12" max="96" step="0.125" placeholder="60" oninput="validateDims()"><div class="dim-unit">inches &middot; to nearest 1/8&Prime;</div></div>
         </div>
       </div>
       <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; For inside mount, give the exact window opening &mdash; we apply the standard 1/4&Prime; deduction. Approximate is fine; we confirm at the home visit.</div>
@@ -168,11 +151,13 @@
       <div class="step-note" style="margin-bottom:12px">Inside mount sits inside the window frame (manufacturer deducts 1/4&Prime; automatically). Outside mount covers the opening &mdash; returns recommended.</div>
 
       <!-- Quantity -->
-      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Quantity</div>
-      <div class="qty-btns">
-        <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
-        <input class="qty-num" type="number" id="qty-inp" value="1" min="1" max="50" oninput="setQtyVal(parseInt(this.value)||1)">
-        <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:12px;color:#666">Qty:</span>
+        <div class="qty-btns">
+          <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
+          <input class="qty-num" type="number" id="qty-inp" value="1" min="1" max="50" oninput="setQtyVal(parseInt(this.value)||1)">
+          <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+        </div>
       </div>
       <div class="step-note">Number of shades of this size. Each shade is quoted at the same size &mdash; note any size differences in the notes field.</div>
     </div>
@@ -182,7 +167,7 @@
   <div class="step-block" id="step5">
     <div class="step-head" onclick="toggleStep('step5')">
       <div class="step-num">2</div>
-      <div class="step-head-title">Shade Construction Style</div>
+      <div class="step-head-title">Shade construction style</div>
       <div class="step-head-val" id="val5">&mdash;</div>
     </div>
     <div class="step-body">
@@ -201,7 +186,7 @@
   <div class="step-block" id="step6">
     <div class="step-head" onclick="toggleStep('step6')">
       <div class="step-num">3</div>
-      <div class="step-head-title">Panel Style</div>
+      <div class="step-head-title">Panel style</div>
       <div class="step-head-val" id="val6">&mdash;</div>
     </div>
     <div class="step-body">
@@ -220,7 +205,7 @@
   <div class="step-block" id="step7">
     <div class="step-head" onclick="toggleStep('step7')">
       <div class="step-num">4</div>
-      <div class="step-head-title">Fabric Pattern &amp; Color</div>
+      <div class="step-head-title">Fabric pattern &amp; color</div>
       <div class="step-head-val" id="val7">&mdash;</div>
     </div>
     <div class="step-body">
@@ -245,19 +230,13 @@
       <div class="step-head-title">Liner</div>
       <div class="step-head-val" id="val8">LF03 Light Filtering Ivory</div>
     </div>
-    <div class="step-body" style="padding-top:8px">
-      <div class="liner-card sel" id="liner-lf03" onclick="setLiner('LF03','Light Filtering Ivory','87% Polyester, 13% Cotton · 185 gsm',this)">
-        <div class="liner-title">LF03 &mdash; Light Filtering Ivory</div>
-        <div class="liner-sub">87% Polyester, 13% Cotton · 185 gsm · Standard liner, included with all shades</div>
+    <div class="step-body">
+      <div class="opt-row" id="grp-liner">
+        <button class="opt-btn sel" id="liner-lf03" onclick="setLiner('LF03','Light Filtering Ivory','87% Polyester, 13% Cotton · 185 gsm',this)">LF03 Light Filtering Ivory</button>
+        <button class="opt-btn" id="liner-lf02" onclick="setLiner('LF02','Light Filtering Snow White','87% Polyester, 13% Cotton · 185 gsm',this)">LF02 Light Filtering Snow White</button>
+        <button class="opt-btn" id="liner-bo01" onclick="setLiner('BO01','Black-Out White','100% Polyester · 288 gsm',this)">BO01 Blackout White</button>
       </div>
-      <div class="liner-card" id="liner-lf02" onclick="setLiner('LF02','Light Filtering Snow White','87% Polyester, 13% Cotton · 185 gsm',this)">
-        <div class="liner-title">LF02 &mdash; Light Filtering Snow White</div>
-        <div class="liner-sub">87% Polyester, 13% Cotton · 185 gsm · Standard liner option</div>
-      </div>
-      <div class="liner-card" id="liner-bo01" onclick="setLiner('BO01','Black-Out White','100% Polyester · 288 gsm',this)">
-        <div class="liner-title">BO01 &mdash; Black-Out White <span style="font-size:10px;font-weight:400;color:#888">upgrade option</span></div>
-        <div class="liner-sub">100% Polyester · 288 gsm · Includes black-out tape on back at all ring/rib sewn points to block pinholes.</div>
-      </div>
+      <div class="step-note">LF03 Light Filtering Ivory &mdash; standard liner, included with all shades (87% polyester, 13% cotton &middot; 185 gsm). LF02 Light Filtering Snow White &mdash; standard liner option (87% polyester, 13% cotton &middot; 185 gsm). BO01 Blackout White &mdash; upgrade option (100% polyester &middot; 288 gsm); includes black-out tape on the back at all ring/rib sewn points to block pinholes.</div>
       <div id="liner-bo-note" class="warn-box" style="display:none;margin-top:8px">&#9888; Black-out liner is an upgrade surcharge option. Includes black-out tape on the back of the shade to block light at all stitching points.</div>
     </div>
   </div>
@@ -266,7 +245,7 @@
   <div class="step-block" id="step9">
     <div class="step-head" onclick="toggleStep('step9')">
       <div class="step-num">6</div>
-      <div class="step-head-title">Panel Alignment</div>
+      <div class="step-head-title">Panel alignment</div>
       <div class="step-head-val" id="val9">Top Panel Aligned</div>
     </div>
     <div class="step-body">
@@ -284,10 +263,12 @@
   <div class="step-block" id="step10">
     <div class="step-head" onclick="toggleStep('step10')">
       <div class="step-num">7</div>
-      <div class="step-head-title">Control Type</div>
+      <div class="step-head-title">Control type</div>
       <div class="step-head-val" id="val10">&mdash;</div>
     </div>
     <div class="step-body">
+      <div id="control-rv-note" class="info-box" style="display:none;margin-top:0">Roman Valance is decorative and stays raised &mdash; no lift system or control is needed. Skip this step.</div>
+      <div id="control-body-wrap">
       <div class="opt-row" id="grp-control">
         <button class="opt-btn" onclick="setControl('cordless',this)">Cordless</button>
         <button class="opt-btn" id="btn-tdbu" onclick="setControl('tdbu',this)">Cordless TDBU</button>
@@ -354,15 +335,19 @@
         </div>
 
         <div class="step-sub-head">Power accessories</div>
-        <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px" id="motor-acc-wrap">
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-battery-pack"> External LI battery pack</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-plugin"> Plug-in power adapter</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-charger"> 16½&prime; charger</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-ext-6"> 6&Prime; extension cable</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-ext-48"> 48&Prime; extension cable</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-ext-96"> 96&Prime; extension cable</label>
+        <div class="opt-row" id="motor-acc-wrap">
+          <button class="opt-btn" id="acc-battery-pack" onclick="this.classList.toggle('sel')">External LI battery pack</button>
+          <button class="opt-btn" id="acc-plugin" onclick="this.classList.toggle('sel')">Plug-in power adapter</button>
+          <button class="opt-btn" id="acc-charger" onclick="this.classList.toggle('sel')">16&frac12;&prime; charger</button>
+          <button class="opt-btn" id="acc-ext-6" onclick="this.classList.toggle('sel')">6&Prime; extension cable</button>
+          <button class="opt-btn" id="acc-ext-48" onclick="this.classList.toggle('sel')">48&Prime; extension cable</button>
+          <button class="opt-btn" id="acc-ext-96" onclick="this.classList.toggle('sel')">96&Prime; extension cable</button>
         </div>
+        <div class="step-note">Select any.</div>
+        <div class="info-box" style="margin-top:12px">Motor installation requires confirmation at your on-site measurement visit. Hardwired AC motor requires a licensed electrician. All motor accessories and cable lengths confirmed at measurement.</div>
+        <div id="ac-electrician-warn" class="warn-box" style="display:none;margin-top:10px">&#9888; AC hardwired motor (100&ndash;240V) requires a licensed electrician. Please note this in your quote and inform your customer.</div>
       </div>
+      </div><!-- /control-body-wrap -->
     </div>
   </div>
 
@@ -370,7 +355,7 @@
   <div class="step-block" id="step11">
     <div class="step-head" onclick="toggleStep('step11')">
       <div class="step-num">8</div>
-      <div class="step-head-title">Valance Returns</div>
+      <div class="step-head-title">Valance returns</div>
       <div class="step-head-val" id="val11">No returns</div>
     </div>
     <div class="step-body">
@@ -396,7 +381,7 @@
   <div class="step-block" id="step12">
     <div class="step-head" onclick="toggleStep('step12')">
       <div class="step-num">9</div>
-      <div class="step-head-title">2-on-1 Headrail</div>
+      <div class="step-head-title">2-on-1 headrail</div>
       <div class="step-head-val" id="val12">No</div>
     </div>
     <div class="step-body">
@@ -419,33 +404,20 @@
     </div>
   </div>
 
-  <!-- STEP 10: Motor accessories (shown only for motor control) -->
-  <div class="step-block" id="step13" style="display:none">
-    <div class="step-head" onclick="toggleStep('step13')">
-      <div class="step-num">10</div>
-      <div class="step-head-title">Motor &mdash; Installation &amp; Notes</div>
-      <div class="step-head-val" id="val13">&mdash;</div>
-    </div>
-    <div class="step-body">
-      <div class="info-box" style="margin-top:0">Motor installation requires confirmation at your on-site measurement visit. Hardwired AC motor requires a licensed electrician. All motor accessories and cable lengths confirmed at measurement.</div>
-      <div id="ac-electrician-warn" class="warn-box" style="display:none;margin-top:10px">&#9888; AC hardwired motor (100&ndash;240V) requires a licensed electrician. Please note this in your quote and inform your customer.</div>
-    </div>
-  </div>
-
-  <!-- STEP 11: Cut fabric request -->
+  <!-- STEP 10: Cut fabric (optional) -->
   <div class="step-block" id="step14">
     <div class="step-head" onclick="toggleStep('step14')">
-      <div class="step-num">11</div>
-      <div class="step-head-title">Cut Fabric Request</div>
+      <div class="step-num">10</div>
+      <div class="step-head-title">Cut fabric <span style="font-weight:400;color:#888">(optional)</span></div>
       <div class="step-head-val" id="val14">None</div>
     </div>
     <div class="step-body">
       <div class="opt-row" id="grp-cut-fabric">
         <button class="opt-btn sel" onclick="selBtn(this,'grp-cut-fabric');setCutFabric(false)">No cut fabric needed</button>
-        <button class="opt-btn" onclick="selBtn(this,'grp-cut-fabric');setCutFabric(true)">Request cut fabric yardage</button>
+        <button class="opt-btn" onclick="selBtn(this,'grp-cut-fabric');setCutFabric(true)">Add cut fabric yardage</button>
       </div>
       <div id="cut-fabric-wrap" style="display:none;margin-top:14px">
-        <div class="info-box">Cut fabric pricing is per yard and depends on price group. Freight for cut fabric ordered with shade: $5/yd. Separate cut fabric freight: $25 first yard + $5 each additional. Liner yardage also available. Specify quantity in notes.</div>
+        <div class="info-box">Cut fabric pricing is per yard and depends on price group. Freight for cut fabric ordered with shade: $5/yd. Separate cut fabric freight: $25 first yard + $5 each additional. Liner yardage also available. Your yardage is sent with this order &mdash; no separate request needed.</div>
         <div class="form-group" style="margin-top:10px">
           <label>Cut fabric yardage and liner yardage needed</label>
           <input type="text" id="cut-fabric-notes" placeholder="e.g. 3 yards face fabric, 2 yards liner" style="width:100%">
@@ -454,35 +426,21 @@
     </div>
   </div>
 
-  <!-- STEP 12: Delivery -->
+  <!-- STEP 11: Delivery (shared pbDeliveryStepHTML) -->
   <div class="step-block" id="step15">
-    <div class="step-head" onclick="toggleStep('step15')">
-      <div class="step-num">12</div>
-      <div class="step-head-title">Delivery / Installation</div>
+    <div class="step-head">
+      <div class="step-num">11</div>
+      <div class="step-head-title">Delivery</div>
       <div class="step-head-val" id="val15">Ship to me</div>
     </div>
-    <div class="step-body">
-      <div style="margin-top:12px">
-        <div class="delivery-opt-grid">
-          <div class="delivery-opt-card sel" onclick="setDelivery('ship',this)">
-            <div class="delivery-opt-title">Ship to me</div>
-            <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs, duties, and import fees additional.</em></div>
-          </div>
-          <div class="delivery-opt-card" style="grid-column:1/-1" onclick="setDelivery('install',this)">
-            <div class="delivery-opt-title">Professional installation (Philadelphia / South Jersey)</div>
-            <div class="delivery-opt-body">We supply and install. Measurement visit included.</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="step-body"><div id="wpr-delivery"></div></div>
   </div>
 
-  <!-- STEP 13: Contact and quote -->
+  <!-- STEP 12: Your details (shared pbContactStepHTML) -->
   <div class="step-block" id="step16">
-    <div class="step-head" onclick="toggleStep('step16')">
-      <div class="step-num">13</div>
-      <div class="step-head-title">Your Quote Request</div>
-      <div class="step-head-val" id="val16">&mdash;</div>
+    <div class="step-head">
+      <div class="step-num">12</div>
+      <div class="step-head-title">Your details</div>
     </div>
     <div class="step-body" id="step16-body">
       <button onclick="reqMoreInfo('Wallace Portfolio Fabric Roman Shades')" class="req-info-link" style="display:block;margin-bottom:12px">Request more information about Wallace Portfolio Romans &rarr;</button>
@@ -497,25 +455,25 @@
 
 </div><!-- /left col -->
 
-<!-- RIGHT: SPEC PANEL -->
+<!-- RIGHT: SUMMARY CARD -->
 <div>
-  <div class="spec-panel">
-    <div class="spec-title">Your Configuration</div>
-    <div class="spec-row"><span class="spec-key">Product</span><span class="spec-val">Wallace Portfolio Fabric Roman</span></div>
-    <div class="spec-row"><span class="spec-key">Quantity</span><span class="spec-val empty" id="sp-qty">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val" id="sp-mount">Inside mount</span></div>
-    <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val empty" id="sp-size">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Shade style</span><span class="spec-val empty" id="sp-shade-style">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Panel style</span><span class="spec-val empty" id="sp-panel-style">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Fabric</span><span class="spec-val empty" id="sp-fabric">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Liner</span><span class="spec-val" id="sp-liner">LF03 Light Filtering Ivory</span></div>
-    <div class="spec-row"><span class="spec-key">Panel alignment</span><span class="spec-val" id="sp-alignment">Top Panel Aligned</span></div>
-    <div class="spec-row"><span class="spec-key">Control</span><span class="spec-val empty" id="sp-control">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Returns</span><span class="spec-val" id="sp-returns">No returns</span></div>
-    <div class="spec-row"><span class="spec-key">2-on-1</span><span class="spec-val" id="sp-2on1">No</span></div>
-    <div class="spec-row"><span class="spec-key">Delivery</span><span class="spec-val" id="sp-delivery">Ship to me</span></div>
-    <div class="spec-divider"></div>
-    <div style="font-size:11px;color:#7A6A58;line-height:1.7">
+  <div class="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Wallace Portfolio Fabric Roman</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val empty" id="sp-size">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sp-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val empty" id="sp-qty">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Shade style</span><span class="sr-val empty" id="sp-shade-style">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Panel style</span><span class="sr-val empty" id="sp-panel-style">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val empty" id="sp-fabric">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Liner</span><span class="sr-val" id="sp-liner">LF03 Light Filtering Ivory</span></div>
+    <div class="summary-row"><span class="sr-key">Panel alignment</span><span class="sr-val" id="sp-alignment">Top Panel Aligned</span></div>
+    <div class="summary-row"><span class="sr-key">Control</span><span class="sr-val empty" id="sp-control">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Returns</span><span class="sr-val" id="sp-returns">No returns</span></div>
+    <div class="summary-row"><span class="sr-key">2-on-1</span><span class="sr-val" id="sp-2on1">No</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="sp-delivery">Ship to me</span></div>
+    <div class="summary-row"><span class="sr-key">Estimate</span><span class="sr-val">Custom quote &mdash; we confirm pricing</span></div>
+    <div class="summary-note">
       Pricing: custom quote only. Base price includes light filtering liner. Black-out liner, motorization, and special controls are upgrade options confirmed in your quote.<br><br>
       <a href="tel:6097421720" style="color:var(--gold);font-weight:600">(609) 742-1720</a> &mdash; 24/7
     </div>
@@ -540,6 +498,7 @@
 <script src="../js/pages/wallace-portfolio-roman.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('wpr-delivery').innerHTML = pbDeliveryStepHTML({ bare: true, onPick: 'setDelivery()' });
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addWallaceRomanToCart()', submitFn: 'submitQuote()' });
 </script>

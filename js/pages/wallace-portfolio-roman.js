@@ -287,11 +287,11 @@ function validateDims() {
       if(lim){
         if(S.width<lim.minW) errs.push('Width '+S.width+'" < minimum '+lim.minW+'" for '+getControlLabel()+'.');
         if(S.width>lim.maxW) errs.push('Width '+S.width+'" > maximum '+lim.maxW+'".');
-        if(S.length<lim.minL) errs.push('Length '+S.length+'" < minimum '+lim.minL+'" for '+getControlLabel()+'.');
-        if(S.length>lim.maxL) errs.push('Length '+S.length+'" > maximum '+lim.maxL+'".');
+        if(S.length<lim.minL) errs.push('Height '+S.length+'" < minimum '+lim.minL+'" for '+getControlLabel()+'.');
+        if(S.length>lim.maxL) errs.push('Height '+S.length+'" > maximum '+lim.maxL+'".');
       }
     }
-    if(S.panelStyle==='hobbled'&&S.length>72) errs.push('Hobbled style max length is 72".');
+    if(S.panelStyle==='hobbled'&&S.length>72) errs.push('Hobbled style max height is 72".');
   } else {
     // Roman Valance: width must be 16"-96"; length is total height (no max — decorative)
     if(S.width<16) errs.push('Width '+S.width+'" is below minimum 16" for a Roman Valance.');
@@ -303,9 +303,9 @@ function validateDims() {
   if(errs.length) html+=errs.map(function(e){return'<div class="warn-box warn-box-red" style="margin-top:6px">&#9888; '+e+'</div>';}).join('');
   if(warns.length) html+=warns.map(function(e){return'<div class="warn-box" style="margin-top:6px">&#9888; '+e+'</div>';}).join('');
   if(!errs.length&&S.width&&S.length){
-    html='<div class="ok-box">&#10003; '+S.width+'" W &times; '+S.length+'" L — dimensions accepted.</div>';
+    html='<div class="ok-box">&#10003; '+S.width+'" W &times; '+S.length+'" H — dimensions accepted.</div>';
     document.getElementById('step1').classList.add('done');
-    document.getElementById('val1').textContent=S.width+'" W &times; '+S.length+'" L';
+    document.getElementById('val1').textContent=S.width+'" W × '+S.length+'" H';
     sp('sp-size',S.width+'" × '+S.length+'"');
     openNext('step5');
   }
@@ -378,8 +378,9 @@ function setShadeStyle(style, el) {
   var rvHNote=document.getElementById('roman-valance-height-note');
   if(rvHNote) rvHNote.style.display=isRV?'':'none';
   // Show/hide control step — Roman Valance is decorative, no lift needed
-  document.getElementById('step10').style.display=isRV?'none':'';
-  document.getElementById('step13').style.display=isRV||S.control!=='motor'?'none':'';
+  // The step stays visible (all steps are shown); its choices swap for a note.
+  document.getElementById('control-body-wrap').style.display=isRV?'none':'';
+  document.getElementById('control-rv-note').style.display=isRV?'':'none';
   if(isRV){
     // Clear any previously chosen control
     S.control=''; S.motorType='';
@@ -518,7 +519,6 @@ function setControl(c, el) {
   document.getElementById('prowand-opts').style.display  = c==='prowand'? '' : 'none';
   document.getElementById('tdbu-opts').style.display     = c==='tdbu'   ? '' : 'none';
   document.getElementById('motor-opts').style.display    = c==='motor'  ? '' : 'none';
-  document.getElementById('step13').style.display        = c==='motor'  ? '' : 'none';
   var notes={
     cordless:'Raised/lowered by pulling hem bar behind bottom panel. Clear hem grip included. Child-safe.',
     tdbu:'TDBU requires Standard shade style, Knife Pleat panel style, and fabric with TDBU available. Inside mount TDBU cannot be ordered with returns.',
@@ -630,10 +630,11 @@ function setCutFabric(on) {
 }
 
 // ── STEP 15: DELIVERY ─────────────────────────────────────────────────────────
-function setDelivery(opt,card) {
+// Shared Delivery step (pbDeliveryStepHTML) keeps the choice in window.pbDelivery
+// ('ship' | 'install') and calls setDelivery() after each pick.
+function setDelivery() {
+  var opt=window.pbDelivery==='install'?'install':'ship';
   S.delivery=opt;
-  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
-  card.classList.add('sel');
   var labels={ship:'Ship to me',install:'Professional installation'};
   document.getElementById('val15').textContent=labels[opt]||opt;
   sp('sp-delivery',labels[opt]||opt);
@@ -658,7 +659,7 @@ function addWallaceRomanToCart(){
     {label:'Quantity',value:String(S.qty||1)},
     {label:'Mount',value:S.mount==='inside'?'Inside mount':'Outside mount'},
     {label:'Width',value:(S.width||'—')+'"'},
-    {label:'Length',value:(S.length||'—')+'"'},
+    {label:'Height',value:(S.length||'—')+'"'},
     {label:'Shade Style',value:shadStyleLabels[S.shadeStyle]||S.shadeStyle},
     {label:'Panel Style',value:panelLabels[S.panelStyle]||S.panelStyle||'—'},
     {label:'Fabric',value:S.fabric?S.fabric.pattern+' '+S.fabric.color+' ('+S.fabric.code+') Group '+S.fabric.priceGroup:'—'},
@@ -679,12 +680,12 @@ function submitQuote() {
   if(!name)         errs.push('Name required.');
   if(!phone)        errs.push('Phone required.');
   if(!S.qty)        errs.push('Select number of shades (Step 1).');
-  if(!S.width||!S.length) errs.push('Enter width and length (Step 1).');
-  if(!S.shadeStyle) errs.push('Select shade construction style (Step 3).');
-  if(!S.panelStyle) errs.push('Select panel style (Step 4).');
-  if(!S.fabric)     errs.push('Select a fabric (Step 5).');
-  if(!S.control&&S.shadeStyle!=='roman-valance') errs.push('Select control type (Step 8).');
-  if(S.control==='motor'&&!S.motorType&&S.shadeStyle!=='roman-valance') errs.push('Select motor type (Step 8).');
+  if(!S.width||!S.length) errs.push('Enter width and height (Step 1).');
+  if(!S.shadeStyle) errs.push('Select shade construction style (Step 2).');
+  if(!S.panelStyle) errs.push('Select panel style (Step 3).');
+  if(!S.fabric)     errs.push('Select a fabric (Step 4).');
+  if(!S.control&&S.shadeStyle!=='roman-valance') errs.push('Select control type (Step 7).');
+  if(S.control==='motor'&&!S.motorType&&S.shadeStyle!=='roman-valance') errs.push('Select motor type (Step 7).');
 
   // Validation warnings to flag in email
   var validationFlags=[];
@@ -716,16 +717,16 @@ function submitQuote() {
   var wandLen=document.querySelector('#grp-wand-len .opt-btn.sel')?.textContent.trim()||'—';
   var controlSide=document.querySelector('#grp-control-side .opt-btn.sel')?.textContent.trim()||'—';
   var returnLabel={none:'No returns',standard:'Standard 4½" returns',extended:'Extended depth returns',custom:'Custom — '+document.getElementById('return-depth').value+'"'}[S.returns]||S.returns;
-  var delivery='Ship (UPS/FedEx)'||S.delivery;
+  var delivery=(typeof pbDeliveryLabel==='function')?pbDeliveryLabel():'Ship to me';
 
   // Motor accessories
   var motorAcc=[];
-  if(document.getElementById('acc-battery-pack')?.checked) motorAcc.push('External LI battery pack');
-  if(document.getElementById('acc-plugin')?.checked)       motorAcc.push('Plug-in power adapter');
-  if(document.getElementById('acc-charger')?.checked)      motorAcc.push('16½\' charger');
-  if(document.getElementById('acc-ext-6')?.checked)        motorAcc.push('6" extension cable');
-  if(document.getElementById('acc-ext-48')?.checked)       motorAcc.push('48" extension cable');
-  if(document.getElementById('acc-ext-96')?.checked)       motorAcc.push('96" extension cable');
+  if(document.getElementById('acc-battery-pack')?.classList.contains('sel')) motorAcc.push('External LI battery pack');
+  if(document.getElementById('acc-plugin')?.classList.contains('sel'))       motorAcc.push('Plug-in power adapter');
+  if(document.getElementById('acc-charger')?.classList.contains('sel'))      motorAcc.push('16½\' charger');
+  if(document.getElementById('acc-ext-6')?.classList.contains('sel'))        motorAcc.push('6" extension cable');
+  if(document.getElementById('acc-ext-48')?.classList.contains('sel'))       motorAcc.push('48" extension cable');
+  if(document.getElementById('acc-ext-96')?.classList.contains('sel'))       motorAcc.push('96" extension cable');
 
   var body=[
     '=== WALLACE PORTFOLIO FABRIC ROMAN SHADE QUOTE ===','',
@@ -739,7 +740,7 @@ function submitQuote() {
     'Quantity: '+S.qty+' shade(s)',
     'Mount: '+(S.mount==='inside'?'Inside mount':'Outside mount'),
     'Width: '+S.width+'"',
-    'Length: '+S.length+'"','',
+    'Height: '+S.length+'"','',
     'CONSTRUCTION',
     'Shade style: '+(S.shadeStyle==='roman-valance'?'Roman Valance — decorative non-functional flat roman (no lift system)':shadStyleLabels[S.shadeStyle]||S.shadeStyle),
     'Panel style: '+(panelLabels[S.panelStyle]||S.panelStyle),'',
