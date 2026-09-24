@@ -39,7 +39,6 @@
 .opt-card.sel .opt-card-title{color:#0A4A42}
 .opt-card.sel,.addon-row.sel,.delivery-opt-card.sel{box-shadow:0 0 0 3px rgba(45,224,193,.15),0 2px 8px rgba(45,224,193,.18)}
 .opt-card-desc{font-size:11px;color:#666;line-height:1.45}
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
 .dim-whole{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:16px;text-align:center;box-sizing:border-box}
 .dim-unit{font-size:11px;color:#888;margin-top:4px;line-height:1.5}
@@ -60,7 +59,6 @@
 .spin-btn:hover{border-color:var(--gold)}
 .spin-num{width:44px;text-align:center;border:1px solid #ddd;border-radius:7px;font-size:14px;padding:5px}
 .spin-label{font-size:12px;color:#666}
-.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
 .sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 5px}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
@@ -73,12 +71,7 @@
 .success-box{background:#EEFBE8;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;display:none;margin-top:12px}
 .success-box h3{font-size:15px;font-weight:600;color:#14532d;margin-bottom:6px}
 .success-box p{font-size:13px;color:#166534;line-height:1.6}
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
 .qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:8px 0;font-style:italic;line-height:1.6}
-.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
-.qrow-label{color:var(--text-muted);line-height:1.4}
-.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
 .qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
 .ps-breakdown{margin-top:10px;padding-top:10px;border-top:.5px solid var(--border-dark);font-size:11px;color:rgba(255,255,255,.6);line-height:1.9}
@@ -132,12 +125,12 @@
 
       <!-- Mount type -->
       <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
-      <div class="opt-row" style="margin-bottom:6px">
-        <button class="opt-btn" onclick="pickMount(this,'Inside mount')">Inside mount</button>
+      <div class="opt-row" id="grp-ps-mount" style="margin-bottom:6px">
+        <button class="opt-btn sel" onclick="pickMount(this,'Inside mount')">Inside mount</button>
         <button class="opt-btn" onclick="pickMount(this,'Outside mount')">Outside mount</button>
-        <button class="opt-btn" onclick="pickMount(this,'Semi-inside mount')">Semi-Inside</button>
+        <button class="opt-btn" onclick="pickMount(this,'Semi-inside mount')">Semi-inside mount</button>
       </div>
-      <div class="step-note" style="margin-bottom:12px">Inside: fits inside frame &middot; clean flush look &middot; mfr deducts 3/8&Prime; automatically. Outside: mounts above/outside frame &middot; better light control &middot; covers more wall. Semi-Inside: partially recessed &middot; for shallow window frames.</div>
+      <div class="step-note" style="margin-bottom:12px">Inside mount: fits inside the frame &middot; clean flush look &middot; the manufacturer deducts 3/8&Prime; automatically. Outside mount: mounts above/outside the frame &middot; better light control &middot; covers more wall. Semi-inside mount: partially recessed &middot; for shallow window frames.</div>
 
       <!-- Quantity (shared stepper) -->
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -147,7 +140,6 @@
           <span class="qty-num" id="ps-qty-display">1</span>
           <button class="qty-btn" onclick="adjPsQty(1)">&#43;</button>
         </div>
-        <span style="font-size:12px;color:#666">shades (same size)</span>
       </div>
       <div class="step-note">For different sizes, add each shade to cart separately. Freight is calculated on the full order.</div>
     </div>
@@ -157,7 +149,7 @@
   <div class="step-block" id="step2">
     <div class="step-head" onclick="toggleStep('step2')">
       <div class="step-num">2</div>
-      <div class="step-head-title">Light Control</div>
+      <div class="step-head-title">Light control</div>
       <div class="step-head-val" id="s3val">Light Filtering</div>
     </div>
     <div class="step-body">
@@ -173,11 +165,12 @@
   <div class="step-block" id="step3">
     <div class="step-head" onclick="toggleStep('step3')">
       <div class="step-num">3</div>
-      <div class="step-head-title">Fabric Color</div>
+      <div class="step-head-title">Fabric color</div>
       <div class="step-head-val" id="s4val">—</div>
     </div>
     <div class="step-body">
-      <select id="ps-color" class="ps-opts" onchange="onColorChange()">
+      <div class="opt-row" id="grp-ps-color"></div>
+      <select id="ps-color" class="ps-opts" onchange="onColorChange()" style="display:none">
         <optgroup label="Light Filtering (22 colors)">
           <option value="Snowflake">Snowflake (F1178) — bright white</option>
           <option value="Soft White">Soft White (F1186) — clean white</option>
@@ -223,13 +216,13 @@
   <div class="step-block" id="step4">
     <div class="step-head" onclick="toggleStep('step4')">
       <div class="step-num">4</div>
-      <div class="step-head-title">Lift System</div>
+      <div class="step-head-title">Lift system</div>
       <div class="step-head-val" id="s5val">Cord Loop</div>
     </div>
     <div class="step-body">
       <div class="opt-row">
-        <button class="opt-btn sel" onclick="pickLift(this,'ccl')">Continuous Cord Loop</button>
-        <button class="opt-btn" onclick="pickLift(this,'motor')">Norman Motorization</button>
+        <button class="opt-btn sel" onclick="pickLift(this,'ccl')">Continuous cord loop</button>
+        <button class="opt-btn" onclick="pickLift(this,'motor')">Norman motorization</button>
       </div>
       <div class="step-note">Continuous Cord Loop: max 98″W × 98″H &middot; smooth pull-chain &middot; most popular. Norman Motorization: up to 110″W × 120″H &middot; app, remote &amp; voice control &middot; rechargeable or plug-in.</div>
       <div id="ps-motor-note" class="msg-box msg-info" style="display:none;margin-top:8px">Norman Smart Motorization — rechargeable battery or AC plug-in. Surcharge (+$482) added to your final quote.</div>
@@ -253,21 +246,21 @@
   <div class="step-block" id="step5">
     <div class="step-head" onclick="toggleStep('step5')">
       <div class="step-num">5</div>
-      <div class="step-head-title">Valance / Headrail Cover</div>
+      <div class="step-head-title">Valance</div>
       <div class="step-head-val" id="s6val">Curved fascia</div>
     </div>
     <div class="step-body">
       <div class="opt-row" id="grp-ps-valance">
-        <button class="opt-btn sel" onclick="pickValance(this,'Curved fascia (free)')">Curved Fascia — Free</button>
-        <button class="opt-btn" id="ps-val-fab35" onclick="pickValance(this,'Fabric valance 3½″')">Fabric Valance 3½″</button>
-        <button class="opt-btn" onclick="pickValance(this,'Fabric valance 4½″')">Fabric Valance 4½″</button>
-        <button class="opt-btn" onclick="pickValance(this,'Wood valance 4½″')">Wood Valance 4½″</button>
+        <button class="opt-btn sel" onclick="pickValance(this,'Curved fascia (free)')">Curved fascia (free)</button>
+        <button class="opt-btn" id="ps-val-fab35" onclick="pickValance(this,'Fabric valance 3½″')">Fabric valance 3½″</button>
+        <button class="opt-btn" onclick="pickValance(this,'Fabric valance 4½″')">Fabric valance 4½″</button>
+        <button class="opt-btn" onclick="pickValance(this,'Wood valance 4½″')">Wood valance 4½″</button>
       </div>
       <div class="step-note">Curved Fascia (free): fabric-covered headrail cover matching your shade fabric. Fabric Valance 3½″: flat front panel, heights ≤72″ only. Fabric Valance 4½″: taller fascia, all heights. Wood Valance 4½″: painted or stained hardwood &middot; 6 paint &amp; 6 stain colors.</div>
       <div id="ps-val-size-warn" class="msg-box msg-warn" style="display:none;margin-top:8px">Height over 72″ — 3½″ valance not available. Only 4½″ options can be ordered.</div>
       <div id="ps-wood-val-wrap" style="display:none;margin-top:10px">
         <div class="sub-label">Wood valance color (paint or stain)</div>
-        <select id="ps-wood-val-color" class="ps-opts" onchange="psCalc()">
+        <select id="ps-wood-val-color" class="ps-opts" data-pb-pills onchange="psCalc()">
           <optgroup label="Paint">
             <option value="001 Pure White">001 Pure White</option>
             <option value="003 Silk White">003 Silk White</option>
@@ -294,42 +287,18 @@
   <div class="step-block" id="step6">
     <div class="step-head" onclick="toggleStep('step6')">
       <div class="step-num">6</div>
-      <div class="step-head-title">Accessories</div>
+      <div class="step-head-title">Accessories <span style="font-weight:400;color:#888">(optional)</span></div>
       <div class="step-head-val" id="s7val">Optional</div>
     </div>
     <div class="step-body">
-      <div class="addon-row" id="addon-lg-basic" onclick="toggleAddonMutex('addon-lg-basic','addon-lg-premium','lgBasic','lgPrem')">
-        <div class="addon-left">
-          <div class="addon-check">✓</div>
-          <div>
-            <div class="addon-name">Basic Light Guard</div>
-            <div class="addon-sub">Fabric side channels — blocks side light gaps</div>
-          </div>
-        </div>
-        <div class="addon-price">+$45</div>
+      <div class="opt-row">
+        <button class="opt-btn" id="addon-lg-basic" onclick="toggleAddonMutex('addon-lg-basic','addon-lg-premium','lgBasic','lgPrem')">Basic light guard +$45</button>
+        <button class="opt-btn" id="addon-lg-premium" onclick="toggleAddonMutex('addon-lg-premium','addon-lg-basic','lgPrem','lgBasic')">Premium wood light guard +$117</button>
+        <button class="opt-btn" id="addon-holddown" onclick="toggleAddon('addon-holddown','holddown')">Magnetic hold-down +$28</button>
       </div>
-      <div class="addon-row" id="addon-lg-premium" onclick="toggleAddonMutex('addon-lg-premium','addon-lg-basic','lgPrem','lgBasic')">
-        <div class="addon-left">
-          <div class="addon-check">✓</div>
-          <div>
-            <div class="addon-name">Premium Wood Light Guard</div>
-            <div class="addon-sub">Painted hardwood channels &middot; 7 colors &middot; luxury finish</div>
-          </div>
-        </div>
-        <div class="addon-price">+$117</div>
-      </div>
-      <div class="addon-row" id="addon-holddown" onclick="toggleAddon('addon-holddown','holddown')">
-        <div class="addon-left">
-          <div class="addon-check">✓</div>
-          <div>
-            <div class="addon-name">Magnetic Hold-Down</div>
-            <div class="addon-sub">Keeps shade aligned on door applications</div>
-          </div>
-        </div>
-        <div class="addon-price">+$28</div>
-      </div>
+      <div class="step-note">Select any (one light guard). Basic light guard: fabric side channels &mdash; blocks side light gaps. Premium wood light guard: painted hardwood channels &middot; 7 colors &middot; luxury finish. Magnetic hold-down: keeps the shade aligned on door applications.</div>
       <div class="sub-label">Shims (for uneven mounts)</div>
-      <select id="ps-shims" class="ps-opts" onchange="PS.shims=parseInt(this.value)||0;psCalc()">
+      <select id="ps-shims" class="ps-opts" data-pb-pills onchange="PS.shims=parseInt(this.value)||0;psCalc()">
         <option value="0">None</option>
         <option value="1">1 shim (+$7)</option>
         <option value="2">2 shims (+$14)</option>
@@ -338,18 +307,24 @@
     </div>
   </div>
 
-  <!-- STEP 7: QUOTE FORM -->
+  <!-- STEP 7: DELIVERY (shared pbDeliveryStepHTML) -->
   <div class="step-block" id="step7">
     <div class="step-head" onclick="toggleStep('step7')">
       <div class="step-num">7</div>
-      <div class="step-head-title">Request Your Quote</div>
+      <div class="step-head-title">Delivery</div>
+      <div class="step-head-val" id="s8val">Ship to me</div>
+    </div>
+    <div class="step-body" id="ps-delivery"></div>
+  </div>
+
+  <!-- STEP 8: YOUR DETAILS -->
+  <div class="step-block" id="step8">
+    <div class="step-head" onclick="toggleStep('step8')">
+      <div class="step-num">8</div>
+      <div class="step-head-title">Your details</div>
       <div class="step-head-val" id="s9val">—</div>
     </div>
     <div class="step-body">
-      <div class="delivery-section" style="margin-bottom:14px">
-        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong>. Shipping estimated in your quote.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
-      </div>
-
       <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
       <div id="pb-final-step"></div>
       <div class="success-box" id="ps-success">
@@ -363,21 +338,21 @@
 
 <!-- RIGHT: Quote Panel -->
 <div>
-  <div class="quote-panel">
-    <div class="qp-title">Your Estimate</div>
-    <div class="qp-pending" id="qp-pending">Complete the steps on the left and we&rsquo;ll prepare your quote.</div>
-
-    <div id="ps-selection-summary" style="display:none">
-      <div class="qrow"><span class="qrow-label">Product</span><span class="qrow-val">Norman PerfectSheer™</span></div>
-      <div class="qrow"><span class="qrow-label">Mount</span><span class="qrow-val" id="qr-mount">—</span></div>
-      <div class="qrow"><span class="qrow-label">Size</span><span class="qrow-val" id="qr-dims">—</span></div>
-      <div class="qrow"><span class="qrow-label">Light control</span><span class="qrow-val" id="qr-opacity">Light Filtering</span></div>
-      <div class="qrow"><span class="qrow-label">Color</span><span class="qrow-val" id="qr-color">—</span></div>
-      <div class="qrow"><span class="qrow-label">Lift</span><span class="qrow-val" id="qr-lift">Cord Loop</span></div>
-      <div class="qrow"><span class="qrow-label">Valance</span><span class="qrow-val" id="qr-valance">Curved fascia</span></div>
-      <div class="qrow"><span class="qrow-label">Qty</span><span class="qrow-val" id="qr-qty">1 shade</span></div>
+  <div class="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div id="ps-selection-summary">
+      <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Norman PerfectSheer™</span></div>
+      <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="qr-dims">—</span></div>
+      <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="qr-mount">Inside mount</span></div>
+      <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="qr-qty">1 shade</span></div>
+      <div class="summary-row"><span class="sr-key">Light control</span><span class="sr-val" id="qr-opacity">Light Filtering</span></div>
+      <div class="summary-row"><span class="sr-key">Color</span><span class="sr-val" id="qr-color">—</span></div>
+      <div class="summary-row"><span class="sr-key">Lift</span><span class="sr-val" id="qr-lift">Cord Loop</span></div>
+      <div class="summary-row"><span class="sr-key">Valance</span><span class="sr-val" id="qr-valance">Curved fascia</span></div>
+      <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="qr-del">Ship to me</span></div>
       <div class="qdiv"></div>
     </div>
+    <div class="qp-pending" id="qp-pending">Enter your window size to see your price.</div>
 
     <div id="ps-price-box" style="display:none">
       <div style="font-size:10px;color:var(--text-dark);letter-spacing:1px;margin-bottom:4px">25% NORMAN DISCOUNT APPLIED</div>
@@ -404,6 +379,15 @@
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'psAddToCart()', submitFn: 'submitPSQuote(this)' });
+// Canonical Delivery step — choice lives in window.pbDelivery ('ship' | 'install').
+document.getElementById('ps-delivery').innerHTML =
+  pbDeliveryStepHTML({ bare: true, onPick: 'psDeliveryPicked()' });
+function psDeliveryPicked() {
+  var lbl = typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me';
+  document.getElementById('s8val').textContent = lbl;
+  document.getElementById('qr-del').textContent = lbl;
+  markDone('step7');
+}
 function updateStep1Val() {
   var w = document.getElementById('ps-width').value;
   var h = document.getElementById('ps-height').value;
@@ -414,7 +398,7 @@ function updateStep1Val() {
   document.getElementById('s1val').textContent = parts.length ? parts.join(' · ') : '—';
 }
 function pickMount(el, label) {
-  document.querySelectorAll('#step1 .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
+  document.querySelectorAll('#grp-ps-mount .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
   el.classList.add('sel');
   PS.mount = label;
   document.getElementById('qr-mount').textContent = label;
@@ -443,6 +427,7 @@ function onColorChange() {
   PS.color = val;
   document.getElementById('s4val').textContent = val.split('(')[0].trim();
   document.getElementById('qr-color').textContent = val.split('(')[0].trim();
+  psSyncColorPills();
   markDone('step3');
   psCalc();
 }
@@ -485,26 +470,20 @@ function pickValance(el, label) {
 }
 function toggleAddon(rowId, stateKey) {
   var row   = document.getElementById(rowId);
-  var check = row.querySelector('.addon-check');
   var isSel = row.classList.contains('sel');
-  row.classList.toggle('sel');
-  check.style.color = isSel ? 'transparent' : '#111110';
+  row.classList.toggle('sel', !isSel);
   PS[stateKey] = !isSel;
   psCalc();
 }
 function toggleAddonMutex(rowId, mutexId, stateKey, mutexKey) {
   var row    = document.getElementById(rowId);
   var mutex  = document.getElementById(mutexId);
-  var check  = row.querySelector('.addon-check');
-  var mcheck = mutex.querySelector('.addon-check');
   var isSel  = row.classList.contains('sel');
   // Clear mutex first
   mutex.classList.remove('sel');
-  mcheck.style.color = 'transparent';
   PS[mutexKey] = false;
   // Toggle self
-  row.classList.toggle('sel');
-  check.style.color = isSel ? 'transparent' : '#111110';
+  row.classList.toggle('sel', !isSel);
   PS[stateKey] = !isSel;
   psCalc();
 }

@@ -26,7 +26,7 @@ const PS_MOTOR_COST = 482;
 
 // ── State ─────────────────────────────────────────────────────
 var PS = {
-  mount:    null,
+  mount:    'Inside mount',   // Inside mount pre-selected (standard Step 1)
   fabric:   'lf',
   color:    '',
   lift:     'ccl',
@@ -35,14 +35,35 @@ var PS = {
   lgPrem:   false,
   holddown: false,
   shims:    0,
-  qty:      1,
-  delivery: 'ship'
+  qty:      1
+  // Delivery lives in window.pbDelivery ('ship' | 'install') — shared pbDeliveryStepHTML.
 };
 
-function psPickDel(v, el) {
-  PS.delivery = v;
-  document.querySelectorAll('.delivery-opt-card[id^="ps-del"]').forEach(function(c){ c.classList.remove('sel'); });
-  el.classList.add('sel');
+// Color pills — the hidden <select id="ps-color"> stays the source of truth; only the
+// colors of the chosen light control are shown (Light Filtering 22 / Blackout 10).
+function psRenderColorPills() {
+  var sel = document.getElementById('ps-color');
+  var row = document.getElementById('grp-ps-color');
+  if (!sel || !row) return;
+  var html = '';
+  for (var i = 0; i < sel.options.length; i++) {
+    var opt = sel.options[i];
+    var inRD = opt.parentElement && opt.parentElement.id === 'ps-rd-group';
+    if ((PS.fabric === 'rd') !== inRD) continue;
+    html += '<button type="button" class="opt-btn' + (sel.selectedIndex === i ? ' sel' : '') + '" data-idx="' + i + '" onclick="psPickColorPill(' + i + ')">' + opt.value + '</button>';
+  }
+  row.innerHTML = html;
+}
+function psPickColorPill(i) {
+  var sel = document.getElementById('ps-color');
+  sel.selectedIndex = i;
+  sel.dispatchEvent(new Event('change', { bubbles: true }));
+}
+function psSyncColorPills() {
+  var sel = document.getElementById('ps-color');
+  document.querySelectorAll('#grp-ps-color .opt-btn').forEach(function(b) {
+    b.classList.toggle('sel', sel && +b.getAttribute('data-idx') === sel.selectedIndex);
+  });
 }
 
 // ── Step helpers ──────────────────────────────────────────────
@@ -83,6 +104,7 @@ function psUpdateColors(type) {
     if (sel.options[j].style.display !== 'none') { sel.selectedIndex = j; break; }
   }
   PS.color = sel.value;
+  psRenderColorPills();
   document.getElementById('qr-color').textContent  = PS.color.split('(')[0].trim();
   document.getElementById('qr-opacity').textContent = type === 'rd' ? 'Blackout (+20%)' : 'Light Filtering';
   psCalc();
@@ -102,6 +124,7 @@ function psCalc() {
   var pn = document.getElementById('ps-price-note');
   pb.style.display = 'none';
   pn.style.display = 'none';
+  document.getElementById('qp-pending').style.display = 'block';
 
   // Update right panel selection summary
   var mountEl = document.getElementById('qr-mount');
@@ -285,7 +308,7 @@ async function submitPSQuote(btn) {
     + 'Shims: ' + PS.shims + '\n'
     + 'Quantity: ' + PS.qty + '\n'
     + 'Estimated total: ' + price + '\n\n'
-    + 'Delivery: ' + ('Ship to customer (UPS/FedEx)') + '\n\n'
+    + 'Delivery: ' + (typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me') + '\n\n'
     + 'Notes: ' + (notes || 'none');
 
   if (typeof _apiSubmit === 'function') {
@@ -299,6 +322,9 @@ async function submitPSQuote(btn) {
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('step1').classList.add('active');
   PS.color = (document.getElementById('ps-color') || {}).value || 'Snowflake';
+  psRenderColorPills();
+  document.getElementById('qr-color').textContent = PS.color;
+  document.getElementById('qr-mount').textContent = PS.mount;
   document.getElementById('qr-qty').textContent = '1 shade';
   document.getElementById('qr-valance').textContent = 'Curved fascia (free)';
   document.getElementById('qr-lift').textContent    = 'Continuous Cord Loop';
