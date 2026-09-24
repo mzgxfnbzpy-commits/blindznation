@@ -624,15 +624,19 @@ var PB_ST_SHIP_NOTE = 'Shipping is an estimate and may change.';
 // Roman shades — stepped on the whole shade, like drapery, because a Roman rolls
 // or folds into its carton and the drop matters as much as the width:
 //     up to  80" wide x 100" tall   $100
-//     up to 200" wide x 200" tall   $200
-//     anything larger               $300
-// Both dimensions must fit a step to earn it. (Justin, 2026-09-22.)
-// Note: a Roman is capped at 120" x 120" on the form, so the $300 step only
-// becomes reachable if that cap is raised.
+//     up to 120" wide x 120" tall   $150
+//     up to 160" wide x 150" tall   $200
+//     up to 220" wide x 200" tall   $300
+//     up to 300" wide x 250" tall   $400
+//     anything larger               $500
+// Both dimensions must fit a step to earn it. (Justin, 2026-09-23.)
 var PB_ROMAN_SHIP_TIERS = [
   { w:  80, h: 100, fee: 100 },
-  { w: 200, h: 200, fee: 200 }
-];                                  // past both -> 300
+  { w: 120, h: 120, fee: 150 },
+  { w: 160, h: 150, fee: 200 },
+  { w: 220, h: 200, fee: 300 },
+  { w: 300, h: 250, fee: 400 }
+];                                  // past them all -> 500
 function pbRomanFreight(widthIn, heightIn) {
   var w = parseFloat(widthIn)  || 0;
   var h = parseFloat(heightIn) || 0;
@@ -640,7 +644,7 @@ function pbRomanFreight(widthIn, heightIn) {
     var t = PB_ROMAN_SHIP_TIERS[i];
     if (w <= t.w && h <= t.h) return t.fee;
   }
-  return 300;
+  return 500;
 }
 // Cornices and valances — by ordered WIDTH only. A board is rigid, so its length
 // sets the carton and the face height is irrelevant to freight. Finer steps than

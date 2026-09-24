@@ -502,6 +502,12 @@ var RN_RATES = {
 // the whole-square-foot rounding and the 80x100 / 200x200 freight ladder are all
 // intact and tested. Flip this to false and Roman pricing comes straight back.
 var RN_QUOTE_ONLY = true;
+// Size cap follows the freight ladder (300" x 250"), not a rate limit: a Roman is
+// priced on area, which scales to any size. Quote-only right now anyway, so this
+// only decides whether the customer can describe the shade and send it, or is told
+// to call. Raised from 120 x 120 (Justin, 2026-09-23).
+var RN_MAX_W = 300;
+var RN_MAX_H = 250;
 
 // Lining a Roman adds $5/sqft on top of the style rate (Justin, Sept 2026).
 var RN_LINING_PER_SQFT = 5;
@@ -612,7 +618,7 @@ function calcRoman() {
   }
 
   // Custom quote for over 120″
-  if (w > 120 || h > 120) { _customSizeMsg(box, 'Roman Shade', 120, 120); return; }
+  if (w > RN_MAX_W || h > RN_MAX_H) { _customSizeMsg(box, 'Roman Shade', RN_MAX_W, RN_MAX_H); return; }
 
   // Past the base shipping step — see pbRomanFreight (80″ × 100″ envelope).
   var isRomanOversized = !(w <= 80 && h <= 100);   // past the base shipping step
@@ -666,7 +672,8 @@ function calcRoman() {
   // $100 up to 80x100, $200 up to 200x200, $300 past that. Flat per order.
   var shipEst = (typeof pbRomanFreight === 'function')
     ? pbRomanFreight(w, h)
-    : ((w <= 80 && h <= 100) ? 100 : (w <= 200 && h <= 200) ? 200 : 300);
+    : ((w <= 80 && h <= 100) ? 100 : (w <= 120 && h <= 120) ? 150 : (w <= 160 && h <= 150) ? 200
+       : (w <= 220 && h <= 200) ? 300 : (w <= 300 && h <= 250) ? 400 : 500);
 
   var grandTotal = laborTotal + trimTotal + fabricCost + linerCost + shipEst;
   if (box) box.style.display = 'block';
