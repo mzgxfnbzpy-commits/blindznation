@@ -26,7 +26,7 @@
 .page-hero .sub{font-size:14px;color:var(--text-dark);line-height:1.7;max-width:520px;margin-bottom:22px}
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border-dark);color:var(--text-faint)}
-.hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
+.hero-pill-gold{background:rgba(201,169,110,.12);border-color:rgba(201,169,110,.35);color:var(--gold)}
 
 /* ── Page frame around the standard configurator ── */
 .cfg-section{background:var(--gold-mid);padding:36px 20px 64px}
@@ -41,12 +41,12 @@
 .finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-bottom:14px}
 .finish-card{border:1.5px solid #e8e4de;border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s;background:#fff}
 .finish-card:hover{border-color:var(--gold)}
-.finish-card.sel{border:2px solid var(--gold);box-shadow:0 2px 10px rgba(45,224,193,.15)}
+.finish-card.sel{border:2px solid var(--gold);box-shadow:0 2px 10px rgba(201,169,110,.15)}
 .finish-swatch{height:52px;width:100%}
 .finish-name{font-size:10px;text-align:center;padding:6px 4px;color:#333;line-height:1.3;font-weight:500}
 
 /* ── INFO BANNER ── */
-.info-banner{background:var(--gold-mid);border:1px solid rgba(45,224,193,.35);border-radius:10px;padding:12px 14px;font-size:12px;color:#555;line-height:1.6;margin-bottom:14px}
+.info-banner{background:var(--gold-mid);border:1px solid rgba(201,169,110,.35);border-radius:10px;padding:12px 14px;font-size:12px;color:#555;line-height:1.6;margin-bottom:14px}
 .info-banner strong{color:var(--espresso)}
 .warn-banner{background:#fff8e8;border:1px solid #f0d070;border-radius:10px;padding:12px 14px;font-size:12px;color:#7a5a00;line-height:1.6;margin-bottom:14px}
 </style>
@@ -244,7 +244,7 @@
           <div class="finish-name">Dark Chocolate</div>
         </div>
         <div class="finish-card" onclick="selectFinish('Estate Oak', this)">
-          <div class="finish-swatch" style="background:linear-gradient(135deg,#9a7040,#0A4A42)"></div>
+          <div class="finish-swatch" style="background:linear-gradient(135deg,#9a7040,#2A1E0C)"></div>
           <div class="finish-name">Estate Oak</div>
         </div>
         <div class="finish-card" onclick="selectFinish('Mahogany', this)">
@@ -485,8 +485,8 @@
     </div>
 
     <!-- ── DM DUOTONE PICKER ── shown when Maxwell or Briggs Duotone selected -->
-    <div id="dm-duotone-picker" style="display:none;margin-top:16px;padding:16px 18px;background:var(--gold-mid);border:1.5px solid rgba(45,224,193,.4);border-radius:12px">
-      <div class="sub-label" style="margin-top:0;color:#0A4A42">Duotone finish combination — required</div>
+    <div id="dm-duotone-picker" style="display:none;margin-top:16px;padding:16px 18px;background:var(--gold-mid);border:1.5px solid rgba(201,169,110,.4);border-radius:12px">
+      <div class="sub-label" style="margin-top:0;color:#2A1E0C">Duotone finish combination — required</div>
       <div style="font-size:13px;color:#555;line-height:1.65;margin-bottom:12px">Duotone finials are <strong>NOT available in your main rod finish.</strong> They are factory-made in exactly 2 specific color combinations. Your rod body keeps its selected finish; only the finial tip uses the Duotone pair below.</div>
       <div class="opt-row" id="grp-dm-duotone">
         <button class="opt-btn" onclick="selectDuotonePair('Black + Brushed Bronze',this)">Black + Brushed Bronze<span style="font-size:10px;color:#888;display:block;margin-top:2px">1": #1043043 · 1⅜": Briggs series</span></button>
