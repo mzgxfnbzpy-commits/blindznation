@@ -28,132 +28,27 @@
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border-dark);color:var(--text-faint)}
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 
-/* ── LAYOUT ── */
-.config-wrap{max-width:900px;margin:0 auto;padding:32px 24px 64px}
+/* ── Page frame around the standard configurator ── */
+.cfg-section{background:var(--gold-mid);padding:36px 20px 64px}
+.cfg-content{max-width:1000px;margin:0 auto}
+.sub-label{font-size:12px;font-weight:600;color:#555;margin:14px 0 6px}
+.sub-label:first-child{margin-top:0}
+#cfg-steps .opt-btn{white-space:normal;text-align:left}
+.pill-hint{font-size:10px;color:#888;font-weight:400}
+.placeholder-note{font-size:12px;color:#999;font-style:italic;padding:4px 0}
 
-/* ── STEP INDICATOR ── */
-.step-bar{display:flex;align-items:center;gap:0;margin-bottom:36px;overflow-x:auto;padding-bottom:4px}
-.step-dot{display:flex;align-items:center;gap:0;flex-shrink:0}
-.step-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:#e8e4de;color:#888;flex-shrink:0;transition:.15s}
-.step-circle.active{background:var(--gold);color:var(--espresso)}
-.step-circle.done{background:var(--espresso);color:var(--gold)}
-.step-line{width:36px;height:2px;background:#e8e4de;flex-shrink:0}
-.step-line.done{background:var(--espresso)}
-
-/* ── SECTION ── */
-.section{display:none}
-.section.on{display:block}
-.sec-label{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
-.sec-title{font-size:20px;font-weight:500;color:#111;margin-bottom:6px;letter-spacing:-0.3px}
-.sec-sub{font-size:13px;color:#666;line-height:1.6;margin-bottom:20px}
-
-/* ── CHOICE GRID (large cards 2-col) ── */
-.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
-@media(max-width:580px){.choice-grid{grid-template-columns:1fr}}
-.choice-card{background:#fff;border:1.5px solid #e8e4de;border-radius:14px;padding:22px 20px;cursor:pointer;transition:.15s;position:relative}
-.choice-card:hover{border-color:var(--gold);box-shadow:0 2px 16px rgba(45,224,193,.12)}
-.choice-card.sel{border:2px solid var(--gold);box-shadow:0 2px 20px rgba(45,224,193,.2)}
-.choice-icon{font-size:26px;margin-bottom:10px}
-.choice-title{font-size:15px;font-weight:600;color:#111;margin-bottom:5px}
-.choice-desc{font-size:12px;color:#666;line-height:1.6}
-.choice-tag{font-size:10px;color:var(--gold);font-weight:600;margin-top:8px}
-.choice-badge{position:absolute;top:14px;right:14px;background:var(--gold);color:var(--espresso);font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.5px;text-transform:uppercase}
-
-/* ── OPTION ROW (smaller pills) ── */
-.opt-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
-.opt-pill{padding:9px 18px;border:1.5px solid #e8e4de;border-radius:30px;font-size:13px;color:#333;cursor:pointer;transition:.15s;background:#fff;white-space:nowrap}
-.opt-pill:hover{border-color:var(--gold)}
-.opt-pill.sel{border:2px solid var(--gold);color:var(--espresso);font-weight:500;background:var(--gold-mid)}
-.opt-pill.disabled{opacity:.35;cursor:not-allowed}
-
-/* ── FINISH GRID ── */
-.finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-bottom:20px}
+/* ── FINISH GRID (visual swatch picker) ── */
+.finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-bottom:14px}
 .finish-card{border:1.5px solid #e8e4de;border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s;background:#fff}
 .finish-card:hover{border-color:var(--gold)}
 .finish-card.sel{border:2px solid var(--gold);box-shadow:0 2px 10px rgba(45,224,193,.15)}
 .finish-swatch{height:52px;width:100%}
 .finish-name{font-size:10px;text-align:center;padding:6px 4px;color:#333;line-height:1.3;font-weight:500}
 
-/* ── FINIAL GRID ── */
-.finial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:20px}
-.finial-card{border:1.5px solid #e8e4de;border-radius:10px;padding:14px 10px 10px;cursor:pointer;transition:.15s;background:#fff;text-align:center}
-.finial-card:hover{border-color:var(--gold)}
-.finial-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.finial-art{font-size:28px;margin-bottom:6px}
-.finial-name{font-size:11px;font-weight:600;color:#222;margin-bottom:2px}
-.finial-desc{font-size:10px;color:#888;line-height:1.3}
-
 /* ── INFO BANNER ── */
-.info-banner{background:var(--gold-mid);border:1px solid rgba(45,224,193,.35);border-radius:10px;padding:14px 16px;font-size:13px;color:#555;line-height:1.6;margin-bottom:20px}
+.info-banner{background:var(--gold-mid);border:1px solid rgba(45,224,193,.35);border-radius:10px;padding:12px 14px;font-size:12px;color:#555;line-height:1.6;margin-bottom:14px}
 .info-banner strong{color:var(--espresso)}
-.warn-banner{background:#fff8e8;border:1px solid #f0d070;border-radius:10px;padding:14px 16px;font-size:13px;color:#7a5a00;line-height:1.6;margin-bottom:20px}
-
-/* ── INPUT ROW ── */
-.inp-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-@media(max-width:580px){.inp-row{grid-template-columns:1fr}}
-.inp-group{display:flex;flex-direction:column;gap:5px}
-.inp-label{font-size:12px;font-weight:500;color:#444}
-.inp-field{padding:10px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;font-family:var(--font);color:#222;background:#fff;transition:.15s}
-.inp-field:focus{outline:none;border-color:var(--gold)}
-.inp-hint{font-size:11px;color:#888;line-height:1.4}
-textarea.inp-field{resize:vertical;min-height:90px}
-
-/* ── TOGGLE SWITCH ── */
-.toggle-row{display:flex;align-items:center;gap:14px;padding:12px 16px;background:#f8f4ee;border-radius:10px;margin-bottom:14px;cursor:pointer}
-.toggle-label{font-size:13px;color:#333;flex:1;line-height:1.4}
-.toggle-label small{display:block;font-size:11px;color:#888;margin-top:2px}
-.toggle-switch{width:42px;height:24px;border-radius:12px;background:#ccc;position:relative;flex-shrink:0;transition:.2s}
-.toggle-switch.on{background:var(--gold)}
-.toggle-switch::after{content:'';position:absolute;width:18px;height:18px;background:#fff;border-radius:50%;top:3px;left:3px;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
-.toggle-switch.on::after{left:21px}
-
-/* ── DELIVERY SECTION ── */
-.delivery-section{background:#f0ece4;border-radius:12px;padding:20px;margin-bottom:20px}
-.delivery-title{font-size:14px;font-weight:600;color:#111;margin-bottom:14px}
-.delivery-opt{background:#fff;border:1.5px solid #e0dbd2;border-radius:10px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.15s}
-.delivery-opt:hover{border-color:var(--gold)}
-.delivery-opt.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.delivery-opt-title{font-size:13px;font-weight:600;color:#111;margin-bottom:3px}
-.delivery-opt-sub{font-size:11px;color:#777;line-height:1.5}
-
-/* ── NAV BUTTONS ── */
-.btn-row{display:flex;gap:12px;align-items:center;margin-top:24px}
-.btn-next{background:var(--gold);color:var(--espresso);border:none;padding:13px 32px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font)}
-.btn-next:hover{background:#b5852e}
-.btn-back{background:none;border:1.5px solid #ccc;color:#555;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;transition:.15s;font-family:var(--font)}
-.btn-back:hover{border-color:#888;color:#222}
-.btn-submit{background:var(--espresso);color:var(--cream);border:none;padding:14px 36px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font)}
-.btn-submit:hover{background:#2c221a}
-
-/* ── SUMMARY CARD ── */
-.summary-card{background:#f8f4ee;border:1px solid #e0dbd2;border-radius:12px;padding:20px;margin-bottom:24px}
-.summary-title{font-size:13px;font-weight:600;color:var(--espresso);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
-.summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #e8e4de;font-size:13px;color:#444}
-.summary-row:last-child{border-bottom:none}
-.summary-row strong{color:#111;font-weight:500}
-
-/* ── SUCCESS ── */
-.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center}
-.success-box h3{font-size:20px;margin-bottom:8px}
-
-/* ── SEPARATOR ── */
-.divider{height:1px;background:#e8e4de;margin:24px 0}
-
-/* ── COLLECTION CARDS ── */
-.collection-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
-@media(max-width:640px){.collection-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:380px){.collection-grid{grid-template-columns:1fr}}
-.coll-card{border:1.5px solid #e8e4de;border-radius:14px;overflow:hidden;cursor:pointer;transition:.15s;background:#fff}
-.coll-card:hover{border-color:var(--gold)}
-.coll-card.sel{border:2px solid var(--gold);box-shadow:0 2px 16px rgba(45,224,193,.2)}
-.coll-swatch-strip{height:48px;display:flex}
-.coll-swatch-strip span{flex:1}
-.coll-body{padding:14px 12px}
-.coll-name{font-size:14px;font-weight:600;color:#111;margin-bottom:3px}
-.coll-sub{font-size:11px;color:#777;line-height:1.4}
-.coll-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
-.coll-chip{font-size:9px;padding:2px 7px;border-radius:8px;background:#f0ece4;color:#555;font-weight:500}
-.coll-chip-gold{background:rgba(45,224,193,.15);color:#0A4A42}
+.warn-banner{background:#fff8e8;border:1px solid #f0d070;border-radius:10px;padding:12px 14px;font-size:12px;color:#7a5a00;line-height:1.6;margin-bottom:14px}
 </style>
 </head>
 <body data-page="Hardware">
@@ -177,12 +72,9 @@ textarea.inp-field{resize:vertical;min-height:90px}
 </section>
 
 <!-- CONFIGURATOR -->
-<div class="config-wrap">
-
-  <!-- Step indicator -->
-  <div class="step-bar" id="step-bar">
-    <!-- filled by JS -->
-  </div>
+<section class="cfg-section" id="configure">
+<div class="cfg-content">
+  <button onclick="reqMoreInfo('Kirsch Drapery Hardware')" class="req-info-link" style="display:block;margin:0 0 14px">Request more information about Kirsch hardware →</button>
 
   <!-- SUCCESS -->
   <div class="success-box" id="success-box">
@@ -190,235 +82,113 @@ textarea.inp-field{resize:vertical;min-height:90px}
     <p>We've received your Kirsch rod configuration. A member of our team will follow up within 1 business day to confirm pricing and availability.<br><strong>Questions? Call or text (609) 742-1720 anytime.</strong></p>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       STEP 1 — ROD TYPE
-  ═══════════════════════════════════════════ -->
-  <div class="section on" id="sec-1">
-    <div class="sec-label">Step 1 of 7</div>
-    <div class="sec-title">What will this rod be used for?</div>
-    <div class="sec-sub">This determines which Kirsch system fits your project.</div>
+  <div class="config-wrap" id="config-main">
+    <div class="config-grid">
+      <div id="cfg-steps">
 
-    <div class="choice-grid">
-      <div class="choice-card" onclick="selectType('static', this)">
-        <span class="coll-type-badge coll-type-luxury">Decorative</span>
-        <div class="choice-icon">🪞</div>
-        <div class="choice-title">Stationary / Decorative Pole</div>
-        <div class="choice-desc">Drapery hangs from rings that slide manually. Rod stays fixed. Ideal for panels that rarely open and close.</div>
-        <div class="choice-tag">Designer Metals · Wood Trends · Wrought Iron · 1″ · 1⅜″ · 2″</div>
-      </div>
-      <div class="choice-card" onclick="selectType('traverse', this)">
-        <span class="coll-type-badge coll-type-modern">Functional</span>
-        <div class="choice-icon">↔️</div>
-        <div class="choice-title">Traversing / Opens &amp; Closes</div>
-        <div class="choice-desc">Drapery travels smoothly on a track with carriers. One-way or two-way draw. Manual or AMP™ motorized. Max 16 ft / 64 lbs.</div>
-        <div class="choice-tag">Estate™ Traverse · Architrac® (7 models) · AMP™ motorizable</div>
-      </div>
-    </div>
-    <div class="choice-grid">
-      <div class="choice-card" onclick="selectType('basic', this)">
-        <span class="coll-type-badge coll-type-neutral" style="background:#f0f0ee;color:#666">Value</span>
-        <div class="choice-icon">💡</div>
-        <div class="choice-title">Basic / Budget Traverse</div>
-        <div class="choice-desc">Telescoping Superfine Pro or flat Lockseam rod. White finish only. Great for bedrooms, rentals, or back rooms.</div>
-        <div class="choice-tag">Superfine Pro · Lockseam · Tension Rods</div>
-      </div>
-      <div class="choice-card" onclick="selectType('unsure', this)">
-        <span class="coll-type-badge coll-type-trad">Help me</span>
-        <div class="choice-icon">💬</div>
-        <div class="choice-title">Not Sure — Help Me Decide</div>
-        <div class="choice-desc">Skip the configurator and send us a message. We'll recommend the right system based on your space and drapery.</div>
-      </div>
-    </div>
-
-    <!-- auto-advances on type selection -->
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       STEP 2 — COLLECTION / SYSTEM
-  ═══════════════════════════════════════════ -->
-  <div class="section" id="sec-2">
-    <div class="sec-label">Step 2 of 7</div>
-    <div class="sec-title" id="sec2-title">Choose a Collection</div>
-    <div class="sec-sub" id="sec2-sub">Select the Kirsch collection that fits your design style.</div>
-
-    <!-- DECORATIVE STATIC/TRAVERSE collections -->
-    <div id="decor-collections">
-      <div class="collection-grid">
-        <div class="coll-card" onclick="selectCollection('dm', this)">
-          <div class="coll-swatch-strip">
-            <span style="background:#b8a882"></span>
-            <span style="background:#e8e0ce"></span>
-            <span style="background:#2a2a2a"></span>
-            <span style="background:#888"></span>
-            <span style="background:#8a6a30"></span>
-            <span style="background:#5a4820"></span>
-            <span style="background:#C9A96E"></span>
-            <span style="background:#3a3028"></span>
+        <!-- Step 1: Rod measurements -->
+        <div class="step-block" id="size-mount-block">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">1</div>
+            <div class="step-title" style="margin-bottom:0">Rod measurements</div>
           </div>
-          <div class="coll-body">
-            <div class="coll-name">Designer Metals™</div>
-            <div class="coll-sub">8 metal finishes — Elegant Brass, Gunmetal, Black, Satin Nickel, Brushed Bronze, Gilded Bronze, Antique Silver, Polished Nickel</div>
-            <div class="coll-chips">
-              <span class="coll-chip">1" · 1⅜" · 2"</span>
-              <span class="coll-chip">27 finials</span>
-              <span class="coll-chip coll-chip-gold">Estate Traverse</span>
-              <span class="coll-chip coll-chip-gold">AMP™ Ready</span>
+          <div class="dim-box">
+            <div class="dim-box-label">Enter your rod width</div>
+            <div class="form-group">
+              <label>Width</label>
+              <input type="number" id="rod-width" placeholder="96" min="1" max="480" step="0.125" oninput="updateSummary()">
+              <div class="dim-unit" id="rod-width-hint">inches &middot; rod length. Most poles extend 6"–12" per side beyond the window frame.</div>
             </div>
           </div>
-        </div>
-        <div class="coll-card" onclick="selectCollection('wt', this)">
-          <div class="coll-swatch-strip">
-            <span style="background:#1a1a1a"></span>
-            <span style="background:#4a2010"></span>
-            <span style="background:#3a1a08"></span>
-            <span style="background:#8a5228"></span>
-            <span style="background:#6a1a10"></span>
-            <span style="background:#c8a870"></span>
-            <span style="background:#d8c8a0"></span>
-            <span style="background:#f5f0e0"></span>
-            <span style="background:#e0d0b0"></span>
-          </div>
-          <div class="coll-body">
-            <div class="coll-name">Wood Trends™</div>
-            <div class="coll-sub">9 wood finishes — Black, Coffee, Dark Chocolate, Estate Oak, Mahogany, Marble, Truffle, White, Unfinished</div>
-            <div class="coll-chips">
-              <span class="coll-chip">1⅜" · 2"</span>
-              <span class="coll-chip">18 finials</span>
-              <span class="coll-chip coll-chip-gold">Estate Traverse</span>
-              <span class="coll-chip coll-chip-gold">AMP™ Ready</span>
+          <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="font-size:12px;color:#666">Qty:</span>
+            <div class="qty-btns">
+              <button class="qty-btn" type="button" onclick="kAdjQty('rod-qty',-1)">&#8722;</button>
+              <input class="qty-num" type="number" id="rod-qty" value="1" min="1" max="50" oninput="updateSummary()">
+              <button class="qty-btn" type="button" onclick="kAdjQty('rod-qty',1)">&#43;</button>
             </div>
           </div>
+          <div class="sub-label" style="margin-top:16px">Exact rod length &amp; brackets <span style="font-weight:400;color:#888">(optional)</span></div>
+          <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
+          <div id="pb-rod-spec"></div>
         </div>
-        <div class="coll-card" onclick="selectCollection('wi', this)">
-          <div class="coll-swatch-strip">
-            <span style="background:#111"></span>
-            <span style="background:#5a3a28"></span>
-            <span style="background:#8a3a10"></span>
-            <span style="background:#3a3a3a"></span>
-            <span style="background:#d0d0d0"></span>
-            <span style="background:#7a5040"></span>
+
+        <!-- Step 2: What will this rod be used for? -->
+        <div class="step-block" id="step-type">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">2</div>
+            <div class="step-title" style="margin-bottom:0">What will this rod be used for?</div>
           </div>
-          <div class="coll-body">
-            <div class="coll-name">Wrought Iron</div>
-            <div class="coll-sub">6 finishes — Black, Iron Oxide, Rust, Graphite, Chalk, Heirloom Copper. Sand-cast real wrought iron.</div>
-            <div class="coll-chips">
-              <span class="coll-chip">1" · 1⅜"</span>
-              <span class="coll-chip">18 finials</span>
-              <span class="coll-chip coll-chip-gold">1⅜" Estate</span>
-              <span class="coll-chip coll-chip-gold">AMP™ Ready</span>
+          <div class="opt-row" id="grp-type">
+            <button class="opt-btn" data-val="static" onclick="selectType('static',this)">Stationary / decorative pole</button>
+            <button class="opt-btn" data-val="traverse" onclick="selectType('traverse',this)">Traversing — opens &amp; closes</button>
+            <button class="opt-btn" data-val="basic" onclick="selectType('basic',this)">Basic / budget traverse <span class="pill-hint">value</span></button>
+            <button class="opt-btn" data-val="unsure" onclick="selectType('unsure',this)">Not sure — help me decide</button>
+          </div>
+          <div class="step-note" id="type-note">This determines which Kirsch system fits your project.</div>
+        </div>
+
+        <!-- Step 3: Collection / system -->
+        <div class="step-block" id="step-coll">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">3</div>
+            <div class="step-title" style="margin-bottom:0" id="sec2-title">Collection</div>
+          </div>
+          <div class="placeholder-note" id="coll-placeholder">Choose how the rod will be used above to see the Kirsch collections.</div>
+
+          <!-- Decorative collections -->
+          <div id="decor-collections" style="display:none">
+            <div class="opt-row" id="grp-coll">
+              <button class="opt-btn" data-val="dm" onclick="selectCollection('dm',this)">Designer Metals™</button>
+              <button class="opt-btn" data-val="wt" onclick="selectCollection('wt',this)">Wood Trends™</button>
+              <button class="opt-btn" data-val="wi" onclick="selectCollection('wi',this)">Wrought Iron</button>
             </div>
+            <div class="step-note" id="coll-note">All three decorative collections work as stationary poles. Rings slide on manually.</div>
+          </div>
+
+          <!-- Traverse: Estate vs Architrac -->
+          <div id="traverse-systems" style="display:none">
+            <div class="opt-row" id="grp-trav-sys">
+              <a class="opt-btn" href="kirsch-2in-estate-traverse.html" style="text-decoration:none">2″ Estate™ traverse rod — full configurator →</a>
+              <button class="opt-btn" data-val="architrac" onclick="selectTraverseSystem('architrac',this)">Architrac® functional track <span class="pill-hint">commercial</span></button>
+            </div>
+            <div class="step-note"><strong>Estate™</strong> — decorative traverse with exposed finials and fascia; 3 finish collections, 5 draw types, AMP™ motorization, bracket plan and stack-back calculator on its own configurator. <strong>Architrac®</strong> — industrial-grade concealed track, 7 models for residential, commercial, hospital, and bay/curved applications. Manual or AMP™ motorized (94001 only). Ceiling, wall, recessed, or suspension mount.</div>
+          </div>
+
+          <!-- Architrac model picker -->
+          <div id="architrac-model-picker" style="display:none">
+            <div class="sub-label">Architrac® model</div>
+            <div class="opt-row" id="grp-arch-model">
+              <button class="opt-btn" data-val="94001" onclick="selectArchitracModel('94001',this)">94001 <span class="pill-hint">best seller</span></button>
+              <button class="opt-btn" data-val="94003" onclick="selectArchitracModel('94003',this)">94003</button>
+              <button class="opt-btn" data-val="94004" onclick="selectArchitracModel('94004',this)">94004 <span class="pill-hint">best seller</span></button>
+              <button class="opt-btn" data-val="94005" onclick="selectArchitracModel('94005',this)">94005</button>
+              <button class="opt-btn" data-val="9046" onclick="selectArchitracModel('9046',this)">9046</button>
+              <button class="opt-btn" data-val="9600" onclick="selectArchitracModel('9600',this)">9600</button>
+              <button class="opt-btn" data-val="K-Rail" onclick="selectArchitracModel('K-Rail',this)">K-Rail</button>
+            </div>
+            <div class="step-note" id="arch-note">Each model has different mount options, bend/curve capability, and length limits. Choose the best fit for your project.</div>
+          </div>
+
+          <!-- Basic hardware -->
+          <div id="basic-options" style="display:none">
+            <div class="opt-row" id="grp-basic">
+              <button class="opt-btn" data-val="superfine" onclick="selectBasic('superfine',this)">Superfine Pro traverse rod</button>
+              <button class="opt-btn" data-val="lockseam" onclick="selectBasic('lockseam',this)">Lockseam rod</button>
+              <button class="opt-btn" data-val="tension" onclick="selectBasic('tension',this)">Spring tension / sash rod</button>
+            </div>
+            <div class="step-note" id="basic-note">All basic hardware is White finish only. Prices are lower than decorative collections — great for utility rooms, rentals, or any space where function matters more than aesthetics.</div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- TRAVERSE (Estate vs Architrac) -->
-    <div id="traverse-systems" style="display:none">
-      <div class="choice-grid">
-        <div class="choice-card" onclick="window.location='kirsch-2in-estate-traverse.html'">
-          <div class="choice-icon">🪩</div>
-          <div class="choice-title">2″ Estate™ Traverse Rod</div>
-          <div class="choice-desc">Decorative traverse with exposed finials and fascia. 3 finish collections, 5 draw types, AMP™ motorization, bracket spacing plan, drapery weight check, and stack-back calculator.</div>
-          <div class="choice-tag">Designer Metals · Wood Trends · Wrought Iron · AMP™ motorizable · Full configurator →</div>
-        </div>
-        <div class="choice-card" onclick="selectTraverseSystem('architrac', this)">
-          <div class="choice-icon">🔧</div>
-          <div class="choice-title">Architrac® Functional Track</div>
-          <div class="choice-desc">Industrial-grade concealed traverse track. 7 models for residential, commercial, hospital, and bay/curved applications. Manual or AMP™ motorized (94001 only). Ceiling, wall, recessed, or suspension mount.</div>
-          <div class="choice-tag">7 models · 94001 (Best Seller) · 94004 (Best Seller) · Curved/Bent options</div>
-          <div class="choice-badge">Commercial</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ARCHITRAC MODEL PICKER (shown after selecting Architrac) -->
-    <div id="architrac-model-picker" style="display:none;margin-top:20px">
-      <div class="sec-label" style="margin-top:0">Select Architrac® Model</div>
-      <div class="sec-sub" style="font-size:13px;margin-bottom:14px">Each model has different mount options, bend/curve capability, and length limits. Choose the best fit for your project.</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div class="choice-card" onclick="selectArchitracModel('94001', this)" style="padding:16px">
-          <div class="choice-badge" style="position:static;display:inline-block;margin-bottom:8px">Best Seller</div>
-          <div class="choice-title" style="font-size:14px">94001</div>
-          <div class="choice-desc" style="font-size:11px">Wall, ceiling, or recessed. One-way <strong>20ft / 80 lbs</strong> · Two-way <strong>40ft / 160 lbs</strong>. <strong>AMP™ motorized</strong> (max 16ft / 64 lbs). Draw: Hand, Cord, Baton, Duplex, Motorized. Bent (12" radius) or curved — manual only. Pleated &amp; Ripplefold™. Colors: White · Gray · Bronze · Black.</div>
-        </div>
-        <div class="choice-card" onclick="selectArchitracModel('94003', this)" style="padding:16px">
-          <div class="choice-title" style="font-size:14px">94003</div>
-          <div class="choice-desc" style="font-size:11px">Wall, ceiling, or recessed. One-way <strong>20ft / 80 lbs</strong> · Two-way <strong>40ft / 160 lbs</strong>. Draw: Hand &amp; Baton only. Can be bent (12" radius) or curved. Pleated &amp; Ripplefold™. Colors: White · Gray · Bronze · Black.</div>
-        </div>
-        <div class="choice-card" onclick="selectArchitracModel('94004', this)" style="padding:16px">
-          <div class="choice-badge" style="position:static;display:inline-block;margin-bottom:8px">Best Seller</div>
-          <div class="choice-title" style="font-size:14px">94004</div>
-          <div class="choice-desc" style="font-size:11px"><strong>Ceiling or recessed only.</strong> One-way <strong>16ft / 64 lbs</strong> · Two-way <strong>32ft / 128 lbs</strong>. Draw: Hand &amp; Baton only. <strong>Cannot be bent or curved.</strong> Low-profile ¾" track. Pre-drilled 16" on center. Pleated &amp; Ripplefold™. Colors: White · Gray · Bronze · Black.</div>
-        </div>
-        <div class="choice-card" onclick="selectArchitracModel('94005', this)" style="padding:16px">
-          <div class="choice-title" style="font-size:14px">94005</div>
-          <div class="choice-desc" style="font-size:11px"><strong>Ceiling or recessed only.</strong> One-way <strong>16ft / 64 lbs</strong> · Two-way <strong>32ft / 128 lbs</strong>. Draw: Hand &amp; Baton only. Can be bent (12" radius) or curved. Pre-drilled 16" on center. Pleated &amp; Ripplefold™. Colors: White · Gray · Bronze · Black.</div>
-        </div>
-        <div class="choice-card" onclick="selectArchitracModel('9046', this)" style="padding:16px">
-          <div class="choice-title" style="font-size:14px">9046</div>
-          <div class="choice-desc" style="font-size:11px">Ceiling or recessed only. One-way <strong>16ft / 64 lbs</strong> · Two-way <strong>32ft / 128 lbs</strong>. Draw: Hand &amp; Baton only. Bent (8" or 12" radius) or curved. Pleated only. Hospital/cubicle curtain track.</div>
-        </div>
-        <div class="choice-card" onclick="selectArchitracModel('9600', this)" style="padding:16px">
-          <div class="choice-title" style="font-size:14px">9600</div>
-          <div class="choice-desc" style="font-size:11px">Ceiling, wall, recessed, or <strong>suspension</strong> mount. One-way <strong>20ft / 80 lbs</strong> · Two-way <strong>40ft / 160 lbs</strong>. Draw: Hand &amp; Baton only. Bent (12" or 14" radius) or curved. Pleated only.</div>
-        </div>
-        <div class="choice-card" onclick="selectArchitracModel('K-Rail', this)" style="padding:16px">
-          <div class="choice-title" style="font-size:14px">K-Rail</div>
-          <div class="choice-desc" style="font-size:11px">Ceiling or wall mount. One-way <strong>16ft / 64 lbs</strong> · Two-way <strong>16ft / 64 lbs</strong>. Draw: Hand &amp; Baton only. <strong>Cannot be bent or curved.</strong> Pleated &amp; Ripplefold™. Compatible with Wrought Iron &amp; Wood Trends finials.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BASIC options -->
-    <div id="basic-options" style="display:none">
-      <div class="info-banner">All basic hardware is White finish only. Prices are lower than decorative collections — great for utility rooms, rentals, or any space where function matters more than aesthetics.</div>
-      <div class="choice-grid">
-        <div class="choice-card" onclick="selectBasic('superfine', this)">
-          <div class="choice-icon">⇔</div>
-          <div class="choice-title">Superfine Pro Traverse Rod</div>
-          <div class="choice-desc">Telescoping traverse rod. Single split draw (30"–228"), one-way draw (30"–120"), or double split draw (48"–156"). Continuous loop, baton, or hand draw. White only.</div>
-          <div class="choice-tag">Traversing · White only · Front return 2¾"–4½"</div>
-        </div>
-        <div class="choice-card" onclick="selectBasic('lockseam', this)">
-          <div class="choice-icon">≡</div>
-          <div class="choice-title">Lockseam Rod</div>
-          <div class="choice-desc">Flat-profile stationary curtain rods. ½" to 8½" face widths. Single, double (3½"+2½"), triple (5½"+3½"+2½"), or bay rod (78"–127"). White only.</div>
-          <div class="choice-tag">Stationary · White only</div>
-        </div>
-      </div>
-      <div class="choice-grid">
-        <div class="choice-card" onclick="selectBasic('tension', this)">
-          <div class="choice-icon">↕</div>
-          <div class="choice-title">Spring Tension / Sash Rod</div>
-          <div class="choice-desc">No brackets needed. Spring tension rods (⅝" oval 8"–72", ⁷⁄₁₆" 18"–48"), door sash rods (⁵⁄₁₆" 11"–36", ⁷⁄₁₆" 18"–28"), or flat sash (¹¹⁄₁₆" 16"–50"). Mostly White; Zinc available on door sash.</div>
-          <div class="choice-tag">Tension / Sash · White &amp; Zinc</div>
-        </div>
-        <div class="choice-card" onclick="goSection('unsure-form')">
-          <div class="choice-icon">💬</div>
-          <div class="choice-title">Not Sure</div>
-          <div class="choice-desc">Tell us about your space and we'll recommend the right rod system and size.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- UNSURE -->
-    <div id="unsure-options" style="display:none">
-      <div class="info-banner">No problem — fill in what you know below and our team will recommend the right hardware for your space.</div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(1)">← Back</button>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       STEP 3 — FINISH / COLOR
-  ═══════════════════════════════════════════ -->
-  <div class="section" id="sec-3">
-    <div class="sec-label">Step 3 of 7</div>
-    <div class="sec-title">Choose Your Finish</div>
-    <div class="sec-sub">Select the finish that best matches your space. We can source finishes not listed — just let us know in the notes.</div>
-
+        <!-- Step 4: Finish -->
+        <div class="step-block" id="step-finish">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">4</div>
+            <div class="step-title" style="margin-bottom:0">Finish</div>
+          </div>
+          <div class="placeholder-note" id="finish-placeholder">Choose a collection above to see its finishes.</div>
     <!-- Designer Metals finishes -->
     <div id="finish-dm" style="display:none">
       <div class="finish-grid">
@@ -530,157 +300,177 @@ textarea.inp-field{resize:vertical;min-height:90px}
       </div>
     </div>
 
-    <!-- Architrac colors -->
-    <div id="finish-arch" style="display:none">
-      <div class="info-banner"><strong>All Architrac® models</strong> are available in 4 track colors: White, Gray, Bronze, and Black. Track is concealed behind drapery. Color part numbers shown in the size step after model selection.</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="selectFinish('White');this.classList.toggle('sel')">White</div>
-        <div class="opt-pill" onclick="selectFinish('Gray');this.classList.toggle('sel')">Gray</div>
-        <div class="opt-pill" onclick="selectFinish('Bronze');this.classList.toggle('sel')">Bronze</div>
-        <div class="opt-pill" onclick="selectFinish('Black');this.classList.toggle('sel')">Black</div>
+          <!-- Architrac colors -->
+          <div id="finish-arch" style="display:none">
+            <div class="opt-row">
+              <button class="opt-btn" onclick="selectFinish('White',this)">White</button>
+              <button class="opt-btn" onclick="selectFinish('Gray',this)">Gray</button>
+              <button class="opt-btn" onclick="selectFinish('Bronze',this)">Bronze</button>
+              <button class="opt-btn" onclick="selectFinish('Black',this)">Black</button>
+            </div>
+            <div class="step-note" style="margin-top:-6px"><strong>All Architrac® models</strong> are available in 4 track colors: White, Gray, Bronze, and Black. Track is concealed behind drapery.</div>
+          </div>
+
+          <!-- Basic White note -->
+          <div id="finish-basic" style="display:none">
+            <div class="info-banner"><strong>Finish:</strong> Superfine Pro, Lockseam, and most Tension/Sash rods are <strong>White only</strong>. Exception: the Zinc Door Sash Tension Rod (20"–36") is available in Zinc finish.</div>
+          </div>
+          <div class="step-note" id="finish-note">We can source finishes not listed — just let us know in the notes.</div>
+        </div>
+
+        <!-- Step 5: Pole diameter & style (stationary poles) -->
+        <div class="step-block" id="step-dia" style="display:none">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">5</div>
+            <div class="step-title" style="margin-bottom:0">Pole diameter</div>
+          </div>
+    <!-- POLE SIZE (stationary decorative) -->
+    <div id="sz-pole-diameter" style="display:none">
+      <div class="sub-label" style="margin-top:0">Pole diameter</div>
+      <div class="opt-row" id="pole-dia-opts">
+        <!-- filled by JS based on collection -->
       </div>
     </div>
 
-    <!-- Basic White note -->
-    <div id="finish-basic" style="display:none">
-      <div class="info-banner"><strong>Finish:</strong> Superfine Pro, Lockseam, and most Tension/Sash rods are <strong>White only</strong>. Exception: the Zinc Door Sash Tension Rod (20"–36") is available in Zinc finish.</div>
+    <!-- POLE STYLE (smooth vs fluted — Wood Trends only) -->
+    <div id="sz-pole-style" style="display:none">
+      <div class="sub-label" style="margin-top:12px">Pole style</div>
+      <div class="opt-row">
+        <button class="opt-btn" onclick="S.poleStyle='Smooth';toggleOptPill(this,'polestyle')">Smooth</button>
+        <button class="opt-btn" onclick="S.poleStyle='Fluted';toggleOptPill(this,'polestyle')">Fluted</button>
+      </div>
     </div>
+        </div>
 
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(2)">← Back</button>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       STEP 4 — FINIAL / STYLE DETAIL
-  ═══════════════════════════════════════════ -->
-  <div class="section" id="sec-4">
-    <div class="sec-label">Step 4 of 7</div>
-    <div class="sec-title" id="sec4-title">Choose a Finial</div>
-    <div class="sec-sub" id="sec4-sub">Finials attach to the ends of stationary poles or Estate traverse rods as a decorative cap.</div>
-
+        <!-- Step 6: Finial -->
+        <div class="step-block" id="step-finial">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">6</div>
+            <div class="step-title" style="margin-bottom:0" id="sec4-title">Finial</div>
+          </div>
+          <div class="placeholder-note" id="finial-placeholder">Choose a collection above to see its finials.</div>
     <!-- Designer Metals 1" finials -->
     <div id="finials-dm-1" style="display:none">
-      <div class="sec-label" style="margin-top:0">1" Finials — Designer Metals™</div>
-      <div class="finial-grid">
-        <div class="finial-card" onclick="selectFinial('Fitz', this)"><div class="finial-art">⬙</div><div class="finial-name">Fitz</div><div class="finial-desc">¾" deep · flat cap</div></div>
-        <div class="finial-card" onclick="selectFinial('Gavin', this)"><div class="finial-art">🔮</div><div class="finial-name">Gavin</div><div class="finial-desc">2-10/16" deep</div></div>
-        <div class="finial-card" onclick="selectFinial('Maxwell', this)"><div class="finial-art">●</div><div class="finial-name">Maxwell</div><div class="finial-desc">2" deep</div></div>
-        <div class="finial-card" id="finial-maxwell-duotone" onclick="selectDMFinial('Maxwell Duotone',this)"><div class="finial-art">⬤</div><div class="finial-name">Maxwell Duotone</div><div class="finial-desc">2 combos only</div><div style="font-size:9px;color:var(--gold);font-weight:600;margin-top:3px">SPECIAL FINISH ↓</div></div>
-        <div class="finial-card" onclick="selectFinial('Milo', this)"><div class="finial-art">◍</div><div class="finial-name">Milo</div><div class="finial-desc">2-1/16" deep</div></div>
-        <div class="finial-card" onclick="selectFinial('Soren', this)"><div class="finial-art">⬡</div><div class="finial-name">Soren</div><div class="finial-desc">2½" deep</div></div>
-        <div class="finial-card" onclick="selectFinial('Turin', this)"><div class="finial-art">▸◂</div><div class="finial-name">Turin</div><div class="finial-desc">3½" deep · elongated</div></div>
+      <div class="sub-label" style="margin-top:0">1" finials — Designer Metals™</div>
+      <div class="opt-row">
+        <button class="opt-btn" data-desc="¾&quot; deep · flat cap" onclick="selectFinial('Fitz', this)">Fitz</button>
+        <button class="opt-btn" data-desc="2-10/16&quot; deep" onclick="selectFinial('Gavin', this)">Gavin</button>
+        <button class="opt-btn" data-desc="2&quot; deep" onclick="selectFinial('Maxwell', this)">Maxwell</button>
+        <button class="opt-btn" id="finial-maxwell-duotone" data-desc="2 combos only" onclick="selectDMFinial('Maxwell Duotone',this)">Maxwell Duotone <span class="pill-hint">special finish</span></button>
+        <button class="opt-btn" data-desc="2-1/16&quot; deep" onclick="selectFinial('Milo', this)">Milo</button>
+        <button class="opt-btn" data-desc="2½&quot; deep" onclick="selectFinial('Soren', this)">Soren</button>
+        <button class="opt-btn" data-desc="3½&quot; deep · elongated" onclick="selectFinial('Turin', this)">Turin</button>
       </div>
     </div>
 
     <!-- Designer Metals 1⅜" finials -->
     <div id="finials-dm-138" style="display:none">
-      <div class="sec-label" style="margin-top:0">1⅜" Finials — Designer Metals™</div>
-      <div class="finial-grid">
-        <div class="finial-card" onclick="selectFinial('Archer', this)"><div class="finial-art">⊕</div><div class="finial-name">Archer</div><div class="finial-desc">4" deep · cage style</div></div>
-        <div class="finial-card" onclick="selectFinial('Briggs', this)"><div class="finial-art">◑</div><div class="finial-name">Briggs</div><div class="finial-desc">3-7/16" deep</div></div>
-        <div class="finial-card" id="finial-briggs-duotone" onclick="selectDMFinial('Briggs Duotone',this)"><div class="finial-art">◐</div><div class="finial-name">Briggs Duotone</div><div class="finial-desc">2 combos only</div><div style="font-size:9px;color:var(--gold);font-weight:600;margin-top:3px">SPECIAL FINISH ↓</div></div>
-        <div class="finial-card" onclick="selectFinial('Corsa', this)"><div class="finial-art">⬢</div><div class="finial-name">Corsa</div><div class="finial-desc">1⅝" deep · short cap</div></div>
-        <div class="finial-card" onclick="selectFinial('Elmore', this)"><div class="finial-art">⬟</div><div class="finial-name">Elmore</div><div class="finial-desc">3" deep</div></div>
-        <div class="finial-card" onclick="selectFinial('Emerson', this)"><div class="finial-art">⬠</div><div class="finial-name">Emerson</div><div class="finial-desc">2⅞" deep</div></div>
-        <div class="finial-card" onclick="selectFinial('Europa', this)"><div class="finial-art">💎</div><div class="finial-name">Europa</div><div class="finial-desc">3" deep · crystal accent</div></div>
-        <div class="finial-card" onclick="selectFinial('Harlow', this)"><div class="finial-art">⬕</div><div class="finial-name">Harlow</div><div class="finial-desc">4" deep · flat disc</div></div>
-        <div class="finial-card" onclick="selectFinial('Lenn', this)"><div class="finial-art">💠</div><div class="finial-name">Lenn</div><div class="finial-desc">1-15/16" deep · crystal</div></div>
-        <div class="finial-card" onclick="selectFinial('Odessa', this)"><div class="finial-art">⊛</div><div class="finial-name">Odessa</div><div class="finial-desc">3-7/32" deep · ribbed</div></div>
-        <div class="finial-card" onclick="selectFinial('Pandora', this)"><div class="finial-art">⬤</div><div class="finial-name">Pandora</div><div class="finial-desc">4" deep · ball</div></div>
-        <div class="finial-card" onclick="selectFinial('Quinn', this)"><div class="finial-art">◈</div><div class="finial-name">Quinn</div><div class="finial-desc">3-3/16" deep · faceted</div></div>
-        <div class="finial-card" onclick="selectFinial('Rao', this)"><div class="finial-art">⬙</div><div class="finial-name">Rao</div><div class="finial-desc">⅞" deep · low-profile</div></div>
-        <div class="finial-card" onclick="selectFinial('Stratta', this)"><div class="finial-art">▪</div><div class="finial-name">Stratta</div><div class="finial-desc">2¼" deep · square-ish</div></div>
-        <div class="finial-card" onclick="selectFinial('Vivien', this)"><div class="finial-art">⬥</div><div class="finial-name">Vivien</div><div class="finial-desc">3⅝" deep</div></div>
-      </div>
-      <div class="sec-label" style="margin-top:20px">Or choose an Endcap (no decorative projection)</div>
+      <div class="sub-label" style="margin-top:0">1⅜" finials — Designer Metals™</div>
       <div class="opt-row">
-        <div class="opt-pill" onclick="selectFinial('Round Endcap');toggleOptPill(this)">Round Endcap</div>
-        <div class="opt-pill" onclick="selectFinial('Square Endcap');toggleOptPill(this)">Square Endcap</div>
+        <button class="opt-btn" data-desc="4&quot; deep · cage style" onclick="selectFinial('Archer', this)">Archer</button>
+        <button class="opt-btn" data-desc="3-7/16&quot; deep" onclick="selectFinial('Briggs', this)">Briggs</button>
+        <button class="opt-btn" id="finial-briggs-duotone" data-desc="2 combos only" onclick="selectDMFinial('Briggs Duotone',this)">Briggs Duotone <span class="pill-hint">special finish</span></button>
+        <button class="opt-btn" data-desc="1⅝&quot; deep · short cap" onclick="selectFinial('Corsa', this)">Corsa</button>
+        <button class="opt-btn" data-desc="3&quot; deep" onclick="selectFinial('Elmore', this)">Elmore</button>
+        <button class="opt-btn" data-desc="2⅞&quot; deep" onclick="selectFinial('Emerson', this)">Emerson</button>
+        <button class="opt-btn" data-desc="3&quot; deep · crystal accent" onclick="selectFinial('Europa', this)">Europa</button>
+        <button class="opt-btn" data-desc="4&quot; deep · flat disc" onclick="selectFinial('Harlow', this)">Harlow</button>
+        <button class="opt-btn" data-desc="1-15/16&quot; deep · crystal" onclick="selectFinial('Lenn', this)">Lenn</button>
+        <button class="opt-btn" data-desc="3-7/32&quot; deep · ribbed" onclick="selectFinial('Odessa', this)">Odessa</button>
+        <button class="opt-btn" data-desc="4&quot; deep · ball" onclick="selectFinial('Pandora', this)">Pandora</button>
+        <button class="opt-btn" data-desc="3-3/16&quot; deep · faceted" onclick="selectFinial('Quinn', this)">Quinn</button>
+        <button class="opt-btn" data-desc="⅞&quot; deep · low-profile" onclick="selectFinial('Rao', this)">Rao</button>
+        <button class="opt-btn" data-desc="2¼&quot; deep · square-ish" onclick="selectFinial('Stratta', this)">Stratta</button>
+        <button class="opt-btn" data-desc="3⅝&quot; deep" onclick="selectFinial('Vivien', this)">Vivien</button>
+      </div>
+      <div class="sub-label" style="margin-top:20px">Or choose an endcap (no decorative projection)</div>
+      <div class="opt-row">
+        <button class="opt-btn" onclick="selectFinial('Round Endcap',this)">Round Endcap</button>
+        <button class="opt-btn" onclick="selectFinial('Square Endcap',this)">Square Endcap</button>
       </div>
     </div>
 
     <!-- Designer Metals 2" finials -->
     <div id="finials-dm-2" style="display:none">
-      <div class="sec-label" style="margin-top:0">2" Finials — Designer Metals™</div>
-      <div class="finial-grid">
-        <div class="finial-card" onclick="selectFinial('Corsa', this)"><div class="finial-art">⬢</div><div class="finial-name">Corsa</div><div class="finial-desc">4¼" deep</div></div>
-        <div class="finial-card" onclick="selectFinial('Europa', this)"><div class="finial-art">💎</div><div class="finial-name">Europa</div><div class="finial-desc">2¼" deep · crystal</div></div>
-        <div class="finial-card" onclick="selectFinial('Pandora', this)"><div class="finial-art">⬤</div><div class="finial-name">Pandora</div><div class="finial-desc">5⅜" deep · ball</div></div>
-        <div class="finial-card" onclick="selectFinial('Rao', this)"><div class="finial-art">⬙</div><div class="finial-name">Rao</div><div class="finial-desc">1⅛" deep · low-profile</div></div>
-        <div class="finial-card" onclick="selectFinial('Stratta', this)"><div class="finial-art">▪</div><div class="finial-name">Stratta</div><div class="finial-desc">3⅛" deep · square-ish</div></div>
+      <div class="sub-label" style="margin-top:0">2" finials — Designer Metals™</div>
+      <div class="opt-row">
+        <button class="opt-btn" data-desc="4¼&quot; deep" onclick="selectFinial('Corsa', this)">Corsa</button>
+        <button class="opt-btn" data-desc="2¼&quot; deep · crystal" onclick="selectFinial('Europa', this)">Europa</button>
+        <button class="opt-btn" data-desc="5⅜&quot; deep · ball" onclick="selectFinial('Pandora', this)">Pandora</button>
+        <button class="opt-btn" data-desc="1⅛&quot; deep · low-profile" onclick="selectFinial('Rao', this)">Rao</button>
+        <button class="opt-btn" data-desc="3⅛&quot; deep · square-ish" onclick="selectFinial('Stratta', this)">Stratta</button>
       </div>
     </div>
 
     <!-- Wrought Iron 1" finials -->
     <div id="finials-wi-1" style="display:none">
-      <div class="sec-label" style="margin-top:0">1" Finials — Wrought Iron</div>
-      <div class="finial-grid">
-        <div class="finial-card" onclick="selectFinial('Axiom', this)"><div class="finial-art">⊕</div><div class="finial-name">Axiom</div><div class="finial-desc">3¼"D · cross-ring design</div></div>
-        <div class="finial-card" onclick="selectFinial('Darby', this)"><div class="finial-art">⧊</div><div class="finial-name">Darby</div><div class="finial-desc">2-7/16"D · ribbed cylinder</div></div>
-        <div class="finial-card" onclick="selectFinial('Lincoln', this)"><div class="finial-art">⬛</div><div class="finial-name">Lincoln</div><div class="finial-desc">2¼"D · flat block</div></div>
-        <div class="finial-card" onclick="selectFinial('Otto', this)"><div class="finial-art">●</div><div class="finial-name">Otto</div><div class="finial-desc">2-1/16"D · round knob</div></div>
-        <div class="finial-card" onclick="selectFinial('Pedestal Ball', this)"><div class="finial-art">⬤</div><div class="finial-name">Pedestal Ball</div><div class="finial-desc">3¼"D · ball on base</div></div>
-        <div class="finial-card" onclick="selectFinial('Petite Faucet', this)"><div class="finial-art">⬙</div><div class="finial-name">Petite Faucet</div><div class="finial-desc">1¾"D · small square</div></div>
-        <div class="finial-card" onclick="selectFinial('Petite Modern Ball', this)"><div class="finial-art">◉</div><div class="finial-name">Petite Modern Ball</div><div class="finial-desc">2"D · small ball</div></div>
-        <div class="finial-card" onclick="selectFinial('Ponce', this)"><div class="finial-art">▸</div><div class="finial-name">Ponce</div><div class="finial-desc">4-13/16"D · elongated spear</div></div>
-        <div class="finial-card" onclick="selectFinial('Endcap', this)"><div class="finial-art">⬙</div><div class="finial-name">Endcap</div><div class="finial-desc">⅞"D · flat disc</div></div>
+      <div class="sub-label" style="margin-top:0">1" finials — Wrought Iron</div>
+      <div class="opt-row">
+        <button class="opt-btn" data-desc="3¼&quot;D · cross-ring design" onclick="selectFinial('Axiom', this)">Axiom</button>
+        <button class="opt-btn" data-desc="2-7/16&quot;D · ribbed cylinder" onclick="selectFinial('Darby', this)">Darby</button>
+        <button class="opt-btn" data-desc="2¼&quot;D · flat block" onclick="selectFinial('Lincoln', this)">Lincoln</button>
+        <button class="opt-btn" data-desc="2-1/16&quot;D · round knob" onclick="selectFinial('Otto', this)">Otto</button>
+        <button class="opt-btn" data-desc="3¼&quot;D · ball on base" onclick="selectFinial('Pedestal Ball', this)">Pedestal Ball</button>
+        <button class="opt-btn" data-desc="1¾&quot;D · small square" onclick="selectFinial('Petite Faucet', this)">Petite Faucet</button>
+        <button class="opt-btn" data-desc="2&quot;D · small ball" onclick="selectFinial('Petite Modern Ball', this)">Petite Modern Ball</button>
+        <button class="opt-btn" data-desc="4-13/16&quot;D · elongated spear" onclick="selectFinial('Ponce', this)">Ponce</button>
+        <button class="opt-btn" data-desc="⅞&quot;D · flat disc" onclick="selectFinial('Endcap', this)">Endcap</button>
       </div>
     </div>
 
     <!-- Wrought Iron 1⅜" finials -->
     <div id="finials-wi-138" style="display:none">
-      <div class="sec-label" style="margin-top:0">1⅜" Finials — Wrought Iron</div>
-      <div class="finial-grid">
-        <div class="finial-card" onclick="selectFinial('Axiom', this)"><div class="finial-art">⊕</div><div class="finial-name">Axiom</div><div class="finial-desc">3-13/16"D · cross-ring</div></div>
-        <div class="finial-card" onclick="selectFinial('Darby', this)"><div class="finial-art">⧊</div><div class="finial-name">Darby</div><div class="finial-desc">3¼"D · ribbed cylinder</div></div>
-        <div class="finial-card" onclick="selectFinial('Lincoln', this)"><div class="finial-art">⬛</div><div class="finial-name">Lincoln</div><div class="finial-desc">2⅝"D · flat block</div></div>
-        <div class="finial-card" onclick="selectFinial('Otto', this)"><div class="finial-art">●</div><div class="finial-name">Otto</div><div class="finial-desc">2-9/16"D · knob</div></div>
-        <div class="finial-card" onclick="selectFinial('Pedestal Ball', this)"><div class="finial-art">⬤</div><div class="finial-name">Pedestal Ball</div><div class="finial-desc">4⅞"D · ball on base</div></div>
-        <div class="finial-card" onclick="selectFinial('Petite Faucet', this)"><div class="finial-art">⬙</div><div class="finial-name">Petite Faucet</div><div class="finial-desc">2⅜"D · small square</div></div>
-        <div class="finial-card" onclick="selectFinial('Petite Modern Ball', this)"><div class="finial-art">◉</div><div class="finial-name">Petite Modern Ball</div><div class="finial-desc">3⅜"D · small ball</div></div>
-        <div class="finial-card" onclick="selectFinial('Ponce', this)"><div class="finial-art">▸</div><div class="finial-name">Ponce</div><div class="finial-desc">5½"D · elongated spear</div></div>
-        <div class="finial-card" onclick="selectFinial('Endcap', this)"><div class="finial-art">⬙</div><div class="finial-name">Endcap</div><div class="finial-desc">1⅛"D · flat disc</div></div>
+      <div class="sub-label" style="margin-top:0">1⅜" finials — Wrought Iron</div>
+      <div class="opt-row">
+        <button class="opt-btn" data-desc="3-13/16&quot;D · cross-ring" onclick="selectFinial('Axiom', this)">Axiom</button>
+        <button class="opt-btn" data-desc="3¼&quot;D · ribbed cylinder" onclick="selectFinial('Darby', this)">Darby</button>
+        <button class="opt-btn" data-desc="2⅝&quot;D · flat block" onclick="selectFinial('Lincoln', this)">Lincoln</button>
+        <button class="opt-btn" data-desc="2-9/16&quot;D · knob" onclick="selectFinial('Otto', this)">Otto</button>
+        <button class="opt-btn" data-desc="4⅞&quot;D · ball on base" onclick="selectFinial('Pedestal Ball', this)">Pedestal Ball</button>
+        <button class="opt-btn" data-desc="2⅜&quot;D · small square" onclick="selectFinial('Petite Faucet', this)">Petite Faucet</button>
+        <button class="opt-btn" data-desc="3⅜&quot;D · small ball" onclick="selectFinial('Petite Modern Ball', this)">Petite Modern Ball</button>
+        <button class="opt-btn" data-desc="5½&quot;D · elongated spear" onclick="selectFinial('Ponce', this)">Ponce</button>
+        <button class="opt-btn" data-desc="1⅛&quot;D · flat disc" onclick="selectFinial('Endcap', this)">Endcap</button>
       </div>
     </div>
 
     <!-- Wood Trends 1⅜" finials -->
     <div id="finials-wt-138" style="display:none">
-      <div class="sec-label" style="margin-top:0">1⅜" Finials — Wood Trends™</div>
+      <div class="sub-label" style="margin-top:0">1⅜" finials — Wood Trends™</div>
       <div class="info-banner" style="margin-bottom:14px"><strong>Sold as pairs · 10 pairs/box.</strong> Available in all 9 finishes. <strong>Note:</strong> Button Ball is not available in Unfinished finish. <strong>K-Rail compatible:</strong> All 1⅜" Wood Trends™ finials also fit Kirsch Architrac® K-Rail Traverse Rods — note K-Rail compatibility in Step 7 if needed.</div>
-      <div class="finial-grid">
-        <div class="finial-card" onclick="selectFinial('Button Ball', this)"><div class="finial-art">●</div><div class="finial-name">Button Ball</div><div class="finial-desc">3½"D · 2½"H · 2½"W · Not in Unfinished</div></div>
-        <div class="finial-card" onclick="selectFinial('Chaucer', this)"><div class="finial-art">◍</div><div class="finial-name">Chaucer</div><div class="finial-desc">3¾"D · 3¼"H · 3¼"W · turned classic</div></div>
-        <div class="finial-card" onclick="selectFinial('Ethan', this)"><div class="finial-art">⬙</div><div class="finial-name">Ethan</div><div class="finial-desc">2¾"D · 3¼"H · 3¼"W · knob style</div></div>
-        <div class="finial-card" onclick="selectFinial('Hugo', this)"><div class="finial-art">⬤</div><div class="finial-name">Hugo</div><div class="finial-desc">2"D · 2½"H · 2½"W · barrel cap</div></div>
-        <div class="finial-card" onclick="selectFinial('Miller', this)"><div class="finial-art">◑</div><div class="finial-name">Miller</div><div class="finial-desc">2⅜"D · 3"H · 3"W · oval</div></div>
-        <div class="finial-card" onclick="selectFinial('Sherwood', this)"><div class="finial-art">⬡</div><div class="finial-name">Sherwood</div><div class="finial-desc">3¾"D · 2¾"H · 2¾"W · urn</div></div>
-        <div class="finial-card" onclick="selectFinial('Warren', this)"><div class="finial-art">⊕</div><div class="finial-name">Warren</div><div class="finial-desc">1¼"D · 2½"H · 2½"W · disc</div></div>
-        <div class="finial-card" onclick="selectFinial('Wood Ball', this)"><div class="finial-art">⬤</div><div class="finial-name">Wood Ball</div><div class="finial-desc">3½"D · 2½"H · 2½"W · classic ball</div></div>
-      </div>
-      <div class="sec-label" style="margin-top:14px">Or choose an Endcap (flush, no projection)</div>
       <div class="opt-row">
-        <div class="opt-pill" onclick="selectFinial('Endcap 1⅜&quot;');toggleOptPill(this,'wt-end')">Endcap — ¾"D · 2"H · all 9 finishes</div>
+        <button class="opt-btn" data-desc="3½&quot;D · 2½&quot;H · 2½&quot;W · Not in Unfinished" onclick="selectFinial('Button Ball', this)">Button Ball</button>
+        <button class="opt-btn" data-desc="3¾&quot;D · 3¼&quot;H · 3¼&quot;W · turned classic" onclick="selectFinial('Chaucer', this)">Chaucer</button>
+        <button class="opt-btn" data-desc="2¾&quot;D · 3¼&quot;H · 3¼&quot;W · knob style" onclick="selectFinial('Ethan', this)">Ethan</button>
+        <button class="opt-btn" data-desc="2&quot;D · 2½&quot;H · 2½&quot;W · barrel cap" onclick="selectFinial('Hugo', this)">Hugo</button>
+        <button class="opt-btn" data-desc="2⅜&quot;D · 3&quot;H · 3&quot;W · oval" onclick="selectFinial('Miller', this)">Miller</button>
+        <button class="opt-btn" data-desc="3¾&quot;D · 2¾&quot;H · 2¾&quot;W · urn" onclick="selectFinial('Sherwood', this)">Sherwood</button>
+        <button class="opt-btn" data-desc="1¼&quot;D · 2½&quot;H · 2½&quot;W · disc" onclick="selectFinial('Warren', this)">Warren</button>
+        <button class="opt-btn" data-desc="3½&quot;D · 2½&quot;H · 2½&quot;W · classic ball" onclick="selectFinial('Wood Ball', this)">Wood Ball</button>
+      </div>
+      <div class="sub-label" style="margin-top:14px">Or choose an endcap (flush, no projection)</div>
+      <div class="opt-row">
+        <button class="opt-btn" onclick="selectFinial('Endcap 1⅜&quot;',this)">Endcap — ¾"D · 2"H · all 9 finishes</button>
       </div>
     </div>
 
     <!-- Wood Trends 2" finials -->
     <div id="finials-wt-2" style="display:none">
-      <div class="sec-label" style="margin-top:0">2" Finials — Wood Trends™</div>
+      <div class="sub-label" style="margin-top:0">2" finials — Wood Trends™</div>
       <div class="info-banner" style="margin-bottom:14px"><strong>Sold as pairs · 10 pairs/box.</strong> All 9 finishes including Unfinished available on all 2" styles. <strong>Ceiling mount note:</strong> Finial choices may be limited for ceiling-mounted Estate™ rods — confirm availability when using a ceiling bracket.</div>
-      <div class="finial-grid">
-        <div class="finial-card" onclick="selectFinial('Button Ball', this)"><div class="finial-art">●</div><div class="finial-name">Button Ball</div><div class="finial-desc">4⅝"D · 3½"H · 3½"W</div></div>
-        <div class="finial-card" onclick="selectFinial('Chaucer', this)"><div class="finial-art">◍</div><div class="finial-name">Chaucer</div><div class="finial-desc">4⅜"D · 3¾"H · 3¾"W · turned</div></div>
-        <div class="finial-card" onclick="selectFinial('Ethan', this)"><div class="finial-art">⬙</div><div class="finial-name">Ethan</div><div class="finial-desc">4"D · 4¾"H · 4¾"W · knob</div></div>
-        <div class="finial-card" onclick="selectFinial('Hugo', this)"><div class="finial-art">⬤</div><div class="finial-name">Hugo</div><div class="finial-desc">2⅞"D · 3¾"H · 3¾"W · barrel</div></div>
-        <div class="finial-card" onclick="selectFinial('Miller', this)"><div class="finial-art">◑</div><div class="finial-name">Miller</div><div class="finial-desc">3½"D · 4½"H · 4½"W · oval</div></div>
-        <div class="finial-card" onclick="selectFinial('Sherwood', this)"><div class="finial-art">⬡</div><div class="finial-name">Sherwood</div><div class="finial-desc">5"D · 3"H · 3"W · urn</div></div>
-        <div class="finial-card" onclick="selectFinial('Warren', this)"><div class="finial-art">⊕</div><div class="finial-name">Warren</div><div class="finial-desc">1⅞"D · 3¾"H · 3¾"W · disc</div></div>
-        <div class="finial-card" onclick="selectFinial('Wood Ball', this)"><div class="finial-art">⬤</div><div class="finial-name">Wood Ball</div><div class="finial-desc">5¼"D · 3¾"H · 3¾"W · ball</div></div>
-      </div>
-      <div class="sec-label" style="margin-top:14px">Or choose an Endcap (flush, no projection)</div>
       <div class="opt-row">
-        <div class="opt-pill" onclick="selectFinial('Endcap 2&quot;');toggleOptPill(this,'wt-end')">Endcap — 1⅜"D · 3"H · all 9 finishes</div>
+        <button class="opt-btn" data-desc="4⅝&quot;D · 3½&quot;H · 3½&quot;W" onclick="selectFinial('Button Ball', this)">Button Ball</button>
+        <button class="opt-btn" data-desc="4⅜&quot;D · 3¾&quot;H · 3¾&quot;W · turned" onclick="selectFinial('Chaucer', this)">Chaucer</button>
+        <button class="opt-btn" data-desc="4&quot;D · 4¾&quot;H · 4¾&quot;W · knob" onclick="selectFinial('Ethan', this)">Ethan</button>
+        <button class="opt-btn" data-desc="2⅞&quot;D · 3¾&quot;H · 3¾&quot;W · barrel" onclick="selectFinial('Hugo', this)">Hugo</button>
+        <button class="opt-btn" data-desc="3½&quot;D · 4½&quot;H · 4½&quot;W · oval" onclick="selectFinial('Miller', this)">Miller</button>
+        <button class="opt-btn" data-desc="5&quot;D · 3&quot;H · 3&quot;W · urn" onclick="selectFinial('Sherwood', this)">Sherwood</button>
+        <button class="opt-btn" data-desc="1⅞&quot;D · 3¾&quot;H · 3¾&quot;W · disc" onclick="selectFinial('Warren', this)">Warren</button>
+        <button class="opt-btn" data-desc="5¼&quot;D · 3¾&quot;H · 3¾&quot;W · ball" onclick="selectFinial('Wood Ball', this)">Wood Ball</button>
+      </div>
+      <div class="sub-label" style="margin-top:14px">Or choose an endcap (flush, no projection)</div>
+      <div class="opt-row">
+        <button class="opt-btn" onclick="selectFinial('Endcap 2&quot;',this)">Endcap — 1⅜"D · 3"H · all 9 finishes</button>
       </div>
     </div>
 
@@ -696,101 +486,61 @@ textarea.inp-field{resize:vertical;min-height:90px}
 
     <!-- ── DM DUOTONE PICKER ── shown when Maxwell or Briggs Duotone selected -->
     <div id="dm-duotone-picker" style="display:none;margin-top:16px;padding:16px 18px;background:var(--gold-mid);border:1.5px solid rgba(45,224,193,.4);border-radius:12px">
-      <div class="sec-label" style="margin-top:0;color:#0A4A42">Duotone Finish Combination — Required</div>
+      <div class="sub-label" style="margin-top:0;color:#0A4A42">Duotone finish combination — required</div>
       <div style="font-size:13px;color:#555;line-height:1.65;margin-bottom:12px">Duotone finials are <strong>NOT available in your main rod finish.</strong> They are factory-made in exactly 2 specific color combinations. Your rod body keeps its selected finish; only the finial tip uses the Duotone pair below.</div>
       <div class="opt-row" id="grp-dm-duotone">
-        <div class="opt-pill" onclick="selectDuotonePair('Black + Brushed Bronze',this)">Black + Brushed Bronze<span style="font-size:10px;color:#888;display:block;margin-top:2px">1": #1043043 · 1⅜": Briggs series</span></div>
-        <div class="opt-pill" onclick="selectDuotonePair('Black + Satin Nickel',this)">Black + Satin Nickel<span style="font-size:10px;color:#888;display:block;margin-top:2px">1": #1043044 · 1⅜": Briggs series</span></div>
+        <button class="opt-btn" onclick="selectDuotonePair('Black + Brushed Bronze',this)">Black + Brushed Bronze<span style="font-size:10px;color:#888;display:block;margin-top:2px">1": #1043043 · 1⅜": Briggs series</span></button>
+        <button class="opt-btn" onclick="selectDuotonePair('Black + Satin Nickel',this)">Black + Satin Nickel<span style="font-size:10px;color:#888;display:block;margin-top:2px">1": #1043044 · 1⅜": Briggs series</span></button>
       </div>
     </div>
 
     <!-- ── K-RAIL NOTE — 1⅜" DM finials also fit K-Rail ── -->
     <div id="dm-krail-note" style="display:none;margin-top:10px" class="info-banner"><strong>K-Rail Compatible:</strong> All 1⅜" Designer Metals™ finials also fit Kirsch K-Rail systems. If you need K-Rail compatibility, note it in Step 7.</div>
+          <div class="step-note" id="sec4-sub">Finials attach to the ends of stationary poles or Estate traverse rods as a decorative cap.</div>
+        </div>
 
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(3)">← Back</button>
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       STEP 5 — SIZE & DRAW (measurements + traverse options)
-  ═══════════════════════════════════════════ -->
-  <div class="section" id="sec-5">
-    <div class="sec-label">Step 5 of 7</div>
-    <div class="sec-title">Size &amp; Configuration</div>
-    <div class="sec-sub">Enter your measurements and select how the rod will be used.</div>
-
-    <!-- POLE SIZE (stationary decorative) -->
-    <div id="sz-pole-diameter" style="display:none">
-      <div class="sec-label" style="margin-top:0">Pole Diameter</div>
-      <div class="opt-row" id="pole-dia-opts">
-        <!-- filled by JS based on collection -->
-      </div>
-    </div>
-
-    <!-- POLE STYLE (smooth vs fluted — Wood Trends only) -->
-    <div id="sz-pole-style" style="display:none">
-      <div class="sec-label" style="margin-top:12px">Pole Style</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="S.poleStyle='Smooth';toggleOptPill(this,'polestyle')">Smooth</div>
-        <div class="opt-pill" onclick="S.poleStyle='Fluted';toggleOptPill(this,'polestyle')">Fluted</div>
-      </div>
-    </div>
-
+        <!-- Step 7: Rod configuration -->
+        <div class="step-block" id="step-config">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">7</div>
+            <div class="step-title" style="margin-bottom:0" id="config-title">Rod configuration</div>
+          </div>
+          <div class="placeholder-note" id="config-placeholder">Choose how the rod will be used above to see its options.</div>
     <!-- POLE LENGTH (stationary) -->
     <div id="sz-stationary" style="display:none">
-      <div class="sec-label" style="margin-top:12px">Pole Length</div>
       <div class="info-banner" id="pole-length-info"></div>
-      <div class="dim-box">
-        <div class="dim-box-label">Enter your rod width</div>
-        <div class="form-group">
-          <label>Width</label>
-          <input type="number" id="rod-width" placeholder="96" min="1" max="300" step="0.125">
-          <div class="dim-unit">inches &middot; rod length. Most poles extend 6"–12" per side beyond the window frame.</div>
-        </div>
-      </div>
-      <div class="step-note" style="margin-bottom:12px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px">
-        <span style="font-size:12px;color:#666">Qty:</span>
-        <div class="qty-btns">
-          <button class="qty-btn" type="button" onclick="kAdjQty('rod-qty',-1)">&#8722;</button>
-          <input class="qty-num" type="number" id="rod-qty" value="1" min="1" max="50">
-          <button class="qty-btn" type="button" onclick="kAdjQty('rod-qty',1)">&#43;</button>
-        </div>
-        <span style="font-size:12px;color:#666">rod(s) / window(s) of this size</span>
-      </div>
 
       <!-- ══ DM STATIONARY DETAIL SECTIONS ══════════════════════════════ -->
 
       <!-- Pole Type / Length — shown only for DM stationary -->
       <div id="dm-pole-type-section" style="display:none">
-        <div class="sec-label" style="margin-top:16px">Pole Type &amp; Length</div>
+        <div class="sub-label" style="margin-top:16px">Pole type &amp; length</div>
         <div id="dm-pole-1-note" style="display:none" class="info-banner"><strong>1" poles:</strong> Fixed lengths only — 4' (48"), 6' (72"), 8' (96"). No telescoping for 1". Poles join with internal splice #1042812 (Bright Zinc) for spans beyond 8'.</div>
         <div id="dm-pole-138-note" style="display:none" class="info-banner"><strong>1⅜" poles:</strong> Fixed 4'/6'/8' <em>or</em> Telescoping 36"–66", 66"–120", 120"–180". Telescoping cuts to any exact length within its range. Internal splice #73304061 for spans over 180". All 8 finishes available in both fixed and telescoping.</div>
         <div class="opt-row" id="grp-dm-pole-type">
-          <div class="opt-pill" onclick="selectDMPoleType(&quot;Fixed 4' (48”)&quot;,this)">Fixed 4' <span style="font-size:10px;color:#888">48"</span></div>
-          <div class="opt-pill" onclick="selectDMPoleType(&quot;Fixed 6' (72”)&quot;,this)">Fixed 6' <span style="font-size:10px;color:#888">72"</span></div>
-          <div class="opt-pill" onclick="selectDMPoleType(&quot;Fixed 8' (96”)&quot;,this)">Fixed 8' <span style="font-size:10px;color:#888">96"</span></div>
-          <div class="opt-pill dm-tele-only" id="dm-tele-36-66" style="display:none" onclick="selectDMPoleType('Telescoping 36–66”',this)">Telescoping 36"–66"</div>
-          <div class="opt-pill dm-tele-only" id="dm-tele-66-120" style="display:none" onclick="selectDMPoleType('Telescoping 66–120”',this)">Telescoping 66"–120"</div>
-          <div class="opt-pill dm-tele-only" id="dm-tele-120-180" style="display:none" onclick="selectDMPoleType('Telescoping 120–180”',this)">Telescoping 120"–180"</div>
+          <button class="opt-btn" onclick="selectDMPoleType(&quot;Fixed 4' (48”)&quot;,this)">Fixed 4' <span style="font-size:10px;color:#888">48"</span></button>
+          <button class="opt-btn" onclick="selectDMPoleType(&quot;Fixed 6' (72”)&quot;,this)">Fixed 6' <span style="font-size:10px;color:#888">72"</span></button>
+          <button class="opt-btn" onclick="selectDMPoleType(&quot;Fixed 8' (96”)&quot;,this)">Fixed 8' <span style="font-size:10px;color:#888">96"</span></button>
+          <button class="opt-btn dm-tele-only" id="dm-tele-36-66" style="display:none" onclick="selectDMPoleType('Telescoping 36–66”',this)">Telescoping 36"–66"</button>
+          <button class="opt-btn dm-tele-only" id="dm-tele-66-120" style="display:none" onclick="selectDMPoleType('Telescoping 66–120”',this)">Telescoping 66"–120"</button>
+          <button class="opt-btn dm-tele-only" id="dm-tele-120-180" style="display:none" onclick="selectDMPoleType('Telescoping 120–180”',this)">Telescoping 120"–180"</button>
         </div>
       </div>
 
-      <!-- Bracket Type — shown only for DM stationary -->
+      <!-- Bracket type — shown only for DM stationary -->
       <div id="dm-bracket-section" style="display:none">
-        <div class="sec-label" style="margin-top:16px">Bracket Type</div>
+        <div class="sub-label" style="margin-top:16px">Bracket type</div>
 
         <!-- 1" bracket options -->
         <div id="dm-bracket-1-opts" style="display:none">
           <div style="font-size:11px;color:#777;margin-bottom:10px;line-height:1.55">1" brackets are sold per finish to match your pole. Weight limits are <em>per bracket</em>. Add a center bracket for poles over 48". All 8 finishes.</div>
           <div class="opt-row" id="grp-dm-bracket-1">
-            <div class="opt-pill" onclick="selectDMBracket('3&quot; Return — 25 lbs/bracket · wall projection 2⅜&quot;',this)">3" Return <span style="font-size:10px;color:#888">wall 2⅜" · max 25 lbs</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('6&quot; Return — 12 lbs/bracket · wall projection 5⅜&quot;',this)">6" Return <span style="font-size:10px;color:#888">wall 5⅜" · max 12 lbs</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('3&quot; Bypass — 25 lbs/bracket (two overlapping rods)',this)">3" Bypass <span style="font-size:10px;color:#888">2 poles overlap · 25 lbs</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('6&quot; Bypass — 12 lbs/bracket (two overlapping rods)',this)">6" Bypass <span style="font-size:10px;color:#888">2 poles overlap · 12 lbs</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('French Return 3&quot; — 25 lbs · arm 3¼&quot; · overall 4⅜&quot;',this)">French Return 3" <span style="font-size:10px;color:#888">arm 3¼" · 25 lbs</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('French Return 6&quot; — 12 lbs',this)">French Return 6" <span style="font-size:10px;color:#888">12 lbs</span></div>
+            <button class="opt-btn" onclick="selectDMBracket('3&quot; Return — 25 lbs/bracket · wall projection 2⅜&quot;',this)">3" Return <span style="font-size:10px;color:#888">wall 2⅜" · max 25 lbs</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('6&quot; Return — 12 lbs/bracket · wall projection 5⅜&quot;',this)">6" Return <span style="font-size:10px;color:#888">wall 5⅜" · max 12 lbs</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('3&quot; Bypass — 25 lbs/bracket (two overlapping rods)',this)">3" Bypass <span style="font-size:10px;color:#888">2 poles overlap · 25 lbs</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('6&quot; Bypass — 12 lbs/bracket (two overlapping rods)',this)">6" Bypass <span style="font-size:10px;color:#888">2 poles overlap · 12 lbs</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('French Return 3&quot; — 25 lbs · arm 3¼&quot; · overall 4⅜&quot;',this)">French Return 3" <span style="font-size:10px;color:#888">arm 3¼" · 25 lbs</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('French Return 6&quot; — 12 lbs',this)">French Return 6" <span style="font-size:10px;color:#888">12 lbs</span></button>
           </div>
           <div class="info-banner" style="font-size:11px;margin-top:6px;line-height:1.6"><strong>Bypass:</strong> Two rods pass at different depths from one bracket point — for rooms needing two panel layers that overlap at center. <strong>French Return:</strong> Panel wraps around the side of the rod so the end of the fabric touches the wall (no visible bracket gap).</div>
         </div>
@@ -799,36 +549,36 @@ textarea.inp-field{resize:vertical;min-height:90px}
         <div id="dm-bracket-138-opts" style="display:none">
           <div style="font-size:11px;color:#777;margin-bottom:10px;line-height:1.55">1⅜" brackets sold per finish to match pole. Weight limits are <em>per bracket</em>. Add center bracket for spans over 48". All 8 finishes.</div>
           <div class="opt-row" id="grp-dm-bracket-138">
-            <div class="opt-pill" onclick="selectDMBracket('3&quot; Return — 32 lbs/bracket · wall 1¾&quot;',this)">3" Return <span style="font-size:10px;color:#888">wall 1¾" · max 32 lbs</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('6&quot; Return — 16 lbs/bracket · wall 4¾&quot;',this)">6" Return <span style="font-size:10px;color:#888">wall 4¾" · max 16 lbs</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('Decorative Return 3&quot;–4&quot; (adjustable projection)',this)">Decorative Return 3"–4" <span style="font-size:10px;color:#888">adj projection</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('Decorative Bypass 3&quot;–4&quot;',this)">Decorative Bypass <span style="font-size:10px;color:#888">two poles · adj 3"–4"</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('Decorative Ceiling mount',this)">Ceiling mount <span style="font-size:10px;color:#888">pole hangs from ceiling</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('Decorative Double Rod — inner 3&quot;–4&quot; + outer 6&quot;–7&quot;',this)">Double Rod Bracket <span style="font-size:10px;color:#888">two poles, one wall point</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('Deep Standard 5¼&quot;–7&quot; projection',this)">Deep Bracket 5¼"–7" <span style="font-size:10px;color:#888">large trim clearance</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('Inside mount Socket #1832218',this)">Inside mount Socket <span style="font-size:10px;color:#888">rod seats inside casing</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('Swivel Socket #1831428',this)">Swivel Socket <span style="font-size:10px;color:#888">angled/bay windows</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('French Return 3&quot; — 32 lbs · arm 3¼&quot; · back plate 3&quot;',this)">French Return 3" <span style="font-size:10px;color:#888">arm 3¼" · 32 lbs</span></div>
-            <div class="opt-pill" onclick="selectDMBracket('French Return 6&quot; — 16 lbs',this)">French Return 6" <span style="font-size:10px;color:#888">16 lbs</span></div>
+            <button class="opt-btn" onclick="selectDMBracket('3&quot; Return — 32 lbs/bracket · wall 1¾&quot;',this)">3" Return <span style="font-size:10px;color:#888">wall 1¾" · max 32 lbs</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('6&quot; Return — 16 lbs/bracket · wall 4¾&quot;',this)">6" Return <span style="font-size:10px;color:#888">wall 4¾" · max 16 lbs</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('Decorative Return 3&quot;–4&quot; (adjustable projection)',this)">Decorative Return 3"–4" <span style="font-size:10px;color:#888">adj projection</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('Decorative Bypass 3&quot;–4&quot;',this)">Decorative Bypass <span style="font-size:10px;color:#888">two poles · adj 3"–4"</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('Decorative Ceiling mount',this)">Ceiling mount <span style="font-size:10px;color:#888">pole hangs from ceiling</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('Decorative Double Rod — inner 3&quot;–4&quot; + outer 6&quot;–7&quot;',this)">Double Rod Bracket <span style="font-size:10px;color:#888">two poles, one wall point</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('Deep Standard 5¼&quot;–7&quot; projection',this)">Deep Bracket 5¼"–7" <span style="font-size:10px;color:#888">large trim clearance</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('Inside mount Socket #1832218',this)">Inside mount Socket <span style="font-size:10px;color:#888">rod seats inside casing</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('Swivel Socket #1831428',this)">Swivel Socket <span style="font-size:10px;color:#888">angled/bay windows</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('French Return 3&quot; — 32 lbs · arm 3¼&quot; · back plate 3&quot;',this)">French Return 3" <span style="font-size:10px;color:#888">arm 3¼" · 32 lbs</span></button>
+            <button class="opt-btn" onclick="selectDMBracket('French Return 6&quot; — 16 lbs',this)">French Return 6" <span style="font-size:10px;color:#888">16 lbs</span></button>
           </div>
           <div class="info-banner" style="font-size:11px;margin-top:6px;line-height:1.6"><strong>Inside mount Socket (#1832218):</strong> Rod rests inside casing — no wall holes. Requires ≈1½" casing depth minimum. <strong>Swivel Socket (#1831428):</strong> Allows rod to angle for bay or angled frames. <strong>Double Rod bracket:</strong> Both a front and back pole mount from one wall bracket — inner 3"–4" projection, outer 6"–7". <strong>Baton with Bypass C-Ring (#1831558, 36"):</strong> Mention in notes if needed.</div>
         </div>
       </div>
 
-      <!-- Ring Type — shown only for DM stationary -->
+      <!-- Ring type — shown only for DM stationary -->
       <div id="dm-ring-section" style="display:none">
-        <div class="sec-label" style="margin-top:16px">Ring Type</div>
+        <div class="sub-label" style="margin-top:16px">Ring type</div>
 
         <!-- 1" rings -->
         <div id="dm-ring-1-opts" style="display:none">
           <div style="font-size:11px;color:#777;margin-bottom:8px">1" rings: int 1⅜", ext 1-11/16". Sold per finish. Lock Ring is for French return only.</div>
           <div class="opt-row" id="grp-dm-ring-1">
-            <div class="opt-pill" onclick="selectDMRing('Standard Rings (1&quot; int 1⅜&quot; / ext 1-11/16&quot;)',this)">Standard Rings
-              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Pinch pleat · Rod pocket · Tab top</span></div>
-            <div class="opt-pill" onclick="selectDMRing('Bypass C-Rings (1&quot;)',this)">Bypass C-Rings
-              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Bypass rods only</span></div>
-            <div class="opt-pill" onclick="selectDMRing('Lock Ring (1&quot;) — French return use only',this)">Lock Ring
-              <span style="font-size:10px;color:#888;display:block;margin-top:2px">French return only</span></div>
+            <button class="opt-btn" onclick="selectDMRing('Standard Rings (1&quot; int 1⅜&quot; / ext 1-11/16&quot;)',this)">Standard Rings
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Pinch pleat · Rod pocket · Tab top</span></button>
+            <button class="opt-btn" onclick="selectDMRing('Bypass C-Rings (1&quot;)',this)">Bypass C-Rings
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Bypass rods only</span></button>
+            <button class="opt-btn" onclick="selectDMRing('Lock Ring (1&quot;) — French return use only',this)">Lock Ring
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">French return only</span></button>
           </div>
         </div>
 
@@ -836,14 +586,14 @@ textarea.inp-field{resize:vertical;min-height:90px}
         <div id="dm-ring-138-opts" style="display:none">
           <div style="font-size:11px;color:#777;margin-bottom:8px">1⅜" rings: int 1¾", ext 2⅛". Sold per finish. Lock Ring is for French return only.</div>
           <div class="opt-row" id="grp-dm-ring-138">
-            <div class="opt-pill" onclick="selectDMRing('Standard Rings (1⅜&quot; int 1¾&quot; / ext 2⅛&quot;)',this)">Standard Rings
-              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Pinch pleat · Goblet · Rod pocket</span></div>
-            <div class="opt-pill" onclick="selectDMRing('Bypass C-Ring (1⅜&quot;)',this)">Bypass C-Ring
-              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Bypass rods only</span></div>
-            <div class="opt-pill" onclick="selectDMRing('Transitional Ring (1⅜&quot; int 1⅝&quot;) — K-Rail compatible',this)">Transitional Ring
-              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Ripplefold · K-Rail</span></div>
-            <div class="opt-pill" onclick="selectDMRing('Lock Ring (1⅜&quot;) — French return only',this)">Lock Ring
-              <span style="font-size:10px;color:#888;display:block;margin-top:2px">French return only</span></div>
+            <button class="opt-btn" onclick="selectDMRing('Standard Rings (1⅜&quot; int 1¾&quot; / ext 2⅛&quot;)',this)">Standard Rings
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Pinch pleat · Goblet · Rod pocket</span></button>
+            <button class="opt-btn" onclick="selectDMRing('Bypass C-Ring (1⅜&quot;)',this)">Bypass C-Ring
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Bypass rods only</span></button>
+            <button class="opt-btn" onclick="selectDMRing('Transitional Ring (1⅜&quot; int 1⅝&quot;) — K-Rail compatible',this)">Transitional Ring
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">Ripplefold · K-Rail</span></button>
+            <button class="opt-btn" onclick="selectDMRing('Lock Ring (1⅜&quot;) — French return only',this)">Lock Ring
+              <span style="font-size:10px;color:#888;display:block;margin-top:2px">French return only</span></button>
           </div>
         </div>
       </div>
@@ -853,67 +603,48 @@ textarea.inp-field{resize:vertical;min-height:90px}
 
     <!-- TRAVERSE ROD OPTIONS -->
     <div id="sz-traverse" style="display:none">
-      <div class="sec-label" style="margin-top:0">Track Length</div>
       <div id="traverse-limits-info" class="info-banner"></div>
-      <div class="dim-box">
-        <div class="dim-box-label">Enter your track width</div>
-        <div class="form-group">
-          <label>Width</label>
-          <input type="number" id="trav-width" placeholder="120" min="18" max="480" step="0.125">
-          <div class="dim-unit">inches &middot; measure bracket to bracket (finished opening + overlap). Estate min 18", max 192" (16ft).</div>
-        </div>
-      </div>
-      <div class="step-note" style="margin-bottom:12px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px">
-        <span style="font-size:12px;color:#666">Qty:</span>
-        <div class="qty-btns">
-          <button class="qty-btn" type="button" onclick="kAdjQty('trav-qty',-1)">&#8722;</button>
-          <input class="qty-num" type="number" id="trav-qty" value="1" min="1" max="20">
-          <button class="qty-btn" type="button" onclick="kAdjQty('trav-qty',1)">&#43;</button>
-        </div>
-        <span style="font-size:12px;color:#666">track(s) / window(s) of this size</span>
+
+      <div class="sub-label" style="margin-top:12px">Draw type</div>
+      <div class="opt-row">
+        <button class="opt-btn" id="draw-two" onclick="selectDraw('Two-Way Split');toggleOptPill(this,'draw')">Two-Way Split Draw <span style="font-size:10px">⇦⇨</span></button>
+        <button class="opt-btn" id="draw-one-right" onclick="selectDraw('One-Way Right');toggleOptPill(this,'draw')">One-Way → Right</button>
+        <button class="opt-btn" id="draw-one-left" onclick="selectDraw('One-Way Left');toggleOptPill(this,'draw')">One-Way ← Left</button>
       </div>
 
-      <div class="sec-label" style="margin-top:12px">Draw Type</div>
+      <div class="sub-label" style="margin-top:12px">Drapery header style</div>
       <div class="opt-row">
-        <div class="opt-pill" id="draw-two" onclick="selectDraw('Two-Way Split');toggleOptPill(this,'draw')">Two-Way Split Draw <span style="font-size:10px">⇦⇨</span></div>
-        <div class="opt-pill" id="draw-one-right" onclick="selectDraw('One-Way Right');toggleOptPill(this,'draw')">One-Way → Right</div>
-        <div class="opt-pill" id="draw-one-left" onclick="selectDraw('One-Way Left');toggleOptPill(this,'draw')">One-Way ← Left</div>
-      </div>
-
-      <div class="sec-label" style="margin-top:12px">Drapery Header Style</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="selectHeader('Pleated');toggleOptPill(this,'header')">Pleated (classic pins)</div>
-        <div class="opt-pill" onclick="selectHeader('Ripplefold');toggleOptPill(this,'header')">Ripplefold™ (modern wave)</div>
-        <div class="opt-pill" onclick="selectHeader('Not sure');toggleOptPill(this,'header')">Not sure</div>
+        <button class="opt-btn" onclick="selectHeader('Pleated');toggleOptPill(this,'header')">Pleated (classic pins)</button>
+        <button class="opt-btn" onclick="selectHeader('Ripplefold');toggleOptPill(this,'header')">Ripplefold™ (modern wave)</button>
+        <button class="opt-btn" onclick="selectHeader('Not sure');toggleOptPill(this,'header')">Not sure</button>
       </div>
 
       <div id="ripplefold-options" style="display:none;margin-top:4px">
-        <div class="sec-label" style="margin-top:8px">Ripplefold™ Fullness</div>
+        <div class="sub-label" style="margin-top:8px">Ripplefold™ fullness</div>
         <div class="opt-row">
-          <div class="opt-pill" onclick="selectFullness('60%');toggleOptPill(this,'fullness')">60% fullness</div>
-          <div class="opt-pill" onclick="selectFullness('80%');toggleOptPill(this,'fullness')">80% fullness</div>
-          <div class="opt-pill" onclick="selectFullness('100%');toggleOptPill(this,'fullness')">100% fullness</div>
-          <div class="opt-pill" onclick="selectFullness('120%');toggleOptPill(this,'fullness')">120% fullness</div>
+          <button class="opt-btn" onclick="selectFullness('60%');toggleOptPill(this,'fullness')">60% fullness</button>
+          <button class="opt-btn" onclick="selectFullness('80%');toggleOptPill(this,'fullness')">80% fullness</button>
+          <button class="opt-btn" onclick="selectFullness('100%');toggleOptPill(this,'fullness')">100% fullness</button>
+          <button class="opt-btn" onclick="selectFullness('120%');toggleOptPill(this,'fullness')">120% fullness</button>
         </div>
       </div>
 
-      <div class="sec-label" style="margin-top:12px">Mounting Location</div>
+      <div class="sub-label" style="margin-top:12px">Mounting location</div>
       <div class="opt-row">
-        <div class="opt-pill" onclick="selectMount('Wall mount');toggleOptPill(this,'mount')">Wall mount</div>
-        <div class="opt-pill" onclick="selectMount('Ceiling mount');toggleOptPill(this,'mount')">Ceiling mount</div>
-        <div class="opt-pill" id="mount-recessed" onclick="selectMount('Recessed Mount');toggleOptPill(this,'mount')">Recessed Mount</div>
-        <div class="opt-pill" onclick="selectMount('Double Rod (two panels at different depths)');toggleOptPill(this,'mount')">Double Rod</div>
+        <button class="opt-btn" onclick="selectMount('Wall mount');toggleOptPill(this,'mount')">Wall mount</button>
+        <button class="opt-btn" onclick="selectMount('Ceiling mount');toggleOptPill(this,'mount')">Ceiling mount</button>
+        <button class="opt-btn" id="mount-recessed" onclick="selectMount('Recessed Mount');toggleOptPill(this,'mount')">Recessed Mount</button>
+        <button class="opt-btn" onclick="selectMount('Double Rod (two panels at different depths)');toggleOptPill(this,'mount')">Double Rod</button>
       </div>
 
       <!-- ── DM ESTATE: ROD SIZE (1⅜" vs 2") ──────────────────────── -->
       <!-- Shown only when collection=dm + Estate traverse -->
       <div id="dm-estate-dia" style="display:none">
-        <div class="sec-label" style="margin-top:14px">Designer Metals™ Estate Rod Size</div>
+        <div class="sub-label" style="margin-top:14px">Designer Metals™ Estate rod size</div>
         <div style="font-size:12px;color:#666;margin-bottom:10px;line-height:1.65">Both 1⅜" and 2" Estate™ rods are available in all 8 Designer Metals™ finishes. 2" gives a bolder, more architectural look — but has only 5 finial choices vs 17 for 1⅜".</div>
         <div class="opt-row" id="grp-dm-estate-dia">
-          <div class="opt-pill" onclick="selectDMEstateDia('1⅜&quot; Estate',this)">1⅜" Estate <span style="font-size:10px;color:#888">15 finials + 2 endcaps · most common</span></div>
-          <div class="opt-pill" onclick="selectDMEstateDia('2&quot; Estate',this)">2" Estate <span style="font-size:10px;color:#888">5 finials only: Corsa, Europa, Pandora, Rao, Stratta</span></div>
+          <button class="opt-btn" onclick="selectDMEstateDia('1⅜&quot; Estate',this)">1⅜" Estate <span style="font-size:10px;color:#888">15 finials + 2 endcaps · most common</span></button>
+          <button class="opt-btn" onclick="selectDMEstateDia('2&quot; Estate',this)">2" Estate <span style="font-size:10px;color:#888">5 finials only: Corsa, Europa, Pandora, Rao, Stratta</span></button>
         </div>
         <div id="dm-estate-2in-warn" style="display:none" class="warn-banner"><strong>2" Estate — restricted finials:</strong> Only <strong>Corsa, Europa, Pandora, Rao, and Stratta</strong> fit the 2" Estate rod. If you selected a different finial in Step 4, please go back and update it.</div>
         <div class="info-banner" style="margin-top:8px;font-size:11px;line-height:1.65"><strong>All Estate traverse limits apply regardless of size:</strong> Min 18" · Max 192" (16 ft) · Max 64 lbs total load · Max 4 lbs/ft · Tracks over 8': splice + keystone included · AMP™ motor available on both sizes (max 16 ft motorized) · <strong>Cannot be curved or bent when motorized.</strong></div>
@@ -922,113 +653,89 @@ textarea.inp-field{resize:vertical;min-height:90px}
 
     <!-- BASIC rod specs -->
     <div id="sz-basic" style="display:none">
-      <div class="dim-box">
-        <div class="dim-box-label">Enter your rod width</div>
-        <div class="form-group">
-          <label>Width</label>
-          <input type="number" id="basic-width" placeholder="60" min="1" max="228" step="0.125">
-          <div class="dim-unit">inches &middot; we'll select the right telescoping size for your measurement.</div>
-        </div>
-      </div>
-      <div class="step-note" style="margin-bottom:12px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px">
-        <span style="font-size:12px;color:#666">Qty:</span>
-        <div class="qty-btns">
-          <button class="qty-btn" type="button" onclick="kAdjQty('basic-qty',-1)">&#8722;</button>
-          <input class="qty-num" type="number" id="basic-qty" value="1" min="1" max="50">
-          <button class="qty-btn" type="button" onclick="kAdjQty('basic-qty',1)">&#43;</button>
-        </div>
-        <span style="font-size:12px;color:#666">rod(s) / window(s) of this size</span>
-      </div>
 
       <div id="sz-superfine-opts" style="display:none">
-        <div class="sec-label" style="margin-top:4px">Draw Configuration</div>
+        <div class="sub-label" style="margin-top:4px">Draw configuration</div>
         <div class="opt-row">
-          <div class="opt-pill" onclick="selectDraw('Split Draw');toggleOptPill(this,'draw');showSFNote('split')">Split Draw <span style="font-size:10px;color:#888">(30"–228")</span></div>
-          <div class="opt-pill" onclick="selectDraw('One-Way Right');toggleOptPill(this,'draw');showSFNote('oneway')">One-Way Right <span style="font-size:10px;color:#888">(30"–120" max)</span></div>
-          <div class="opt-pill" onclick="selectDraw('One-Way Left');toggleOptPill(this,'draw');showSFNote('oneway')">One-Way Left <span style="font-size:10px;color:#888">(30"–120" max)</span></div>
-          <div class="opt-pill" onclick="selectDraw('Double Split Draw');toggleOptPill(this,'draw');showSFNote('double')">Double Split Draw <span style="font-size:10px;color:#888">(48"–156" max)</span></div>
+          <button class="opt-btn" onclick="selectDraw('Split Draw');toggleOptPill(this,'draw');showSFNote('split')">Split Draw <span style="font-size:10px;color:#888">(30"–228")</span></button>
+          <button class="opt-btn" onclick="selectDraw('One-Way Right');toggleOptPill(this,'draw');showSFNote('oneway')">One-Way Right <span style="font-size:10px;color:#888">(30"–120" max)</span></button>
+          <button class="opt-btn" onclick="selectDraw('One-Way Left');toggleOptPill(this,'draw');showSFNote('oneway')">One-Way Left <span style="font-size:10px;color:#888">(30"–120" max)</span></button>
+          <button class="opt-btn" onclick="selectDraw('Double Split Draw');toggleOptPill(this,'draw');showSFNote('double')">Double Split Draw <span style="font-size:10px;color:#888">(48"–156" max)</span></button>
         </div>
         <div id="sf-draw-note" class="info-banner" style="display:none;margin-top:8px;font-size:12px"></div>
-        <div class="sec-label" style="margin-top:8px">Operation</div>
+        <div class="sub-label" style="margin-top:8px">Operation</div>
         <div class="opt-row">
-          <div class="opt-pill" onclick="selectBasicOp('Continuous Loop');toggleOptPill(this,'basicop')">Continuous Loop (Cord)</div>
-          <div class="opt-pill" onclick="selectBasicOp('Baton');toggleOptPill(this,'basicop')">Baton Draw</div>
-          <div class="opt-pill" onclick="selectBasicOp('Hand Draw');toggleOptPill(this,'basicop')">Hand Draw</div>
+          <button class="opt-btn" onclick="selectBasicOp('Continuous Loop');toggleOptPill(this,'basicop')">Continuous Loop (Cord)</button>
+          <button class="opt-btn" onclick="selectBasicOp('Baton');toggleOptPill(this,'basicop')">Baton Draw</button>
+          <button class="opt-btn" onclick="selectBasicOp('Hand Draw');toggleOptPill(this,'basicop')">Hand Draw</button>
         </div>
       </div>
 
       <!-- Tension / Sash rod type selector -->
       <div id="sz-tension-opts" style="display:none">
-        <div class="sec-label" style="margin-top:4px">Rod Type</div>
+        <div class="sub-label" style="margin-top:4px">Rod type</div>
         <div class="info-banner" style="font-size:12px;margin-bottom:10px">Spring tension and sash rods are mostly White. Zinc Door Sash Tension Rod available in Zinc finish.</div>
         <div class="opt-row" style="flex-wrap:wrap">
-          <div class="opt-pill" onclick="selectLockseam('Spring Tension Rod ⅝&quot; Oval (8&quot;–72&quot;, White)');toggleOptPill(this,'trtype')">⅝" Oval Tension <span style="font-size:10px;color:#888">(8"–72")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('Spring Tension Rod ⁷⁄₁₆&quot; (18&quot;–48&quot;, White)');toggleOptPill(this,'trtype')">⁷⁄₁₆" Tension <span style="font-size:10px;color:#888">(18"–48")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('Door Sash Tension Rod 20&quot;–36&quot; (Zinc)');toggleOptPill(this,'trtype')">Door Sash Tension — Zinc <span style="font-size:10px;color:#888">(20"–36")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('Door Sash Rod ⁵⁄₁₆&quot; (11&quot;–36&quot;, White)');toggleOptPill(this,'trtype')">⁵⁄₁₆" Door Sash <span style="font-size:10px;color:#888">(11"–36")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('Door Sash Rod ⁷⁄₁₆&quot; (18&quot;–28&quot;, White)');toggleOptPill(this,'trtype')">⁷⁄₁₆" Door Sash <span style="font-size:10px;color:#888">(18"–28")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('Flat Sash Rod ¹¹⁄₁₆&quot; (16&quot;–50&quot;, White)');toggleOptPill(this,'trtype')">¹¹⁄₁₆" Flat Sash <span style="font-size:10px;color:#888">(16"–50")</span></div>
+          <button class="opt-btn" onclick="selectLockseam('Spring Tension Rod ⅝&quot; Oval (8&quot;–72&quot;, White)');toggleOptPill(this,'trtype')">⅝" Oval Tension <span style="font-size:10px;color:#888">(8"–72")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('Spring Tension Rod ⁷⁄₁₆&quot; (18&quot;–48&quot;, White)');toggleOptPill(this,'trtype')">⁷⁄₁₆" Tension <span style="font-size:10px;color:#888">(18"–48")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('Door Sash Tension Rod 20&quot;–36&quot; (Zinc)');toggleOptPill(this,'trtype')">Door Sash Tension — Zinc <span style="font-size:10px;color:#888">(20"–36")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('Door Sash Rod ⁵⁄₁₆&quot; (11&quot;–36&quot;, White)');toggleOptPill(this,'trtype')">⁵⁄₁₆" Door Sash <span style="font-size:10px;color:#888">(11"–36")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('Door Sash Rod ⁷⁄₁₆&quot; (18&quot;–28&quot;, White)');toggleOptPill(this,'trtype')">⁷⁄₁₆" Door Sash <span style="font-size:10px;color:#888">(18"–28")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('Flat Sash Rod ¹¹⁄₁₆&quot; (16&quot;–50&quot;, White)');toggleOptPill(this,'trtype')">¹¹⁄₁₆" Flat Sash <span style="font-size:10px;color:#888">(16"–50")</span></button>
         </div>
       </div>
 
       <div id="sz-lockseam-opts" style="display:none">
-        <div class="sec-label" style="margin-top:4px">Rod Type &amp; Face Width</div>
+        <div class="sub-label" style="margin-top:4px">Rod type &amp; face width</div>
         <div class="info-banner" style="font-size:12px;margin-bottom:10px">Single rods: all White, available 6"–120" depending on face width. Double: front 3½" + back 2½". Triple: front 5½" + mid 3½" + back 2½". Bay: 78"–127". Return depth equals face width.</div>
         <div class="opt-row" style="flex-wrap:wrap">
-          <div class="opt-pill" onclick="selectLockseam('½&quot; Single (6&quot;–48&quot;)');toggleOptPill(this,'lsw')">½" Single <span style="font-size:10px;color:#888">(6"–48")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('1½&quot; Single (28&quot;–84&quot;)');toggleOptPill(this,'lsw')">1½" Single <span style="font-size:10px;color:#888">(28"–84")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('2½&quot; Single (18&quot;–120&quot;)');toggleOptPill(this,'lsw')">2½" Single <span style="font-size:10px;color:#888">(18"–120")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('3½&quot; Single (28&quot;–120&quot;)');toggleOptPill(this,'lsw')">3½" Single <span style="font-size:10px;color:#888">(28"–120")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('5½&quot; Single (28&quot;–120&quot;)');toggleOptPill(this,'lsw')">5½" Single <span style="font-size:10px;color:#888">(28"–120")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('8½&quot; Single (28&quot;–120&quot;)');toggleOptPill(this,'lsw')">8½" Single <span style="font-size:10px;color:#888">(28"–120")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('Double Rod (3½&quot; front + 2½&quot; back, 28&quot;–120&quot;)');toggleOptPill(this,'lsw')">Double <span style="font-size:10px;color:#888">(3½"+2½", 28"–120")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('Triple Rod (5½&quot; front + 3½&quot; mid + 2½&quot; back, 28&quot;–120&quot;)');toggleOptPill(this,'lsw')">Triple <span style="font-size:10px;color:#888">(5½"+3½"+2½", 28"–120")</span></div>
-          <div class="opt-pill" onclick="selectLockseam('Bay Rod (2½&quot; front return, 78&quot;–127&quot;)');toggleOptPill(this,'lsw')">Bay Rod <span style="font-size:10px;color:#888">(78"–127")</span></div>
+          <button class="opt-btn" onclick="selectLockseam('½&quot; Single (6&quot;–48&quot;)');toggleOptPill(this,'lsw')">½" Single <span style="font-size:10px;color:#888">(6"–48")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('1½&quot; Single (28&quot;–84&quot;)');toggleOptPill(this,'lsw')">1½" Single <span style="font-size:10px;color:#888">(28"–84")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('2½&quot; Single (18&quot;–120&quot;)');toggleOptPill(this,'lsw')">2½" Single <span style="font-size:10px;color:#888">(18"–120")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('3½&quot; Single (28&quot;–120&quot;)');toggleOptPill(this,'lsw')">3½" Single <span style="font-size:10px;color:#888">(28"–120")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('5½&quot; Single (28&quot;–120&quot;)');toggleOptPill(this,'lsw')">5½" Single <span style="font-size:10px;color:#888">(28"–120")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('8½&quot; Single (28&quot;–120&quot;)');toggleOptPill(this,'lsw')">8½" Single <span style="font-size:10px;color:#888">(28"–120")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('Double Rod (3½&quot; front + 2½&quot; back, 28&quot;–120&quot;)');toggleOptPill(this,'lsw')">Double <span style="font-size:10px;color:#888">(3½"+2½", 28"–120")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('Triple Rod (5½&quot; front + 3½&quot; mid + 2½&quot; back, 28&quot;–120&quot;)');toggleOptPill(this,'lsw')">Triple <span style="font-size:10px;color:#888">(5½"+3½"+2½", 28"–120")</span></button>
+          <button class="opt-btn" onclick="selectLockseam('Bay Rod (2½&quot; front return, 78&quot;–127&quot;)');toggleOptPill(this,'lsw')">Bay Rod <span style="font-size:10px;color:#888">(78"–127")</span></button>
         </div>
       </div>
     </div>
+        </div>
 
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(4)">← Back</button>
-      <button class="btn-next" onclick="goStep(6)">Continue →</button>
-    </div>
-  </div>
+        <!-- Step 8: Motorization & accessories -->
+        <div class="step-block" id="step-motor" style="display:none">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">8</div>
+            <div class="step-title" style="margin-bottom:0">Motorization &amp; accessories</div>
+          </div>
+          <div class="step-note" id="sec6-sub" style="margin-top:0;margin-bottom:10px">AMP™ motorization is available on Estate™ traverse rods and Architrac® 94001 tracks.</div>
 
-  <!-- STEP 6 — MOTORIZATION (AMP) — multi-choice, keep Continue -->
-  <div class="section" id="sec-6" data-multi>
-    <div class="sec-label">Step 6 of 7</div>
-    <div class="sec-title">Motorization</div>
-    <div class="sec-sub" id="sec6-sub">AMP™ motorization is available on Estate™ traverse rods and Architrac® 94001 tracks.</div>
-
-    <!-- AMP eligible -->
-    <div id="amp-eligible" style="display:none">
+          <!-- AMP eligible -->
+          <div id="amp-eligible" style="display:none">
       <div class="info-banner">
         <strong>AMP™ Motorization — Available</strong><br>
         The AMP™ drapery motor mounts to the back of your traverse track. Motor is concealed behind drapery — no change to fabrication. RF remote included. Tug-to-open feature. Dual battery + AC power. Max 64 lbs. Max 16ft track.<br><br>
         <strong>Product #62001300</strong> · DC 16.5V · 7.8 in/sec · 40W · 1.2Nm · UL/CE certified
       </div>
+            <div class="opt-row" id="grp-amp">
+              <button class="opt-btn sel" data-val="no" onclick="setAMP(false,this)">No motor — manual draw</button>
+              <button class="opt-btn" data-val="yes" onclick="setAMP(true,this)">Add AMP™ motorization</button>
+            </div>
+            <div class="step-note" style="margin-top:-6px">Includes battery charger #62201300. RF remotes and wall switches sold separately.</div>
 
-      <div class="toggle-row" onclick="toggleAMP(this)" id="amp-toggle">
-        <div class="toggle-label">
-          Add AMP™ Motorization
-          <small>Includes battery charger #62201300. RF remotes and wall switches sold separately.</small>
-        </div>
-        <div class="toggle-switch" id="amp-switch"></div>
-      </div>
-
-      <div id="amp-extras" style="display:none;margin-top:14px">
-        <div class="sec-label">Optional AMP™ Accessories</div>
+            <div id="amp-extras" style="display:none;margin-top:14px">
+        <div class="sub-label">AMP™ accessories <span style="font-weight:400;color:#888">(optional — select any)</span></div>
         <div class="opt-row">
-          <div class="opt-pill" id="amp-remote" onclick="toggleAMPExtra(this,'remote')">RF Remote (White #62101000)</div>
-          <div class="opt-pill" id="amp-remote-blk" onclick="toggleAMPExtra(this,'remote-blk')">RF Remote (Black #62101010)</div>
-          <div class="opt-pill" id="amp-wall-surface" onclick="toggleAMPExtra(this,'wall-surface')">Surface Wall Switch</div>
-          <div class="opt-pill" id="amp-wall-flush" onclick="toggleAMPExtra(this,'wall-flush')">Flush Wall Switch</div>
-          <div class="opt-pill" id="amp-gateway" onclick="toggleAMPExtra(this,'gateway')">USB Bridge / Smart Home</div>
+          <button class="opt-btn" id="amp-remote" onclick="toggleAMPExtra(this,'remote')">RF Remote (White #62101000)</button>
+          <button class="opt-btn" id="amp-remote-blk" onclick="toggleAMPExtra(this,'remote-blk')">RF Remote (Black #62101010)</button>
+          <button class="opt-btn" id="amp-wall-surface" onclick="toggleAMPExtra(this,'wall-surface')">Surface Wall Switch</button>
+          <button class="opt-btn" id="amp-wall-flush" onclick="toggleAMPExtra(this,'wall-flush')">Flush Wall Switch</button>
+          <button class="opt-btn" id="amp-gateway" onclick="toggleAMPExtra(this,'gateway')">USB Bridge / Smart Home</button>
         </div>
         <div class="warn-banner" id="amp-bend-warning" style="display:none"><strong>Note:</strong> Architrac® 94001 with AMP™ motorization <strong>cannot</strong> be bent or curved. Motorized track must be perfectly straight.</div>
       </div>
-    </div>
+          </div>
 
     <!-- AMP not eligible -->
     <div id="amp-not-eligible" style="display:none">
@@ -1037,9 +744,8 @@ textarea.inp-field{resize:vertical;min-height:90px}
 
     <!-- Wood Trends accessories (shown for wt collection) -->
     <div id="wt-accessories" style="display:none;margin-top:20px">
-      <div class="divider"></div>
-      <div class="sec-label" style="margin-top:0">Wood Trends™ Accessories — Add to Your Order?</div>
-      <div class="sec-sub" style="font-size:12px;margin-bottom:14px">Check anything you'd like to include. We'll add pricing to your quote. All items available in your chosen finish.</div>
+            <div class="sub-label" style="margin-top:0">Wood Trends™ accessories <span style="font-weight:400;color:#888">(optional — select any)</span></div>
+      <div class="step-note" style="font-size:12px;margin-bottom:14px">Check anything you'd like to include. We'll add pricing to your quote. All items available in your chosen finish.</div>
       <div style="font-size:11px;color:#888;margin-bottom:10px;line-height:1.7;background:#fafaf8;border-radius:8px;padding:10px 12px;border:1px solid #e8e8e4">
         <strong style="color:#111">Restriction notes:</strong>
         Ceiling mount bracket and Double Bracket are <strong>not available in Unfinished finish</strong> — specify a stained or painted finish when adding these.
@@ -1049,115 +755,49 @@ textarea.inp-field{resize:vertical;min-height:90px}
         Holdback Medallions are not available in Unfinished.
       </div>
       <div class="opt-row" style="flex-wrap:wrap">
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'rings')">Rings with Eyelet <span style="font-size:10px;color:#888">1⅜"=$15.37 · 2"=$18.17/bag · 7 rings/bag (1⅜") or 4 rings/bag (2")</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'metal-clip')">Metal Clip for Rings <span style="font-size:10px;color:#888">Brass · $16.05/50 pack · clips to eyelet for rod-pocket panels</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'bracket-3.5')">3½" Return Bracket <span style="font-size:10px;color:#888">1⅜"=$11.77 ea · 2"=$17.24 ea · 9 finishes</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'bracket-4.25')">4¼" Return Bracket <span style="font-size:10px;color:#888">1⅜" ONLY · $12.44 ea · 9 finishes</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'bracket-6')">6" Return Bracket <span style="font-size:10px;color:#888">1⅜"=$35.25/5-pair box · 2"=$18.04 ea · 9 finishes</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'ceiling-bracket')">Ceiling mount Bracket <span style="font-size:10px;color:#888">1⅜"=$21.77 · 2"=$23.79 · 8 finishes (no Unfinished)</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'double-bracket')">Double Bracket — front 2" + back 1⅜" <span style="font-size:10px;color:#888">$24.86 ea · 8 finishes (no Unfinished) · requires 2 pole sizes</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'inside-socket')">Inside mount Socket (1⅜" only) <span style="font-size:10px;color:#888">$9.89/pair · 9 finishes · rod seats inside window casing</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'swivel-socket')">Swivel Socket — angled / bay window <span style="font-size:10px;color:#888">1⅜"=$26.72 · 2"=$32.73 · 9 finishes</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'holdback')">3¾" Holdback Medallion <span style="font-size:10px;color:#888">$42.47/pair · 8 finishes (no Unfinished) · adj 3" or 5" clearance</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'elbow')">Wood Elbow Kit — wrap-around bay <span style="font-size:10px;color:#888">Unfinished only · 3½"–5½" or 6"–8" clearance · includes metal bracket &amp; hidden support</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'teflon')">Teflon Tape — smooth ring glide <span style="font-size:10px;color:#888">$65.18/roll · 54ft · stationary poles only</span></div>
-        <div class="opt-pill" onclick="toggleWTAccessory(this,'pole-connector')">Pole Connector #5610E061 <span style="font-size:10px;color:#888">$1.70 ea · Zinc Plated · for splicing poles · always support splice with a bracket</span></div>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'rings')">Rings with Eyelet <span style="font-size:10px;color:#888">1⅜"=$15.37 · 2"=$18.17/bag · 7 rings/bag (1⅜") or 4 rings/bag (2")</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'metal-clip')">Metal Clip for Rings <span style="font-size:10px;color:#888">Brass · $16.05/50 pack · clips to eyelet for rod-pocket panels</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'bracket-3.5')">3½" Return Bracket <span style="font-size:10px;color:#888">1⅜"=$11.77 ea · 2"=$17.24 ea · 9 finishes</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'bracket-4.25')">4¼" Return Bracket <span style="font-size:10px;color:#888">1⅜" ONLY · $12.44 ea · 9 finishes</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'bracket-6')">6" Return Bracket <span style="font-size:10px;color:#888">1⅜"=$35.25/5-pair box · 2"=$18.04 ea · 9 finishes</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'ceiling-bracket')">Ceiling mount Bracket <span style="font-size:10px;color:#888">1⅜"=$21.77 · 2"=$23.79 · 8 finishes (no Unfinished)</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'double-bracket')">Double Bracket — front 2" + back 1⅜" <span style="font-size:10px;color:#888">$24.86 ea · 8 finishes (no Unfinished) · requires 2 pole sizes</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'inside-socket')">Inside mount Socket (1⅜" only) <span style="font-size:10px;color:#888">$9.89/pair · 9 finishes · rod seats inside window casing</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'swivel-socket')">Swivel Socket — angled / bay window <span style="font-size:10px;color:#888">1⅜"=$26.72 · 2"=$32.73 · 9 finishes</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'holdback')">3¾" Holdback Medallion <span style="font-size:10px;color:#888">$42.47/pair · 8 finishes (no Unfinished) · adj 3" or 5" clearance</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'elbow')">Wood Elbow Kit — wrap-around bay <span style="font-size:10px;color:#888">Unfinished only · 3½"–5½" or 6"–8" clearance · includes metal bracket &amp; hidden support</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'teflon')">Teflon Tape — smooth ring glide <span style="font-size:10px;color:#888">$65.18/roll · 54ft · stationary poles only</span></button>
+        <button class="opt-btn" onclick="toggleWTAccessory(this,'pole-connector')">Pole Connector #5610E061 <span style="font-size:10px;color:#888">$1.70 ea · Zinc Plated · for splicing poles · always support splice with a bracket</span></button>
       </div>
     </div>
+        </div>
 
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(5)">← Back</button>
-      <button class="btn-next" onclick="goStep(7)">Continue →</button>
+        <!-- Delivery (shared) + Your details (shared) -->
+        <div id="pb-delivery-slot"></div>
+        <div id="pb-final-slot"></div>
+      </div>
+
+      <!-- Summary card -->
+      <div class="summary-card" id="summary-card">
+        <div class="summary-head">Your configuration</div>
+        <div id="quote-summary"></div>
+        <div class="summary-note">Kirsch hardware is custom quoted — we confirm pricing, freight and lead time in your written quote.</div>
+      </div>
     </div>
   </div>
-
-  <!-- ═══════════════════════════════════════════
-       STEP 7 — CONTACT & QUOTE
-  ═══════════════════════════════════════════ -->
-  <div class="section" id="sec-7">
-    <div class="sec-label">Step 7 of 7</div>
-    <div class="sec-title">Your Quote Request</div>
-    <div class="sec-sub">Review your selections and send us your request. We'll follow up with pricing and lead time within 1 business day.</div>
-
-    <!-- Summary -->
-    <div class="summary-card" id="quote-summary">
-      <div class="summary-title">Your Configuration</div>
-      <!-- filled by JS -->
-    </div>
-
-    <!-- Delivery -->
-    <div class="delivery-section">
-      <div class="delivery-title">Installation or Pick-Up?</div>
-      <div class="delivery-opt" id="del-install" onclick="selectDelivery('install')">
-        <div class="delivery-opt-title">Professional Installation (Philadelphia / South Jersey area)</div>
-        <div class="delivery-opt-sub">We measure, supply, and install. Our team has 60+ years combined experience. Pricing includes on-site measurement and installation labor.</div>
-      </div>
-      <div class="delivery-opt" id="del-ship" onclick="selectDelivery('ship')">
-        <div class="delivery-opt-title">Ship to Me</div>
-        <div class="delivery-opt-sub">We ship Kirsch hardware directly to you. UPS / FedEx. Tariffs, duties, and freight charges apply on top of product pricing and will be disclosed at quote stage.</div>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(6)">← Back</button>
-    </div>
-    <button onclick="reqMoreInfo('Kirsch Drapery Hardware')" class="req-info-link" style="display:block;margin-bottom:14px">Request more information about Kirsch hardware →</button>
-    <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-        <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
-    <div id="pb-rod-spec"></div>
-    <div id="pb-final-step"></div>
-  </div>
-
-  <!-- UNSURE / HELP FORM (separate flow) -->
-  <div class="section" id="sec-unsure">
-    <div class="sec-label">Custom Quote</div>
-    <div class="sec-title">Tell Us About Your Project</div>
-    <div class="sec-sub">No worries — describe your space and what you're looking for. We'll recommend the perfect Kirsch solution and follow up with a quote.</div>
-
-    <div class="inp-row">
-      <div class="inp-group">
-        <label class="inp-label">Your Name *</label>
-        <input class="inp-field" type="text" id="u-name" placeholder="Full name">
-      </div>
-      <div class="inp-group">
-        <label class="inp-label">Phone / Email *</label>
-        <input class="inp-field" type="text" id="u-contact" placeholder="Best way to reach you">
-      </div>
-    </div>
-    <div class="inp-group" style="margin-bottom:14px">
-      <label class="inp-label">Window Width(s) &amp; Quantity</label>
-      <input class="inp-field" type="text" id="u-size" placeholder="e.g. 3 windows, each about 72&quot; wide">
-    </div>
-    <div class="inp-group" style="margin-bottom:14px">
-      <label class="inp-label">Describe Your Space &amp; Style</label>
-      <textarea class="inp-field" id="u-notes" placeholder="What room? Modern or traditional? Will drapery open/close often? Fabric weight? Ceiling height? Any colors/metals you like?"></textarea>
-    </div>
-    <div class="delivery-section">
-      <div class="delivery-title">Are you local to the Philadelphia area?</div>
-      <div class="delivery-opt" id="u-del-local" onclick="selectDelivery('install','u')">
-        <div class="delivery-opt-title">Yes — I'd like in-home measurement &amp; installation</div>
-      </div>
-      <div class="delivery-opt" id="u-del-remote" onclick="selectDelivery('ship','u')">
-        <div class="delivery-opt-title">No — I'd like hardware shipped or picked up</div>
-      </div>
-    </div>
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(1)">← Back</button>
-      <button class="btn-submit" onclick="submitUnsure()">Send My Request →</button>
-    </div>
-  </div>
-
-</div><!-- end config-wrap -->
+</div>
+</section>
 
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/kirsch-rods.js"></script>
 <script>
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ bare: true, calc: 'updateSummary()' });
+document.getElementById('pb-delivery-slot').outerHTML = pbDeliveryStepHTML({ stepNum: 9, onPick: 'updateSummary()' });
 // Canonical final "Your details" contact + files step — identical on every product.
-document.getElementById('pb-final-step').innerHTML =
-  pbContactStepHTML({ bare: true, cartFn: 'addKirschToCart()', submitFn: 'submitQuote()' });
-
-document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
+document.getElementById('pb-final-slot').outerHTML =
+  pbContactStepHTML({ stepNum: 10, cartFn: 'addKirschToCart()', submitFn: 'submitQuote()' });
+initKirsch();
 </script>
 </body>
 </html>
