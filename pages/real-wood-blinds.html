@@ -55,7 +55,6 @@
 .badge-designer{color:#92400E;background:#FEF3C7}
 .badge-premium{color:#6B21A8;background:#F3E8FF}
 
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
 .dim-inputs{display:flex;gap:6px;align-items:center}
 .dim-whole{width:54px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
@@ -80,8 +79,6 @@
 
 .step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
 
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
 .qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
 .qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
 .qrow-label{color:var(--text-muted);line-height:1.4}
@@ -100,7 +97,6 @@
 .form-group textarea{resize:vertical;min-height:72px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
-.delivery-wrap{background:#F9F7F4;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px;margin-bottom:14px}
 .submit-btn{width:100%;padding:14px;background:var(--gold);color:#111110;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;margin-top:2px}
 .submit-btn:hover{opacity:.88}
 .form-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-bottom:10px;display:none}
@@ -154,7 +150,7 @@
     <div class="step-head" onclick="toggleStep('step1')">
       <div class="step-num">1</div>
       <div class="step-head-title">Window measurements &amp; mount</div>
-      <div class="step-head-val" id="s1val">&mdash;</div>
+      <div class="step-head-val" id="s1val">Inside mount</div>
     </div>
     <div class="step-body">
       <div class="dim-box">
@@ -175,8 +171,8 @@
 
       <!-- Mount type -->
       <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
-      <div class="opt-row" style="margin-bottom:6px">
-        <button class="opt-btn" onclick="pickMount(this,'inside')">Inside mount</button>
+      <div class="opt-row" id="grp-mount" style="margin-bottom:6px">
+        <button class="opt-btn sel" onclick="pickMount(this,'inside')">Inside mount</button>
         <button class="opt-btn" onclick="pickMount(this,'outside')">Outside mount</button>
       </div>
       <div class="step-note" style="margin-bottom:12px">Inside mount fits inside the window frame for a clean built-in look (mfr deducts 3/8&Prime; automatically). Outside mount mounts on the wall or above the frame and covers the trim &mdash; we recommend adding 1&frac12;&Prime; each side for best light block.</div>
@@ -198,7 +194,7 @@
   <div class="step-block" id="step2">
     <div class="step-head" onclick="toggleStep('step2')">
       <div class="step-num">2</div>
-      <div class="step-head-title">Slat Size</div>
+      <div class="step-head-title">Slat size</div>
       <div class="step-head-val" id="s2val">&mdash;</div>
     </div>
     <div class="step-body">
@@ -214,7 +210,7 @@
   <div class="step-block" id="step4">
     <div class="step-head" onclick="toggleStep('step4')">
       <div class="step-num">3</div>
-      <div class="step-head-title">Color &amp; Finish</div>
+      <div class="step-head-title">Color &amp; finish</div>
       <div class="step-head-val" id="s4val">&mdash;</div>
     </div>
     <div class="step-body">
@@ -356,7 +352,7 @@
     </div>
     <div class="step-body">
       <div class="opt-row">
-        <button class="opt-btn" onclick="pickValance(this,'No Valance','none')">No Valance</button>
+        <button class="opt-btn" onclick="pickValance(this,'No valance','none')">No valance</button>
         <button class="opt-btn" onclick="pickValance(this,'Designer Crown','crown')">Designer Crown</button>
         <button class="opt-btn" onclick="pickValance(this,'Contempo','contempo')">Contempo</button>
       </div>
@@ -368,7 +364,7 @@
   <div class="step-block" id="step6">
     <div class="step-head" onclick="toggleStep('step6')">
       <div class="step-num">5</div>
-      <div class="step-head-title">Wand Location</div>
+      <div class="step-head-title">Wand location</div>
       <div class="step-head-val" id="s6val">&mdash;</div>
     </div>
     <div class="step-body">
@@ -381,17 +377,17 @@
     </div>
   </div>
 
-  <!-- STEP 6: INFO & SUBMIT -->
+  <!-- STEP 6: DELIVERY (shared pbDeliveryStepHTML) -->
+  <div id="pb-delivery-step"></div>
+
+  <!-- STEP 7: YOUR DETAILS -->
   <div class="step-block" id="step8">
     <div class="step-head" onclick="toggleStep('step8')">
-      <div class="step-num">6</div>
-      <div class="step-head-title">Your Info &amp; Submit</div>
+      <div class="step-num">7</div>
+      <div class="step-head-title">Your details</div>
       <div class="step-head-val"></div>
     </div>
     <div class="step-body">
-      <div class="delivery-section">
-        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong>. Shipping estimated in your quote.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
-      </div>
 
       <div class="custom-notice">
         <div class="custom-notice-head">Custom-made product</div>
@@ -409,9 +405,18 @@
 
 </div><!-- /config-left -->
 
-<!-- STICKY PRICE PANEL -->
-<div class="quote-panel">
-  <div class="qp-title">Price Summary</div>
+<!-- SUMMARY CARD -->
+<div class="summary-card" id="summary-card">
+  <div class="summary-head">Your configuration</div>
+  <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Norman Real Wood Blinds</span></div>
+  <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="sum-size">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sum-mount">Inside mount</span></div>
+  <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sum-qty">1</span></div>
+  <div class="summary-row"><span class="sr-key">Slat</span><span class="sr-val" id="sum-slat">2&Prime;</span></div>
+  <div class="summary-row"><span class="sr-key">Color</span><span class="sr-val" id="sum-color">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Valance</span><span class="sr-val" id="sum-valance">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Wand</span><span class="sr-val" id="sum-wand">Left</span></div>
+  <div class="qdiv"></div>
   <div id="qp-pending" class="qp-pending">Complete your selections to see an instant price</div>
   <div id="qp-detail" style="display:none">
     <div class="qrow"><span class="qrow-label">Base price (retail)</span><span class="qrow-val" id="q-base">&mdash;</span></div>
@@ -442,6 +447,8 @@
 <script src="../js/pages/real-wood-blinds.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-delivery-step').innerHTML =
+  pbDeliveryStepHTML({ stepNum: 6, onPick: 'calcPrice()' });
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addRealWoodToCart()', submitFn: 'submitForm()' });
 // Init: pre-select 2" slat and left wand

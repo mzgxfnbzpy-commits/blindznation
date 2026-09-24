@@ -25,14 +25,14 @@ const NORMAN_DISC = 0.25; // 25% off retail
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
 const S = {
-  mount: null,
+  mount: 'inside', // Inside mount pre-selected (standard)
   slat: '2in',
   w: 0, h: 0, sizeOk: false,
   color: null, colorSurcharge: 0,
   valance: null,
   wandLoc: 'left',
   qty: 1,
-  delivery: 'ship'
+  delivery: 'ship' // freight always applies (the Delivery step only records ship vs. installation)
 };
 
 const $ = id => document.getElementById(id);
@@ -47,7 +47,7 @@ function markDone(id) { $(id).classList.add('done'); }
 
 // ── STEP 1: MOUNT ─────────────────────────────────────────────────────────────
 function pickMount(el, val) {
-  document.querySelectorAll('#step1 .opt-btn').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('#grp-mount .opt-btn').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
   S.mount = val;
   $('s1val').textContent = val === 'inside' ? 'Inside mount' : 'Outside mount';
@@ -116,7 +116,7 @@ function calcSize() {
   if (wandCenter && wandNormal) {
     const isNarrow = w < 15;
     wandCenter.style.display = isNarrow ? 'block' : 'none';
-    wandNormal.style.display = isNarrow ? 'none' : 'block';
+    wandNormal.style.display = isNarrow ? 'none' : 'flex';
   }
 
   calcPrice();
@@ -153,6 +153,7 @@ function pickWand(el, val) {
   $('s6val').textContent = val.charAt(0).toUpperCase() + val.slice(1) + ' wand';
   markDone('step6');
   toggleStep('step8');
+  updateSummary();
 }
 
 // ── STEP 7: QUANTITY ──────────────────────────────────────────────────────────
@@ -170,16 +171,22 @@ function updateQty() {
   calcPrice();
 }
 
-// ── DELIVERY ──────────────────────────────────────────────────────────────────
-function pickDel(v) {
-  S.delivery = v;
-  document.querySelectorAll('.delivery-opt-card').forEach(c => c.classList.remove('sel'));
-  $('del-' + v).classList.add('sel');
-  calcPrice();
+// ── SUMMARY CARD ──────────────────────────────────────────────────────────────
+function updateSummary() {
+  const w = parseFloat(($('w-whole') || {}).value) || 0, h = parseFloat(($('h-whole') || {}).value) || 0;
+  const set = (id, v) => { const e = $(id); if (e) e.textContent = v; };
+  set('sum-size', (w && h) ? w + '″ W × ' + h + '″ H' : '—');
+  set('sum-mount', S.mount === 'outside' ? 'Outside mount' : 'Inside mount');
+  set('sum-qty', String(S.qty));
+  set('sum-slat', S.slat === '2.5in' ? '2½″' : '2″');
+  set('sum-color', S.color || '—');
+  set('sum-valance', !S.valance ? '—' : S.valance === 'none' ? 'No valance' : S.valance === 'crown' ? 'Designer Crown' : 'Contempo');
+  set('sum-wand', (w && w < 15) ? 'Center (under 15″)' : S.wandLoc.charAt(0).toUpperCase() + S.wandLoc.slice(1));
 }
 
 // ── PRICE CALC ────────────────────────────────────────────────────────────────
 function calcPrice() {
+  updateSummary();
   if (!S.sizeOk || !S.color || !S.mount || !S.valance) {
     $('qp-pending').style.display = 'block';
     $('qp-detail').style.display = 'none';
@@ -329,7 +336,7 @@ function submitForm() {
     'Phone: ' + (phone || '—'),
     'Email: ' + (email || '—'),
     'Notes: ' + (notes || '—'),
-    'Delivery: ' + ('Ship to me (UPS/FedEx)'),
+    'Delivery: ' + pbDeliveryLabel(),
     '',
     'PRODUCT SPECS',
     'Product: Norman Ultimate™ Normandy® Cordless Wood Blinds',
