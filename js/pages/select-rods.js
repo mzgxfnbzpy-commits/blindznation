@@ -52,77 +52,126 @@ var SS = {
 };
 
 // ── HELPERS ──────────────────────────────────────────────────────
-function reveal(id){var e=document.getElementById(id);if(e){e.classList.add('on');setTimeout(function(){e.scrollIntoView({behavior:'smooth',block:'nearest'});},80);}}
-function hide(id){var e=document.getElementById(id);if(e)e.classList.remove('on');}
-function hideAll(a){a.forEach(function(id){hide(id);});}
+function showStep(id,on){var e=document.getElementById(id);if(e)e.style.display=on?'':'none';}
 function selOpt(el,grp){document.querySelectorAll('#'+grp+' .opt-btn').forEach(function(b){b.classList.remove('sel');});el.classList.add('sel');}
 function getOpt(grp){var s=document.querySelector('#'+grp+' .opt-btn.sel');return s?s.textContent.trim():'';}
+function selWidth(){return parseFloat((document.getElementById('sel-width')||{value:''}).value)||0;}
+function selQty(){return parseInt((document.getElementById('sel-qty')||{value:'1'}).value)||1;}
 
-function revealQuote(){
-  renderSummary(getCurrentSummaryLines());
-  reveal('sec-summary');
-  reveal('sec-quote');
+// Visible steps run 1..N with no gaps
+function renumberSteps(){
+  var n=0;
+  document.querySelectorAll('#cfg-steps > .step-block').forEach(function(b){
+    if(b.style.display==='none')return;
+    n++;var s=b.querySelector('.step-num');if(s)s.textContent=n;
+  });
+}
+// Show exactly the steps that apply to the current answers (replaces the old reveal-as-you-go flow).
+function refreshSteps(){
+  var wood=SS.collection==='wood';
+  var hasColl=!!SS.collection;
+  showStep('sec-finish',!wood);
+  showStep('sec-diameter',SS.system==='stationary'&&hasColl&&!wood);
+  showStep('sec-stat',SS.system==='stationary'&&hasColl&&!wood);
+  showStep('sec-trav-brass',SS.system==='traverse'&&SS.collection==='brass');
+  showStep('sec-trav-cortina',SS.collection==='cortina');
+  showStep('sec-wood-quote',wood);
+  var hint=document.getElementById('sel-width-hint');
+  if(hint) hint.innerHTML=SS.collection==='cortina'?'inches &middot; max continuous 236&Prime; &middot; brackets included, count auto-calculated'
+    :(SS.system==='traverse'&&SS.collection==='brass')?'inches &middot; max continuous 16ft (192&Prime;) &middot; over 16ft spliced 2-way, up to 32ft'
+    :'inches &middot; finished rod / track width';
+  renumberSteps();
+  updateSummary();
 }
 
 function getCurrentSummaryLines(){
-  if(SS.collection==='wood' && SS.system==='stationary') return getWoodSummary();
+  if(SS.collection==='wood') return getWoodSummary();
   if(SS.collection==='brass' && SS.system==='traverse') return getBrassTravSummary();
   if(SS.collection==='cortina') return getCortinaSummary();
-  return getStatSummary();
+  if(SS.collection) return getStatSummary();
+  return [
+    {k:'System',v:SS.system==='stationary'?'Stationary pole':SS.system==='traverse'?'Decorative traverse rod':'—'},
+  ];
+}
+function currentMount(){
+  if(SS.collection==='brass'&&SS.system==='traverse') return getOpt('grp-brass-mount');
+  if(SS.collection==='cortina') return getOpt('grp-cort-mount');
+  if(SS.collection&&SS.collection!=='wood') return getOpt('grp-stat-mount');
+  return '';
+}
+// Summary card: Product · Size · Mount · Qty first, then the product lines.
+function updateSummary(){
+  var w=selWidth();
+  var head=[
+    {k:'Product',v:'Select drapery hardware'},
+    {k:'Size',v:w?w+'" wide':'—'},
+    {k:'Mount',v:currentMount()||'—'},
+    {k:'Qty',v:selQty()+' rod(s)'},
+  ];
+  renderSummary(head.concat(getCurrentSummaryLines()));
 }
 
-// ── STEP 1: SYSTEM ────────────────────────────────────────────────
+// ── STEP 2: SYSTEM ────────────────────────────────────────────────
 function selSystem(s){
   SS.system=s; SS.collection=''; SS.finish=''; SS.diameter=''; SS.finial=''; SS.travFinial=''; SS.woodFinish=''; SS.woodDia='';
   document.getElementById('sys-stat').classList.toggle('sel',s==='stationary');
   document.getElementById('sys-trav').classList.toggle('sel',s==='traverse');
-  hideAll(['sec-collection','sec-finish','sec-wood-finish','sec-wood-diam','sec-diameter','sec-stat','sec-wood-stat','sec-trav-brass','sec-trav-cortina','sec-wood-quote','sec-summary','sec-quote']);
+  document.getElementById('sys-note').textContent=s==='stationary'
+    ?'Stationary pole — fixed rod with finials; panels hang from rings. Best for pinch pleat, goblet, grommet, and tab-top styles. Select Metal Brass · Iron Works · Wood.'
+    :'Decorative traverse rod — decorative fascia over an internal track; panels open and close. Pinch Pleat or Ripplefold® compatible. Select Metal Traverse · Cortina Collection · Wood Traverse.';
   buildCollCards(s);
-  reveal('sec-collection');
+  resetFinishStep();
+  refreshSteps();
 }
 
-// ── STEP 2: COLLECTION ────────────────────────────────────────────
+// ── STEP 3: COLLECTION ────────────────────────────────────────────
+var COLL_CARDS={
+  stationary:[
+    {id:'brass',name:'Select Metal Brass',desc:'8 stunning finishes · ¾" and 1 3/16" · 22+ finials · Brass construction',tag:'Most popular'},
+    {id:'ironworks',name:'Iron Works',desc:'4 dark finishes · ¾" and 1 3/16" · 9 finials · Steel poles · Industrial look',tag:'Contemporary / industrial'},
+    {id:'wood',name:'Select Wood',desc:'13 finishes · 1 3/8" and 2 1/4" · Natural wood poles · Classic look',tag:'Custom quote'},
+  ],
+  traverse:[
+    {id:'brass',name:'Select Metal Brass Traverse',desc:'Half Round or Metro Flat fascia · 8 finishes · Pinch Pleat or Ripplefold · Up to 32ft',tag:'Decorative traverse'},
+    {id:'cortina',name:'Cortina Collection',desc:'Sintra, Obidos, or Coimbra designs · 4 finishes · Single or double rod · Up to 236"',tag:'Modern traverse'},
+    {id:'wood',name:'Select Wood Traverse',desc:'Wood poles with traverse hardware · 13 finishes · 1 3/8" and 2 1/4"',tag:'Custom quote'},
+  ]
+};
 function buildCollCards(sys){
-  var cards;
-  if(sys==='stationary'){
-    cards=[
-      {id:'brass',icon:'🔩',name:'Select Metal Brass',desc:'8 stunning finishes · ¾" and 1 3/16" · 22+ finials · Brass construction',tag:'Most popular'},
-      {id:'ironworks',icon:'⚙️',name:'Iron Works',desc:'4 dark finishes · ¾" and 1 3/16" · 9 finials · Steel poles · Industrial look',tag:'Contemporary / industrial'},
-      {id:'wood',icon:'🪵',name:'Select Wood',desc:'13 finishes · 1 3/8" and 2 1/4" · Natural wood poles · Classic look',tag:'Custom quote'},
-    ];
-  } else {
-    cards=[
-      {id:'brass',icon:'🔩',name:'Select Metal Brass Traverse',desc:'Half Round or Metro Flat fascia · 8 finishes · Pinch Pleat or Ripplefold · Up to 32ft',tag:'Decorative traverse'},
-      {id:'cortina',icon:'🎛️',name:'Cortina Collection',desc:'Sintra, Obidos, or Coimbra designs · 4 finishes · Single or double rod · Up to 236"',tag:'Modern traverse'},
-      {id:'wood',icon:'🪵',name:'Select Wood Traverse',desc:'Wood poles with traverse hardware · 13 finishes · 1 3/8" and 2 1/4"',tag:'Custom quote'},
-    ];
-  }
+  var cards=COLL_CARDS[sys]||[];
   document.getElementById('coll-title').textContent=sys==='stationary'?'Which collection?':'Which traverse system?';
+  document.getElementById('coll-note').textContent='';
   document.getElementById('coll-cards').innerHTML=cards.map(function(c){
-    return '<div class="coll-card" id="coll-'+c.id+'" onclick="selCollection(\''+c.id+'\')">'+
-      '<div class="coll-icon">'+c.icon+'</div>'+
-      '<div class="coll-name">'+c.name+'</div>'+
-      '<div class="coll-desc">'+c.desc+'</div>'+
-      '<div class="coll-tag">'+c.tag+'</div>'+
-      '</div>';
+    return '<button class="opt-btn" id="coll-'+c.id+'" onclick="selCollection(\''+c.id+'\')">'+c.name+' <span class="pill-hint">'+c.tag.toLowerCase()+'</span></button>';
   }).join('');
 }
 
 function selCollection(coll){
   SS.collection=coll; SS.finish=''; SS.diameter=''; SS.finial=''; SS.travFinial=''; SS.woodFinish=''; SS.woodDia='';
-  document.querySelectorAll('.coll-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#coll-cards .opt-btn').forEach(function(c){c.classList.remove('sel');});
   var card=document.getElementById('coll-'+coll);
   if(card)card.classList.add('sel');
-  hideAll(['sec-finish','sec-wood-finish','sec-wood-diam','sec-diameter','sec-stat','sec-wood-stat','sec-trav-brass','sec-trav-cortina','sec-wood-quote','sec-summary','sec-quote']);
+  var info=(COLL_CARDS[SS.system]||[]).find(function(c){return c.id===coll;});
+  document.getElementById('coll-note').textContent=info?info.desc+'.':'';
+  document.getElementById('diam-34').classList.remove('sel');
+  document.getElementById('diam-1316').classList.remove('sel');
+  document.getElementById('finial-grid').innerHTML='<div class="placeholder-note">Choose a pole diameter above to see its finials.</div>';
   if(coll==='wood'){
-    reveal('sec-wood-quote');
+    resetFinishStep();
   } else {
     buildFinishes(coll);
-    reveal('sec-finish');
+    if(SS.system==='traverse'&&coll==='brass') buildBrassFinials();
+    if(SS.system==='stationary') document.getElementById('stat-title').textContent=coll==='ironworks'?'Iron Works stationary rod details':'Select Metal Brass stationary rod details';
   }
+  refreshSteps();
 }
 
-// ── STEP 3: FINISH ────────────────────────────────────────────────
+// ── STEP 4: FINISH ────────────────────────────────────────────────
+function resetFinishStep(){
+  document.getElementById('finish-sub').textContent='';
+  document.getElementById('finish-note').textContent='';
+  document.getElementById('finish-cards').innerHTML='<div class="placeholder-note">Choose a collection above to see its finishes.</div>';
+}
 function buildFinishes(coll){
   var fins=coll==='cortina'?CORTINA_FINISHES:(coll==='ironworks'?IW_FINISHES:BRASS_FINISHES);
   var sub=fins.length+' finishes available.';
@@ -146,122 +195,25 @@ function selFinish(code,name,el){
   SS.finish=name; SS.finishCode=code;
   document.querySelectorAll('#finish-cards .finish-card').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
-  hideAll(['sec-diameter','sec-stat','sec-trav-brass','sec-trav-cortina','sec-summary','sec-quote']);
-  if(SS.system==='stationary'){
-    reveal('sec-diameter');
-  } else {
-    if(SS.collection==='brass'){
-      buildBrassFinials();
-      reveal('sec-trav-brass');
-    } else if(SS.collection==='cortina'){
-      reveal('sec-trav-cortina');
-    }
-  }
+  updateSummary();
 }
 
-// ── WOOD FINISH + DIAMETER ────────────────────────────────────────
-function buildWoodFinishCards(){
-  document.getElementById('wood-finish-cards').innerHTML=WOOD_FINISHES.map(function(f){
-    var isLight=f.color==='#F5F0E8'||f.color==='#EDE0C8';
-    var swatchBorder=isLight?'border-bottom:1px solid #ddd;':'';
-    return '<div class="finish-card" onclick="selWoodFinish(\''+f.code+'\',\''+f.name+'\',this)">'+
-      '<div class="finish-swatch" style="background:'+f.color+';'+swatchBorder+'"></div>'+
-      '<div class="finish-name">'+f.name+(f.surcharge?'<span class="finish-surcharge">+surcharge</span>':'')+'</div>'+
-      '</div>';
-  }).join('');
-}
-
-function selWoodFinish(code,name,el){
-  SS.woodFinish=name;
-  document.querySelectorAll('#wood-finish-cards .finish-card').forEach(function(c){c.classList.remove('sel');});
-  el.classList.add('sel');
-  hideAll(['sec-wood-diam','sec-wood-stat','sec-summary','sec-quote']);
-  reveal('sec-wood-diam');
-}
-
-function selWoodDia(d){
-  SS.woodDia=d;
-  document.getElementById('wd-diam-138').classList.toggle('sel',d==='1-3/8');
-  document.getElementById('wd-diam-214').classList.toggle('sel',d==='2-1/4');
-  hideAll(['sec-wood-stat','sec-summary','sec-quote']);
-  buildWoodFinials();
-  if(SS.system==='stationary'){
-    reveal('sec-wood-stat');
-  } else {
-    // Wood traverse — goes to wood stat config re-used section with traverse context
-    reveal('sec-wood-stat');
-  }
-  woodUpdate();
-}
-
-function buildWoodFinials(){
-  document.getElementById('wood-finial-grid').innerHTML=FINIALS_WOOD.map(function(f){
-    return '<button class="finial-btn" onclick="selWoodFinial(\''+f+'\',this)">'+f+'</button>';
-  }).join('');
-}
-
-function selWoodFinial(name,el){
-  SS.woodFinial=name;
-  document.querySelectorAll('#wood-finial-grid .finial-btn').forEach(function(b){b.classList.remove('sel');});
-  el.classList.add('sel');
-  woodUpdate();
-}
-
-function woodUpdate(){
-  var profile=getOpt('grp-wd-profile');
-  var width=getOpt('grp-wd-width');
-  var shape=getOpt('grp-wd-shape');
-  var config=getOpt('grp-wd-config');
-  var ring=getOpt('grp-wd-ring');
-  var mount=getOpt('grp-wd-mount');
-  var qty=parseInt(document.getElementById('wd-qty').value)||1;
-}
-
-function submitWoodQuote(){
-  var name=document.getElementById('wd-q-name').value.trim();
-  var phone=document.getElementById('wd-q-phone').value.trim();
-  if(!name||!phone){alert('Please enter your name and phone number.');return;}
-  var notes=document.getElementById('wd-q-notes').value.trim();
-  var sys=SS.system==='traverse'?'Select Wood Traverse':'Select Wood Stationary Pole';
-  var body='SELECT WOOD HARDWARE QUOTE REQUEST\n\nType: '+sys+'\nName: '+name+'\nPhone: '+phone+'\n\nProject notes:\n'+(notes||'None')+'\n\n--- blindznation.com/pages/select-rods.html ---';
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + 'Select Wood Quote — '+name)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
-  document.getElementById('wd-q-form').style.display='none';
-  document.getElementById('wd-q-success').style.display='block';
-}
-
+// ── SELECT WOOD (custom quote) ────────────────────────────────────
 function getWoodSummary(){
-  var profile=getOpt('grp-wd-profile');
-  var width=getOpt('grp-wd-width');
-  var shape=getOpt('grp-wd-shape');
-  var config=getOpt('grp-wd-config');
-  var ring=getOpt('grp-wd-ring');
-  var mount=getOpt('grp-wd-mount');
-  var qty=parseInt(document.getElementById('wd-qty').value)||1;
   return [
-    {k:'Collection',v:'Select Wood'},
-    {k:'Finish',v:SS.woodFinish||'—'},
-    {k:'Diameter',v:SS.woodDia?SS.woodDia+'"':'—'},
-    {k:'Profile',v:profile||'—'},
-    {k:'Window width',v:width||'—'},
-    {k:'Window shape',v:shape||'—'},
-    {k:'Rod configuration',v:config||'—'},
-    {k:'Finial',v:SS.woodFinial||'— (not selected)'},
-    {k:'Ring type',v:ring||'—'},
-    {k:'Mount',v:mount||'—'},
-    {k:'Quantity',v:qty+' rod(s)'},
+    {k:'Collection',v:SS.system==='traverse'?'Select Wood Traverse':'Select Wood Stationary Pole'},
+    {k:'Details',v:'Custom quote — see notes'},
   ];
 }
 
-// ── STEP 4: DIAMETER (brass/ironworks stationary) ──────────────────────────────────────────────
+// ── STEP 5: DIAMETER (brass/ironworks stationary) ──────────────────
 function selDiameter(d){
   SS.diameter=d; SS.finial='';
   document.getElementById('diam-34').classList.toggle('sel',d==='3/4');
   document.getElementById('diam-1316').classList.toggle('sel',d==='1-3/16');
-  hideAll(['sec-stat','sec-summary','sec-quote']);
-  var title=SS.collection==='ironworks'?'Iron Works – '+d+'" Pole':'Select Metal Brass – '+d+'" Pole';
+  var title=SS.collection==='ironworks'?'Iron Works – '+d+'" pole details':'Select Metal Brass – '+d+'" pole details';
   document.getElementById('stat-title').textContent=title;
   buildFinials();
-  reveal('sec-stat');
   sUpdate();
 }
 
@@ -269,24 +221,24 @@ function selDiameter(d){
 function buildFinials(){
   var list=SS.collection==='ironworks'?FINIALS_IW:(SS.diameter==='3/4'?FINIALS_BRASS_34:FINIALS_BRASS_1316);
   document.getElementById('finial-grid').innerHTML=list.map(function(f){
-    return '<button class="finial-btn" onclick="selFinial(\''+f+'\',this)">'+f+'</button>';
+    return '<button class="opt-btn" onclick="selFinial(\''+f+'\',this)">'+f+'</button>';
   }).join('');
 }
 
 function buildBrassFinials(){
   document.getElementById('brass-finial-grid').innerHTML=FINIALS_BRASS_1316.map(function(f){
-    return '<button class="finial-btn" onclick="selTravFinial(\''+f+'\',this)">'+f+'</button>';
+    return '<button class="opt-btn" onclick="selTravFinial(\''+f+'\',this)">'+f+'</button>';
   }).join('');
 }
 
 function selFinial(name,el){
   SS.finial=name;
-  document.querySelectorAll('#finial-grid .finial-btn').forEach(function(b){b.classList.remove('sel');});
+  document.querySelectorAll('#finial-grid .opt-btn').forEach(function(b){b.classList.remove('sel');});
   el.classList.add('sel'); sUpdate();
 }
 function selTravFinial(name,el){
   SS.travFinial=name;
-  document.querySelectorAll('#brass-finial-grid .finial-btn').forEach(function(b){b.classList.remove('sel');});
+  document.querySelectorAll('#brass-finial-grid .opt-btn').forEach(function(b){b.classList.remove('sel');});
   el.classList.add('sel'); tBrassUpdate();
 }
 
@@ -294,7 +246,7 @@ function selTravFinial(name,el){
 function selBracket(el,gridId,name){
   if(gridId==='stat-bracket-grid') SS.bracket=name;
   else SS.brassBracket=name;
-  document.querySelectorAll('#'+gridId+' .bracket-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#'+gridId+' .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   if(gridId==='stat-bracket-grid') sUpdate(); else tBrassUpdate();
 }
@@ -328,22 +280,18 @@ function ringQtyChanged(inp){
 
 // ── STATIONARY SUMMARY ────────────────────────────────────────────
 function getStatSummary(){
-  var width=getOpt('grp-stat-width');
   var shape=getOpt('grp-stat-shape');
   var config=getOpt('grp-stat-config');
   var ring=getOpt('grp-ring-type');
   var ringQtyInp=document.getElementById('ring-qty-input');
   var ringQtyVal=ringQtyInp?parseInt(ringQtyInp.value)||0:0;
   var ringQty=ringQtyVal>0?(ringQtyVal+' rings total (est. 5 per 15")'):'';
-  var mount=getOpt('grp-stat-mount');
   var baton=getOpt('grp-stat-baton');
-  var qty=parseInt(document.getElementById('stat-qty').value)||1;
   var accs=SS.accList.length?SS.accList.join(', '):'None';
   return [
     {k:'Collection',v:SS.collection==='ironworks'?'Select Iron Works':'Select Metal Brass'},
     {k:'Finish',v:SS.finish||'—'},
     {k:'Diameter',v:SS.diameter?SS.diameter+'"':'—'},
-    {k:'Window width',v:width||'—'},
     {k:'Window shape',v:shape||'—'},
     {k:'Rod configuration',v:config||'—'},
     {k:'Finial',v:SS.finial||'— (not selected)'},
@@ -352,11 +300,9 @@ function getStatSummary(){
     {k:'Bracket style',v:SS.bracket},
     {k:'Baton',v:baton||'—'},
     {k:'Accessories',v:accs},
-    {k:'Mount',v:mount||'—'},
-    {k:'Quantity',v:qty+' rod(s)'},
   ];
 }
-function sUpdate(){renderSummary(getStatSummary());}
+function sUpdate(){updateSummary();}
 
 // ── BRASS TRAVERSE ────────────────────────────────────────────
 function selFascia(f){
@@ -372,19 +318,20 @@ function tBrassTogglePleat(type){
 }
 
 function getBrassTravSummary(){
-  var w=parseFloat(document.getElementById('brass-width').value)||0;
+  var w=selWidth();
   var draw=getOpt('grp-brass-draw');
   var pleat=getOpt('grp-brass-pleat');
   var ripple=getOpt('grp-brass-ripple');
   var op=getOpt('grp-brass-op');
   var config=getOpt('grp-brass-config');
   var bracket=SS.brassBracket;
-  var mount=getOpt('grp-brass-mount');
   var cord=getOpt('grp-brass-cord');
-  var qty=parseInt(document.getElementById('brass-qty').value)||1;
   var brCount=w?calcBrassBrackets(w):'—';
   var brNote=document.getElementById('brass-bracket-note');
   if(brNote){brNote.style.display=w?'block':'none';if(w)brNote.textContent=w+'" track requires '+brCount+' bracket(s). (Up to 57"=2, 58"–85"=3, 86"–113"=4, 114"–140"=5, 141"–168"=6, 169"–192"=7)';}
+  // Cord drop only applies to cord draw
+  var cw=document.getElementById('brass-cord-wrap');
+  if(cw) cw.style.display=op.indexOf('Cord')!==-1?'':'none';
   var isRipple=pleat.indexOf('Ripplefold')!==-1;
   return [
     {k:'Collection',v:'Select Metal Brass Traverse'},
@@ -397,12 +344,10 @@ function getBrassTravSummary(){
     {k:'Rod config',v:config||'—'},
     {k:'Bracket',v:bracket},
     {k:'Brackets needed',v:brCount!=='—'?brCount+' per rod':'—'},
-    {k:'Mount',v:mount||'—'},
     {k:'Finial / End cap',v:SS.travFinial||'— (not selected)'},
-    {k:'Quantity',v:qty+' rod(s)'},
   ];
 }
-function tBrassUpdate(){renderSummary(getBrassTravSummary());}
+function tBrassUpdate(){updateSummary();}
 
 function calcBrassBrackets(w){
   if(w<=57)return 2;if(w<=85)return 3;if(w<=113)return 4;
@@ -426,7 +371,7 @@ function cTogglePleat(type){
 }
 
 function getCortinaSummary(){
-  var w=parseFloat(document.getElementById('cort-width').value)||0;
+  var w=selWidth();
   var design=SS.cortDesign||'sintra';
   var face=design==='coimbra'?(' · '+(getOpt('grp-coimbra-face')||'Flat face')):'';
   var config=getOpt('grp-cort-config');
@@ -434,8 +379,6 @@ function getCortinaSummary(){
   var pleat=getOpt('grp-cort-pleat');
   var ripple=getOpt('grp-cort-ripple');
   var op=getOpt('grp-cort-op');
-  var mount=getOpt('grp-cort-mount');
-  var qty=parseInt(document.getElementById('cort-qty').value)||1;
   var brCount=w?calcCortinaBrackets(w):'—';
   var brNote=document.getElementById('cort-bracket-note');
   if(brNote){brNote.style.display=w?'block':'none';if(w)brNote.textContent=w+'" track requires '+brCount+' brackets (included in set).';}
@@ -449,12 +392,10 @@ function getCortinaSummary(){
     {k:'Draw',v:draw||'—'},
     {k:'Drapery style',v:pleat.split(' ')[0]+(isRipple?' · '+ripple+' fullness':'')},
     {k:'Operation',v:op.split('(')[0].trim()},
-    {k:'Mount',v:mount||'—'},
     {k:'Brackets needed',v:brCount!=='—'?brCount+' (included)':'—'},
-    {k:'Quantity',v:qty+' rod(s)'},
   ];
 }
-function cUpdate(){renderSummary(getCortinaSummary());}
+function cUpdate(){updateSummary();}
 
 function calcCortinaBrackets(w){
   if(w<=60)return 2;if(w<=90)return 3;if(w<=120)return 4;
@@ -465,25 +406,30 @@ function calcCortinaBrackets(w){
 function renderSummary(lines){
   var el=document.getElementById('summary-lines');
   if(!el)return;
+  // bracket notes for the other traverse system are stale once the collection changes
+  if(!(SS.collection==='brass'&&SS.system==='traverse')){var b=document.getElementById('brass-bracket-note');if(b)b.style.display='none';}
+  if(SS.collection!=='cortina'){var c=document.getElementById('cort-bracket-note');if(c)c.style.display='none';}
   el.innerHTML=lines.map(function(l){
-    return '<div class="summary-line"><span class="summary-key">'+l.k+'</span><span class="summary-val">'+l.v+'</span></div>';
+    return '<div class="summary-row"><span class="sr-key">'+l.k+'</span><span class="sr-val">'+l.v+'</span></div>';
   }).join('');
 }
 
 function getSummaryText(){
   var lines=[];
-  document.querySelectorAll('#summary-lines .summary-line').forEach(function(d){
+  document.querySelectorAll('#summary-lines .summary-row').forEach(function(d){
     var spans=d.querySelectorAll('span');
     if(spans.length>=2)lines.push(spans[0].textContent+': '+spans[1].textContent);
   });
   return lines.join('\n');
 }
+// Kept for any legacy caller.
+function revealQuote(){ updateSummary(); }
 
 // ── SUBMIT ────────────────────────────────────────────────────────
 function addSelectToCart(){
   if(!SS.system){ alert('Please select a hardware system before adding to cart.'); return; }
 
-  var summaryLines=getCurrentSummaryLines();
+  var summaryLines=[{k:'Size',v:selWidth()?selWidth()+'" wide':'—'},{k:'Mount',v:currentMount()||'—'},{k:'Quantity',v:selQty()+' rod(s)'}].concat(getCurrentSummaryLines());
   var lines=[{label:'Product',value:'Select Drapery Hardware'}].concat(
     summaryLines.filter(function(l){return l&&(l.k||l.label);}).map(function(l){return {label:l.k||l.label,value:String(l.v||l.value||'')};})
   );
@@ -502,9 +448,11 @@ function submitSelect(){
     else{alert('Please enter your name and phone number.');}
     return;
   }
-  var delivery=getOpt('grp-del-sel');
+  updateSummary();
+  var delivery=pbDeliveryLabel();
   var spec=getSummaryText();
-  var body='SELECT HARDWARE QUOTE REQUEST\n\n'
+  var title=SS.collection==='wood'?'SELECT WOOD HARDWARE QUOTE REQUEST':'SELECT HARDWARE QUOTE REQUEST';
+  var body=title+'\n\n'
     +'Name: '+name+'\nPhone: '+phone
     +'\nEmail: '+(document.getElementById('cf-email').value.trim()||'—')+'\n\n'
     +'SPECIFICATION:\n'+spec+'\n\n'
@@ -516,3 +464,6 @@ function submitSelect(){
   document.getElementById('sel-form').style.display='none';
   document.getElementById('sel-success').style.display='block';
 }
+
+// ── INIT (called after the shared delivery/contact steps are rendered) ──
+function initSelect(){ refreshSteps(); }
