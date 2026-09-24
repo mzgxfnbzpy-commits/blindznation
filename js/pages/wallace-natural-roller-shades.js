@@ -73,7 +73,7 @@ var DEDUCTIONS = {
 // ═══════════════════════════════════════════════════════════════
 var S = {
   shadeType: '',    // 'single' | 'double'
-  mount: '',
+  mount: 'inside',  // Inside mount pre-selected (standard Step 1)
   width: 0, height: 0, qty: 1,
   fabric: null, fabColor: '',
   backFabric: null,
@@ -88,9 +88,25 @@ var S = {
   wandLength: '',
   motorType: '',
   motorAccessories: [],
-  holdDown: false, spacer: false,
-  delivery: 'ship'
+  holdDown: false, spacer: false
+  // Delivery lives in window.pbDelivery ('ship' | 'install') — shared pbDeliveryStepHTML.
 };
+
+// Steps are numbered 1..N in visual order; the conditional steps (back fabric,
+// control details, motor accessories) show/hide, so the numbers are recomputed.
+function wnrRenumber() {
+  var n = 0;
+  document.querySelectorAll('#configurator > .step-block').forEach(function(b) {
+    if (b.style.display === 'none') return;
+    var c = b.querySelector('.step-num');
+    if (c) c.textContent = ++n;
+  });
+}
+function wnrDelLabel() { return typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me'; }
+function wnrDeliveryPicked() {
+  var v = document.getElementById('sdel-val'); if (v) v.textContent = wnrDelLabel();
+  updateSpec('sp-del', wnrDelLabel());
+}
 
 // ═══════════════════════════════════════════════════════════════
 // STEP 1 — SHADE TYPE
@@ -107,6 +123,7 @@ function selectType(t) {
   // Show/hide back fabric step
   document.getElementById('step-6').style.display = t === 'double' ? 'block' : 'none';
   document.getElementById('sp-back-row').style.display = t === 'double' ? 'flex' : 'none';
+  wnrRenumber();
 
   // Update size note
   var note = document.getElementById('size-type-note');
@@ -262,8 +279,8 @@ function wnrPickColor(code){
 }
 
 function filterFab(f, btn) {
-  document.querySelectorAll('.fab-tab').forEach(function(t){ t.classList.remove('on'); });
-  btn.classList.add('on');
+  document.querySelectorAll('#grp-fab-filter .opt-btn').forEach(function(t){ t.classList.remove('sel'); });
+  btn.classList.add('sel');
   buildFabGrid(f);
 }
 
@@ -271,7 +288,7 @@ function selectFabric(idx) {
   S.fabric = FABRICS[idx];
   S.fabColor = '';
   buildFabGrid('all');
-  document.querySelectorAll('.fab-tab')[0].click();
+  document.querySelectorAll('#grp-fab-filter .opt-btn')[0].click();
 
   document.getElementById('fab-color-wrap').style.display = 'block';
   document.getElementById('fab-color-inp').value = '';
@@ -301,19 +318,19 @@ function buildBackGrids() {
   ['back-lf-grid','back-rd-grid'].forEach(function(id){ document.getElementById(id).innerHTML = ''; });
   BACK_LF.forEach(function(b,i) {
     document.getElementById('back-lf-grid').innerHTML +=
-      '<div class="back-card" id="backc-' + b.code + '" onclick="selectBack(\'' + b.code + '\',\'' + b.name + '\',\'LF\')">' +
-      '<div class="back-name">Light Filtering ' + b.name + '</div><div class="back-code">' + b.code + '</div></div>';
+      '<button class="opt-btn" id="backc-' + b.code + '" onclick="selectBack(\'' + b.code + '\',\'' + b.name + '\',\'LF\')">' +
+      b.name + ' <span style="font-size:10px;opacity:.6">' + b.code + '</span></button>';
   });
   BACK_RD.forEach(function(b,i) {
     document.getElementById('back-rd-grid').innerHTML +=
-      '<div class="back-card" id="backc-' + b.code + '" onclick="selectBack(\'' + b.code + '\',\'' + b.name + '\',\'RD\')">' +
-      '<div class="back-name">Blackout ' + b.name + '</div><div class="back-code">' + b.code + '</div></div>';
+      '<button class="opt-btn" id="backc-' + b.code + '" onclick="selectBack(\'' + b.code + '\',\'' + b.name + '\',\'RD\')">' +
+      b.name + ' <span style="font-size:10px;opacity:.6">' + b.code + '</span></button>';
   });
 }
 
 function selectBack(code, name, type) {
   S.backFabric = {code:code, name:name, type:type};
-  document.querySelectorAll('.back-card').forEach(function(el){ el.classList.remove('sel'); });
+  document.querySelectorAll('#back-lf-grid .opt-btn, #back-rd-grid .opt-btn').forEach(function(el){ el.classList.remove('sel'); });
   var el = document.getElementById('backc-' + code);
   if (el) el.classList.add('sel');
   var label = (type === 'RD' ? 'Blackout ' : 'Light Filtering ') + name + ' · ' + code;
@@ -523,6 +540,7 @@ function selectControl(key) {
   var needsMotorAcc = key === 'motor' || key === 'prowand';
   document.getElementById('step-10').style.display = 'block';
   document.getElementById('step-11').style.display = needsMotorAcc ? 'block' : 'none';
+  wnrRenumber();
 
   buildControlDetails(key);
   if (needsMotorAcc) buildMotorAcc(key);
@@ -635,19 +653,20 @@ function buildMotorAcc(key) {
     {id:'acc-ext96',    label:'96" Extension Cable',         sub:'Long extension'},
     {id:'acc-charger',  label:'16½ ft Charger',              sub:'Extended reach charger cable'}
   ];
-  body.innerHTML = items.map(function(item) {
-    return '<div class="acc-item">' +
-      '<input type="checkbox" class="acc-check" id="' + item.id + '" onchange="updateMotorAcc()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0;margin-top:2px">' +
-      '<div><div class="acc-label">' + item.label + '</div><div class="acc-sub">' + item.sub + '</div></div>' +
-    '</div>';
-  }).join('');
+  // Multi-select add-ons as toggle pills; the hidden checkbox stays the source of truth.
+  body.innerHTML = '<div class="opt-row">' + items.map(function(item) {
+    return '<label class="opt-btn" data-label="' + item.label + '">' +
+      '<input type="checkbox" class="acc-check" id="' + item.id + '" onchange="this.parentNode.classList.toggle(\'sel\',this.checked);updateMotorAcc()" style="display:none">' +
+      item.label + '</label>';
+  }).join('') + '</div>' +
+  '<div class="step-note">Select any. ' + items.map(function(item) { return item.label + ': ' + item.sub.toLowerCase() + '.'; }).join(' ') + '</div>';
 }
 
 function updateMotorAcc() {
   var acc = [];
   document.querySelectorAll('#s11-body .acc-check:checked').forEach(function(el) {
-    var lbl = el.nextElementSibling && el.nextElementSibling.querySelector('.acc-label');
-    if (lbl) acc.push(lbl.textContent);
+    var lbl = el.parentNode && el.parentNode.getAttribute('data-label');
+    if (lbl) acc.push(lbl);
   });
   S.motorAccessories = acc;
   document.getElementById('s11-val').textContent = acc.length ? acc.length + ' selected' : 'Optional';
@@ -669,11 +688,6 @@ function updateOptions() {
 // ═══════════════════════════════════════════════════════════════
 // DELIVERY
 // ═══════════════════════════════════════════════════════════════
-function selectDelivery(mode) {
-  S.delivery = mode;
-  var delShip = document.getElementById('del-ship');
-  if (delShip) delShip.classList.add('sel');
-}
 
 // ═══════════════════════════════════════════════════════════════
 // STEP HELPERS
@@ -734,7 +748,7 @@ function submitQuote() {
   var ctrl = S.control;
   var ctrllabels = {clutch:'Clutch', cordless:'Cordless', prowand:'Pro Wand Motor', motor:'Remote Motor'};
   var ttlabels = {'open-std':'Open Roll — Standard Bracket','open-metal':'Open Roll — Decorative Metal Bracket','open-dual':'Open Roll — Dual Bracket','cassette':'Square Cassette','box-valance':'Fabric-Wrapped Box Valance','trad-valance':'Traditional Valance'};
-  var delivery = 'Ship to me (UPS/FedEx)';
+  var delivery = wnrDelLabel();
 
   var warns = [];
   if (fab && S.width > fab.maxW) warns.push('Width exceeds fabric max (' + fab.maxW + '")');

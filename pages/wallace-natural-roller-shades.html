@@ -41,8 +41,6 @@
 .config-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1140px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
 
-.step-num-circle{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step-block.done .step-num-circle{background:var(--gold);color:var(--espresso)}
 
 /* Big type-selector cards */
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
@@ -87,8 +85,6 @@
 .back-name{font-size:12px;font-weight:500;color:#111;margin-bottom:1px}
 .back-code{font-size:10px;color:#888}
 
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-@media(max-width:480px){.dim-row{grid-template-columns:1fr}}
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
 .dim-input{width:80px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
 .dim-unit{font-size:12px;color:#666;margin-left:4px}
@@ -116,14 +112,9 @@
 .acc-label{font-size:13px;font-weight:500;color:#111}
 .acc-sub{font-size:11px;color:#666;line-height:1.4;margin-top:2px}
 
-.spec-panel{background:var(--espresso);border-radius:14px;padding:20px;position:sticky;top:80px}
-.spec-title{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
-.spec-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:12px;padding:5px 0;border-bottom:.5px solid #2A201A;gap:8px}
-.spec-row:last-of-type{border-bottom:none}
-.spec-key{color:#7A6A58;flex-shrink:0}
-.spec-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word}
-.spec-val.empty{color:#3A2E24;font-style:italic}
-.spec-divider{border:.5px solid #2A201A;margin:10px 0}
+/* Summary card uses the global CONFIGURATOR STANDARD classes; only the "not chosen yet" look is local. */
+.summary-row .sr-val.empty{color:#7A6A58;font-style:italic}
+.summary-divider{border-top:.5px solid var(--border-dark,rgba(255,255,255,.12));margin:10px 0}
 </style>
 </head>
 <body data-page="Shades & blinds">
@@ -171,7 +162,7 @@
 <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT -->
 <div class="step-block active open" id="step-1">
   <div class="step-head" onclick="toggleStep('step-1')">
-    <div class="step-num-circle">1</div>
+    <div class="step-num">1</div>
     <div class="step-head-title">Window measurements &amp; mount</div>
     <div class="step-head-val" id="s1-val"></div>
   </div>
@@ -202,10 +193,10 @@
     <!-- Mount type -->
     <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
     <div class="opt-row">
-      <button class="opt-btn" id="mc-in" onclick="selectMount('inside')">Inside mount</button>
+      <button class="opt-btn sel" id="mc-in" onclick="selectMount('inside')">Inside mount</button>
       <button class="opt-btn" id="mc-out" onclick="selectMount('outside')">Outside mount</button>
     </div>
-    <div class="step-note" style="font-size:11px;color:#888;margin-top:6px"><strong>Inside mount:</strong> fits within the window frame. 1/8" deduction applied. <strong>Outside mount:</strong> mounts on the wall above or around the frame.</div>
+    <div class="step-note" style="margin-top:6px"><strong>Inside mount:</strong> fits within the window frame &mdash; we take a 1/8" deduction. <strong>Outside mount:</strong> mounts on the wall above or around the frame.</div>
 
     <!-- Quantity (shared stepper) -->
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px">
@@ -215,7 +206,6 @@
         <input class="qty-num" type="number" id="inp-qty" min="1" max="50" value="1" oninput="validateQty()">
         <button class="qty-btn" onclick="var e=document.getElementById('inp-qty');e.value=Math.min(50,(parseInt(e.value)||1)+1);validateQty()">&#43;</button>
       </div>
-      <span style="font-size:12px;color:#666">shade(s) of this size</span>
     </div>
   </div>
 </div>
@@ -223,7 +213,7 @@
 <!-- STEP 4: SHADE TYPE -->
 <div class="step-block" id="step-4">
   <div class="step-head" onclick="toggleStep('step-4')">
-    <div class="step-num-circle">2</div>
+    <div class="step-num">2</div>
     <div class="step-head-title">Shade type</div>
     <div class="step-head-val" id="s4-val"></div>
   </div>
@@ -240,19 +230,19 @@
 <!-- STEP 5: FRONT FABRIC -->
 <div class="step-block" id="step-5">
   <div class="step-head" onclick="toggleStep('step-5')">
-    <div class="step-num-circle">3</div>
+    <div class="step-num">3</div>
     <div class="step-head-title">Front fabric pattern</div>
     <div class="step-head-val" id="s5-val"></div>
   </div>
   <div class="step-body">
     <div style="font-size:12px;color:#666;margin-bottom:10px;line-height:1.6">Select your fabric pattern — this sets max width/height. Specific color and PR code entered below.</div>
-    <div class="fab-filter">
-      <button class="fab-tab on" onclick="filterFab('all',this)">All</button>
-      <button class="fab-tab" onclick="filterFab('A',this)">Group A</button>
-      <button class="fab-tab" onclick="filterFab('B',this)">Group B</button>
-      <button class="fab-tab" onclick="filterFab('C',this)">Group C</button>
-      <button class="fab-tab" onclick="filterFab('D',this)">Group D</button>
-      <button class="fab-tab" onclick="filterFab('E',this)">Group E</button>
+    <div class="opt-row" id="grp-fab-filter">
+      <button class="opt-btn sel" onclick="filterFab('all',this)">All</button>
+      <button class="opt-btn" onclick="filterFab('A',this)">Group A</button>
+      <button class="opt-btn" onclick="filterFab('B',this)">Group B</button>
+      <button class="opt-btn" onclick="filterFab('C',this)">Group C</button>
+      <button class="opt-btn" onclick="filterFab('D',this)">Group D</button>
+      <button class="opt-btn" onclick="filterFab('E',this)">Group E</button>
     </div>
     <div class="fab-grid" id="fab-grid"></div>
     <div id="rhea-warn" class="err-box" style="display:none;margin-top:8px"><span>⚠️</span><span>Rhea is not available with Square Cassette fabric wrap or Fabric-Wrapped Box Valance. These options will be blocked.</span></div>
@@ -268,24 +258,24 @@
 <!-- STEP 6: BACK FABRIC (double only) -->
 <div class="step-block" id="step-6" style="display:none">
   <div class="step-head" onclick="toggleStep('step-6')">
-    <div class="step-num-circle">4</div>
+    <div class="step-num">4</div>
     <div class="step-head-title">Back fabric</div>
     <div class="step-head-val" id="s6-val"></div>
   </div>
   <div class="step-body">
     <div style="font-size:12px;color:#666;margin-bottom:10px">Select the back fabric for your double shade — light filtering or Blackout.</div>
     <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:6px">Light Filtering</div>
-    <div class="back-grid" id="back-lf-grid"></div>
+    <div class="opt-row" id="back-lf-grid"></div>
     <div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 6px">Blackout</div>
     <div class="warn-box" style="margin-bottom:8px"><span>⚠️</span><span>Blackout back fabrics block most light but are not total blackout — some light may pass through side gaps and deductions.</span></div>
-    <div class="back-grid" id="back-rd-grid"></div>
+    <div class="opt-row" id="back-rd-grid"></div>
   </div>
 </div>
 
 <!-- STEP 7: TOP TREATMENT -->
 <div class="step-block" id="step-7">
   <div class="step-head" onclick="toggleStep('step-7')">
-    <div class="step-num-circle">5</div>
+    <div class="step-num">5</div>
     <div class="step-head-title">Top treatment / bracket style</div>
     <div class="step-head-val" id="s7-val"></div>
   </div>
@@ -297,7 +287,7 @@
 <!-- STEP 8: ROLL DIRECTION -->
 <div class="step-block" id="step-8">
   <div class="step-head" onclick="toggleStep('step-8')">
-    <div class="step-num-circle">6</div>
+    <div class="step-num">6</div>
     <div class="step-head-title">Roll direction</div>
     <div class="step-head-val" id="s8-val"></div>
   </div>
@@ -309,7 +299,7 @@
 <!-- STEP 9: CONTROL TYPE -->
 <div class="step-block" id="step-9">
   <div class="step-head" onclick="toggleStep('step-9')">
-    <div class="step-num-circle">7</div>
+    <div class="step-num">7</div>
     <div class="step-head-title">Control type</div>
     <div class="step-head-val" id="s9-val"></div>
   </div>
@@ -321,7 +311,7 @@
 <!-- STEP 10: CONTROL DETAILS -->
 <div class="step-block" id="step-10" style="display:none">
   <div class="step-head" onclick="toggleStep('step-10')">
-    <div class="step-num-circle">8</div>
+    <div class="step-num">8</div>
     <div class="step-head-title" id="s10-title">Control details</div>
     <div class="step-head-val" id="s10-val"></div>
   </div>
@@ -333,8 +323,8 @@
 <!-- STEP 11: MOTOR ACCESSORIES -->
 <div class="step-block" id="step-11" style="display:none">
   <div class="step-head" onclick="toggleStep('step-11')">
-    <div class="step-num-circle">9</div>
-    <div class="step-head-title">Motor accessories</div>
+    <div class="step-num">9</div>
+    <div class="step-head-title">Motor accessories <span style="font-weight:400;color:#888">(optional)</span></div>
     <div class="step-head-val" id="s11-val">Optional</div>
   </div>
   <div class="step-body" id="s11-body">
@@ -345,19 +335,16 @@
 <!-- STEP 12: OPTIONS -->
 <div class="step-block" id="step-12">
   <div class="step-head" onclick="toggleStep('step-12')">
-    <div class="step-num-circle">10</div>
-    <div class="step-head-title">Hold-downs &amp; spacer blocks <span style="font-size:11px;color:#aaa;font-weight:400">(optional)</span></div>
+    <div class="step-num">10</div>
+    <div class="step-head-title">Hold-downs &amp; spacer blocks <span style="font-weight:400;color:#888">(optional)</span></div>
     <div class="step-head-val" id="s12-val">None</div>
   </div>
   <div class="step-body">
-    <div class="acc-item">
-      <input type="checkbox" id="opt-holddown" onchange="updateOptions()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0;margin-top:2px">
-      <div><div class="acc-label">Hold-Down Brackets</div><div class="acc-sub">For single shades — supplied on request to secure bottom of shade</div></div>
+    <div class="opt-row" id="grp-options">
+      <label class="opt-btn"><input type="checkbox" id="opt-holddown" onchange="this.parentNode.classList.toggle('sel',this.checked);updateOptions()" style="display:none">Hold-down brackets</label>
+      <label class="opt-btn"><input type="checkbox" id="opt-spacer" onchange="this.parentNode.classList.toggle('sel',this.checked);updateOptions()" style="display:none">3/8&quot; spacer blocks</label>
     </div>
-    <div class="acc-item">
-      <input type="checkbox" id="opt-spacer" onchange="updateOptions()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0;margin-top:2px">
-      <div><div class="acc-label">3/8&quot; Spacer Blocks</div><div class="acc-sub">Available for all shade styles — max two per bracket recommended</div></div>
-    </div>
+    <div class="step-note">Select any. Hold-down brackets: for single shades &mdash; secure the bottom of the shade. 3/8&quot; spacer blocks: available for all shade styles &mdash; max two per bracket recommended.</div>
     <div id="box-val-return-wrap" style="display:none;margin-top:12px">
       <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:6px">Box valance return depth</div>
       <div class="info-box">Returns from 1" to 6". Outside mount recommended: 3¼" single shade, 4" double shade. Returns not recommended inside mount. Valance must be at least 1⅞" wider than shade when returns are used.</div>
@@ -366,19 +353,23 @@
   </div>
 </div>
 
-<!-- STEP 13: QUOTE FORM -->
+<!-- DELIVERY (shared pbDeliveryStepHTML) -->
+<div class="step-block" id="step-del">
+  <div class="step-head" onclick="toggleStep('step-del')">
+    <div class="step-num">11</div>
+    <div class="step-head-title">Delivery</div>
+    <div class="step-head-val" id="sdel-val">Ship to me</div>
+  </div>
+  <div class="step-body" id="wnr-delivery"></div>
+</div>
+
+<!-- FINAL STEP: YOUR DETAILS -->
 <div class="step-block open" id="step-13">
   <div class="step-head" onclick="toggleStep('step-13')">
-    <div class="step-num-circle">11</div>
-    <div class="step-head-title">Get your custom quote</div>
+    <div class="step-num">12</div>
+    <div class="step-head-title">Your details</div>
   </div>
   <div class="step-body">
-    <div class="delivery-section" style="margin-top:12px">
-      <div class="opt-row">
-        <button class="opt-btn sel" id="del-ship" onclick="selectDelivery('ship')">Ship to me</button>
-      </div>
-      <div id="del-ship-note" class="delivery-note">Shipped via <strong>UPS or FedEx</strong>. <div class="delivery-tariff">Tariffs and import fees are additional.</div></div>
-    </div>
 
     <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
     <div id="pb-final-step"></div>
@@ -408,21 +399,23 @@
 
 <!-- SPEC PANEL -->
 <div>
-  <div class="spec-panel">
-    <div class="spec-title">Live Specification</div>
-    <div class="spec-row"><span class="spec-key">Shade type</span><span class="spec-val empty" id="sp-type">— select above</span></div>
-    <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val empty" id="sp-mount">—</span></div>
-    <div class="spec-row"><span class="spec-key">Width × Height</span><span class="spec-val empty" id="sp-dims">—</span></div>
-    <div class="spec-row"><span class="spec-key">Qty</span><span class="spec-val empty" id="sp-qty">—</span></div>
-    <div class="spec-row"><span class="spec-key">Front fabric</span><span class="spec-val empty" id="sp-front">—</span></div>
-    <div class="spec-row"><span class="spec-key">Price group</span><span class="spec-val empty" id="sp-group">—</span></div>
-    <div class="spec-row" id="sp-back-row" style="display:none"><span class="spec-key">Back fabric</span><span class="spec-val empty" id="sp-back">—</span></div>
-    <div class="spec-row"><span class="spec-key">Top treatment</span><span class="spec-val empty" id="sp-top">—</span></div>
-    <div class="spec-row"><span class="spec-key">Roll direction</span><span class="spec-val empty" id="sp-roll">—</span></div>
-    <div class="spec-row"><span class="spec-key">Control</span><span class="spec-val empty" id="sp-control">—</span></div>
-    <div class="spec-divider"></div>
-    <div class="spec-row"><span class="spec-key">Pricing</span><span class="spec-val" style="color:var(--gold)">Custom quote</span></div>
-    <div class="spec-row"><span class="spec-key">Lead time</span><span class="spec-val">Confirmed at quote</span></div>
+  <div class="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Wallace Natural Roller</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val empty" id="sp-dims">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sp-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sp-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Shade type</span><span class="sr-val empty" id="sp-type">— select above</span></div>
+    <div class="summary-row"><span class="sr-key">Front fabric</span><span class="sr-val empty" id="sp-front">—</span></div>
+    <div class="summary-row"><span class="sr-key">Price group</span><span class="sr-val empty" id="sp-group">—</span></div>
+    <div class="summary-row" id="sp-back-row" style="display:none"><span class="sr-key">Back fabric</span><span class="sr-val empty" id="sp-back">—</span></div>
+    <div class="summary-row"><span class="sr-key">Top treatment</span><span class="sr-val empty" id="sp-top">—</span></div>
+    <div class="summary-row"><span class="sr-key">Roll direction</span><span class="sr-val empty" id="sp-roll">—</span></div>
+    <div class="summary-row"><span class="sr-key">Control</span><span class="sr-val empty" id="sp-control">—</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="sp-del">Ship to me</span></div>
+    <div class="summary-divider"></div>
+    <div class="summary-row"><span class="sr-key">Price</span><span class="sr-val" style="color:var(--gold)">Custom quote &mdash; we confirm pricing</span></div>
+    <div class="summary-row"><span class="sr-key">Lead time</span><span class="sr-val">Confirmed at quote</span></div>
     <div style="margin-top:14px">
       <a href="tel:6097421720" class="btn-gold" style="display:block;text-align:center;padding:11px;font-size:13px">(609) 742-1720 &middot; 24/7</a>
     </div>
@@ -454,6 +447,10 @@
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addWallaceNaturalRollerToCart()', submitFn: 'submitQuote()' });
+// Canonical Delivery step — choice lives in window.pbDelivery ('ship' | 'install').
+document.getElementById('wnr-delivery').innerHTML =
+  pbDeliveryStepHTML({ bare: true, onPick: 'wnrDeliveryPicked()' });
+wnrRenumber();
 </script>
 </body>
 </html>
