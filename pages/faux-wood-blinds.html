@@ -53,7 +53,6 @@
 .color-finish{font-size:9px;color:#777;line-height:1.4}
 .color-printed-badge{font-size:8px;color:#B45309;background:#FEF3C7;padding:1px 4px;border-radius:3px;display:inline-block;margin-top:2px;font-weight:600}
 
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
 .dim-inputs{display:flex;gap:6px;align-items:center}
 .dim-whole{width:54px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
@@ -91,8 +90,6 @@
 
 .step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
 
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
 .qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
 .qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
 .qrow-label{color:var(--text-muted);line-height:1.4}
@@ -111,7 +108,6 @@
 .form-group textarea{resize:vertical;min-height:72px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
-.delivery-wrap{background:#F9F7F4;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px;margin-bottom:14px}
 .submit-btn{width:100%;padding:14px;background:var(--gold);color:#111110;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;margin-top:2px}
 .submit-btn:hover{opacity:.88}
 .form-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-bottom:10px;display:none}
@@ -138,7 +134,7 @@
   <div class="hero-inner">
     <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Wood Blinds</div>
     <h1>SmartPrivacy<br>Faux Wood Blinds</h1>
-    <p>Cordless faux wood blinds with SmartPrivacy® — the pivoting bottom rail that seals out light from below. Configure your exact specs and see your price instantly.</p>
+    <p class="sub">Cordless faux wood blinds with SmartPrivacy® — the pivoting bottom rail that seals out light from below. Configure your exact specs and see your price instantly.</p>
     <div class="hero-pills">
       <span class="hero-pill hero-pill-gold">Instant pricing</span>
       <span class="hero-pill">Cordless &amp; child safe</span>
@@ -193,8 +189,8 @@
 
       <!-- Mount type -->
       <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
-      <div class="opt-row" style="margin-bottom:6px">
-        <button class="opt-btn" onclick="pickMount(this,'Inside mount','inside')">Inside mount</button>
+      <div class="opt-row" id="grp-mount" style="margin-bottom:6px">
+        <button class="opt-btn sel" onclick="pickMount(this,'Inside mount','inside')">Inside mount</button>
         <button class="opt-btn" onclick="pickMount(this,'Outside mount','outside')">Outside mount</button>
       </div>
       <div class="step-note">Inside mount fits inside the window frame (mfr deducts 3/8&Prime; from width automatically). Outside mount mounts above/outside the frame for better light block &mdash; add ~3&Prime; to width &amp; height for full coverage.</div>
@@ -217,7 +213,7 @@
   <div class="step-block done" id="step1">
     <div class="step-head" onclick="toggleStep('step1')">
       <div class="step-num">2</div>
-      <div class="step-head-title">Slat Size</div>
+      <div class="step-head-title">Slat size</div>
       <div class="step-head-val" id="s1val">2&Prime; (selected)</div>
     </div>
     <div class="step-body">
@@ -233,7 +229,7 @@
   <div class="step-block" id="step2">
     <div class="step-head" onclick="toggleStep('step2')">
       <div class="step-num">3</div>
-      <div class="step-head-title">Color &amp; Finish</div>
+      <div class="step-head-title">Color &amp; finish</div>
       <div class="step-head-val" id="s2val">—</div>
     </div>
     <div class="step-body">
@@ -320,7 +316,7 @@
     </div>
     <div class="step-body">
       <div class="opt-row">
-        <button class="opt-btn" onclick="pickValance(this,'No Valance','none')">No Valance</button>
+        <button class="opt-btn" onclick="pickValance(this,'No valance','none')">No valance</button>
         <button class="opt-btn" onclick="pickValance(this,'Modern Curved 2&frac12;&Prime;','modern')">Modern Curved</button>
         <button class="opt-btn" onclick="pickValance(this,'Designer Crown 3&frac14;&Prime;','crown')">Designer Crown</button>
       </div>
@@ -332,48 +328,36 @@
   <div class="step-block" id="step6">
     <div class="step-head" onclick="toggleStep('step6')">
       <div class="step-num">5</div>
-      <div class="step-head-title">Add-Ons &amp; Controls</div>
+      <div class="step-head-title">Add-ons &amp; controls</div>
       <div class="step-head-val" id="s6val"></div>
     </div>
     <div class="step-body">
 
       <!-- Hold Down Brackets -->
-      <div class="sub-label" style="margin-top:0">Hold Down Brackets</div>
-      <div id="hdb-auto" class="msg-box msg-info" style="display:none">Hold down brackets are included for blinds 30&Prime; wide or less.</div>
-      <div class="addon-row" id="hdb-row" style="display:none" onclick="toggleHdb()">
-        <div class="addon-left">
-          <div class="addon-check" id="hdb-check">&#10003;</div>
-          <div>
-            <div class="addon-name">Hold Down Brackets</div>
-            <div class="addon-sub">Keeps bottom rail secure &middot; single or double-hole style</div>
-          </div>
-        </div>
-        <div class="addon-price">Included</div>
+      <div class="sub-label" style="margin-top:0">Hold-down brackets <span style="font-weight:400;color:#888">(optional)</span></div>
+      <div id="hdb-auto" class="msg-box msg-info" style="display:none">Hold-down brackets are included for blinds 30&Prime; wide or less.</div>
+      <div class="opt-row" style="margin-bottom:0">
+        <button class="opt-btn" id="hdb-row" style="display:none" onclick="toggleHdb()">Hold-down brackets <span style="font-weight:400;color:#999">(included)</span></button>
       </div>
+      <div class="step-note" style="margin-top:4px">Keeps the bottom rail secure &mdash; single or double-hole style.</div>
       <div id="hdb-prompt" class="step-note">Enter dimensions in Step 1 to see bracket options.</div>
 
       <!-- Side Mount Brackets — inside mount only -->
       <div id="side-mount-section" style="display:none">
-        <div class="sub-label" style="margin-top:14px">Side Mount Brackets <span style="font-weight:400;color:#999">(inside mount only &middot; $23/blind)</span></div>
+        <div class="sub-label" style="margin-top:14px">Side mount brackets <span style="font-weight:400;color:#888">(optional &middot; inside mount only &middot; $23/blind)</span></div>
         <div id="side-mount-block" class="custom-quote-block">
           <div class="custom-quote-block-title">Custom Quote Required</div>
           <div class="custom-quote-block-body">Side mount blinds over 37&Prime; wide require a custom quote. Please call or submit a quote request.</div>
           <div class="custom-quote-block-phone"><a href="tel:6097421720">(609) 742-1720</a> &mdash; available 24/7</div>
         </div>
-        <div class="addon-row" id="side-row" style="display:none" onclick="toggleAddon(this,'sideMt')">
-          <div class="addon-left">
-            <div class="addon-check" id="sideMt-check">&#10003;</div>
-            <div>
-              <div class="addon-name">Side Mount Brackets</div>
-              <div class="addon-sub">Mounts on the side wall instead of ceiling/face</div>
-            </div>
-          </div>
-          <div class="addon-price">+$23</div>
+        <div class="opt-row" style="margin-bottom:0">
+          <button class="opt-btn" id="side-row" style="display:none" onclick="toggleAddon(this,'sideMt')">Side mount brackets <span style="font-weight:400;color:#999">(+$23)</span></button>
         </div>
+        <div class="step-note" style="margin-top:4px">Mounts on the side wall of the opening instead of the top.</div>
       </div>
 
       <!-- Shims — outside mount only -->
-      <div class="sub-label" style="margin-top:14px">Shims <span style="font-weight:400;color:#999">(outside mount only &middot; $7 each)</span></div>
+      <div class="sub-label" style="margin-top:14px">Shims <span style="font-weight:400;color:#888">(optional &middot; outside mount only &middot; $7 each)</span></div>
       <div id="shim-section" style="display:none">
         <div class="step-note" style="margin-top:0;margin-bottom:6px">Extends bracket projection off the wall. 1 shim = 3/8&Prime; &middot; 2 shims stacked = 11/16&Prime;.</div>
         <div class="spinner-row">
@@ -388,7 +372,7 @@
       <div id="shim-na" class="step-note" style="display:block">Shims only available with outside mount.</div>
 
       <!-- Wand Location -->
-      <div class="sub-label" style="margin-top:14px">Wand Location <span style="font-weight:400;color:#999">(no charge)</span></div>
+      <div class="sub-label" style="margin-top:14px">Wand location <span style="font-weight:400;color:#999">(no charge)</span></div>
       <div id="wand-loc-normal" class="opt-row" style="display:none;margin-top:6px">
         <button class="opt-btn sel" id="wloc-left" onclick="pickWandLoc(this,'Left')">Left <span style="font-weight:400;color:#999">(standard)</span></button>
         <button class="opt-btn" id="wloc-right" onclick="pickWandLoc(this,'Right')">Right <span style="font-weight:400;color:#999">(optional)</span></button>
@@ -399,24 +383,17 @@
     </div>
   </div>
 
-  <!-- STEP 6: INFO + SUBMIT -->
+  <!-- STEP 6: DELIVERY (shared pbDeliveryStepHTML) -->
+  <div id="pb-delivery-step"></div>
+
+  <!-- STEP 7: YOUR DETAILS -->
   <div class="step-block" id="step8">
     <div class="step-head" onclick="toggleStep('step8')">
-      <div class="step-num">6</div>
-      <div class="step-head-title">Your Info &amp; Submit</div>
+      <div class="step-num">7</div>
+      <div class="step-head-title">Your details</div>
       <div class="step-head-val"></div>
     </div>
     <div class="step-body">
-      <div class="delivery-wrap">
-        <div style="font-size:13px;font-weight:500;color:#333;margin-bottom:8px">Delivery</div>
-        <div class="delivery-opt-grid">
-          <div class="delivery-opt-card sel" id="del-ship" onclick="pickDel('ship',this)">
-            <div class="delivery-opt-title">Ship to me</div>
-            <div class="delivery-opt-body">UPS or FedEx. Shipping estimated in your quote. Tariffs and import fees additional.</div>
-          </div>
-        </div>
-      </div>
-
       <div class="custom-notice">
         <div class="custom-notice-head">Custom-made product</div>
         <div class="custom-notice-body">Faux wood blinds are custom made to order. Inside mount blinds include standard manufacturer deductions. Finished sizes may vary within manufacturer tolerance. Large or specialty configurations may require a custom quote.</div>
@@ -433,9 +410,18 @@
 
 </div><!-- /left column -->
 
-<!-- STICKY PRICE PANEL -->
-<div class="quote-panel">
-  <div class="qp-title">Price Summary</div>
+<!-- SUMMARY CARD -->
+<div class="summary-card" id="summary-card">
+  <div class="summary-head">Your configuration</div>
+  <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">SmartPrivacy Faux Wood Blinds</span></div>
+  <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="sum-size">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sum-mount">Inside mount</span></div>
+  <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sum-qty">1</span></div>
+  <div class="summary-row"><span class="sr-key">Slat</span><span class="sr-val" id="sum-slat">2&Prime;</span></div>
+  <div class="summary-row"><span class="sr-key">Color</span><span class="sr-val" id="sum-color">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Valance</span><span class="sr-val" id="sum-valance">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Add-ons</span><span class="sr-val" id="sum-addons">None</span></div>
+  <div class="qdiv"></div>
   <div id="qp-pending" class="qp-pending">Complete your selections to see an instant price</div>
   <div id="qp-detail" style="display:none">
     <div class="qrow"><span class="qrow-label">Base price</span><span class="qrow-val" id="q-base">—</span></div>
@@ -464,6 +450,8 @@
 <script src="../js/pages/faux-wood-blinds.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-delivery-step').innerHTML =
+  pbDeliveryStepHTML({ stepNum: 6, onPick: 'calcPrice()' });
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addFauxWoodToCart()', submitFn: 'submitForm()' });
 (function() {

@@ -20,10 +20,10 @@ const VALANCE_PRICE = {24:28,28:28,32:34,36:40,42:51,48:56,54:61,60:73,66:78,72:
 // ── STATE ─────────────────────────────────────────────────────────────────────
 const S = {
   slat:'2in', color:null, isPrinted:false,
-  mount:null, w:0, h:0, sizeOk:false,
+  mount:'inside', w:0, h:0, sizeOk:false,
   valance:null,
   hdb:false, sideMt:false, shims:0,
-  wandLoc:'left', delivery:'ship', qty:1
+  wandLoc:'left', qty:1
 };
 
 const $=id=>document.getElementById(id);
@@ -73,7 +73,7 @@ function pickColor(el,label,code,printed){
 
 // ── STEP 3 ────────────────────────────────────────────────────────────────────
 function pickMount(el,label,val){
-  document.querySelectorAll('#step3 .opt-btn').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#grp-mount .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.mount=val;
 
@@ -162,7 +162,7 @@ function calcSize(){
   if(w<=30){
     $('hdb-auto').style.display='block'; $('hdb-row').style.display='none'; S.hdb=true;
   } else {
-    $('hdb-auto').style.display='none'; $('hdb-row').style.display='flex';
+    $('hdb-auto').style.display='none'; $('hdb-row').style.display='';
   }
 
   S.sizeOk=true;
@@ -178,7 +178,7 @@ function updateWandUI(){
   } else if(S.w<15){
     wl.style.display='none'; wc.style.display='block'; wp.style.display='none';
   } else {
-    wl.style.display='grid'; wc.style.display='none'; wp.style.display='none';
+    wl.style.display='flex'; wc.style.display='none'; wp.style.display='none';
   }
 }
 
@@ -190,7 +190,7 @@ function updateSideMtUI(){
     block.style.display='block'; row.style.display='none';
     S.sideMt=false;
   } else {
-    block.style.display='none'; row.style.display='flex';
+    block.style.display='none'; row.style.display='';
   }
 }
 
@@ -239,17 +239,27 @@ function updateQty(){
   calcPrice();
 }
 
-// ── DELIVERY ──────────────────────────────────────────────────────────────────
-function pickDel(v){
-  S.delivery=v;
-  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
-  $('del-'+v).classList.add('sel');
+// ── SUMMARY CARD ──────────────────────────────────────────────────────────────
+// Configuration rows (Product · Size · Mount · Qty · options) — always current,
+// independent of whether a price can be shown yet.
+function updateSummary(){
+  const w=parseFloat(($('w-whole')||{}).value)||0, h=parseFloat(($('h-whole')||{}).value)||0;
+  const set=(id,v)=>{const e=$(id); if(e) e.textContent=v;};
+  set('sum-size', (w&&h)? w+'″ W × '+h+'″ H' : '—');
+  set('sum-mount', S.mount==='outside'?'Outside mount':'Inside mount');
+  set('sum-qty', String(S.qty));
+  set('sum-slat', S.slat==='2.5in'?'2½″':'2″');
+  set('sum-color', S.color ? S.color.replace(/&mdash;/g,'—') : '—');
+  set('sum-valance', !S.valance?'—':(S.valance==='none'?'No valance':(S.valance==='modern'?'Modern Curved 2½″':'Designer Crown 3¼″')));
+  const ad=[]; if(S.sideMt) ad.push('Side mount'); if(S.shims) ad.push(S.shims+' shim'+(S.shims>1?'s':''));
+  set('sum-addons', ad.length?ad.join(', '):'None');
 }
 
 const NORMAN_DISC = 0.25; // 25% off retail subtotal — not applied to shipping
 
 // ── PRICE CALC ────────────────────────────────────────────────────────────────
 function calcPrice(){
+  updateSummary();
   if(!S.sizeOk||!S.color||!S.mount||!S.valance){
     $('qp-pending').style.display='block'; $('qp-detail').style.display='none'; return;
   }
@@ -368,7 +378,7 @@ function submitForm(){
     'Name: '+name,
     'Phone: '+(phone||'—'),
     'Email: '+(email||'—'),
-    'Delivery: '+'Ship to me (UPS/FedEx)',
+    'Delivery: '+pbDeliveryLabel(),
     '',
     'PRODUCT SPECS',
     'Product: SmartPrivacy Faux Wood Blinds (Ultimate program)',
@@ -453,6 +463,8 @@ function addFauxWoodToCart(){
 // Init — apply default 2" slat color filter on page load
 document.addEventListener('DOMContentLoaded',()=>{
   S.slat='2in'; markDone('step1');
+  // Inside mount is pre-selected (standard) — apply its side effects (side-mount brackets shown, shims hidden)
+  var _m=document.querySelector('#grp-mount .opt-btn.sel'); if(_m) pickMount(_m,'Inside mount','inside');
   // Hide colors not available for 2" slat (Storm Gray Embossed = 2.5in only)
   document.querySelectorAll('#step2 .color-card').forEach(function(card){
     var ds=card.getAttribute('data-slat');
