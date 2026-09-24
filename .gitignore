@@ -41,3 +41,8 @@ desktop.ini
 
 # vendor price books must never reach the public web root
 _incoming/
+
+# Vendor price books are licensed material and this repo deploys publicly.
+# The written audits live in docs-vendor-audits/ — the PDFs never do.
+*.pdf
+docs-vendor-audits/**/*.pdf
