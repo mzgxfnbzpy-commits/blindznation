@@ -27,44 +27,16 @@
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:0.5px solid var(--border-dark);color:var(--text-faint)}
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 
-.config-wrap{max-width:900px;margin:0 auto;padding:32px 24px 64px}
+/* Page frame around the standard configurator */
+.cfg-section{background:var(--gold-mid);padding:36px 20px 64px}
+.cfg-content{max-width:1000px;margin:0 auto}
+.sub-label{font-size:12px;font-weight:600;color:#555;margin:14px 0 6px}
+.sub-label:first-child{margin-top:0}
+.opt-btn.wrap{white-space:normal;text-align:left}
+.pill-hint{font-size:10px;color:#888;font-weight:400}
+.placeholder-note{font-size:12px;color:#999;font-style:italic;padding:4px 0}
 
-/* STEP BAR */
-.step-bar{display:flex;align-items:center;gap:0;margin-bottom:36px;overflow-x:auto;padding-bottom:4px}
-.step-dot{display:flex;align-items:center;gap:0;flex-shrink:0}
-.step-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:#e8e4de;color:#888;flex-shrink:0;transition:.15s}
-.step-circle.active{background:var(--gold);color:var(--espresso)}
-.step-circle.done{background:var(--espresso);color:var(--gold)}
-.step-line{width:36px;height:2px;background:#e8e4de;flex-shrink:0}
-.step-line.done{background:var(--espresso)}
-
-.section{display:none}
-.section.on{display:block}
-.sec-label{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
-.sec-title{font-size:20px;font-weight:500;color:#111;margin-bottom:6px;letter-spacing:-0.3px}
-.sec-sub{font-size:13px;color:#666;line-height:1.6;margin-bottom:20px}
-
-/* CHOICE CARDS 2-col */
-.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
-@media(max-width:580px){.choice-grid{grid-template-columns:1fr}}
-.choice-card{background:#fff;border:1.5px solid #e8e4de;border-radius:14px;padding:20px 18px;cursor:pointer;transition:.15s;position:relative}
-.choice-card:hover{border-color:var(--gold);box-shadow:0 2px 16px rgba(45,224,193,.12)}
-.choice-card.sel{border:2px solid var(--gold);box-shadow:0 2px 20px rgba(45,224,193,.2)}
-.choice-card.dim{opacity:.35;cursor:not-allowed;pointer-events:none}
-.choice-icon{font-size:24px;margin-bottom:10px}
-.choice-title{font-size:15px;font-weight:600;color:#111;margin-bottom:5px}
-.choice-desc{font-size:12px;color:#666;line-height:1.6}
-.choice-tag{font-size:10px;color:var(--gold);font-weight:600;margin-top:8px}
-.choice-badge{position:absolute;top:12px;right:12px;background:var(--gold);color:var(--espresso);font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.5px;text-transform:uppercase}
-
-/* OPTION PILLS */
-.opt-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
-.opt-pill{padding:9px 18px;border:1.5px solid #e8e4de;border-radius:30px;font-size:13px;color:#333;cursor:pointer;transition:.15s;background:#fff;white-space:nowrap}
-.opt-pill:hover{border-color:var(--gold)}
-.opt-pill.sel{border:2px solid var(--gold);color:var(--espresso);font-weight:500;background:var(--gold-mid)}
-.opt-pill.off{opacity:.3;cursor:not-allowed;pointer-events:none}
-
-/* FINISH GRID */
+/* Finish swatch grid (visual picker) */
 .finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-bottom:20px}
 .finish-card{border:1.5px solid #e8e4de;border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s;background:#fff}
 .finish-card:hover{border-color:var(--gold)}
@@ -73,72 +45,17 @@
 .finish-swatch{height:44px;width:100%}
 .finish-name{font-size:9.5px;text-align:center;padding:5px 3px;color:#333;line-height:1.3;font-weight:500}
 
-/* INFO / WARN BANNERS */
-.info-banner{background:var(--gold-mid);border:1px solid rgba(45,224,193,.35);border-radius:10px;padding:14px 16px;font-size:13px;color:#555;line-height:1.6;margin-bottom:20px}
+/* Info / warning banners */
+.info-banner{background:var(--gold-mid);border:1px solid rgba(45,224,193,.35);border-radius:10px;padding:12px 14px;font-size:12px;color:#555;line-height:1.6;margin-bottom:14px}
 .info-banner strong{color:var(--espresso)}
-.warn-banner{background:#fff8e8;border:1px solid #f0d070;border-radius:10px;padding:14px 16px;font-size:13px;color:#7a5a00;line-height:1.6;margin-bottom:16px}
-.err-banner{background:#fff0f0;border:1px solid #f08080;border-radius:10px;padding:14px 16px;font-size:13px;color:#900;line-height:1.6;margin-bottom:16px;display:none}
-
-/* FINIAL GRID */
-.finial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:9px;margin-bottom:16px}
-.finial-card{border:1.5px solid #e8e4de;border-radius:10px;padding:12px 8px 9px;cursor:pointer;transition:.15s;background:#fff;text-align:center}
-.finial-card:hover{border-color:var(--gold)}
-.finial-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.finial-art{font-size:22px;margin-bottom:5px}
-.finial-name{font-size:11px;font-weight:600;color:#222;margin-bottom:1px;line-height:1.2}
-.finial-meta{font-size:9.5px;color:#888;line-height:1.3}
-.finial-price{font-size:10px;color:var(--gold);font-weight:700;margin-top:3px}
-
-/* INPUTS */
-.inp-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-@media(max-width:580px){.inp-row{grid-template-columns:1fr}}
-.inp-group{display:flex;flex-direction:column;gap:5px}
-.inp-label{font-size:12px;font-weight:500;color:#444}
-.inp-field{padding:10px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;font-family:var(--font);color:#222;background:#fff;transition:.15s}
-.inp-field:focus{outline:none;border-color:var(--gold)}
-.inp-hint{font-size:11px;color:#888;line-height:1.4}
-textarea.inp-field{resize:vertical;min-height:90px}
-
-/* SUMMARY */
-.summary-card{background:#f8f4ee;border:1px solid #e0dbd2;border-radius:12px;padding:20px;margin-bottom:24px}
-.summary-title{font-size:12px;font-weight:700;color:var(--espresso);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}
-.summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #e8e4de;font-size:13px;color:#444}
-.summary-row:last-child{border-bottom:none}
-.summary-row strong{color:#111;font-weight:500}
-
-/* DELIVERY */
-.delivery-section{background:#f0ece4;border-radius:12px;padding:20px;margin-bottom:20px}
-.delivery-title{font-size:14px;font-weight:600;color:#111;margin-bottom:14px}
-.delivery-opt{background:#fff;border:1.5px solid #e0dbd2;border-radius:10px;padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:.15s}
-.delivery-opt:hover{border-color:var(--gold)}
-.delivery-opt.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.delivery-opt-title{font-size:13px;font-weight:600;color:#111;margin-bottom:3px}
-.delivery-opt-sub{font-size:11px;color:#777;line-height:1.5}
-
-/* BUTTONS */
-.btn-row{display:flex;gap:12px;align-items:center;margin-top:24px}
-.btn-next{background:var(--gold);color:var(--espresso);border:none;padding:13px 32px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font)}
-.btn-next:hover{background:#b5852e}
-.btn-back{background:none;border:1.5px solid #ccc;color:#555;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;transition:.15s;font-family:var(--font)}
-.btn-back:hover{border-color:#888;color:#222}
-.btn-submit{background:var(--espresso);color:var(--cream);border:none;padding:14px 36px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font)}
-.btn-submit:hover{background:#2c221a}
-
-/* SUCCESS */
-.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center}
-.success-box h3{font-size:20px;margin-bottom:8px}
-
-/* CUFF WARNING */
+.warn-banner{background:#fff8e8;border:1px solid #f0d070;border-radius:10px;padding:12px 14px;font-size:12px;color:#7a5a00;line-height:1.6;margin-bottom:14px}
+.err-banner{background:#fff0f0;border:1px solid #f08080;border-radius:10px;padding:12px 14px;font-size:12px;color:#900;line-height:1.6;margin-bottom:14px;display:none}
 .cuff-note{background:#fff0d0;border:1px solid #e0b050;border-radius:8px;padding:10px 14px;font-size:12px;color:#7a5000;margin-bottom:12px;display:none}
+.inp-field{padding:10px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:14px;font-family:var(--font);color:#222;background:#fff;width:100%;box-sizing:border-box}
+.inp-field:focus{outline:none;border-color:var(--gold)}
 
-/* SECTION LABEL WITH HR */
-.sub-section{margin-top:20px;margin-bottom:8px;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid #e8e4de;padding-bottom:6px}
-
-/* PRICE ESTIMATE BOX */
-.price-est{background:#fff;border:1.5px solid var(--gold);border-radius:10px;padding:14px 18px;margin-bottom:20px;display:none}
-.price-est-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#888;font-weight:600;margin-bottom:4px}
-.price-est-range{font-size:22px;font-weight:700;color:var(--espresso)}
-.price-est-note{font-size:11px;color:#888;margin-top:4px;line-height:1.4}
+/* Estimate inside the summary card */
+#price-est .sr-val{font-size:15px;font-weight:700;color:var(--gold)}
 </style>
 </head>
 <body data-page="Hardware">
@@ -159,200 +76,154 @@ textarea.inp-field{resize:vertical;min-height:90px}
   </div>
 </section>
 
-<div class="config-wrap">
-
-  <div class="step-bar" id="step-bar"></div>
+<section class="cfg-section" id="configure">
+<div class="cfg-content">
+  <button onclick="reqMoreInfo('Paris Texas Hardware')" class="req-info-link" style="display:block;margin:0 0 14px">Request more information about Paris Texas Hardware →</button>
 
   <div class="success-box" id="success-box">
     <h3>Quote request sent!</h3>
     <p>Thank you — we'll review your Paris Texas Hardware configuration and follow up within 1 business day with pricing and lead time.<br><strong>Questions? Call or text (609) 742-1720 anytime.</strong></p>
   </div>
 
-  <!-- ══════════════════════════════════════════
-       STEP 1 — ROD TYPE
-  ══════════════════════════════════════════ -->
-  <div class="section on" id="sec-1">
-    <div class="sec-label">Step 1 of 8</div>
-    <div class="sec-title">What type of rod system?</div>
-    <div class="sec-sub">Paris Texas Hardware makes both stationary decorative poles and full traverse systems. Choose what fits your project.</div>
+  <div class="config-wrap" id="config-main">
+    <div class="config-grid">
+      <div id="cfg-steps">
 
-    <div class="choice-grid">
-      <div class="choice-card" onclick="pick('type','static',this)">
-        <div class="choice-icon">🪞</div>
-        <div class="choice-title">Stationary / Decorative Pole</div>
-        <div class="choice-desc">Drapery hangs from rings and slides manually. Rod stays fixed. Best for panels that rarely open and close.</div>
-        <div class="choice-tag">1⅛" · 1⅜" · 2¼" poles · all finishes</div>
-      </div>
-      <div class="choice-card" onclick="pick('type','baton',this)">
-        <div class="choice-icon">↔</div>
-        <div class="choice-title">Baton Draw Metal Traverse</div>
-        <div class="choice-desc">Panel glides on a concealed metal track. Operated by baton (wand). Modern, clean look. Available in 1⅛" and 1⅜" diameters. 1⅜" also available in QS Wood &amp; Resin finishes.</div>
-        <div class="choice-tag">1⅛" · 1⅜" · 4' min · up to 20' track · Portfolio, QS Metal &amp; QS Wood (1⅜" only)</div>
-      </div>
-    </div>
-    <div class="choice-grid">
-      <div class="choice-card" onclick="pick('type','rtec',this)">
-        <div class="choice-icon">📡</div>
-        <div class="choice-title">R-TEC Motorized Metal Traverse</div>
-        <div class="choice-desc">Paris Texas' proprietary R-TEC Automation® slim drapery motor. Rechargeable Li-ion or 110v AC. 77 lbs max. 5-year warranty. RF remote + app + voice control. 1⅜" metal track only. All finishes except Antique Gold Leaf.</div>
-        <div class="choice-tag">1⅜" metal track · up to 24' · Portfolio (no AGL) · QS Metal · QS Wood &amp; Resin</div>
-        <div class="choice-badge">Most Popular</div>
-      </div>
-      <div class="choice-card" onclick="pick('type','hd',this)">
-        <div class="choice-icon">🏗</div>
-        <div class="choice-title">Heavy Duty Traverse (Corded, Baton, or R-TEC / Somfy)</div>
-        <div class="choice-desc">For longer widths, heavier fabrics, or decorative wood fascia. 1⅜" or 2¼" smooth/reeded/fluted fascia, 1⅞" slim round, or 2¼" flat smooth. Corded draw, baton draw, R-TEC motorized (110 lbs, 36' max), or Somfy motorized (2¼" only). Portfolio, QS Wood &amp; Resin, or PTH Perfect Match finishes.</div>
-        <div class="choice-tag">Corded / Baton up to 40' · R-TEC HD up to 36' · Somfy 2¼" up to 36' · no QS Metal</div>
-      </div>
-    </div>
-    <div class="choice-grid">
-      <div class="choice-card" onclick="pick('type','unsure',this)">
-        <div class="choice-icon">💬</div>
-        <div class="choice-title">Not Sure — Help Me Choose</div>
-        <div class="choice-desc">Tell us about your space and we'll recommend the right system, size, and finish.</div>
-      </div>
-      <div style="background:transparent"></div>
-    </div>
+        <!-- Step 1: Rod measurements -->
+        <div class="step-block" id="size-mount-block">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">1</div>
+            <div class="step-title" style="margin-bottom:0">Rod measurements</div>
+          </div>
+          <div id="length-info" class="info-banner" style="display:none"></div>
+          <div class="dim-box">
+            <div class="dim-box-label">Enter your rod width</div>
+            <div class="form-group">
+              <label>Width / track length</label>
+              <input type="number" id="width-in" min="1" max="480" step="0.125" placeholder="96" oninput="updatePriceEstimate()">
+              <div class="dim-unit" id="width-hint">inches &middot; finished rod / track length</div>
+            </div>
+          </div>
+          <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Drapery hardware is measured by rod width (length) only. Approximate is fine &mdash; we confirm before ordering.</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="font-size:12px;color:#666">Qty:</span>
+            <div class="qty-btns">
+              <button class="qty-btn" type="button" onclick="adjQty(-1)">&#8722;</button>
+              <input class="qty-num" type="number" id="qty-in" value="1" min="1" max="50" oninput="updatePriceEstimate()">
+              <button class="qty-btn" type="button" onclick="adjQty(1)">&#43;</button>
+            </div>
+          </div>
+          <div class="sub-label" style="margin-top:16px">Exact rod length &amp; brackets <span style="font-weight:400;color:#888">(optional)</span></div>
+          <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
+          <div id="pb-rod-spec"></div>
+        </div>
 
-    <!-- auto-advances when system type is selected -->
-  </div>
+        <!-- Step 2: Rod system -->
+        <div class="step-block" id="step-type">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">2</div>
+            <div class="step-title" style="margin-bottom:0">What type of rod system?</div>
+          </div>
+          <div class="opt-row" id="grp-type">
+            <button class="opt-btn" data-val="static" onclick="pick('type','static',this)">Stationary / decorative pole</button>
+            <button class="opt-btn" data-val="baton" onclick="pick('type','baton',this)">Baton draw metal traverse</button>
+            <button class="opt-btn" data-val="rtec" onclick="pick('type','rtec',this)">R-TEC motorized metal traverse <span class="pill-hint">most popular</span></button>
+            <button class="opt-btn" data-val="hd" onclick="pick('type','hd',this)">Heavy duty traverse</button>
+            <button class="opt-btn" data-val="unsure" onclick="pick('type','unsure',this)">Not sure — help me choose</button>
+          </div>
+          <div class="step-note" id="type-note">Paris Texas Hardware makes both stationary decorative poles and full traverse systems. Choose what fits your project.</div>
+        </div>
 
-  <!-- ══════════════════════════════════════════
-       STEP 2 — FINISH TYPE
-  ══════════════════════════════════════════ -->
-  <div class="section" id="sec-2">
-    <div class="sec-label">Step 2 of 8</div>
-    <div class="sec-title">Finish Collection</div>
-    <div class="sec-sub">Paris Texas offers three finish pathways. Portfolio finishes are hand-painted to order; Quick Ship items are in stock and ship within 24 hours.</div>
+        <!-- Step 3: Finish collection -->
+        <div class="step-block" id="step-finishtype">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">3</div>
+            <div class="step-title" style="margin-bottom:0">Finish collection</div>
+          </div>
+          <div class="opt-row" id="grp-finishtype">
+            <button class="opt-btn" data-val="portfolio" onclick="pick('finishType','portfolio',this)">Portfolio — 35 hand-painted finishes <span class="pill-hint">most options</span></button>
+            <button class="opt-btn" data-val="qs-metal" id="qs-metal-card" onclick="pick('finishType','qs-metal',this)">Quick Ship metal — 6 finishes</button>
+            <button class="opt-btn" data-val="qs-wood" id="qs-wood-card" onclick="pick('finishType','qs-wood',this)">Quick Ship wood &amp; resin — 5 finishes</button>
+            <button class="opt-btn" data-val="ptm" onclick="pick('finishType','ptm',this)">PTH Perfect Match™</button>
+          </div>
+          <div class="step-note" id="finishtype-note">Portfolio finishes are hand-painted to order; Quick Ship items are in stock and ship within 24 hours.</div>
+        </div>
 
-    <div class="choice-grid">
-      <div class="choice-card" onclick="pick('finishType','portfolio',this)">
-        <div class="choice-icon">🎨</div>
-        <div class="choice-title">Portfolio (35 Hand-Painted Finishes)</div>
-        <div class="choice-desc">Artisan hand-painted finishes on metal or wood poles. 10-15 business day lead time. Available on all pole sizes and all traverse systems.</div>
-        <div class="choice-tag">35 finishes · metal + wood poles · all traverse systems</div>
-        <div class="choice-badge">Most Options</div>
-      </div>
-      <div class="choice-card" id="qs-metal-card" onclick="pick('finishType','qs-metal',this)">
-        <div class="choice-icon">⚡</div>
-        <div class="choice-title">Quick Ship Metal (6 Finishes)</div>
-        <div class="choice-desc">In-stock metal finishes ship within 24 hours. Brushed Bronze, Brushed Nickel, Charcoal Zinc, Matte Black, Rose Gold, Satin Gold. 1⅛" and 1⅜" systems only — not available for Heavy Duty traverse.</div>
-        <div class="choice-tag">Ships 24 hrs · 1⅛" &amp; 1⅜" only · R-TEC &amp; baton draw · 6 finishes</div>
-      </div>
-    </div>
-    <div class="choice-grid">
-      <div class="choice-card" onclick="pick('finishType','qs-wood',this)" id="qs-wood-card">
-        <div class="choice-icon">🌳</div>
-        <div class="choice-title">Quick Ship Wood &amp; Resin (5 Finishes)</div>
-        <div class="choice-desc">In-stock wood-look finishes on 1⅜" and 2¼" poles and traverse. Antique Brass, Oil Rubbed Bronze, Platinum, Rose Gold, Walnut. Available for 1⅜" R-TEC motorized, 1⅜" baton draw, and all HD traverse systems. Not available for 1⅛" systems.</div>
-        <div class="choice-tag">Ships 24 hrs · 1⅜" &amp; 2¼" · R-TEC · Baton 1⅜" · HD traverse</div>
-      </div>
-      <div class="choice-card" onclick="pick('finishType','ptm',this)">
-        <div class="choice-icon">🔬</div>
-        <div class="choice-title">PTH Perfect Match™</div>
-        <div class="choice-desc">Match any Benjamin Moore paint color. Choose eggshell or high-gloss, add optional metallic highlight. +10% upcharge (no highlight) or +15% (with highlight). $100/$150 minimum.</div>
-        <div class="choice-tag">Any Benjamin Moore color · 10-15 business days</div>
-      </div>
-    </div>
+        <!-- Step 4: Diameter -->
+        <div class="step-block" id="step-dia">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">4</div>
+            <div class="step-title" style="margin-bottom:0">Pole / track diameter</div>
+          </div>
+          <div id="dia-err" class="err-banner"></div>
+          <div class="opt-row" id="dia-grid">
+            <button class="opt-btn" data-val="1⅛" id="dia-118" onclick="pick('diameter','1⅛',this)">1⅛" diameter</button>
+            <button class="opt-btn" data-val="1⅜" id="dia-138" onclick="pick('diameter','1⅜',this)">1⅜" diameter <span class="pill-hint">most versatile</span></button>
+            <button class="opt-btn" data-val="2¼" id="dia-214" onclick="pick('diameter','2¼',this)">2¼" diameter</button>
+          </div>
+          <div class="step-note" id="dia-note">Larger diameters carry heavier draperies and have bolder visual impact.</div>
+        </div>
 
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(1)">← Back</button>
-    </div>
-  </div>
-
-  <!-- STEP 3 — DIAMETER -->
-  <div class="section" id="sec-3">
-    <div class="sec-label">Step 3 of 8</div>
-    <div class="sec-title">Pole / Track Diameter</div>
-    <div class="sec-sub" id="sec3-sub">Choose the diameter. Larger diameters carry heavier draperies and have bolder visual impact.</div>
-
-    <div id="dia-err" class="err-banner"></div>
-
-    <div class="choice-grid" id="dia-grid">
-      <div class="choice-card" id="dia-118" onclick="pick('diameter','1⅛',this)">
-        <div class="choice-title">1⅛" Diameter</div>
-        <div class="choice-desc">Sleek, modern profile. Metal poles and traverse tracks. 5 finial style categories (Modern, Clean Deco, Bohemian Chic, Transitional Luxe, Rustic Retreat). Poles up to 12'.</div>
-        <div class="choice-tag">Portfolio or Quick Ship Metal only</div>
-      </div>
-      <div class="choice-card" id="dia-138" onclick="pick('diameter','1⅜',this)">
-        <div class="choice-title">1⅜" Diameter</div>
-        <div class="choice-desc">Standard decorative profile. Metal and wood poles, baton traverse, R-TEC motorized traverse, and heavy duty traverse. 3 finial style categories. Poles up to 12' (metal) or 16' (wood).</div>
-        <div class="choice-tag">All finish types · all traverse systems</div>
-        <div class="choice-badge">Most Versatile</div>
-      </div>
-      <div class="choice-card" id="dia-214" onclick="pick('diameter','2¼',this)">
-        <div class="choice-title">2¼" Diameter</div>
-        <div class="choice-desc">Bold, substantial profile. Wood poles only. Finials from Today's Traditional and Heritage Classics collections. Heavy duty traverse (corded, baton, Somfy). Poles up to 16'.</div>
-        <div class="choice-tag">Wood poles only · heavy duty traverse · Portfolio or Quick Ship Wood &amp; Resin</div>
-      </div>
-      <div style="background:transparent"></div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(2)">← Back</button>
-    </div>
-  </div>
-
-  <!-- STEP 4 — FINISH
-  ══════════════════════════════════════════ -->
-  <div class="section" id="sec-4">
-    <div class="sec-label">Step 4 of 8</div>
-    <div class="sec-title" id="sec4-title">Choose Your Finish</div>
-    <div class="sec-sub" id="sec4-sub">All Portfolio finishes are hand-painted by artisan craftspeople. Finishes with antiquing/dusting will vary slightly across products — deeper recesses appear darker.</div>
-
+        <!-- Step 5: Finish -->
+        <div class="step-block" id="step-finish">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">5</div>
+            <div class="step-title" style="margin-bottom:0" id="sec4-title">Finish</div>
+          </div>
+          <div class="placeholder-note" id="finish-placeholder">Choose a finish collection above to see its finishes.</div>
     <!-- Portfolio finishes -->
     <div id="finish-portfolio" style="display:none">
       <div class="warn-banner" id="agl-warn" style="display:none"><strong>Note:</strong> Antique Gold Leaf (AGL) is <strong>not available</strong> on any traverse system. It is only available on stationary poles.</div>
       <div class="finish-grid">
-        <div class="finish-card" onclick="selectFinish('Amulet','AM','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a7a5a,#6a5a3a)"></div><div class="finish-name">Amulet</div></div>
-        <div class="finish-card" onclick="selectFinish('Andiron','AND','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#5a5248,#3a3228)"></div><div class="finish-name">Andiron</div></div>
-        <div class="finish-card" id="fc-AGL" onclick="selectFinish('Antique Gold Leaf','AGL','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#d8b040,#a07820)"></div><div class="finish-name">Antique Gold Leaf ★</div></div>
-        <div class="finish-card" onclick="selectFinish('Antique Gold','AG','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#c8a030,#906010)"></div><div class="finish-name">Antique Gold</div></div>
-        <div class="finish-card" onclick="selectFinish('Art Bronze','AB','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#7a5028,#4a3018)"></div><div class="finish-name">Art Bronze</div></div>
-        <div class="finish-card" onclick="selectFinish('Barnwood','BW','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#7a6858,#5a4838)"></div><div class="finish-name">Barnwood</div></div>
-        <div class="finish-card" onclick="selectFinish('Black','BL','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#2a2828,#111)"></div><div class="finish-name">Black</div></div>
-        <div class="finish-card" onclick="selectFinish('Blush','BLU','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#e8c8b8,#c8a898)"></div><div class="finish-name">Blush</div></div>
-        <div class="finish-card" onclick="selectFinish('Bronzed Pewter','BP','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#7a7060,#5a5040)"></div><div class="finish-name">Bronzed Pewter</div></div>
-        <div class="finish-card" onclick="selectFinish('Concrete','CO','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#c0b8b0,#a0a0a0)"></div><div class="finish-name">Concrete</div></div>
-        <div class="finish-card" onclick="selectFinish('Couture','COU','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#d8c8b0,#b8a890)"></div><div class="finish-name">Couture</div></div>
-        <div class="finish-card" onclick="selectFinish('Dark Chocolate','DC','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#4a2808,#2a1004)"></div><div class="finish-name">Dark Chocolate</div></div>
-        <div class="finish-card" onclick="selectFinish('Firelight','FL','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#d07038,#a04818)"></div><div class="finish-name">Firelight</div></div>
-        <div class="finish-card" onclick="selectFinish('Gossamer','GOS','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#988880,#786860)"></div><div class="finish-name">Gossamer</div></div>
-        <div class="finish-card" onclick="selectFinish('Greige','GRE','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#c8c0b0,#a8a090)"></div><div class="finish-name">Greige</div></div>
-        <div class="finish-card" onclick="selectFinish('Halo','HA','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#e8e0c8,#c8b8a0)"></div><div class="finish-name">Halo</div></div>
-        <div class="finish-card" onclick="selectFinish('Java','JA','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#4a3018,#2a1808)"></div><div class="finish-name">Java</div></div>
-        <div class="finish-card" onclick="selectFinish('Linen','LIN','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#e0d8c0,#c0b8a0)"></div><div class="finish-name">Linen</div></div>
-        <div class="finish-card" onclick="selectFinish('Luminous','LU','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#c0a870,#907840)"></div><div class="finish-name">Luminous</div></div>
-        <div class="finish-card" onclick="selectFinish('Manor','MA','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#a09078,#807060)"></div><div class="finish-name">Manor</div></div>
-        <div class="finish-card" onclick="selectFinish('Mink','MK','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a7060,#6a5040)"></div><div class="finish-name">Mink</div></div>
-        <div class="finish-card" onclick="selectFinish('Moonlight','ML','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#b8b0a8,#888078)"></div><div class="finish-name">Moonlight</div></div>
-        <div class="finish-card" onclick="selectFinish('Mystic','MYS','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#7880a0,#585870)"></div><div class="finish-name">Mystic</div></div>
-        <div class="finish-card" onclick="selectFinish('New Age Bronze','NAB','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#7a6040,#5a4020)"></div><div class="finish-name">New Age Bronze</div></div>
-        <div class="finish-card" onclick="selectFinish('Patina','PAT','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a9878,#6a7858)"></div><div class="finish-name">Patina</div></div>
-        <div class="finish-card" onclick="selectFinish('Shimmer','SH','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#c0b898,#a09878)"></div><div class="finish-name">Shimmer</div></div>
-        <div class="finish-card" onclick="selectFinish('Silver Maple','SM','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#b8c0c8,#909898)"></div><div class="finish-name">Silver Maple</div></div>
-        <div class="finish-card" onclick="selectFinish('Spicewood','SPW','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#a07040,#785020)"></div><div class="finish-name">Spicewood</div></div>
-        <div class="finish-card" onclick="selectFinish('Spun Gold','SPG','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#d0b060,#a08030)"></div><div class="finish-name">Spun Gold</div></div>
-        <div class="finish-card" onclick="selectFinish('Stardust','STA','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#c8c0d8,#a0a0b8)"></div><div class="finish-name">Stardust</div></div>
-        <div class="finish-card" onclick="selectFinish('Starlet','ST','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#d8c8b0,#b8a880)"></div><div class="finish-name">Starlet</div></div>
-        <div class="finish-card" onclick="selectFinish('Titanium','TTM','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#888898,#686878)"></div><div class="finish-name">Titanium</div></div>
-        <div class="finish-card" onclick="selectFinish('Truffle','TRU','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a6848,#6a4828)"></div><div class="finish-name">Truffle</div></div>
-        <div class="finish-card" onclick="selectFinish('Urban Bronze','URB','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#6a5038,#4a3018)"></div><div class="finish-name">Urban Bronze</div></div>
-        <div class="finish-card" onclick="selectFinish('White','WH','white')"><div class="finish-swatch" style="background:#f5f0e8;border-bottom:1px solid #ddd"></div><div class="finish-name">White</div></div>
+        <div class="finish-card" onclick="selectFinish('Amulet','AM','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a7a5a,#6a5a3a)"></div><div class="finish-name">Amulet</div></div>
+        <div class="finish-card" onclick="selectFinish('Andiron','AND','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#5a5248,#3a3228)"></div><div class="finish-name">Andiron</div></div>
+        <div class="finish-card" id="fc-AGL" onclick="selectFinish('Antique Gold Leaf','AGL','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#d8b040,#a07820)"></div><div class="finish-name">Antique Gold Leaf ★</div></div>
+        <div class="finish-card" onclick="selectFinish('Antique Gold','AG','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#c8a030,#906010)"></div><div class="finish-name">Antique Gold</div></div>
+        <div class="finish-card" onclick="selectFinish('Art Bronze','AB','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#7a5028,#4a3018)"></div><div class="finish-name">Art Bronze</div></div>
+        <div class="finish-card" onclick="selectFinish('Barnwood','BW','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#7a6858,#5a4838)"></div><div class="finish-name">Barnwood</div></div>
+        <div class="finish-card" onclick="selectFinish('Black','BL','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#2a2828,#111)"></div><div class="finish-name">Black</div></div>
+        <div class="finish-card" onclick="selectFinish('Blush','BLU','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#e8c8b8,#c8a898)"></div><div class="finish-name">Blush</div></div>
+        <div class="finish-card" onclick="selectFinish('Bronzed Pewter','BP','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#7a7060,#5a5040)"></div><div class="finish-name">Bronzed Pewter</div></div>
+        <div class="finish-card" onclick="selectFinish('Concrete','CO','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#c0b8b0,#a0a0a0)"></div><div class="finish-name">Concrete</div></div>
+        <div class="finish-card" onclick="selectFinish('Couture','COU','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#d8c8b0,#b8a890)"></div><div class="finish-name">Couture</div></div>
+        <div class="finish-card" onclick="selectFinish('Dark Chocolate','DC','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#4a2808,#2a1004)"></div><div class="finish-name">Dark Chocolate</div></div>
+        <div class="finish-card" onclick="selectFinish('Firelight','FL','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#d07038,#a04818)"></div><div class="finish-name">Firelight</div></div>
+        <div class="finish-card" onclick="selectFinish('Gossamer','GOS','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#988880,#786860)"></div><div class="finish-name">Gossamer</div></div>
+        <div class="finish-card" onclick="selectFinish('Greige','GRE','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#c8c0b0,#a8a090)"></div><div class="finish-name">Greige</div></div>
+        <div class="finish-card" onclick="selectFinish('Halo','HA','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#e8e0c8,#c8b8a0)"></div><div class="finish-name">Halo</div></div>
+        <div class="finish-card" onclick="selectFinish('Java','JA','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#4a3018,#2a1808)"></div><div class="finish-name">Java</div></div>
+        <div class="finish-card" onclick="selectFinish('Linen','LIN','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#e0d8c0,#c0b8a0)"></div><div class="finish-name">Linen</div></div>
+        <div class="finish-card" onclick="selectFinish('Luminous','LU','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#c0a870,#907840)"></div><div class="finish-name">Luminous</div></div>
+        <div class="finish-card" onclick="selectFinish('Manor','MA','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#a09078,#807060)"></div><div class="finish-name">Manor</div></div>
+        <div class="finish-card" onclick="selectFinish('Mink','MK','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a7060,#6a5040)"></div><div class="finish-name">Mink</div></div>
+        <div class="finish-card" onclick="selectFinish('Moonlight','ML','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#b8b0a8,#888078)"></div><div class="finish-name">Moonlight</div></div>
+        <div class="finish-card" onclick="selectFinish('Mystic','MYS','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#7880a0,#585870)"></div><div class="finish-name">Mystic</div></div>
+        <div class="finish-card" onclick="selectFinish('New Age Bronze','NAB','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#7a6040,#5a4020)"></div><div class="finish-name">New Age Bronze</div></div>
+        <div class="finish-card" onclick="selectFinish('Patina','PAT','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a9878,#6a7858)"></div><div class="finish-name">Patina</div></div>
+        <div class="finish-card" onclick="selectFinish('Shimmer','SH','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#c0b898,#a09878)"></div><div class="finish-name">Shimmer</div></div>
+        <div class="finish-card" onclick="selectFinish('Silver Maple','SM','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#b8c0c8,#909898)"></div><div class="finish-name">Silver Maple</div></div>
+        <div class="finish-card" onclick="selectFinish('Spicewood','SPW','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#a07040,#785020)"></div><div class="finish-name">Spicewood</div></div>
+        <div class="finish-card" onclick="selectFinish('Spun Gold','SPG','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#d0b060,#a08030)"></div><div class="finish-name">Spun Gold</div></div>
+        <div class="finish-card" onclick="selectFinish('Stardust','STA','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#c8c0d8,#a0a0b8)"></div><div class="finish-name">Stardust</div></div>
+        <div class="finish-card" onclick="selectFinish('Starlet','ST','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#d8c8b0,#b8a880)"></div><div class="finish-name">Starlet</div></div>
+        <div class="finish-card" onclick="selectFinish('Titanium','TTM','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#888898,#686878)"></div><div class="finish-name">Titanium</div></div>
+        <div class="finish-card" onclick="selectFinish('Truffle','TRU','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a6848,#6a4828)"></div><div class="finish-name">Truffle</div></div>
+        <div class="finish-card" onclick="selectFinish('Urban Bronze','URB','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#6a5038,#4a3018)"></div><div class="finish-name">Urban Bronze</div></div>
+        <div class="finish-card" onclick="selectFinish('White','WH','white',this)"><div class="finish-swatch" style="background:#f5f0e8;border-bottom:1px solid #ddd"></div><div class="finish-name">White</div></div>
       </div>
-      <div class="inp-hint" style="margin-top:-12px;margin-bottom:16px">★ Antique Gold Leaf is for stationary poles only — not available on any traverse system.</div>
+      <div class="step-note" style="margin-top:-12px;margin-bottom:14px">★ Antique Gold Leaf is for stationary poles only — not available on any traverse system.</div>
     </div>
 
     <!-- Quick Ship Metal finishes -->
     <div id="finish-qs-metal" style="display:none">
       <div class="warn-banner" id="qs-metal-short-warn" style="display:none"><strong>Length limit on some QS Metal finishes:</strong> Brushed Bronze (BZ), Charcoal Zinc (CZ), Rose Gold (RGD), and Satin Gold (SG) are limited to <strong>8' maximum</strong> continuous length on poles and traverse tracks. Brushed Nickel (BN) and Matte Black (MK) support up to 12'.</div>
       <div class="finish-grid">
-        <div class="finish-card" onclick="selectFinish('Brushed Bronze','BZ','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a6040,#6a4020)"></div><div class="finish-name">Brushed Bronze<br><span style="font-size:9px;color:#c00">8' max</span></div></div>
-        <div class="finish-card" onclick="selectFinish('Brushed Nickel','BN','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#c8c0b0,#a0a090)"></div><div class="finish-name">Brushed Nickel</div></div>
-        <div class="finish-card" onclick="selectFinish('Charcoal Zinc','CZ','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#686870,#484850)"></div><div class="finish-name">Charcoal Zinc<br><span style="font-size:9px;color:#c00">8' max</span></div></div>
-        <div class="finish-card" onclick="selectFinish('Matte Black','MK','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#2a2828,#111)"></div><div class="finish-name">Matte Black</div></div>
-        <div class="finish-card" onclick="selectFinish('Rose Gold','RGD','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#e0a898,#c08878)"></div><div class="finish-name">Rose Gold<br><span style="font-size:9px;color:#c00">8' max</span></div></div>
-        <div class="finish-card" onclick="selectFinish('Satin Gold','SG','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#d8c070,#b09040)"></div><div class="finish-name">Satin Gold<br><span style="font-size:9px;color:#c00">8' max</span></div></div>
+        <div class="finish-card" onclick="selectFinish('Brushed Bronze','BZ','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#8a6040,#6a4020)"></div><div class="finish-name">Brushed Bronze<br><span style="font-size:9px;color:#c00">8' max</span></div></div>
+        <div class="finish-card" onclick="selectFinish('Brushed Nickel','BN','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#c8c0b0,#a0a090)"></div><div class="finish-name">Brushed Nickel</div></div>
+        <div class="finish-card" onclick="selectFinish('Charcoal Zinc','CZ','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#686870,#484850)"></div><div class="finish-name">Charcoal Zinc<br><span style="font-size:9px;color:#c00">8' max</span></div></div>
+        <div class="finish-card" onclick="selectFinish('Matte Black','MK','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#2a2828,#111)"></div><div class="finish-name">Matte Black</div></div>
+        <div class="finish-card" onclick="selectFinish('Rose Gold','RGD','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#e0a898,#c08878)"></div><div class="finish-name">Rose Gold<br><span style="font-size:9px;color:#c00">8' max</span></div></div>
+        <div class="finish-card" onclick="selectFinish('Satin Gold','SG','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#d8c070,#b09040)"></div><div class="finish-name">Satin Gold<br><span style="font-size:9px;color:#c00">8' max</span></div></div>
       </div>
     </div>
 
@@ -360,11 +231,11 @@ textarea.inp-field{resize:vertical;min-height:90px}
     <div id="finish-qs-wood" style="display:none">
       <div class="warn-banner">Quick Ship Wood &amp; Resin finishes have a <strong>12' maximum</strong> continuous length on poles and fascia (vs 16' for Portfolio). Available on 1⅜" and 2¼" poles and heavy duty traverse only.</div>
       <div class="finish-grid">
-        <div class="finish-card" onclick="selectFinish('Antique Brass','AB','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#c09840,#907010)"></div><div class="finish-name">Antique Brass</div></div>
-        <div class="finish-card" onclick="selectFinish('Oil Rubbed Bronze','ORB','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#5a3a18,#3a2008)"></div><div class="finish-name">Oil Rubbed Bronze</div></div>
-        <div class="finish-card" onclick="selectFinish('Platinum','PL','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#d0d0d0,#a8a8a8)"></div><div class="finish-name">Platinum</div></div>
-        <div class="finish-card" onclick="selectFinish('Rose Gold','RG','white')"><div class="finish-swatch" style="background:linear-gradient(135deg,#e0a898,#c08878)"></div><div class="finish-name">Rose Gold</div></div>
-        <div class="finish-card" onclick="selectFinish('Walnut','WAL','bronze')"><div class="finish-swatch" style="background:linear-gradient(135deg,#6a4820,#4a3010)"></div><div class="finish-name">Walnut</div></div>
+        <div class="finish-card" onclick="selectFinish('Antique Brass','AB','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#c09840,#907010)"></div><div class="finish-name">Antique Brass</div></div>
+        <div class="finish-card" onclick="selectFinish('Oil Rubbed Bronze','ORB','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#5a3a18,#3a2008)"></div><div class="finish-name">Oil Rubbed Bronze</div></div>
+        <div class="finish-card" onclick="selectFinish('Platinum','PL','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#d0d0d0,#a8a8a8)"></div><div class="finish-name">Platinum</div></div>
+        <div class="finish-card" onclick="selectFinish('Rose Gold','RG','white',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#e0a898,#c08878)"></div><div class="finish-name">Rose Gold</div></div>
+        <div class="finish-card" onclick="selectFinish('Walnut','WAL','bronze',this)"><div class="finish-swatch" style="background:linear-gradient(135deg,#6a4820,#4a3010)"></div><div class="finish-name">Walnut</div></div>
       </div>
     </div>
 
@@ -372,339 +243,229 @@ textarea.inp-field{resize:vertical;min-height:90px}
     <div id="finish-ptm" style="display:none">
       <div class="info-banner">
         <strong>PTH Perfect Match™</strong> — specify any Benjamin Moore® paint color name and number.<br>
-        <br>
         <strong>Single color, no highlight:</strong> +10% upcharge over base hardware price (order minimum applies).<br>
-        <strong>Single color with highlight:</strong> +15% upcharge — highlight options: Silver, Gold, Rose Gold, Glitter<br>
-        <br>
+        <strong>Single color with highlight:</strong> +15% upcharge — highlight options: Silver, Gold, Rose Gold, Glitter.<br>
         Strike-off samples available (fee credited toward order). Final pricing confirmed at quote — subject to current tariff and freight.
       </div>
-      <div class="inp-row">
-        <div class="inp-group">
-          <label class="inp-label">Benjamin Moore Color Name &amp; Number</label>
-          <input class="inp-field" type="text" id="ptm-color" placeholder="e.g. Pale Oak OC-20">
-        </div>
-        <div class="inp-group">
-          <label class="inp-label">Sheen Level</label>
-          <select class="inp-field" id="ptm-sheen">
-            <option value="">Select sheen...</option>
-            <option value="Eggshell">Eggshell</option>
-            <option value="High-Gloss">High-Gloss</option>
-          </select>
-        </div>
-      </div>
-      <div class="inp-group" style="margin-bottom:16px">
-        <label class="inp-label">Highlight (optional)</label>
-        <select class="inp-field" id="ptm-highlight">
-          <option value="none">No highlight</option>
-          <option value="Silver">Silver highlight (+15%)</option>
-          <option value="Gold">Gold highlight (+15%)</option>
-          <option value="Rose Gold">Rose Gold highlight (+15%)</option>
-          <option value="Glitter">Glitter highlight (+15%)</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(3)">← Back</button>
-    </div>
-  </div>
-
-  <!-- STEP 5 — FINIAL STYLE -->
-  <div class="section" id="sec-5">
-    <div class="sec-label">Step 5 of 8</div>
-    <div class="sec-title" id="sec5-title">Choose a Finial Style</div>
-    <div class="sec-sub" id="sec5-sub">Select the finial style collection. Finials are sold in pairs. Prices shown are estimated MSRP from the June 2025 suggested retail price list — final pricing confirmed at quote with current tariff surcharge.</div>
-
-    <div id="finial-cuff-note" class="cuff-note">
-      <strong>Cuff / Finial Adapter required for traverse:</strong> The selected finial style requires a Transitional Cuff (PO138CUFF / QS138CUFF) to attach to the metal traverse track. This will be included in your quote. Without the cuff, finials cannot attach to the traverse rod.
-    </div>
-    <div id="finial-118-cuff-note" class="cuff-note">
-      <strong>Cuff / Finial Adapter required:</strong> All 1⅛" finials require either a Transitional Cuff (PO118CUFF) or Deco Cuff (PO118DECUFF) to attach to 1⅛" metal traverse tracks. This will be noted in your quote.
-    </div>
-
-    <div id="finial-content"><!-- filled by JS --></div>
-
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(4)">← Back</button>
-    </div>
-  </div>
-
-  <!-- STEP 6 — MEASUREMENTS & TRAVERSE OPTIONS — multi-field, keep Continue -->
-  <div class="section" id="sec-6" data-multi>
-    <div class="sec-label">Step 6 of 8</div>
-    <div class="sec-title">Measurements &amp; Options</div>
-    <div class="sec-sub">Provide your dimensions and configure the traverse/draw options if applicable.</div>
-
-    <!-- Length limits info -->
-    <div id="length-info" class="info-banner" style="display:none"></div>
-
-    <!-- Rod width (drapery hardware = width / rod length only) -->
-    <div class="dim-box">
-      <div class="dim-box-label">Enter your rod width</div>
       <div class="form-group">
-        <label>Width / Track Length</label>
-        <input type="number" id="width-in" min="1" max="480" step="0.125" placeholder="96" oninput="updatePriceEstimate()">
-        <div class="dim-unit" id="width-hint">inches &middot; finished rod / track length</div>
+        <label style="font-size:12px">Benjamin Moore color name &amp; number</label>
+        <input class="inp-field" type="text" id="ptm-color" placeholder="e.g. Pale Oak OC-20" oninput="S.ptmColor=this.value.trim();updateSummary()">
       </div>
+      <div class="sub-label">Sheen level</div>
+      <select id="ptm-sheen" data-pb-pills onchange="S.ptmSheen=this.value;updateSummary()">
+        <option value="" disabled selected>Select sheen...</option>
+        <option value="Eggshell">Eggshell</option>
+        <option value="High-Gloss">High-Gloss</option>
+      </select>
+      <div class="sub-label">Highlight <span style="font-weight:400;color:#888">(optional)</span></div>
+      <select id="ptm-highlight" data-pb-pills onchange="S.ptmHighlight=this.value;updateSummary()">
+        <option value="none">No highlight</option>
+        <option value="Silver">Silver highlight (+15%)</option>
+        <option value="Gold">Gold highlight (+15%)</option>
+        <option value="Rose Gold">Rose Gold highlight (+15%)</option>
+        <option value="Glitter">Glitter highlight (+15%)</option>
+      </select>
     </div>
-    <div class="step-note" style="margin-bottom:14px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Drapery hardware is measured by rod width (length) only.</div>
-
-    <!-- Quantity (shared stepper) -->
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px">
-      <span style="font-size:12px;color:#666">Qty:</span>
-      <div class="qty-btns">
-        <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
-        <input class="qty-num" type="number" id="qty-in" value="1" min="1" max="50" oninput="updatePriceEstimate()">
-        <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
-      </div>
-      <span style="font-size:12px;color:#666">rod(s) of this size &amp; finish</span>
-    </div>
-
-    <!-- Traverse-only options -->
-    <div id="traverse-opts" style="display:none">
-      <div class="sub-section">Draw &amp; Operation</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="pick1('draw','Center Draw',this)">Center / Split Draw ⇦⇨</div>
-        <div class="opt-pill" onclick="pick1('draw','One-Way Right',this)">One-Way → Right</div>
-        <div class="opt-pill" onclick="pick1('draw','One-Way Left',this)">One-Way ← Left</div>
-      </div>
-
-      <div class="sub-section">Header Style</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="pick1('header','Pinch Pleat',this)">Pinch Pleat</div>
-        <div class="opt-pill" onclick="pick1('header','Ripplefold',this)">Ripplefold™</div>
-        <div class="opt-pill" onclick="pick1('header','Not sure',this)">Not sure</div>
-      </div>
-
-      <div id="rf-opts" style="display:none">
-        <div class="sub-section">Ripplefold™ Fullness</div>
-        <div class="opt-row">
-          <div class="opt-pill" onclick="pick1('fullness','60%',this)">60% fullness</div>
-          <div class="opt-pill" onclick="pick1('fullness','80%',this)">80% fullness</div>
-          <div class="opt-pill" onclick="pick1('fullness','100%',this)">100% fullness</div>
-          <div class="opt-pill" onclick="pick1('fullness','120%',this)">120% fullness</div>
         </div>
-        <div class="sub-section">Master Carrier Type</div>
-        <div class="opt-row">
-          <div class="opt-pill" onclick="pick1('masterCarrier','Overlap (panels close completely)',this)">Overlap <span style="font-size:10px">(panels close fully)</span></div>
-          <div class="opt-pill" onclick="pick1('masterCarrier','Butt Master (slight light gap at center)',this)">Butt Master <span style="font-size:10px">(slight light gap)</span></div>
-        </div>
-      </div>
 
-      <div class="sub-section">Mounting</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="pick1('mount','Wall mount 3½&quot; return',this)">Wall mount 3½"</div>
-        <div class="opt-pill" onclick="pick1('mount','Wall mount 6&quot; return',this)">Wall mount 6"</div>
-        <div class="opt-pill" onclick="pick1('mount','Ceiling mount',this)">Ceiling mount</div>
-        <div class="opt-pill" id="low-profile-opt" onclick="pick1('mount','Low-Profile Ceiling mount',this)" style="display:none">Low-Profile Ceiling</div>
-        <div class="opt-pill" onclick="pick1('mount','Double Track',this)">Double Track</div>
-      </div>
-    </div>
-
-    <!-- HD-specific: fascia -->
-    <div id="hd-fascia-opts" style="display:none">
-      <div class="sub-section">Wood Fascia (covers the track)</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="pick1('fascia','No fascia',this)">No fascia — track only</div>
-        <div class="opt-pill" id="fas-138" onclick="pick1('fascia','1⅜&quot; smooth',this)">1⅜" Smooth</div>
-        <div class="opt-pill" id="fas-138r" onclick="pick1('fascia','1⅜&quot; reeded',this)">1⅜" Reeded</div>
-        <div class="opt-pill" id="fas-138g" onclick="pick1('fascia','1⅜&quot; grooved/fluted',this)">1⅜" Grooved/Fluted</div>
-        <div class="opt-pill" onclick="pick1('fascia','1⅞&quot; slim round (no finials)',this)">1⅞" Slim Round</div>
-        <div class="opt-pill" onclick="pick1('fascia','2¼&quot; smooth',this)">2¼" Smooth</div>
-        <div class="opt-pill" onclick="pick1('fascia','2¼&quot; reeded',this)">2¼" Reeded</div>
-        <div class="opt-pill" onclick="pick1('fascia','2¼&quot; grooved/fluted',this)">2¼" Grooved/Fluted</div>
-        <div class="opt-pill" onclick="pick1('fascia','2¼&quot; flat smooth (no finials)',this)">2¼" Flat (no finials)</div>
-        <div class="opt-pill" onclick="pick1('fascia','Mitered returns (no finials)',this)">Mitered Returns</div>
-      </div>
-      <div id="fascia-finial-warn" class="warn-banner" style="display:none"><strong>No finials available</strong> with this fascia profile. Slim round, flat smooth, and mitered return profiles do not accept finials.</div>
-
-      <div id="hd-motorize-opts" style="display:none">
-        <div class="sub-section">Motor System</div>
-        <div class="opt-row">
-          <div class="opt-pill" onclick="pick1('motor','Corded (cord draw)',this)">Corded draw</div>
-          <div class="opt-pill" onclick="pick1('motor','Baton draw (wand)',this)">Baton draw (wand)</div>
-          <div class="opt-pill" onclick="pick1('motor','R-TEC Motorized (110 lbs max, 36\' max)',this)">R-TEC Motorized</div>
-          <div class="opt-pill" id="somfy-opt" onclick="pick1('motor','Somfy Motorized',this)">Somfy Motorized</div>
-        </div>
-        <div id="somfy-motor-opts" style="display:none">
-          <div class="sub-section">Somfy Motor Model</div>
-          <div class="opt-row">
-            <div class="opt-pill" onclick="pick1('somfyMotor','Glydea ULTRA 35e (77 lbs max, 32\' max)',this)">Glydea ULTRA 35e<br><span style="font-size:10px">77 lbs · 32' max</span></div>
-            <div class="opt-pill" onclick="pick1('somfyMotor','Glydea ULTRA 60e (132 lbs max, 36\' max)',this)">Glydea ULTRA 60e<br><span style="font-size:10px">132 lbs · 36' max</span></div>
-            <div class="opt-pill" onclick="pick1('somfyMotor','Irismo 35 Mini (77 lbs max, 32\' max)',this)">Irismo 35 Mini<br><span style="font-size:10px">77 lbs · 32' max</span></div>
-            <div class="opt-pill" onclick="pick1('somfyMotor','Irismo 45 (99 lbs max, 32\' max, rechargeable battery)',this)">Irismo 45<br><span style="font-size:10px">99 lbs · 32' max · rechargeable</span></div>
+        <!-- Step 6: Finial style -->
+        <div class="step-block" id="step-finial">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">6</div>
+            <div class="step-title" style="margin-bottom:0" id="sec5-title">Finial style</div>
           </div>
-          <div class="warn-banner">Somfy curved track available with minimum 11.8" (30 cm) radius; curving fees apply. Fascia available in 1⅞" and 2¼" profiles only — <strong>1⅜" fascia is NOT available with Somfy systems</strong> (PDF spec). System minimum: 6ft. Track sold in 1ft increments. Somfy Ripplefold glides: 80%, 100%, 120% fullness. Orders with Somfy traverse incur a $25 packaging fee.</div>
+          <div id="finial-cuff-note" class="cuff-note">
+            <strong>Cuff / finial adapter required for traverse:</strong> The selected finial style requires a Transitional Cuff (PO138CUFF / QS138CUFF) to attach to the metal traverse track. This will be included in your quote. Without the cuff, finials cannot attach to the traverse rod.
+          </div>
+          <div id="finial-118-cuff-note" class="cuff-note">
+            <strong>Cuff / finial adapter required:</strong> All 1⅛" finials require either a Transitional Cuff (PO118CUFF) or Deco Cuff (PO118DECUFF) to attach to 1⅛" metal traverse tracks. This will be noted in your quote.
+          </div>
+          <div id="finial-content"><!-- filled by JS --></div>
+          <div class="step-note" id="finial-note">Finials are sold in pairs. Prices shown are estimated MSRP from the June 2025 suggested retail price list — final pricing confirmed at quote with current tariff surcharge.</div>
         </div>
-      </div>
-    </div>
 
-    <!-- R-TEC motorized power choice -->
-    <div id="rtec-power-opts" style="display:none">
-      <div class="sub-section">R-TEC Motor Power Source</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="pick1('rtecPower','Li-ion Battery (rechargeable, 500 cycles per charge)',this)">Li-ion Battery <span style="font-size:10px">rechargeable</span></div>
-        <div class="opt-pill" onclick="pick1('rtecPower','110v AC/DC Power Transformer',this)">110v AC/DC Power</div>
-        <div class="opt-pill" onclick="pick1('rtecPower','Solar Panel Charger',this)">Solar Panel</div>
-      </div>
-      <div class="info-banner" style="margin-top:4px">
-        <strong>Li-ion battery</strong> recommended for tracks up to 14' and drapery weight up to 60 lbs.<br>
-        <strong>110v AC/DC power</strong> recommended for tracks over 14' and/or weight over 60 lbs.<br>
-        R-TEC 5-year warranty. Max 77 lbs. Max track 24' (2 splices). Average speed: 5.5"/sec.
-      </div>
-    </div>
+        <!-- Step 7: Traverse options (traverse systems only) -->
+        <div class="step-block" id="step-opts" style="display:none">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">7</div>
+            <div class="step-title" style="margin-bottom:0">Traverse options</div>
+          </div>
 
-    <!-- Approximate price estimate -->
-    <div class="price-est" id="price-est">
-      <div class="price-est-label">Estimated Starting Price (MSRP)</div>
-      <div class="price-est-range" id="price-est-range">—</div>
-      <div class="price-est-note" id="price-est-note">Estimated MSRP — final price confirmed at quote with current tariff surcharge and freight. Excludes finials, batons, cuffs, packaging, and delivery.</div>
-    </div>
+          <!-- Baton / R-TEC traverse options -->
+          <div id="traverse-opts" style="display:none">
+            <div class="sub-label">Draw &amp; operation</div>
+            <div class="opt-row">
+              <button class="opt-btn" onclick="pick1('draw','Center Draw',this)">Center / split draw ⇦⇨</button>
+              <button class="opt-btn" onclick="pick1('draw','One-Way Right',this)">One-way → right</button>
+              <button class="opt-btn" onclick="pick1('draw','One-Way Left',this)">One-way ← left</button>
+            </div>
 
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(5)">← Back</button>
-      <button class="btn-next" onclick="goStep(7)">Continue →</button>
+            <div class="sub-label">Header style</div>
+            <div class="opt-row">
+              <button class="opt-btn" onclick="pick1('header','Pinch Pleat',this)">Pinch pleat</button>
+              <button class="opt-btn" onclick="pick1('header','Ripplefold',this)">Ripplefold™</button>
+              <button class="opt-btn" onclick="pick1('header','Not sure',this)">Not sure</button>
+            </div>
+
+            <div id="rf-opts" style="display:none">
+              <div class="sub-label">Ripplefold™ fullness</div>
+              <div class="opt-row">
+                <button class="opt-btn" onclick="pick1('fullness','60%',this)">60% fullness</button>
+                <button class="opt-btn" onclick="pick1('fullness','80%',this)">80% fullness</button>
+                <button class="opt-btn" onclick="pick1('fullness','100%',this)">100% fullness</button>
+                <button class="opt-btn" onclick="pick1('fullness','120%',this)">120% fullness</button>
+              </div>
+              <div class="sub-label">Master carrier type</div>
+              <div class="opt-row">
+                <button class="opt-btn" onclick="pick1('masterCarrier','Overlap (panels close completely)',this)">Overlap <span class="pill-hint">panels close fully</span></button>
+                <button class="opt-btn" onclick="pick1('masterCarrier','Butt Master (slight light gap at center)',this)">Butt master <span class="pill-hint">slight light gap</span></button>
+              </div>
+            </div>
+
+            <div class="sub-label">Mounting</div>
+            <div class="opt-row" id="grp-pt-mount">
+              <button class="opt-btn" onclick="pick1('mount','Wall mount 3½&quot; return',this)">Wall mount 3½"</button>
+              <button class="opt-btn" onclick="pick1('mount','Wall mount 6&quot; return',this)">Wall mount 6"</button>
+              <button class="opt-btn" onclick="pick1('mount','Ceiling mount',this)">Ceiling mount</button>
+              <button class="opt-btn" id="low-profile-opt" onclick="pick1('mount','Low-Profile Ceiling mount',this)" style="display:none">Low-profile ceiling</button>
+              <button class="opt-btn" onclick="pick1('mount','Double Track',this)">Double track</button>
+            </div>
+          </div>
+
+          <!-- HD-specific: fascia + draw system -->
+          <div id="hd-fascia-opts" style="display:none">
+            <div class="sub-label">Wood fascia (covers the track)</div>
+            <div class="opt-row">
+              <button class="opt-btn" onclick="pick1('fascia','No fascia',this)">No fascia — track only</button>
+              <button class="opt-btn" id="fas-138" onclick="pick1('fascia','1⅜&quot; smooth',this)">1⅜" smooth</button>
+              <button class="opt-btn" id="fas-138r" onclick="pick1('fascia','1⅜&quot; reeded',this)">1⅜" reeded</button>
+              <button class="opt-btn" id="fas-138g" onclick="pick1('fascia','1⅜&quot; grooved/fluted',this)">1⅜" grooved/fluted</button>
+              <button class="opt-btn" onclick="pick1('fascia','1⅞&quot; slim round (no finials)',this)">1⅞" slim round</button>
+              <button class="opt-btn" onclick="pick1('fascia','2¼&quot; smooth',this)">2¼" smooth</button>
+              <button class="opt-btn" onclick="pick1('fascia','2¼&quot; reeded',this)">2¼" reeded</button>
+              <button class="opt-btn" onclick="pick1('fascia','2¼&quot; grooved/fluted',this)">2¼" grooved/fluted</button>
+              <button class="opt-btn" onclick="pick1('fascia','2¼&quot; flat smooth (no finials)',this)">2¼" flat (no finials)</button>
+              <button class="opt-btn" onclick="pick1('fascia','Mitered returns (no finials)',this)">Mitered returns</button>
+            </div>
+            <div id="fascia-finial-warn" class="warn-banner" style="display:none"><strong>No finials available</strong> with this fascia profile. Slim round, flat smooth, and mitered return profiles do not accept finials.</div>
+
+            <div id="hd-motorize-opts" style="display:none">
+              <div class="sub-label">Draw system</div>
+              <div class="opt-row">
+                <button class="opt-btn" onclick="pick1('motor','Corded (cord draw)',this)">Corded draw</button>
+                <button class="opt-btn" onclick="pick1('motor','Baton draw (wand)',this)">Baton draw (wand)</button>
+                <button class="opt-btn" onclick="pick1('motor','R-TEC Motorized (110 lbs max, 36\' max)',this)">R-TEC motorized</button>
+                <button class="opt-btn" id="somfy-opt" onclick="pick1('motor','Somfy Motorized',this)">Somfy motorized</button>
+              </div>
+              <div id="somfy-motor-opts" style="display:none">
+                <div class="sub-label">Somfy motor model</div>
+                <div class="opt-row">
+                  <button class="opt-btn wrap" onclick="pick1('somfyMotor','Glydea ULTRA 35e (77 lbs max, 32\' max)',this)">Glydea ULTRA 35e <span class="pill-hint">77 lbs · 32' max</span></button>
+                  <button class="opt-btn wrap" onclick="pick1('somfyMotor','Glydea ULTRA 60e (132 lbs max, 36\' max)',this)">Glydea ULTRA 60e <span class="pill-hint">132 lbs · 36' max</span></button>
+                  <button class="opt-btn wrap" onclick="pick1('somfyMotor','Irismo 35 Mini (77 lbs max, 32\' max)',this)">Irismo 35 Mini <span class="pill-hint">77 lbs · 32' max</span></button>
+                  <button class="opt-btn wrap" onclick="pick1('somfyMotor','Irismo 45 (99 lbs max, 32\' max, rechargeable battery)',this)">Irismo 45 <span class="pill-hint">99 lbs · 32' max · rechargeable</span></button>
+                </div>
+                <div class="warn-banner">Somfy curved track available with minimum 11.8" (30 cm) radius; curving fees apply. Fascia available in 1⅞" and 2¼" profiles only — <strong>1⅜" fascia is NOT available with Somfy systems</strong> (PDF spec). System minimum: 6ft. Track sold in 1ft increments. Somfy Ripplefold glides: 80%, 100%, 120% fullness. Orders with Somfy traverse incur a $25 packaging fee.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- R-TEC motorized power choice -->
+          <div id="rtec-power-opts" style="display:none">
+            <div class="sub-label">R-TEC motor power source</div>
+            <div class="opt-row">
+              <button class="opt-btn" onclick="pick1('rtecPower','Li-ion Battery (rechargeable, 500 cycles per charge)',this)">Li-ion battery <span class="pill-hint">rechargeable</span></button>
+              <button class="opt-btn" onclick="pick1('rtecPower','110v AC/DC Power Transformer',this)">110v AC/DC power</button>
+              <button class="opt-btn" onclick="pick1('rtecPower','Solar Panel Charger',this)">Solar panel</button>
+            </div>
+            <div class="step-note" style="margin-top:-6px">
+              <strong>Li-ion battery</strong> recommended for tracks up to 14' and drapery weight up to 60 lbs. <strong>110v AC/DC power</strong> recommended for tracks over 14' and/or weight over 60 lbs.
+              R-TEC 5-year warranty. Max 77 lbs. Max track 24' (2 splices). Average speed: 5.5"/sec.
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 8: Add-ons -->
+        <div class="step-block" id="step-addons">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">8</div>
+            <div class="step-title" style="margin-bottom:0">Add-ons &amp; accessories <span style="font-weight:400;color:#888">(optional)</span></div>
+          </div>
+          <div class="sub-label">Batons (if applicable)</div>
+          <div class="opt-row">
+            <button class="opt-btn" onclick="toggle1('baton','None',this)">No baton</button>
+            <button class="opt-btn" onclick="toggle1('baton','36&quot; Metal Baton',this)">36" metal baton</button>
+            <button class="opt-btn" onclick="toggle1('baton','48&quot; Metal Baton',this)">48" metal baton</button>
+            <button class="opt-btn" onclick="toggle1('baton','60&quot; Metal Baton',this)">60" metal baton</button>
+            <button class="opt-btn" onclick="toggle1('baton','36&quot; Clear Acrylic Baton',this)">36" clear acrylic</button>
+            <button class="opt-btn" onclick="toggle1('baton','48&quot; Clear Acrylic Baton',this)">48" clear acrylic</button>
+            <button class="opt-btn" onclick="toggle1('baton','60&quot; Clear Acrylic Baton',this)">60" clear acrylic</button>
+            <button class="opt-btn" onclick="toggle1('baton','ADA Handicap Baton',this)">ADA handicap baton</button>
+          </div>
+
+          <div class="sub-label">Holdbacks</div>
+          <div class="opt-row">
+            <button class="opt-btn" onclick="toggle1('holdback','None',this)">No holdbacks</button>
+            <button class="opt-btn" onclick="toggle1('holdback','Modern Holdback Stems + Medallions',this)">Modern holdbacks</button>
+            <button class="opt-btn" onclick="toggle1('holdback','Transitional Holdback Stems + Medallions',this)">Transitional holdbacks</button>
+            <button class="opt-btn" onclick="toggle1('holdback','Holdback Arms',this)">Holdback arms</button>
+          </div>
+
+          <div id="fr-opts-section" style="display:none">
+            <div class="sub-label">French returns for traverse</div>
+            <div class="opt-row">
+              <button class="opt-btn" onclick="toggle1('frenchReturn','None',this)">No French returns</button>
+              <button class="opt-btn" onclick="toggle1('frenchReturn','French Returns for Traverse (3½&quot; return, $85.12 each for 1⅛&quot; / $108.44 each for 1⅜&quot;)',this)">Add French returns</button>
+            </div>
+            <div class="step-note" style="margin-top:-6px">French Returns for Traverse include 1 return, 1 splice, 1 French return ring (reduces sidelight), 4 end stops, 4 Ripplefold carriers, 2 pinch pleat carriers, Allen wrench and extra set screws. Available in Portfolio or PTH Perfect Match finishes.</div>
+          </div>
+
+          <div id="rtec-controls-section" style="display:none">
+            <div class="sub-label">Additional R-TEC smart controls</div>
+            <div class="opt-row">
+              <button class="opt-btn" onclick="toggle1('controls','additional-1ch remote',this)">1-channel remote ($73.03)</button>
+              <button class="opt-btn" onclick="toggle1('controls','15-ch push remote',this)">15-channel push remote ($84.27)</button>
+              <button class="opt-btn" onclick="toggle1('controls','surface wall switch',this)">Surface wall switch ($78.65)</button>
+              <button class="opt-btn" onclick="toggle1('controls','cut-in wall switch',this)">Cut-in wall switch</button>
+              <button class="opt-btn" onclick="toggle1('controls','R-TEC Hub RTMHUB2 (Wi-Fi, R-TEC Automation app / voice control)',this)">R-TEC Wi-Fi hub (app + voice)</button>
+              <button class="opt-btn" onclick="toggle1('controls','interior sun sensor',this)">Sun sensor ($50.56)</button>
+              <button class="opt-btn" onclick="toggle1('controls','solar panel charger',this)">Solar panel charger</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delivery (shared) + Your details (shared) -->
+        <div id="pb-delivery-slot"></div>
+        <div id="pb-final-slot"></div>
+      </div>
+
+      <!-- Summary card -->
+      <div class="summary-card" id="summary-card">
+        <div class="summary-head">Your configuration</div>
+        <div id="quote-summary"></div>
+        <div id="price-est" style="display:none;border-top:0.5px solid rgba(255,255,255,.2);margin-top:6px;padding-top:4px">
+          <div class="summary-row"><span class="sr-key price-est-label">Est. starting price (MSRP)</span><span class="sr-val" id="price-est-range">—</span></div>
+        </div>
+        <div class="summary-row" id="price-quote-row" style="border-top:0.5px solid rgba(255,255,255,.2);margin-top:6px;padding-top:10px"><span class="sr-key">Price</span><span class="sr-val">Custom quote — we confirm pricing</span></div>
+        <div class="summary-note" id="price-est-note">Estimated MSRP — final price confirmed at quote with current tariff surcharge and freight. Excludes finials, batons, cuffs, packaging, and delivery.</div>
+      </div>
     </div>
   </div>
-
-  <!-- STEP 7 — ADD-ONS — multi-choice, keep Continue -->
-  <div class="section" id="sec-7" data-multi>
-    <div class="sec-label">Step 7 of 8</div>
-    <div class="sec-title">Add-Ons &amp; Accessories</div>
-    <div class="sec-sub">Optional additions to complete your installation.</div>
-
-    <div class="sub-section">Batons (if applicable)</div>
-    <div class="opt-row">
-      <div class="opt-pill" onclick="toggle1('baton','None',this)">No baton</div>
-      <div class="opt-pill" onclick="toggle1('baton','36&quot; Metal Baton',this)">36" Metal Baton</div>
-      <div class="opt-pill" onclick="toggle1('baton','48&quot; Metal Baton',this)">48" Metal Baton</div>
-      <div class="opt-pill" onclick="toggle1('baton','60&quot; Metal Baton',this)">60" Metal Baton</div>
-      <div class="opt-pill" onclick="toggle1('baton','36&quot; Clear Acrylic Baton',this)">36" Clear Acrylic</div>
-      <div class="opt-pill" onclick="toggle1('baton','48&quot; Clear Acrylic Baton',this)">48" Clear Acrylic</div>
-      <div class="opt-pill" onclick="toggle1('baton','60&quot; Clear Acrylic Baton',this)">60" Clear Acrylic</div>
-      <div class="opt-pill" onclick="toggle1('baton','ADA Handicap Baton',this)">ADA Handicap Baton</div>
-    </div>
-
-    <div class="sub-section">Holdbacks (optional)</div>
-    <div class="opt-row">
-      <div class="opt-pill" onclick="toggle1('holdback','None',this)">No holdbacks</div>
-      <div class="opt-pill" onclick="toggle1('holdback','Modern Holdback Stems + Medallions',this)">Modern Holdbacks</div>
-      <div class="opt-pill" onclick="toggle1('holdback','Transitional Holdback Stems + Medallions',this)">Transitional Holdbacks</div>
-      <div class="opt-pill" onclick="toggle1('holdback','Holdback Arms',this)">Holdback Arms</div>
-    </div>
-
-    <div id="fr-opts-section" style="display:none">
-      <div class="sub-section">French Returns for Traverse (optional)</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="toggle1('frenchReturn','None',this)">No French returns</div>
-        <div class="opt-pill" onclick="toggle1('frenchReturn','French Returns for Traverse (3½&quot; return, $85.12 each for 1⅛&quot; / $108.44 each for 1⅜&quot;)',this)">Add French Returns</div>
-      </div>
-      <div class="info-banner" style="font-size:12px">French Returns for Traverse include 1 return, 1 splice, 1 French return ring (reduces sidelight), 4 end stops, 4 Ripplefold carriers, 2 pinch pleat carriers, Allen wrench and extra set screws. Available in Portfolio or PTH Perfect Match finishes.</div>
-    </div>
-
-    <div id="rtec-controls-section" style="display:none">
-      <div class="sub-section">Additional R-TEC Smart Controls (optional)</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="toggle1('controls','additional-1ch remote',this)">1-channel remote ($73.03)</div>
-        <div class="opt-pill" onclick="toggle1('controls','15-ch push remote',this)">15-channel push remote ($84.27)</div>
-        <div class="opt-pill" onclick="toggle1('controls','surface wall switch',this)">Surface wall switch ($78.65)</div>
-        <div class="opt-pill" onclick="toggle1('controls','cut-in wall switch',this)">Cut-in wall switch</div>
-        <div class="opt-pill" onclick="toggle1('controls','R-TEC Hub RTMHUB2 (Wi-Fi, R-TEC Automation app / voice control)',this)">R-TEC Wi-Fi Hub (app + voice)</div>
-        <div class="opt-pill" onclick="toggle1('controls','interior sun sensor',this)">Sun sensor ($50.56)</div>
-        <div class="opt-pill" onclick="toggle1('controls','solar panel charger',this)">Solar panel charger</div>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(6)">← Back</button>
-      <button class="btn-next" onclick="goStep(8)">Continue →</button>
-    </div>
-  </div>
-
-  <!-- STEP 8 — CONTACT & QUOTE
-  ══════════════════════════════════════════ -->
-  <div class="section" id="sec-8">
-    <div class="sec-label">Step 8 of 8</div>
-    <div class="sec-title">Your Quote Request</div>
-    <div class="sec-sub">Review your configuration and submit your quote request. We'll follow up within 1 business day with pricing and lead time confirmation.</div>
-
-    <div class="summary-card" id="quote-summary">
-      <div class="summary-title">Configuration Summary</div>
-    </div>
-
-    <div class="delivery-section">
-      <div class="delivery-title">Installation or Delivery?</div>
-      <div class="delivery-opt" id="del-install" onclick="selectDelivery('install')">
-        <div class="delivery-opt-title">Professional Installation (Philadelphia / South Jersey area)</div>
-        <div class="delivery-opt-sub">We measure, supply, and install. 60+ years combined experience. Pricing includes on-site measurement and installation labor.</div>
-      </div>
-      <div class="delivery-opt" id="del-ship" onclick="selectDelivery('ship')">
-        <div class="delivery-opt-title">Ship to Me</div>
-        <div class="delivery-opt-sub">Ships from Dallas, TX via UPS/FedEx (FOB Dallas). Rowley Flat Rate Shipping Program applies. Tariffs, duties, and packaging fees will be confirmed at quote. Li-ion battery orders incur an additional $25 shipping surcharge.</div>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(7)">← Back</button>
-      <button onclick="reqMoreInfo('Paris Texas Hardware')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Paris Texas Hardware →</button>
-    </div>
-
-    <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-        <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
-    <div id="pb-rod-spec"></div>
-    <div id="pb-final-step"></div>
-  </div>
-
-  <!-- UNSURE FLOW -->
-  <div class="section" id="sec-unsure">
-    <div class="sec-label">Custom Quote</div>
-    <div class="sec-title">Tell Us About Your Project</div>
-    <div class="sec-sub">Describe your space and we'll recommend the right Paris Texas Hardware system, finish, and size.</div>
-    <div class="inp-row">
-      <div class="inp-group">
-        <label class="inp-label">Your Name *</label>
-        <input class="inp-field" type="text" id="u-name" placeholder="Full name">
-      </div>
-      <div class="inp-group">
-        <label class="inp-label">Phone / Email *</label>
-        <input class="inp-field" type="text" id="u-contact" placeholder="Best way to reach you">
-      </div>
-    </div>
-    <div class="inp-group" style="margin-bottom:14px">
-      <label class="inp-label">Window Sizes &amp; Quantity</label>
-      <input class="inp-field" type="text" id="u-size" placeholder="e.g. 3 windows, each about 96&quot; wide">
-    </div>
-    <div class="inp-group" style="margin-bottom:14px">
-      <label class="inp-label">Describe Your Style &amp; Needs</label>
-      <textarea class="inp-field" id="u-notes" placeholder="Room, style (modern/traditional), fabric weight, motorized vs manual, any finish preferences, ceiling height, etc."></textarea>
-    </div>
-    <div class="delivery-section">
-      <div class="delivery-title">Are you local to Philadelphia?</div>
-      <div class="delivery-opt" id="u-del-install" onclick="selectDelivery('install','u')">
-        <div class="delivery-opt-title">Yes — in-home measurement &amp; installation</div>
-      </div>
-      <div class="delivery-opt" id="u-del-remote" onclick="selectDelivery('ship','u')">
-        <div class="delivery-opt-title">No — hardware shipped or picked up</div>
-      </div>
-    </div>
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(1)">← Back</button>
-      <button class="btn-submit" onclick="submitUnsure()">Send My Request →</button>
-    </div>
-  </div>
-
 </div>
+</section>
 
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/paris-texas-rods.js"></script>
 <script>
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ bare: true, calc: 'updateSummary()' });
+document.getElementById('pb-delivery-slot').outerHTML = pbDeliveryStepHTML({ stepNum: 9, onPick: 'updateSummary()' });
+document.getElementById('pb-delivery-block').insertAdjacentHTML('beforeend',
+  '<div class="step-note" style="margin-top:8px">Ships from Dallas, TX via UPS/FedEx (FOB Dallas). Rowley Flat Rate Shipping Program applies. Tariffs, duties, and packaging fees are confirmed at quote. Li-ion battery orders incur an additional $25 shipping surcharge.</div>');
 // Canonical final "Your details" contact + files step — identical on every product.
-document.getElementById('pb-final-step').innerHTML =
-  pbContactStepHTML({ bare: true, cartFn: 'addParisTexasToCart()', submitFn: 'submitQuote()' });
-
-document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
+document.getElementById('pb-final-slot').outerHTML =
+  pbContactStepHTML({ stepNum: 10, cartFn: 'addParisTexasToCart()', submitFn: 'submitQuote()' });
+initParisTexas();
 </script>
 </body>
 </html>
-

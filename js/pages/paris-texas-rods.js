@@ -1,4 +1,4 @@
-﻿/* ─── STATE ─── */
+/* ─── STATE ─── */
 const S = {
   type:'', finishType:'', diameter:'', finish:'', finishCode:'', finishTrackColor:'',
   finial:'', poleDia:'', width:'', qty:1,
@@ -7,56 +7,61 @@ const S = {
   delivery:'', ptmColor:'', ptmSheen:'', ptmHighlight:'none'
 };
 
-const STEPS = 8;
-
-/* ─── STEP BAR ─── */
-function renderStepBar(cur) {
-  const el = document.getElementById('step-bar');
-  let h = '';
-  for(let i=1;i<=STEPS;i++){
-    const cl = i<cur?'done':i===cur?'active':'';
-    h += `<div class="step-dot"><div class="step-circle ${cl}">${i<cur?'✓':i}</div></div>`;
-    if(i<STEPS) h+=`<div class="step-line ${i<cur?'done':''}"></div>`;
+/* ─── DESCRIPTIONS (shown in the step-note under each pill row) ─── */
+const TYPE_DESC = {
+  static:'<strong>Stationary / decorative pole</strong> — drapery hangs from rings and slides manually. Rod stays fixed. Best for panels that rarely open and close. 1⅛" · 1⅜" · 2¼" poles · all finishes.',
+  baton:'<strong>Baton draw metal traverse</strong> — panel glides on a concealed metal track, operated by baton (wand). Modern, clean look. 1⅛" and 1⅜" diameters; 1⅜" also in QS Wood &amp; Resin finishes. 4\' min · up to 20\' track.',
+  rtec:'<strong>R-TEC motorized metal traverse</strong> — Paris Texas\' proprietary R-TEC Automation® slim drapery motor. Rechargeable Li-ion or 110v AC. 77 lbs max. 5-year warranty. RF remote + app + voice control. 1⅜" metal track only, up to 24\'. All finishes except Antique Gold Leaf.',
+  hd:'<strong>Heavy duty traverse</strong> — for longer widths, heavier fabrics, or decorative wood fascia. 1⅜" or 2¼" smooth/reeded/fluted fascia, 1⅞" slim round, or 2¼" flat smooth. Corded or baton draw up to 40\', R-TEC motorized (110 lbs, 36\' max), or Somfy motorized (2¼" only). Portfolio, QS Wood &amp; Resin, or PTH Perfect Match finishes — no QS Metal.',
+  unsure:'<strong>Not sure?</strong> Answer what you can below, then tell us about your space in the notes in Your details — room, style (modern/traditional), fabric weight, motorized vs manual, ceiling height. We\'ll recommend the right system, size, and finish.'
+};
+const FINISHTYPE_DESC = {
+  'portfolio':'<strong>Portfolio</strong> — artisan hand-painted finishes on metal or wood poles. 10-15 business day lead time. Available on all pole sizes and all traverse systems.',
+  'qs-metal':'<strong>Quick Ship metal</strong> — in-stock metal finishes ship within 24 hours: Brushed Bronze, Brushed Nickel, Charcoal Zinc, Matte Black, Rose Gold, Satin Gold. 1⅛" and 1⅜" systems only — not available for Heavy Duty traverse.',
+  'qs-wood':'<strong>Quick Ship wood &amp; resin</strong> — in-stock wood-look finishes on 1⅜" and 2¼" poles and traverse: Antique Brass, Oil Rubbed Bronze, Platinum, Rose Gold, Walnut. For 1⅜" R-TEC, 1⅜" baton draw, and all HD traverse. Not available for 1⅛" systems.',
+  'ptm':'<strong>PTH Perfect Match™</strong> — match any Benjamin Moore paint color. Eggshell or high-gloss, optional metallic highlight. +10% upcharge (no highlight) or +15% (with highlight). $100/$150 minimum. 10-15 business days.'
+};
+function diaDesc(d){
+  if(d==='1⅛') return S.type==='baton'
+    ? '<strong>1⅛"</strong> — sleek, modern profile. Metal poles and traverse tracks. 5 finial style categories. QS Metal or Portfolio finishes (QS Wood &amp; Resin not available in 1⅛"). Max track 20\'.'
+    : '<strong>1⅛"</strong> — sleek, modern profile. Metal poles and traverse tracks. 5 finial style categories (Modern, Clean Deco, Bohemian Chic, Transitional Luxe, Rustic Retreat). Poles up to 12\'. Portfolio or Quick Ship Metal only.';
+  if(d==='1⅜') return '<strong>1⅜"</strong> — standard decorative profile. Metal and wood poles, baton traverse, R-TEC motorized traverse, and heavy duty traverse. 3 finial style categories. Poles up to 12\' (metal) or 16\' (wood). All finish types · all traverse systems.';
+  if(d==='2¼'){
+    var tag = S.type==='baton' ? 'Portfolio / QS Wood &amp; Resin · wood poles only · stationary or HD only'
+      : S.type==='hd' ? 'Wood poles · HD traverse (corded, baton, R-TEC, Somfy) · Portfolio or QS Wood &amp; Resin'
+      : 'Wood poles only · heavy duty traverse · Portfolio or Quick Ship Wood &amp; Resin';
+    return '<strong>2¼"</strong> — bold, substantial profile. Wood poles only. Finials from Today\'s Traditional and Heritage Classics collections. Heavy duty traverse (corded, baton, Somfy). Poles up to 16\'. ' + tag + '.';
   }
-  el.innerHTML = h;
+  return 'Larger diameters carry heavier draperies and have bolder visual impact.';
 }
 
-let cur = 1;
-
-function goStep(n) {
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
-  if(n==='unsure'){
-    document.getElementById('sec-unsure').classList.add('on');
-    document.getElementById('step-bar').style.display='none';
-    window.scrollTo({top:0,behavior:'smooth'}); return;
-  }
-  cur=n; renderStepBar(n);
-  document.getElementById('step-bar').style.display='flex';
-  const sec=document.getElementById('sec-'+n);
-  if(sec) sec.classList.add('on');
-  if(n===2) prep2();
-  if(n===3) prep3();
-  if(n===4) prep4();
-  if(n===5) prep5();
-  if(n===6) prep6();
-  if(n===7) prep7();
-  if(n===8) prep8();
-  window.scrollTo({top:0,behavior:'smooth'});
+/* ─── STEP NUMBERING / VISIBILITY ─── */
+function renumberSteps(){
+  var n=0;
+  document.querySelectorAll('#cfg-steps > .step-block').forEach(function(b){
+    if(b.style.display==='none') return;
+    n++; var s=b.querySelector('.step-num'); if(s) s.textContent=n;
+  });
+}
+// Re-evaluate every dependent step after any answer changes (replaces the old Next/Back paging).
+function refreshAll(){
+  prep2(); prep3(); prep4(); prep5(); prep6(); prep7();
+  updatePriceEstimate();
+  renumberSteps();
 }
 
-/* ─── STEP 1 ─── */
+/* ─── PILL PICKS (type / finish collection / diameter) ─── */
 function pick(key, val, el) {
   S[key]=val;
-  const group = el.closest('.choice-grid, .section');
-  if(group) group.querySelectorAll('.choice-card').forEach(c=>c.classList.remove('sel'));
+  const group = el.closest('.opt-row');
+  if(group) group.querySelectorAll('.opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
-  if(key==='type'&&val==='unsure'){goStep('unsure');return;}
-  // Auto-advance: step 1→2 (type), step 2→3 (finishType), step 3→4 (diameter)
-  const next = {type:2, finishType:3, diameter:4}[key];
-  if(next) setTimeout(function(){ goStep(next); }, 320);
+  if(key==='type') document.getElementById('type-note').innerHTML = TYPE_DESC[val]||'';
+  if(key==='finishType') document.getElementById('finishtype-note').innerHTML = FINISHTYPE_DESC[val]||'';
+  refreshAll();
 }
 
-/* ─── STEP 2 ─── */
+/* ─── FINISH COLLECTION availability ─── */
 function prep2() {
   // FINISH TYPE AVAILABILITY BY SYSTEM (PDF p.56 + General Info):
   // Portfolio (35): all systems ✓
@@ -65,91 +70,77 @@ function prep2() {
   // PTH Perfect Match: all systems ✓
   const qsWood = document.getElementById('qs-wood-card');
   const qsMetal = document.getElementById('qs-metal-card');
-
   // HD traverse cannot use QS Metal (only Portfolio, PTH Perfect Match, QS Wood & Resin)
-  if(qsMetal) qsMetal.classList.toggle('dim', S.type==='hd');
-
-  // QS Wood not available for 1⅛" systems — can't enforce here since diameter not yet chosen.
-  // QS Wood IS available for HD, R-TEC, and 1⅜" baton. Never dim it at this step.
-  qsWood.classList.toggle('dim', false);
-
-  // (QS Metal is dimmed for HD — the card description already explains "not available for Heavy Duty traverse")
+  if(qsMetal) qsMetal.classList.toggle('disabled', S.type==='hd');
+  // QS Wood IS available for HD, R-TEC, and 1⅜" baton. Never disable it here.
+  if(qsWood) qsWood.classList.toggle('disabled', false);
 }
 
-/* ─── STEP 3 ─── */
+/* ─── DIAMETER availability ─── */
 function prep3() {
   const d118=document.getElementById('dia-118');
+  const d138=document.getElementById('dia-138');
   const d214=document.getElementById('dia-214');
 
   // 1⅛" not available for HD traverse. Also not available if QS Wood & Resin selected
   // (QS Wood only comes in 1⅜" and 2¼" — PDF finish table).
   const no118 = S.type==='hd'||S.finishType==='qs-wood';
-  d118.classList.toggle('dim', no118);
+  d118.classList.toggle('disabled', no118);
 
   // 2¼" not available for R-TEC (1⅜" metal track only) or QS Metal finishes.
   // 2¼" IS available for stationary poles, baton draw (wood poles), and HD traverse.
   const no214 = S.type==='rtec'||S.finishType==='qs-metal';
-  d214.classList.toggle('dim', no214);
+  d214.classList.toggle('disabled', no214);
 
   // If chosen diameter is now invalid, clear it
   if(S.diameter==='1⅛'&&no118) S.diameter='';
   if(S.diameter==='2¼'&&no214) S.diameter='';
-
-  // Update 1⅛" baton draw note: QS Wood & Resin not available (1Ⅰ" only has metal QS)
-  const d118desc = d118.querySelector('.choice-desc');
-  if(d118desc && S.type==='baton') {
-    d118desc.textContent = 'Sleek, modern profile. Metal poles and traverse tracks. 5 finial style categories. QS Metal or Portfolio finishes (QS Wood & Resin not available in 1⅛"). Max track 20\'.';
-  }
-  // 2¼" baton draw: only stationary or HD — update tag
-  const d214tag = d214.querySelector('.choice-tag');
-  if(d214tag) {
-    if(S.type==='baton') d214tag.textContent = 'Portfolio / QS Wood & Resin · wood poles only · stationary or HD only';
-    else if(S.type==='hd') d214tag.textContent = 'Wood poles · HD traverse (corded, baton, R-TEC, Somfy) · Portfolio or QS Wood & Resin';
-    else d214tag.textContent = 'Wood poles only · heavy duty traverse · Portfolio or Quick Ship Wood & Resin';
-  }
+  [d118,d138,d214].forEach(b=>b.classList.toggle('sel', b.getAttribute('data-val')===S.diameter));
+  document.getElementById('dia-note').innerHTML = diaDesc(S.diameter);
 }
 
-/* ─── STEP 4 ─── */
+/* ─── FINISH ─── */
 function prep4() {
   // Show/hide AGL warning for traverse types
   const aglWarn = document.getElementById('agl-warn');
-  if(aglWarn) aglWarn.style.display = (S.type!=='static') ? 'block' : 'none';
+  if(aglWarn) aglWarn.style.display = (S.type && S.type!=='static') ? 'block' : 'none';
   // Dim AGL card for traverse
   const fcAGL = document.getElementById('fc-AGL');
-  if(fcAGL) fcAGL.classList.toggle('off', S.type!=='static');
+  if(fcAGL) fcAGL.classList.toggle('off', !!S.type && S.type!=='static');
 
   // QS Metal short-length warning for traverse
   const qsMetalWarn = document.getElementById('qs-metal-short-warn');
-  if(qsMetalWarn) qsMetalWarn.style.display = (S.finishType==='qs-metal'&&S.type!=='static') ? 'block' : 'none';
+  if(qsMetalWarn) qsMetalWarn.style.display = (S.finishType==='qs-metal'&&S.type&&S.type!=='static') ? 'block' : 'none';
 
   hide('finish-portfolio'); hide('finish-qs-metal'); hide('finish-qs-wood'); hide('finish-ptm');
   if(S.finishType==='portfolio') show('finish-portfolio');
   else if(S.finishType==='qs-metal') show('finish-qs-metal');
   else if(S.finishType==='qs-wood') show('finish-qs-wood');
   else if(S.finishType==='ptm') show('finish-ptm');
-  document.getElementById('sec4-title').textContent = 'Choose Your Finish';
+  document.getElementById('finish-placeholder').style.display = S.finishType ? 'none' : '';
 }
 
-function selectFinish(name, code, trackColor) {
+function selectFinish(name, code, trackColor, el) {
   S.finish=name; S.finishCode=code; S.finishTrackColor=trackColor;
   document.querySelectorAll('.finish-card').forEach(c=>c.classList.remove('sel'));
-  event.currentTarget.classList.add('sel');
-  // Auto-advance to step 5 (finials)
-  setTimeout(function(){ goStep(5); }, 320);
+  if(el) el.classList.add('sel');
+  updateSummary();
 }
 
-/* ─── STEP 5 — FINIALS ─── */
+/* ─── FINIALS ─── */
 function prep5() {
   const c = document.getElementById('finial-content');
   const cuffNote = document.getElementById('finial-cuff-note');
   const cuff118Note = document.getElementById('finial-118-cuff-note');
   cuffNote.style.display='none'; cuff118Note.style.display='none';
 
-  const isTraverse = S.type!=='static';
+  const isTraverse = !!S.type && S.type!=='static' && S.type!=='unsure';
   const dia = S.diameter;
 
   if(S.type==='hd' && S.fascia && (S.fascia.includes('slim')||S.fascia.includes('flat')||S.fascia.includes('Mitered'))) {
     c.innerHTML = '<div class="info-banner"><strong>No finials available</strong> for slim round, flat smooth, or mitered return fascia profiles.</div>';
+    S.finial='';
+    document.getElementById('sec5-title').textContent='Finial style';
     return;
   }
 
@@ -241,47 +232,55 @@ function prep5() {
       {n:'Vivian',d:'5¼"L×4"W · Metal/Glass',p:'$278.09 PO'},
     ]);
   } else {
-    html = '<div class="info-banner">Please go back and select a pole diameter first.</div>';
+    html = '<div class="placeholder-note">Choose a pole diameter above to see its finial collections.</div>';
   }
   c.innerHTML = html;
-  document.getElementById('sec5-title').textContent = dia==='1⅛' ? '1⅛" Finial Collections' : dia==='1⅜' ? '1⅜" Finial Collections' : '2¼" Finial Collections';
+  // Keep the customer's pick if it is still offered; otherwise clear it.
+  let still = null;
+  if(S.finial) c.querySelectorAll('.opt-btn').forEach(b=>{ if(!still && b.getAttribute('data-finial')===S.finial) still=b; });
+  if(still) { still.classList.add('sel'); showFinialCuff(S.finial); } else S.finial='';
+  document.getElementById('sec5-title').textContent = dia==='1⅛' ? '1⅛" finial collections' : dia==='1⅜' ? '1⅜" finial collections' : dia==='2¼' ? '2¼" finial collections' : 'Finial style';
 }
 
 function finialSection(title, items, id) {
-  let h = `<div class="sub-section">${title}</div><div class="finial-grid">`;
+  let h = `<div class="sub-label">${title}</div><div class="opt-row">`;
   for(const it of items) {
-    h += `<div class="finial-card" onclick="pickFinial('${it.n.replace(/'/g,"\\'")}',this)"><div class="finial-name">${it.n}</div><div class="finial-meta">${it.d}</div><div class="finial-price">${it.p}</div></div>`;
+    h += `<button class="opt-btn" data-finial="${it.n.replace(/"/g,'&quot;')}" title="${(it.d+' · '+it.p).replace(/"/g,'&quot;')}" onclick="pickFinial(this.getAttribute('data-finial'),this)">${it.n} <span class="pill-hint">${it.p.split(' / ')[0]}</span></button>`;
   }
   h += '</div>';
   return h;
 }
 
-function pickFinial(name, el) {
-  S.finial=name;
-  document.querySelectorAll('.finial-card').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
-  // Show cuff note if applicable
+function showFinialCuff(name) {
   const cuffNote = document.getElementById('finial-cuff-note');
-  if(cuffNote && S.type!=='static' && S.diameter==='1⅜') {
+  if(cuffNote && S.type!=='static' && S.type!=='unsure' && S.diameter==='1⅜') {
     const needsCuff = !['Adair','Ainsley End Cap','Asher End Cap','Cohen','Exton','London — Crystal','Quinn','Remi — Crystal','Sterling — Crystal','Zara'].includes(name);
     cuffNote.style.display = needsCuff ? 'block' : 'none';
   }
-  // Auto-advance to step 6 (size & configuration)
-  setTimeout(function(){ goStep(6); }, 320);
 }
 
-/* ─── STEP 6 ─── */
+function pickFinial(name, el) {
+  S.finial=name;
+  document.querySelectorAll('#finial-content .opt-btn').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  showFinialCuff(name);
+  const t = el.getAttribute('title');
+  if(t) document.getElementById('finial-note').textContent = name + ' — ' + t + '. Finials are sold in pairs; final pricing confirmed at quote with current tariff surcharge.';
+  updateSummary();
+}
+
+/* ─── MEASUREMENT HINTS + TRAVERSE OPTIONS ─── */
 function prep6() {
-  const isTraverse = S.type!=='static';
+  const isTraverse = S.type==='baton'||S.type==='rtec'||S.type==='hd';
   const isHD = S.type==='hd';
   const isRTEC = S.type==='rtec';
 
-  show('length-info');
   const li = document.getElementById('length-info');
   const wh = document.getElementById('width-hint');
+  li.style.display = (S.type && S.type!=='unsure') ? '' : 'none';
 
   if(S.type==='static') {
-    li.innerHTML = buildLengthInfo();
+    li.innerHTML = S.diameter ? buildLengthInfo() : '<strong>Stationary pole:</strong> choose a diameter to see its maximum pole length.';
     wh.textContent = 'Measure the finished pole length you need. Poles are cut to specified length; fall-off will not be saved.';
   } else if(isRTEC) {
     li.innerHTML = '<strong>R-TEC Motorized 1⅜" Metal Traverse:</strong> Track sold in 1ft increments, 4ft minimum. Max continuous: 12ft (8ft for Brushed Bronze and Rose Gold). Spliced lengths up to 24ft maximum (2 splices). Maximum drapery weight: 77 lbs.';
@@ -289,12 +288,15 @@ function prep6() {
   } else if(isHD) {
     li.innerHTML = '<strong>Heavy Duty Traverse:</strong> Sold in 2ft increments, 4ft minimum. Max continuous: 20ft (240"). Spliced up to 40ft center draw only. Max R-TEC motorized: 36ft. Max Somfy 60e: 36ft. Standard cord drop: 120".';
     wh.textContent = 'Enter the finished track length in inches. For mitered returns, add depth per side (1⅜" fascia: +2", 2¼" fascia: +3", flat: +1¾", slim: +1½").';
-  } else { // baton
-    li.innerHTML = '<strong>Baton Draw Metal Traverse:</strong> Track sold in 1ft increments, 4ft minimum. Max continuous: 12ft (most finishes), 8ft for Brushed Bronze, Rose Gold (QS). Batons are sold separately and must be added in Step 7.';
+  } else if(S.type==='baton') {
+    li.innerHTML = '<strong>Baton Draw Metal Traverse:</strong> Track sold in 1ft increments, 4ft minimum. Max continuous: 12ft (most finishes), 8ft for Brushed Bronze, Rose Gold (QS). Batons are sold separately — add one in Add-ons.';
     wh.textContent = 'Enter the finished track length in inches. System includes track, glides, master carriers, and end caps. Ainsley end caps add ½" each end.';
+  } else {
+    wh.textContent = 'inches · finished rod / track length';
   }
 
   // Show/hide traverse-specific options
+  document.getElementById('step-opts').style.display = isTraverse ? '' : 'none';
   document.getElementById('traverse-opts').style.display = (isTraverse&&!isHD) ? 'block' : 'none';
   document.getElementById('hd-fascia-opts').style.display = isHD ? 'block' : 'none';
   document.getElementById('hd-motorize-opts').style.display = isHD ? 'block' : 'none';
@@ -302,8 +304,9 @@ function prep6() {
 
   // Show Somfy pill only if 2¼" diameter
   document.getElementById('somfy-opt').style.display = S.diameter==='2¼' ? '' : 'none';
-  // Baton draw includes low-profile option
-  document.getElementById('low-profile-opt').style.display = 'none'; // only show if selected
+  document.getElementById('somfy-motor-opts').style.display = (S.motor&&S.motor.includes('Somfy')) ? 'block' : 'none';
+  // Low-profile ceiling option appears once a mounting choice has been made
+  document.getElementById('low-profile-opt').style.display = S.mount ? '' : 'none';
 
   // Show/hide 1⅜" fascia options on HD
   const fas138 = ['fas-138','fas-138r','fas-138g'];
@@ -329,19 +332,20 @@ function buildLengthInfo() {
 function pick1(key, val, el) {
   S[key]=val;
   const group = el.closest('.opt-row');
-  if(group) group.querySelectorAll('.opt-pill').forEach(p=>p.classList.remove('sel'));
+  if(group) group.querySelectorAll('.opt-btn').forEach(p=>p.classList.remove('sel'));
   el.classList.add('sel');
   if(key==='header') document.getElementById('rf-opts').style.display = val==='Ripplefold'?'block':'none';
   if(key==='fascia') {
     const noFin = val.includes('slim')||val.includes('flat')||val.includes('Mitered');
     document.getElementById('fascia-finial-warn').style.display = noFin?'block':'none';
-    document.getElementById('somfy-motor-opts').style.display='none';
+    prep5();
   }
   if(key==='motor') {
     document.getElementById('somfy-motor-opts').style.display = val.includes('Somfy')?'block':'none';
+    prep7();
   }
   if(key==='mount') {
-    document.getElementById('low-profile-opt').style.display = 'block';
+    document.getElementById('low-profile-opt').style.display = '';
   }
   updatePriceEstimate();
 }
@@ -349,14 +353,15 @@ function pick1(key, val, el) {
 function toggle1(key, val, el) {
   S[key]=val;
   const group=el.closest('.opt-row');
-  if(group) group.querySelectorAll('.opt-pill').forEach(p=>p.classList.remove('sel'));
+  if(group) group.querySelectorAll('.opt-btn').forEach(p=>p.classList.remove('sel'));
   el.classList.add('sel');
+  updateSummary();
 }
 
 function updatePriceEstimate() {
   const w = parseInt(document.getElementById('width-in')?.value||'0');
   const qty = parseInt(document.getElementById('qty-in')?.value||'1');
-  if(!w||w<1) {document.getElementById('price-est').style.display='none';return;}
+  if(!w||w<1) {document.getElementById('price-est').style.display='none';syncPriceRow();return;}
   const ft = Math.ceil(w/12);
   let base=0, label='';
   const isDouble = S.mount&&S.mount.includes('Double');
@@ -382,11 +387,21 @@ function updatePriceEstimate() {
   } else {
     document.getElementById('price-est').style.display='none';
   }
+  syncPriceRow();
 }
 
-document.addEventListener('input', e => {
-  if(e.target.id==='width-in'||e.target.id==='qty-in') updatePriceEstimate();
-});
+// Summary card: show the MSRP estimate when there is one, otherwise "Custom quote".
+function syncPriceRow() {
+  const est = document.getElementById('price-est');
+  const hasEst = est && est.style.display !== 'none';
+  const q = document.getElementById('price-quote-row');
+  if(q) q.style.display = hasEst ? 'none' : '';
+  if(!hasEst) {
+    const n = document.getElementById('price-est-note');
+    if(n) n.textContent = 'Instant MSRP estimates are shown for baton draw and R-TEC traverse systems. Everything else is custom quoted — final pricing confirmed at quote with current tariff surcharge and freight.';
+  }
+  updateSummary();
+}
 
 /* ─── QTY STEPPER (shared .qty-btns) ─── */
 function adjQty(d){
@@ -398,59 +413,67 @@ function adjQty(d){
   updatePriceEstimate();
 }
 
-/* ─── STEP 7 ─── */
+/* ─── ADD-ONS visibility ─── */
 function prep7() {
-  const isTrav = S.type!=='static';
+  const isTrav = S.type==='baton'||S.type==='rtec'||S.type==='hd';
   document.getElementById('fr-opts-section').style.display = isTrav?'block':'none';
   document.getElementById('rtec-controls-section').style.display = (S.type==='rtec'||(S.type==='hd'&&S.motor&&S.motor.includes('R-TEC')))?'block':'none';
 }
 
-/* ─── STEP 8 ─── */
-function prep8() {
-  const rows = [
-    ['Rod Type', typeLabel()],
-    ['Finish Collection', S.finishType==='portfolio'?'Portfolio (35 hand-painted)':S.finishType==='qs-metal'?'Quick Ship Metal':S.finishType==='qs-wood'?'Quick Ship Wood & Resin':S.finishType==='ptm'?'PTH Perfect Match':'—'],
-    ['Diameter', S.diameter||'—'],
-    ['Finish', S.finish||(S.finishType==='ptm'?`${S.ptmColor||'TBD'} / ${S.ptmSheen||'TBD'}${S.ptmHighlight!=='none'?' / '+S.ptmHighlight+' highlight':''}` : '—')],
-    ['Finial', S.finial||'Not selected'],
-    ['Width / Track Length', document.getElementById('width-in')?.value ? document.getElementById('width-in').value + '"' : '—'],
-    ['Quantity', document.getElementById('qty-in')?.value||'1'],
-    ['Draw', S.draw||'—'],
-    ['Header', S.header+(S.fullness?' '+S.fullness:'')||'—'],
-    ['Master Carrier', S.masterCarrier||'—'],
-    ['Mounting', S.mount||'—'],
-    ['Fascia (HD)', S.fascia||'—'],
-    ['Motor / Operation', S.motor||(S.type==='rtec'?'R-TEC Motorized':S.type==='baton'?'Baton draw':'—')],
-    ['R-TEC Power', S.rtecPower||'—'],
-    ['Somfy Motor', S.somfyMotor||'—'],
-    ['Baton', S.baton||'—'],
-    ['Holdbacks', S.holdback||'—'],
-    ['French Returns', S.frenchReturn||'—'],
-    ['Smart Controls', S.controls||'—'],
-  ].filter(r=>r[1]&&r[1]!=='—'&&r[1]!=='Not selected');
-
-  const sum = document.getElementById('quote-summary');
-  sum.innerHTML = '<div class="summary-title">Configuration Summary</div>' +
-    rows.map(r=>`<div class="summary-row"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('');
+/* ─── SUMMARY CARD ─── */
+function finishCollectionLabel() {
+  return S.finishType==='portfolio'?'Portfolio (35 hand-painted)':S.finishType==='qs-metal'?'Quick Ship Metal':S.finishType==='qs-wood'?'Quick Ship Wood & Resin':S.finishType==='ptm'?'PTH Perfect Match':'—';
 }
+function updateSummary() {
+  const sum = document.getElementById('quote-summary');
+  if(!sum) return;
+  const w = document.getElementById('width-in')?.value;
+  const rows = [
+    ['Product', 'Paris Texas Hardware'],
+    ['Size', w ? w + '" wide' : '—'],
+    ['Mount', S.mount || '—'],
+    ['Qty', document.getElementById('qty-in')?.value||'1'],
+    ['Rod type', S.type ? typeLabel() : '—'],
+    ['Finish collection', finishCollectionLabel()],
+    ['Diameter', S.diameter ? S.diameter+'"' : ''],
+    ['Finish', S.finish||(S.finishType==='ptm'?`${S.ptmColor||'TBD'} / ${S.ptmSheen||'TBD'}${S.ptmHighlight!=='none'?' / '+S.ptmHighlight+' highlight':''}` : '')],
+    ['Finial', S.finial||''],
+    ['Draw', S.draw||''],
+    ['Header', S.header ? S.header+(S.fullness?' '+S.fullness:'') : ''],
+    ['Master carrier', S.masterCarrier||''],
+    ['Fascia (HD)', S.fascia||''],
+    ['Operation', S.motor||(S.type==='rtec'?'R-TEC Motorized':S.type==='baton'?'Baton draw':'')],
+    ['R-TEC power', S.rtecPower||''],
+    ['Somfy motor', S.somfyMotor||''],
+    ['Baton', S.baton||''],
+    ['Holdbacks', S.holdback||''],
+    ['French returns', S.frenchReturn||''],
+    ['Smart controls', S.controls||''],
+  ].filter(r=>r[1]);
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  sum.innerHTML = rows.map(r=>`<div class="summary-row"><span class="sr-key">${r[0]}</span><span class="sr-val">${esc(r[1])}</span></div>`).join('');
+}
+// Kept for any legacy caller.
+function prep8(){ updateSummary(); }
 
 function typeLabel() {
   return {static:'Stationary Pole',baton:'Baton Draw Metal Traverse',rtec:'R-TEC Motorized Metal Traverse',hd:'Heavy Duty Traverse',unsure:'Custom Quote'}[S.type]||S.type;
 }
 
-/* ─── DELIVERY ─── */
-function selectDelivery(opt, prefix) {
-  S.delivery=opt;
-  const pre = prefix||'';
-  ['install','ship'].forEach(o=>{
-    const el=document.getElementById((pre?pre+'-':'')+'del-'+o);
-    if(el) el.classList.toggle('sel',o===opt);
-  });
-}
+document.addEventListener('input', e => {
+  if(e.target.id==='width-in'||e.target.id==='qty-in') updatePriceEstimate();
+});
 
 /* ─── SUBMIT ─── */
+function readPTM(){
+  const c=document.getElementById('ptm-color'); if(c) S.ptmColor=c.value.trim();
+  const s=document.getElementById('ptm-sheen'); if(s) S.ptmSheen=s.value;
+  const h=document.getElementById('ptm-highlight'); if(h) S.ptmHighlight=h.value||'none';
+}
+
 function addParisTexasToCart(){
   if(!S.type){ alert('Please select a rod type before adding to cart.'); return; }
+  readPTM();
 
   const w=document.getElementById('width-in')?.value||'';
   const qty=document.getElementById('qty-in')?.value||'1';
@@ -483,6 +506,7 @@ function submitQuote() {
   if(!name){ errEl.textContent='Please enter your name.'; errEl.style.display='block'; return; }
   if(!phone&&!email){ errEl.textContent='Please enter a phone number or email address.'; errEl.style.display='block'; return; }
   const contact=[phone,email].filter(Boolean).join(' / ');
+  readPTM();
 
   const notes=document.getElementById('cf-notes').value;
   const addr=document.getElementById('cf-address').value;
@@ -532,7 +556,7 @@ function submitQuote() {
     'Smart Controls: '+(S.controls||'None'),
     '',
     'DELIVERY',
-    'Preference: '+(S.delivery==='install'?'Professional Installation':'Ship to Customer'),
+    'Preference: '+(window.pbDelivery==='install'?'Professional Installation':'Ship to Customer'),
     '',
     'ADDITIONAL NOTES',
     notes||'None',
@@ -545,28 +569,8 @@ function submitQuote() {
 
   const subject='Paris Texas Hardware Quote — '+typeLabel()+' — '+name;
   window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subject)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
+  document.getElementById('config-main').style.display='none';
   document.getElementById('success-box').style.display='block';
-  document.getElementById('step-bar').style.display='none';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function submitUnsure() {
-  const name=document.getElementById('u-name').value.trim();
-  const contact=document.getElementById('u-contact').value.trim();
-  if(!name||!contact){alert('Please enter your name and contact info.');return;}
-  const size=document.getElementById('u-size').value;
-  const notes=document.getElementById('u-notes').value;
-  const body=[
-    '=== PARIS TEXAS HARDWARE HELP REQUEST ===','',
-    'Name: '+name,'Contact: '+contact,'Window sizes: '+(size||'Not provided'),
-    'Delivery: '+(S.delivery||'Not selected'),'','PROJECT DETAILS',notes||'No details provided',
-    '','--- Sent from blindznation.com/pages/paris-texas-rods.html ---'
-  ].join('\n');
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + 'Paris Texas Help — '+name)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
-  document.getElementById('success-box').style.display='block';
-  document.getElementById('step-bar').style.display='none';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -574,4 +578,5 @@ function submitUnsure() {
 function show(id){const el=document.getElementById(id);if(el)el.style.display='';}
 function hide(id){const el=document.getElementById(id);if(el)el.style.display='none';}
 
-renderStepBar(1);
+/* ─── INIT (called after the shared delivery/contact steps are rendered) ─── */
+function initParisTexas(){ refreshAll(); }
