@@ -148,11 +148,11 @@ function setV(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
 // Basic (Banded 2D) and Premium (Portfolio Dual Sheer) are BOTH hosted on this page.
 // Switching between them happens in place — no page navigation — so the customer can
 // flip back and forth with the tier bar / thumbnails always visible.
-function setProd(p,el){
+function setProd(p,el,quiet){
   S.prod=p;
   var isDual=p==='dual';
-  // Sync the big Step-1 thumbnails.
-  document.querySelectorAll('#step1 .product-card').forEach(function(c){c.classList.remove('sel');});
+  // Sync the Step-2 shade pills.
+  document.querySelectorAll('#grp-prod .opt-btn').forEach(function(c){c.classList.remove('sel');});
   if(el&&el.classList){el.classList.add('sel');}
   else{var card=document.getElementById(isDual?'prod-dual':'prod-2d');if(card)card.classList.add('sel');}
   // Sync the compact tier bar.
@@ -170,10 +170,10 @@ function setProd(p,el){
   document.getElementById('step5-dual').style.display=isDual?'':'none';
   document.getElementById('step5-2d').style.display=isDual?'none':'';
   var opts2d=document.getElementById('opts-2d');if(opts2d)opts2d.style.display=isDual?'none':'';
-  document.getElementById('s2title').textContent=isDual?'Fabric':'Fabric Preferences';
+  document.getElementById('s2title').textContent=isDual?'Fabric':'Fabric preferences';
   spv('sp-prod',isDual?'Portfolio Dual Sheer':'Banded 2D Shades');
   if(isDual){renderFabricGrid();}else{render2dGrid();}
-  updateCalc();openNext('step3'); // product chosen → open size (Step 2)
+  updateCalc();if(!quiet)openNext('step2'); // shade chosen → fabric (Step 3)
 }
 // Compact tier-bar switcher → delegates to setProd so both stay in sync.
 function selectTier(t){ setProd(t==='premium'||t==='dual'?'dual':'2d'); }
@@ -483,13 +483,12 @@ function adjQty(d){
 }
 
 // ── STEP 7 ────────────────────────────────────────────────────────────────────
-function setDel(opt,card){
-  S.del=opt;
-  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
-  card.classList.add('sel');
-  var lbl='Ship to me';
-  document.getElementById('val7').textContent=lbl;
-  spv('sp-del',lbl);
+// Delivery — shared pbDeliveryStepHTML; install removes the freight estimate as before.
+function bandDelLabel(){return typeof pbDeliveryLabel==='function'?pbDeliveryLabel():'Ship to me';}
+function bandDeliveryPicked(){
+  S.del=window.pbDelivery==='install'?'install':'ship';
+  document.getElementById('val7').textContent=bandDelLabel();
+  spv('sp-del',bandDelLabel());
   document.getElementById('step7').classList.add('done');
   updateCalc();
 }
@@ -598,7 +597,7 @@ function submitQ(){
   errEl.style.display='none';
 
   var mount=document.querySelector('#grp-mount .opt-btn.sel')?.textContent.trim()||'Inside mount';
-  var del='Ship (UPS/FedEx)';
+  var del=bandDelLabel();
   var sbs=document.querySelector('#grp-sbs .opt-btn.sel')?.textContent.trim().includes('Yes')?'Yes':'No';
   var bar=document.querySelector('#grp-bar .opt-btn.sel')?.textContent.trim()||'Standard';
   var barWrap=document.querySelector('#grp-bar-wrap .opt-btn.sel')?.textContent.trim().includes('wrap')?'Yes (+$'+getWrapP(S.w)+')':'No';
@@ -616,7 +615,7 @@ function submitQ(){
     'ORDER DETAILS',
     'Product: '+(S.prod==='dual'?'Wallace Portfolio Dual Sheer Shades':'Wallace Banded 2D Shades'),
     'Quantity: '+S.qty+' shade(s)',
-    'Width: '+S.w+'"','Height: '+S.h+'"','Mount: '+mount,''
+    'Width: '+S.w+'"','Height: '+S.h+'"','Mount: '+mount+(/inside/i.test(mount)?' (manufacturer deducts ¼")':''),''
   ].concat(S.prod==='dual'?[
     'FABRIC',
     'Pattern: '+S.fabric.pat.replace('*',''),'Color: '+S.fabric.color,'Code: '+S.fabric.code,

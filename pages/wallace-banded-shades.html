@@ -30,25 +30,6 @@
 .config-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:860px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
 .step-sub{font-size:12px;font-weight:600;color:#333;margin-top:14px;margin-bottom:6px}
-.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
-@media(max-width:500px){.product-grid{grid-template-columns:1fr}}
-.product-card{border:1.5px solid #e8e8e4;border-radius:14px;padding:22px 18px;cursor:pointer;transition:all .15s;background:#fff}
-.product-card:hover{border-color:var(--gold);box-shadow:0 2px 14px rgba(45,224,193,.12)}
-.product-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.product-card{padding:0;overflow:hidden}
-.product-card h3{font-size:15px;font-weight:500;color:#111;margin-bottom:5px;padding:0 18px}
-.product-card p{font-size:12px;color:#555;line-height:1.6;padding:0 18px}
-.product-card .product-badge{margin:8px 18px 18px}
-.product-thumb{width:100%;aspect-ratio:16/10;overflow:hidden;background:#f0ece4;margin-bottom:12px}
-.product-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.product-card h3{margin-top:14px}
-.product-badge{font-size:10px;padding:2px 8px;border-radius:6px;background:var(--gold-mid);color:#0A4A42;font-weight:500;display:inline-block;margin-top:8px}
-.opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.opt-btn{padding:8px 16px;border:1.5px solid #e8e8e4;border-radius:24px;font-size:13px;color:#333;cursor:pointer;background:#fff;font-family:inherit;transition:.15s;white-space:nowrap}
-.opt-btn:hover:not(.blocked){border-color:var(--gold)}
-.opt-btn.sel{border:2px solid var(--gold);color:var(--espresso);font-weight:500;background:var(--gold-mid)}
-.opt-btn.blocked{opacity:.35;cursor:not-allowed;text-decoration:line-through}
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
 .dim-label{font-size:12px;font-weight:500;color:#444}
 .dim-input{width:90px;padding:9px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:16px;text-align:center;font-family:inherit}
 .dim-input:focus{outline:none;border-color:var(--gold)}
@@ -72,13 +53,8 @@
 .color-chip{width:26px;height:26px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all .15s;flex-shrink:0}
 .color-chip.sel{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-mid)}
 .color-chip-row{display:flex;gap:8px;margin-top:8px;align-items:center;flex-wrap:wrap}
-.spec-panel{background:var(--espresso);border-radius:14px;padding:20px;position:sticky;top:80px}
-.spec-title{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
-.spec-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:12px;padding:5px 0;border-bottom:.5px solid #2A201A;gap:8px}
-.spec-row:last-of-type{border-bottom:none}
-.spec-key{color:#7A6A58;flex-shrink:0}
-.spec-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word}
-.spec-val.empty{color:#3A2E24;font-style:italic}
+/* Summary card uses the global CONFIGURATOR STANDARD classes; only "not chosen yet" is local. */
+.summary-row .sr-val.empty{color:#7A6A58;font-style:italic}
 .spec-divider{border:.5px solid #2A201A;margin:10px 0}
 .pe{margin-top:14px;background:#2A201A;border-radius:10px;padding:14px}
 .pe-label{font-size:10px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
@@ -111,16 +87,6 @@
 .b2d-chip.consult:hover{border-color:var(--gold);color:#555;font-style:normal}
 .b2d-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
 .b2d-consult-box{background:#f7f4ef;border:1px solid #d4c8b0;border-radius:10px;padding:14px 18px;margin-top:18px;display:flex;gap:12px;align-items:flex-start;font-size:12px;color:#555;line-height:1.6}
-.tier-bar{background:#f7f4ef;border-bottom:1px solid #e8e4de;padding:11px 28px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.tier-bar-label{font-size:11px;font-weight:600;color:#888;letter-spacing:.5px;text-transform:uppercase;margin-right:4px}
-.tier-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:24px;border:1.5px solid #e0e0db;background:#fff;color:#555;font-size:12px;font-weight:500;text-decoration:none;cursor:pointer;transition:border-color .15s,background .15s,color .15s;font-family:inherit}
-.tier-btn:hover{border-color:var(--gold)}
-.tier-btn.tier-active{background:var(--espresso);color:var(--cream);border-color:var(--espresso)}
-.tier-badge{font-size:10px;padding:1px 7px;border-radius:5px;font-weight:600}
-.tier-badge-basic{background:#e8f5e9;color:#2e7d32}
-.tier-badge-premium{background:rgba(200,151,63,.15);color:#7a5a00}
-.tier-btn.tier-active .tier-badge-basic{background:rgba(255,255,255,.18);color:#a0e0a0}
-.tier-btn.tier-active .tier-badge-premium{background:rgba(255,255,255,.18);color:var(--gold)}
 </style>
 </head>
 <body data-page="Shades & blinds">
@@ -145,44 +111,12 @@
   <img loading="lazy" src="../images/portfolio/IMG_1369.JPEG" alt="Dual sheer in living room" style="width:100%;height:100%;object-fit:cover;display:block">
 </div>
 
-<div class="tier-bar">
-  <span class="tier-bar-label">Tier</span>
-  <button class="tier-btn tier-active" id="tier-basic" onclick="selectTier('basic')">
-    <span class="tier-badge tier-badge-basic">Basic</span> Banded 2D
-  </button>
-  <button class="tier-btn" id="tier-dual" onclick="selectTier('premium')">
-    <span class="tier-badge tier-badge-premium">Premium</span> Portfolio Dual Sheer
-  </button>
-</div>
-
 <div class="config-layout">
 <div>
 
-<!-- STEP 1: PRODUCT COLLECTION (choose before entering size) -->
-<div class="step-block active" id="step1">
-  <div class="step-head" onclick="tog('step1')"><div class="step-num">1</div><div class="step-head-title">Choose your shade</div><div class="step-head-val" id="val1">&mdash;</div></div>
-  <div class="step-body">
-    <p class="step-note" style="margin:0 0 12px">Both options stay on this page — switch between them any time; your size and options carry over.</p>
-    <div class="product-grid">
-      <div class="product-card sel" id="prod-2d" onclick="setProd('2d',this)">
-        <div class="product-thumb"><img loading="lazy" src="../images/thumbnails/ZEBRA SHADE.JPEG" alt="Banded 2D zebra shades"></div>
-        <h3>Banded 2D Shades <span style="font-size:10px;font-weight:700;letter-spacing:.5px;color:#0A4A42;background:rgba(45,224,193,.15);padding:2px 8px;border-radius:10px;margin-left:6px">BASIC</span></h3>
-        <p>Woven 2D-pattern banded shades. Alternating sheer and solid fabric bands with textured visual depth. Cordless, motorized, and wand options.</p>
-        <span class="product-badge">Great value</span>
-      </div>
-      <div class="product-card" id="prod-dual" onclick="setProd('dual',this)">
-        <div class="product-thumb"><img loading="lazy" src="../images/thumbnails/ZEBRA SHADES.JPEG" alt="Portfolio Dual Sheer premium zebra shades"></div>
-        <h3>Portfolio Dual Sheer <span style="font-size:10px;font-weight:700;letter-spacing:.5px;color:#7a5a10;background:rgba(200,151,63,.20);padding:2px 8px;border-radius:10px;margin-left:6px">PREMIUM</span></h3>
-        <p>Classic zebra/dual-sheer. Horizontal bands open for light, close for privacy. 5 price groups, 95 fabrics, up to 110&Prime; wide. Light filtering and Blackout. Live pricing estimate.</p>
-        <span class="product-badge" style="background:rgba(200,151,63,.20);color:#7a5a10">Premium fabric &amp; finish</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- STEP 2: WINDOW MEASUREMENTS & MOUNT -->
-<div class="step-block" id="step3">
-  <div class="step-head" onclick="tog('step3')"><div class="step-num">2</div><div class="step-head-title">Window measurements &amp; mount</div><div class="step-head-val" id="val3">&mdash;</div></div>
+<!-- STEP 1: WINDOW MEASUREMENTS & MOUNT -->
+<div class="step-block active" id="step3">
+  <div class="step-head" onclick="tog('step3')"><div class="step-num">1</div><div class="step-head-title">Window measurements &amp; mount</div><div class="step-head-val" id="val3">&mdash;</div></div>
   <div class="step-body">
     <div class="dim-box">
       <div class="dim-box-label">Enter your window size</div>
@@ -193,24 +127,35 @@
     </div>
     <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
     <div id="dim-fb" style="margin-top:10px"></div>
-
     <!-- Mount type -->
-    <div class="step-sub">Mount type</div>
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
     <div class="opt-row" id="grp-mount">
-      <button class="opt-btn sel" onclick="selB(this,'grp-mount');updateSpec();validateDims();openNext('step2')">Inside mount <span style="font-size:10px;opacity:.7">(&frac14;&Prime; deduction)</span></button>
-      <button class="opt-btn" onclick="selB(this,'grp-mount');updateSpec();validateDims();openNext('step2')">Outside mount</button>
+      <button class="opt-btn sel" onclick="selB(this,'grp-mount');updateSpec();validateDims()">Inside mount</button>
+      <button class="opt-btn" onclick="selB(this,'grp-mount');updateSpec();validateDims()">Outside mount</button>
     </div>
-    <div class="step-note">Inside mount fits inside the window frame (manufacturer deducts &frac14;&Prime; automatically). Outside mount covers the opening &mdash; add about 2&frac12;&Prime; each side for best light block.</div>
+    <div class="step-note">Inside mount fits inside the window frame &mdash; the manufacturer deducts &frac14;&Prime; automatically. Outside mount covers the opening &mdash; add about 2&frac12;&Prime; each side for best light block.</div>
     <div class="info-box" style="margin-top:10px">Most fabrics max 108&Prime;W. Asher, Briggs, Evlin, Landry, Leigh, Theo max 110&Prime;W. Min height 20&Prime; for clutch; 20&Prime; for cordless.</div>
-
     <!-- Quantity -->
-    <div class="step-sub">Quantity</div>
-    <div class="qty-btns">
-      <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
-      <input class="qty-num" type="number" id="qty-inp" value="1" min="1" max="50" oninput="setQtyInp(this.value)">
-      <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <span style="font-size:12px;color:#666">Qty:</span>
+      <div class="qty-btns">
+        <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
+        <input class="qty-num" type="number" id="qty-inp" value="1" min="1" max="50" oninput="setQtyInp(this.value)">
+        <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+      </div>
     </div>
-    <div class="step-note">Number of shades of this size &amp; fabric.</div>
+  </div>
+</div>
+
+<!-- STEP 2: CHOOSE YOUR SHADE -->
+<div class="step-block" id="step1">
+  <div class="step-head" onclick="tog('step1')"><div class="step-num">2</div><div class="step-head-title">Choose your shade</div><div class="step-head-val" id="val1">&mdash;</div></div>
+  <div class="step-body">
+    <div class="opt-row" id="grp-prod">
+      <button class="opt-btn sel" id="prod-2d" onclick="setProd('2d',this)">Banded 2D shades</button>
+      <button class="opt-btn" id="prod-dual" onclick="setProd('dual',this)">Portfolio Dual Sheer</button>
+    </div>
+    <div class="step-note">Banded 2D (Basic): woven 2D-pattern banded shades &mdash; alternating sheer and solid bands with textured depth; cordless, motorized and wand options; custom quote. Portfolio Dual Sheer (Premium): classic zebra / dual-sheer &mdash; 5 price groups, 95 fabrics, up to 110&Prime; wide, Light Filtering and Blackout, live price estimate. Switch any time &mdash; your size and options carry over.</div>
   </div>
 </div>
 
@@ -258,7 +203,7 @@
 
 <!-- STEP 4: CONTROL -->
 <div class="step-block" id="step4">
-  <div class="step-head" onclick="tog('step4')"><div class="step-num">4</div><div class="step-head-title">Control Type</div><div class="step-head-val" id="val4">&mdash;</div></div>
+  <div class="step-head" onclick="tog('step4')"><div class="step-num">4</div><div class="step-head-title">Control type</div><div class="step-head-val" id="val4">&mdash;</div></div>
   <div class="step-body">
     <div id="ctrl-dual">
       <div class="opt-row" id="grp-ctrl">
@@ -302,17 +247,18 @@
           <button class="opt-btn" onclick="selB(this,'grp-remote');updateSpec()">Pro Hub (+$458)</button>
         </div>
         <div class="step-sub">Power accessories</div>
-        <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-bat"> External LI battery pack (+$160)</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-plug"> Plug-in power adapter (+$60)</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-charger"> 16&frac12;&prime; charger (+$83)</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-ext6"> 6&Prime; extension cable (+$32)</label>
-          <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-ext48"> 48&Prime; extension cable (+$43)</label>
+        <div class="opt-row">
+          <label class="opt-btn"><input type="checkbox" id="acc-bat" onchange="this.parentNode.classList.toggle('sel',this.checked)" style="display:none">External LI battery pack +$160</label>
+          <label class="opt-btn"><input type="checkbox" id="acc-plug" onchange="this.parentNode.classList.toggle('sel',this.checked)" style="display:none">Plug-in power adapter +$60</label>
+          <label class="opt-btn"><input type="checkbox" id="acc-charger" onchange="this.parentNode.classList.toggle('sel',this.checked)" style="display:none">16&frac12;&prime; charger +$83</label>
+          <label class="opt-btn"><input type="checkbox" id="acc-ext6" onchange="this.parentNode.classList.toggle('sel',this.checked)" style="display:none">6&Prime; extension cable +$32</label>
+          <label class="opt-btn"><input type="checkbox" id="acc-ext48" onchange="this.parentNode.classList.toggle('sel',this.checked)" style="display:none">48&Prime; extension cable +$43</label>
         </div>
+        <div class="step-note">Select any.</div>
       </div>
       <div id="cordless-opts" style="display:none;margin-top:12px">
         <div class="info-box">Cordless: min 24&Prime;W, max 96&Prime;W, max 99&Prime;H. Not available for Tory* fabrics. Lift assist pole (+$80) extends reach &mdash; telescopes to 53&Prime;.</div>
-        <div style="margin-top:8px"><label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer"><input type="checkbox" id="acc-pole"> Cordless lift assist pole (+$80)</label></div>
+        <div class="opt-row" style="margin-top:8px"><label class="opt-btn"><input type="checkbox" id="acc-pole" onchange="this.parentNode.classList.toggle('sel',this.checked)" style="display:none">Cordless lift assist pole +$80</label></div>
       </div>
     </div>
     <div id="ctrl-2d" style="display:none">
@@ -329,7 +275,7 @@
 
 <!-- STEP 5: CASSETTE & BOTTOM BAR -->
 <div class="step-block" id="step5">
-  <div class="step-head" onclick="tog('step5')"><div class="step-num">5</div><div class="step-head-title">Cassette &amp; Bottom Bar</div><div class="step-head-val" id="val5">Rounded cassette</div></div>
+  <div class="step-head" onclick="tog('step5')"><div class="step-num">5</div><div class="step-head-title">Cassette &amp; bottom bar</div><div class="step-head-val" id="val5">Rounded cassette</div></div>
   <div class="step-body">
     <div id="step5-dual">
       <div class="step-sub" style="margin-top:0">Cassette profile</div>
@@ -360,7 +306,7 @@
 
 <!-- STEP 6: OPTIONS -->
 <div class="step-block" id="step6">
-  <div class="step-head" onclick="tog('step6')"><div class="step-num">6</div><div class="step-head-title">Options</div><div class="step-head-val" id="val6">&mdash;</div></div>
+  <div class="step-head" onclick="tog('step6')"><div class="step-num">6</div><div class="step-head-title">Options <span style="font-weight:400;color:#888">(optional)</span></div><div class="step-head-val" id="val6">&mdash;</div></div>
   <div class="step-body">
     <div class="step-sub" style="margin-top:0">Side-by-side pattern matching</div>
     <div class="opt-row" id="grp-sbs">
@@ -374,25 +320,12 @@
 <!-- STEP 7: DELIVERY -->
 <div class="step-block" id="step7">
   <div class="step-head" onclick="tog('step7')"><div class="step-num">7</div><div class="step-head-title">Delivery</div><div class="step-head-val" id="val7">Ship to me</div></div>
-  <div class="step-body">
-    <div style="margin-top:12px">
-      <div class="delivery-opt-grid">
-        <div class="delivery-opt-card sel" onclick="setDel('ship',this)">
-          <div class="delivery-opt-title">Ship to me</div>
-          <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>
-        </div>
-        <div class="delivery-opt-card" style="grid-column:1/-1" onclick="setDel('install',this)">
-          <div class="delivery-opt-title">Professional installation (Philadelphia / South Jersey)</div>
-          <div class="delivery-opt-body">We supply and install. Measurement visit included.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="step-body" id="band-delivery"></div>
 </div>
 
 <!-- STEP 8: QUOTE -->
 <div class="step-block" id="step8">
-  <div class="step-head" onclick="tog('step8')"><div class="step-num">8</div><div class="step-head-title">Your Quote Request</div><div class="step-head-val" id="val8">&mdash;</div></div>
+  <div class="step-head" onclick="tog('step8')"><div class="step-num">8</div><div class="step-head-title">Your details</div><div class="step-head-val" id="val8">&mdash;</div></div>
   <div class="step-body" id="step8-body">
     <button onclick="reqMoreInfo('Wallace Zebra &amp; Banded Shades')" class="req-info-link" style="display:block;margin-bottom:12px">Request more information &rarr;</button>
     <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
@@ -405,17 +338,17 @@
 
 <!-- SPEC PANEL -->
 <div>
-  <div class="spec-panel">
-    <div class="spec-title">Your Configuration</div>
-    <div class="spec-row"><span class="spec-key">Product</span><span class="spec-val empty" id="sp-prod">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Fabric</span><span class="spec-val empty" id="sp-fab">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Opacity</span><span class="spec-val" id="sp-op">Light Filtering</span></div>
-    <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val empty" id="sp-sz">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val" id="sp-mnt">Inside mount</span></div>
-    <div class="spec-row"><span class="spec-key">Control</span><span class="spec-val empty" id="sp-ctrl">&mdash;</span></div>
-    <div class="spec-row"><span class="spec-key">Cassette</span><span class="spec-val" id="sp-cass">Rounded</span></div>
-    <div class="spec-row"><span class="spec-key">Quantity</span><span class="spec-val" id="sp-qty">1</span></div>
-    <div class="spec-row"><span class="spec-key">Delivery</span><span class="spec-val" id="sp-del">Ship to me</span></div>
+  <div class="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val" id="sp-prod">Banded 2D Shades</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val empty" id="sp-sz">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sp-mnt">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sp-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val empty" id="sp-fab">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Opacity</span><span class="sr-val" id="sp-op">Light Filtering</span></div>
+    <div class="summary-row"><span class="sr-key">Control</span><span class="sr-val empty" id="sp-ctrl">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Cassette</span><span class="sr-val" id="sp-cass">Rounded</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="sp-del">Ship to me</span></div>
     <div class="spec-divider"></div>
     <div class="pe">
       <div class="pe-label">Estimated price</div>
@@ -449,6 +382,9 @@
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addBandedShadesToCart()', submitFn: 'submitQ()' });
+// Canonical Delivery step — choice lives in window.pbDelivery ('ship' | 'install').
+document.getElementById('band-delivery').innerHTML =
+  pbDeliveryStepHTML({ bare: true, onPick: 'bandDeliveryPicked()' });
 (function() {
   pbCtx.prefill('inp-w',   'w',   function(v) { validateDims(); });
   pbCtx.prefill('inp-h',   'h',   function(v) { validateDims(); });
@@ -457,7 +393,8 @@ document.getElementById('pb-final-step').innerHTML =
   // Entry points that used to navigate to portfolio-dual-sheer.html now land here.
   try {
     var tier = new URLSearchParams(window.location.search).get('tier');
-    if (/dual|premium/i.test(tier || '')) setProd('dual', document.getElementById('prod-dual'));
+    if (/dual|premium/i.test(tier || '')) setProd('dual', document.getElementById('prod-dual'), true);
+    else setProd('2d', document.getElementById('prod-2d'), true);   // Banded 2D is the pre-selected shade
   } catch (e) {}
 })();
 </script>
