@@ -280,7 +280,7 @@ function drapeFullnessHint(val) {
       rec.style.cssText = 'display:block;margin-top:8px;font-size:12px;padding:8px 12px;border-radius:7px;background:#EAF3DE;color:#27500A';
       rec.textContent = '2-prong tack top selected for ' + val + '× fullness.';
     } else {
-      rec.style.cssText = 'display:block;margin-top:8px;font-size:12px;padding:8px 12px;border-radius:7px;background:var(--gold-mid);color:#0A4A42';
+      rec.style.cssText = 'display:block;margin-top:8px;font-size:12px;padding:8px 12px;border-radius:7px;background:var(--gold-mid);color:#2A1E0C';
       rec.textContent = '3-prong tack top selected for ' + val + '× fullness — rich, full look.';
     }
   }
@@ -670,7 +670,7 @@ function calcRoman() {
   if (!fabNote) {
     fabNote = document.createElement('div');
     fabNote.id = 'rn-pb-fabric-note';
-    fabNote.style.cssText = 'margin-top:8px;font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:7px 10px;color:var(--cream);line-height:1.5';
+    fabNote.style.cssText = 'margin-top:8px;font-size:11px;background:rgba(201,169,110,.1);border:1px solid rgba(201,169,110,.2);border-radius:7px;padding:7px 10px;color:var(--cream);line-height:1.5';
     document.getElementById('rn-pb-min-note').after(fabNote);
   }
   fabNote.textContent = '🧵 Est. fabric needed: ~' + fabricYds.toFixed(2) + ' yards' + (cutsPerShade > 1 ? ' ('+cutsPerShade+' widths)' : '') + ' — pattern repeats will add more. Confirmed at order.';

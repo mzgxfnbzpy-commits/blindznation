@@ -1163,7 +1163,7 @@ function buildCartItem() {
     productName, brandLabel, w, h, qty,
     tags, estimated,
     brandColor: currentBrand === 'norman' ? '#1C3A6E'
-              : currentBrand === 'pb'     ? '#0D4A42' : '#555'
+              : currentBrand === 'pb'     ? '#2A1E0C' : '#555'
   };
 }
 
@@ -3046,7 +3046,7 @@ function rnUpdatePrice() {
     var rnDivider2 = document.querySelector('#rn-price-box .price-divider');
     if (rnDivider2) {
       var dr2 = document.createElement('div'); dr2.className='price-line'; dr2.id='rn-pb-disc-row';
-      dr2.innerHTML='<span style="color:#2DE0C1">25% Norman discount</span><span style="color:#2DE0C1" id="rn-pb-disc-val">—</span>';
+      dr2.innerHTML='<span style="color:#C9A96E">25% Norman discount</span><span style="color:#C9A96E" id="rn-pb-disc-val">—</span>';
       rnDivider2.parentNode.insertBefore(dr2, rnDivider2);
       var yr2 = document.createElement('div'); yr2.className='price-line'; yr2.id='rn-pb-your-row';
       yr2.innerHTML='<span style="font-weight:600;color:#fff">Your price (before shipping)</span><span style="font-weight:600;color:#fff" id="rn-pb-your-val">—</span>';
@@ -3391,7 +3391,7 @@ function psCalc() {
   const NORMAN_DISC_PS = 0.25;
   const psDiscountAmt = Math.round(total * NORMAN_DISC_PS);
   const psYourPrice = total - psDiscountAmt;
-  lines.push('<span style="color:#2DE0C1;font-weight:500">Retail: $' + total.toLocaleString() + ' &rarr; 25% Norman discount: -$' + psDiscountAmt.toLocaleString() + ' &rarr; Your price: $' + psYourPrice.toLocaleString() + '</span>');
+  lines.push('<span style="color:#C9A96E;font-weight:500">Retail: $' + total.toLocaleString() + ' &rarr; 25% Norman discount: -$' + psDiscountAmt.toLocaleString() + ' &rarr; Your price: $' + psYourPrice.toLocaleString() + '</span>');
   document.getElementById('ps-price-num').textContent = '$' + psYourPrice.toLocaleString();
   document.getElementById('ps-price-breakdown').innerHTML = lines.join('<br>');
   pb.style.display = 'block';

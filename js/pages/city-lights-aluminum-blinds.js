@@ -297,7 +297,7 @@ function updateQuote(){
     _qInsert(retailRow, firstDiv);
     discRow=document.createElement('div');
     discRow.className='qrow';discRow.id='qr-disc-row';
-    discRow.innerHTML='<span class="qrow-label" style="color:#2DE0C1">25% Norman discount</span><span class="qrow-val" style="color:#2DE0C1" id="qr-disc-s">—</span>';
+    discRow.innerHTML='<span class="qrow-label" style="color:#C9A96E">25% Norman discount</span><span class="qrow-val" style="color:#C9A96E" id="qr-disc-s">—</span>';
     _qInsert(discRow, firstDiv);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='qr-yourprice-row';
