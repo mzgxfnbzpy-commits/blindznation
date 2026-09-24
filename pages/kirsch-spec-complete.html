@@ -102,17 +102,9 @@
 .warn-box{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:10px 14px;font-size:12px;color:#7d5a00;margin:10px 0;line-height:1.6}
 .err-box{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:10px 14px;font-size:12px;color:#7f1d1d;margin:10px 0;line-height:1.6}
 
-/* Quote configurator */
-.config-block{background:#fff;border:1.5px solid #e8e8e4;border-radius:14px;margin-bottom:14px;overflow:hidden}
-.config-head{background:var(--espresso);padding:12px 18px;display:flex;align-items:center;gap:10px;cursor:pointer}
-.config-num{width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--espresso);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.config-label{font-size:13px;font-weight:500;color:var(--cream)}
-.config-body{padding:16px 18px;display:none}
-.config-block.open .config-body{display:block}
-.opt-row-sm{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.opt-pill{padding:6px 14px;border:1.5px solid #e8e8e4;border-radius:20px;font-size:12px;cursor:pointer;background:#fff;transition:all .12s;font-family:inherit}
-.opt-pill:hover{border-color:var(--gold)}
-.opt-pill.sel{background:var(--gold);border-color:var(--gold);color:var(--espresso);font-weight:600}
+/* Order form */
+.spec-section .config-grid{margin-top:4px}
+.step-block + .step-block{margin-top:18px}
 </style>
 </head>
 <body data-page="Hardware">
@@ -682,8 +674,8 @@
       <div><div class="dim-label">Fabric width (inches)</div><input type="number" id="wc-width" min="36" step="1" placeholder="e.g. 54" oninput="wCalc()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px"></div>
       <div><div class="dim-label">Track length (feet)</div><input type="number" id="wc-track" min="1.5" max="16" step="0.5" placeholder="e.g. 10" oninput="wCalc()" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px"></div>
       <div><div class="dim-label">Fabric weight (oz/sq yd)</div>
-        <select id="wc-oz" onchange="wCalc()" style="width:100%;padding:9px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px">
-          <option value="">-- select --</option>
+        <select id="wc-oz" data-pb-pills onchange="wCalc()" style="width:100%;padding:9px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px">
+          <option value="" disabled selected>-- select --</option>
           <option value="3">2–4 oz · Silk, Chintz</option>
           <option value="5">4–6 oz · Printed Cotton</option>
           <option value="8">6–10 oz · Linen, Blackout</option>
@@ -745,158 +737,195 @@
   </div>
 </div>
 
-<!-- ═══ SECTION 8: QUOTE FORM ═══════════════════════════════════════════ -->
+<!-- ═══ SECTION 8: ORDER FORM ═══════════════════════════════════════════ -->
 <div class="spec-section" id="quote">
   <div class="spec-section-head">
     <div class="spec-section-icon">📋</div>
     <div>
-      <div class="spec-section-title">Request a Quote</div>
-      <div class="spec-section-sub">Use the reference above to select your specs, then submit here</div>
+      <div class="spec-section-title">Configure your Kirsch order</div>
+      <div class="spec-section-sub">Use the reference above to pick your specs, then send them to us for review</div>
     </div>
   </div>
   <div class="spec-section-body">
+  <div class="config-grid">
+  <div><!-- steps -->
 
-    <div class="config-block open" id="qb-size">
-      <div class="config-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="config-num">1</div>
-        <div class="config-label">Rod width</div>
+    <!-- STEP 1: ROD MEASUREMENTS -->
+    <div class="step-block" id="qb-size">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">1</div>
+        <div class="step-title" style="margin-bottom:0">Rod measurements</div>
       </div>
-      <div class="config-body">
-        <div class="dim-box">
-          <div class="dim-box-label">Enter your rod width</div>
-          <div class="form-row">
-            <div class="form-group"><label>Width</label><input type="number" id="q-len" min="6" max="240" step="0.125" placeholder="120"><div class="dim-unit">inches &middot; 6&Prime; min &middot; 240&Prime; max</div></div>
-          </div>
+      <div class="dim-box">
+        <div class="dim-box-label">Enter your rod width</div>
+        <div class="form-row">
+          <div class="form-group"><label>Width</label><input type="number" id="q-len" min="6" max="240" step="0.125" placeholder="120" oninput="updateSummary()"><div class="dim-unit">inches &mdash; 6&Prime; min &middot; 240&Prime; max</div></div>
         </div>
-        <div class="step-note"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
-        <!-- Quantity (shared stepper) -->
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px">
-          <span style="font-size:12px;color:#666">Qty:</span>
-          <div class="qty-btns">
-            <button class="qty-btn" type="button" onclick="adjQty(-1)">&#8722;</button>
-            <input class="qty-num" type="number" id="q-qty" value="1" min="1" max="50" oninput="updateQty()">
-            <button class="qty-btn" type="button" onclick="adjQty(1)">&#43;</button>
-          </div>
-          <span style="font-size:12px;color:#666">rod(s) of this size</span>
+      </div>
+      <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:12px;color:#666">Qty:</span>
+        <div class="qty-btns">
+          <button class="qty-btn" type="button" onclick="pbAdjQty('q-qty',-1,1,50);updateSummary()">&#8722;</button>
+          <input class="qty-num" type="number" id="q-qty" value="1" min="1" max="50" oninput="updateQty();updateSummary()">
+          <button class="qty-btn" type="button" onclick="pbAdjQty('q-qty',1,1,50);updateSummary()">&#43;</button>
         </div>
+      </div>
+      <div style="font-size:12px;font-weight:600;color:#555;margin:16px 0 6px">Exact rod length &amp; brackets <span style="font-weight:400;color:#888">(optional)</span></div>
+      <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML, bare) -->
+      <div id="pb-rod-spec"></div>
+    </div>
+
+    <!-- STEP 2: ROD / TRACK TYPE -->
+    <div class="step-block" id="qb-rod">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">2</div>
+        <div class="step-title" style="margin-bottom:0">Rod / track type</div>
+      </div>
+      <div class="opt-row" id="grp-rod-type">
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Estate 1⅜" Traverse</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Estate 2" Traverse</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Architrac 94001</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Architrac 94003</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Architrac 94004</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Architrac 94005</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Architrac 9046</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Architrac 9600</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">K-Rail</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Superfine Pro Traverse</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Lockseam Curtain Rod</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Decorative Stationary Pole</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rod-type');updateSummary()">Other / Custom</button>
+      </div>
+      <div class="step-note">See the model comparison and compatibility matrix above for limits on each rod.</div>
+    </div>
+
+    <!-- STEP 3: COLLECTION & FINISH -->
+    <div class="step-block" id="qb-collection">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">3</div>
+        <div class="step-title" style="margin-bottom:0">Collection &amp; finish</div>
+      </div>
+      <div class="opt-row" id="grp-coll">
+        <button class="opt-btn" onclick="selOpt(this,'grp-coll');updateSummary()">Designer Metals™</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-coll');updateSummary()">Wood Trends™</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-coll');updateSummary()">Wrought Iron</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-coll');updateSummary()">White (Basic)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-coll');updateSummary()">N/A</button>
+      </div>
+      <div class="form-group" style="margin-top:4px">
+        <label>Specific finish name</label>
+        <input type="text" id="q-finish" placeholder="e.g. Elegant Brass · Espresso · Black" oninput="updateSummary()">
       </div>
     </div>
 
-    <div class="config-block open" id="qb-rod">
-      <div class="config-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="config-num">2</div>
-        <div class="config-label">Rod / track type</div>
+    <!-- STEP 4: HEADER TYPE -->
+    <div class="step-block" id="qb-header">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">4</div>
+        <div class="step-title" style="margin-bottom:0">Header type</div>
       </div>
-      <div class="config-body">
-        <div class="opt-row-sm" id="grp-rod-type">
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Estate 1⅜" Traverse</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Estate 2" Traverse</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 94001</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 94003</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 94004</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 94005</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 9046</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Architrac 9600</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">K-Rail</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Superfine Pro Traverse</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Lockseam Curtain Rod</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Decorative Stationary Pole</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-rod-type')">Other / Custom</button>
-        </div>
+      <div class="opt-row" id="grp-header">
+        <button class="opt-btn" onclick="selOpt(this,'grp-header');updateSummary()">Pleated</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-header');updateSummary()">Ripplefold™ 60%</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-header');updateSummary()">Ripplefold™ 80%</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-header');updateSummary()">Ripplefold™ 100%</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-header');updateSummary()">Ripplefold™ 120%</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-header');updateSummary()">N/A</button>
       </div>
     </div>
 
-    <div class="config-block open" id="qb-collection">
-      <div class="config-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="config-num">3</div>
-        <div class="config-label">Collection / finish</div>
+    <!-- STEP 5: DRAW TYPE -->
+    <div class="step-block" id="qb-draw">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">5</div>
+        <div class="step-title" style="margin-bottom:0">Draw type</div>
       </div>
-      <div class="config-body">
-        <div class="opt-row-sm" id="grp-coll">
-          <button class="opt-pill" onclick="selPill(this,'grp-coll')">Designer Metals™</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-coll')">Wood Trends™</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-coll')">Wrought Iron</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-coll')">White (Basic)</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-coll')">N/A</button>
-        </div>
-        <div style="margin-top:10px">
-          <div class="dim-label">Specific finish name</div>
-          <input type="text" id="q-finish" placeholder="e.g. Elegant Brass · Espresso · Black" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px">
-        </div>
+      <div class="opt-row" id="grp-draw">
+        <button class="opt-btn" onclick="selOpt(this,'grp-draw');updateSummary()">Two-Way / Split</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-draw');updateSummary()">One-Way Right</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-draw');updateSummary()">One-Way Left</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-draw');updateSummary()">N/A</button>
       </div>
     </div>
 
-    <div class="config-block open" id="qb-specs">
-      <div class="config-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="config-num">4</div>
-        <div class="config-label">Specifications</div>
+    <!-- STEP 6: MOUNT TYPE -->
+    <div class="step-block" id="qb-mount">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">6</div>
+        <div class="step-title" style="margin-bottom:0">Mount type</div>
       </div>
-      <div class="config-body">
-        <div class="dim-label">Header type</div>
-        <div class="opt-row-sm" id="grp-header" style="margin-bottom:10px">
-          <button class="opt-pill" onclick="selPill(this,'grp-header')">Pleated</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-header')">Ripplefold™ 60%</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-header')">Ripplefold™ 80%</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-header')">Ripplefold™ 100%</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-header')">Ripplefold™ 120%</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-header')">N/A</button>
-        </div>
-        <div class="dim-label">Draw type</div>
-        <div class="opt-row-sm" id="grp-draw" style="margin-bottom:10px">
-          <button class="opt-pill" onclick="selPill(this,'grp-draw')">Two-Way / Split</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-draw')">One-Way Right</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-draw')">One-Way Left</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-draw')">N/A</button>
-        </div>
-        <div class="dim-label">Mount type</div>
-        <div class="opt-row-sm" id="grp-mount" style="margin-bottom:10px">
-          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Wall mount</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Ceiling mount</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Recessed Mount</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Suspension</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-mount')">Double Rod</button>
-        </div>
-        <div class="dim-label">Finial (if applicable)</div>
-        <input type="text" id="q-finial" placeholder="e.g. Pandora · Archer · Axiom — or 'Endcap' or 'N/A'" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;margin-bottom:10px">
-        <div class="dim-label">AMP™ motorization</div>
-        <div class="opt-row-sm" id="grp-motor">
-          <button class="opt-pill" onclick="selPill(this,'grp-motor')">Yes — Motor Right</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-motor')">Yes — Motor Left</button>
-          <button class="opt-pill" onclick="selPill(this,'grp-motor')">No — Manual</button>
-        </div>
-        <div style="margin-top:10px">
-          <div class="dim-label">Motor accessories needed</div>
-          <input type="text" id="q-motor-acc" placeholder="e.g. RF Remote White, 10' Extension, USB Bridge" style="width:100%;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px">
-        </div>
+      <div class="opt-row" id="grp-mount">
+        <button class="opt-btn" onclick="selOpt(this,'grp-mount');updateSummary()">Wall mount</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-mount');updateSummary()">Ceiling mount</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-mount');updateSummary()">Recessed mount</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-mount');updateSummary()">Suspension</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-mount');updateSummary()">Double rod</button>
       </div>
     </div>
 
-    <div class="config-block open" id="qb-contact">
-      <div class="config-head" onclick="this.parentElement.classList.toggle('open')">
-        <div class="config-num">5</div>
-        <div class="config-label">Contact &amp; delivery</div>
+    <!-- STEP 7: FINIAL -->
+    <div class="step-block" id="qb-finial">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">7</div>
+        <div class="step-title" style="margin-bottom:0">Finial <span style="font-weight:400;color:#888">(optional)</span></div>
       </div>
-      <div class="config-body">
-        <div class="delivery-section" style="margin-top:12px">
-          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
-          <div style="display:grid;grid-template-columns:1fr;gap:10px">
-            <div style="border:1.5px solid #e8e8e4;border-radius:11px;padding:13px;cursor:pointer;text-align:center;transition:all .12s" id="del-ship" onclick="selDel('ship')">
-              <div style="font-size:20px;margin-bottom:4px">📦</div><div style="font-size:13px;font-weight:500">Ship to me</div><div style="font-size:11px;color:#666">UPS/FedEx</div>
-            </div>
-          </div>
-          <div id="del-ship-note" class="delivery-note" style="display:none">Shipped via <strong>UPS or FedEx</strong>. <div class="delivery-tariff">Tariffs and import fees additional.</div></div>
-        </div>
-        <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-        <div id="pb-final-step" style="margin-top:12px"></div>
-        <div id="q-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
-          <strong>Specification submitted!</strong> Your email app opened with the full spec. We'll follow up within a few hours.<br>Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
-        </div>
+      <div class="form-group">
+        <label>Finial style (if applicable)</label>
+        <input type="text" id="q-finial" placeholder="e.g. Pandora · Archer · Axiom — or 'Endcap' or 'N/A'" oninput="updateSummary()">
       </div>
     </div>
 
+    <!-- STEP 8: AMP MOTORIZATION -->
+    <div class="step-block" id="qb-motor">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">8</div>
+        <div class="step-title" style="margin-bottom:0">AMP™ motorization</div>
+      </div>
+      <div class="opt-row" id="grp-motor">
+        <button class="opt-btn" onclick="selOpt(this,'grp-motor');updateSummary()">Yes — Motor Right</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-motor');updateSummary()">Yes — Motor Left</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-motor');updateSummary()">No — Manual</button>
+      </div>
+      <div class="step-note">AMP™ fits Estate traverse rods and Architrac 94001 only.</div>
+      <div class="form-group" style="margin-top:10px">
+        <label>Motor accessories needed</label>
+        <input type="text" id="q-motor-acc" placeholder="e.g. RF Remote White, 10' Extension, USB Bridge">
+      </div>
+    </div>
+
+    <!-- STEP 9: DELIVERY (shared) -->
+    <div id="pb-delivery-step"></div>
+
+    <!-- STEP 10: YOUR DETAILS (shared) -->
+    <div id="pb-final-step"></div>
+    <div id="q-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
+      <strong>Specification submitted!</strong> Your email app opened with the full spec. We'll follow up within a few hours.<br>Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
+    </div>
+
+  </div><!-- /steps -->
+
+  <!-- SUMMARY CARD -->
+  <div>
+    <div class="summary-card" id="summary-card">
+      <div class="summary-head">Your configuration</div>
+      <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val" id="s-product">Kirsch hardware</span></div>
+      <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="s-size">—</span></div>
+      <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="s-mount">—</span></div>
+      <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="s-qty">1</span></div>
+      <div class="summary-row"><span class="sr-key">Collection</span><span class="sr-val" id="s-coll">—</span></div>
+      <div class="summary-row"><span class="sr-key">Finish</span><span class="sr-val" id="s-finish">—</span></div>
+      <div class="summary-row"><span class="sr-key">Header</span><span class="sr-val" id="s-header">—</span></div>
+      <div class="summary-row"><span class="sr-key">Draw</span><span class="sr-val" id="s-draw">—</span></div>
+      <div class="summary-row"><span class="sr-key">Finial</span><span class="sr-val" id="s-finial">—</span></div>
+      <div class="summary-row"><span class="sr-key">Motorization</span><span class="sr-val" id="s-motor">—</span></div>
+      <div class="summary-row"><span class="sr-key">Price</span><span class="sr-val" style="color:var(--gold)">Custom quote — we confirm pricing</span></div>
+    </div>
+  </div>
+
+  </div><!-- /config-grid -->
   </div>
 </div>
-
 </div><!-- /content-wrap -->
 
 <div class="cta-banner">
@@ -912,8 +941,12 @@
 <script src="../js/pages/kirsch-spec-complete.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
-document.getElementById('pb-final-step').innerHTML =
-  pbContactStepHTML({ bare: true, cartFn: 'addKirschSpecToCart()', submitFn: 'submitQ()' });
+// Exact rod length + bracket count live inside Step 1 "Rod measurements".
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ bare: true });
+// Shared Delivery (second-to-last) and "Your details" (last) steps.
+document.getElementById('pb-delivery-step').outerHTML = pbDeliveryStepHTML({ stepNum: 9 });
+document.getElementById('pb-final-step').outerHTML =
+  pbContactStepHTML({ stepNum: 10, cartFn: 'addKirschSpecToCart()', submitFn: 'submitQ()' });
 </script>
 </body>
 </html>

@@ -1,18 +1,4 @@
-﻿var _delivery = 'ship';
-
-/* ── dim label helper ── */
-function dim_label(){}
-document.querySelectorAll('.dim-label').forEach(function(){});
-
-/* ── quantity stepper (shared, reuses #q-qty) ── */
-function adjQty(d) {
-  var el = document.getElementById('q-qty');
-  if (!el) return;
-  var v = (parseInt(el.value) || 1) + d;
-  if (v < 1) v = 1;
-  if (v > 50) v = 50;
-  el.value = v;
-}
+﻿/* ── quantity clamp (stepper buttons use shared pbAdjQty on #q-qty) ── */
 function updateQty() {
   var el = document.getElementById('q-qty');
   if (!el) return;
@@ -22,19 +8,24 @@ function updateQty() {
   el.value = v;
 }
 
-/* ── opt pill selector ── */
-function selPill(el, grp) {
-  document.querySelectorAll('#' + grp + ' .opt-pill').forEach(function(b){ b.classList.remove('sel'); });
-  el.classList.add('sel');
-}
+/* ── selected pill text for a group (option steps use shared selOpt) ── */
+function gp(grp){ var s=document.querySelector('#'+grp+' .opt-btn.sel'); return s?s.textContent.trim():'—'; }
 
-/* ── delivery ── */
-function selDel(m) {
-  _delivery = m;
-  var ship = document.getElementById('del-ship');
-  if (ship) { ship.style.border = '2px solid var(--gold)'; ship.style.background = 'rgba(45,224,193,.05)'; }
-  var note = document.getElementById('del-ship-note');
-  if (note) note.style.display = 'block';
+/* ── summary card ── */
+function updateSummary() {
+  function set(id, v){ var e=document.getElementById(id); if(e) e.textContent=v; }
+  var rod = gp('grp-rod-type');
+  var len = (document.getElementById('q-len')||{}).value || '';
+  set('s-product', rod === '—' ? 'Kirsch hardware' : 'Kirsch ' + rod);
+  set('s-size', len ? len + '″ wide' : '—');
+  set('s-mount', gp('grp-mount'));
+  set('s-qty', (document.getElementById('q-qty')||{}).value || '1');
+  set('s-coll', gp('grp-coll'));
+  set('s-finish', ((document.getElementById('q-finish')||{}).value||'').trim() || '—');
+  set('s-header', gp('grp-header'));
+  set('s-draw', gp('grp-draw'));
+  set('s-finial', ((document.getElementById('q-finial')||{}).value||'').trim() || '—');
+  set('s-motor', gp('grp-motor'));
 }
 
 /* ── weight calc ── */
@@ -63,8 +54,8 @@ function submitQ() {
   var phone=document.getElementById('cf-phone').value.trim();
   if(!name||!phone){alert('Please enter your name and phone number.');return;}
 
-  function gp(grp){ var s=document.querySelector('#'+grp+' .opt-pill.sel'); return s?s.textContent.trim():'—'; }
-  var delivery='Ship to me (UPS/FedEx)';
+  // Shared Delivery step (window.pbDelivery); the default keeps the original wording.
+  var delivery=window.pbDelivery==='install'?pbDeliveryLabel():'Ship to me (UPS/FedEx)';
 
   var body='KIRSCH DRAPERY HARDWARE — SPECIFICATION REQUEST\n\n'
     +'── CUSTOMER ──\n'
@@ -92,7 +83,6 @@ function submitQ() {
 }
 
 function addKirschSpecToCart() {
-  function gp(grp){ var s=document.querySelector('#'+grp+' .opt-pill.sel'); return s?s.textContent.trim():'—'; }
   var rodType = gp('grp-rod-type');
   var coll = gp('grp-coll');
   var len = (document.getElementById('q-len')||{value:''}).value || '—';
