@@ -245,27 +245,11 @@ function selectMount(m) {
 // ═══════════════════════════════════════════════════════════════
 // TRACK LENGTH
 // ═══════════════════════════════════════════════════════════════
-function calcTrackFt() {
-  var ft = parseFloat(document.getElementById('track-ft').value) || 0;
-  var inches = ft * 12;
-  document.getElementById('track-len').value = inches > 0 ? inches.toFixed(1) : '';
-  calcTrack();
-}
-
-function adjQty(d) {
-  var inp = document.getElementById('track-qty-inp');
-  var v = (parseInt(inp.value) || 1) + d;
-  if (v < 1) v = 1;
-  if (v > 20) v = 20;
-  inp.value = v;
-  calcTrack();
-}
-
 function calcTrack() {
   var len = parseFloat(document.getElementById('track-len').value) || 0;
-  if (len > 0) document.getElementById('track-ft').value = (len/12).toFixed(2);
   S.trackLen = len;
   S.qty = parseInt(document.getElementById('track-qty-inp').value) || 1;
+  updateSpec('sp-qty', S.qty + ' rod' + (S.qty > 1 ? 's' : ''));
 
   var msgs = document.getElementById('track-msgs');
   msgs.innerHTML = '';
@@ -318,7 +302,6 @@ function calcTrack() {
 
   updateSpec('sp-len', len + '"');
   updateSpec('sp-brackets', brackets + ' (est.)');
-  document.getElementById('s1-val').textContent = len + '"';
   completeStep('step-1', len + '" (' + (len/12).toFixed(1) + ' ft)');
 }
 
@@ -345,19 +328,20 @@ function getStackback(len, isTwoWay) {
 function buildFinialStep(c) {
   var body = document.getElementById('s7-body');
   var finials = COLLECTIONS[c] ? COLLECTIONS[c].finials : [];
-  body.innerHTML = '<div style="font-size:12px;color:#666;margin-bottom:8px;line-height:1.6">Select your finial style. All finials available in all ' + (COLLECTIONS[c]?COLLECTIONS[c].finishes.length:0) + ' ' + (COLLECTIONS[c]?COLLECTIONS[c].label:'') + ' finishes. Sold as a pair.</div>' +
-    '<div class="finial-grid">' +
+  body.innerHTML = '<div class="opt-row">' +
     finials.map(function(f) {
-      return '<div class="finial-card" id="fn-' + f.name.replace(/\s/g,'-') + '" onclick="selectFinial(\'' + f.name.replace(/'/g,"\\'") + '\')">' +
-        '<div class="finial-name">' + f.name + '</div>' +
-        '<div class="finial-depth">' + (f.depth !== '—' ? 'Depth: ' + f.depth : '') + (f.note ? ' · ' + f.note : '') + '</div>' +
-      '</div>';
-    }).join('') + '</div>';
+      return '<button class="opt-btn" id="fn-' + f.name.replace(/\s/g,'-') + '" onclick="selectFinial(\'' + f.name.replace(/'/g,"\'") + '\')">' + f.name + '</button>';
+    }).join('') + '</div>' +
+    '<div class="step-note">Sold as a pair &middot; every finial comes in all ' + (COLLECTIONS[c]?COLLECTIONS[c].finishes.length:0) + ' ' + (COLLECTIONS[c]?COLLECTIONS[c].label:'') + ' finishes.<br>' +
+    finials.map(function(f) {
+      var d = (f.depth !== '—' ? 'depth ' + f.depth : '') + (f.note ? (f.depth !== '—' ? ' · ' : '') + f.note : '');
+      return '<strong>' + f.name + '</strong>' + (d ? ' — ' + d : '');
+    }).join(' · ') + '</div>';
 }
 
 function selectFinial(name) {
   S.finial = name;
-  document.querySelectorAll('.finial-card').forEach(function(el){ el.classList.remove('sel'); });
+  document.querySelectorAll('#s7-body .opt-btn').forEach(function(el){ el.classList.remove('sel'); });
   var el = document.getElementById('fn-' + name.replace(/\s/g,'-'));
   if (el) el.classList.add('sel');
   completeStep('step-7', name + ' (pair)');
@@ -393,22 +377,19 @@ function selectAMPSide(side) {
 function buildAccStep(c) {
   var list = document.getElementById('acc-list');
   var items = COLLECTIONS[c] ? COLLECTIONS[c].accessories : [];
-  list.innerHTML = items.map(function(item) {
-    return '<div class="acc-item">' +
-      '<input type="checkbox" id="' + item.id + '" onchange="updateAcc()" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px">' +
-      '<div><div class="acc-label">' + item.label + '</div><div class="acc-sub">' + item.sub + '</div></div>' +
-    '</div>';
-  }).join('');
+  list.innerHTML = '<div class="opt-row">' + items.map(function(item) {
+      return '<button class="opt-btn" id="' + item.id + '" onclick="this.classList.toggle(\'sel\');updateAcc()">' + item.label + '</button>';
+    }).join('') + '</div>' +
+    '<div class="step-note">Select any &mdash; all accessories are finish-matched unless noted; give quantities in your notes.<br>' +
+    items.map(function(item) { return '<strong>' + item.label + '</strong> — ' + item.sub; }).join('<br>') + '</div>';
 }
 
 function updateAcc() {
   var acc = [];
-  document.querySelectorAll('#acc-list input:checked').forEach(function(el){
-    var lbl = el.nextElementSibling && el.nextElementSibling.querySelector('.acc-label');
-    if (lbl) acc.push(lbl.textContent);
+  document.querySelectorAll('#acc-list .opt-btn.sel').forEach(function(el){
+    acc.push(el.textContent);
   });
   S.accessories = acc;
-  document.getElementById('s9-val').textContent = acc.length ? acc.length + ' selected' : 'None';
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -431,15 +412,6 @@ function calcWeight() {
     'Track limit: ' + maxW.toFixed(0) + ' lbs — using ' + pct + '%' +
     (lbs > maxW ? '<br><strong>⚠ EXCEEDS LIMIT — reduce yardage, choose lighter fabric, or split into two rods.</strong>' : '') +
   '</div>';
-  document.getElementById('s10-val').textContent = lbs.toFixed(1) + ' lbs';
-}
-
-// ═══════════════════════════════════════════════════════════════
-// DELIVERY
-// ═══════════════════════════════════════════════════════════════
-function selectDel(m) {
-  S.delivery = m;
-  document.getElementById('del-ship').classList.toggle('sel', true);
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -449,7 +421,7 @@ function getAMPAcc() {
   var ids = ['acc-remote-wh','acc-remote-bk','acc-switch-surf','acc-switch-flush','acc-bridge','acc-ext-15','acc-ext-4','acc-ext-10','acc-ext-20'];
   var labels = ['RF Remote White #62101000','RF Remote Black #62101010','Surface Mount Wall Switch #62109000','Flush Mount Wall Switch #62108000','USB Bridge/Gateway #62102000','15" Cable Extension #1026660','4\' Cable Extension #1026661','10\' Cable Extension #1026662','20\' Cable Extension #1026663'];
   var selected = [];
-  ids.forEach(function(id,i){ var el=document.getElementById(id); if(el&&el.checked) selected.push(labels[i]); });
+  ids.forEach(function(id,i){ var el=document.getElementById(id); if(el&&el.classList.contains('sel')) selected.push(labels[i]); });
   return selected;
 }
 
@@ -460,7 +432,8 @@ function submitQuote() {
 
   var len    = S.trackLen;
   var brackets = len <= 48 ? 2 : len <= 96 ? 3 : len <= 144 ? 4 : 5;
-  var delivery = 'Ship to me (UPS/FedEx)';
+  // Shared Delivery step (window.pbDelivery); the default keeps the original wording.
+  var delivery = window.pbDelivery === 'install' ? pbDeliveryLabel() : 'Ship to me (UPS/FedEx)';
   var ampAcc = S.motorized ? getAMPAcc() : [];
   var stack  = (S.draw && S.header && len) ? getStackback(len, S.draw==='two-way') : '—';
 

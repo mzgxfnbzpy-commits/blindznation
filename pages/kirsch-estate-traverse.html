@@ -41,22 +41,7 @@
 .config-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1140px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
 
-.step-num-circle{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step-block.done .step-num-circle{background:var(--gold);color:var(--espresso)}
-.step-block.active .step-body,.step-block.open .step-body{display:block}
-
-/* Collection cards */
-.coll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
-@media(max-width:580px){.coll-grid{grid-template-columns:1fr}}
-.coll-card{border:1.5px solid #e8e8e4;border-radius:12px;padding:16px;cursor:pointer;transition:all .12s;background:#fff}
-.coll-card:hover{border-color:var(--gold)}
-.coll-card.sel{border:2px solid var(--gold);background:rgba(45,224,193,.05)}
-.coll-name{font-size:14px;font-weight:600;color:#111;margin-bottom:4px}
-.coll-sub{font-size:11px;color:#666;line-height:1.5}
-.coll-swatches{display:flex;gap:3px;flex-wrap:wrap;margin-top:8px}
-.coll-dot{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
-
-/* Finish selector */
+/* Finish swatch grid (colour swatches stay a visual grid) */
 .finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:10px}
 .finish-card{border:1.5px solid #e8e8e4;border-radius:10px;padding:10px 8px;cursor:pointer;transition:all .12s;text-align:center;background:#fff}
 .finish-card:hover{border-color:var(--gold)}
@@ -64,31 +49,9 @@
 .finish-swatch{width:36px;height:36px;border-radius:50%;margin:0 auto 6px;border:2px solid rgba(0,0,0,.1)}
 .finish-name{font-size:11px;font-weight:500;color:#222;line-height:1.3}
 
-/* Option grids */
-.opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.opt-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
-.opt-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
-@media(max-width:500px){.opt-grid-2,.opt-grid-3,.opt-grid-4{grid-template-columns:1fr 1fr}}
-.opt-card{border:1.5px solid #e8e8e4;border-radius:11px;padding:13px 10px;cursor:pointer;transition:all .12s;text-align:center;background:#fff}
-.opt-card:hover{border-color:var(--gold)}
-.opt-card.sel{border:2px solid var(--gold);background:rgba(45,224,193,.06)}
-.opt-card.blocked{opacity:.4;pointer-events:none}
-.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px}
-.opt-card-desc{font-size:11px;color:#666;line-height:1.4}
-.opt-card.sel .opt-card-title{color:#0A4A42}
-
-/* Finial grid */
-.finial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:10px}
-.finial-card{border:1.5px solid #e8e8e4;border-radius:10px;padding:10px;cursor:pointer;transition:all .12s;text-align:center;background:#fff}
-.finial-card:hover{border-color:var(--gold)}
-.finial-card.sel{border:2px solid var(--gold);background:rgba(45,224,193,.05)}
-.finial-name{font-size:12px;font-weight:500;color:#111;margin-bottom:2px}
-.finial-depth{font-size:10px;color:#888}
-
-/* Dim inputs */
+/* Fabric weight inputs */
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
 .dim-input{width:90px;padding:9px 10px;border:1px solid #ddd;border-radius:8px;font-size:15px;text-align:center}
-.dim-unit{font-size:12px;color:#666;margin-left:4px}
 
 /* Info/warn boxes */
 .info-box{background:rgba(45,224,193,.08);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#0A4A42;margin-top:10px;line-height:1.6}
@@ -102,23 +65,8 @@
 .computed-row:last-child{border-bottom:none}
 .computed-key{color:#666}
 .computed-val{font-weight:600;color:#111}
-
-/* Accessories */
-.acc-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:.5px solid #f0f0ee}
-.acc-item:last-child{border-bottom:none}
-.acc-label{font-size:13px;font-weight:500;color:#111}
-.acc-sub{font-size:11px;color:#666;line-height:1.4;margin-top:2px}
-
-/* Spec panel */
-.spec-panel{background:var(--espresso);border-radius:14px;padding:20px;position:sticky;top:80px}
-.spec-title{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
-.spec-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:12px;padding:5px 0;border-bottom:.5px solid #2A201A;gap:8px}
-.spec-row:last-of-type{border-bottom:none}
-.spec-key{color:#7A6A58;flex-shrink:0}
-.spec-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word}
-.spec-val.empty{color:#3A2E24;font-style:italic}
-.spec-divider{border:.5px solid #2A201A;margin:10px 0}
 </style>
+
 </head>
 <body data-page="Hardware">
 <nav class="site-nav" id="site-nav"></nav>
@@ -140,362 +88,276 @@
 <div class="config-layout">
 <div id="configurator">
 
-<!-- STEP 1: ROD WIDTH -->
-<div class="step-block active open" id="step-1">
-  <div class="step-head" onclick="toggleStep('step-1')">
-    <div class="step-num-circle">1</div>
-    <div class="step-head-title">Rod width</div>
-    <div class="step-head-val" id="s1-val"></div>
+<!-- STEP 1: ROD MEASUREMENTS -->
+<div class="step-block" id="step-1">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">1</div>
+    <div class="step-title" style="margin-bottom:0">Rod measurements</div>
   </div>
-  <div class="step-body">
-    <div class="dim-box">
-      <div class="dim-box-label">Enter your rod width</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Width</label>
-          <input type="number" id="track-len" min="18" max="192" step="0.125" placeholder="120" oninput="calcTrack()">
-          <div class="dim-unit">inches &middot; 18&Prime; min &middot; 192&Prime; max (16 ft)</div>
-        </div>
-        <div class="form-group">
-          <label>Or in feet</label>
-          <input type="number" id="track-ft" min="1.5" max="16" step="0.25" placeholder="10" oninput="calcTrackFt()">
-          <div class="dim-unit">feet &middot; converts automatically</div>
-        </div>
+  <div class="dim-box">
+    <div class="dim-box-label">Enter your rod width</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Width</label>
+        <input type="number" id="track-len" min="18" max="192" step="0.125" placeholder="120" oninput="calcTrack()">
+        <div class="dim-unit">inches &mdash; 18&Prime; min &middot; 192&Prime; max (16 ft)</div>
       </div>
     </div>
-    <div class="step-note"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Enter the <strong>finished track length</strong> the rod will span, including returns if outside mount. Tracks over 96&Prime; (8 ft) include one splice and keystone.</div>
-
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px">
-      <span style="font-size:12px;color:#666">Qty:</span>
-      <div class="qty-btns">
-        <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
-        <input class="qty-num" type="number" id="track-qty-inp" value="1" min="1" max="20" oninput="calcTrack()">
-        <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
-      </div>
-      <span style="font-size:12px;color:#666">rod(s) of this size</span>
+  </div>
+  <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Enter the <strong>finished track length</strong> the rod will span, including returns if outside the window. Tracks over 96&Prime; (8 ft) include one splice and keystone.</div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#666">Qty:</span>
+    <div class="qty-btns">
+      <button class="qty-btn" onclick="pbAdjQty('track-qty-inp',-1,1,20);calcTrack()">&#8722;</button>
+      <input class="qty-num" type="number" id="track-qty-inp" value="1" min="1" max="20" oninput="calcTrack()">
+      <button class="qty-btn" onclick="pbAdjQty('track-qty-inp',1,1,20);calcTrack()">&#43;</button>
     </div>
-
-    <div id="track-msgs" style="margin-top:8px"></div>
-    <div id="track-computed" class="computed-info" style="display:none">
-      <div class="computed-row"><span class="computed-key">Track length</span><span class="computed-val" id="cp-len">&mdash;</span></div>
-      <div class="computed-row"><span class="computed-key">Splice required</span><span class="computed-val" id="cp-splice">&mdash;</span></div>
-      <div class="computed-row"><span class="computed-key">Brackets needed (est.)</span><span class="computed-val" id="cp-brackets">&mdash;</span></div>
-      <div class="computed-row"><span class="computed-key">Max fabric weight</span><span class="computed-val" id="cp-weight">64 lbs total / 4 lbs per ft</span></div>
-      <div class="computed-row" id="cp-stack-row"><span class="computed-key">Est. stackback</span><span class="computed-val" id="cp-stack">&mdash;</span></div>
-    </div>
+  </div>
+  <div style="font-size:12px;font-weight:600;color:#555;margin:16px 0 6px">Exact rod length &amp; brackets <span style="font-weight:400;color:#888">(optional)</span></div>
+  <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML, bare) -->
+  <div id="pb-rod-spec"></div>
+  <div id="track-msgs" style="margin-top:8px"></div>
+  <div id="track-computed" class="computed-info" style="display:none">
+    <div class="computed-row"><span class="computed-key">Track length</span><span class="computed-val" id="cp-len">&mdash;</span></div>
+    <div class="computed-row"><span class="computed-key">Splice required</span><span class="computed-val" id="cp-splice">&mdash;</span></div>
+    <div class="computed-row"><span class="computed-key">Brackets needed (est.)</span><span class="computed-val" id="cp-brackets">&mdash;</span></div>
+    <div class="computed-row"><span class="computed-key">Max fabric weight</span><span class="computed-val" id="cp-weight">64 lbs total / 4 lbs per ft</span></div>
+    <div class="computed-row" id="cp-stack-row"><span class="computed-key">Est. stackback</span><span class="computed-val" id="cp-stack">&mdash;</span></div>
   </div>
 </div>
 
 <!-- STEP 2: COLLECTION -->
 <div class="step-block" id="step-2">
-  <div class="step-head" onclick="toggleStep('step-2')">
-    <div class="step-num-circle">2</div>
-    <div class="step-head-title">Collection</div>
-    <div class="step-head-val" id="s2-val"></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">2</div>
+    <div class="step-title" style="margin-bottom:0">Collection</div>
   </div>
-  <div class="step-body">
-    <div style="font-size:12px;color:#666;margin-bottom:10px;line-height:1.6">All three collections use the same traverse rod mechanism. The collection determines finish options, finial styles, and fascia aesthetic.</div>
-    <div class="coll-grid">
-
-      <div class="coll-card" id="coll-dm" onclick="selectColl('dm')">
-        <div class="coll-name">Designer Metals™</div>
-        <div class="coll-sub">8 metal finishes · 15 finial styles · most popular for contemporary &amp; transitional rooms</div>
-        <div class="coll-swatches">
-          <span class="coll-dot" style="background:radial-gradient(#C8A84A,#8B6914)" title="Elegant Brass"></span>
-          <span class="coll-dot" style="background:radial-gradient(#B0B8C0,#7A8490)" title="Antique Silver"></span>
-          <span class="coll-dot" style="background:radial-gradient(#4A4A52,#2A2A30)" title="Gunmetal"></span>
-          <span class="coll-dot" style="background:#1A1A1A;border-color:#333" title="Black"></span>
-          <span class="coll-dot" style="background:radial-gradient(#E8E8E8,#C0C0C0)" title="Polished Nickel"></span>
-          <span class="coll-dot" style="background:radial-gradient(#8B5E3C,#5A3820)" title="Brushed Bronze"></span>
-          <span class="coll-dot" style="background:radial-gradient(#C8A040,#7A5A10)" title="Gilded Bronze"></span>
-          <span class="coll-dot" style="background:radial-gradient(#C0C0B8,#8A8A80)" title="Satin Nickel"></span>
-        </div>
-      </div>
-
-      <div class="coll-card" id="coll-wt" onclick="selectColl('wt')">
-        <div class="coll-name">Wood Trends™</div>
-        <div class="coll-sub">8 wood finishes · 9 finial styles · warm traditional &amp; classic rooms · <strong style="color:#c0392b">Note: Unfinished NOT available for traverse</strong></div>
-        <div class="coll-swatches">
-          <span class="coll-dot" style="background:#1A1A1A;border-color:#333" title="Black"></span>
-          <span class="coll-dot" style="background:radial-gradient(#6B4423,#3A2010)" title="Coffee"></span>
-          <span class="coll-dot" style="background:radial-gradient(#3A2010,#200808)" title="Dark Chocolate"></span>
-          <span class="coll-dot" style="background:radial-gradient(#C8A870,#8B6830)" title="Estate Oak"></span>
-          <span class="coll-dot" style="background:radial-gradient(#5C2010,#380808)" title="Mahogany"></span>
-          <span class="coll-dot" style="background:radial-gradient(#E0D8C8,#C0B0A0)" title="Marble"></span>
-          <span class="coll-dot" style="background:radial-gradient(#8B6830,#5C4020)" title="Truffle"></span>
-          <span class="coll-dot" style="background:#F5F5F5;border-color:#ddd" title="White"></span>
-        </div>
-      </div>
-
-      <div class="coll-card" id="coll-wi" onclick="selectColl('wi')">
-        <div class="coll-name">Wrought Iron</div>
-        <div class="coll-sub">6 finishes · 9 finial styles · authentic sand-cast iron · rustic, industrial &amp; farmhouse rooms</div>
-        <div class="coll-swatches">
-          <span class="coll-dot" style="background:#1A1A1A;border-color:#333" title="Black"></span>
-          <span class="coll-dot" style="background:radial-gradient(#6B5A48,#3A2A20)" title="Iron Oxide"></span>
-          <span class="coll-dot" style="background:radial-gradient(#C86020,#903010)" title="Rust"></span>
-          <span class="coll-dot" style="background:radial-gradient(#606870,#404850)" title="Graphite"></span>
-          <span class="coll-dot" style="background:#F0EDE8;border-color:#ddd" title="Chalk"></span>
-          <span class="coll-dot" style="background:radial-gradient(#C87840,#905020)" title="Heirloom Copper"></span>
-        </div>
-      </div>
-    </div>
+  <div class="opt-row">
+    <button class="opt-btn" id="coll-dm" onclick="selectColl('dm')">Designer Metals™</button>
+    <button class="opt-btn" id="coll-wt" onclick="selectColl('wt')">Wood Trends™</button>
+    <button class="opt-btn" id="coll-wi" onclick="selectColl('wi')">Wrought Iron</button>
   </div>
+  <div class="step-note">All three collections use the same traverse rod mechanism &mdash; the collection sets the finishes, finial styles and fascia look.<br><strong>Designer Metals™:</strong> 8 metal finishes · 15 finial styles · most popular for contemporary &amp; transitional rooms.<br><strong>Wood Trends™:</strong> 8 wood finishes · 9 finial styles · warm traditional &amp; classic rooms · <strong style="color:#c0392b">Unfinished is NOT available for traverse.</strong><br><strong>Wrought Iron:</strong> 6 finishes · 9 finial styles · authentic sand-cast iron · rustic, industrial &amp; farmhouse rooms.</div>
 </div>
 
 <!-- STEP 3: FINISH -->
 <div class="step-block" id="step-3">
-  <div class="step-head" onclick="toggleStep('step-3')">
-    <div class="step-num-circle">3</div>
-    <div class="step-head-title">Finish</div>
-    <div class="step-head-val" id="s3-val"></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">3</div>
+    <div class="step-title" style="margin-bottom:0">Finish</div>
   </div>
-  <div class="step-body" id="s3-body">
-    <div style="font-size:12px;color:#666">Select a collection first.</div>
+  <div id="s3-body">
+    <div class="step-note">Select a collection first.</div>
   </div>
 </div>
 
 <!-- STEP 4: HEADER TYPE -->
 <div class="step-block" id="step-4">
-  <div class="step-head" onclick="toggleStep('step-4')">
-    <div class="step-num-circle">4</div>
-    <div class="step-head-title">Header / carrier type</div>
-    <div class="step-head-val" id="s4-val"></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">4</div>
+    <div class="step-title" style="margin-bottom:0">Header / carrier type</div>
   </div>
-  <div class="step-body">
+  <div class="opt-row">
+    <button class="opt-btn" id="hdr-pleated" onclick="selectHeader('pleated')">Pleated carriers</button>
+    <button class="opt-btn" id="hdr-ripple" onclick="selectHeader('ripplefold')">Ripplefold™ carriers</button>
+  </div>
+  <div class="step-note"><strong>Pleated carriers:</strong> Standard pinch-pleat, euro pleat, goblet pleat. 16mm ball-bearing wheeled carriers. Smooth operation for most drapery weights.<br><strong>Ripplefold™ carriers:</strong> Wave/ripple-fold drapery. Snap-tape or wheeled Butt Master carriers. Specify fullness: 60%, 80%, 100%, or 120%.</div>
+  <div id="ripple-fullness-wrap" style="display:none;margin-top:14px">
+    <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Ripplefold™ fullness</div>
     <div class="opt-row">
-      <button class="opt-btn" id="hdr-pleated" onclick="selectHeader('pleated')">Pleated Carriers</button>
-      <button class="opt-btn" id="hdr-ripple" onclick="selectHeader('ripplefold')">Ripplefold™ Carriers</button>
+      <button class="opt-btn" id="rf-60" onclick="selectFullness('60%')">60%</button>
+      <button class="opt-btn" id="rf-80" onclick="selectFullness('80%')">80%</button>
+      <button class="opt-btn sel" id="rf-100" onclick="selectFullness('100%')">100%</button>
+      <button class="opt-btn" id="rf-120" onclick="selectFullness('120%')">120%</button>
     </div>
-    <div class="step-note"><strong>Pleated Carriers:</strong> Standard pinch-pleat, euro pleat, goblet pleat. 16mm ball-bearing wheeled carriers. Smooth operation for most drapery weights.<br><strong>Ripplefold™ Carriers:</strong> Wave/ripple-fold drapery. Snap-tape or wheeled Butt Master carriers. Specify fullness: 60%, 80%, 100%, or 120%.</div>
-    <div id="ripple-fullness-wrap" style="display:none;margin-top:14px">
-      <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Ripplefold™ fullness</div>
-      <div class="opt-row">
-        <button class="opt-btn" id="rf-60" onclick="selectFullness('60%')">60%</button>
-        <button class="opt-btn" id="rf-80" onclick="selectFullness('80%')">80%</button>
-        <button class="opt-btn sel" id="rf-100" onclick="selectFullness('100%')">100%</button>
-        <button class="opt-btn" id="rf-120" onclick="selectFullness('120%')">120%</button>
-      </div>
-      <div class="step-note">60% minimal wave · 80% moderate wave · 100% standard (recommended) · 120% full lush wave.</div>
-    </div>
-    <div class="info-box" style="margin-top:10px">Rod is ordered with either slides (for pleated) or Ripplefold™ carriers — specify when ordering. Both types use 16mm ball-bearing wheels for smooth, quiet operation.</div>
+    <div class="step-note">60% minimal wave · 80% moderate wave · 100% standard (recommended) · 120% full lush wave.</div>
   </div>
+  <div class="info-box" style="margin-top:10px">Rod is ordered with either slides (for pleated) or Ripplefold™ carriers — specify when ordering. Both types use 16mm ball-bearing wheels for smooth, quiet operation.</div>
 </div>
 
 <!-- STEP 5: DRAW TYPE -->
 <div class="step-block" id="step-5">
-  <div class="step-head" onclick="toggleStep('step-5')">
-    <div class="step-num-circle">5</div>
-    <div class="step-head-title">Draw type</div>
-    <div class="step-head-val" id="s5-val"></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">5</div>
+    <div class="step-title" style="margin-bottom:0">Draw type</div>
   </div>
-  <div class="step-body">
-    <div class="opt-row">
-      <button class="opt-btn" id="draw-two-way" onclick="selectDraw('two-way')">Two-Way / Split Draw</button>
-      <button class="opt-btn" id="draw-one-right" onclick="selectDraw('one-way-right')">One-Way Right</button>
-      <button class="opt-btn" id="draw-one-left" onclick="selectDraw('one-way-left')">One-Way Left</button>
-    </div>
-    <div class="step-note"><strong>Two-Way / Split Draw:</strong> Two panels meet in the center and open to both sides. Most common for windows and doorways.<br><strong>One-Way Right:</strong> Single panel travels entirely to the right side. Good for corner windows or one-sided stack.<br><strong>One-Way Left:</strong> Single panel travels entirely to the left side.</div>
-    <div id="draw-amp-note" class="info-box" style="display:none;margin-top:10px">AMP™ motor is compatible with both one-way and two-way draw. Draw direction must match motor adapter (Right or Left motorhead).</div>
+  <div class="opt-row">
+    <button class="opt-btn" id="draw-two-way" onclick="selectDraw('two-way')">Two-way / split draw</button>
+    <button class="opt-btn" id="draw-one-right" onclick="selectDraw('one-way-right')">One-way right</button>
+    <button class="opt-btn" id="draw-one-left" onclick="selectDraw('one-way-left')">One-way left</button>
   </div>
+  <div class="step-note"><strong>Two-way / split draw:</strong> Two panels meet in the center and open to both sides. Most common for windows and doorways.<br><strong>One-way right:</strong> Single panel travels entirely to the right side. Good for corner windows or one-sided stack.<br><strong>One-way left:</strong> Single panel travels entirely to the left side.</div>
+  <div id="draw-amp-note" class="info-box" style="display:none;margin-top:10px">AMP™ motor is compatible with both one-way and two-way draw. Draw direction must match motor adapter (Right or Left motorhead).</div>
 </div>
 
 <!-- STEP 6: MOUNT TYPE -->
 <div class="step-block" id="step-6">
-  <div class="step-head" onclick="toggleStep('step-6')">
-    <div class="step-num-circle">6</div>
-    <div class="step-head-title">Mount type</div>
-    <div class="step-head-val" id="s6-val"></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">6</div>
+    <div class="step-title" style="margin-bottom:0">Mount type</div>
   </div>
-  <div class="step-body">
-    <div class="opt-row">
-      <button class="opt-btn" id="mnt-wall" onclick="selectMount('wall')">Wall mount</button>
-      <button class="opt-btn" id="mnt-ceil" onclick="selectMount('ceiling')">Ceiling mount</button>
-      <button class="opt-btn" id="mnt-double" onclick="selectMount('double')">Double Rod</button>
-    </div>
-    <div class="step-note"><strong>Wall mount:</strong> Standard. Brackets attach to wall above window. Adjustable projection 3¼"–4¾".<br><strong>Ceiling mount:</strong> Track mounts to ceiling. Flat ceiling bracket included. Good for floor-to-ceiling or room dividers.<br><strong>Double Rod:</strong> Two rods at different projections — sheer behind, drapery in front. Requires double bracket.</div>
-    <div id="mount-detail" style="margin-top:12px"></div>
+  <div class="opt-row">
+    <button class="opt-btn" id="mnt-wall" onclick="selectMount('wall')">Wall mount</button>
+    <button class="opt-btn" id="mnt-ceil" onclick="selectMount('ceiling')">Ceiling mount</button>
+    <button class="opt-btn" id="mnt-double" onclick="selectMount('double')">Double rod</button>
   </div>
+  <div class="step-note"><strong>Wall mount:</strong> Standard. Brackets attach to wall above window. Adjustable projection 3¼"–4¾".<br><strong>Ceiling mount:</strong> Track mounts to ceiling. Flat ceiling bracket included. Good for floor-to-ceiling or room dividers.<br><strong>Double rod:</strong> Two rods at different projections — sheer behind, drapery in front. Requires double bracket.</div>
+  <div id="mount-detail" style="margin-top:12px"></div>
 </div>
 
 <!-- STEP 7: FINIALS -->
 <div class="step-block" id="step-7">
-  <div class="step-head" onclick="toggleStep('step-7')">
-    <div class="step-num-circle">7</div>
-    <div class="step-head-title">Finials</div>
-    <div class="step-head-val" id="s7-val">Standard (pair)</div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">7</div>
+    <div class="step-title" style="margin-bottom:0">Finials</div>
   </div>
-  <div class="step-body" id="s7-body">
-    <div style="font-size:12px;color:#666">Select a collection first to see available finials.</div>
+  <div id="s7-body">
+    <div class="step-note">Select a collection first to see available finials.</div>
   </div>
 </div>
 
 <!-- STEP 8: AMP MOTORIZATION -->
 <div class="step-block" id="step-8">
-  <div class="step-head" onclick="toggleStep('step-8')">
-    <div class="step-num-circle">8</div>
-    <div class="step-head-title">AMP™ Motorization</div>
-    <div class="step-head-val" id="s8-val">Not motorized</div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">8</div>
+    <div class="step-title" style="margin-bottom:0">AMP™ motorization</div>
   </div>
-  <div class="step-body">
+  <div class="opt-row">
+    <button class="opt-btn sel" id="amp-no" onclick="selectAMP(false)">Manual operation</button>
+    <button class="opt-btn" id="amp-yes" onclick="selectAMP(true)">AMP™ motorized</button>
+  </div>
+  <div class="step-note"><strong>Manual operation:</strong> Cord draw, baton draw, or hand-traverse. No motor needed.<br><strong>AMP™ motorized:</strong> Rechargeable battery + wall adapter. RF remote, wall switch, or smart home. Soft start/stop, tug-to-open.</div>
+
+  <div id="amp-detail" style="display:none;margin-top:14px">
+    <div class="info-box">
+      <strong>AMP™ Motor specs:</strong> DC 16.5V · 2.55Ah · 7.8 in/sec · 1.2Nm torque · UL/CE certified · White only · 6ft power cord (non-extendable — plan outlet location) · Dual battery + AC (works during power outage)<br><br>
+      <strong>Critical rules:</strong> One motor per rod only · Max 64 lbs on motorized rod · Cannot bend or curve the track when motorized · Max track length 16 ft (same as manual)
+    </div>
+
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Motor draw side</div>
     <div class="opt-row">
-      <button class="opt-btn sel" id="amp-no" onclick="selectAMP(false)">Manual operation</button>
-      <button class="opt-btn" id="amp-yes" onclick="selectAMP(true)">AMP™ Motorized</button>
+      <button class="opt-btn" id="amp-right" onclick="selectAMPSide('right')">Motor right</button>
+      <button class="opt-btn" id="amp-left" onclick="selectAMPSide('left')">Motor left</button>
     </div>
-    <div class="step-note"><strong>Manual operation:</strong> Cord draw, baton draw, or hand-traverse. No motor needed.<br><strong>AMP™ Motorized:</strong> Rechargeable battery + wall adapter. RF remote, wall switch, or smart home. Soft start/stop, tug-to-open.</div>
+    <div class="step-note"><strong>Motor right:</strong> Motor at right end — adapter #84531025 (Motorhead Adapter Right).<br><strong>Motor left:</strong> Motor at left end — adapter #84532025 (Motorhead Adapter Left).</div>
 
-    <div id="amp-detail" style="display:none;margin-top:14px">
-      <div class="info-box">
-        <strong>AMP™ Motor specs:</strong> DC 16.5V · 2.55Ah · 7.8 in/sec · 1.2Nm torque · UL/CE certified · White only · 6ft power cord (non-extendable — plan outlet location) · Dual battery + AC (works during power outage)<br><br>
-        <strong>Critical rules:</strong> One motor per rod only · Max 64 lbs on motorized rod · Cannot bend or curve the track when motorized · Max track length 16 ft (same as manual)
-      </div>
-
-      <div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 8px">Motor draw side</div>
-      <div class="opt-row">
-        <button class="opt-btn" id="amp-right" onclick="selectAMPSide('right')">Motor Right</button>
-        <button class="opt-btn" id="amp-left" onclick="selectAMPSide('left')">Motor Left</button>
-      </div>
-      <div class="step-note"><strong>Motor Right:</strong> Motor at right end — adapter #84531025 (Motorhead Adapter Right).<br><strong>Motor Left:</strong> Motor at left end — adapter #84532025 (Motorhead Adapter Left).</div>
-
-      <div style="font-size:12px;font-weight:500;color:#444;margin:14px 0 8px">Control accessories (select all that apply)</div>
-      <div id="amp-acc-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">
-        <div class="acc-item"><input type="checkbox" id="acc-remote-wh" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px"><div><div class="acc-label">RF Remote — White (#62101000)</div><div class="acc-sub">15-channel · pairs to multiple rods</div></div></div>
-        <div class="acc-item"><input type="checkbox" id="acc-remote-bk" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px"><div><div class="acc-label">RF Remote — Black (#62101010)</div><div class="acc-sub">15-channel</div></div></div>
-        <div class="acc-item"><input type="checkbox" id="acc-switch-surf" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px"><div><div class="acc-label">Surface Mount Wall Switch (#62109000)</div><div class="acc-sub">Mounts on wall surface</div></div></div>
-        <div class="acc-item"><input type="checkbox" id="acc-switch-flush" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px"><div><div class="acc-label">Flush Mount Wall Switch (#62108000)</div><div class="acc-sub">Installs in standard electrical box</div></div></div>
-        <div class="acc-item"><input type="checkbox" id="acc-bridge" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px"><div><div class="acc-label">USB Bridge / Gateway (#62102000)</div><div class="acc-sub">Alexa · Google Home · SmartThings · Control4 · Crestron · IFTTT</div></div></div>
-        <div class="acc-item"><input type="checkbox" id="acc-ext-15" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px"><div><div class="acc-label">15" Cable Extension (#1026660)</div><div class="acc-sub">For outlet near rod end</div></div></div>
-        <div class="acc-item"><input type="checkbox" id="acc-ext-4" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px"><div><div class="acc-label">4' Cable Extension (#1026661)</div><div class="acc-sub">Short extension</div></div></div>
-        <div class="acc-item"><input type="checkbox" id="acc-ext-10" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px"><div><div class="acc-label">10' Cable Extension (#1026662)</div><div class="acc-sub">Medium extension</div></div></div>
-        <div class="acc-item"><input type="checkbox" id="acc-ext-20" style="width:15px;height:15px;cursor:pointer;flex-shrink:0;margin-top:2px"><div><div class="acc-label">20' Cable Extension (#1026663)</div><div class="acc-sub">Long extension — plan ahead</div></div></div>
-      </div>
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Control accessories <span style="font-weight:400;color:#888">(select any)</span></div>
+    <div class="opt-row" id="amp-acc-grid">
+      <button class="opt-btn" id="acc-remote-wh" onclick="this.classList.toggle('sel')">RF remote — white</button>
+      <button class="opt-btn" id="acc-remote-bk" onclick="this.classList.toggle('sel')">RF remote — black</button>
+      <button class="opt-btn" id="acc-switch-surf" onclick="this.classList.toggle('sel')">Surface mount wall switch</button>
+      <button class="opt-btn" id="acc-switch-flush" onclick="this.classList.toggle('sel')">Flush mount wall switch</button>
+      <button class="opt-btn" id="acc-bridge" onclick="this.classList.toggle('sel')">USB bridge / gateway</button>
+      <button class="opt-btn" id="acc-ext-15" onclick="this.classList.toggle('sel')">15" cable extension</button>
+      <button class="opt-btn" id="acc-ext-4" onclick="this.classList.toggle('sel')">4' cable extension</button>
+      <button class="opt-btn" id="acc-ext-10" onclick="this.classList.toggle('sel')">10' cable extension</button>
+      <button class="opt-btn" id="acc-ext-20" onclick="this.classList.toggle('sel')">20' cable extension</button>
     </div>
-
-    <div id="amp-blocked-msg" style="display:none"></div>
+    <div class="step-note">RF remote (#62101000 white · #62101010 black): 15-channel, pairs to multiple rods · Surface mount wall switch #62109000 · Flush mount wall switch #62108000 (standard electrical box) · USB bridge / gateway #62102000: Alexa · Google Home · SmartThings · Control4 · Crestron · IFTTT · Cable extensions: 15" #1026660 (outlet near rod end) · 4' #1026661 · 10' #1026662 · 20' #1026663.</div>
   </div>
+
+  <div id="amp-blocked-msg" style="display:none"></div>
 </div>
 
 <!-- STEP 9: ACCESSORIES -->
 <div class="step-block" id="step-9">
-  <div class="step-head" onclick="toggleStep('step-9')">
-    <div class="step-num-circle">9</div>
-    <div class="step-head-title">Accessories <span style="font-size:11px;color:#aaa;font-weight:400">(optional)</span></div>
-    <div class="step-head-val" id="s9-val">None</div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">9</div>
+    <div class="step-title" style="margin-bottom:0">Accessories <span style="font-weight:400;color:#888">(optional)</span></div>
   </div>
-  <div class="step-body" id="s9-body">
-    <div style="font-size:12px;color:#666;margin-bottom:10px">All accessories are finish-matched unless noted. Specify quantity in notes.</div>
+  <div id="s9-body">
     <div id="acc-list">
-      <!-- built dynamically by collection -->
+      <div class="step-note">Select a collection first to see its accessories.</div>
     </div>
   </div>
 </div>
 
 <!-- STEP 10: FABRIC WEIGHT CHECK (optional) -->
 <div class="step-block" id="step-10">
-  <div class="step-head" onclick="toggleStep('step-10')">
-    <div class="step-num-circle">10</div>
-    <div class="step-head-title">Fabric weight check <span style="font-size:11px;color:#aaa;font-weight:400">(optional)</span></div>
-    <div class="step-head-val" id="s10-val"></div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+    <div class="step-num">10</div>
+    <div class="step-title" style="margin-bottom:0">Fabric weight check <span style="font-weight:400;color:#888">(optional)</span></div>
   </div>
-  <div class="step-body">
-    <div class="info-box" style="margin-bottom:12px">Max 64 lbs total, 4 lbs per ft. Use this to verify your fabric is within spec before ordering.</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:4px">
-      <div>
-        <div class="dim-label">Yards of fabric</div>
-        <input class="dim-input" type="number" id="fw-yards" min="1" max="500" step="1" placeholder="e.g. 32" oninput="calcWeight()" style="width:80px">
-      </div>
-      <div>
-        <div class="dim-label">Fabric width (in)</div>
-        <input class="dim-input" type="number" id="fw-width" min="36" max="118" step="1" placeholder="e.g. 54" oninput="calcWeight()" style="width:80px">
-      </div>
-      <div>
-        <div class="dim-label">oz / sq yd</div>
-        <select id="fw-oz" onchange="calcWeight()" style="padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:13px;width:100%">
-          <option value="">-- select --</option>
-          <option value="3">2–4 oz — Silk, Chintz</option>
-          <option value="5">4–6 oz — Printed Cotton</option>
-          <option value="8">6–10 oz — Linen, Blackout</option>
-          <option value="12">10–14 oz — Jacquard</option>
-          <option value="16">14–18 oz — Velvet</option>
-          <option value="13">12–14 oz — Bump Lining</option>
-        </select>
-      </div>
+  <div class="info-box" style="margin-bottom:12px">Max 64 lbs total, 4 lbs per ft. Use this to verify your fabric is within spec before ordering.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+    <div>
+      <div class="dim-label">Yards of fabric</div>
+      <input class="dim-input" type="number" id="fw-yards" min="1" max="500" step="1" placeholder="e.g. 32" oninput="calcWeight()" style="width:100px">
     </div>
-    <div id="weight-result" style="margin-top:10px"></div>
+    <div>
+      <div class="dim-label">Fabric width (in)</div>
+      <input class="dim-input" type="number" id="fw-width" min="36" max="118" step="1" placeholder="e.g. 54" oninput="calcWeight()" style="width:100px">
+    </div>
   </div>
+  <div class="dim-label" style="margin-top:12px">Fabric weight (oz / sq yd)</div>
+  <select id="fw-oz" data-pb-pills onchange="calcWeight()">
+    <option value="" disabled selected>-- select --</option>
+    <option value="3">2–4 oz — Silk, Chintz</option>
+    <option value="5">4–6 oz — Printed Cotton</option>
+    <option value="8">6–10 oz — Linen, Blackout</option>
+    <option value="12">10–14 oz — Jacquard</option>
+    <option value="16">14–18 oz — Velvet</option>
+    <option value="13">12–14 oz — Bump Lining</option>
+  </select>
+  <div id="weight-result" style="margin-top:10px"></div>
 </div>
 
-<!-- STEP 11: QUOTE FORM -->
-<div class="step-block open" id="step-11">
-  <div class="step-head" onclick="toggleStep('step-11')">
-    <div class="step-num-circle">11</div>
-    <div class="step-head-title">Get your custom quote</div>
-  </div>
-  <div class="step-body">
-    <div class="delivery-section" style="margin-top:12px">
-      <div class="opt-row">
-        <button class="opt-btn sel" id="del-ship" onclick="selectDel('ship')">📦 Ship to me</button>
-      </div>
-      <div class="step-note">UPS or FedEx.</div>
-      <div id="del-ship-note" class="delivery-note">Shipped via <strong>UPS or FedEx</strong>. <div class="delivery-tariff">Tariffs and import fees additional.</div></div>
-    </div>
+<!-- STEP 11: DELIVERY (shared) -->
+<div id="pb-delivery-step"></div>
 
-    <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-        <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
-    <div id="pb-rod-spec"></div>
-    <div id="pb-final-step"></div>
-    <div id="quote-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
-      <strong>Specification submitted!</strong> Your email app opened with the complete spec. We'll follow up within a few hours.<br>Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
-    </div>
+<!-- STEP 12: YOUR DETAILS (shared) -->
+<div id="pb-final-step"></div>
+<div id="quote-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7;margin-top:12px">
+  <strong>Specification submitted!</strong> Your email app opened with the complete spec. We'll follow up within a few hours.<br>Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
+</div>
 
-    <button class="disclaimer-toggle" onclick="this.nextElementSibling.classList.toggle('open')" style="margin-top:16px">▶ Specifications &amp; warranty</button>
-    <div class="disclaimer-body">
-      <div class="disclaimer-item">Minimum track: 18" · Maximum track: 192" (16 ft)</div>
-      <div class="disclaimer-item">Max fabric weight: 64 lbs total · 4 lbs per linear foot</div>
-      <div class="disclaimer-item">Tracks over 96" (8 ft) include 1 splice + 1 keystone</div>
-      <div class="disclaimer-item">Cannot bend or curve the track when motorized (AMP)</div>
-      <div class="disclaimer-item">One AMP™ motor per rod only — never two</div>
-      <div class="disclaimer-item">Unfinished finish NOT available on Estate™ Traverse Rods (stationary poles only)</div>
-      <div class="disclaimer-item">AMP™ motor power cord is 6 ft non-extendable — plan outlet location accordingly</div>
-      <div class="disclaimer-item">Bracket spacing: end brackets + first center within 24" of stack end, then 48" intervals</div>
-      <div class="disclaimer-item">10-year warranty on hardware · 7 years on operational cords · 5 years on motorization</div>
-      <div class="disclaimer-item">Contact Kirsch: (800) 252-2512</div>
-    </div>
-  </div>
+<button class="disclaimer-toggle" onclick="this.nextElementSibling.classList.toggle('open')" style="margin-top:16px">▶ Specifications &amp; warranty</button>
+<div class="disclaimer-body">
+  <div class="disclaimer-item">Minimum track: 18" · Maximum track: 192" (16 ft)</div>
+  <div class="disclaimer-item">Max fabric weight: 64 lbs total · 4 lbs per linear foot</div>
+  <div class="disclaimer-item">Tracks over 96" (8 ft) include 1 splice + 1 keystone</div>
+  <div class="disclaimer-item">Cannot bend or curve the track when motorized (AMP)</div>
+  <div class="disclaimer-item">One AMP™ motor per rod only — never two</div>
+  <div class="disclaimer-item">Unfinished finish NOT available on Estate™ Traverse Rods (stationary poles only)</div>
+  <div class="disclaimer-item">AMP™ motor power cord is 6 ft non-extendable — plan outlet location accordingly</div>
+  <div class="disclaimer-item">Bracket spacing: end brackets + first center within 24" of stack end, then 48" intervals</div>
+  <div class="disclaimer-item">10-year warranty on hardware · 7 years on operational cords · 5 years on motorization</div>
+  <div class="disclaimer-item">Contact Kirsch: (800) 252-2512</div>
 </div>
 
 </div><!-- /configurator -->
 
-<!-- SPEC PANEL -->
+<!-- SUMMARY CARD -->
 <div>
-  <div class="spec-panel">
-    <div class="spec-title">Live Specification</div>
-    <div class="spec-row"><span class="spec-key">Rod</span><span class="spec-val">Kirsch 1⅜" Estate™</span></div>
-    <div class="spec-row"><span class="spec-key">Collection</span><span class="spec-val empty" id="sp-coll">— select above</span></div>
-    <div class="spec-row"><span class="spec-key">Finish</span><span class="spec-val empty" id="sp-finish">—</span></div>
-    <div class="spec-row"><span class="spec-key">Header</span><span class="spec-val empty" id="sp-header">—</span></div>
-    <div class="spec-row"><span class="spec-key">Draw</span><span class="spec-val empty" id="sp-draw">—</span></div>
-    <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val empty" id="sp-mount">—</span></div>
-    <div class="spec-row"><span class="spec-key">Track length</span><span class="spec-val empty" id="sp-len">—</span></div>
-    <div class="spec-row"><span class="spec-key">Brackets (est.)</span><span class="spec-val empty" id="sp-brackets">—</span></div>
-    <div class="spec-row"><span class="spec-key">Finial</span><span class="spec-val empty" id="sp-finial">—</span></div>
-    <div class="spec-row"><span class="spec-key">Motorization</span><span class="spec-val empty" id="sp-motor">Manual</span></div>
-    <div class="spec-divider"></div>
-    <div class="spec-row"><span class="spec-key">Pricing</span><span class="spec-val" style="color:var(--gold)">Custom quote</span></div>
-    <div class="spec-row"><span class="spec-key">Warranty</span><span class="spec-val">10 yr hardware · 5 yr motor</span></div>
+  <div class="summary-card" id="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Kirsch 1⅜" Estate™ Traverse Rod</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="sp-len">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sp-mount">—</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sp-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Collection</span><span class="sr-val" id="sp-coll">—</span></div>
+    <div class="summary-row"><span class="sr-key">Finish</span><span class="sr-val" id="sp-finish">—</span></div>
+    <div class="summary-row"><span class="sr-key">Header</span><span class="sr-val" id="sp-header">—</span></div>
+    <div class="summary-row"><span class="sr-key">Draw</span><span class="sr-val" id="sp-draw">—</span></div>
+    <div class="summary-row"><span class="sr-key">Brackets (est.)</span><span class="sr-val" id="sp-brackets">—</span></div>
+    <div class="summary-row"><span class="sr-key">Finial</span><span class="sr-val" id="sp-finial">—</span></div>
+    <div class="summary-row"><span class="sr-key">Motorization</span><span class="sr-val" id="sp-motor">Manual</span></div>
+    <div class="summary-row"><span class="sr-key">Price</span><span class="sr-val" style="color:var(--gold)">Custom quote — we confirm pricing</span></div>
+    <div class="summary-note">10-year hardware warranty · 5-year motor warranty.</div>
     <div style="margin-top:14px"><a href="tel:6097421720" class="btn-gold" style="display:block;text-align:center;padding:11px;font-size:13px">(609) 742-1720 &middot; 24/7</a></div>
   </div>
   <div style="background:var(--gold-mid);border:1px solid #e8e8e4;border-radius:12px;padding:14px;margin-top:14px">
     <div style="font-size:11px;font-weight:600;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:4px">Also available</div>
     <div style="font-size:12px;color:#555;line-height:1.8">
       <a href="kirsch-rods.html" style="color:var(--gold)">Full Kirsch configurator (all rods) →</a><br>
-      Kirsch 2" Estate Traverse — ask for quote<br>
+      <a href="kirsch-2in-estate-traverse.html" style="color:var(--gold)">Kirsch 2" Estate Traverse →</a><br>
       Kirsch Architrac® traverse tracks →
     </div>
   </div>
 </div>
 
 </div><!-- /config-layout -->
+
 
 <div class="cta-banner">
   <div><h2>Not sure which finial or finish is right?</h2><p>We carry physical samples and can bring them to your home. Call or text Justin anytime.</p></div>
@@ -509,10 +371,11 @@
 <script src="../js/shared.js"></script>
 <script src="../js/pages/kirsch-estate-traverse.js"></script>
 <script>
-// Canonical final "Your details" contact + files step — identical on every product.
-document.getElementById('pb-final-step').innerHTML = pbContactStepHTML({ bare: true, cartFn: 'addKirschEstateTraverseToCart()', submitFn: 'submitQuote()' });
-
-document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
+// Exact rod length + bracket count live inside Step 1 "Rod measurements".
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ bare: true });
+// Shared Delivery (second-to-last) and "Your details" (last) steps.
+document.getElementById('pb-delivery-step').outerHTML = pbDeliveryStepHTML({ stepNum: 11 });
+document.getElementById('pb-final-step').outerHTML = pbContactStepHTML({ stepNum: 12, cartFn: 'addKirschEstateTraverseToCart()', submitFn: 'submitQuote()' });
 </script>
 </body>
 </html>
