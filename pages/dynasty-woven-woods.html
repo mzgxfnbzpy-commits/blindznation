@@ -29,7 +29,6 @@
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 .config-layout{display:grid;grid-template-columns:1fr 308px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
-.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
 .step-warn{background:#FEF3CD;border:1px solid #FBBF24;border-radius:8px;padding:9px 13px;font-size:12px;color:#92400E;margin-top:8px;display:none}
 .step-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-top:8px;display:none}
 .step-warn.show,.step-err.show{display:block}
@@ -40,68 +39,20 @@
 .pat-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
 .pat-num{font-size:9px;color:#999;margin-bottom:2px}
 .pat-name{font-size:11px;font-weight:500;color:#222;line-height:1.3}
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
-.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
-.dim-inputs{display:flex;gap:6px;align-items:center}
-.dim-whole{width:60px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
-.dim-frac{padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff}
 .computed-box{background:#F9F7F4;border:1px solid #e4e0d8;border-radius:8px;padding:10px 14px;margin-top:10px}
 .cv-row{display:flex;justify-content:space-between;font-size:12px;padding:2px 0}
 .cv-key{color:#777}.cv-val{font-weight:500;color:#111}
 .sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 6px}
-.liner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-top:8px}
-.liner-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:10px 12px;cursor:pointer;transition:all .15s}
-.liner-card:hover{border-color:var(--gold)}
-.liner-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.liner-title{font-size:12px;font-weight:600;color:#222;margin-bottom:4px}
-.liner-sub{font-size:10px;color:#777;line-height:1.4}
-.color-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.clr-btn{padding:5px 12px;border:1.5px solid #e8e8e4;border-radius:6px;font-size:11px;cursor:pointer;background:#fff;transition:all .12s}
-.clr-btn:hover{border-color:var(--gold)}
-.clr-btn.sel{border-color:var(--gold);background:var(--gold-mid);color:#0A4A42;font-weight:500}
-.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
-.addon-row:hover{border-color:var(--gold)}
-.addon-row.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
-.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#111110}
-.addon-name{font-size:13px;font-weight:500;color:#111;flex:1}
-.addon-sub{font-size:11px;color:#666;margin-top:1px}
-.addon-price{font-size:12px;font-weight:600;color:var(--gold);flex-shrink:0}
-.spinner-row{display:flex;align-items:center;gap:9px;margin-top:8px}
-.spin-btn{width:32px;height:32px;border:1px solid #ddd;border-radius:7px;background:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.spin-btn:hover{border-color:var(--gold)}
-.spin-num{width:44px;text-align:center;border:1px solid #ddd;border-radius:7px;font-size:14px;padding:5px}
-.spin-label{font-size:12px;color:#666}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
 .form-group input,.form-group textarea{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:inherit;box-sizing:border-box}
 .form-group textarea{resize:vertical;min-height:72px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
-.delivery-wrap{background:#F9F7F4;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px;margin-bottom:14px}
-.submit-btn{width:100%;padding:14px;background:var(--gold);color:#111110;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:2px}
-.submit-btn:hover{opacity:.88}
 .form-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-bottom:10px;display:none}
 .success-box{background:#EEFBE8;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;display:none}
 .success-box h3{font-size:15px;font-weight:600;color:#14532d;margin-bottom:6px}
 .success-box p{font-size:13px;color:#166534;line-height:1.6}
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
-.qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
-.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
-.qrow-label{color:var(--text-muted)}
-.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0}
-.qrow-surcharge{color:#FCA044}
-.qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
-.qtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700}
-.qtotal-label{color:var(--cream)}.qtotal-val{color:var(--gold)}
-.qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
-.mo-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
-.mo-card{border:1.5px solid #e8e8e4;border-radius:8px;padding:8px 10px;cursor:pointer;transition:all .12s}
-.mo-card:hover{border-color:var(--gold)}
-.mo-card.sel{border-color:var(--gold);background:var(--gold-mid)}
-.mo-name{font-size:12px;font-weight:500;color:#222;margin-bottom:2px}
-.mo-price{font-size:11px;color:var(--gold);font-weight:600}
 </style>
 </head>
 <body data-page="Shades & blinds">
@@ -146,23 +97,24 @@
     <div class="computed-box" id="size-box" style="display:none">
       <div class="cv-row"><span class="cv-key">Entered size</span><span class="cv-val" id="cv-size">—</span></div>
       <div class="cv-row"><span class="cv-key">Pricing bracket</span><span class="cv-val" id="cv-bracket">—</span></div>
-      <div class="cv-row"><span class="cv-key">Base price (before surcharges)</span><span class="cv-val" id="cv-base">—</span></div>
+      <div class="cv-row cv-price"><span class="cv-key">Base price (before surcharges)</span><span class="cv-val" id="cv-base">—</span></div>
     </div>
 
     <!-- Mount type -->
-    <div class="sub-label" style="margin-top:14px">Mount type</div>
-    <div class="opt-row" id="grp-mount">
-      <button class="opt-btn" onclick="pickMount(this,'Inside mount')">Inside mount</button>
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
+    <div class="opt-row" id="grp-mount" style="margin-bottom:6px">
+      <button class="opt-btn sel" onclick="pickMount(this,'Inside mount')">Inside mount</button>
       <button class="opt-btn" onclick="pickMount(this,'Outside mount')">Outside mount</button>
     </div>
-    <div class="step-note">Inside mount — flush inside window frame, deductions taken by Wallace. Outside mount — mounts above &amp; beyond frame, L-shaped side returns included at no charge.</div>
+    <div class="step-note" style="margin-bottom:12px">Inside mount — flush inside window frame, deductions taken by Wallace. Outside mount — mounts above &amp; beyond frame, L-shaped side returns included at no charge.</div>
 
-    <!-- Quantity -->
-    <div class="sub-label" style="margin-top:14px">Quantity</div>
-    <div class="qty-btns">
-      <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
-      <input class="qty-num" type="number" id="qty" value="1" min="1" max="99" oninput="calcPrice()">
-      <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:12px;color:#666">Qty:</span>
+      <div class="qty-btns">
+        <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
+        <input class="qty-num" type="number" id="qty" value="1" min="1" max="99" oninput="calcPrice()">
+        <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+      </div>
     </div>
     <div class="step-note">Shade W 18–96&Prime; &middot; H 24–120&Prime;. Standard max 96&Prime; &times; 96&Prime;; larger heights up to 120&Prime; available — confirm before ordering. For 2-on-1 headrail (max combined 102&Prime;), price each shade separately.</div>
   </div>
@@ -172,7 +124,7 @@
 <div class="step-block" id="step1">
   <div class="step-head" onclick="toggleStep('step1')">
     <div class="step-num">2</div>
-    <div class="step-head-title">Pattern &amp; Collection</div>
+    <div class="step-head-title">Pattern</div>
     <div class="step-head-val" id="s1val">—</div>
   </div>
   <div class="step-body">
@@ -251,14 +203,14 @@
 <div class="step-block" id="step2">
   <div class="step-head" onclick="toggleStep('step2')">
     <div class="step-num">3</div>
-    <div class="step-head-title">Shade Style</div>
+    <div class="step-head-title">Shade style</div>
     <div class="step-head-val" id="s2val">—</div>
   </div>
   <div class="step-body">
-    <div class="opt-row">
+    <div class="opt-row" id="grp-style">
       <button class="opt-btn" id="sc-waterfall" onclick="pickStyle(this,'Waterfall')">Waterfall</button>
       <button class="opt-btn" id="sc-flatfold" onclick="pickStyle(this,'Flat Fold')">Flat Fold</button>
-      <button class="opt-btn" id="sc-hobbled" onclick="pickStyle(this,'Hobbled')">Hobbled <span style="font-size:10px;color:#e67e22">+30%</span></button>
+      <button class="opt-btn" id="sc-hobbled" onclick="pickStyle(this,'Hobbled')">Hobbled</button>
     </div>
     <div class="step-note">Waterfall — 4&Prime; back valance, no front valance, rolls up in soft folds. Flat Fold — 6&Prime; front valance, crisp horizontal folds. Hobbled — 6&Prime; front valance, continuous soft folds when raised · 30% surcharge.</div>
     <div id="style-warn" class="step-warn"></div>
@@ -269,15 +221,15 @@
 <div class="step-block" id="step4">
   <div class="step-head" onclick="toggleStep('step4')">
     <div class="step-num">4</div>
-    <div class="step-head-title">Lift / Control</div>
+    <div class="step-head-title">Lift &amp; control</div>
     <div class="step-head-val" id="s4val">—</div>
   </div>
   <div class="step-body">
-    <div class="opt-row">
+    <div class="opt-row" id="grp-lift">
       <button class="opt-btn" id="lc-loop" onclick="pickLift(this,'Loop Chain')">Loop Chain</button>
-      <button class="opt-btn" id="lc-cordless" onclick="pickLift(this,'Cordless')">Cordless <span style="font-size:9px;background:#27500A;color:#fff;padding:1px 5px;border-radius:4px">CERTIFIED</span></button>
+      <button class="opt-btn" id="lc-cordless" onclick="pickLift(this,'Cordless')">Cordless</button>
       <button class="opt-btn" id="lc-tdbu" onclick="pickLift(this,'Cordless TDBU')">Cordless TDBU</button>
-      <button class="opt-btn" id="lc-motor" onclick="pickLift(this,'Motorized')">Motorized <span style="font-size:9px;background:#27500A;color:#fff;padding:1px 5px;border-radius:4px">CERTIFIED</span></button>
+      <button class="opt-btn" id="lc-motor" onclick="pickLift(this,'Motorized')">Motorized</button>
       <button class="opt-btn" id="lc-dual" onclick="pickLift(this,'Dual Shade')">Dual Shade</button>
     </div>
     <div class="step-note">Loop Chain — stainless or bronze metal chain, 1.5&Prime; slim or 2.5&Prime; regular clutch headrail, Waterfall &amp; Flat Fold only. Cordless (certified) — child &amp; pet safe, Waterfall &amp; Flat Fold only, 1.5&Prime; headrail. Cordless TDBU — top-down bottom-up, Flat Fold only, max 72&Prime; × 72&Prime;, pattern restrictions apply. Motorized (certified) — Rollease Acmeda Automate motor, rechargeable Li-ion, Waterfall &amp; Flat Fold only, min 26&Prime; × 36&Prime;. Dual Shade — front woven + back liner, 3.5&Prime; headrail, Waterfall &amp; Flat Fold only, requires Privacy or Blackout liner.</div>
@@ -289,30 +241,15 @@
 
     <!-- Motor accessories (shown when motorized selected) -->
     <div id="motor-section" style="display:none">
-      <div class="sub-label" style="margin-top:14px">Motorization accessories <span style="font-weight:400;color:#999">(add what you need)</span></div>
-      <div id="motor-acc-grid" class="mo-grid">
-        <div class="mo-card" id="ma-remote" onclick="toggleMotorAcc('remote',this)">
-          <div class="mo-name">Paradigm Remote</div>
-          <div class="mo-price">$68 &middot; RF 15-channel</div>
-        </div>
-        <div class="mo-card" id="ma-charger" onclick="toggleMotorAcc('charger',this)">
-          <div class="mo-name">Li-Ion Charger 1.8M</div>
-          <div class="mo-price">$52</div>
-        </div>
-        <div class="mo-card" id="ma-ext" onclick="toggleMotorAcc('ext',this)">
-          <div class="mo-name">Extension Cable 1.2M</div>
-          <div class="mo-price">$21</div>
-        </div>
-        <div class="mo-card" id="ma-solar" onclick="toggleMotorAcc('solar',this)">
-          <div class="mo-name">Solar Panel V1</div>
-          <div class="mo-price">$130</div>
-        </div>
-        <div class="mo-card" id="ma-hub" onclick="toggleMotorAcc('hub',this)">
-          <div class="mo-name">Pulse 2 Hub</div>
-          <div class="mo-price">$416 &middot; ships separately</div>
-        </div>
+      <div class="sub-label" style="margin-top:14px">Motorization accessories</div>
+      <div class="opt-row" id="motor-acc-grid">
+        <button class="opt-btn" id="ma-remote" onclick="toggleMotorAcc('remote',this)">Paradigm Remote</button>
+        <button class="opt-btn" id="ma-charger" onclick="toggleMotorAcc('charger',this)">Li-Ion Charger 1.8M</button>
+        <button class="opt-btn" id="ma-ext" onclick="toggleMotorAcc('ext',this)">Extension Cable 1.2M</button>
+        <button class="opt-btn" id="ma-solar" onclick="toggleMotorAcc('solar',this)">Solar Panel V1</button>
+        <button class="opt-btn" id="ma-hub" onclick="toggleMotorAcc('hub',this)">Pulse 2 Hub</button>
       </div>
-      <div class="step-note">Motor (Automate™ Li-ion, 25mm/1.1Nm): $515. Motor price is added automatically when Motorized is selected. Accessories above are optional add-ons. Charger quantity ordered separately per shade.</div>
+      <div class="step-note">Select any. Automate&trade; Li-ion motor (25mm/1.1Nm) is included when Motorized is selected. Paradigm Remote &mdash; RF 15-channel. Pulse 2 Hub ships separately. Charger quantity ordered separately per shade.</div>
     </div>
   </div>
 </div>
@@ -325,28 +262,20 @@
     <div class="step-head-val" id="s5val">No liner</div>
   </div>
   <div class="step-body">
-    <div class="liner-grid">
-      <div class="liner-card sel" id="ln-none" onclick="pickLiner('none',this)">
-        <div class="liner-title">No liner</div>
-        <div class="liner-sub">Natural woven only</div>
-      </div>
-      <div class="liner-card" id="ln-privacy" onclick="pickLiner('privacy',this)">
-        <div class="liner-title">Privacy Liner</div>
-        <div class="liner-sub">Light filtering · exterior side off-white</div>
-      </div>
-      <div class="liner-card" id="ln-blackout" onclick="pickLiner('blackout',this)">
-        <div class="liner-title">Blackout Liner</div>
-        <div class="liner-sub">Blackout · exterior side off-white</div>
-      </div>
+    <div class="opt-row" id="grp-liner">
+      <button class="opt-btn sel" id="ln-none" onclick="pickLiner('none',this)">No liner</button>
+      <button class="opt-btn" id="ln-privacy" onclick="pickLiner('privacy',this)">Privacy liner</button>
+      <button class="opt-btn" id="ln-blackout" onclick="pickLiner('blackout',this)">Blackout liner</button>
     </div>
+    <div class="step-note">No liner &mdash; natural woven only. Privacy liner &mdash; light filtering, exterior side off-white. Blackout liner &mdash; exterior side off-white.</div>
     <div id="liner-color-wrap" style="display:none">
       <div class="sub-label">Liner color</div>
-      <div class="color-row" id="liner-colors">
-        <button class="clr-btn" onclick="pickLinerColor('White','2294',this)">White</button>
-        <button class="clr-btn" onclick="pickLinerColor('Natural','2277',this)">Natural</button>
-        <button class="clr-btn" onclick="pickLinerColor('Cream','2290',this)">Cream</button>
-        <button class="clr-btn" onclick="pickLinerColor('Teak','2291',this)">Teak</button>
-        <button class="clr-btn" onclick="pickLinerColor('Gray','2273',this)">Gray</button>
+      <div class="opt-row" id="liner-colors">
+        <button class="opt-btn" onclick="pickLinerColor('White','2294',this)">White</button>
+        <button class="opt-btn" onclick="pickLinerColor('Natural','2277',this)">Natural</button>
+        <button class="opt-btn" onclick="pickLinerColor('Cream','2290',this)">Cream</button>
+        <button class="opt-btn" onclick="pickLinerColor('Teak','2291',this)">Teak</button>
+        <button class="opt-btn" onclick="pickLinerColor('Gray','2273',this)">Gray</button>
       </div>
     </div>
     <div id="liner-warn" class="step-warn"></div>
@@ -354,105 +283,77 @@
   </div>
 </div>
 
-<!-- STEP 6: EDGE BINDING + VALANCE -->
+<!-- STEP 6: EDGE BINDING -->
 <div class="step-block" id="step6">
   <div class="step-head" onclick="toggleStep('step6')">
     <div class="step-num">6</div>
-    <div class="step-head-title">Edge Binding &amp; Valance</div>
-    <div class="step-head-val" id="s6val">None</div>
+    <div class="step-head-title">Edge binding</div>
+    <div class="step-head-val" id="s6val">No edge binding</div>
   </div>
   <div class="step-body">
-    <div class="sub-label">Edge Binding <span style="font-weight:400;color:#999">(optional — twill sewn on all edges)</span></div>
-    <div class="opt-row">
+    <div class="opt-row" id="grp-eb">
       <button class="opt-btn sel" id="eb-none" onclick="pickEB(this,'none')">No edge binding</button>
       <button class="opt-btn" id="eb-half" onclick="pickEB(this,'0.5')">½&Prime; Twill</button>
       <button class="opt-btn" id="eb-1half" onclick="pickEB(this,'1.5')">1½&Prime; Twill</button>
     </div>
-    <div class="step-note">½&Prime; Twill — color-coordinated thread, sewn L/R/bottom + L/R valance. 1½&Prime; Twill — mitered corners, color-coordinated thread.</div>
+    <div class="step-note">Twill sewn on all edges. ½&Prime; Twill — color-coordinated thread, sewn L/R/bottom + L/R valance. 1½&Prime; Twill — mitered corners, color-coordinated thread.</div>
     <div id="eb-warn" class="step-warn"></div>
+  </div>
+</div>
 
-    <div class="sub-label" style="margin-top:14px">Hobble Valance <span style="font-weight:400;color:#999">(optional — replaces standard valance)</span></div>
-    <div id="valance-note" class="step-note" style="margin-bottom:6px">Standard valance is included. Upgrade to hobble valance for a textured layered look. 38mm wood headrail. Each fold is 6&Prime;.</div>
-    <div class="opt-row">
-      <button class="opt-btn sel" id="val-std" onclick="pickValance(this,'Standard (included)')">Standard Valance</button>
+<!-- STEP 7: VALANCE -->
+<div class="step-block" id="step6v">
+  <div class="step-head" onclick="toggleStep('step6v')">
+    <div class="step-num">7</div>
+    <div class="step-head-title">Valance</div>
+    <div class="step-head-val" id="s6vval">Standard valance</div>
+  </div>
+  <div class="step-body">
+    <div class="opt-row" id="grp-valance">
+      <button class="opt-btn sel" id="val-std" onclick="pickValance(this,'Standard (included)')">Standard valance</button>
       <button class="opt-btn" id="val-12" onclick="pickValance(this,'12&quot; Double Hobble Valance')">12&Prime; Double Hobble</button>
       <button class="opt-btn" id="val-18" onclick="pickValance(this,'18&quot; Triple Hobble Valance')">18&Prime; Triple Hobble</button>
     </div>
-    <div class="step-note">Standard Valance — included with shade. 12&Prime; Double Hobble — upgrade valance, 2 folds. 18&Prime; Triple Hobble — upgrade valance, 3 folds.</div>
+    <div id="valance-note" class="step-note">Standard valance — included with shade. Hobble valance replaces the standard valance for a textured layered look: 12&Prime; Double Hobble (2 folds) or 18&Prime; Triple Hobble (3 folds). 38mm wood headrail. Each fold is 6&Prime;.</div>
   </div>
 </div>
 
-<!-- STEP 7: HARDWARE OPTIONS -->
+<!-- STEP 8: HARDWARE OPTIONS -->
 <div class="step-block" id="step7">
   <div class="step-head" onclick="toggleStep('step7')">
-    <div class="step-num">7</div>
-    <div class="step-head-title">Hardware Options</div>
+    <div class="step-num">8</div>
+    <div class="step-head-title">Hardware options <span style="font-weight:400;color:#888">(optional)</span></div>
     <div class="step-head-val" id="s7val">Standard</div>
   </div>
   <div class="step-body">
-    <div class="step-note" style="margin-bottom:10px">All items below are at no charge unless noted. Outside mount shades always include L-shaped side returns.</div>
-    <div class="addon-row" id="hw-holddown" onclick="toggleHW(this,'Hold Down Clips')">
-      <div style="display:flex;align-items:center;gap:10px;flex:1">
-        <div class="addon-check">✓</div>
-        <div><div class="addon-name">Hold Down Clips</div><div class="addon-sub">Keeps shade flush · Note: if selected with edge binding, bottom edge binding is omitted</div></div>
-      </div>
-      <div class="addon-price">No charge</div>
+    <div class="opt-row" id="grp-hw">
+      <button class="opt-btn" id="hw-holddown" onclick="toggleHW(this,'Hold Down Clips')">Hold down clips</button>
+      <button class="opt-btn" id="hw-ext-bracket" onclick="toggleHW(this,'Extension Brackets')">Extension brackets</button>
+      <button class="opt-btn" id="hw-im-returns" onclick="toggleHW(this,'Inside mount Side Returns (optional)')">Inside mount side returns</button>
+      <button class="opt-btn" id="hw-cutout" onclick="toggleHW(this,'Cut Out Required')">Cut out required</button>
+      <button class="opt-btn" id="hw-2on1" onclick="toggleHW(this,'2-on-1 Headrail')">2-on-1 headrail</button>
     </div>
-    <div class="addon-row" id="hw-ext-bracket" onclick="toggleHW(this,'Extension Brackets')">
-      <div style="display:flex;align-items:center;gap:10px;flex:1">
-        <div class="addon-check">✓</div>
-        <div><div class="addon-name">Extension Brackets</div><div class="addon-sub">3-1/8&Prime; bracket for extra projection · useful over deep trim</div></div>
-      </div>
-      <div class="addon-price">No charge</div>
-    </div>
-    <div class="addon-row" id="hw-im-returns" onclick="toggleHW(this,'Inside mount Side Returns (optional)')">
-      <div style="display:flex;align-items:center;gap:10px;flex:1">
-        <div class="addon-check">✓</div>
-        <div><div class="addon-name">Inside mount Side Returns</div><div class="addon-sub">Optional for IM shades · made from same woven material</div></div>
-      </div>
-      <div class="addon-price">No charge</div>
-    </div>
-    <div class="addon-row" id="hw-cutout" onclick="toggleHW(this,'Cut Out Required')">
-      <div style="display:flex;align-items:center;gap:10px;flex:1">
-        <div class="addon-check">✓</div>
-        <div><div class="addon-name">Cut Out Required</div><div class="addon-sub">Notch from any corner or edge · describe in notes</div></div>
-      </div>
-      <div class="addon-price">No charge</div>
-    </div>
-    <div class="addon-row" id="hw-2on1" onclick="toggleHW(this,'2-on-1 Headrail')">
-      <div style="display:flex;align-items:center;gap:10px;flex:1">
-        <div class="addon-check">✓</div>
-        <div><div class="addon-name">2-on-1 Headrail</div><div class="addon-sub">Two shades on one headrail · Flat Fold &amp; Waterfall only · not with Hobble or 3-on-1 · max combined width 102&Prime; · price each shade separately</div></div>
-      </div>
-      <div class="addon-price">No charge</div>
-    </div>
+    <div class="step-note">Select any &mdash; all at no charge. Outside mount shades always include L-shaped side returns. Hold down clips keep the shade flush (with edge binding, bottom edge binding is omitted). Extension brackets &mdash; 3-1/8&Prime; for extra projection over deep trim. Inside mount side returns &mdash; optional, same woven material. Cut out &mdash; notch from any corner or edge, describe in notes. 2-on-1 headrail &mdash; two shades on one headrail, Flat Fold &amp; Waterfall only, not with Hobble or 3-on-1, max combined width 102&Prime;.</div>
   </div>
 </div>
 
-<!-- STEP 8: DELIVERY -->
+<!-- STEP 9: DELIVERY -->
 <div class="step-block" id="step8">
   <div class="step-head" onclick="toggleStep('step8')">
-    <div class="step-num">8</div>
+    <div class="step-num">9</div>
     <div class="step-head-title">Delivery</div>
-    <div class="step-head-val" id="s8val">—</div>
+    <div class="step-head-val" id="s8val">Ship to me</div>
   </div>
   <div class="step-body">
-    <div class="delivery-wrap">
-      <div class="delivery-opt-grid">
-        <div class="delivery-opt-card sel" onclick="pickDel(this,'ship')">
-          <div class="delivery-opt-title">Ship to me</div>
-          <div class="delivery-opt-body">UPS or FedEx. Freight: $25 first shade + $8 each additional. Shades 90&#x2033;+ carry $80 oversize surcharge. Tariffs additional.</div>
-        </div>
-      </div>
-    </div>
+    <div id="pb-delivery-slot"></div>
   </div>
 </div>
 
-<!-- STEP 9: CONTACT + SUBMIT -->
+<!-- STEP 10: YOUR DETAILS -->
 <div class="step-block" id="step9">
   <div class="step-head" onclick="toggleStep('step9')">
-    <div class="step-num">9</div>
-    <div class="step-head-title">Your Info &amp; Submit</div>
+    <div class="step-num">10</div>
+    <div class="step-head-title">Your details</div>
     <div class="step-head-val" id="s9val">—</div>
   </div>
   <div class="step-body">
@@ -467,35 +368,40 @@
 
 </div><!-- /left -->
 
-<!-- QUOTE PANEL -->
+<!-- SUMMARY CARD -->
 <div>
-  <div class="quote-panel">
-    <div class="qp-title">Your Estimate</div>
-    <div class="qp-pending" id="qp-pending">Complete the steps on the left and we&rsquo;ll prepare your quote.</div>
-    <div id="qp-detail" style="display:none">
-      <div class="qrow"><span class="qrow-label">Product</span><span class="qrow-val">Dynasty Woven Woods</span></div>
-      <div class="qrow"><span class="qrow-label">Pattern</span><span class="qrow-val" id="qr-pat">—</span></div>
-      <div class="qrow"><span class="qrow-label">Price Group</span><span class="qrow-val" id="qr-grp">—</span></div>
-      <div class="qrow"><span class="qrow-label">Style</span><span class="qrow-val" id="qr-style">—</span></div>
-      <div class="qrow"><span class="qrow-label">Mount</span><span class="qrow-val" id="qr-mount">—</span></div>
-      <div class="qrow"><span class="qrow-label">Size</span><span class="qrow-val" id="qr-size">—</span></div>
-      <div class="qrow"><span class="qrow-label">Lift</span><span class="qrow-val" id="qr-lift">—</span></div>
-      <div class="qrow"><span class="qrow-label">Liner</span><span class="qrow-val" id="qr-liner">—</span></div>
-      <div class="qdiv"></div>
-      <div class="qrow"><span class="qrow-label">Base price</span><span class="qrow-val" id="qr-base">—</span></div>
-      <div class="qrow qrow-surcharge" id="qr-lift-row" style="display:none"><span class="qrow-label" id="qr-lift-lbl">Control surcharge</span><span class="qrow-val" id="qr-lift-s">—</span></div>
-      <div class="qrow qrow-surcharge" id="qr-hob-row" style="display:none"><span class="qrow-label">Hobbled +30%</span><span class="qrow-val" id="qr-hob-s">—</span></div>
-      <div class="qrow qrow-surcharge" id="qr-liner-row" style="display:none"><span class="qrow-label">Liner surcharge</span><span class="qrow-val" id="qr-liner-s">—</span></div>
-      <div class="qrow qrow-surcharge" id="qr-lhob-row" style="display:none"><span class="qrow-label">Liner hobbled +30%</span><span class="qrow-val" id="qr-lhob-s">—</span></div>
-      <div class="qrow qrow-surcharge" id="qr-eb-row" style="display:none"><span class="qrow-label">Edge binding</span><span class="qrow-val" id="qr-eb-s">—</span></div>
-      <div class="qrow qrow-surcharge" id="qr-val-row" style="display:none"><span class="qrow-label">Hobble valance</span><span class="qrow-val" id="qr-val-s">—</span></div>
-      <div class="qrow qrow-surcharge" id="qr-mot-row" style="display:none"><span class="qrow-label">Motor + accessories</span><span class="qrow-val" id="qr-mot-s">—</span></div>
-      <div class="qrow" id="qr-qty-row"><span class="qrow-label">Quantity</span><span class="qrow-val" id="qr-qty">1</span></div>
-      <div class="qrow qrow-surcharge" id="qr-fr-row" style="display:none"><span class="qrow-label">Freight (est.)</span><span class="qrow-val" id="qr-fr-s">—</span></div>
-      <div class="qdiv"></div>
-      <div class="qtotal"><span class="qtotal-label">Estimated Total</span><span class="qtotal-val" id="qr-total">—</span></div>
-      <div class="qnote">Estimated retail pricing. Final price confirmed with current Wallace Blinds price book before order. Prices subject to change.</div>
+  <div class="summary-card" id="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Dynasty Woven Woods</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="qr-size">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="qr-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="qr-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Pattern</span><span class="sr-val" id="qr-pat">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Group</span><span class="sr-val" id="qr-grp">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Style</span><span class="sr-val" id="qr-style">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Lift</span><span class="sr-val" id="qr-lift">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Liner</span><span class="sr-val" id="qr-liner">None</span></div>
+    <div class="summary-row"><span class="sr-key">Edge binding</span><span class="sr-val" id="qr-eb">None</span></div>
+    <div class="summary-row"><span class="sr-key">Valance</span><span class="sr-val" id="qr-val">Standard (included)</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="qr-del">Ship to me</span></div>
+    <div class="summary-row"><span class="sr-key">Estimate</span><span class="sr-val" id="s-quote">Custom quote &mdash; we confirm pricing</span></div>
+    <!-- Internal estimate: computed for the cart but never displayed (quote-only product). -->
+    <div class="price-breakdown" id="price-breakdown" style="display:none">
+      <div id="qp-pending"></div>
+      <div id="qp-detail" style="display:none">
+        <span id="qr-base"></span>
+        <div id="qr-lift-row"><span id="qr-lift-lbl"></span><span id="qr-lift-s"></span></div>
+        <div id="qr-hob-row"><span id="qr-hob-s"></span></div>
+        <div id="qr-liner-row"><span id="qr-liner-s"></span></div>
+        <div id="qr-lhob-row"><span id="qr-lhob-s"></span></div>
+        <div id="qr-eb-row"><span id="qr-eb-s"></span></div>
+        <div id="qr-val-row"><span id="qr-val-s"></span></div>
+        <div id="qr-mot-row"><span id="qr-mot-s"></span></div>
+        <div id="qr-fr-row"><span id="qr-fr-s"></span></div>
+        <span id="qr-total"></span>
+      </div>
     </div>
+    <div class="summary-note">Custom quote &mdash; final price confirmed with the current Wallace Blinds price book before order.</div>
   </div>
 </div>
 
@@ -506,6 +412,9 @@
 <script src="../js/fabric-picker.js"></script>
 <script src="../js/pages/dynasty-woven-woods.js"></script>
 <script>
+// Canonical Delivery step (shared.js pbDeliveryStepHTML) — choice lives in window.pbDelivery.
+document.getElementById('pb-delivery-slot').innerHTML =
+  pbDeliveryStepHTML({ bare: true, onPick: 'dynPickDel()' });
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addDynastyToCart()', submitFn: 'submitQuote()' });

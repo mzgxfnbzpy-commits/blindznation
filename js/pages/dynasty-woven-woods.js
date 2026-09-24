@@ -52,7 +52,7 @@ const SLIM60=['B3311','B3312'];
 // ── STATE ─────────────────────────────────────────────────────────────────────
 const S={
   patNum:'',patName:'',grp:0,
-  style:'',mount:'',
+  style:'',mount:'Inside mount',
   w:0,h:0,qty:1,
   lift:'',linerType:'none',linerColor:'',linerCode:'',
   eb:'none',valance:'Standard (included)',
@@ -261,7 +261,23 @@ function validateLift(){
   }
 }
 
+// Summary card configuration rows — always shown; the dollar estimate stays hidden.
+function dynSummary(){
+  setText('qr-size',(S.w&&S.h)?(S.w+'″ × '+S.h+'″'):'—');
+  setText('qr-mount',S.mount);
+  setText('qr-qty',(S.qty||1)+' shade'+((S.qty||1)>1?'s':''));
+  setText('qr-pat',S.patNum?(S.patNum+' '+S.patName):'—');
+  setText('qr-grp',S.grp?('Group '+S.grp):'—');
+  setText('qr-style',S.style);
+  setText('qr-lift',S.lift);
+  setText('qr-liner',S.linerType==='none'?'None':capitalize(S.linerType)+(S.linerColor?' ('+S.linerColor+' '+S.linerCode+')':''));
+  setText('qr-eb',S.eb==='none'?'None':(S.eb==='0.5'?'½″ Twill':'1½″ Twill'));
+  setText('qr-val',S.valance);
+  setText('qr-del',(typeof pbDeliveryLabel==='function')?pbDeliveryLabel():'Ship to me');
+}
+
 function updateQuote(){
+  dynSummary();
   const base=getBasePrice(S.grp,S.w,S.h);
   const ready=S.patNum&&S.style&&S.mount&&S.w&&S.h&&S.lift;
   if(!ready){showEl('qp-pending',true);showEl('qp-detail',false);return;}
@@ -370,6 +386,7 @@ function pickDynastyPattern(code){
   validateLift(); calcPrice(); updateQuote();
 }
 dynBuildPicker();
+document.addEventListener('DOMContentLoaded',function(){ updateWindowVal(); dynSummary(); });
 
 function pickStyle(el,style){
   document.querySelectorAll('#step2 .opt-btn').forEach(c=>c.classList.remove('sel'));
@@ -447,29 +464,22 @@ function toggleMotorAcc(key,el){
 }
 
 function pickLiner(type,el){
-  document.querySelectorAll('.liner-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#grp-liner .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.linerType=type;
   S.linerColor=''; S.linerCode='';
   const wrap=document.getElementById('liner-color-wrap');
   wrap.style.display=(type!=='none')?'block':'none';
   if(type!=='none'){
-    document.querySelectorAll('#liner-colors .clr-btn').forEach(b=>b.classList.remove('sel'));
+    document.querySelectorAll('#liner-colors .opt-btn').forEach(b=>b.classList.remove('sel'));
   }
   document.getElementById('s5val').textContent=type==='none'?'No liner':capitalize(type)+' liner';
   markDone('step5');
-  // Update liner code suffix in color buttons based on type
-  document.querySelectorAll('#liner-colors .clr-btn').forEach(b=>{
-    b.onclick=function(){
-      const parts=b.getAttribute('onclick').match(/pickLinerColor\('([^']+)','([^']+)'/);
-      if(parts) pickLinerColor(parts[1],parts[2],this);
-    };
-  });
   validateLift(); calcPrice(); updateQuote();
 }
 
 function pickLinerColor(color,codeBase,el){
-  document.querySelectorAll('#liner-colors .clr-btn').forEach(b=>b.classList.remove('sel'));
+  document.querySelectorAll('#liner-colors .opt-btn').forEach(b=>b.classList.remove('sel'));
   el.classList.add('sel');
   const suffix=S.linerType==='blackout'?'BO':'P';
   S.linerColor=color;
@@ -479,8 +489,7 @@ function pickLinerColor(color,codeBase,el){
 }
 
 function pickEB(el,type){
-  // EB pills are the first 3 buttons in #step6; valance buttons (index 3+) keep their highlight.
-  document.querySelectorAll('#step6 .opt-btn').forEach((c,i)=>{ if(i<3) c.classList.remove('sel'); });
+  document.querySelectorAll('#grp-eb .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.eb=type;
   updateEBVal();
@@ -495,10 +504,7 @@ function pickEB(el,type){
 }
 
 function pickValance(el,val){
-  // Only update valance cards within step6
-  document.querySelectorAll('#step6 .opt-btn').forEach((c,i)=>{
-    if(i>=3) c.classList.remove('sel'); // 0,1,2 are EB pills; 3,4,5 are valance
-  });
+  document.querySelectorAll('#grp-valance .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.valance=val;
   updateEBVal();
@@ -506,17 +512,14 @@ function pickValance(el,val){
 }
 
 function updateEBVal(){
-  const eb=S.eb==='none'?'No EB':(S.eb==='0.5'?'½″ EB':'1½″ EB');
-  const val=S.valance==='Standard (included)'?'Std valance':S.valance.replace('Valance','val.');
-  document.getElementById('s6val').textContent=eb+' · '+val;
-  markDone('step6');
+  document.getElementById('s6val').textContent=S.eb==='none'?'No edge binding':(S.eb==='0.5'?'½″ Twill':'1½″ Twill');
+  document.getElementById('s6vval').textContent=S.valance==='Standard (included)'?'Standard valance':S.valance;
+  markDone('step6'); markDone('step6v');
 }
 
 function toggleHW(el,label){
   el.classList.toggle('sel');
-  const check=el.querySelector('.addon-check');
   const isOn=el.classList.contains('sel');
-  check.style.color=isOn?'#111110':'transparent';
   if(isOn){if(!S.hw.includes(label))S.hw.push(label);}
   else{S.hw=S.hw.filter(v=>v!==label);}
   // Hold down + EB conflict warning
@@ -531,17 +534,16 @@ function toggleHW(el,label){
 }
 
 function adjQty(d){
-  const el=document.getElementById('qty');
-  el.value=Math.max(1,Math.min(99,(parseInt(el.value)||1)+d));
-  S.qty=parseInt(el.value);
+  pbAdjQty('qty',d,1,99);
+  S.qty=parseInt(document.getElementById('qty').value);
   calcPrice();
 }
 
-function pickDel(btn,key){
-  document.querySelectorAll('.delivery-opt-card').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  S.del=key;
-  document.getElementById('s8val').textContent=key==='ship'?'Ship to me':'Pick up';
+// Delivery — shared pbDeliveryStepHTML. As before, the freight estimate is only
+// added once the customer actually picks "Ship to me" (S.del starts empty).
+function dynPickDel(){
+  S.del=(window.pbDelivery==='install')?'install':'ship';
+  document.getElementById('s8val').textContent=(typeof pbDeliveryLabel==='function')?pbDeliveryLabel():'Ship to me';
   markDone('step8');
   updateQuote();
 }
@@ -645,7 +647,7 @@ function submitQuote(){
     '  ESTIMATED TOTAL: $'+Math.round(total).toLocaleString(),
     '',
     'DELIVERY',
-    '  '+'Ship to me (UPS/FedEx)',
+    '  '+((typeof pbDeliveryLabel==='function')?pbDeliveryLabel():'Ship to me'),
     '',
     'CUSTOMER',
     '  Name: '+name,
