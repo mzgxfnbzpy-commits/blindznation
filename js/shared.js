@@ -2003,15 +2003,15 @@ function pbShowQuoteModal(lines, productName, estimate, files) {
               '<div style="font-size:24px;font-weight:700;color:var(--espresso)">$' + _pbQuoteEstimate.toFixed(0) + '</div>' +
             '</div>'
           : '') +
-        '<div class="pb-qm-lbl">Your Information</div>' +
+        '<div class="pb-qm-lbl">Your details</div>' +
+        // Same fields, order and wording as the Your details step on every product.
+        '<div class="pb-qm-field"><label>Name *</label><input id="pbq-fname" data-pb-contact="name" type="text" placeholder="Jane Smith" autocomplete="name"></div>' +
+        '<div class="pb-qm-field"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input id="pbq-address" data-pb-contact="address" type="text" placeholder="123 Main St, Philadelphia PA 19106" autocomplete="street-address"></div>' +
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-          '<div class="pb-qm-field"><label>First name *</label><input id="pbq-fname" type="text" placeholder="Jane" autocomplete="given-name"></div>' +
-          '<div class="pb-qm-field"><label>Last name *</label><input id="pbq-lname" type="text" placeholder="Smith" autocomplete="family-name"></div>' +
+          '<div class="pb-qm-field"><label>Phone *</label><input id="pbq-phone" data-pb-contact="phone" type="tel" placeholder="(215) 555-0100" autocomplete="tel"></div>' +
+          '<div class="pb-qm-field"><label>Email *</label><input id="pbq-email" data-pb-contact="email" type="email" placeholder="jane@example.com" autocomplete="email"></div>' +
         '</div>' +
-        '<div class="pb-qm-field"><label>Email address *</label><input id="pbq-email" type="email" placeholder="jane@example.com" autocomplete="email"></div>' +
-        '<div class="pb-qm-field"><label>Phone number *</label><input id="pbq-phone" data-pb-contact="phone" type="tel" placeholder="(215) 555-0100" autocomplete="tel"></div>' +
-        '<div class="pb-qm-field"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input id="pbq-address" data-pb-contact="address" type="text" placeholder="Street, City, State" autocomplete="street-address"></div>' +
-        '<div class="pb-qm-field"><label>Additional notes <span style="font-weight:400;color:#888">(optional)</span></label><textarea id="pbq-notes" rows="3" placeholder="Anything else — overall timeline, install questions..."></textarea></div>' +
+        '<div class="pb-qm-field"><label>Notes <span style="font-weight:400;color:#888">(optional)</span></label><textarea id="pbq-notes" rows="3" placeholder="Anything else — overall timeline, install questions..."></textarea></div>' +
         '<div class="pb-qm-err" id="pbq-err"></div>' +
         pbTermsCheckboxHTML('pbq-terms') +
         '<button class="pb-qm-submit" id="pbq-submit" onclick="pbSubmitQuote()">Submit Order for Review &#8594;</button>' +
@@ -2027,13 +2027,8 @@ function pbShowQuoteModal(lines, productName, estimate, files) {
   document.body.appendChild(ov);
   // Pre-fill from saved contact
   var _ck = pbGetContact();
-  if (_ck.name) {
-    var _pts = _ck.name.trim().split(' ');
-    var _fnEl = document.getElementById('pbq-fname');
-    var _lnEl = document.getElementById('pbq-lname');
-    if (_fnEl && !_fnEl.value) _fnEl.value = _pts[0] || '';
-    if (_lnEl && !_lnEl.value) _lnEl.value = _pts.slice(1).join(' ') || '';
-  }
+  var _fnEl = document.getElementById('pbq-fname');
+  if (_fnEl && !_fnEl.value && _ck.name) _fnEl.value = _ck.name.trim();
   var _emEl = document.getElementById('pbq-email');
   var _phEl = document.getElementById('pbq-phone');
   if (_emEl && !_emEl.value && _ck.email) _emEl.value = _ck.email;
@@ -2891,10 +2886,10 @@ function pbShowContact(title) {
           '</div>' +
           '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><div style="flex:1;height:1px;background:#eee"></div><span style="font-size:11px;color:#bbb">or send us a message</span><div style="flex:1;height:1px;background:#eee"></div></div>' +
           '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">' +
-            '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Your name *</label><input id="' + uid + '-name" type="text" placeholder="Jane Smith" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
+            '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Name *</label><input id="' + uid + '-name" type="text" placeholder="Jane Smith" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
             '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone *</label><input id="' + uid + '-phone" type="tel" placeholder="(215) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
           '</div>' +
-          '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Message / notes</label><textarea id="' + uid + '-msg" rows="3" placeholder="What are you looking for? Window sizes, room, timeline, questions..." style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea></div>' +
+          '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Notes</label><textarea id="' + uid + '-msg" rows="3" placeholder="What are you looking for? Window sizes, room, timeline, questions..." style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea></div>' +
           '<div style="border:1.5px dashed #C9A96E;border-radius:9px;padding:12px 14px;margin-bottom:14px;background:#FAF7EF">' +
             '<div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">📎 Attach photos, PDFs, or measurements <span style="font-weight:400;color:#999">(optional)</span></div>' +
             '<input type="file" id="' + uid + '-files" multiple accept="image/*,.pdf,.heic,.png,.jpg,.jpeg" style="width:100%;font-size:12px;color:#555;font-family:inherit;cursor:pointer" onchange="(function(i,d){var n=Array.from(i.files).map(function(f){return\'📄 \'+f.name}).join(\'<br>\');d.innerHTML=n})(this,document.getElementById(\'' + uid + '-fnames\'))">' +
