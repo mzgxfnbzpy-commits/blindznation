@@ -70,3 +70,13 @@ Every step is a `.step-block` with the header
 - Keep element ids bound to their content so page JS keeps working; rewire `#stepN .opt-card` → `.opt-btn` queries when converting.
 - After any edit: `node --check` the page JS, check for duplicate ids, run `tools/regress.js`, and confirm the price for a known size did not change.
 - One product page per commit.
+
+## 7. Status — 2026-09-23 sweep (dev)
+Every product form on the site now follows this frame (38 pages; 52 commits on `dev`):
+- **Step 1** is "Window measurements & mount" on 26 forms, "Rod measurements" on 9 hardware forms, "Drapery measurements" on drapery. Inside mount pre-selected.
+- **Last step** is "Your details" on all 37 numbered forms, preceded by the shared **Delivery** step.
+- No wizards (Next/Back/Continue), no customer-choice dropdowns, no card pickers for text choices. Only photo pickers (pleat / Roman styles) and colour swatches keep their own look.
+- Rendered-style audit: one pill style, one selected state, one step circle, one step-title size, one size box, one summary card across all forms. No Philly Blinds teal left.
+- Consult / installation / upholstery / checkout pop-up ask Name, Address, Phone + Email in the same order.
+
+Known leftovers: shades.html still contains unreachable legacy flows (`sf-` cellular/zebra/woven, `hd-config`) — recommend pointing the hub cards at the standalone pages and deleting them.
