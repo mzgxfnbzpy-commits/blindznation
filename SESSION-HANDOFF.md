@@ -259,6 +259,10 @@ fires *after* the constructor returns — `await` a tick before asserting.
 
 ## 9. Reference documents
 
+**Backed up in the repo** (2026-09-23) as `docs-vendor-audits/` — both audits below are
+now committed, so they survive the machine. The vendor PDFs themselves stay out of
+the repo and a `*.pdf` .gitignore rule now enforces that.
+
 - `PhillyBlinds Photos/PDF PRODUCTS/Norman/PRICE-GAP-ANALYSIS.md` — the full
   per-product audit, all three passes, including the shutter investigation.
 - `PhillyBlinds Photos/PDF PRODUCTS/WALLACE/2026B-current/WHAT-CHANGED.md` —
