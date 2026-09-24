@@ -103,111 +103,19 @@ const S = {
   louver:'', tilt:'InvisibleTilt™ (hidden in stile)', frame:'', divider:'',
   frameSides:'4-sided (standard)',
   colorType:'', color:'',
-  specs:[], delivery:'Ship (UPS/FedEx)',
+  specs:[], delivery:'Ship to me',   // mirrors window.pbDelivery (shared Delivery step)
   notes:''
 };
 
 /* ─── STEP SYSTEM ───────────────────────────────────────── */
-function pbAdv(fromId, num, toId, summary) {
-  var el = document.getElementById(fromId);
-  if (el) {
-    el.classList.remove('active');
-    el.classList.add('done');
-    // Body stays visible — open style
-  }
-  var badge = document.getElementById('badge-' + num);
-  if (badge) badge.textContent = '✓';
-  var shv = document.getElementById('shv-' + num);
-  if (shv) shv.textContent = summary || '';
-  var next = document.getElementById(toId);
-  if (next) {
-    next.classList.add('active');
-    setTimeout(function() { next.scrollIntoView({ behavior:'smooth', block:'nearest' }); }, 80);
-  }
-}
-
-function pbToggleStep(secId) {
-  var el = document.getElementById(secId);
-  if (!el || !el.classList.contains('done')) return;
-  var body = el.querySelector('.step-body');
-  if (!body) return;
-  if (body.style.display === 'none') {
-    body.style.display = '';
-    el.classList.add('active');
-  } else {
-    body.style.display = 'none';
-    el.classList.remove('active');
-  }
-}
-
-/* ─── CONTINUE FUNCTIONS ────────────────────────────────── */
-// Step order: 1 Shutter line → 2 Dimensions → 3 Mount → 4 Opening type → …
-function continueStep1() { // dimensions (step 2) → mount (step 3)
-  pbAdv('sec-dims', 2, 'sec-mount', (S.dims[0].w || '?') + '″W × ' + (S.dims[0].h || '?') + '″H' + (S.exactFrameW ? ' · frame: ' + S.exactFrameW + '″' : ''));
-}
-function continueStep2() { // mount (step 3) → opening type (step 4)
-  if (!S.mount) { alert('Please select a mount type.'); return; }
-  pbAdv('sec-mount', 3, 'sec-opentype', S.mount.split(' (')[0]);
-  // Auto-advance through opening type if Standard window is already selected
-  if (S.opentype === 'Standard window') {
-    setTimeout(function() {
-      pbAdv('sec-opentype', 4, 'sec-layout', 'Standard window');
-    }, 500);
-  }
-}
-function continueStep3() { // shutter line (step 1) → dimensions (step 2)
-  if (!S.line) { alert('Please select a shutter line.'); return; }
-  pbAdv('sec-line', 1, 'sec-dims', S.line);
-}
-function continueStep4() {
-  if (!S.opentype) { alert('Please select an opening type.'); return; }
-  pbAdv('sec-opentype', 4, 'sec-layout', S.opentype.split(' (')[0].split(',')[0]);
-}
-function continueStep5() {
-  if (!S.layout) { alert('Please select a panel layout.'); return; }
-  pbAdv('sec-layout', 5, 'sec-tpost', S.layout);
-}
-function continueStep6() {
-  var v = S.tpostV || 'None', h = S.tpostH || 'None';
-  var sum = (v === 'None' && h === 'None') ? 'None' : (v !== 'None' ? v.split(' (')[0] : '') + (h !== 'None' ? (v !== 'None' ? ', H-post' : 'H-post') : '');
-  pbAdv('sec-tpost', 6, 'sec-louver', sum);
-}
-function continueStep7() {
-  if (!S.louver) { alert('Please select a louver size.'); return; }
-  pbAdv('sec-louver', 7, 'sec-tilt', S.louver);
-  // If InvisibleTilt is already selected (default) and valid for this louver, auto-advance
-  if (S.tilt && S.tilt.includes('InvisibleTilt') && S.line &&
-      !SHUTTER_LINES[S.line].invisibleTiltExclude.includes(S.louver)) {
-    setTimeout(continueStep8, 600);
-  }
-}
-function continueStep8() {
-  if (!S.tilt) { alert('Please select a tilt type.'); return; }
-  var short = S.tilt.split(' (')[0];
-  pbAdv('sec-tilt', 8, 'sec-frame', short);
-}
-function continueStep9() {
-  if (!S.frame) { alert('Please select a frame style.'); return; }
-  pbAdv('sec-frame', 9, 'sec-divider', S.frame.split(' (')[0].substring(0, 22));
-}
-function continueStep10() {
-  if (!S.divider) { alert('Please select a divider rail option.'); return; }
-  pbAdv('sec-divider', 10, 'sec-color', S.divider.split(' (')[0].substring(0, 20));
-}
-function continueStep11() {
-  if (!S.color) { alert('Please choose a color.'); return; }
-  pbAdv('sec-color', 11, 'sec-special', (S.colorType ? S.colorType + ': ' : '') + S.color.split(' (')[0].substring(0, 18));
-}
-function continueStep12() {
-  pbAdv('sec-special', 12, 'sec-notes', S.specs.length ? S.specs.length + ' add-on' + (S.specs.length !== 1 ? 's' : '') : 'None');
-}
-function continueStep13() {
-  var notes = ((document.getElementById('field-notes') || {}).value || '').trim();
-  pbAdv('sec-notes', 13, 'sec-delivery', notes ? 'Notes added' : 'No notes');
-  pbAdv('sec-delivery', 14, 'sec-contact', 'Ship to me');
-}
-function continueStep15() {
-  pbAdv('sec-delivery', 14, 'sec-contact', 'Ship to me');
+// All steps are visible on one page (configurator standard) — no Continue
+// buttons or auto-advance. Step order: 1 Measurements & mount → 2 Shutter line
+// → 3 Frame situation → 4 Opening type → … → 13 Delivery → 14 Your details.
+function shRecheckDims() {
+  if (!S.dims || !S.dims[0]) return;
+  var warn = qs('dim-warn-0'); if (warn) { warn.textContent = ''; warn.classList.remove('show'); }
+  if (S.dims[0].w) checkDimWarn(0, S.dims[0].w);
+  if (S.dims[0].h) checkDimHWarn(0, S.dims[0].h);
 }
 
 /* ─── HELPERS ───────────────────────────────────────────── */
@@ -240,7 +148,7 @@ function selOpt(btn, group) {
 
 /* ─── LINE SELECTION ────────────────────────────────────── */
 function selLine(name, card) {
-  document.querySelectorAll('.line-card').forEach(function(c) { c.classList.remove('sel'); });
+  document.querySelectorAll('#grp-line .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   card.classList.add('sel');
   S.line = name;
   var ln = SHUTTER_LINES[name];
@@ -252,7 +160,7 @@ function selLine(name, card) {
   buildLouverOpts();
   buildColorSection();
   updateQuote();
-  setTimeout(continueStep3, 400);
+  shRecheckDims();
 }
 
 /* ─── DIMS ──────────────────────────────────────────────── */
@@ -302,7 +210,6 @@ function selLayout(code, btn) {
     note.style.display = 'block';
   } else { note.style.display = 'none'; }
   updateQuote();
-  setTimeout(continueStep5, 400);
 }
 
 /* ─── LOUVER OPTS ───────────────────────────────────────── */
@@ -332,7 +239,7 @@ function selLouver(size, btn) {
   note.textContent = 'Max single-panel width for ' + size + ' louver on ' + S.line + ': ' + maxW + '″. For wider openings, T-posts or additional panels are required.';
   note.style.display = 'block';
   updateQuote();
-  setTimeout(continueStep7, 400);
+  shRecheckDims();
 }
 
 /* ─── TILT ──────────────────────────────────────────────── */
@@ -345,7 +252,6 @@ function selTilt(btn) {
     warn.classList.add('show');
   } else { warn.classList.remove('show'); }
   updateQuote();
-  setTimeout(continueStep8, 400);
 }
 
 /* ─── OPEN TYPE CHECK ───────────────────────────────────── */
@@ -370,7 +276,6 @@ function checkMount(btn) {
     setTimeout(function() { pbShowContact('Tracking & Sliding Systems — custom quote required'); }, 400);
   } else {
     note.classList.remove('show');
-    setTimeout(continueStep2, 500);
   }
 }
 
@@ -410,7 +315,6 @@ function selColor(id, name, el, group) {
   el.classList.add('sel');
   S.color = name + ' (' + id + ')';
   updateQuote();
-  setTimeout(continueStep11, 400);
 }
 function switchFinish(type, tab) {
   document.querySelectorAll('.finish-tab').forEach(function(t) { t.classList.remove('active'); });
@@ -443,13 +347,12 @@ function toggleSpec(btn, val) {
 }
 
 /* ─── DELIVERY ──────────────────────────────────────────── */
-function selDelivery(type, card) {
-  document.querySelectorAll('.delivery-opt-card').forEach(function(c) { c.classList.remove('sel'); });
-  card.classList.add('sel');
-  S.delivery = type === 'ship' ? 'Ship (UPS/FedEx)' : 'Pickup (Huntingdon Valley PA — address provided after order confirmation)';
-  qs('ship-note').style.display = type === 'ship' ? 'block' : 'none';
+// Shared Delivery step (pbDeliveryStepHTML) keeps the choice in window.pbDelivery
+// and calls selDelivery() after each pick.
+function selDelivery() {
+  S.delivery = (typeof pbDeliveryLabel === 'function') ? pbDeliveryLabel() : 'Ship to me';
+  setText('shv-13', window.pbDelivery === 'install' ? 'Professional installation' : 'Ship to me');
   updateQuote();
-  setTimeout(continueStep15, 400);
 }
 
 /* ─── QUOTE SUMMARY ─────────────────────────────────────── */
@@ -523,7 +426,9 @@ function updateQuote() {
   setText('qs-count', S.count ? S.count + ' window' + (S.count !== 1 ? 's' : '') : '—');
   setText('qs-opentype', S.opentype || '—');
   setText('qs-mount', S.mount || '—');
-  setText('qs-measure', S.measureType || '—');
+  setText('qs-measure', (S.measureType || '').split(' (')[0] || '—');
+  var _d0 = (S.dims && S.dims[0]) || {};
+  setText('qs-size', (_d0.w || _d0.h) ? (_d0.w || '?') + '″ W × ' + (_d0.h || '?') + '″ H' : '—');
   setText('qs-layout', S.layout || '—');
   var tpost = [S.tpostV, S.tpostH].filter(Boolean).join(' · ');
   setText('qs-tpost', tpost || '—');
@@ -564,8 +469,8 @@ function addShuttersToCart(){
     {label:'Product',value:'Norman Plantation Shutters — '+S.line},
     {label:'Louver Size',value:S.louver||'—'},
     {label:'Tilt Type',value:S.tilt||'—'},
-    {label:'Mount',value:S.mount||'—'},
-    {label:'Measurement Type',value:S.measureType||'—'},
+    {label:'Mount',value:S.measureType||'—'},
+    {label:'Frame situation',value:S.mount||'—'},
     {label:'Quantity',value:String(S.count||1)},
     {label:'Dimensions',value:dimsText||'—'},
     {label:'Panel Layout',value:S.layout||'—'},
@@ -602,8 +507,8 @@ async function submitQuote() {
   var selections = [
     { label: 'Line', value: S.line },
     { label: 'Quantity', value: S.count+' window'+(S.count!==1?'s':'') },
-    { label: 'Mount', value: S.mount||'—' },
-    { label: 'Measurement type', value: S.measureType||'—' },
+    { label: 'Mount', value: S.measureType||'—' },
+    { label: 'Frame situation', value: S.mount||'—' },
     { label: 'Dimensions', value: dimsText||'—' },
     { label: 'Exact frame width', value: S.exactFrameW||'N/A' },
     { label: 'Opening type', value: S.opentype||'—' },
@@ -617,7 +522,7 @@ async function submitQuote() {
     { label: 'T-post horizontal', value: S.tpostH||'None' },
     { label: 'Color / Finish', value: (S.colorType?S.colorType+' — ':'')+S.color },
     { label: 'Specialty options', value: S.specs&&S.specs.length?S.specs.join(', '):'None' },
-    { label: 'Delivery', value: S.delivery||'Not specified' },
+    { label: 'Delivery', value: (typeof pbDeliveryLabel === 'function') ? pbDeliveryLabel() : (S.delivery||'Ship to me') },
   ];
   var combinedNotes = [
     (qs('field-notes') && qs('field-notes').value.trim()) || '',
