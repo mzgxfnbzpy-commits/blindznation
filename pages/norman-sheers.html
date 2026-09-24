@@ -49,10 +49,6 @@
 .opt-card.blocked{opacity:.35;pointer-events:none;cursor:default}
 
 /* ── FABRIC SWATCHES ── */
-.coll-filter-row{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
-.coll-btn{padding:6px 13px;border:1.5px solid #ddd;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;background:#fff;font-family:var(--font);transition:all .15s;color:#444;white-space:nowrap}
-.coll-btn:hover{border-color:var(--gold)}
-.coll-btn.sel{border:2px solid var(--gold);background:var(--gold-mid);color:#0A4A42}
 .fabric-section{margin-top:12px}
 .coll-label{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#999;margin-bottom:8px}
 .fabric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
@@ -66,7 +62,6 @@
 .swatch-hw{font-size:8px;color:#bbb;margin-top:1px}
 
 /* ── DIMS ── */
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .dim-field{display:flex;flex-direction:column;gap:4px}
 .dim-label{font-size:12px;font-weight:500;color:#444}
 .dim-input-wrap{display:flex;gap:6px;align-items:center}
@@ -82,20 +77,10 @@
 .computed-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#555}
 .computed-val{font-weight:500;color:#222}
 
-/* ── ACCESSORIES ── */
-.acc-row{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:.5px solid #f0f0ee}
-.acc-row:last-child{border-bottom:none}
-.acc-label{font-size:13px;font-weight:500;color:#111}
-.acc-sub{font-size:11px;color:#666;line-height:1.4;margin-top:2px}
 
 /* ── SPEC PANEL ── */
-.spec-panel{background:var(--espresso);border-radius:14px;padding:20px;position:sticky;top:72px}
-.spec-title{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
-.spec-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:11px;padding:5px 0;border-bottom:.5px solid #2A201A;gap:8px}
-.spec-row:last-of-type{border-bottom:none}
-.spec-key{color:#7A6A58;flex-shrink:0}
-.spec-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word;max-width:160px}
-.spec-val.empty{color:#3A2E24;font-style:italic}
+/* Summary card uses the global CONFIGURATOR STANDARD classes; only "not chosen yet" is local. */
+.summary-row .sr-val.empty{color:#7A6A58;font-style:italic}
 .spec-divider{border:.5px solid #2A201A;margin:10px 0}
 .price-box{background:#1a1208;border-radius:10px;padding:13px;margin-top:12px}
 .price-box-label{font-size:10px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
@@ -147,7 +132,7 @@
 <div class="step-block active" id="step1">
   <div class="step-head" onclick="toggleStep('step1')">
     <div class="step-num">1</div>
-    <div class="step-head-title">Measurements &amp; mount</div>
+    <div class="step-head-title">Window measurements &amp; mount</div>
     <div class="step-head-val" id="s1val">—</div>
   </div>
   <div class="step-body">
@@ -169,14 +154,14 @@
 
     <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
     <div class="msg-info" style="margin-top:4px;margin-bottom:10px">SmartDrape™ is <strong>Outside mount only</strong> — no inside mount. No deductions are taken. Order your desired finished track width.</div>
-    <div class="opt-row">
+    <div class="opt-row" id="grp-sd-mount">
       <button class="opt-btn sel" id="mc-wall" onclick="pickMount(this,'wall')">Wall mount</button>
       <button class="opt-btn" id="mc-ceiling" onclick="pickMount(this,'ceiling')">Ceiling mount</button>
     </div>
     <div class="step-note">Wall mount: L bracket · standard, recommended for doors. Ceiling mount: direct mount or C clip.</div>
-    <div style="margin-top:12px;display:flex;align-items:center;gap:10px">
-      <input type="checkbox" id="door-check" onchange="onDoorChange()" style="width:16px;height:16px;cursor:pointer">
-      <label for="door-check" style="font-size:13px;color:#444;cursor:pointer">Patio door / slider application</label>
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Application <span style="font-weight:400;color:#888">(optional)</span></div>
+    <div class="opt-row" style="margin-bottom:0">
+      <label class="opt-btn"><input type="checkbox" id="door-check" onchange="this.parentNode.classList.toggle('sel',this.checked);onDoorChange()" style="display:none">Patio door / slider</label>
     </div>
     <div id="door-warn" class="msg-warn" style="display:none;margin-top:8px">Patio door: allow ≥4″ overlap beyond opening width, ≥3″ above opening height, ½″ floor clearance minimum. No magnetic hold-downs (SmartDrape doesn't use them).</div>
 
@@ -187,7 +172,6 @@
         <input class="qty-num" type="number" id="inp-qty" value="1" min="1" max="50" oninput="calcDims()">
         <button class="qty-btn" onclick="adjQty(1)">+</button>
       </div>
-      <span style="font-size:12px;color:#666">shade(s) of this size &amp; color</span>
     </div>
   </div>
 </div>
@@ -201,7 +185,7 @@
   </div>
   <div class="step-body">
     <div class="opt-row">
-      <button class="opt-btn" id="op-wand" onclick="pickOp('wand')">Wand Tilt</button>
+      <button class="opt-btn" id="op-wand" onclick="pickOp('wand')">Wand tilt</button>
       <button class="opt-btn" id="op-motor" onclick="pickOp('motor')">Motorized</button>
     </div>
     <div class="step-note">Wand Tilt: manual wand — left, right, or traveling center stack. Motorized: Norman Smart motor — center stack + center opening available.</div>
@@ -219,9 +203,9 @@
   </div>
   <div class="step-body">
     <div id="stack-opts"><!-- filled by JS --></div>
-    <div id="sbs-wrap" style="display:none;margin-top:12px;display:flex;align-items:center;gap:10px">
-      <input type="checkbox" id="sbs-check" onchange="onSBSChange()" style="width:16px;height:16px;cursor:pointer">
-      <label for="sbs-check" style="font-size:13px;color:#444;cursor:pointer">Side-by-side configuration (wand tilt only — two independently operated shades)</label>
+    <div id="sbs-wrap" style="display:none;margin-top:12px;flex-wrap:wrap;align-items:center;gap:10px">
+      <label class="opt-btn"><input type="checkbox" id="sbs-check" onchange="this.parentNode.classList.toggle('sel',this.checked);onSBSChange()" style="display:none">Side-by-side configuration</label>
+      <span class="step-note" style="margin:0">Wand tilt only &mdash; two independently operated shades.</span>
     </div>
     <div id="center-open-note" class="msg-info" style="display:none;margin-top:8px">Center Opening: motorized only. Two synchronized panels part from the center outward. Track widths 30″–286¾″ available.</div>
   </div>
@@ -281,54 +265,48 @@
 <div class="step-block" id="step7">
   <div class="step-head" onclick="toggleStep('step7')">
     <div class="step-num">7</div>
-    <div class="step-head-title">Accessories</div>
+    <div class="step-head-title">Accessories <span style="font-weight:400;color:#888">(optional)</span></div>
     <div class="step-head-val" id="s7val">Optional</div>
   </div>
-  <div class="step-body" style="padding-top:8px">
-    <div class="acc-row">
-      <input type="checkbox" id="acc-keystone" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
-      <div><div class="acc-label">Keystones <span style="color:var(--gold)">+$73 each</span><span id="wrap-keystone" style="display:none;margin-left:8px;font-weight:400;color:#7A6A58">Qty <input type="number" id="qty-keystone" value="1" min="1" max="10" step="1" oninput="updateAcc()" style="width:54px;padding:2px 4px;font-size:11px"></span></div><div class="acc-sub">Decorative SmartJoint covers. Optional on spliced tracks.</div></div>
+  <div class="step-body">
+    <!-- Multi-select add-ons: toggle pills; each hidden checkbox stays the source of truth -->
+    <div class="opt-row" id="grp-acc">
+      <label class="opt-btn"><input type="checkbox" id="acc-keystone" onchange="sdAccPill(this)" style="display:none">Keystones +$73 each</label>
+      <label class="opt-btn"><input type="checkbox" id="acc-extra-wand" onchange="sdAccPill(this)" style="display:none">Additional wand +$89 each</label>
+      <label class="opt-btn"><input type="checkbox" id="acc-alt-colors" onchange="sdAccPill(this)" style="display:none">Alternating colors +10%</label>
+      <label class="opt-btn"><input type="checkbox" id="acc-vane-pack" onchange="sdAccPill(this)" style="display:none">Additional vane pack +$230&ndash;$540</label>
+      <label class="opt-btn"><input type="checkbox" id="acc-shims" onchange="sdAccPill(this)" style="display:none">Aluminum shims +$28 each</label>
+      <label class="opt-btn"><input type="checkbox" id="acc-long-bracket" onchange="sdAccPill(this)" style="display:none">Long L brackets +$61 per shade</label>
+      <label class="opt-btn" id="acc-charge-row" style="display:none"><input type="checkbox" id="acc-charge-wand" onchange="sdAccPill(this)" style="display:none">Charging Extension Wand +$75 per shade</label>
     </div>
-    <div class="acc-row">
-      <input type="checkbox" id="acc-extra-wand" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
-      <div><div class="acc-label">Additional wand <span style="color:var(--gold)">+$89 each</span><span id="wrap-extra-wand" style="display:none;margin-left:8px;font-weight:400;color:#7A6A58">Qty <input type="number" id="qty-extra-wand" value="1" min="1" max="6" step="1" oninput="updateAcc()" style="width:54px;padding:2px 4px;font-size:11px"></span></div><div class="acc-sub">Extra operation wand (e.g. for Traveling Center Stack, one per end).</div></div>
+    <!-- Quantities for the add-ons priced "each" (shown once the add-on is picked) -->
+    <div style="display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:#555">
+      <span id="wrap-keystone" style="display:none">Keystones qty <input type="number" id="qty-keystone" value="1" min="1" max="10" step="1" oninput="updateAcc()" style="width:54px;padding:3px 5px;font-size:12px"></span>
+      <span id="wrap-extra-wand" style="display:none">Wands qty <input type="number" id="qty-extra-wand" value="1" min="1" max="6" step="1" oninput="updateAcc()" style="width:54px;padding:3px 5px;font-size:12px"></span>
+      <span id="wrap-vane-pack" style="display:none">Vane packs qty <input type="number" id="qty-vane-pack" value="1" min="1" max="20" step="1" oninput="updateAcc()" style="width:54px;padding:3px 5px;font-size:12px"></span>
+      <span id="wrap-shims" style="display:none">Shims qty <input type="number" id="qty-shims" value="1" min="1" max="20" step="1" oninput="updateAcc()" style="width:54px;padding:3px 5px;font-size:12px"></span>
     </div>
-    <div class="acc-row">
-      <input type="checkbox" id="acc-alt-colors" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
-      <div><div class="acc-label">Alternating colors <span style="color:var(--gold)">+10%</span></div><div class="acc-sub">Two-color alternating vane pattern. Both colors must be same fabric category (LF or RD). Not available for Center Opening.</div></div>
-    </div>
-    <div class="acc-row">
-      <input type="checkbox" id="acc-vane-pack" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
-      <div><div class="acc-label">Additional vane pack <span style="color:var(--gold)">+$230&ndash;$540 per pack (by shade length)</span><span id="wrap-vane-pack" style="display:none;margin-left:8px;font-weight:400;color:#7A6A58">Qty <input type="number" id="qty-vane-pack" value="1" min="1" max="20" step="1" oninput="updateAcc()" style="width:54px;padding:2px 4px;font-size:11px"></span></div><div class="acc-sub">6 vanes per pack. Cost depends on shade height. Original WO# required for replacement orders.</div></div>
-    </div>
-    <div class="acc-row">
-      <input type="checkbox" id="acc-shims" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
-      <div><div class="acc-label">Aluminum shims <span style="color:var(--gold)">+$28 each</span><span id="wrap-shims" style="display:none;margin-left:8px;font-weight:400;color:#7A6A58">Qty <input type="number" id="qty-shims" value="1" min="1" max="20" step="1" oninput="updateAcc()" style="width:54px;padding:2px 4px;font-size:11px"></span></div><div class="acc-sub">One per L bracket. Adds ⁹⁄₁₆″ projection for clearance over molding.</div></div>
-    </div>
-    <div class="acc-row">
-      <input type="checkbox" id="acc-long-bracket" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
-      <div><div class="acc-label">Long L brackets <span style="color:var(--gold)">+$61 per shade</span></div><div class="acc-sub">Extended reach (5¹¹⁄₁₆″ vs standard 3¹⁵⁄₁₆″). No shims needed with long brackets.</div></div>
-    </div>
-    <div class="acc-row" id="acc-charge-row" style="display:none">
-      <input type="checkbox" id="acc-charge-wand" onchange="updateAcc()" style="width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer">
-      <div><div class="acc-label">Charging Extension Wand <span style="color:var(--gold)">+$75 per shade</span></div><div class="acc-sub">Motorized only. Defaults to fabric color. Colors: Cloud Cream, Day Light, Silver, Black, Chocolate, Moonbeam — specify at quote.</div></div>
-    </div>
+    <div class="step-note">Select any. Keystones: decorative SmartJoint covers &mdash; optional on spliced tracks. Additional wand: extra operation wand (e.g. one per end for Traveling Center Stack). Alternating colors: two-color alternating vane pattern &mdash; both colors must be the same fabric category; not available for Center Opening. Additional vane pack: 6 vanes per pack, priced by shade height &mdash; original WO# required for replacement orders. Aluminum shims: one per L bracket, adds &#8313;&#8260;&#8321;&#8326;&Prime; projection for clearance over molding. Long L brackets: extended reach (5&#185;&#185;&#8260;&#8321;&#8326;&Prime; vs standard 3&#185;&#8309;&#8260;&#8321;&#8326;&Prime;) &mdash; no shims needed. Charging Extension Wand: motorized only &mdash; defaults to fabric color; Cloud Cream, Day Light, Silver, Black, Chocolate, Moonbeam &mdash; specify at quote.</div>
   </div>
 </div>
 
-<!-- STEP 8: DELIVERY + CONTACT -->
+<!-- STEP 8: DELIVERY (shared pbDeliveryStepHTML) -->
 <div class="step-block" id="step8">
   <div class="step-head" onclick="toggleStep('step8')">
     <div class="step-num">8</div>
-    <div class="step-head-title">Delivery &amp; quote</div>
+    <div class="step-head-title">Delivery</div>
+    <div class="step-head-val" id="s8val">Ship to me</div>
+  </div>
+  <div class="step-body" id="sd-delivery"></div>
+</div>
+
+<!-- STEP 9: YOUR DETAILS -->
+<div class="step-block" id="step9">
+  <div class="step-head" onclick="toggleStep('step9')">
+    <div class="step-num">9</div>
+    <div class="step-head-title">Your details</div>
   </div>
   <div class="step-body">
-    <div class="delivery-opt-grid" style="margin-bottom:12px">
-      <div class="delivery-opt-card sel" onclick="pickDel('ship',this)">
-        <div class="delivery-opt-title">Ship to me</div>
-        <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>
-      </div>
-    </div>
     <button onclick="reqMoreInfo('Norman SmartDrape™')" class="req-info-link" style="display:block;margin-bottom:10px;font-size:12px;color:var(--gold);background:none;border:none;cursor:pointer;text-align:left;padding:0">Request more information about SmartDrape™ →</button>
     <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
     <div id="pb-final-step"></div>
@@ -357,17 +335,19 @@
 
 <!-- RIGHT: Spec + Price panel -->
 <div>
-  <div class="spec-panel">
-    <div class="spec-title">Configuration</div>
-    <div class="spec-row"><span class="spec-key">Operation</span><span class="spec-val empty" id="sp-op">—</span></div>
-    <div class="spec-row"><span class="spec-key">Stack</span><span class="spec-val empty" id="sp-stack">—</span></div>
-    <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val" id="sp-mount">Wall mount</span></div>
-    <div class="spec-row"><span class="spec-key">Width × Height</span><span class="spec-val empty" id="sp-dims">—</span></div>
-    <div class="spec-row"><span class="spec-key">Qty</span><span class="spec-val empty" id="sp-qty">—</span></div>
-    <div class="spec-row"><span class="spec-key">Light control</span><span class="spec-val empty" id="sp-opacity">—</span></div>
-    <div class="spec-row"><span class="spec-key">Fabric</span><span class="spec-val empty" id="sp-fabric">—</span></div>
-    <div class="spec-row"><span class="spec-key">Hardware</span><span class="spec-val" id="sp-hw">Fabric default</span></div>
-    <div class="spec-row"><span class="spec-key">Accessories</span><span class="spec-val" id="sp-acc">None</span></div>
+  <div class="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Norman SmartDrape™</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val empty" id="sp-dims">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sp-mount">Wall mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sp-qty">1 shade</span></div>
+    <div class="summary-row"><span class="sr-key">Operation</span><span class="sr-val empty" id="sp-op">—</span></div>
+    <div class="summary-row"><span class="sr-key">Stack</span><span class="sr-val empty" id="sp-stack">—</span></div>
+    <div class="summary-row"><span class="sr-key">Light control</span><span class="sr-val empty" id="sp-opacity">—</span></div>
+    <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val empty" id="sp-fabric">—</span></div>
+    <div class="summary-row"><span class="sr-key">Hardware</span><span class="sr-val" id="sp-hw">Fabric default</span></div>
+    <div class="summary-row"><span class="sr-key">Accessories</span><span class="sr-val" id="sp-acc">None</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="sp-del">Ship to me</span></div>
     <div class="spec-divider"></div>
     <div id="price-pending" style="font-size:11px;color:var(--text-muted);text-align:center;padding:8px 0;font-style:italic">Select operation, dimensions &amp; fabric then see your price.</div>
     <div id="price-box" style="display:none">
@@ -410,6 +390,9 @@
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addNormanSheersToCart()', submitFn: 'submitQuote()' });
+// Canonical Delivery step — choice lives in window.pbDelivery ('ship' | 'install').
+document.getElementById('sd-delivery').innerHTML =
+  pbDeliveryStepHTML({ bare: true, onPick: 'sdDeliveryPicked()' });
 </script>
 </body>
 </html>

@@ -6,8 +6,8 @@ var S = {
   w: 0, h: 0, qty: 1,
   opacity: '', fabric: null,
   hw: '', // '' = fabric default
-  accs: [],
-  delivery: 'ship'
+  accs: []
+  // Delivery lives in window.pbDelivery ('ship' | 'install') — shared pbDeliveryStepHTML.
 };
 
 // ═══════════════════════════════════════════════════════════
@@ -342,8 +342,8 @@ function buildFabricGrid(){
   var colls=Object.keys(SD_FABRICS[S.opacity]);
   activeColl=activeColl&&SD_FABRICS[S.opacity][activeColl]?activeColl:colls[0];
   // Collection filter buttons
-  var btns='<div class="coll-filter-row">'+colls.map(function(c){
-    return '<button class="coll-btn'+(c===activeColl?' sel':'')+'" onclick="switchColl(\''+c+'\')">'+c+'</button>';
+  var btns='<div class="opt-row" id="grp-sd-coll">'+colls.map(function(c){
+    return '<button class="opt-btn'+(c===activeColl?' sel':'')+'" onclick="switchColl(\''+c+'\')">'+c+'</button>';
   }).join('')+'</div>';
   // Swatches for active collection
   var fabrics=SD_FABRICS[S.opacity][activeColl]||[];
@@ -459,11 +459,11 @@ function updateAcc(){
 // ═══════════════════════════════════════════════════════════
 // STEP 9: DELIVERY
 // ═══════════════════════════════════════════════════════════
-function pickDel(d,card){
-  S.delivery=d;
-  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
-  card.classList.add('sel');
-}
+// Delivery — shared pbDeliveryStepHTML (window.pbDelivery).
+function sdDelLabel(){ return typeof pbDeliveryLabel==='function'?pbDeliveryLabel():'Ship to me'; }
+function sdDeliveryPicked(){ markDone('step8', sdDelLabel()); sp('sp-del', sdDelLabel()); }
+// Accessory toggle pill: the hidden checkbox is the state; the pill mirrors it.
+function sdAccPill(cb){ if(cb&&cb.parentNode) cb.parentNode.classList.toggle('sel', cb.checked); updateAcc(); }
 
 // ═══════════════════════════════════════════════════════════
 // PRICE CALCULATION
@@ -588,7 +588,7 @@ async function submitQuote(){
     {label:'Fabric code',value:S.fabric?S.fabric.code:'—'},
     {label:'Hardware color',value:S.hw&&S.hw!==(S.fabric?S.fabric.hw:'')?S.hw:'Fabric default'},
     {label:'Accessories',value:S.accs.length>0?S.accs.join(', '):'None'},
-    {label:'Delivery',value:'Ship to me'}
+    {label:'Delivery',value:sdDelLabel()}
   ];
   if(S.op==='motor'&&typeof nmGetMotorSummary==='function'){
     selections.push({label:'Motor options',value:nmGetMotorSummary()});
