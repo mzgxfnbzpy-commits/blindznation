@@ -937,3 +937,30 @@ html, body { overflow-x: hidden; }
 .qty-num { width: 44px; text-align: center; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; border-left: none; border-right: none; height: 32px; font-size: 13px; font-weight: 500; font-family: var(--font); background: #fff; }
 .step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--espresso); color: var(--gold); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .step-block.done .step-num { background: var(--gold); color: var(--espresso); }
+
+/* ============================================================
+   CONFIGURATOR STANDARD — shared chrome for EVERY product form
+   (see CONFIGURATOR-STANDARD.md). Soluna is the visual reference.
+   ============================================================ */
+.config-wrap{background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:28px}
+.config-grid{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
+.step-title{font-size:14px;font-weight:500;color:#111;margin-bottom:10px}
+.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
+.delivery-opt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.delivery-opt-card{border:1.5px solid #e8e8e4;border-radius:10px;padding:12px 14px;cursor:pointer;background:#fff;transition:all .15s}
+.delivery-opt-card:hover{border-color:var(--gold)}
+.delivery-opt-card.sel{border:2px solid var(--gold);background:var(--gold-light,var(--gold-mid))}
+.delivery-opt-title{font-size:13px;font-weight:600;color:#111;margin-bottom:3px}
+.delivery-opt-body{font-size:11px;color:#666;line-height:1.5}
+.summary-card{background:var(--espresso);border-radius:12px;padding:20px;position:sticky;top:130px}
+.summary-head{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:600}
+.summary-row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:0.5px solid var(--border-dark,rgba(255,255,255,.12));font-size:12px}
+.summary-row:last-of-type{border-bottom:none}
+.summary-row .sr-key{color:var(--text-dark,#aaa)}
+.summary-row .sr-val{color:var(--cream,#f5efe6);font-weight:500;text-align:right;max-width:170px}
+.summary-note{font-size:11px;color:var(--text-faint,#888);margin-top:12px;line-height:1.6;padding-top:12px;border-top:0.5px solid var(--border-dark,rgba(255,255,255,.12))}
+@media(max-width:700px){
+  .config-grid{grid-template-columns:1fr}
+  .summary-card{position:static}
+  .config-wrap{padding:18px 14px}
+}

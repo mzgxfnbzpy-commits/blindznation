@@ -1,90 +1,72 @@
-# Configurator Style & Format Standard
+# Configurator Form Standard — Blindznation
 
-> **Single source of truth for the layout, style, and step order of EVERY product configurator.**
-> Products differ in their *options*, but the *frame* (look, components, Step 1 & Step 2, summary card) is identical across all of them.
-> Applies to **both** Blindznation and Philly Blinds (phillyblinds is master — mirror changes per the dual-site rule).
-> Last updated: 2026-06-29.
-
----
-
-## 1. Reference baseline
-**Norman Soluna Roller Shades** is the master UI reference for *styling*: small teal pill buttons, the teal `dim-box`, the right-side summary/estimate card, spacing, and rounded corners. When in doubt, match Soluna's visual style.
+> **The single rulebook for every customer-facing product form on blindznation.com.**
+> Products differ in their *options*; the *frame* — step order, component types,
+> wording, the delivery step, the final step, the summary card — is identical.
+> Rewritten 2026-09-23 after a full-site audit (38 form pages). Philly Blinds is
+> frozen and separate — this file applies to Blindznation only.
+>
+> Visual reference: **`pages/soluna-roller-shades.html`**. When in doubt, match it.
 
 ---
 
-## 2. Universal step order (every product)
+## 1. The frame (every product, in this order)
 
-| Step | Title | Contents |
-|------|-------|----------|
-| **Step 1** | **Window size & quantity** | Teal `dim-box`: Width × Height side by side, then Quantity `[-] [n] [+]` |
-| **Step 2** | **Mount type** | Inside / Outside as small pills |
-| **Step 3+** | product-specific | fabric, light control, operation, headrail, color, etc. |
-| (last-1) | Delivery | Ship-to-me only (no pickup) |
-| (last) | Your details | contact + **Submit Order for Review** |
+| # | Step | How it is built |
+|---|------|-----------------|
+| **1** | **Window measurements & mount** | `pbSizeMountStepHTML()` markup (or identical hand markup): teal `.dim-box` with Width × Height, "How to measure" note, **Mount type** pills `Inside mount` / `Outside mount` with **Inside mount pre-selected**, then the `.qty-btns` `[−] [n] [+]` stepper (per-unit labels auto-inject after it). |
+| 2 … N | Product options | One step per decision. Product-type / collection / line choosers come **after** Step 1, never before it. |
+| N+1 | **Delivery** | `pbDeliveryStepHTML({stepNum})` — "Ship to me" (default) + "Professional installation". Nothing else. |
+| N+2 (last) | **Your details** | `pbContactStepHTML({stepNum, cartFn, submitFn})` — name, address, phone+email, notes, files, Terms, `+ Add to Cart`, `Submit Order for Review →`. |
 
-**Product-specific questions ALWAYS start at Step 3.** Never put fabric/operation/lift/color before size & mount.
+Right column: the dark **summary card** (`.summary-card` › `.summary-head` "Your configuration" › `.summary-row` rows). It always shows at least **Product · Size · Mount · Qty**, then the product's key choices, then the price/estimate (or "Custom quote" on quote-only products).
 
-### Exceptions (frame stays identical, only the size fields change)
-- **Hardware (rods / traverse): Width ONLY** (no height) + Quantity. If "cord draw" is selected → also ask **Cord drop length**.
-- **Drapery / Ripplefold:** Width per panel × Finished length (+ return size) instead of W×H. Same dim-box style.
-- **Coupled Shades:** appears on **Norman Soluna Roller Shades ONLY** — never on any other product.
-- **Exterior shades:** mount offers **Inside, Outside, Wall, Ceiling / Soffit** (all four).
+### Exceptions — only the size fields change, the frame does not
+- **Hardware (rods / traverse / finials):** Step 1 is titled **"Rod measurements"** — Width only + Qty (`noMount`, no height). Wall / Ceiling mount, if the product needs it, is a normal later step. Cord drop length only when cord draw is chosen.
+- **Drapery / Ripplefold:** Width × Finished length (+ return), **no mount**. Title **"Drapery measurements"**.
+- **Exterior shades:** mount pills are `Inside mount` / `Outside mount` / `Wall mount` / `Ceiling / soffit mount`.
+- **Shutters:** mount pills may carry the frame note in the step-note, but the pill text stays `Inside mount` / `Outside mount`.
+- **Coupled Shades:** Norman Soluna roller ONLY.
+- **Cornices / valances:** Width × Height (face) + return, Inside/Outside mount, Qty.
 
----
-
-## 3. Component & style rules
-
-**Option buttons = small pills.** Use:
+## 2. Step headers
+Every step is a `.step-block` with the header
 ```html
-<div class="opt-row" id="grp-XXX">
-  <button class="opt-btn" onclick="...">Inside mount</button>
-  <button class="opt-btn" onclick="...">Outside mount</button>
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+  <div class="step-num">N</div>
+  <div class="step-title" style="margin-bottom:0">Title</div>
 </div>
 ```
-- **Do NOT use large `opt-card` cards** for simple choices (mount, openness, operation, lift, etc.). Pills only.
-- `opt-card` is allowed *only* for a small number of genuinely rich choices that need an icon + description (e.g. top-level product type) — keep them compact.
+(Pages that already use the accordion header `.step-head` › `.step-num` + `.step-head-title` may keep it — same look.)
+- Numbers run **1, 2, 3 … with no gaps, letters or duplicates**, in visual order. Optional steps say so: `Title <span style="font-weight:400;color:#888">(optional)</span>`.
+- **All steps are visible on the page.** No multi-screen wizards with Next/Back, no step hidden until the previous one is complete (conditional sub-options *inside* a step may still show/hide).
+- Titles are sentence case: "Fabric & color", not "Fabric & Color".
 
-**Size box:** `dim-box` / `dim-box-label` / `form-row` / `form-group` (defined in `css/global.css`).
-**Quantity:** `qty-btns` / `qty-btn` / `qty-num`, rendered `[-] [n] [+]`.
-**Steps:** `step-block` containing either (`step-label` "Step N" + `step-title`) or (`step-num` circle + `step-head-title`) — match the page's existing system, but keep numbers **sequential and correct**.
-**Selected state:** the `.sel` class (teal active border) — consistent everywhere.
-**Mount labels:** "Inside mount" / "Outside mount" (+ "Wall Mount" / "Ceiling / Soffit Mount" on exterior).
-**Summary card:** right-side estimate/summary styled like Soluna.
+## 3. Choosing options — pills
+- Every single choice is a row of pills: `.opt-row` › `button.opt-btn`, selected = `.sel`. Price / description goes underneath in a `.step-note`, not inside a big card.
+- **No `<select>` dropdowns** for a choice a customer makes (only acceptable for very long lists, >12 items, e.g. a full finish catalog).
+- **No `div.opt-pill`, `opt-card`, `tier-btn`, `liner-btn`, `clr-btn`** etc. for plain text choices. Allowed exceptions: **colour / fabric swatches** (a visual grid) and **photo pickers** where the picture is the information (pleat styles, Roman fold styles).
+- Multi-select add-ons: pills that toggle `.sel` independently (say "select any" in the step-note).
+- A choice with an obvious default has it pre-selected; a choice that changes the price and has no safe default starts empty.
 
----
+## 4. Wording
+- Mount: **"Inside mount" / "Outside mount"** (lower-case m). Deductions and notes go in the step-note, not the pill.
+- Fabric terms: **Light Filtering · Solar Screen · Sheer · Blackout** — never "Room Darkening" in customer text.
+- Buttons: **`+ Add to Cart`** and **`Submit Order for Review →`** only. No "Send My Request", "Request Your Quote", "Get your custom quote" buttons.
+- Final step title: **"Your details"**. Delivery step title: **"Delivery"**.
+- Quote-only products still use the same frame; the summary shows "Custom quote — we confirm pricing" instead of a figure.
 
-## 4. Accordion flow rules (for step-by-step pages)
-- Keep each step-block's **element ID bound to its CONTENT, not its visual position**, so JS scoped queries (`#step-2 .opt-btn`) and `xxxDone('step-id')` keep working after a reorder.
-- The "open next" chain (`crsOpen` / `ersOpen` / `activateStep`) points to the **next visual step's ID**.
-- Size (Step 1) auto-advances to Mount (Step 2) once valid. **Quantity does NOT auto-advance.**
-- When converting `opt-card` → `opt-btn`, update any `#step-N .opt-card` query to `#step-N .opt-btn`.
+## 5. Shared code (do not re-implement per page)
+| Need | Use |
+|---|---|
+| Step 1 | `pbSizeMountStepHTML(opts)` in `js/shared.js` |
+| Qty | `pbAdjQty(id, delta, min, max)` + `.qty-btns` |
+| Pill select | `selOpt(el, groupId)` |
+| Delivery | `pbDeliveryStepHTML({stepNum, onPick})` — choice in `window.pbDelivery`, auto-folded into notes/cart |
+| Final step | `pbContactStepHTML({stepNum, cartFn, submitFn, idPrefix?})` |
+| Styles | `css/global.css` "CONFIGURATOR STANDARD" block — do not re-declare these classes in page `<style>` |
 
----
-
-## 5. Terminology
-- Customer-facing fabric terms: **Light Filtering · Solar Screen · Sheer · Blackout** (use "Blackout", never "Room Darkening", in customer-facing text; internal RD codes/pricing logic stay unchanged).
-- Delivery: **Ship-to-me only**, no pickup option.
-- Button to submit an order = **"Submit Order for Review"**.
-
----
-
-## 6. Process (reduces collision & risk)
-- **One product page per commit**; stage only that page's files (HTML + its JS).
-- **Before each commit:** `node --check` the page's JS; grep to confirm **no duplicate IDs**; confirm step numbers are sequential.
-- The live site is gated, so changes are **click-tested by Justin** after commit (not auto-tested).
-- Apply to **both sites** (phillyblinds first per the dual-site rule), then mirror this file.
-
----
-
-## 7. Sweep order
-all roller shades → cellular → woven wood → exterior → basic → other hard window treatments (faux-wood, city-lights, synchrony-verticals, zebra) → roman → drapes → cornices / valances → hardware.
-
-## 8. Status (live checklist)
-- ✅ Basic Roller — `custom-roller-shades.html` (size+qty / mount pills)
-- ✅ Exterior Roller — `exterior-roller-shades.html` (size+qty / 4 mount pills)
-- ✅ Cellular — `shades.html` shared engine (also fixes Zebra / Woven that share it)
-- ⏳ Soluna order (currently Fabric-first; reorder pending Justin's call — page was praised as-is)
-- ⬜ faux-wood-blinds, city-lights-aluminum-blinds, synchrony-verticals, zebra-shades
-- ⬜ Woven configurators (galaxy / dynasty / walden)
-- ⬜ Roman / Drapes / Cornices / Valances (`soft-treatments.html`)
-- ⬜ Hardware (width-only) — kirsch / paris-texas / orion / select rods
+## 6. Process
+- Keep element ids bound to their content so page JS keeps working; rewire `#stepN .opt-card` → `.opt-btn` queries when converting.
+- After any edit: `node --check` the page JS, check for duplicate ids, run `tools/regress.js`, and confirm the price for a known size did not change.
+- One product page per commit.

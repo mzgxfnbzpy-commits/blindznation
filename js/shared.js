@@ -978,6 +978,47 @@ function pbContactStepHTML(opts) {
 }
 
 
+// ── DELIVERY STEP — the identical second-to-last step on every product. ──
+// Two cards: "Ship to me" (default) and "Professional installation". The choice
+// lives in window.pbDelivery ('ship' | 'install') and reaches the order on its own:
+// the submit interceptor folds it into cf-notes and _pbMergeCartExtras adds it to
+// cart items, so no page has to wire it into its own quote builder.
+// opts: { stepNum, onPick (string of JS run after a pick, e.g. "updateSummary()"), bare }
+window.pbDelivery = 'ship';
+function pbDeliveryLabel() {
+  return window.pbDelivery === 'install'
+    ? 'Professional installation (Philadelphia / South Jersey)'
+    : 'Ship to me';
+}
+function pbPickDelivery(el, mode) {
+  window.pbDelivery = (mode === 'install') ? 'install' : 'ship';
+  var grid = el && el.closest('.delivery-opt-grid');
+  if (grid) Array.prototype.forEach.call(grid.querySelectorAll('.delivery-opt-card'), function(c) {
+    c.classList.toggle('sel', c === el);
+  });
+}
+function pbDeliveryStepHTML(opts) {
+  opts = opts || {};
+  var after = opts.onPick ? ';' + opts.onPick : '';
+  var inner =
+    '<div class="delivery-opt-grid" id="pb-delivery-grid">' +
+      '<div class="delivery-opt-card sel" onclick="pbPickDelivery(this,\'ship\')' + after + '">' +
+        '<div class="delivery-opt-title">Ship to me</div>' +
+        '<div class="delivery-opt-body">UPS or FedEx to your door.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>' +
+      '</div>' +
+      '<div class="delivery-opt-card" onclick="pbPickDelivery(this,\'install\')' + after + '">' +
+        '<div class="delivery-opt-title">Professional installation</div>' +
+        '<div class="delivery-opt-body">Philadelphia / South Jersey area.<br><em style="font-size:10px;color:#999">Installation priced in your quote.</em></div>' +
+      '</div>' +
+    '</div>';
+  if (opts.bare) return inner;
+  return '<div class="step-block" id="pb-delivery-block">' +
+    '<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">' +
+      '<div class="step-num">' + (opts.stepNum != null ? opts.stepNum : '') + '</div>' +
+      '<div class="step-title" style="margin-bottom:0">Delivery</div>' +
+    '</div>' + inner + '</div>';
+}
+
 // Adjust a numeric quantity <input id=id> by delta, clamped to [min,max]. Shared qty stepper.
 function pbAdjQty(id, delta, min, max) {
   var el = document.getElementById(id);
@@ -1203,6 +1244,10 @@ function _pbMergeCartExtras(item) {
   if (iEl && iEl.checked) {
     item.installation = true;
     item.lines = (item.lines || []).concat([{ label: 'Professional Installation', value: 'Requested — priced at quote' }]);
+  }
+  if (document.getElementById('pb-delivery-grid') && window.pbDelivery === 'install' && !item.installation) {
+    item.installation = true;
+    item.lines = (item.lines || []).concat([{ label: 'Delivery', value: pbDeliveryLabel() }]);
   }
   var labels = pbGetShadeLabels();
   if (labels) {
@@ -1841,9 +1886,22 @@ function pbPanelSubmit(priceBoxId) {
 function pbEstimateCheckout(priceBoxId) { pbOpenQuoteFromPanel(priceBoxId); }
 function pbEstimateCheckoutNew(priceBoxId) { pbOpenQuoteFromPanel(priceBoxId); }
 
+// ── Approval-required sizes (Justin, 2026-09-23) ────────────────────────────
+// Past a product's approval limit the item still shows its price and can still be
+// submitted as a request, but we review and approve it before it can be paid for.
+// Nothing takes payment on the site yet, so today this is a visible line in the
+// estimate, the cart and the emailed order. When Stripe comes back, checkout must
+// refuse payment for any cart item with needsApproval set — that is the hard rule.
+var PB_APPROVAL_LABEL = 'Approval required';
+function pbApprovalLine(reason) {
+  return { label: PB_APPROVAL_LABEL, approval: true,
+           value: reason + ' — this size is reviewed and approved by us before it can be paid for. Submit it as a request.' };
+}
+
 function pbCollectItem(productName, lines, total, motorized) {
   var specs = lines.map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
-  pbAddToCartWithMotor({ product: productName, specs: specs, lines: lines, price: total || null, qty: 1 }, !!motorized);
+  var needsApproval = lines.some(function(l){ return l && l.approval; });
+  pbAddToCartWithMotor({ product: productName, specs: specs, lines: lines, price: total || null, qty: 1, needsApproval: needsApproval }, !!motorized);
 }
 
 // ── QUOTE REQUEST MODAL ─────────────────────────────────────────
@@ -3125,6 +3183,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var _n = document.getElementById('cf-notes');
     if (_lbl && _n && (_n.value || '').indexOf(_lbl) < 0) {
       _n.value = (_n.value ? _n.value.replace(/\n?Labels: .*/,'') + '\n' : '') + 'Labels: ' + _lbl;
+    }
+    // Same for the shared Delivery step (only on pages that render it).
+    if (_n && document.getElementById('pb-delivery-grid')) {
+      _n.value = (_n.value || '').replace(/\n?Delivery: .*/, '');
+      _n.value = (_n.value ? _n.value + '\n' : '') + 'Delivery: ' + pbDeliveryLabel();
     }
     // Same for the hardware rod spec — exact length + bracket count reach the
     // workroom through the notes, so no per-page quote builder has to know about it.
