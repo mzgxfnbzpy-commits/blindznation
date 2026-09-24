@@ -614,7 +614,9 @@ function submitQuote() {
   if (hwColor) addons.push('Premium hardware: ' + hwColor);
   solComponentParts().forEach(function(p) { addons.push(p); });
   const fabricColor = getSelectedFabricColor();
-  const deliveryLabel = 'Ship to me — UPS / FedEx (freight TBD)';
+  const deliveryLabel = window.pbDelivery === 'install'
+    ? pbDeliveryLabel()
+    : 'Ship to me — UPS / FedEx (freight TBD)';
 
   const isDualSubmit = shadeType === 'Dual Shade';
   const dualFrontSubmit = isDualSubmit ? getOpt('grp-dual-front') : '';

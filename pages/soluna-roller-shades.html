@@ -864,12 +864,7 @@
               <div class="step-num">6</div>
               <div class="step-title" style="margin-bottom:0">Delivery</div>
             </div>
-            <div class="delivery-opt-grid">
-              <div class="delivery-opt-card sel" onclick="solPickDel('ship',this)">
-                <div class="delivery-opt-title">Ship to me</div>
-                <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>
-              </div>
-            </div>
+            <div id="soluna-delivery"></div>
           </div>
 
           <!-- Step 7: Contact — this block is the original that pbContactStepHTML was
@@ -984,6 +979,7 @@
 // contact-block) are exactly what this page used by hand, so submitQuote() and
 // addSolunaToCart() are unchanged; the page gains the Terms checkbox, honeypot
 // and file upload it never had.
+document.getElementById('soluna-delivery').innerHTML = pbDeliveryStepHTML({ bare: true });
 document.getElementById('soluna-final-step').innerHTML = pbContactStepHTML({
   stepNum: 7,
   cartFn: 'addSolunaToCart()',
