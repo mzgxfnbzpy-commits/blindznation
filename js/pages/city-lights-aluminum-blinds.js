@@ -23,7 +23,7 @@ const MATRIX = {
 };
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
-let state = {slat:null,colorCode:null,colorName:null,colorSurcharge:0,mount:null,w:0,h:0,privacy:false,sidemount:false,shim:false,shimQty:1,qty:1,del:null};
+let state = {slat:null,colorCode:null,colorName:null,colorSurcharge:0,mount:'inside',w:0,h:0,privacy:false,sidemount:false,shim:false,shimQty:1,qty:1,del:'ship'};
 
 // ── STEP HELPERS ──────────────────────────────────────────────────────────────
 function toggleStep(id){
@@ -95,7 +95,7 @@ function pickColor(el,code,name,surcharge){
   goNext('step2','step5');
 }
 function pickMount(el,key,label){
-  document.querySelectorAll('#step3 .opt-btn').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#grp-mount .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   state.mount=key;
   document.getElementById('s3val').textContent=label;
@@ -161,7 +161,7 @@ function calcPrice(){
   markDone('step3');
   sizeBox.style.display='block';
   // Auto-open the remaining steps the first time dimensions are valid
-  ['step1','step2','step5','step7','step8'].forEach(id=>{
+  ['step1','step2','step5','step8'].forEach(id=>{
     const el=document.getElementById(id);
     if(el&&!el.classList.contains('active')&&!el.classList.contains('open'))el.classList.add('active');
   });
@@ -194,19 +194,25 @@ function adjShim(d){
   state.shimQty=parseInt(el.value);
   calcPrice();
 }
-function pickDel(btn,key){
-  document.querySelectorAll('.delivery-opt-card').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  state.del=key;
-      document.getElementById('s7val').textContent=key==='ship'?'Ship to me':'Pick up';
-  markDone('step7');
-  calcPrice();
-  goNext('step7','step8');
+// Summary card configuration rows — always current, even before a price is available.
+function updateSummary(){
+  const q=parseInt(document.getElementById('qty').value)||1;
+  const w=parseFloat(document.getElementById('w-whole').value)||0, h=parseFloat(document.getElementById('h-whole').value)||0;
+  const slatLabels={half:'½″ Micro Slats',one:'1″ Standard Slats',two:'2″ SmartPrivacy®'};
+  const set=(id,v)=>{const e=document.getElementById(id); if(e) e.textContent=v;};
+  set('qr-dims',(w&&h)?w+'″ × '+h+'″':'—');
+  set('qr-mount',state.mount==='outside'?'Outside mount':'Inside mount');
+  set('qr-qty',q+(q>1?' blinds':' blind'));
+  set('qr-slat',slatLabels[state.slat]||'—');
+  set('qr-finish',state.colorName||'—');
+  const ad=[]; if(state.privacy) ad.push('Privacy slats'); if(state.sidemount) ad.push('Side mount'); if(state.shim) ad.push(state.shimQty+' shim'+(state.shimQty>1?'s':''));
+  set('qr-addons',ad.length?ad.join(', '):'None');
 }
 
 function updateQuote(){
   const qty=parseInt(document.getElementById('qty').value)||1;
   state.qty=qty;
+  updateSummary();
 
   // Defined here because this file calls showRow but never declared it — the
   // resulting ReferenceError aborted updateQuote just before #qr-total was set.
@@ -308,10 +314,10 @@ function updateQuote(){
 }
 
 function addCityLightsToCart(){
-  if(!state.slat){ alert('Please select a slat size (Step 1) before adding to cart.'); return; }
-  if(!state.colorName){ alert('Please select a color (Step 2) before adding to cart.'); return; }
-  if(!state.mount){ alert('Please select a mount type (Step 3) before adding to cart.'); return; }
-  if(!state.w||!state.h){ alert('Please enter valid dimensions (Step 4) before adding to cart.'); return; }
+  if(!state.slat){ alert('Please select a slat size (Step 2) before adding to cart.'); return; }
+  if(!state.colorName){ alert('Please select a color (Step 3) before adding to cart.'); return; }
+  if(!state.mount){ alert('Please select a mount type (Step 1) before adding to cart.'); return; }
+  if(!state.w||!state.h){ alert('Please enter valid dimensions (Step 1) before adding to cart.'); return; }
 
   const totalEl=document.getElementById('qr-total');
   const priceText=totalEl?totalEl.textContent.trim():'';
@@ -356,7 +362,7 @@ function submitQuote(){
     'Side mount bracket: '+(state.sidemount?'Yes':'No'),
     'Shims: '+(state.shim?state.shimQty+' × $7':'No'),
     'Quantity: '+qty,
-    'Delivery: '+(state.del==='ship'?'Ship to me':'Pick up'),
+    'Delivery: '+pbDeliveryLabel(),
     '',
     'Notes: '+(document.getElementById('cf-notes').value.trim()||'None'),
     '',

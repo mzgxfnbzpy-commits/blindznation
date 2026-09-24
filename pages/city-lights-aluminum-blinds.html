@@ -49,7 +49,6 @@
 .color-name{font-size:10px;font-weight:600;color:#222;line-height:1.3}
 .color-code{font-size:9px;color:#999}
 .color-badge{font-size:8px;color:#B45309;background:#FEF3C7;padding:1px 4px;border-radius:3px;display:inline-block;margin-top:2px;font-weight:600}
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
 .dim-inputs{display:flex;gap:6px;align-items:center}
 .dim-whole{width:54px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
@@ -79,8 +78,6 @@
 .spin-num{width:44px;text-align:center;border:1px solid #ddd;border-radius:7px;font-size:14px;padding:5px}
 .spin-label{font-size:12px;color:#666}
 .step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
 .qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
 .qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
 .qrow-label{color:var(--text-muted);line-height:1.4}
@@ -96,16 +93,12 @@
 .form-group textarea{resize:vertical;min-height:72px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
-.delivery-wrap{background:#F9F7F4;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px;margin-bottom:14px}
 .submit-btn{width:100%;padding:14px;background:var(--gold);color:#111110;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;margin-top:2px}
 .submit-btn:hover{opacity:.88}
 .form-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-bottom:10px;display:none}
 .success-box{background:#EEFBE8;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;display:none}
 .success-box h3{font-size:15px;font-weight:600;color:#14532d;margin-bottom:6px}
 .success-box p{font-size:13px;color:#166534;line-height:1.6}
-/* Step order: measurements+mount first */
-#config-left-cl{display:flex;flex-direction:column}
-#step3{order:1}#step1{order:2}#step2{order:3}#step5{order:4}#step7{order:5}#step8{order:6}
 </style>
 </head>
 <body data-page="Shades & blinds">
@@ -129,11 +122,58 @@
 <div class="config-layout">
 <div id="config-left-cl"><!-- left column -->
 
-  <!-- STEP 1: SLAT SIZE -->
+  <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT -->
+  <div class="step-block active" id="step3">
+    <div class="step-head" onclick="toggleStep('step3')">
+      <div class="step-num">1</div>
+      <div class="step-head-title">Window measurements &amp; mount</div>
+      <div class="step-head-val" id="s3val">Inside mount</div>
+    </div>
+    <div class="step-body">
+      <div class="dim-box">
+        <div class="dim-box-label">Enter your window size</div>
+        <div class="form-row">
+          <div class="form-group"><label>Width</label><input type="number" id="w-whole" min="9" max="96" step="0.125" placeholder="36" oninput="calcPrice()"><div class="dim-unit">inches &mdash; 9&Prime; min &middot; 78&Prime; max (96&Prime; for 2&Prime; slats)</div></div>
+          <div class="form-group"><label>Height</label><input type="number" id="h-whole" min="10" max="96" step="0.125" placeholder="48" oninput="calcPrice()"><div class="dim-unit">inches &mdash; 10&Prime; min &middot; 96&Prime; max</div></div>
+        </div>
+      </div>
+      <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
+      <div id="dim-msg" class="msg-box" style="display:none"></div>
+      <div class="computed-box" id="size-box" style="display:none">
+        <div class="cv-row"><span class="cv-key">Order size</span><span class="cv-val" id="cv-size">—</span></div>
+        <div class="cv-row"><span class="cv-key">Square footage</span><span class="cv-val" id="cv-sqft">—</span></div>
+        <div class="cv-row"><span class="cv-key">Pricing bracket</span><span class="cv-val" id="cv-bracket">—</span></div>
+        <div class="cv-row"><span class="cv-key">Base price (1&Prime; slat)</span><span class="cv-val" id="cv-base">—</span></div>
+      </div>
+      <div class="step-note" id="size-limits-note">Enter your window measurements as ordered. Mfr applies deductions automatically.</div>
+
+      <!-- Mount type -->
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
+      <div class="opt-row" id="grp-mount" style="margin-bottom:6px">
+        <button class="opt-btn sel" onclick="pickMount(this,'inside','Inside mount')">Inside mount</button>
+        <button class="opt-btn" onclick="pickMount(this,'outside','Outside mount')">Outside mount</button>
+      </div>
+      <div class="step-note" style="margin-bottom:12px"><strong>Inside mount:</strong> fits inside the window frame for a clean, flush look — mfr deducts 3/8&Prime; from width automatically. <strong>Outside mount:</strong> mounts above or outside the frame for better light block — shim available for trim clearance.</div>
+      <div id="mount-note" class="msg-box msg-info" style="display:none"></div>
+
+      <!-- Quantity (shared stepper) -->
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px">
+        <span style="font-size:12px;color:#666">Qty:</span>
+        <div class="qty-btns">
+          <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
+          <input class="qty-num" type="number" id="qty" value="1" min="1" max="99" oninput="calcPrice()">
+          <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+        </div>
+        <span style="font-size:12px;color:#666">blinds (same size)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: SLAT SIZE -->
   <div class="step-block" id="step1">
     <div class="step-head" onclick="toggleStep('step1')">
       <div class="step-num">2</div>
-      <div class="step-head-title">Slat Size</div>
+      <div class="step-head-title">Slat size</div>
       <div class="step-head-val" id="s1val">—</div>
     </div>
     <div class="step-body">
@@ -146,7 +186,7 @@
     </div>
   </div>
 
-  <!-- STEP 2: COLOR -->
+  <!-- STEP 3: COLOR -->
   <div class="step-block" id="step2">
     <div class="step-head" onclick="toggleStep('step2')">
       <div class="step-num">3</div>
@@ -302,104 +342,39 @@
     </div>
   </div>
 
-  <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT -->
-  <div class="step-block active" id="step3">
-    <div class="step-head" onclick="toggleStep('step3')">
-      <div class="step-num">1</div>
-      <div class="step-head-title">Window measurements &amp; mount</div>
-      <div class="step-head-val" id="s3val">—</div>
-    </div>
-    <div class="step-body">
-      <div class="dim-box">
-        <div class="dim-box-label">Enter your window size</div>
-        <div class="form-row">
-          <div class="form-group"><label>Width</label><input type="number" id="w-whole" min="9" max="96" step="0.125" placeholder="36" oninput="calcPrice()"><div class="dim-unit">inches &mdash; 9&Prime; min &middot; 78&Prime; max (96&Prime; for 2&Prime; slats)</div></div>
-          <div class="form-group"><label>Height</label><input type="number" id="h-whole" min="10" max="96" step="0.125" placeholder="48" oninput="calcPrice()"><div class="dim-unit">inches &mdash; 10&Prime; min &middot; 96&Prime; max</div></div>
-        </div>
-      </div>
-      <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
-      <div id="dim-msg" class="msg-box" style="display:none"></div>
-      <div class="computed-box" id="size-box" style="display:none">
-        <div class="cv-row"><span class="cv-key">Order size</span><span class="cv-val" id="cv-size">—</span></div>
-        <div class="cv-row"><span class="cv-key">Square footage</span><span class="cv-val" id="cv-sqft">—</span></div>
-        <div class="cv-row"><span class="cv-key">Pricing bracket</span><span class="cv-val" id="cv-bracket">—</span></div>
-        <div class="cv-row"><span class="cv-key">Base price (1&Prime; slat)</span><span class="cv-val" id="cv-base">—</span></div>
-      </div>
-      <div class="step-note" id="size-limits-note">Enter your window measurements as ordered. Mfr applies deductions automatically.</div>
-
-      <!-- Mount type -->
-      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
-      <div class="opt-row" style="margin-bottom:6px">
-        <button class="opt-btn" onclick="pickMount(this,'inside','Inside mount')">Inside mount</button>
-        <button class="opt-btn" onclick="pickMount(this,'outside','Outside mount')">Outside mount</button>
-      </div>
-      <div class="step-note" style="margin-bottom:12px"><strong>Inside mount:</strong> fits inside the window frame for a clean, flush look — mfr deducts 3/8&Prime; from width automatically. <strong>Outside mount:</strong> mounts above or outside the frame for better light block — shim available for trim clearance.</div>
-      <div id="mount-note" class="msg-box msg-info" style="display:none"></div>
-
-      <!-- Quantity (shared stepper) -->
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px">
-        <span style="font-size:12px;color:#666">Qty:</span>
-        <div class="qty-btns">
-          <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
-          <input class="qty-num" type="number" id="qty" value="1" min="1" max="99" oninput="calcPrice()">
-          <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
-        </div>
-        <span style="font-size:12px;color:#666">blinds (same size)</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- STEP 5: OPTIONS -->
+  <!-- STEP 4: OPTIONS -->
   <div class="step-block" id="step5">
     <div class="step-head" onclick="toggleStep('step5')">
       <div class="step-num">4</div>
-      <div class="step-head-title">Options &amp; Add-ons</div>
+      <div class="step-head-title">Options &amp; add-ons <span style="font-weight:400;color:#888">(optional)</span></div>
       <div class="step-head-val" id="s5val">—</div>
     </div>
     <div class="step-body">
       <!-- Privacy slats — 1" and 2" only -->
       <div id="privacy-wrap">
-        <div class="sub-label">Privacy Slats (optional)</div>
-        <div class="addon-row" id="privacy-addon" onclick="toggleAddon(this,'privacy')">
-          <div class="addon-left">
-            <div class="addon-check" id="privacy-check">✓</div>
-            <div>
-              <div class="addon-name">Privacy Slats</div>
-              <div class="addon-sub">More seamless look &middot; enhanced light control &middot; 1&Prime; slats only (SmartPrivacy® is already standard on 2&Prime;)</div>
-            </div>
-          </div>
-          <div class="addon-price">+10%</div>
+        <div class="sub-label">Privacy slats <span style="font-weight:400;color:#888">(optional)</span></div>
+        <div class="opt-row" style="margin-bottom:0">
+          <button class="opt-btn" id="privacy-addon" onclick="toggleAddon(this,'privacy')">Privacy slats <span style="font-weight:400;color:#999">(+10%)</span></button>
         </div>
+        <div class="step-note" style="margin-top:4px">More seamless look &middot; enhanced light control &middot; 1&Prime; slats only (SmartPrivacy® is already standard on 2&Prime;).</div>
       </div>
 
       <!-- Side mount — 2" only -->
       <div id="sidemount-wrap" style="display:none">
-        <div class="sub-label">Side Mount Bracket (2&Prime; only)</div>
-        <div class="addon-row" id="sidemount-addon" onclick="toggleAddon(this,'sidemount')">
-          <div class="addon-left">
-            <div class="addon-check" id="sidemount-check">✓</div>
-            <div>
-              <div class="addon-name">Side Mount Bracket</div>
-              <div class="addon-sub">Inside mount only &middot; available for all widths</div>
-            </div>
-          </div>
-          <div class="addon-price">+$25/blind</div>
+        <div class="sub-label" style="margin-top:14px">Side mount bracket <span style="font-weight:400;color:#888">(optional &middot; 2&Prime; only)</span></div>
+        <div class="opt-row" style="margin-bottom:0">
+          <button class="opt-btn" id="sidemount-addon" onclick="toggleAddon(this,'sidemount')">Side mount bracket <span style="font-weight:400;color:#999">(+$25)</span></button>
         </div>
+        <div class="step-note" style="margin-top:4px">Inside mount only &middot; available for all widths.</div>
       </div>
 
       <!-- Shim — outside mount only -->
       <div id="shim-wrap" style="display:none">
-        <div class="sub-label">Shim (outside mount clearance)</div>
-        <div class="addon-row" id="shim-addon" onclick="toggleAddon(this,'shim')">
-          <div class="addon-left">
-            <div class="addon-check" id="shim-check">✓</div>
-            <div>
-              <div class="addon-name">Shim</div>
-              <div class="addon-sub">Projects blind forward for clearance over trim &middot; 3/8&Prime; per layer</div>
-            </div>
-          </div>
-          <div class="addon-price">$7/ea</div>
+        <div class="sub-label" style="margin-top:14px">Shims <span style="font-weight:400;color:#888">(optional &middot; outside mount only)</span></div>
+        <div class="opt-row" style="margin-bottom:0">
+          <button class="opt-btn" id="shim-addon" onclick="toggleAddon(this,'shim')">Add shims <span style="font-weight:400;color:#999">($7 each)</span></button>
         </div>
+        <div class="step-note" style="margin-top:4px">Projects the blind forward for clearance over trim &middot; 3/8&Prime; per layer.</div>
         <div id="shim-qty-wrap" style="display:none;margin-top:8px">
           <div class="spinner-row">
             <button class="spin-btn" onclick="adjShim(-1)">−</button>
@@ -414,30 +389,14 @@
     </div>
   </div>
 
-  <!-- STEP 7: DELIVERY -->
-  <div class="step-block" id="step7">
-    <div class="step-head" onclick="toggleStep('step7')">
-      <div class="step-num">5</div>
-      <div class="step-head-title">Delivery</div>
-      <div class="step-head-val" id="s7val">—</div>
-    </div>
-    <div class="step-body">
-      <div class="delivery-wrap">
-        <div class="delivery-opt-grid">
-        <div class="delivery-opt-card sel" onclick="pickDel(this,'ship')">
-          <div class="delivery-opt-title">Ship to me</div>
-          <div class="delivery-opt-body">UPS or FedEx. Freight: $25 first blind + $11 each additional. Blinds 90&#x2033;+ wide: $80 oversize. Tariffs additional.</div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
+  <!-- STEP 5: DELIVERY (shared pbDeliveryStepHTML) -->
+  <div id="pb-delivery-step"></div>
 
-  <!-- STEP 8: QUOTE FORM -->
+  <!-- STEP 6: YOUR DETAILS -->
   <div class="step-block" id="step8">
     <div class="step-head" onclick="toggleStep('step8')">
       <div class="step-num">6</div>
-      <div class="step-head-title">Request Your Quote</div>
+      <div class="step-head-title">Your details</div>
       <div class="step-head-val" id="s8val">—</div>
     </div>
     <div class="step-body">
@@ -452,19 +411,19 @@
 
 </div><!-- /left column -->
 
-<!-- RIGHT: Quote Panel -->
-<div>
-  <div class="quote-panel" id="quote-panel">
-    <div class="qp-title">Your Estimate</div>
+<!-- RIGHT: Summary card -->
+  <div class="summary-card" id="quote-panel">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Citylights™ Aluminum Blind</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="qr-dims">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="qr-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="qr-qty">1 blind</span></div>
+    <div class="summary-row"><span class="sr-key">Slat size</span><span class="sr-val" id="qr-slat">—</span></div>
+    <div class="summary-row"><span class="sr-key">Color</span><span class="sr-val" id="qr-finish">—</span></div>
+    <div class="summary-row"><span class="sr-key">Add-ons</span><span class="sr-val" id="qr-addons">None</span></div>
+    <div class="qdiv"></div>
     <div class="qp-pending" id="qp-pending">Complete the steps on the left and we&rsquo;ll prepare your quote.</div>
     <div id="qp-detail" style="display:none">
-      <div class="qrow"><span class="qrow-label">Product</span><span class="qrow-val">Citylights™ Aluminum Blind</span></div>
-      <div class="qrow"><span class="qrow-label">Slat size</span><span class="qrow-val" id="qr-slat">—</span></div>
-      <div class="qrow"><span class="qrow-label">Color</span><span class="qrow-val" id="qr-finish">—</span></div>
-      <div class="qrow"><span class="qrow-label">Mount</span><span class="qrow-val" id="qr-mount">—</span></div>
-      <div class="qrow"><span class="qrow-label">Dimensions</span><span class="qrow-val" id="qr-dims">—</span></div>
-      <div class="qrow"><span class="qrow-label">Qty</span><span class="qrow-val" id="qr-qty">—</span></div>
-      <div class="qdiv"></div>
       <div class="qrow"><span class="qrow-label">Base (1&Prime; bracket price)</span><span class="qrow-val" id="qr-base">—</span></div>
       <div class="qrow qrow-surcharge" id="qr-slat-row" style="display:none"><span class="qrow-label">Slat surcharge</span><span class="qrow-val" id="qr-slat-s">—</span></div>
       <div class="qrow qrow-surcharge" id="qr-finish-row" style="display:none"><span class="qrow-label">Color finish surcharge</span><span class="qrow-val" id="qr-finish-s">—</span></div>
@@ -477,7 +436,6 @@
       <div class="qnote">Norman retail pricing — 25% discount applied to subtotal. Shipping at retail rate. Final price confirmed at order.</div>
     </div>
   </div>
-</div>
 
 </div><!-- /config-layout -->
 
@@ -488,6 +446,8 @@
 <script src="../js/pages/city-lights-aluminum-blinds.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-delivery-step').innerHTML =
+  pbDeliveryStepHTML({ stepNum: 5, onPick: 'calcPrice()' });
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addCityLightsToCart()', submitFn: 'submitQuote()' });
 </script>
