@@ -42,6 +42,7 @@ function switchTab(id, btn) {
   document.querySelectorAll('.type-tab').forEach(b => b.classList.remove('on'));
   document.getElementById('tab-' + id).classList.add('on');
   btn.classList.add('on');
+  stSummary();
 }
 
 // ── Selection helpers ────────────────────────────────────
@@ -65,9 +66,9 @@ function _rnCaptureState(styleName) {
     if (sel) s[grp] = sel.textContent.trim();
   });
   var trimChecks = document.querySelectorAll('.rn-trim-check');
-  s['rn-trim-checks'] = Array.from(trimChecks).map(function(cb) { return { loc: cb.getAttribute('data-loc'), checked: cb.checked }; });
-  var fabCard = document.querySelector('#roman-fabric-cards .fabric-card.sel');
-  if (fabCard) { var h3 = fabCard.querySelector('h3'); if (h3) s['roman-fabric-card'] = h3.textContent.trim(); }
+  s['rn-trim-checks'] = Array.from(trimChecks).map(function(cb) { return { loc: cb.getAttribute('data-loc'), checked: stIsOn(cb) }; });
+  var fabBtn = document.querySelector('#roman-fabric-cards .opt-btn.sel');
+  if (fabBtn) s['roman-fabric-card'] = fabBtn.getAttribute('data-val');
   _rnStyleCache[styleName] = s;
 }
 function _rnRestoreState(styleName, fromState) {
@@ -81,7 +82,7 @@ function _rnRestoreState(styleName, fromState) {
     return;
   }
   ['rn-w','rn-h','rn-qty','rn-return','roman-clen-in','roman-ring-size','roman-ring-color','val-folds','val-fold-size'].forEach(function(id) {
-    var el = document.getElementById(id); if (el && saved[id] !== undefined) el.value = saved[id];
+    var el = document.getElementById(id); if (el && saved[id] !== undefined) { el.value = saved[id]; _stSyncPills(el); }
   });
   ['grp-roman-mount','grp-roman-tdbu','grp-roman-color','grp-roman-liner','grp-roman-lining-type',
    'grp-roman-rings','grp-roman-op','grp-roman-clen','grp-roman-motor-brand',
@@ -95,54 +96,29 @@ function _rnRestoreState(styleName, fromState) {
   if (saved['rn-trim-checks']) {
     saved['rn-trim-checks'].forEach(function(item) {
       var cb = document.querySelector('.rn-trim-check[data-loc="' + item.loc + '"]');
-      if (cb) cb.checked = item.checked;
+      if (cb) { if (cb.type === 'checkbox') cb.checked = item.checked; else cb.classList.toggle('sel', !!item.checked); }
     });
   }
   if (saved['roman-fabric-card']) {
-    document.querySelectorAll('#roman-fabric-cards .fabric-card').forEach(function(c) {
-      var h3 = c.querySelector('h3'); if (!h3) return;
-      if (h3.textContent.trim() === saved['roman-fabric-card']) {
-        var val = h3.textContent.trim() === 'We supply the fabric' ? 'We supply the fabric'
-                : h3.textContent.trim() === 'I have my own fabric' ? 'Customer supplies fabric'
-                : 'Not sure — needs consultation';
-        selectFabric('roman', c, val);
-      }
+    document.querySelectorAll('#roman-fabric-cards .opt-btn').forEach(function(c) {
+      if (c.getAttribute('data-val') === saved['roman-fabric-card']) selectFabric('roman', c, saved['roman-fabric-card']);
     });
   }
+  rnMountNote();
 }
 
 // ── Drape style state carryover ──────────────────────────
 var _drapePleatCache = {};
+// Every pleat style now shares the one Step 1 dim box (d-exact-width / d-exact-length),
+// which sits above the pleat picker — so switching pleat never touches the size.
+// (Ripple fold and rod pocket used to carry their own rf-* / rp-* inputs.)
 function _drapeGetCurrentDims() {
-  var pleat = drapeState.pleat;
-  var w = 0, h = 0;
-  if (pleat === 'Rod Pocket / Sheered Pocket') {
-    w = parseFloat((document.getElementById('rp-w') || {}).value) || 0;
-    h = parseFloat((document.getElementById('rp-l') || {}).value) || 0;
-  } else if (pleat === 'Ripple Fold') {
-    w = parseFloat((document.getElementById('rf-w') || {}).value) || 0;
-    h = parseFloat((document.getElementById('rf-l') || {}).value) || 0;
-  } else {
-    w = parseFloat((document.getElementById('d-exact-width') || {}).value) || 0;
-    h = parseFloat((document.getElementById('d-exact-length') || {}).value) || 0;
-  }
-  return { w: w, h: h };
+  return {
+    w: parseFloat((document.getElementById('d-exact-width') || {}).value) || 0,
+    h: parseFloat((document.getElementById('d-exact-length') || {}).value) || 0
+  };
 }
-function _drapeSetDims(targetPleat, dims) {
-  if (!dims || (!dims.w && !dims.h)) return;
-  var isRP = targetPleat === 'Rod Pocket / Sheered Pocket';
-  var isRipple = targetPleat === 'Ripple Fold';
-  if (isRP) {
-    var rw = document.getElementById('rp-w'); if (rw && dims.w) rw.value = dims.w;
-    var rl = document.getElementById('rp-l'); if (rl && dims.h) rl.value = dims.h;
-  } else if (isRipple) {
-    var rfw = document.getElementById('rf-w'); if (rfw && dims.w) rfw.value = dims.w;
-    var rfl = document.getElementById('rf-l'); if (rfl && dims.h) rfl.value = dims.h;
-  } else {
-    var dw = document.getElementById('d-exact-width'); if (dw && dims.w) dw.value = dims.w;
-    var dl = document.getElementById('d-exact-length'); if (dl && dims.h) dl.value = dims.h;
-  }
-}
+function _drapeSetDims(targetPleat, dims) { /* size is shared across pleats — nothing to restore */ }
 function _drapeCaptureState(pleatName) {
   if (!pleatName) return;
   var s = { dims: _drapeGetCurrentDims() };
@@ -152,8 +128,8 @@ function _drapeCaptureState(pleatName) {
     var sel = document.querySelector('#' + grp + ' .opt-btn.sel');
     if (sel) s[grp] = sel.textContent.trim();
   });
-  var fabCard = document.querySelector('#drape-fabric-cards .fabric-card.sel');
-  if (fabCard) { var h3 = fabCard.querySelector('h3'); if (h3) s['drape-fabric-card'] = h3.textContent.trim(); }
+  var fabBtn = document.querySelector('#drape-fabric-cards .opt-btn.sel');
+  if (fabBtn) s['drape-fabric-card'] = fabBtn.getAttribute('data-val');
   _drapePleatCache[pleatName] = s;
 }
 function _drapeRestoreState(targetPleat, prevDims) {
@@ -168,14 +144,8 @@ function _drapeRestoreState(targetPleat, prevDims) {
     grpEl.querySelectorAll('.opt-btn').forEach(function(b) { b.classList.toggle('sel', b.textContent.trim() === saved[grp]); });
   });
   if (saved['drape-fabric-card']) {
-    document.querySelectorAll('#drape-fabric-cards .fabric-card').forEach(function(c) {
-      var h3 = c.querySelector('h3'); if (!h3) return;
-      if (h3.textContent.trim() === saved['drape-fabric-card']) {
-        var val = h3.textContent.trim() === 'We supply the fabric' ? 'We supply the fabric'
-                : h3.textContent.trim() === 'I have my own fabric' ? 'Customer supplies fabric'
-                : 'Not sure — needs consultation';
-        selectFabric('drape', c, val);
-      }
+    document.querySelectorAll('#drape-fabric-cards .opt-btn').forEach(function(c) {
+      if (c.getAttribute('data-val') === saved['drape-fabric-card']) selectFabric('drape', c, saved['drape-fabric-card']);
     });
   }
 }
@@ -208,15 +178,10 @@ function selectPleat(el, val) {
   var rpOpts = document.getElementById('rodpocket-subopts');
   if (rpOpts) rpOpts.style.display = isRodPocket ? 'block' : 'none';
 
-  // Standard dims (d-exact-width/length) — used by pinch + standard pleats; hidden for rod pocket & ripple (they have their own dim inputs)
-  var stdDims = document.getElementById('drape-std-dims');
-  if (stdDims) stdDims.style.display = (isRodPocket || isRipple) ? 'none' : '';
-
-  // Ripple fold panel-size block — shown only for ripple
-  var rippleDims = document.getElementById('ds-ripple-dims');
-  if (rippleDims) rippleDims.style.display = isRipple ? '' : 'none';
-
-  // Overlaps & returns — pinch + standard pleats only (hidden for ripple track system & rod pocket)
+  // Return (Step 1) and overlap (Step 3) — pinch + standard pleats only
+  // (hidden for the ripple track system & rod pocket, exactly as before).
+  var retWrap = document.getElementById('drape-return-wrap');
+  if (retWrap) retWrap.style.display = (isRipple || isRodPocket) ? 'none' : '';
   var stdReturns = document.getElementById('drape-std-returns');
   if (stdReturns) stdReturns.style.display = (isRipple || isRodPocket) ? 'none' : '';
 
@@ -268,8 +233,9 @@ function selectPleat(el, val) {
   // Scroll to reveal the sub-options panel that just appeared
   setTimeout(function() {
     var target = isRodPocket ? document.getElementById('rodpocket-subopts')
-               : isRipple ? document.getElementById('ds-ripple-dims')
-               : document.getElementById('drape-std-dims');
+               : isRipple ? document.getElementById('ds-ripple-fullness')
+               : isPinch ? document.getElementById('pinch-subopts')
+               : document.getElementById('drape-step-panels');
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, 120);
 }
@@ -359,6 +325,7 @@ function selectRomanStyle(el, val) {
     var s = document.getElementById(id);
     if (s) s.style.display = hideSteps ? 'none' : '';
   });
+  stRenumber('tab-roman');
 
   _rnRestoreState(val, _prevRnState);
   calcRoman();
@@ -366,7 +333,7 @@ function selectRomanStyle(el, val) {
   // Auto-scroll to the revealed content
   setTimeout(function() {
     var target = isValance  ? document.getElementById('valance-config')
-               : document.getElementById('roman-step-dims');
+               : document.getElementById('step-roman-3');
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }, 150);
 }
@@ -429,7 +396,7 @@ function romanGoNorman() {
 }
 function selectFabric(tab, el, val) {
   var container = tab === 'drape' ? '#drape-fabric-cards' : '#roman-fabric-cards';
-  document.querySelectorAll(container + ' .fabric-card').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll(container + ' .opt-btn').forEach(c => c.classList.remove('sel'));
   el.classList.add('sel');
   var weSupply = val === 'We supply the fabric';
   var custSupply = val === 'Customer supplies fabric';
@@ -508,6 +475,11 @@ var RN_QUOTE_ONLY = true;
 // to call. Raised from 120 x 120 (Justin, 2026-09-23).
 var RN_MAX_W = 300;
 var RN_MAX_H = 250;
+// Past this a Roman can still be submitted, but needs our approval before it can be
+// paid for (Justin, 2026-09-23). Romans are all quote-only today, so this matters
+// once RN_QUOTE_ONLY is turned off and Stripe is back.
+var RN_APPROVE_W = 150;
+var RN_APPROVE_H = 115;
 
 // Lining a Roman adds $5/sqft on top of the style rate (Justin, Sept 2026).
 var RN_LINING_PER_SQFT = 5;
@@ -576,6 +548,7 @@ function _clearEstimatePanel(box) {
   // still added the 185" price.
   panel._pbEstimate = null;
   panel._pbLines    = null;
+  setTimeout(stSummary, 0);   // summary card: drop the stale figure too
 }
 
 function _motorCustomMsg(box, label) {
@@ -617,8 +590,10 @@ function calcRoman() {
     return;
   }
 
-  // Custom quote for over 120″
+  // Custom quote past RN_MAX_W × RN_MAX_H
   if (w > RN_MAX_W || h > RN_MAX_H) { _customSizeMsg(box, 'Roman Shade', RN_MAX_W, RN_MAX_H); return; }
+  // Normal path: the box only ever carries the messages above, so clear any stale one.
+  if (box) box.innerHTML = '';
 
   // Past the base shipping step — see pbRomanFreight (80″ × 100″ envelope).
   var isRomanOversized = !(w <= 80 && h <= 100);   // past the base shipping step
@@ -638,7 +613,7 @@ function calcRoman() {
 
   // Trim
   var trimTotal = 0;
-  var trimChecks = document.querySelectorAll('.rn-trim-check:checked');
+  var trimChecks = stOn('rn-trim-check');
   if (trimChecks.length) {
     var trimFt = 0;
     trimChecks.forEach(function(cb) {
@@ -696,21 +671,32 @@ function calcRoman() {
     fabNote = document.createElement('div');
     fabNote.id = 'rn-pb-fabric-note';
     fabNote.style.cssText = 'margin-top:8px;font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:7px 10px;color:var(--cream);line-height:1.5';
-    box.appendChild(fabNote);
+    document.getElementById('rn-pb-min-note').after(fabNote);
   }
   fabNote.textContent = '🧵 Est. fabric needed: ~' + fabricYds.toFixed(2) + ' yards' + (cutsPerShade > 1 ? ' ('+cutsPerShade+' widths)' : '') + ' — pattern repeats will add more. Confirmed at order.';
 
   // Line-by-line estimate panel
-  var rnLines = [
+  var isRnValance = romanState.style === 'Roman Valance';
+  var rnLines = isRnValance ? [
+    // Roman Valance has its own details step — describe what the customer chose there.
+    { label: 'Product',        value: 'Roman Valance' },
+    { label: 'Size',           value: w + '″ W × ' + h + '″ finished length' },
+    { label: 'Quantity',       value: qty + ' valance(s)' },
+    { label: 'Mount',          value: getOpt('grp-roman-mount') },
+    { label: 'Lining',         value: getOpt('grp-val-lining') },
+    { label: 'Fabric',         value: getOpt('grp-val-fabric') },
+    { label: 'Folds',          value: ((document.getElementById('val-folds') || {}).value || '—') + ' × ' + (((document.getElementById('val-fold-size') || {}).value || '—')) + '"' }
+  ] : [
     { label: 'Product',        value: (romanState.style || 'Roman Shade') },
     { label: 'Size',           value: w + '″ W × ' + h + '″ finished length' },
     { label: 'Quantity',       value: qty + ' shade(s)' },
+    { label: 'Mount',          value: getOpt('grp-roman-mount') },
     { label: 'Fabric',         value: (romanState.fabric || '—') },
     { label: 'Lining',         value: romanLiningLabel() },
     { label: 'Operation',      value: (getOpt('grp-roman-op') || '—') },
     { label: 'Mounting',       value: (getOpt('grp-roman-mount-style') || '—') }
   ];
-  if (getOpt('grp-roman-op') === 'Motorized') {
+  if (!isRnValance && getOpt('grp-roman-op') === 'Motorized') {
     var rnBrand = getOpt('grp-roman-motor-brand') || 'TBD at order';
     rnLines.push({ label: 'Motor brand', value: rnBrand });
     if (rnBrand !== 'Norman') {
@@ -723,6 +709,9 @@ function calcRoman() {
     }
   }
   if (trimTotal) rnLines.push({ label: 'Trim', value: getOpt('grp-roman-trim') || 'Selected' });
+  if (w > RN_APPROVE_W || h > RN_APPROVE_H) {
+    rnLines.push(pbApprovalLine('Roman shade over ' + RN_APPROVE_W + '″ wide or ' + RN_APPROVE_H + '″ tall'));
+  }
   // Money lines only exist when Romans are priced. Quote-only keeps the spec
   // lines, so the shade is still fully described in the cart and the email.
   if (!RN_QUOTE_ONLY) {
@@ -746,6 +735,8 @@ function calcRoman() {
       var f=document.getElementById('pb-cart-foot'); if(f) f.style.display='block';
     }, 150);
   });
+  _stShowPanel('roman-pricebox');
+  stSummary();
 }
 
 // ── DRAPERY PRICING CALCULATOR ───────────────────────────────
@@ -758,13 +749,18 @@ function calcRoman() {
 //   116–130″  +$35            (160 / 170)
 //   131–141″  +$70            (195 / 205)
 //   142–151″  +$105           (230 / 240)   ← +$35 per further 10″
-//   152–161″  +$140  … and so on to 185″
-//   over 185″ NOT auto-priced — quoted by hand
+//   152–161″  +$140  … and so on, +$35 per 10″, to 300″ (292–300″ = +$630)
+//   over 300″ NOT auto-priced — quoted by hand
+// Extended 185 -> 300 (Justin, 2026-09-23: "show the prices for everything").
+// Anything over D_APPROVE_W wide or D_APPROVE_H long still shows its price but
+// needs our approval before it can be paid for — see pbApprovalLine in shared.js.
 var D_RATE_UNLINED = 125;   // per cut/width — unlined
 var D_RATE_LINED   = 135;   // per cut/width — liner included (BO or LF, same price)
 var D_SPECIALTY_PLEAT_ADD = 20;  // Goblet / Barrel, on top of the base rate
 var D_LEN_BAND_ADD = 35;    // added per 10" band above 141"
-var D_LEN_MAX_AUTO = 185;   // longer than this is a manual quote, no number shown
+var D_LEN_MAX_AUTO = 300;   // longer than this is a manual quote, no number shown (was 185)
+var D_APPROVE_W    = 200;   // wider than this  → priced, but approval required before payment
+var D_APPROVE_H    = 150;   // longer than this → priced, but approval required before payment
 // Width has no rate ladder of its own: a wider panel simply takes more cuts and the
 // cut formula handles any width, so this cap is only about what we quote
 // automatically. Raised 200 -> 300 (Justin, 2026-09-23) so the wide sizes in the
@@ -772,6 +768,7 @@ var D_LEN_MAX_AUTO = 185;   // longer than this is a manual quote, no number sho
 // is where the per-cut rate ladder ends.
 var D_WIDTH_MAX_AUTO = 300;
 var D_MIN_WIDTHS   = 2;
+var D_SET_MIN      = 250;   // minimum per drapery set, BEFORE shipping (Justin 2026-09-23, was 200)
 var D_FABRIC_WIDTH = 54;    // standard fabric width (inches)
 
 // ── Width (cut) calculation ─────────────────────────────────────────────────
@@ -853,18 +850,9 @@ function calcDrapePrice() {
   var isPinchPleat = drapeState.pleat === 'Pinch Pleat' || (drapeState.pleat && drapeState.pleat.indexOf('Pinch Pleat') === 0);
   var isRodPocket  = drapeState.pleat === 'Rod Pocket / Sheered Pocket';
   var isRippleDim  = drapeState.pleat === 'Ripple Fold';
-  var w, h;
-  if (isRodPocket) {
-    w = _getDim('rp-w', 'rp-w-frac');
-    h = _getDim('rp-l', 'rp-l-frac');
-  } else if (isRippleDim) {
-    w = parseFloat((document.getElementById('rf-w') || {}).value) || 0;
-    h = parseFloat((document.getElementById('rf-l') || {}).value) || 0;
-  } else {
-    // Pinch + standard pleats share the same dim inputs
-    w = _getDim('d-exact-width',  'd-exact-width-frac');
-    h = _getDim('d-exact-length', 'd-exact-length-frac');
-  }
+  // One Step 1 dim box for every pleat style.
+  var w = _getDim('d-exact-width',  'd-exact-width-frac');
+  var h = _getDim('d-exact-length', 'd-exact-length-frac');
   var qty = parseInt((document.getElementById('drape-qty') || {}).value) || 1;
   var box = document.getElementById('drape-price-box');
   if (!box) return;
@@ -878,7 +866,7 @@ function calcDrapePrice() {
   if (hwNeed === 'I need hardware' && hwType === 'Motorized track') { _motorCustomMsg(box, 'Motorized Drapery'); return; }
 
   // Minimum dimension guard
-  var minWarnId = isRodPocket ? 'rp-min-warn' : 'd-min-warn';
+  var minWarnId = 'd-min-warn';
   var minWarn = document.getElementById(minWarnId);
   if (minWarn) {
     var tooNarrow = w > 0 && w < 10, tooShort = h > 0 && h < 10;
@@ -901,11 +889,12 @@ function calcDrapePrice() {
     }
   }
 
-  // Oversized → custom quote. The length limit is D_LEN_MAX_AUTO, the same 185″
-  // the rate ladder tops out at, so the cap and the pricing cannot drift apart:
-  // raise one and the other follows. It was 150″, which put the top four bands
-  // of the ladder (152–161, 162–171, 172–181, 182–185) out of reach.
+  // Oversized → custom quote. The length limit is D_LEN_MAX_AUTO, the same limit
+  // the rate ladder stops at, so the cap and the pricing cannot drift apart:
+  // raise one and the other follows.
   if (w > D_WIDTH_MAX_AUTO || h > D_LEN_MAX_AUTO) { _customSizeMsg(box, 'Custom Drapery', D_WIDTH_MAX_AUTO, D_LEN_MAX_AUTO); return; }
+  // Normal path: the box only ever carries the messages above, so clear any stale one.
+  box.innerHTML = '';
 
   // Fullness factor
   var isRipple   = drapeState.pleat === 'Ripple Fold';
@@ -1012,7 +1001,7 @@ function calcDrapePrice() {
 
   // Trim on drapes
   var trimTotal = 0;
-  var trimChecks = document.querySelectorAll('.drape-trim-check:checked');
+  var trimChecks = stOn('drape-trim-check');
   if (trimChecks.length) {
     var trimFt = 0;
     trimChecks.forEach(function(cb) {
@@ -1033,11 +1022,11 @@ function calcDrapePrice() {
     ? pbDraperyFreight(w, h)
     : ((w <= 180 && h <= 150) ? 200 : (w <= 250 && h <= 200) ? 300 : 500);
 
-  // Per-window costs (labor, fabric, lining, trim) scale with quantity; the $200 minimum
-  // applies per set. Cornice/valance are single shared pieces and shipping is one estimate —
+  // Per-window costs (labor, fabric, lining, trim) scale with quantity; the D_SET_MIN minimum
+  // applies per set, with shipping added on top. Cornice/valance are single shared pieces and shipping is one estimate —
   // added ONCE, not multiplied by quantity.
   var perSetTotal = laborTotal + interlineTotal + fabricCost + liningCost + trimTotal;
-  perSetTotal = Math.max(200, perSetTotal); // $200 minimum per drapery set
+  perSetTotal = Math.max(D_SET_MIN, perSetTotal); // minimum per set; shipping is added on top
   var grandTotal = perSetTotal * qty + corniceTotal + valanceTotal + dShipEst;
 
   var panels    = getOpt('grp-drape-panels') || '—';
@@ -1095,7 +1084,14 @@ function calcDrapePrice() {
       : (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.')) });
   }
   drapeLines.push({ label: 'Fabric needed est.', value: '~' + (totalFabYds * qty).toFixed(1) + ' yds (pattern repeats add more)' });
-  if (perSetTotal === 200) drapeLines.push({ label: 'Note', value: '$200 minimum per drapery set' });
+  if (perSetTotal === D_SET_MIN) drapeLines.push({ label: 'Note', value: '$' + D_SET_MIN + ' minimum per drapery set, plus shipping' });
+  if (w > D_APPROVE_W || h > D_APPROVE_H) {
+    drapeLines.push(pbApprovalLine('Drapery over ' + D_APPROVE_W + '″ wide or ' + D_APPROVE_H + '″ long'));
+  }
+  var cvOverH = [];
+  if (corniceTotal && ch > CV_APPROVE_H) cvOverH.push('Cornice');
+  if (valanceTotal && vh > CV_APPROVE_H) cvOverH.push('Valance');
+  if (cvOverH.length) drapeLines.push(pbApprovalLine(cvOverH.join(' and ') + ' over ' + CV_APPROVE_H + '″ tall'));
   // Past the published length ladder there is no rate to apply, so show the
   // spec without a price rather than a number we would have to walk back.
   if (overMaxLength) {
@@ -1113,6 +1109,8 @@ function calcDrapePrice() {
       var f=document.getElementById('pb-cart-foot'); if(f) f.style.display='block';
     }, 150);
   });
+  _stShowPanel('drape-price-box');
+  stSummary();
 }
 
 function drapeToggleAddon(type, show) {
@@ -1126,7 +1124,7 @@ function drapeToggleAddon(type, show) {
   calcDrapePrice();
 }
 function drapeShowTrimSupply() {
-  var anyChecked = document.querySelectorAll('.drape-trim-check:checked').length > 0;
+  var anyChecked = stOn('drape-trim-check').length > 0;
   var row = document.getElementById('grp-drape-trim-supply');
   if (row) row.style.display = anyChecked ? 'flex' : 'none';
   calcDrapePrice();
@@ -1149,6 +1147,10 @@ var CV_PER_FT     = 35;    // base rate at standard height
 var CV_MIN_FT     = 4;
 var CV_MIN_PRICE  = 200;   // minimum per cornice / per valance
 var CV_TRIM_PER_FT= 15;
+// Cornices and valances taller than this still show a price and can be submitted,
+// but need our approval before they can be paid for (Justin, 2026-09-23).
+// Applies to the standalone forms and the add-ons on the drapery form.
+var CV_APPROVE_H  = 40;
 
 function cvSetType(type) {
   var isCorn = type === 'cornice';
@@ -1202,7 +1204,7 @@ function valToggleTrim(show) {
 function _cvEdges(cls) {
   var m = {top:'Top', bottom:'Bottom', sides:'Both sides', returns:'Returns'};
   var locs = [];
-  document.querySelectorAll('.' + cls + ':checked').forEach(function(cb) {
+  stOn(cls).forEach(function(cb) {
     locs.push(m[cb.getAttribute('data-loc')] || cb.getAttribute('data-loc'));
   });
   return locs.join(', ');
@@ -1217,7 +1219,7 @@ function _cvFinishDesc(trimGrp, weltCls, trimCls) {
 
 function _cvTrimFt(edgeClass, w, h, ret) {
   var ft = 0;
-  document.querySelectorAll('.' + edgeClass + ':checked').forEach(function(cb) {
+  stOn(edgeClass).forEach(function(cb) {
     var loc = cb.getAttribute('data-loc');
     if (loc === 'top')     ft += w / 12;
     if (loc === 'bottom')  ft += w / 12;
@@ -1230,7 +1232,7 @@ function _cvTrimFt(edgeClass, w, h, ret) {
 function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimGrp, fabricGrp, isCorn) {
   var box = document.getElementById(boxId);
   if (!box) return;
-  if (!w) { box.style.display = 'none'; return; }
+  if (!w) { box.style.display = 'none'; box._cvTotal = null; stSummary(); return; }
   // Total linear footage includes width + both end returns, always round UP to full foot
   var rawFt   = (w + ret * 2) / 12;
   var ft      = Math.max(CV_MIN_FT, Math.ceil(rawFt));
@@ -1290,11 +1292,17 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
     + ' <span style="color:var(--gold)">$' + cvFreight + '</span></div>';
   rows += '<div style="font-size:11px;color:var(--text-dark);opacity:.75;padding:2px 0">' +
     ((typeof PB_ST_SHIP_NOTE !== 'undefined') ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') + '</div>';
+  if (h > CV_APPROVE_H) {
+    rows += '<div style="font-size:12px;color:var(--gold);font-weight:600;padding:6px 0 2px">&#9888; ' + PB_APPROVAL_LABEL +
+      ' <span style="font-weight:400;color:var(--text-dark)">&mdash; over ' + CV_APPROVE_H + '&Prime; tall. We review and approve this size before it can be paid for. Submit it as a request.</span></div>';
+  }
   rows += '<div style="font-size:11px;font-weight:700;color:var(--cream);padding-top:8px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)">Est. total: $' + Math.ceil(total).toLocaleString() + '<span style="font-weight:400;color:var(--text-dark)"> + fabric</span></div>';
   document.getElementById(rowsId).innerHTML = rows;
+  box._cvTotal = Math.ceil(total);   // read by the summary card only
   var noteEl = document.getElementById(noteId);
   if (noteEl) noteEl.textContent = 'Estimated pricing — confirmed at order. Fabric and trim pricing confirmed during consultation.';
   box.style.display = 'block';
+  stSummary();
 }
 
 function calcCornice() {
@@ -1326,7 +1334,7 @@ async function _stApiSubmit(formId, successId, name, email, phone, product, sele
     if (formEl) formEl.style.display = 'none';
     if (successEl) successEl.style.display = 'block';
   } catch(err) {
-    if (btn) { btn.disabled = false; btn.textContent = 'Send Quote Request →'; }
+    if (btn) { btn.disabled = false; btn.textContent = 'Submit Order for Review →'; }
     alert((err.message && err.message.length < 200 ? err.message + '\n\n' : '') +
       'Please email us at justin@blindznation.com or call (609) 742-1720.');
   }
@@ -1339,17 +1347,28 @@ async function submitCornice() {
   if (!name) { alert('Please enter your name.'); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
   var selections = [
+    { label: 'Type',         value: getOpt('grp-cv-type') },
     { label: 'Width',        value: (document.getElementById('cv-corn-w').value||'—') + '"' },
     { label: 'Height',       value: (document.getElementById('cv-corn-h').value||'—') + '"' },
     { label: 'Return depth', value: (document.getElementById('cv-corn-return').value||'4') + '"' },
     { label: 'Mount',        value: getOpt('grp-cv-corn-mount') || '—' },
     { label: 'Quantity',     value: ((document.getElementById('cv-corn-qty')||{}).value) || '1' },
     { label: 'Finishing',    value: _cvFinishDesc('grp-corn-trim','corn-welt-edge','corn-trim-edge') },
+    { label: 'Trim supply',  value: getOpt('grp-corn-trim').indexOf('Applied trim') !== -1 ? getOpt('grp-corn-trim-supply') : '—' },
     { label: 'Fabric',       value: getOpt('grp-corn-fabric') || '—' },
-    { label: 'Delivery',     value: 'Ship to me (UPS/FedEx)' },
-    { label: 'Installation', value: pbInstallRequested(document.getElementById('corn-form')) ? 'Requested' : 'Not requested' }
+    { label: 'Fabric direction', value: getOpt('grp-corn-direction') },
+    { label: 'Splice board', value: (document.getElementById('corn-splice') || {}).checked ? 'Yes' : 'No' },
+    { label: 'Delivery',     value: pbDeliveryLabel() },
+    { label: 'Installation', value: (window.pbDelivery === 'install' || pbInstallRequested(document.getElementById('corn-form'))) ? 'Requested' : 'Not requested' }
   ];
-  await _stApiSubmit('corn-form', 'corn-success', name, email, phone, 'Cornice', selections, document.getElementById('cn-notes').value.trim());
+  var cBox = document.getElementById('corn-price-box');
+  if (cBox && cBox._cvTotal) selections.push({ label: 'Estimate', value: '$' + cBox._cvTotal.toLocaleString() + ' + fabric (quoted separately)' });
+  var cLabels = (typeof pbGetShadeLabels === 'function') ? pbGetShadeLabels() : '';
+  if (cLabels) selections.push({ label: 'Labels', value: cLabels });
+  if ((parseFloat(document.getElementById('cv-corn-h').value) || 0) > CV_APPROVE_H) {
+    selections.push(pbApprovalLine('Cornice over ' + CV_APPROVE_H + '″ tall'));
+  }
+  await _stApiSubmit('corn-form', 'corn-success', name, email, phone, getOpt('grp-cv-type') === 'Valance' ? 'Valance' : 'Cornice', selections, document.getElementById('cn-notes').value.trim());
 }
 
 async function submitValanceCv() {
@@ -1368,11 +1387,14 @@ async function submitValanceCv() {
     { label: 'Fabric',       value: getOpt('grp-cv-val-fabric') || '—' },
     { label: 'Delivery',     value: 'Ship to me (UPS/FedEx)' }
   ];
+  if ((parseFloat(document.getElementById('cv-val-h').value) || 0) > CV_APPROVE_H) {
+    selections.push(pbApprovalLine('Valance over ' + CV_APPROVE_H + '″ tall'));
+  }
   await _stApiSubmit('val-form', 'val-cv-success', name, email, phone, 'Valance', selections, document.getElementById('vn-notes').value.trim());
 }
 
 function rnShowTrimSupply() {
-  var any = document.querySelectorAll('.rn-trim-check:checked').length > 0;
+  var any = stOn('rn-trim-check').length > 0;
   var el = document.getElementById('grp-rn-trim-supply');
   if (el) el.style.display = any ? 'block' : 'none';
 }
@@ -1429,7 +1451,7 @@ function addRomanToCart(){
     pbCollectItem(romanState.style||'Roman Shade',panel._pbLines,panel._pbEstimate,false);
     pbOpenCart();
   } else {
-    calcRomanPrice();
+    calcRoman();
     var p2=document.getElementById('roman-pricebox-checkout-panel');
     if(p2&&p2.style.display==='none'){ p2=null; }
     if(p2&&p2._pbLines&&(p2._pbEstimate||RN_QUOTE_ONLY)){
@@ -1493,7 +1515,7 @@ async function submitDrape() {
   var rippleJoin = isRipple ? getOpt('grp-ripple-join') : '—';
   var hwNeed     = getOpt('grp-drape-hardware');
   var hwType     = hwNeed === 'I need hardware' ? getOpt('grp-drape-hw-type') : 'N/A';
-  var delivery   = 'Ship to me (UPS/FedEx)';
+  var delivery   = pbDeliveryLabel();
   var custFabricFlag = fabric === 'Customer supplies fabric'
     ? '*** CUSTOMER SUPPLYING FABRIC ***\nDO NOT PROCESS PAYMENT UNTIL FABRIC RECEIVED AT SHOP.\nContact customer with shipping address before fabrication begins.\n\n'
     : '';
@@ -1513,7 +1535,7 @@ async function submitDrape() {
     + (pleat === 'Rod Pocket / Sheered Pocket' ? (function(){
         var casing = getOpt('grp-rp-casing') || '—';
         var header = getOpt('grp-rp-header') || 'No header';
-        var placement = (document.querySelector('input[name="rp-placement"]:checked') || {}).value || '—';
+        var placement = _rpPlacement();
         var rpFull = (function(){ var b=document.querySelector('#grp-rp-fullness .opt-btn.sel'); return b?b.textContent.trim():'2.0×'; })();
         return 'Casing: ' + casing + '  Header: ' + header + '  Placement: ' + placement + '  Fullness: ' + rpFull + '\n';
       }()) : '')
@@ -1522,7 +1544,7 @@ async function submitDrape() {
     + (isRipple ? 'Ripple fullness: ' + rippleFull + '  Hardware: ' + rippleHw + '  Snaps: ' + rippleSnaps + '\n' +
        'Butt master / Overlap: ' + rippleJoin + '\n' : '')
     + (function(){
-        var trimSel = document.querySelectorAll('.drape-trim-check:checked');
+        var trimSel = stOn('drape-trim-check');
         if (!trimSel.length) return '';
         var locs = Array.from(trimSel).map(function(c){return c.getAttribute('data-loc');}).join(', ');
         var ts = getOpt('grp-drape-trim-supply');
@@ -1537,12 +1559,8 @@ async function submitDrape() {
     + (document.getElementById('drape-price-total') && document.getElementById('drape-price-box').style.display !== 'none' ?
         'Estimate: ' + document.getElementById('drape-price-total').textContent + '\n' : '')
     + 'Hardware: ' + hwNeed + (hwType !== 'N/A' ? ' — ' + hwType : '') + '\n'
-    + '\nExact width: ' + (isSubmitRP ? ((document.getElementById('rp-w')||{}).value || '—') + '"'
-        : isRipple ? ((document.getElementById('rf-w')||{}).value || '—') + '"'
-        : (document.getElementById('d-exact-width').value ? document.getElementById('d-exact-width').value + '"' : '—'))
-    + '\nFinished length: ' + (isSubmitRP ? ((document.getElementById('rp-l')||{}).value || '—') + '"'
-        : isRipple ? ((document.getElementById('rf-l')||{}).value || '—') + '"'
-        : (document.getElementById('d-exact-length').value ? document.getElementById('d-exact-length').value + '"' : '—')) + '\n'
+    + '\nExact width: ' + (document.getElementById('d-exact-width').value ? document.getElementById('d-exact-width').value + '"' : '—')
+    + '\nFinished length: ' + (document.getElementById('d-exact-length').value ? document.getElementById('d-exact-length').value + '"' : '—') + '\n'
     + 'Delivery: ' + delivery + '\n'
     + pbInstallLine(document.getElementById('drape-form')) + '\n\n'
     + 'Notes:\n' + (document.getElementById('d-notes').value.trim() || 'None')
@@ -1562,12 +1580,8 @@ async function submitDrape() {
     { label: 'Lining', value: lining + (interlining ? ' + Interlining' : '') },
     { label: 'Quantity', value: qty + ' set(s)' },
     { label: 'Panels', value: panels + (panelSide !== '—' ? ' — ' + panelSide : '') },
-    { label: 'Width', value: (isSubmitRP ? ((document.getElementById('rp-w')||{}).value || '—')
-        : isRipple ? ((document.getElementById('rf-w')||{}).value || '—')
-        : (document.getElementById('d-exact-width').value || '—')) + '"' },
-    { label: 'Finished length', value: (isSubmitRP ? ((document.getElementById('rp-l')||{}).value || '—')
-        : isRipple ? ((document.getElementById('rf-l')||{}).value || '—')
-        : (document.getElementById('d-exact-length').value || '—')) + '"' },
+    { label: 'Width', value: (document.getElementById('d-exact-width').value || '—') + '"' },
+    { label: 'Finished length', value: (document.getElementById('d-exact-length').value || '—') + '"' },
     { label: 'Return / Overlap', value: returnSz + (returnSz === '—' ? '' : '"') + ' / ' + overlapSz + (overlapSz === '—' ? '' : '"') },
     { label: 'Hardware', value: hwNeed + (hwType !== 'N/A' ? ' — ' + hwType : '') },
     { label: 'Delivery', value: delivery }
@@ -1576,27 +1590,56 @@ async function submitDrape() {
   if (isRipple) drapeSelections.splice(8, 0, { label: 'Butt master / Overlap', value: rippleJoin });
   if (isSubmitBox) drapeSelections.push({ label: 'Box pleat size', value: boxPleatSz + '"' });
   if (isSubmitGrommet) drapeSelections.push({ label: 'Grommet', value: gromSize + ' Ø · ' + gromColor + ' · ' + gromSupply });
+  // Everything else the customer chose. These used to live only in the unused
+  // "body" string above, so they never reached the request.
+  if (fullness && fullness !== '—' && !isRipple && !isSubmitRP) drapeSelections.push({ label: 'Fullness', value: fullness });
+  if (fabric === 'We supply the fabric') drapeSelections.push({ label: 'Fabric color', value: getOpt('grp-drape-color') });
+  if (isSubmitRP) drapeSelections.push({ label: 'Rod pocket', value: 'Casing ' + getOpt('grp-rp-casing') + ' · Header ' + getOpt('grp-rp-header') + ' · ' + _rpPlacement() + ' · Fullness ' + getOpt('grp-rp-fullness') });
+  if (isRipple) drapeSelections.push({ label: 'Ripple fold', value: 'Fullness ' + rippleFull + ' · Hardware ' + rippleHw + ' · Snaps: ' + rippleSnaps });
+  var dTrim = stOn('drape-trim-check');
+  if (dTrim.length) drapeSelections.push({ label: 'Trim', value: Array.from(dTrim).map(function(c){ return c.textContent.trim(); }).join(', ') + ' · ' + getOpt('grp-drape-trim-supply') });
+  if (document.getElementById('d-cornice-check').checked) drapeSelections.push({ label: 'Cornice add-on', value: (document.getElementById('d-cornice-width').value || '—') + '" W × ' + (document.getElementById('d-cornice-height').value || '—') + '" H' + (document.getElementById('d-cornice-trim-check').checked ? ' + trim' : '') });
+  if (document.getElementById('d-valance-check').checked) drapeSelections.push({ label: 'Valance add-on', value: (document.getElementById('d-valance-width').value || '—') + '" W × ' + (document.getElementById('d-valance-height').value || '—') + '" H' + (document.getElementById('d-valance-trim-check').checked ? ' + trim' : '') });
+  var dEstPanel = document.getElementById('drape-price-box-checkout-panel');
+  if (dEstPanel && dEstPanel.style.display !== 'none' && dEstPanel._pbEstimate) drapeSelections.push({ label: 'Estimate', value: '$' + dEstPanel._pbEstimate });
+  var dLabels = (typeof pbGetShadeLabels === 'function') ? pbGetShadeLabels() : '';
+  if (dLabels) drapeSelections.push({ label: 'Labels', value: dLabels });
   var drapeNotes = document.getElementById('d-notes').value.trim();
-  if (pbInstallRequested(document.getElementById('drape-form'))) drapeSelections.push({ label: 'Installation', value: 'Requested' });
+  if (window.pbDelivery === 'install' || pbInstallRequested(document.getElementById('drape-form'))) drapeSelections.push({ label: 'Installation', value: 'Requested' });
+  // Carry any approval-required flags from the live estimate into the request.
+  var dPanel = document.getElementById('drape-price-box-checkout-panel');
+  ((dPanel && dPanel._pbLines) || []).forEach(function(l){ if (l && l.approval) drapeSelections.push(l); });
   await _stApiSubmit('drape-form', 'drape-success', name, email, phone, 'Custom Drapery', drapeSelections, drapeNotes);
 }
 
 // ── SUBMIT: ROMAN VALANCE ─────────────────────────────────
 async function submitValance() {
-  var name  = document.getElementById('val-name').value.trim();
-  var email = document.getElementById('val-email').value.trim();
-  var phone = document.getElementById('val-phone').value.trim();
+  var name  = document.getElementById('rn-name').value.trim();
+  var email = document.getElementById('rn-email').value.trim();
+  var phone = document.getElementById('rn-phone').value.trim();
   if (!name) { alert('Please enter your name.'); return; }
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
   var selections = [
     { label: 'Width',             value: (_getDim('rn-w','rn-w-frac') || '—') + '"' },
     { label: 'Height / drop',     value: (_getDim('rn-h','rn-h-frac') || '—') + '"' },
+    { label: 'Mount',             value: getOpt('grp-roman-mount') },
+    { label: 'Quantity',          value: (document.getElementById('rn-qty') || {}).value || '1' },
+    { label: 'Lining',            value: getOpt('grp-val-lining') },
+    { label: 'Fabric',            value: getOpt('grp-val-fabric') },
     { label: 'Number of folds',   value: document.getElementById('val-folds').value || '—' },
     { label: 'Fold section size', value: (document.getElementById('val-fold-size').value || '—') + '"' },
-    { label: 'Delivery',          value: 'Ship to me (UPS/FedEx)' }
+    { label: 'Delivery',          value: pbDeliveryLabel() }
   ];
-  await _stApiSubmit('valance-form-fields', 'valance-success', name, email, phone, 'Roman Valance',
-    selections, document.getElementById('val-notes').value.trim());
+  if (window.pbDelivery === 'install') selections.push({ label: 'Installation', value: 'Requested' });
+  var vLabels = (typeof pbGetShadeLabels === 'function') ? pbGetShadeLabels() : '';
+  if (vLabels) selections.push({ label: 'Labels', value: vLabels });
+  await _stApiSubmit('roman-form', 'roman-success', name, email, phone, 'Roman Valance',
+    selections, document.getElementById('rn-notes').value.trim());
+}
+
+// The Roman tab has one "Your details" step for both flows.
+function submitRomanTab() {
+  return (romanState.style === 'Roman Valance') ? submitValance() : submitRoman();
 }
 
 // ── SUBMIT: ROMAN SHADES ──────────────────────────────────
@@ -1624,7 +1667,7 @@ async function submitRoman() {
   var frontVal    = mountStyle === 'Off Back' ? ((document.getElementById('rn-valance-front') || {}).value || '6') : '—';
   var backVal     = mountStyle === 'Off Back' ? getOpt('grp-roman-back-valance') : '—';
   var backValSz   = backVal === 'Add back valance' ? ((document.getElementById('rn-valance-back') || {}).value || '4') : '—';
-  var delivery    = 'Ship to me (UPS/FedEx)';
+  var delivery    = pbDeliveryLabel();
   var mountType   = getOpt('grp-roman-mount') || 'Inside mount';
   var body = 'ROMAN SHADE QUOTE REQUEST\n\n'
     + 'Name: ' + name + '\nPhone: ' + phone
@@ -1654,7 +1697,7 @@ async function submitRoman() {
     + pbInstallLine(document.getElementById('roman-form')) + '\n\n'
     + 'Notes:\n' + (document.getElementById('rn-notes').value.trim() || 'None')
     + (function(){
-        var trimSel = document.querySelectorAll('.rn-trim-check:checked');
+        var trimSel = stOn('rn-trim-check');
         if (!trimSel.length) return '';
         var locs = Array.from(trimSel).map(function(c){return c.getAttribute('data-loc');}).join(', ');
         return '\nTrim: ' + locs + '  Supply: ' + (getOpt('grp-roman-trim-supply')||'—');
@@ -1674,7 +1717,22 @@ async function submitRoman() {
     { label: 'Rings',        value: (getOpt('grp-roman-rings')||'—') + (getOpt('grp-roman-rings')==='We supply rings' ? ' · ' + ((document.getElementById('roman-ring-size')||{}).value||'¾"') + ' · ' + ((document.getElementById('roman-ring-color')||{}).value||'White') : '') },
     { label: 'Delivery',     value: delivery }
   ];
-  if (pbInstallRequested(document.getElementById('roman-form'))) romanSelections.push({ label: 'Installation', value: 'Requested' });
+  // Everything else the customer chose. These used to live only in the unused
+  // "body" string above, so they never reached the request.
+  if (romanState.fabric === 'We supply the fabric') romanSelections.push({ label: 'Fabric color', value: getOpt('grp-roman-color') });
+  if (isMotor) romanSelections.push({ label: 'Motor', value: motorBrand + (motorPower !== '—' ? ' · ' + motorPower : '') + (motorHardwire !== '—' ? ' · ' + motorHardwire : '') });
+  if (op === 'Manual chain') romanSelections.push({ label: 'Chain length', value: getOpt('grp-roman-clen') === 'Custom' ? (((document.getElementById('roman-clen-in') || {}).value || '—') + '"') : 'Default' });
+  romanSelections.push({ label: 'Return', value: returnSz + '"' });
+  if (mountStyle === 'Off Back') romanSelections.push({ label: 'Front valance', value: (getOpt('grp-rn-front-val-h') === 'Custom' ? frontVal : '6') + '"' });
+  if (mountStyle === 'Waterfall' && getOpt('grp-roman-back-valance') === 'Add back valance') romanSelections.push({ label: 'Back valance', value: (getOpt('grp-rn-back-val-h') === 'Custom' ? ((document.getElementById('rn-valance-back') || {}).value || '6') : '6') + '" · ' + getOpt('grp-rn-back-val-fabric') });
+  var rTrim = stOn('rn-trim-check');
+  if (rTrim.length) romanSelections.push({ label: 'Trim', value: Array.from(rTrim).map(function(c){ return c.textContent.trim(); }).join(', ') + ' · ' + getOpt('grp-roman-trim-supply') });
+  var rLabels = (typeof pbGetShadeLabels === 'function') ? pbGetShadeLabels() : '';
+  if (rLabels) romanSelections.push({ label: 'Labels', value: rLabels });
+  if (window.pbDelivery === 'install' || pbInstallRequested(document.getElementById('roman-form'))) romanSelections.push({ label: 'Installation', value: 'Requested' });
+  // Carry any approval-required flag from the live estimate into the request.
+  var rPanel = document.getElementById('roman-pricebox-checkout-panel');
+  ((rPanel && rPanel._pbLines) || []).forEach(function(l){ if (l && l.approval) romanSelections.push(l); });
   await _stApiSubmit('roman-form', 'roman-success', name, email, phone, 'Custom Roman Shade',
     romanSelections, document.getElementById('rn-notes').value.trim());
 }
@@ -1697,3 +1755,122 @@ async function handleSoftQuote(e) {
     'Soft Treatments', selections, data.get('notes') || '');
 }
 
+
+// ════════════════════════════════════════════════════════════════════════
+// FORM-STANDARD HELPERS (CONFIGURATOR-STANDARD.md) — step numbering, toggle
+// pills, the shared Delivery step on three tabs, and the summary cards.
+// Display only: none of this feeds a price.
+// ════════════════════════════════════════════════════════════════════════
+
+// Multi-select pills ("select any"): each one toggles .sel on its own.
+function stToggle(el) { el.classList.toggle('sel'); }
+function stIsOn(el) { return !!(el && (el.checked || el.classList.contains('sel'))); }
+// Every "on" element of a class — toggle pills (.sel) or legacy checkboxes (:checked).
+function stOn(cls) { return document.querySelectorAll('.' + cls + '.sel, .' + cls + ':checked'); }
+
+// Keep a data-pb-pills <select>'s pill row in step after code sets .value directly.
+function _stSyncPills(sel) {
+  if (!sel || !sel._pbPills) return;
+  Array.prototype.forEach.call(sel._pbPills.children, function(b, i) { b.classList.toggle('sel', i === sel.selectedIndex); });
+}
+
+// Rod pocket placement pill → the code value it always sent.
+function _rpPlacement() {
+  var b = document.querySelector('#grp-rp-placement .opt-btn.sel');
+  return b ? (b.getAttribute('data-val') || b.textContent.trim()) : '—';
+}
+
+// Roman mount deduction note follows the Inside / Outside pill.
+function rnMountNote() {
+  var inside = getOpt('grp-roman-mount') !== 'Outside mount';
+  var i = document.getElementById('roman-mount-note-inside');
+  var o = document.getElementById('roman-mount-note-outside');
+  if (i) i.style.display = inside ? 'block' : 'none';
+  if (o) o.style.display = inside ? 'none' : 'block';
+}
+
+// Number the visible steps of a tab 1..N in order (Roman Valance hides steps 3–6).
+function stRenumber(tabId) {
+  var tab = document.getElementById(tabId);
+  if (!tab) return;
+  var n = 0;
+  Array.prototype.forEach.call(tab.querySelectorAll('.step-block'), function(b) {
+    if (b.style.display === 'none') return;
+    var num = b.querySelector('.step-num');
+    if (num) num.textContent = ++n;
+  });
+}
+
+// pbRenderEstimate never re-shows a panel that _clearEstimatePanel hid, so after an
+// out-of-range size the estimate stayed hidden even once the size was valid again.
+function _stShowPanel(boxId) {
+  var p = document.getElementById(boxId + '-checkout-panel');
+  if (p) p.style.display = '';
+}
+
+// One global delivery choice (window.pbDelivery), three grids — keep them all showing it.
+function stDeliverySync() {
+  var idx = window.pbDelivery === 'install' ? 1 : 0;
+  document.querySelectorAll('.delivery-opt-grid').forEach(function(g) {
+    Array.prototype.forEach.call(g.querySelectorAll('.delivery-opt-card'), function(c, i) { c.classList.toggle('sel', i === idx); });
+  });
+  stSummary();
+}
+
+// Summary cards ("Your configuration") on the drapery, Roman and cornice tabs.
+function _stSet(id, v) { var e = document.getElementById(id); if (e) e.textContent = v; }
+function stSummary() {
+  var del = window.pbDelivery === 'install' ? 'Professional installation' : 'Ship to me';
+  // Drapery
+  if (document.getElementById('drape-summary')) {
+    var dw = (document.getElementById('d-exact-width') || {}).value, dh = (document.getElementById('d-exact-length') || {}).value;
+    var dq = parseInt((document.getElementById('drape-qty') || {}).value, 10) || 1;
+    _stSet('ds-pleat', drapeState.pleat || '—');
+    _stSet('ds-size', (dw && dh) ? dw + '″ W × ' + dh + '″ L' : '—');
+    _stSet('ds-qty', dq + (dq === 1 ? ' set' : ' sets'));
+    var pn = getOpt('grp-drape-panels');
+    _stSet('ds-panels', pn === 'Single panel' ? 'Single — ' + getOpt('grp-drape-side') : pn);
+    _stSet('ds-lining', drapeLiningLabel());
+    _stSet('ds-fabric', drapeState.fabric || '—');
+    _stSet('ds-delivery', del);
+    var dp = document.getElementById('drape-price-box-checkout-panel');
+    var dBox = document.getElementById('drape-price-box');
+    var dLive = dp && dp.style.display !== 'none' && dp._pbLines;
+    _stSet('ds-price', (dLive && dp._pbEstimate) ? '$' + Number(dp._pbEstimate).toLocaleString()
+                     : ((dBox && dBox.innerHTML) || dLive) ? 'Custom quote' : '—');
+  }
+  // Roman
+  if (document.getElementById('roman-summary')) {
+    var isVal = romanState.style === 'Roman Valance';
+    var rw = (document.getElementById('rn-w') || {}).value, rh = (document.getElementById('rn-h') || {}).value;
+    _stSet('rn-pb-style', romanState.style || '—');
+    _stSet('rn-pb-dims', (rw && rh) ? rw + '″ W × ' + rh + '″ H' : '—');
+    _stSet('rn-pb-qty', (document.getElementById('rn-qty') || {}).value || '1');
+    _stSet('rn-pb-mount', getOpt('grp-roman-mount'));
+    _stSet('rn-pb-lining', isVal ? getOpt('grp-val-lining') : romanLiningLabel());
+    _stSet('rn-pb-motor', getOpt('grp-roman-op'));
+    var mr = document.getElementById('rn-pb-motor-row'); if (mr) mr.style.display = isVal ? 'none' : '';
+    _stSet('rn-pb-delivery', del);
+    var rp = document.getElementById('roman-pricebox-checkout-panel');
+    _stSet('rn-pb-price', RN_QUOTE_ONLY ? 'Custom quote — we confirm pricing'
+      : ((rp && rp.style.display !== 'none' && rp._pbEstimate) ? '$' + Number(rp._pbEstimate).toLocaleString() : '—'));
+  }
+  // Cornice / valance
+  if (document.getElementById('corn-summary')) {
+    var cw = (document.getElementById('cv-corn-w') || {}).value, ch = (document.getElementById('cv-corn-h') || {}).value;
+    var cr = (document.getElementById('cv-corn-return') || {}).value;
+    _stSet('cs-product', getOpt('grp-cv-type'));
+    _stSet('cs-size', cw ? cw + '″ W × ' + (ch || '8') + '″ H' + (cr ? ' · ' + cr + '″ return' : '') : '—');
+    _stSet('cs-mount', getOpt('grp-cv-corn-mount'));
+    _stSet('cs-qty', (document.getElementById('cv-corn-qty') || {}).value || '1');
+    _stSet('cs-finish', _cvFinishDesc('grp-corn-trim', 'corn-welt-edge', 'corn-trim-edge'));
+    _stSet('cs-fabric', getOpt('grp-corn-fabric'));
+    _stSet('cs-delivery', del);
+    var cb = document.getElementById('corn-price-box');
+    _stSet('cs-price', (cb && cb.style.display !== 'none' && cb._cvTotal) ? '$' + cb._cvTotal.toLocaleString() + ' + fabric' : '—');
+  }
+}
+// Any pick, keystroke or tab change refreshes the summaries after the page's own handlers run.
+['click', 'input', 'change'].forEach(function(ev) {
+  document.addEventListener(ev, function() { setTimeout(stSummary, 0); });
+});

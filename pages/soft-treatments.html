@@ -34,54 +34,39 @@
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.3);color:var(--gold)}
 
 /* ── TYPE TABS ── */
-.type-tabs{display:flex;gap:0;background:var(--espresso-mid);border-bottom:1px solid var(--border-dark);padding:0 28px;position:sticky;top:56px;z-index:90}
-.type-tab{padding:15px 28px;font-size:16px;font-weight:500;color:var(--text-muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:color .15s,border-color .15s;font-family:inherit}
+.type-tabs{display:flex;gap:0;background:var(--espresso-mid);border-bottom:1px solid var(--border-dark);padding:0 28px;position:sticky;top:56px;z-index:90;overflow-x:auto}
+.type-tab{padding:15px 28px;font-size:16px;font-weight:500;color:var(--text-muted);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;transition:color .15s,border-color .15s;font-family:inherit;white-space:nowrap}
 .type-tab:hover{color:var(--cream)}
 .type-tab.on{color:var(--cream);border-bottom-color:var(--gold)}
 .tab-panel{display:none}.tab-panel.on{display:block}
 
-/* ── STEP LAYOUT ── */
-.step-wrap{max-width:900px;margin:0 auto;padding:32px 28px}
-.step{margin-bottom:32px}
-.step-label{font-size:14px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
-.step-title{font-size:26px;font-weight:500;color:#1a1a1a;margin-bottom:6px;letter-spacing:-0.3px}
-.step-sub{font-size:18px;color:#666;line-height:1.6}
+/* ── LAYOUT — each tab is one config-wrap / config-grid (global CONFIGURATOR STANDARD) ── */
+.step-wrap{max-width:1180px;margin:0 auto;padding:32px 28px}
+.st-sub{font-size:12px;font-weight:600;color:#555;margin:14px 0 6px}
+.st-panel{margin-top:12px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px}
+/* Size / quote messages sit under the summary card. Empty = hidden. */
+.st-msg{background:var(--espresso);border-radius:12px;padding:14px 16px;margin-top:12px}
+.st-msg:empty{display:none !important}
+.summary-card .st-breakdown{margin-top:10px;padding-top:10px;border-top:0.5px solid var(--border-dark,rgba(255,255,255,.12))}
+@media(max-width:600px){.step-wrap{padding:20px 14px}.type-tab{padding:13px 16px;font-size:14px}}
 
-/* ── OPTION CARDS (style, pleat) ── */
-.opt-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;margin-top:16px}
+/* ── PHOTO PICKERS (pleat styles, Roman styles, pinch tack) ── */
+.opt-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:6px}
 .opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .opt-card:hover{border-color:var(--gold);box-shadow:0 2px 12px rgba(45,224,193,.12)}
 .opt-card.sel{border:2px solid var(--gold);box-shadow:0 2px 16px rgba(45,224,193,.2)}
 .opt-card.sel .opt-label-bar{background:var(--gold)}
 .opt-card.sel .opt-name,.opt-card.sel .opt-desc{color:var(--espresso)}
-.opt-art{height:160px;overflow:hidden;background:#F8F4EE;display:flex;align-items:center;justify-content:center;position:relative}
+.opt-art{height:140px;overflow:hidden;background:#F8F4EE;display:flex;align-items:center;justify-content:center;position:relative}
 .opt-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
-.opt-label-bar{background:#f2ede6;padding:11px 13px;transition:background .15s}
-.opt-name{font-size:17px;font-weight:500;color:#222;margin-bottom:1px}
-.opt-desc{font-size:15px;color:#888;line-height:1.4}
+.opt-label-bar{background:#f2ede6;padding:10px 12px;transition:background .15s}
+.opt-name{font-size:14px;font-weight:500;color:#222;margin-bottom:1px}
+.opt-desc{font-size:12px;color:#888;line-height:1.4}
 
-/* ── FABRIC PATH CARDS ── */
-.fabric-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:16px}
-.fabric-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;padding:20px;cursor:pointer;transition:border-color .15s}
-.fabric-card:hover{border-color:var(--gold)}
-.fabric-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.fabric-card h3{font-size:17px;font-weight:500;color:#111;margin-bottom:4px}
-.fabric-card p{font-size:16px;color:#666;line-height:1.5}
-
-/* ── DIMS + PRICE BOX ── */
-.configurator{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
-@media(max-width:820px){.configurator{grid-template-columns:1fr}}
-.price-box{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:120px}
-.pb-title{font-size:16px;font-weight:500;color:var(--cream);margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
-.pb-row{display:flex;justify-content:space-between;font-size:16px;padding:6px 0;border-bottom:.5px solid #2A201A}
-.pb-key{color:#7A6A58}.pb-val{color:var(--cream);font-weight:500}
-.pb-total-row{display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--gold)}
-.pb-total-label{font-size:18px;font-weight:500;color:var(--cream)}
-.pb-total-val{font-size:28px;font-weight:500;color:var(--gold)}
-.pb-note{font-size:14px;color:#5A4A38;margin-top:8px;line-height:1.6}
-.qty-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.qty-btn{width:32px;height:32px;border:1px solid #ddd;border-radius:8px;background:#fff;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}
-.qty-val{width:44px;text-align:center;border:1px solid #ddd;border-radius:8px;padding:5px;font-size:14px}
+/* ── WOVEN WOOD landing (not a form) ── */
+.wv-label{font-size:14px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.wv-title{font-size:26px;font-weight:500;color:#1a1a1a;margin-bottom:6px;letter-spacing:-0.3px}
+.wv-sub{font-size:16px;color:#666;line-height:1.6;margin-bottom:24px}
 
 /* ── HARDWARE CROSS-SELL ── */
 .hw-crosssell{background:var(--espresso-mid);border:0.5px solid var(--border-dark);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
@@ -123,17 +108,32 @@
 
 <!-- ══════════════════════════════════════════════════════════
      TAB: CUSTOM DRAPERY
+     Frame: 1 Drapery measurements · 2 Pleat style · 3 Panels · 4 Lining & fabric ·
+            5 Add-ons · 6 Hardware · 7 Delivery · 8 Your details
 ════════════════════════════════════════════════════════════ -->
 <div class="tab-panel on" id="tab-drapes">
 <div class="step-wrap">
+<div class="config-wrap">
+<div class="config-grid">
+<div>
 
-  <!-- STEP 1: PLEAT STYLE -->
-  <div class="step">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+  <!-- STEP 1: DRAPERY MEASUREMENTS — rendered by pbSizeMountStepHTML (noMount) at the
+       bottom of the page; ids d-exact-width / d-exact-length / drape-qty / d-return. -->
+  <div class="step-block" id="drape-step-size">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div class="step-num">1</div>
-      <div class="step-title" style="margin-bottom:0">Choose your pleat style</div>
+      <div class="step-title" style="margin-bottom:0">Drapery measurements</div>
     </div>
-    <div class="step-sub">The pleat determines the look and how the panel hangs. Not sure? Book a free consult — we'll bring samples.</div>
+    <div id="drape-size-fields"></div>
+  </div>
+
+  <!-- STEP 2: PLEAT STYLE (photo picker) + the details that belong to the chosen pleat -->
+  <div class="step-block" id="drape-step-pleat">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">2</div>
+      <div class="step-title" style="margin-bottom:0">Pleat style</div>
+    </div>
+    <div class="step-note" style="margin:0 0 8px">The pleat sets the look and how the panel hangs. Not sure? Book a free consult — we'll bring samples.</div>
     <div class="opt-cards" id="pleat-cards">
       <div class="opt-card" onclick="selectPleat(this,'Ripple Fold')">
         <div class="opt-art">
@@ -179,228 +179,95 @@
       </div>
     </div>
 
-    <!-- Pinch pleat fullness + tack are configured in Step 2 (relocated for a consistent flow) -->
+    <!-- ROD POCKET details (Rod Pocket / Sheered Pocket only) -->
+    <div id="rodpocket-subopts" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Casing (pocket) size</div>
+      <div class="opt-row" id="grp-rp-casing">
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">1"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">1.5"</button>
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-rp-casing')">2"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">2.5"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">3"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">4"</button>
+      </div>
+      <div class="step-note" style="margin-top:-8px">The sleeve the rod slides through — match your rod diameter plus clearance.</div>
 
-    <!-- ROD POCKET SUB-OPTIONS (shown only when Rod Pocket / Sheered Pocket selected) -->
-    <div id="rodpocket-subopts" style="display:none;margin-top:14px;padding:16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:12px">
-      <div style="font-size:12px;font-weight:700;color:#1a1a1a;margin-bottom:14px">Rod pocket details</div>
+      <div class="st-sub">Header size (flare above casing)</div>
+      <div class="opt-row" id="grp-rp-header">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-rp-header')">No header</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">1"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">1.5"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">2"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">3"</button>
+      </div>
+      <div class="step-note" style="margin-top:-8px">The ruffle that fans above the rod.</div>
 
-      <!-- Dimensions (no return or overlap for rod pocket) -->
-      <div class="dim-box" style="margin-bottom:14px">
-        <div class="dim-box-label">Dimensions</div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Width</label>
-            <div style="display:flex;align-items:center;gap:6px">
-              <input type="number" id="rp-w" step="0.125" placeholder="84" min="12" max="250" oninput="calcDrapePrice()" style="width:90px">
-              <span style="font-size:12px;color:#666">inches</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Finished length</label>
-            <div style="display:flex;align-items:center;gap:6px">
-              <input type="number" id="rp-l" step="0.125" placeholder="96" min="12" max="185" oninput="calcDrapePrice()" style="width:90px">
-              <span style="font-size:12px;color:#666">inches</span>
-            </div>
-          </div>
-        </div>
-        <div id="rp-min-warn" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.5"></div>
+      <div class="st-sub">Casing &amp; header placement</div>
+      <div class="opt-row" id="grp-rp-placement">
+        <button class="opt-btn" data-val="header-casing-top-bottom" onclick="selOpt(this,'grp-rp-placement')">Header + casing top &amp; bottom</button>
+        <button class="opt-btn sel" data-val="header-casing-top" onclick="selOpt(this,'grp-rp-placement')">Header + casing top only</button>
+        <button class="opt-btn" data-val="casing-top-bottom" onclick="selOpt(this,'grp-rp-placement')">Casing top &amp; bottom (no header)</button>
+        <button class="opt-btn" data-val="casing-top" onclick="selOpt(this,'grp-rp-placement')">Casing top only (no header)</button>
+        <button class="opt-btn" data-val="casing-bottom" onclick="selOpt(this,'grp-rp-placement')">Casing bottom only (no header)</button>
       </div>
 
-      <!-- Casing size -->
-      <div style="margin-bottom:14px">
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Casing (pocket) size</div>
-        <div style="font-size:11px;color:#888;margin-bottom:8px">The sleeve the rod slides through. Should match your rod diameter + clearance.</div>
-        <div class="opt-row" id="grp-rp-casing">
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">1"</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">1.5"</button>
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-rp-casing')">2"</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">2.5"</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">3"</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-casing')">4"</button>
-        </div>
+      <div class="st-sub">Fullness <span style="font-weight:400;color:var(--gold)">— 2.0× recommended</span></div>
+      <div class="opt-row" id="grp-rp-fullness">
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">Flat (1×)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">1.5×</button>
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()" style="border-color:var(--gold)">2.0× <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 5px;border-radius:4px;margin-left:3px;font-weight:700">REC</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">2.5×</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">3.0× <span style="font-size:9px;background:#e8c96b;color:#5a3a00;padding:1px 5px;border-radius:4px;margin-left:3px;font-weight:600">not rec</span></button>
       </div>
-
-      <!-- Header size -->
-      <div style="margin-bottom:14px">
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Header size (flare above casing)</div>
-        <div style="font-size:11px;color:#888;margin-bottom:8px">The ruffle that fans above the rod. Leave at 0 for no header.</div>
-        <div class="opt-row" id="grp-rp-header">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-rp-header')">No header</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">1"</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">1.5"</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">2"</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-header')">3"</button>
-        </div>
-      </div>
-
-      <!-- Placement -->
-      <div style="margin-bottom:14px">
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Casing &amp; header placement</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px" id="grp-rp-placement">
-          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-            <input type="radio" name="rp-placement" value="header-casing-top-bottom" style="margin-top:2px;flex-shrink:0"> Header + casing top &amp; bottom
-          </label>
-          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-            <input type="radio" name="rp-placement" value="header-casing-top" style="margin-top:2px;flex-shrink:0" checked> Header + casing top only
-          </label>
-          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-            <input type="radio" name="rp-placement" value="casing-top-bottom" style="margin-top:2px;flex-shrink:0"> Casing top &amp; bottom (no header)
-          </label>
-          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-            <input type="radio" name="rp-placement" value="casing-top" style="margin-top:2px;flex-shrink:0"> Casing top only (no header)
-          </label>
-          <label style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-            <input type="radio" name="rp-placement" value="casing-bottom" style="margin-top:2px;flex-shrink:0"> Casing bottom only (no header)
-          </label>
-        </div>
-      </div>
-
-      <!-- Fullness -->
-      <div>
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Fullness <span style="font-weight:400;color:var(--gold);text-transform:none">— 2.0× recommended</span></div>
-        <div style="font-size:11px;color:#888;margin-bottom:8px">Flat = 1:1, no gather. 2.0× = fabric is twice the window width — classic rod pocket look.</div>
-        <div class="opt-row" id="grp-rp-fullness">
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">Flat (1×)</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">1.5×</button>
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()" style="border-color:var(--gold)">2.0× <span style="font-size:9px;background:var(--gold);color:var(--espresso);padding:1px 5px;border-radius:4px;margin-left:3px;font-weight:700">REC</span></button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">2.5×</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-rp-fullness');calcDrapePrice()">3.0× <span style="font-size:9px;background:#e8c96b;color:#5a3a00;padding:1px 5px;border-radius:4px;margin-left:3px;font-weight:600">not rec</span></button>
-        </div>
-      </div>
+      <div class="step-note" style="margin-top:-8px">Flat = 1:1, no gather. 2.0× = fabric twice the window width — the classic rod pocket look.</div>
     </div>
 
-  </div>
-
-  <!-- STEP 2: SIZE, QUANTITY & CONFIGURATION -->
-  <div class="step">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div class="step-num">2</div>
-      <div class="step-title" style="margin-bottom:0">Size &amp; configuration</div>
-    </div>
-    <div class="step-sub">Enter your measurements and set up your panels — we'll confirm with our own measure at the home visit.</div>
-
-    <!-- 1. WINDOW DIMENSIONS (Width + Finished length) — pinch & standard pleats -->
-    <div id="drape-std-dims">
-    <div class="dim-box" style="margin-top:14px">
-      <div class="dim-box-label">Window dimensions</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Width</label>
-          <div style="display:flex;align-items:center;gap:6px">
-            <input type="number" id="d-exact-width" step="0.125" placeholder="84" min="10" max="300" oninput="calcDrapePrice()" style="width:90px">
-            <span style="font-size:12px;color:#666">inches</span>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Finished length</label>
-          <div style="display:flex;align-items:center;gap:6px">
-            <input type="number" id="d-exact-length" step="0.125" placeholder="96" min="12" max="185" oninput="calcDrapePrice()" style="width:90px">
-            <span style="font-size:12px;color:#666">inches</span>
-          </div>
-        </div>
-      </div>
-      <div id="d-min-warn" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.5"></div>
-    </div>
-    </div><!-- /#drape-std-dims -->
-
-    <!-- 1b. RIPPLE FOLD panel size (shown only for Ripple Fold) -->
-    <div id="ds-ripple-dims" style="display:none">
-      <div class="dim-box" style="margin-top:14px">
-        <div class="dim-box-label">Panel size</div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Width</label>
-            <div style="display:flex;align-items:center;gap:6px">
-              <input type="number" id="rf-w" placeholder="48" min="12" max="200" oninput="calcDrapePrice()" style="width:80px">
-              <span style="font-size:12px;color:#666">inches</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Finished length</label>
-            <div style="display:flex;align-items:center;gap:6px">
-              <input type="number" id="rf-l" placeholder="84" min="12" max="200" oninput="calcDrapePrice()" style="width:80px">
-              <span style="font-size:12px;color:#666">inches</span>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:11px;color:#888;margin-top:5px">Width × length for one panel — we confirm measurements during installation planning.</div>
-      </div>
-    </div>
-
-    <!-- 2. QUANTITY -->
-    <div id="drape-qty-row" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px">
-      <span style="font-size:13px;color:#666">Qty:</span>
-      <div class="qty-btns">
-        <button class="qty-btn" onclick="pbAdjQty('drape-qty',-1,1,20);calcDrapePrice()">&#8722;</button>
-        <input class="qty-num" id="drape-qty" type="number" value="1" min="1" max="20" oninput="calcDrapePrice()">
-        <button class="qty-btn" onclick="pbAdjQty('drape-qty',1,1,20);calcDrapePrice()">&#43;</button>
-      </div>
-      <span style="font-size:13px;color:#666">set(s) / window(s)</span>
-    </div>
-
-    <!-- 3. PANEL CONFIGURATION — single shared block, right after size + qty -->
-    <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-top:14px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Panel configuration</div>
-      <div class="opt-row" id="grp-drape-panels">
-        <button class="opt-btn sel" id="drape-pair-btn" onclick="selOpt(this,'grp-drape-panels');drapeToggleSingle(false)">Pair (split draw)</button>
-        <button class="opt-btn" id="drape-single-btn" onclick="selOpt(this,'grp-drape-panels');drapeToggleSingle(true)">Single panel</button>
-      </div>
-      <div id="drape-single-opts" style="display:none;margin-top:10px">
-        <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Panel position</div>
-        <div class="opt-row" id="grp-drape-side">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-side')">Left</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-drape-side')">Right</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-drape-side')">Center</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. OVERLAPS & RETURNS — shown for pinch & standard pleats (hidden for ripple / rod pocket) -->
-    <div id="drape-std-returns" style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-top:14px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Overlaps &amp; returns</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Return size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
-          <input type="number" id="d-return" value="4" min="1" max="24" step="0.5" oninput="calcDrapePrice()" style="font-size:14px">
-        </div>
-        <div class="form-group">
-          <label>Overlap (inches) <span style="font-weight:400;color:#999">center overlap for a pair — default 3"</span></label>
-          <input type="number" id="d-overlap" value="3" min="0" max="12" step="0.5" oninput="calcDrapePrice()" style="font-size:14px">
-        </div>
-      </div>
-    </div>
-
-    <!-- 5a. RIPPLE FOLD fullness (shown only for Ripple Fold) -->
-    <div id="ds-ripple-fullness" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px">Fullness %</div>
+    <!-- RIPPLE FOLD fullness + join + hardware (Ripple Fold only) -->
+    <div id="ds-ripple-fullness" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Fullness %</div>
       <div class="opt-row" id="grp-ripple-fullness">
         <button class="opt-btn" onclick="selOpt(this,'grp-ripple-fullness');calcDrapePrice()">60%</button>
         <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-fullness');calcDrapePrice()">80%</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-ripple-fullness');calcDrapePrice()">100%</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-ripple-fullness');calcDrapePrice()">120%</button>
       </div>
-      <div style="font-size:11px;color:#888;margin-top:5px">80% is standard. Higher % = more wave depth.</div>
+      <div class="step-note" style="margin-top:-8px">80% is standard. Higher % = more wave depth.</div>
+    </div>
+    <div id="ds-ripple-extra" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Butt master or overlap</div>
+      <div class="opt-row" id="grp-ripple-join">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-join')">Butt master</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-ripple-join')">Overlap</button>
+      </div>
+      <div class="step-note" style="margin-top:-8px">Butt master: panels meet edge to edge. Overlap: panels cross at the center seam.</div>
+      <div class="st-sub">Hardware brand</div>
+      <div class="opt-row" id="grp-ripple-hw">
+        <button class="opt-btn" onclick="selOpt(this,'grp-ripple-hw');drapeRippleHwHint('graber')">Graber</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-ripple-hw');drapeRippleHwHint('kirsch')">Kirsch</button>
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-hw');drapeRippleHwHint('idk')">I don't know</button>
+      </div>
+      <div id="ripple-hw-note" class="step-note" style="margin-top:-8px;color:var(--gold)">No problem — we'll use standard Kirsch hardware.</div>
+      <div class="st-sub">Do you need us to supply the snaps?</div>
+      <div class="opt-row" id="grp-ripple-snaps">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-snaps')">Yes — supply snaps</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-ripple-snaps')">No — I have snaps</button>
+      </div>
     </div>
 
-    <!-- 5b. PINCH PLEAT fullness + tack (relocated from Step 1; shown only for Pinch Pleat) -->
-    <div id="pinch-subopts" style="display:none;margin-top:14px;padding:16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:12px">
-      <!-- Fullness — auto-sets prong count -->
-      <div style="margin-bottom:14px">
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Fullness</div>
-        <div style="font-size:11px;color:#888;margin-bottom:8px;line-height:1.5">Selecting fullness automatically sets 2-prong (1.5×–2×) or 3-prong (2.5×–3×).</div>
-        <div class="opt-row" id="grp-pp-fullness">
-          <button class="opt-btn" onclick="selOpt(this,'grp-pp-fullness');drapeFullnessHint('1.5');calcDrapePrice()">1.5×</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-pp-fullness');drapeFullnessHint('2.0');calcDrapePrice()">2.0×</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-pp-fullness');drapeFullnessHint('2.5');calcDrapePrice()">2.5×</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-pp-fullness');drapeFullnessHint('3.0');calcDrapePrice()">3.0×</button>
-        </div>
-        <div id="pp-fullness-rec" style="display:none;margin-top:8px;font-size:12px;padding:8px 12px;border-radius:7px"></div>
+    <!-- PINCH PLEAT fullness + tack (Pinch Pleat only). Tack cards are a photo picker. -->
+    <div id="pinch-subopts" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Fullness</div>
+      <div class="opt-row" id="grp-pp-fullness">
+        <button class="opt-btn" onclick="selOpt(this,'grp-pp-fullness');drapeFullnessHint('1.5');calcDrapePrice()">1.5×</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-pp-fullness');drapeFullnessHint('2.0');calcDrapePrice()">2.0×</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-pp-fullness');drapeFullnessHint('2.5');calcDrapePrice()">2.5×</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-pp-fullness');drapeFullnessHint('3.0');calcDrapePrice()">3.0×</button>
       </div>
+      <div class="step-note" style="margin-top:-8px">Fullness sets the prongs automatically: 2-prong (1.5×–2×) or 3-prong (2.5×–3×).</div>
+      <div id="pp-fullness-rec" style="display:none;margin-top:8px;font-size:12px;padding:8px 12px;border-radius:7px"></div>
 
-      <!-- Tack position (auto-populated by fullness) -->
       <div id="pp-tack-section">
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Tack position <span style="font-weight:400;color:var(--gold);text-transform:none;font-size:10px">— tack top recommended</span></div>
+        <div class="st-sub">Tack position <span style="font-weight:400;color:var(--gold)">— tack top recommended</span></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
           <div class="opt-card" id="pp-tack-top" onclick="selectPinchDetail(this,'top')">
             <div class="opt-art" style="height:72px;overflow:hidden">
@@ -424,139 +291,135 @@
       </div>
     </div>
 
-    <!-- 5c. Fixed fullness note (Box, Goblet, Barrel — standard 2.5×) -->
-    <div id="drape-fixed-fullness-note" style="display:none;margin-top:14px;padding:10px 14px;background:#f0f9f8;border:1px solid rgba(45,224,193,.25);border-radius:9px;font-size:12px;color:#0A4A42;line-height:1.5">
-      <strong>Fullness: 2.5× standard</strong> — this pleat style is fabricated at 2.5× fullness for the best structure and appearance. No selection needed.
+    <!-- Fixed fullness note (Box, Goblet, Barrel — standard 2.5×) -->
+    <div id="drape-fixed-fullness-note" style="display:none;margin-top:12px;padding:10px 14px;background:#f0f9f8;border:1px solid rgba(45,224,193,.25);border-radius:9px;font-size:12px;color:#0A4A42;line-height:1.5">
+      <strong>Fullness: 2.5× standard</strong> — this pleat style is made at 2.5× fullness for the best structure and appearance. No selection needed.
     </div>
 
-    <!-- 5d. BOX PLEAT size (shown only for Box Pleat) -->
-    <div id="box-pleat-opts" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:12px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Box pleat size</div>
-      <div class="form-group" style="max-width:240px">
-        <label>Pleat width (inches) <span style="font-weight:400;color:#999">default 3" — editable</span></label>
+    <!-- BOX PLEAT size (Box Pleat only) -->
+    <div id="box-pleat-opts" class="st-panel" style="display:none">
+      <div class="form-group" style="max-width:240px;margin-bottom:0">
+        <label>Box pleat width (inches) <span style="font-weight:400;color:#999">default 3"</span></label>
         <input type="number" id="d-box-pleat-size" value="3" min="1" max="8" step="0.25" oninput="calcDrapePrice()" style="font-size:14px">
       </div>
-      <div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5">The flat face of each box pleat. 3" is standard — larger makes wider, more spaced pleats.</div>
+      <div class="step-note">The flat face of each box pleat. 3" is standard — larger makes wider, more spaced pleats.</div>
     </div>
 
-    <!-- 5e. GROMMET details (shown only for Grommet / Eyelet) -->
-    <div id="grommet-opts" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:12px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Grommet details</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Grommet size — inner Ø <span style="font-weight:400;color:#999">default 1¾"</span></label>
-          <select id="d-grommet-size" onchange="calcDrapePrice()" style="font-size:14px">
-            <option value="1.5625">1 9/16"</option>
-            <option value="1.75" selected>1 3/4" (standard)</option>
-            <option value="2">2"</option>
-            <option value="other">Other — specify in notes</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Grommet color / finish</label>
-          <select id="d-grommet-color" onchange="calcDrapePrice()" style="font-size:14px">
-            <option>Brushed Nickel</option>
-            <option>Satin Nickel</option>
-            <option>Antique Brass</option>
-            <option>Antique Bronze</option>
-            <option>Black</option>
-            <option>Chrome / Polished Silver</option>
-            <option>Gold / Brass</option>
-            <option>White</option>
-            <option>Other — specify in notes</option>
-          </select>
-        </div>
-      </div>
-      <div style="font-size:12px;font-weight:600;color:#333;margin:12px 0 6px">Grommets — who supplies them?</div>
-      <div class="opt-row" id="grp-grommet-supply">
+    <!-- GROMMET details (Grommet / Eyelet only). The selects stay as the source of truth
+         and render as pills (data-pb-pills, shared.js). -->
+    <div id="grommet-opts" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Grommet size — inner Ø</div>
+      <select id="d-grommet-size" data-pb-pills onchange="calcDrapePrice()">
+        <option value="1.5625">1 9/16"</option>
+        <option value="1.75" selected>1 3/4" (standard)</option>
+        <option value="2">2"</option>
+        <option value="other">Other — specify in notes</option>
+      </select>
+      <div class="st-sub">Grommet color / finish</div>
+      <select id="d-grommet-color" data-pb-pills onchange="calcDrapePrice()">
+        <option>Brushed Nickel</option>
+        <option>Satin Nickel</option>
+        <option>Antique Brass</option>
+        <option>Antique Bronze</option>
+        <option>Black</option>
+        <option>Chrome / Polished Silver</option>
+        <option>Gold / Brass</option>
+        <option>White</option>
+        <option>Other — specify in notes</option>
+      </select>
+      <div class="st-sub">Grommets — who supplies them?</div>
+      <div class="opt-row" id="grp-grommet-supply" style="margin-bottom:0">
         <button class="opt-btn sel" onclick="selOpt(this,'grp-grommet-supply')">We supply grommets</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-grommet-supply')">Customer supplies grommets</button>
       </div>
     </div>
+  </div>
 
-    <!-- 6. RIPPLE FOLD — Butt master / Overlap + hardware (shown only for Ripple Fold) -->
-    <div id="ds-ripple-extra" style="display:none">
-      <div style="margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px">Butt master or Overlap</div>
-        <div class="opt-row" id="grp-ripple-join">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-join')">Butt master</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-join')">Overlap</button>
-        </div>
-        <div style="font-size:11px;color:#888;margin-top:5px">Butt master: panels meet edge to edge. Overlap: panels cross at center seam.</div>
-      </div>
-
-      <div style="margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:7px">Hardware brand</div>
-        <div class="opt-row" id="grp-ripple-hw">
-          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-hw');drapeRippleHwHint('graber')">Graber</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-hw');drapeRippleHwHint('kirsch')">Kirsch</button>
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-hw');drapeRippleHwHint('idk')">I don't know</button>
-        </div>
-        <div id="ripple-hw-note" style="font-size:11px;color:var(--gold);margin-top:6px">No problem — we'll use standard Kirsch hardware.</div>
-        <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:12px 0 7px">Do you need us to supply the snaps?</div>
-        <div class="opt-row" id="grp-ripple-snaps">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-ripple-snaps')">Yes — supply snaps</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-ripple-snaps')">No — I have snaps</button>
-        </div>
+  <!-- STEP 3: PANELS -->
+  <div class="step-block" id="drape-step-panels">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">3</div>
+      <div class="step-title" style="margin-bottom:0">Panels</div>
+    </div>
+    <div class="opt-row" id="grp-drape-panels">
+      <button class="opt-btn sel" id="drape-pair-btn" onclick="selOpt(this,'grp-drape-panels');drapeToggleSingle(false)">Pair (split draw)</button>
+      <button class="opt-btn" id="drape-single-btn" onclick="selOpt(this,'grp-drape-panels');drapeToggleSingle(true)">Single panel</button>
+    </div>
+    <div id="drape-single-opts" style="display:none">
+      <div class="st-sub" style="margin-top:0">Panel position</div>
+      <div class="opt-row" id="grp-drape-side">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-side')">Left</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-side')">Right</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-side')">Center</button>
       </div>
     </div>
 
-    <!-- 7. HEM SIZES — shown for pinch & standard pleats (editable) -->
-    <div id="drape-hems" style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-top:14px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Hem sizes</div>
+    <!-- Overlap — pinch & standard pleats (hidden for ripple / rod pocket) -->
+    <div id="drape-std-returns">
+      <div class="form-group" style="max-width:260px">
+        <label>Overlap (inches) <span style="font-weight:400;color:#999">center overlap for a pair — default 3"</span></label>
+        <input type="number" id="d-overlap" value="3" min="0" max="12" step="0.5" oninput="calcDrapePrice()" style="font-size:14px">
+      </div>
+    </div>
+
+    <!-- Hem sizes — pinch & standard pleats (hidden for ripple / rod pocket) -->
+    <div id="drape-hems">
       <div class="form-row">
         <div class="form-group">
-          <label>Side hem (inches) <span style="font-weight:400;color:#999">default 2" — editable</span></label>
+          <label>Side hem (inches) <span style="font-weight:400;color:#999">default 2"</span></label>
           <input type="number" id="d-side-hem" value="2" min="0.5" max="6" step="0.5" oninput="calcDrapePrice()" style="font-size:14px">
         </div>
         <div class="form-group">
-          <label>Bottom hem (inches) <span style="font-weight:400;color:#999">default 4" — editable</span></label>
+          <label>Bottom hem (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
           <input type="number" id="d-bottom-hem" value="4" min="0.5" max="12" step="0.5" oninput="calcDrapePrice()" style="font-size:14px">
         </div>
       </div>
     </div>
-
-    <div id="drape-price-box" style="display:none;margin-top:14px"></div>
   </div>
 
-  <!-- STEP 3: FABRIC -->
-  <div class="step">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div class="step-num">3</div>
-      <div class="step-title" style="margin-bottom:0">Fabric</div>
+  <!-- STEP 4: LINING & FABRIC — lining type first (blackout in any color) -->
+  <div class="step-block" id="drape-step-fabric">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">4</div>
+      <div class="step-title" style="margin-bottom:0">Lining &amp; fabric</div>
     </div>
-    <div class="step-sub">We work with your fabric or help you choose from our selections.</div>
-
-    <!-- Lining light control — chosen BEFORE fabric (blackout available in any color) -->
-    <div style="margin-bottom:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Lining</div>
-      <div class="opt-row" id="grp-drape-lining-type">
-        <button class="opt-btn sel" onclick="setDrapeLiningType('unlined',this)">Unlined</button>
-        <button class="opt-btn" onclick="setDrapeLiningType('lf',this)">Light Filtering</button>
-        <button class="opt-btn" onclick="setDrapeLiningType('blackout',this)">Blackout</button>
-      </div>
-      <div style="font-size:11px;color:#aaa;margin-top:7px;line-height:1.5">Light Filtering softens light &amp; adds privacy. Blackout blocks light for bedrooms &amp; media rooms — available with any fabric color. Choose your lining color below once you pick a fabric.</div>
+    <div class="st-sub" style="margin-top:0">Lining</div>
+    <div class="opt-row" id="grp-drape-lining-type">
+      <button class="opt-btn sel" onclick="setDrapeLiningType('unlined',this)">Unlined</button>
+      <button class="opt-btn" onclick="setDrapeLiningType('lf',this)">Light Filtering</button>
+      <button class="opt-btn" onclick="setDrapeLiningType('blackout',this)">Blackout</button>
     </div>
+    <div class="step-note" style="margin-top:-8px">Light Filtering softens light &amp; adds privacy. Blackout blocks light for bedrooms &amp; media rooms — available with any fabric color.</div>
 
-    <div class="fabric-cards" id="drape-fabric-cards">
-      <div class="fabric-card" onclick="selectFabric('drape',this,'We supply the fabric')">
-        <h3>We supply the fabric</h3>
-        <p>Choose from our fabric library. Pick a color below for your estimate — we'll bring samples to confirm.</p>
+    <!-- Lining color — shown for Light Filtering / Blackout -->
+    <div id="drape-lining-section" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Lining color</div>
+      <div class="opt-row" id="grp-drape-liner">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-liner');drapeLinerToggle();calcDrapePrice()">White liner</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');drapeLinerToggle();calcDrapePrice()">Cream liner</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');drapeLinerToggle();calcDrapePrice()">Specific — see notes</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');drapeLinerToggle();calcDrapePrice()">I supply lining</button>
       </div>
-      <div class="fabric-card" onclick="selectFabric('drape',this,'Customer supplies fabric')">
-        <h3>I supply my own fabric</h3>
-        <p>After submitting, we'll contact you with our shipping address. Payment is not collected until your fabric arrives at our shop.</p>
-      </div>
-      <div class="fabric-card" onclick="selectFabric('drape',this,'Not sure — needs consultation')">
-        <h3>Not sure yet</h3>
-        <p>Book a free in-home consult. We'll guide you through fabric, lining, and style for your space.</p>
+      <div id="drape-liner-supply-note" style="display:none;margin-top:-6px;font-size:11px;color:#555;background:#fff;border:1px solid #e8e4dc;border-radius:7px;padding:7px 10px;line-height:1.5">We supply this lining — <strong>$10/yd</strong>. Same yardage as your face fabric. Amount confirmed at order.</div>
+      <div id="drape-liner-customer-note" style="display:none;margin-top:-6px;font-size:11px;color:#555;background:#f0f7f4;border:1px solid #c8e6d8;border-radius:7px;padding:7px 10px;line-height:1.5">You're supplying your own lining — please describe the material in the <strong>notes</strong> field below.</div>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e8e4dc;border-radius:8px;background:#fff">
+        <input type="checkbox" id="d-interlining-check" onchange="calcDrapePrice()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0">
+        <label for="d-interlining-check" style="font-size:12px;font-weight:500;color:#444;cursor:pointer;line-height:1.4">Add interlining <span style="color:#888;font-weight:400">(adds body, weight &amp; insulation — +$10/width)</span></label>
       </div>
     </div>
 
-    <!-- Fabric color picker (shown when we supply fabric) -->
-    <div id="drape-fabric-detail" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Choose a fabric color <span style="font-weight:400;color:#999;text-transform:none">— swatches brought to your free consultation</span></div>
-      <div class="opt-row" id="grp-drape-color" style="flex-wrap:wrap">
+    <div class="st-sub">Fabric</div>
+    <div class="opt-row" id="drape-fabric-cards">
+      <button class="opt-btn" data-val="We supply the fabric" onclick="selectFabric('drape',this,'We supply the fabric')">We supply the fabric</button>
+      <button class="opt-btn" data-val="Customer supplies fabric" onclick="selectFabric('drape',this,'Customer supplies fabric')">I supply my own fabric</button>
+      <button class="opt-btn" data-val="Not sure — needs consultation" onclick="selectFabric('drape',this,'Not sure — needs consultation')">Not sure yet</button>
+    </div>
+    <div class="step-note" style="margin-top:-8px">We supply: pick a color below for your estimate — we bring samples to confirm. Your own fabric: we send our shop address after you submit. Not sure: we'll guide you at a free in-home consult.</div>
+
+    <!-- Fabric color (we supply fabric) -->
+    <div id="drape-fabric-detail" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Fabric color <span style="font-weight:400;color:#999">— swatches brought to your free consultation</span></div>
+      <div class="opt-row" id="grp-drape-color" style="flex-wrap:wrap;margin-bottom:0">
         <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FAFAFA;border:1px solid #ccc;flex-shrink:0"></span>White</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FFF3DC;border:1px solid #ddd;flex-shrink:0"></span>Ivory</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#D9CEBB;border:1px solid #ccc;flex-shrink:0"></span>Linen</button>
@@ -566,11 +429,11 @@
         <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A2744;flex-shrink:0"></span>Navy</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-drape-color');calcDrapePrice()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A1A1A;flex-shrink:0"></span>Black</button>
       </div>
-      <div style="font-size:11px;color:#aaa;margin-top:10px;line-height:1.5">Colors confirmed during your free in-home consultation. Final pricing confirmed at order.</div>
+      <div class="step-note">Colors confirmed during your free in-home consultation. Final pricing confirmed at order.</div>
     </div>
 
     <!-- Customer-supplied fabric notice -->
-    <div id="drape-cust-fabric-notice" style="display:none;margin-top:14px;background:#fef9ec;border:1px solid #f0d070;border-radius:10px;padding:14px 16px">
+    <div id="drape-cust-fabric-notice" style="display:none;margin-top:12px;background:#fef9ec;border:1px solid #f0d070;border-radius:10px;padding:14px 16px">
       <div style="font-size:13px;font-weight:600;color:#7d5a00;margin-bottom:6px">Shipping your fabric to us</div>
       <div style="font-size:12px;color:#7d5a00;line-height:1.7">
         After you submit your order details, we will contact you with our shop address to ship your fabric to.<br>
@@ -578,197 +441,190 @@
         Please label your package with your name and the product you ordered.
       </div>
     </div>
+  </div>
 
-    <!-- LINING — shown when any fabric path is selected -->
-    <div id="drape-lining-section" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Lining color</div>
-      <div class="opt-row" id="grp-drape-liner">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-liner');drapeLinerToggle();calcDrapePrice()">White liner</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');drapeLinerToggle();calcDrapePrice()">Cream liner</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');drapeLinerToggle();calcDrapePrice()">Specific — see notes</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-drape-liner');drapeLinerToggle();calcDrapePrice()" style="font-size:11px">I supply lining</button>
+  <!-- STEP 5: ADD-ONS (optional) -->
+  <div class="step-block" id="drape-step-addons">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">5</div>
+      <div class="step-title" style="margin-bottom:0">Add-ons <span style="font-weight:400;color:#888">(optional)</span></div>
+    </div>
+
+    <!-- Trim on drape panels — toggle pills, select any -->
+    <div id="drape-trim-section">
+      <div class="st-sub" style="margin-top:0">Trim on panels</div>
+      <div class="opt-row">
+        <button class="opt-btn drape-trim-check" data-loc="lead" onclick="stToggle(this);drapeShowTrimSupply()">Lead edge only</button>
+        <button class="opt-btn drape-trim-check" data-loc="lead-return" onclick="stToggle(this);drapeShowTrimSupply()">Lead edge + return</button>
+        <button class="opt-btn drape-trim-check" data-loc="top" onclick="stToggle(this);drapeShowTrimSupply()">Top (above)</button>
+        <button class="opt-btn drape-trim-check" data-loc="hem" onclick="stToggle(this);drapeShowTrimSupply()">Hem (bottom)</button>
       </div>
-      <div id="drape-liner-supply-note" style="display:none;margin-top:7px;font-size:11px;color:#555;background:#fff;border:1px solid #e8e4dc;border-radius:7px;padding:7px 10px;line-height:1.5">We supply this lining — <strong>$10/yd</strong>. Same yardage as your face fabric. Amount confirmed at order.</div>
-      <div id="drape-liner-customer-note" style="display:none;margin-top:7px;font-size:11px;color:#555;background:#f0f7f4;border:1px solid #c8e6d8;border-radius:7px;padding:7px 10px;line-height:1.5">You're supplying your own lining — please describe the material in the <strong>notes</strong> field below.</div>
-      <div style="margin-top:12px;display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid #e8e4dc;border-radius:8px;background:#f9f7f4">
-        <input type="checkbox" id="d-interlining-check" onchange="calcDrapePrice()" style="width:16px;height:16px;cursor:pointer;flex-shrink:0">
-        <label for="d-interlining-check" style="font-size:12px;font-weight:500;color:#444;cursor:pointer;line-height:1.4">Add interlining <span style="color:#888;font-weight:400">(adds body, weight &amp; insulation — +$10/width)</span></label>
+      <div class="step-note" style="margin-top:-8px;margin-bottom:8px">Select any edges that get trim — $15/ft.</div>
+      <div class="opt-row" id="grp-drape-trim-supply" style="display:none">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-trim-supply')">We supply trim</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-trim-supply')">I supply trim</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-trim-supply')">Not sure</button>
       </div>
-      <div style="font-size:11px;color:#aaa;margin-top:7px;line-height:1.5">For a specific lining not listed, describe it in the notes field below.</div>
+    </div>
+
+    <!-- Cornice -->
+    <div id="drape-cornice-section" class="st-panel">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:12px;font-weight:600;color:#333">Cornice <span style="font-weight:400;color:#999">(self-welt or trim included)</span></span>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555;cursor:pointer">
+          <input type="checkbox" id="d-cornice-check" onchange="drapeToggleAddon('cornice',this.checked)"> Add
+        </label>
+      </div>
+      <div id="d-cornice-opts" style="display:none;margin-top:10px">
+        <div class="form-row">
+          <div class="form-group">
+            <label style="font-size:12px">Cornice width (inches)</label>
+            <input type="number" id="d-cornice-width" placeholder="84" min="48" max="360" oninput="calcDrapePrice()" style="font-size:14px">
+            <div class="dim-unit">inches (4 ft / 48" min.)</div>
+          </div>
+          <div class="form-group">
+            <label style="font-size:12px">Cornice height (inches)</label>
+            <input type="number" id="d-cornice-height" placeholder="15" min="4" max="120" oninput="calcDrapePrice()" style="font-size:14px">
+            <div class="dim-unit">face height &mdash; over 15&Prime; costs more per foot</div>
+          </div>
+        </div>
+        <div class="step-note">
+          $35 per linear foot up to 15&Prime; high, $200 minimum. Taller boards step up per foot
+          (16&ndash;35&Prime; $70 &middot; 36&ndash;55&Prime; $95 &middot; 56&ndash;75&Prime; $120).
+          <strong>Fabric is not included</strong> &mdash; quoted separately.
+        </div>
+        <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;margin-top:10px">
+          <input type="checkbox" id="d-cornice-trim-check" onchange="calcDrapePrice()"> Add trim to the cornice
+        </label>
+      </div>
+    </div>
+
+    <!-- Valance -->
+    <div id="drape-valance-section" class="st-panel">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:12px;font-weight:600;color:#333">Valance <span style="font-weight:400;color:#999">(self-welt or trim included)</span></span>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555;cursor:pointer">
+          <input type="checkbox" id="d-valance-check" onchange="drapeToggleAddon('valance',this.checked)"> Add
+        </label>
+      </div>
+      <div id="d-valance-opts" style="display:none;margin-top:10px">
+        <div class="form-row">
+          <div class="form-group">
+            <label style="font-size:12px">Valance width (inches)</label>
+            <input type="number" id="d-valance-width" placeholder="84" min="12" max="360" oninput="calcDrapePrice()" style="font-size:14px">
+            <div class="dim-unit">inches</div>
+          </div>
+          <div class="form-group">
+            <label style="font-size:12px">Valance height (inches)</label>
+            <input type="number" id="d-valance-height" placeholder="15" min="4" max="120" oninput="calcDrapePrice()" style="font-size:14px">
+            <div class="dim-unit">face height &mdash; over 15&Prime; costs more per foot</div>
+          </div>
+        </div>
+        <div class="step-note">
+          $35 per linear foot up to 15&Prime; high, $200 minimum. Taller boards step up per foot
+          (16&ndash;35&Prime; $70 &middot; 36&ndash;55&Prime; $95 &middot; 56&ndash;75&Prime; $120).
+          <strong>Fabric is not included</strong> &mdash; quoted separately.
+        </div>
+        <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;margin-top:10px">
+          <input type="checkbox" id="d-valance-trim-check" onchange="calcDrapePrice()"> Add trim to the valance
+        </label>
+      </div>
+    </div>
+
+    <!-- CORNICE / VALANCE → CV TAB RECOMMENDATION -->
+    <div id="drape-cv-rec" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:10px;padding:14px 16px;margin-top:12px">
+      <div style="font-size:13px;font-weight:600;color:#7d5a00;margin-bottom:6px">⚠ Configure your cornice / valance before submitting</div>
+      <div style="font-size:12px;color:#7d5a00;line-height:1.6;margin-bottom:10px">You've added a cornice or valance to this drapery. For accurate sizing and pricing, please set up the full details in the <strong>Cornices &amp; Valances tab</strong> before checking out.</div>
+      <button onclick="(function(){var b=Array.from(document.querySelectorAll('.type-tab')).find(function(t){return(t.getAttribute('onclick')||'').indexOf(&quot;'cornval'&quot;)!==-1;});if(b)switchTab('cornval',b);})()" style="font-size:12px;font-weight:600;background:#111110;color:var(--gold);border:none;padding:8px 16px;border-radius:8px;cursor:pointer">Go to Cornices &amp; Valances tab &rarr;</button>
     </div>
   </div>
 
-  <!-- STEP 4: FINISHING OPTIONS & CONTACT -->
-  <div class="step">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div class="step-num">4</div>
-      <div class="step-title" style="margin-bottom:0">Finishing options &amp; submit</div>
+  <!-- STEP 6: HARDWARE -->
+  <div class="step-block" id="drape-step-hardware">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">6</div>
+      <div class="step-title" style="margin-bottom:0">Hardware (rod / track)</div>
     </div>
-    <div style="display:flex;align-items:flex-start;gap:10px;background:#fef9ec;border:1px solid #f0d070;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#7a5c00;line-height:1.5">
+    <div class="opt-row" id="grp-drape-hardware">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-hardware');drapeToggleHardware(false)">I have my own hardware</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-drape-hardware');drapeToggleHardware(true)">I need hardware</button>
+    </div>
+    <div id="drape-hardware-opts" style="display:none">
+      <div class="st-sub" style="margin-top:0">What type of hardware are you looking for?</div>
+      <div class="opt-row" id="grp-drape-hw-type">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-hw-type')">Decorative rod &amp; rings</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-hw-type')">Traverse / ripple fold track</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-hw-type')">Motorized track</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-drape-hw-type')">Not sure — advise me</button>
+      </div>
+      <div style="background:var(--gold-mid);border:1px solid #e0d8c8;border-radius:8px;padding:12px 14px">
+        <div style="font-size:12px;color:#555;line-height:1.5;margin-bottom:10px">We supply and install decorative rods, traverse tracks, ripple fold systems, and motorized tracks — all brands.</div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <a href="hardware.html" target="_blank" style="font-size:12px;font-weight:600;color:var(--espresso);background:var(--gold);padding:8px 14px;border-radius:8px;text-decoration:none;white-space:nowrap">Browse Hardware ↗</a>
+          <span style="font-size:11px;color:#888">Opens in a new tab — your drapery quote stays open here.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="drape-form">
+    <!-- STEP 7: DELIVERY -->
+    <div class="step-block" id="drape-step-delivery">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">7</div>
+        <div class="step-title" style="margin-bottom:0">Delivery</div>
+      </div>
+      <div id="drape-delivery"></div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:10px;background:#fef9ec;border:1px solid #f0d070;border-radius:8px;padding:10px 14px;margin-top:14px;font-size:12px;color:#7a5c00;line-height:1.5">
       <span style="font-size:15px;flex-shrink:0">&#9888;</span>
       <span><strong>Specialty shapes &amp; designs</strong> — arched windows, bay windows, or heavily trimmed panels require a custom quote. Use the <strong>Specialty ✦</strong> tab above or call <a href="tel:6097421720" style="color:#7a5c00;font-weight:600">(609) 742-1720</a> and we'll price it out together.</span>
     </div>
+    <button onclick="reqMoreInfo('Custom Drapery')" class="req-info-link" style="display:block;margin:10px 0">Request more information about Custom Drapery →</button>
 
-    <div style="background:#fff;border:1px solid #e8e8e4;border-radius:12px;padding:24px;margin-top:16px" id="drape-form">
-      <div style="font-size:12px;color:#888;margin-bottom:16px;line-height:1.6">All optional — fill in what applies. Contact information is at the bottom.</div>
-      <!-- CORNICE & VALANCE ADD-ONS -->
-      <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:10px">Add-ons (optional)</div>
-
-        <!-- Trim on drape panels -->
-        <div id="drape-trim-section" style="margin-bottom:12px">
-          <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Trim on panels</div>
-          <div style="font-size:11px;color:#888;margin-bottom:8px">Select which edges get trim. Mix and match.</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
-            <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-              <input type="checkbox" class="drape-trim-check" data-loc="lead" onchange="calcDrapePrice();drapeShowTrimSupply()"> Lead edge only
-            </label>
-            <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-              <input type="checkbox" class="drape-trim-check" data-loc="lead-return" onchange="calcDrapePrice();drapeShowTrimSupply()"> Lead edge + return
-            </label>
-            <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-              <input type="checkbox" class="drape-trim-check" data-loc="top" onchange="calcDrapePrice();drapeShowTrimSupply()"> Top (above)
-            </label>
-            <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-              <input type="checkbox" class="drape-trim-check" data-loc="hem" onchange="calcDrapePrice();drapeShowTrimSupply()"> Hem (bottom)
-            </label>
-          </div>
-          <div class="opt-row" id="grp-drape-trim-supply" style="display:none">
-            <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-trim-supply')">We supply trim</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-drape-trim-supply')">I supply trim</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-drape-trim-supply')">Not sure</button>
-          </div>
-        </div>
-
-        <!-- Cornice -->
-        <div id="drape-cornice-section" style="margin-bottom:12px">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:12px;font-weight:500;color:#333">Cornice <span style="font-weight:400;color:#999">(self-welt or trim included)</span></span>
-            <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555;cursor:pointer">
-              <input type="checkbox" id="d-cornice-check" onchange="drapeToggleAddon('cornice',this.checked)"> Add
-            </label>
-          </div>
-          <div id="d-cornice-opts" style="display:none;background:#fafaf8;border-radius:8px;padding:12px">
-            <div class="form-row">
-              <div class="form-group">
-                <label style="font-size:12px">Cornice width (inches)</label>
-                <input type="number" id="d-cornice-width" placeholder="84" min="48" max="360" oninput="calcDrapePrice()" style="font-size:14px">
-                <div class="dim-unit">inches (4 ft / 48" min.)</div>
-              </div>
-              <div class="form-group">
-                <label style="font-size:12px">Cornice height (inches)</label>
-                <input type="number" id="d-cornice-height" placeholder="15" min="4" max="120" oninput="calcDrapePrice()" style="font-size:14px">
-                <div class="dim-unit">face height &mdash; over 15&Prime; costs more per foot</div>
-              </div>
-            </div>
-            <div style="font-size:11px;color:#666;margin-top:8px;line-height:1.6">
-              $35 per linear foot up to 15&Prime; high, $200 minimum. Taller boards step up per foot
-              (16&ndash;35&Prime; $70 &middot; 36&ndash;55&Prime; $95 &middot; 56&ndash;75&Prime; $120).
-              <strong>Fabric is not included</strong> &mdash; quoted separately.
-            </div>
-            <div style="margin-top:10px">
-              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on cornice?</div>
-              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer">
-                <input type="checkbox" id="d-cornice-trim-check" onchange="calcDrapePrice()"> Yes — add trim to cornice
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Valance -->
-        <div>
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:12px;font-weight:500;color:#333">Valance <span style="font-weight:400;color:#999">(self-welt or trim included)</span></span>
-            <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:#555;cursor:pointer">
-              <input type="checkbox" id="d-valance-check" onchange="drapeToggleAddon('valance',this.checked)"> Add
-            </label>
-          </div>
-          <div id="d-valance-opts" style="display:none;background:#fafaf8;border-radius:8px;padding:12px">
-            <div class="form-row">
-              <div class="form-group">
-                <label style="font-size:12px">Valance width (inches)</label>
-                <input type="number" id="d-valance-width" placeholder="84" min="12" max="360" oninput="calcDrapePrice()" style="font-size:14px">
-                <div class="dim-unit">inches</div>
-              </div>
-              <div class="form-group">
-                <label style="font-size:12px">Valance height (inches)</label>
-                <input type="number" id="d-valance-height" placeholder="15" min="4" max="120" oninput="calcDrapePrice()" style="font-size:14px">
-                <div class="dim-unit">face height &mdash; over 15&Prime; costs more per foot</div>
-              </div>
-            </div>
-            <div style="font-size:11px;color:#666;margin-top:8px;line-height:1.6">
-              $35 per linear foot up to 15&Prime; high, $200 minimum. Taller boards step up per foot
-              (16&ndash;35&Prime; $70 &middot; 36&ndash;55&Prime; $95 &middot; 56&ndash;75&Prime; $120).
-              <strong>Fabric is not included</strong> &mdash; quoted separately.
-            </div>
-            <div style="margin-top:10px">
-              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim on valance?</div>
-              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer">
-                <input type="checkbox" id="d-valance-trim-check" onchange="calcDrapePrice()"> Yes — add trim to valance
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Notes now live in the canonical final step below (id d-notes, unchanged). -->
-
-      <!-- CORNICE / VALANCE → CV TAB RECOMMENDATION -->
-      <div id="drape-cv-rec" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:10px;padding:14px 16px;margin-bottom:16px">
-        <div style="font-size:13px;font-weight:600;color:#7d5a00;margin-bottom:6px">⚠ Configure your cornice / valance before submitting</div>
-        <div style="font-size:12px;color:#7d5a00;line-height:1.6;margin-bottom:10px">You've added a cornice or valance to this drapery. For accurate sizing and pricing, please set up the full details in the <strong>Cornices &amp; Valances tab</strong> before checking out.</div>
-        <button onclick="(function(){var b=Array.from(document.querySelectorAll('.type-tab')).find(function(t){return(t.getAttribute('onclick')||'').indexOf(&quot;'cornval'&quot;)!==-1;});if(b)switchTab('cornval',b);})()" style="font-size:12px;font-weight:600;background:#111110;color:var(--gold);border:none;padding:8px 16px;border-radius:8px;cursor:pointer">Go to Cornices &amp; Valances tab &rarr;</button>
-      </div>
-
-      <!-- HARDWARE QUESTION -->
-      <div style="border:1px solid #e8e8e4;border-radius:10px;padding:16px 18px;margin-bottom:16px">
-        <div style="font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:10px">Do you have your hardware (rod / track)?</div>
-        <div class="opt-row" id="grp-drape-hardware">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-hardware');drapeToggleHardware(false)">I have my own hardware</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-drape-hardware');drapeToggleHardware(true)">I need hardware</button>
-        </div>
-        <!-- Hardware sub-options — shown when "I need hardware" -->
-        <div id="drape-hardware-opts" style="display:none;margin-top:14px">
-          <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">What type of hardware are you looking for?</div>
-          <div class="opt-row" id="grp-drape-hw-type">
-            <button class="opt-btn sel" onclick="selOpt(this,'grp-drape-hw-type')">Decorative rod &amp; rings</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-drape-hw-type')">Traverse / ripple fold track</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-drape-hw-type')">Motorized track</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-drape-hw-type')">Not sure — advise me</button>
-          </div>
-          <div style="margin-top:12px;background:var(--gold-mid);border:1px solid #e0d8c8;border-radius:8px;padding:12px 14px">
-            <div style="font-size:12px;color:#555;line-height:1.5;margin-bottom:10px">We supply and install decorative rods, traverse tracks, ripple fold systems, and motorized tracks — all brands.</div>
-            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-              <a href="hardware.html" target="_blank" style="font-size:12px;font-weight:600;color:var(--espresso);background:var(--gold);padding:8px 14px;border-radius:8px;text-decoration:none;white-space:nowrap">Browse Hardware ↗</a>
-              <span style="font-size:11px;color:#888">Opens in a new tab — your drapery quote stays open here.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- DELIVERY -->
-      <div class="delivery-section" style="margin-top:16px">
-        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong> — shipping estimate included with your quote.<div class="delivery-tariff">Note: tariffs, duties, and applicable import fees are additional and will be itemized separately.</div></div>
-      </div>
-
-      <div style="border-top:1px solid #e8e8e4;margin:20px 0 16px"></div>
-      <button onclick="reqMoreInfo('Custom Drapery')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Drapery →</button>
-      <!-- Canonical final step — injected at the bottom of this page with idPrefix 'd-',
-           which reproduces the original d-name/d-phone/d-email/d-address/d-notes ids. -->
-      <div id="drape-final-step"></div>
-    </div>
-    <div class="success-box" id="drape-success">
-      <strong>Order submitted!</strong><br>
-      Your email opened with your full spec pre-filled — just hit Send. We'll review your order and send you an invoice within a few hours.<br><br>
-      Questions? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7 call or text.
-    </div>
+    <!-- STEP 8: YOUR DETAILS — pbContactStepHTML, idPrefix 'd-' (d-name/d-phone/d-email/d-address/d-notes) -->
+    <div id="drape-final-step"></div>
+  </div>
+  <div class="success-box" id="drape-success">
+    <strong>Order submitted!</strong><br>
+    We'll review your order and send you an invoice within a few hours.<br><br>
+    Questions? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7 call or text.
   </div>
 
+</div><!-- /left column -->
+
+<!-- RIGHT: summary card + estimate -->
+<div>
+  <div class="summary-card" id="drape-summary">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val" id="ds-product">Custom drapery</span></div>
+    <div class="summary-row"><span class="sr-key">Pleat</span><span class="sr-val" id="ds-pleat">—</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="ds-size">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val">Rod / track</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="ds-qty">1 set</span></div>
+    <div class="summary-row"><span class="sr-key">Panels</span><span class="sr-val" id="ds-panels">Pair (split draw)</span></div>
+    <div class="summary-row"><span class="sr-key">Lining</span><span class="sr-val" id="ds-lining">Unlined</span></div>
+    <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val" id="ds-fabric">—</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="ds-delivery">Ship to me</span></div>
+    <div class="summary-row"><span class="sr-key" style="color:var(--cream);font-weight:600">Estimate</span><span class="sr-val" id="ds-price" style="color:var(--gold);font-size:15px;font-weight:700">—</span></div>
+    <div class="summary-note">Priced per 54″ width of fabric: $125 unlined · $135 lined, plus length bands. Fabric we supply is $25/yd. Shipping is an estimate and may change.</div>
+  </div>
+  <div id="drape-price-box" class="st-msg" style="display:none"></div>
+</div>
+
+</div><!-- /config-grid -->
+</div><!-- /config-wrap -->
 </div><!-- /drapes step-wrap -->
 </div><!-- /tab-drapes -->
 
 
 <!-- ══════════════════════════════════════════════════════════
-     TAB: ROMAN SHADES
+     TAB: ROMAN SHADES — custom quote only (RN_QUOTE_ONLY in soft-treatments.js)
+     Frame: 1 Window measurements & mount · 2 Style · 3 Lining & fabric · 4 Lift rings ·
+            5 Operation · 6 Mounting style & trim · 7 Delivery · 8 Your details
+     Roman Valance swaps steps 3–6 for one "Valance details" step; numbers are
+     re-sequenced by stRenumber() so they always run 1..N with no gaps.
 ════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-roman">
 <div style="height:320px;overflow:hidden;position:relative">
@@ -782,14 +638,28 @@
   </div>
 </div>
 <div class="step-wrap">
+<div class="config-wrap">
+<div class="config-grid">
+<div>
 
-  <!-- STEP 1: CHOOSE YOUR STYLE -->
-  <div class="step" id="roman-step-style">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+  <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT — pbSizeMountStepHTML (rn-w / rn-h / grp-roman-mount / rn-qty) -->
+  <div class="step-block" id="roman-step-dims">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div class="step-num">1</div>
-      <div class="step-title" style="margin-bottom:0">Choose your style</div>
+      <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
     </div>
-    <div class="step-sub">Roman shades fold up into clean horizontal pleats. Each style folds differently when raised.</div>
+    <div id="roman-size-fields"></div>
+    <div id="roman-mount-note-inside" class="step-note">Inside mount: the shade sits inside the window frame. We deduct ⅜″ from your ordered width for clearance — best for a clean, built-in look.</div>
+    <div id="roman-mount-note-outside" class="step-note" style="display:none">Outside mount: the shade mounts on the wall or ceiling. Add 3–6″ beyond each side of the window for best light blockage and privacy.</div>
+  </div>
+
+  <!-- STEP 2: STYLE (photo picker) -->
+  <div class="step-block" id="roman-step-style">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">2</div>
+      <div class="step-title" style="margin-bottom:0">Style</div>
+    </div>
+    <div class="step-note" style="margin:0 0 8px">Roman shades fold up into clean horizontal pleats. Each style folds differently when raised.</div>
     <div class="opt-cards" id="roman-style-cards">
       <div class="opt-card" onclick="selectRomanStyle(this,'Flat Roman')">
         <div class="opt-art">
@@ -826,14 +696,14 @@
           <span style="font-size:13px;font-weight:700;color:var(--gold);letter-spacing:1px">NORMAN</span>
           <span style="font-size:10px;color:var(--cream);opacity:.7">Centerpiece&trade; Roman</span>
         </div>
-        <div class="opt-label-bar"><div class="opt-name">Norman Centerpiece&trade; Roman</div><div class="opt-desc">AeroLite cordless &middot; Day &amp; Night &middot; Instant estimate</div></div>
+        <div class="opt-label-bar"><div class="opt-name">Norman Centerpiece&trade; Roman</div><div class="opt-desc">AeroLite cordless &middot; Day &amp; Night &middot; custom quote</div></div>
       </div>
       <div class="opt-card" onclick="pbShowContact('Natural Woven Roman Shades — Portfolio · Galaxy · Walden Premier &amp; Select — bamboo, grass &amp; jute — free consultation &amp; custom quote')" style="cursor:pointer">
         <div class="opt-art" style="background:#1a2a1a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px">
           <span style="font-size:13px;font-weight:700;color:var(--gold);letter-spacing:1px">NATURAL WOVEN</span>
           <span style="font-size:10px;color:var(--cream);opacity:.7">Portfolio · Galaxy · Premier · Select</span>
         </div>
-        <div class="opt-label-bar"><div class="opt-name">Roman Shade Woven Woods</div><div class="opt-desc">Bamboo, grass &amp; jute &middot; Portfolio, Galaxy, Walden Premier &amp; Select &middot; Instant quote</div></div>
+        <div class="opt-label-bar"><div class="opt-name">Roman Shade Woven Woods</div><div class="opt-desc">Bamboo, grass &amp; jute &middot; Portfolio, Galaxy, Walden Premier &amp; Select</div></div>
       </div>
       <div class="opt-card" onclick="pbShowContact('Hunter Douglas Vignette® Roman Shades — free consultation &amp; custom quote')"  style="cursor:pointer">
         <div class="opt-art" style="height:130px">
@@ -843,14 +713,14 @@
       </div>
     </div>
 
-    <!-- TDBU toggle — only for Flat / Permanently Pleated Roman -->
-    <div id="roman-tdbu-wrap" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Top-Down / Bottom-Up operation?</div>
+    <!-- TDBU — only for Flat / Permanently Pleated Roman -->
+    <div id="roman-tdbu-wrap" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Top-down / bottom-up operation?</div>
       <div class="opt-row" id="grp-roman-tdbu">
         <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-tdbu')">Standard</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-tdbu')">Yes — add TDBU</button>
       </div>
-      <div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5">TDBU lets the shade open from the top or bottom — privacy with natural light.</div>
+      <div class="step-note" style="margin-top:-8px">TDBU lets the shade open from the top or bottom — privacy with natural light.</div>
     </div>
 
     <!-- VIGNETTE NOTICE -->
@@ -859,162 +729,81 @@
       <div style="font-size:13px;color:var(--cream);margin-bottom:6px;font-weight:500">Modern Roman Shades — always custom quoted</div>
       <div style="font-size:12px;color:var(--text-dark);line-height:1.7">Vignette® Modern Roman Shades are a Hunter Douglas product and require a custom quote. We'll discuss fabric collections, lift system, and PowerView® motorization during your consultation.</div>
     </div>
-
   </div>
 
-  <!-- STEP 2: WINDOW MEASUREMENTS & MOUNT -->
-  <div class="step" id="roman-step-dims">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-      <div class="step-num">2</div>
-      <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
-    </div>
-    <div class="step-sub">Enter your window size — we confirm measurements at the home visit.</div>
-    <div class="configurator" style="margin-top:0">
-      <div>
-        <div class="dim-box">
-          <div class="dim-box-label">Enter your window size</div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Width</label>
-              <div style="display:flex;align-items:center;gap:6px">
-                <input type="number" id="rn-w" step="0.125" placeholder="36" min="12" max="300" oninput="calcRoman()" style="width:90px">
-                <span style="font-size:12px;color:#666">in</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Finished length</label>
-              <div style="display:flex;align-items:center;gap:6px">
-                <input type="number" id="rn-h" step="0.125" placeholder="48" min="12" max="250" oninput="calcRoman()" style="width:90px">
-                <span style="font-size:12px;color:#666">in</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="step-note" style="margin-top:8px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine — we confirm at the home visit.</div>
-
-        <!-- Mount type (moved from the separate Mounting step) -->
-        <div style="font-size:12px;font-weight:600;color:#333;margin:14px 0 6px">Mount type</div>
-        <div class="opt-row" id="grp-roman-mount">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-mount');document.getElementById('roman-mount-note-inside').style.display='block';document.getElementById('roman-mount-note-outside').style.display='none'">Inside mount</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-roman-mount');document.getElementById('roman-mount-note-inside').style.display='none';document.getElementById('roman-mount-note-outside').style.display='block'">Outside mount</button>
-        </div>
-        <div id="roman-mount-note-inside" style="margin-top:8px;font-size:11px;color:#555;line-height:1.5;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px;padding:10px 12px">Shade mounts inside the window frame. We deduct ⅜″ from your ordered width for clearance — best for a clean, built-in look.</div>
-        <div id="roman-mount-note-outside" style="margin-top:8px;font-size:11px;color:#555;line-height:1.5;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px;padding:10px 12px;display:none">Shade mounts outside the frame on the wall or ceiling. Add 3–6″ beyond each side of the window for best light blockage and privacy.</div>
-
-        <!-- Quantity -->
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px">
-          <span style="font-size:13px;color:#666">Qty:</span>
-          <div class="qty-btns">
-            <button class="qty-btn" onclick="adjRomanQty(-1)">&#8722;</button>
-            <input class="qty-num" id="rn-qty" type="number" value="1" min="1" max="30" oninput="calcRoman()">
-            <button class="qty-btn" onclick="adjRomanQty(1)">&#43;</button>
-          </div>
-          <span style="font-size:13px;color:#666">window(s)</span>
-        </div>
-      </div>
-      <div>
-        <div class="price-box" id="roman-pricebox" style="display:none">
-          <div class="pb-title">Your configuration</div>
-          <div class="pb-row"><span class="pb-key">Style</span><span class="pb-val" id="rn-pb-style">—</span></div>
-          <div class="pb-row"><span class="pb-key">Size</span><span class="pb-val" id="rn-pb-dims">—</span></div>
-          <div class="pb-row"><span class="pb-key">Qty</span><span class="pb-val" id="rn-pb-qty">1</span></div>
-          <div class="pb-row"><span class="pb-key">Operation</span><span class="pb-val" id="rn-pb-motor">Cordless</span></div>
-          <div id="rn-pb-min-note" style="display:none"></div>
-          <div class="pb-note">All pricing confirmed at order — submit your configuration for a custom quote.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Dimensions + Mounting merged into Step 1 (Window measurements & mount) above -->
-
-  <!-- ROMAN VALANCE (shown when Roman Valance style selected; replaces steps 4–7) -->
-  <div id="valance-config" style="display:none;margin-top:18px">
-    <div id="valance-form-fields">
-      <!-- Lining -->
-      <div style="margin-bottom:14px">
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Lining</div>
-        <div class="opt-row" id="grp-val-lining">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-val-lining')">Unlined</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-val-lining')">White liner (+$10/yd)</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-val-lining')">Cream liner (+$10/yd)</button>
-        </div>
-      </div>
-      <!-- Fabric supply -->
-      <div style="margin-bottom:14px">
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Who supplies the fabric?</div>
-        <div class="opt-row" id="grp-val-fabric">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-val-fabric')">We supply fabric</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric')">I supply fabric</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric')">Not sure</button>
-        </div>
-      </div>
-      <!-- Fold details -->
-      <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Fold details <span style="font-weight:400;color:#888">(optional)</span></div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Number of folds</label>
-            <input type="number" id="val-folds" placeholder="e.g. 3" min="1" max="20">
-          </div>
-          <div class="form-group">
-            <label>Fold section size (inches)</label>
-            <input type="number" id="val-fold-size" placeholder="e.g. 4" min="1" max="24">
-          </div>
-        </div>
-        <div style="font-size:11px;color:#888;margin-top:8px;line-height:1.5">Fold dimensions confirmed and refined during your consultation.</div>
-      </div>
-      <!-- Delivery -->
-      <div class="delivery-section" style="margin-bottom:14px">
-        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong>.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
-      </div>
-      <!-- Contact -->
-      <div style="border-top:1px solid #e8e8e4;margin:16px 0 12px"></div>
-      <button onclick="reqMoreInfo('Custom Roman Valance')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Valance &rarr;</button>
-      <div id="valance-final-step"></div>
-    </div>
-    <div id="valance-success" style="display:none;background:#EAF3DE;border-radius:10px;padding:18px;text-align:center;margin-top:10px">
-      <strong>Order submitted!</strong><br><span style="font-size:13px;color:#3B6D11">We'll review your valance spec and be in touch. Urgent? <a href="tel:6097421720" style="color:#3B6D11">(609) 742-1720</a></span>
-    </div>
-  </div>
-
-  <!-- STEP 3: FABRIC -->
-  <div class="step" id="step-roman-3">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+  <!-- ROMAN VALANCE DETAILS (Roman Valance style only — replaces steps 3–6) -->
+  <div class="step-block" id="valance-config" style="display:none">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div class="step-num">3</div>
-      <div class="step-title" style="margin-bottom:0">Fabric</div>
+      <div class="step-title" style="margin-bottom:0">Valance details</div>
+    </div>
+    <div id="valance-form-fields">
+      <div class="st-sub" style="margin-top:0">Lining</div>
+      <div class="opt-row" id="grp-val-lining">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-val-lining');calcRoman()">Unlined</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-val-lining');calcRoman()">White liner (+$10/yd)</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-val-lining');calcRoman()">Cream liner (+$10/yd)</button>
+      </div>
+      <div class="st-sub">Who supplies the fabric?</div>
+      <div class="opt-row" id="grp-val-fabric">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-val-fabric');calcRoman()">We supply fabric</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric');calcRoman()">I supply fabric</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-val-fabric');calcRoman()">Not sure</button>
+      </div>
+      <div class="st-sub">Fold details <span style="font-weight:400;color:#888">(optional)</span></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Number of folds</label>
+          <input type="number" id="val-folds" placeholder="e.g. 3" min="1" max="20" oninput="calcRoman()">
+        </div>
+        <div class="form-group">
+          <label>Fold section size (inches)</label>
+          <input type="number" id="val-fold-size" placeholder="e.g. 4" min="1" max="24" oninput="calcRoman()">
+        </div>
+      </div>
+      <div class="step-note">Fold dimensions confirmed and refined during your consultation.</div>
+    </div>
+  </div>
+
+  <!-- STEP 3: LINING & FABRIC -->
+  <div class="step-block" id="step-roman-3">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">3</div>
+      <div class="step-title" style="margin-bottom:0">Lining &amp; fabric</div>
+    </div>
+    <div class="st-sub" style="margin-top:0">Lining</div>
+    <div class="opt-row" id="grp-roman-lining-type">
+      <button class="opt-btn sel" onclick="setRomanLiningType('unlined',this)">Unlined</button>
+      <button class="opt-btn" onclick="setRomanLiningType('lf',this)">Light Filtering</button>
+      <button class="opt-btn" onclick="setRomanLiningType('blackout',this)">Blackout</button>
+    </div>
+    <div class="step-note" style="margin-top:-8px">Light Filtering softens light &amp; adds privacy. Blackout blocks light for bedrooms &amp; media rooms — available with any fabric color.</div>
+
+    <!-- Lining color — Light Filtering / Blackout -->
+    <div id="roman-lining-section" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Lining color</div>
+      <div class="opt-row" id="grp-roman-liner">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-liner');romanLinerToggle();calcRoman()">White liner</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');romanLinerToggle();calcRoman()">Cream liner</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');romanLinerToggle();calcRoman()">Specific — see notes</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');romanLinerToggle();calcRoman()">I supply lining</button>
+      </div>
+      <div id="roman-liner-supply-note" style="display:none;margin-top:-6px;font-size:11px;color:#555;background:#fff;border:1px solid #e8e4dc;border-radius:7px;padding:7px 10px;line-height:1.5">We supply this lining — <strong>$10/yd</strong>. Same yardage as your face fabric. Amount confirmed at order.</div>
+      <div id="roman-liner-customer-note" style="display:none;margin-top:-6px;font-size:11px;color:#555;background:#f0f7f4;border:1px solid #c8e6d8;border-radius:7px;padding:7px 10px;line-height:1.5">You're supplying your own lining — please describe the material in the <strong>notes</strong> field below.</div>
     </div>
 
-    <!-- Lining light control — chosen BEFORE fabric (blackout available in any color) -->
-    <div style="margin-bottom:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Lining</div>
-      <div class="opt-row" id="grp-roman-lining-type">
-        <button class="opt-btn sel" onclick="setRomanLiningType('unlined',this)">Unlined</button>
-        <button class="opt-btn" onclick="setRomanLiningType('lf',this)">Light Filtering</button>
-        <button class="opt-btn" onclick="setRomanLiningType('blackout',this)">Blackout</button>
-      </div>
-      <div style="font-size:11px;color:#aaa;margin-top:7px;line-height:1.5">Light Filtering softens light &amp; adds privacy. Blackout blocks light for bedrooms &amp; media rooms — available with any fabric color. Choose your lining color below once you pick a fabric.</div>
+    <div class="st-sub">Fabric</div>
+    <div class="opt-row" id="roman-fabric-cards">
+      <button class="opt-btn" data-val="We supply the fabric" onclick="selectFabric('roman',this,'We supply the fabric')">We supply the fabric</button>
+      <button class="opt-btn" data-val="Customer supplies fabric" onclick="selectFabric('roman',this,'Customer supplies fabric')">I supply my own fabric</button>
+      <button class="opt-btn" data-val="Not sure — needs consultation" onclick="selectFabric('roman',this,'Not sure — needs consultation')">Not sure yet</button>
     </div>
+    <div class="step-note" style="margin-top:-8px">We supply: pick a color below — we bring samples to confirm. Your own fabric: ship it to us in Huntingdon Valley, PA; we confirm yardage before you send. Not sure: we'll guide you at a free consult.</div>
 
-    <div class="fabric-cards" id="roman-fabric-cards">
-      <div class="fabric-card" onclick="selectFabric('roman',this,'We supply the fabric')">
-        <h3>We supply the fabric</h3>
-        <p>Choose a color below for your estimate — we bring samples to your space to confirm.</p>
-      </div>
-      <div class="fabric-card" onclick="selectFabric('roman',this,'Customer supplies fabric')">
-        <h3>I have my own fabric</h3>
-        <p>Ship to us in Huntingdon Valley, PA. We'll confirm yardage before you send.</p>
-      </div>
-      <div class="fabric-card" onclick="selectFabric('roman',this,'Not sure — needs consultation')">
-        <h3>Not sure yet</h3>
-        <p>Book a free consult and we'll guide you through the options in your space.</p>
-      </div>
-    </div>
-
-    <!-- Fabric color + liner picker (shown when we supply fabric) -->
-    <div id="roman-fabric-detail" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">Choose a fabric color</div>
-      <div class="opt-row" id="grp-roman-color" style="flex-wrap:wrap">
+    <!-- Fabric color (we supply fabric) -->
+    <div id="roman-fabric-detail" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Fabric color</div>
+      <div class="opt-row" id="grp-roman-color" style="flex-wrap:wrap;margin-bottom:0">
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FAFAFA;border:1px solid #ccc;flex-shrink:0"></span>White</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#FFF3DC;border:1px solid #ddd;flex-shrink:0"></span>Ivory</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#D9CEBB;border:1px solid #ccc;flex-shrink:0"></span>Linen</button>
@@ -1025,262 +814,233 @@
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-color');calcRoman()" style="display:inline-flex;align-items:center;gap:6px"><span style="width:14px;height:14px;border-radius:3px;background:#1A1A1A;flex-shrink:0"></span>Black</button>
       </div>
     </div>
-
-    <!-- Lining color — shown when a lined type (Light Filtering / Blackout) is selected -->
-    <div id="roman-lining-section" style="display:none;margin-top:14px;padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Lining color</div>
-      <div class="opt-row" id="grp-roman-liner">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-liner');romanLinerToggle();calcRoman()">White liner</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');romanLinerToggle();calcRoman()">Cream liner</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');romanLinerToggle();calcRoman()">Specific — see notes</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-roman-liner');romanLinerToggle();calcRoman()" style="font-size:11px">I supply lining</button>
-      </div>
-      <div id="roman-liner-supply-note" style="display:none;margin-top:7px;font-size:11px;color:#555;background:#fff;border:1px solid #e8e4dc;border-radius:7px;padding:7px 10px;line-height:1.5">We supply this lining — <strong>$10/yd</strong>. Same yardage as your face fabric. Amount confirmed at order.</div>
-      <div id="roman-liner-customer-note" style="display:none;margin-top:7px;font-size:11px;color:#555;background:#f0f7f4;border:1px solid #c8e6d8;border-radius:7px;padding:7px 10px;line-height:1.5">You're supplying your own lining — please describe the material in the <strong>notes</strong> field below.</div>
-    </div>
   </div>
 
   <!-- STEP 4: LIFT RINGS -->
-  <div class="step" id="step-roman-4">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+  <div class="step-block" id="step-roman-4">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div class="step-num">4</div>
       <div class="step-title" style="margin-bottom:0">Lift rings</div>
     </div>
-
-    <!-- Ring supply section -->
-    <div style="margin-top:16px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Lift rings</div>
-      <div class="opt-row" id="grp-roman-rings" style="margin-bottom:8px">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-rings');romanRingsToggle()">We supply rings</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-roman-rings');romanRingsToggle()">I supply rings</button>
-      </div>
-      <div id="roman-ring-opts" style="margin-top:8px">
-        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-          <div>
-            <div style="font-size:11px;color:#888;margin-bottom:4px">Ring size</div>
-            <select id="roman-ring-size" style="padding:7px 10px;border:1px solid #ddd;border-radius:7px;font-size:12px;background:#fff">
-              <option value="3/4&quot;">¾" (standard)</option>
-              <option value="1&quot;">1"</option>
-              <option value="1.5&quot;">1½"</option>
-            </select>
-          </div>
-          <div>
-            <div style="font-size:11px;color:#888;margin-bottom:4px">Ring color</div>
-            <select id="roman-ring-color" style="padding:7px 10px;border:1px solid #ddd;border-radius:7px;font-size:12px;background:#fff">
-              <option>White</option>
-              <option>Cream</option>
-              <option>Brass</option>
-              <option>Bronze</option>
-              <option>Clear</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div id="roman-ring-customer-note" style="display:none;font-size:11px;color:#555;background:#f0f7f4;border:1px solid #c8e6d8;border-radius:7px;padding:7px 10px;line-height:1.5">You're supplying rings — describe size and color in the <strong>notes</strong> field below.</div>
+    <div class="opt-row" id="grp-roman-rings">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-rings');romanRingsToggle()">We supply rings</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-roman-rings');romanRingsToggle()">I supply rings</button>
     </div>
+    <!-- Ring size / color: selects kept as the source of truth, rendered as pills (data-pb-pills) -->
+    <div id="roman-ring-opts">
+      <div class="st-sub" style="margin-top:0">Ring size</div>
+      <select id="roman-ring-size" data-pb-pills>
+        <option value="3/4&quot;">¾" (standard)</option>
+        <option value="1&quot;">1"</option>
+        <option value="1.5&quot;">1½"</option>
+      </select>
+      <div class="st-sub">Ring color</div>
+      <select id="roman-ring-color" data-pb-pills>
+        <option>White</option>
+        <option>Cream</option>
+        <option>Brass</option>
+        <option>Bronze</option>
+        <option>Clear</option>
+      </select>
+    </div>
+    <div id="roman-ring-customer-note" style="display:none;font-size:11px;color:#555;background:#f0f7f4;border:1px solid #c8e6d8;border-radius:7px;padding:7px 10px;line-height:1.5">You're supplying rings — describe size and color in the <strong>notes</strong> field below.</div>
   </div>
 
   <!-- STEP 5: OPERATION -->
-  <div class="step" id="step-roman-5">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+  <div class="step-block" id="step-roman-5">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div class="step-num">5</div>
       <div class="step-title" style="margin-bottom:0">Operation</div>
     </div>
-    <div class="opt-row" id="grp-roman-op" style="margin-top:12px">
+    <div class="opt-row" id="grp-roman-op">
       <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-op');romanToggleOp('cordless')">Cordless</button>
       <button class="opt-btn" onclick="selOpt(this,'grp-roman-op');romanToggleOp('manual')">Manual chain</button>
       <button class="opt-btn" onclick="selOpt(this,'grp-roman-op');romanToggleOp('motorized')">Motorized</button>
     </div>
 
-    <!-- Cordless sub-options -->
-    <div id="roman-cordless-opts" style="margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
-      <div style="font-size:12px;font-weight:500;color:#333">Cordless lift — no chain or cord</div>
-      <div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5">Child-safe cordless lift. Raise or lower by gently pulling the bottom rail. Best for windows within easy reach.</div>
-    </div>
+    <!-- Cordless -->
+    <div id="roman-cordless-opts" class="step-note" style="margin-top:-8px">Cordless lift — no chain or cord. Raise or lower by gently pulling the bottom rail. Child-safe; best for windows within easy reach.</div>
 
-    <!-- Manual chain sub-options -->
-    <div id="roman-manual-opts" style="display:none;margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
-      <div style="font-size:12px;font-weight:500;color:#333;margin-bottom:8px">Chain loop — chain length</div>
+    <!-- Manual chain -->
+    <div id="roman-manual-opts" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Chain length</div>
       <div class="opt-row" id="grp-roman-clen">
         <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-clen');document.getElementById('roman-clen-custom').style.display='none'">Default</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-clen');document.getElementById('roman-clen-custom').style.display='flex'">Custom</button>
       </div>
-      <div id="roman-clen-custom" style="display:none;align-items:center;gap:8px;margin-top:8px">
+      <div id="roman-clen-custom" style="display:none;align-items:center;gap:8px;margin-top:-6px">
         <input type="number" id="roman-clen-in" placeholder="e.g. 54" min="9" style="width:80px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px" oninput="romanChainCheck()">
         <span style="font-size:13px;color:#666">inches</span>
       </div>
       <div id="roman-clen-warn" style="display:none;font-size:11px;color:#dc2626;background:#fee2e2;border-radius:6px;padding:6px 10px;margin-top:6px"></div>
-      <div style="font-size:11px;color:#888;margin-top:6px">Custom chain must be at least 75% of finished length for comfortable reach.</div>
+      <div class="step-note">Custom chain must be at least 75% of finished length for comfortable reach.</div>
     </div>
 
-    <!-- Motorized sub-options -->
-    <div id="roman-motor-opts" style="display:none;margin-top:12px">
-      <div style="padding:14px 16px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:6px">Motor brand</div>
-        <div style="font-size:11px;color:#666;margin-bottom:10px">Choose a motor system. Final motor and cost confirmed at the measurement visit.</div>
-        <div class="opt-row" id="grp-roman-motor-brand">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-motor-brand');romanMotorBrand('somfy')">Somfy</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand');romanMotorBrand('lutron')">Lutron</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand');romanMotorBrand('rollease')">Rollease Acmeda</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand');romanMotorBrand('norman')">Norman</button>
+    <!-- Motorized -->
+    <div id="roman-motor-opts" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Motor brand</div>
+      <div class="opt-row" id="grp-roman-motor-brand">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-motor-brand');romanMotorBrand('somfy')">Somfy</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand');romanMotorBrand('lutron')">Lutron</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand');romanMotorBrand('rollease')">Rollease Acmeda</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-brand');romanMotorBrand('norman')">Norman</button>
+      </div>
+      <div class="step-note" style="margin-top:-8px">Final motor and cost confirmed at the measurement visit.</div>
+
+      <!-- Norman → dedicated Norman Roman form -->
+      <div id="roman-norman-redirect" style="display:none;margin-top:12px;padding:12px 14px;background:var(--espresso);border-radius:9px">
+        <div style="font-size:12px;color:var(--cream);line-height:1.6;margin-bottom:10px">Norman Roman shades use Norman&rsquo;s own motorization, fabrics &amp; Day &amp; Night options &mdash; configured on our dedicated <strong>Norman Centerpiece&trade;</strong> form. We&rsquo;ll carry your size over.</div>
+        <button class="opt-btn" onclick="romanGoNorman()" style="background:var(--gold);border-color:var(--gold);color:var(--espresso);font-weight:600">Continue to Norman Roman form &rarr;</button>
+      </div>
+
+      <!-- Power source (Somfy / Lutron / Rollease) -->
+      <div id="roman-motor-power">
+        <div class="st-sub">Power source</div>
+        <div class="opt-row" id="grp-roman-motor-power">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-motor-power');romanMotorPower('rechargeable')">Rechargeable battery</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-power');romanMotorPower('hardwired')">Hardwired</button>
         </div>
-
-        <!-- Norman → redirect to dedicated Norman Roman form -->
-        <div id="roman-norman-redirect" style="display:none;margin-top:12px;padding:12px 14px;background:var(--espresso);border-radius:9px">
-          <div style="font-size:12px;color:var(--cream);line-height:1.6;margin-bottom:10px">Norman Roman shades use Norman&rsquo;s own motorization, fabrics &amp; Day &amp; Night options &mdash; configured on our dedicated <strong>Norman Centerpiece&trade;</strong> form. We&rsquo;ll carry your size over.</div>
-          <button class="opt-btn" onclick="romanGoNorman()" style="background:var(--gold);border-color:var(--gold);color:var(--espresso);font-weight:600">Continue to Norman Roman form &rarr;</button>
-        </div>
-
-        <!-- Power source (Somfy / Lutron / Rollease) -->
-        <div id="roman-motor-power" style="margin-top:14px">
-          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Power source</div>
-          <div class="opt-row" id="grp-roman-motor-power">
-            <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-motor-power');romanMotorPower('rechargeable')">Rechargeable battery</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-power');romanMotorPower('hardwired')">Hardwired</button>
+        <div id="roman-motor-hardwire" style="display:none">
+          <div class="st-sub" style="margin-top:0">Hardwired type</div>
+          <div class="opt-row" id="grp-roman-motor-hardwire">
+            <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-motor-hardwire')">Low voltage</button>
+            <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-hardwire')">Standard 110V plug-in</button>
           </div>
-
-          <!-- Hardwired → low voltage or 110V -->
-          <div id="roman-motor-hardwire" style="display:none;margin-top:12px;padding:10px 12px;background:#fff;border:1px solid #e8e4dc;border-radius:8px">
-            <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Hardwired type</div>
-            <div class="opt-row" id="grp-roman-motor-hardwire">
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-motor-hardwire')">Low voltage</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-roman-motor-hardwire')">Standard 110V plug-in</button>
-            </div>
-            <div style="font-size:11px;color:#888;margin-top:6px;line-height:1.5">Low voltage runs off a transformer; 110V plugs into a standard outlet. Electrical coordination confirmed at the measurement visit.</div>
-          </div>
-          <div style="font-size:11px;color:#888;margin-top:8px">Motor brand and options confirmed at order.</div>
+          <div class="step-note" style="margin-top:-8px">Low voltage runs off a transformer; 110V plugs into a standard outlet. Electrical coordination confirmed at the measurement visit.</div>
         </div>
       </div>
     </div>
 
-    <!-- Control side — applies to manual chain and motorized only -->
-    <div id="roman-control-wrap" style="display:none;margin-top:14px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Control side</div>
+    <!-- Control side — manual chain and motorized only -->
+    <div id="roman-control-wrap" style="display:none">
+      <div class="st-sub">Control side</div>
       <div class="opt-row" id="grp-roman-control">
         <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-control')">Left</button>
         <button class="opt-btn" onclick="selOpt(this,'grp-roman-control')">Right</button>
       </div>
-      <div style="font-size:11px;color:#888;margin-top:4px">Which side the chain or motor control is on when facing the window.</div>
+      <div class="step-note" style="margin-top:-8px">Which side the chain or motor control is on when facing the window.</div>
     </div>
   </div>
 
-  <!-- STEP 6: DETAILS + PRICE -->
-  <div class="step" id="step-roman-6">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+  <!-- STEP 6: MOUNTING STYLE & TRIM -->
+  <div class="step-block" id="step-roman-6">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div class="step-num">6</div>
-      <div class="step-title" style="margin-bottom:0">Details &amp; submit</div>
+      <div class="step-title" style="margin-bottom:0">Mounting style &amp; trim</div>
     </div>
-    <div class="step-sub">Final details for your roman shade order.</div>
+    <div class="opt-row" id="grp-roman-mount-style">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-mount-style');romanToggleMountStyle('waterfall')">Waterfall</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-roman-mount-style');romanToggleMountStyle('offback')">Off Back</button>
+    </div>
 
-        <!-- Return size -->
-        <div style="margin-bottom:14px">
-          <label style="font-size:12px;font-weight:600;color:#333;display:block;margin-bottom:6px">Return size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
-          <input type="number" id="rn-return" value="4" min="1" max="12" style="width:120px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+    <!-- WATERFALL: optional back valance -->
+    <div id="roman-waterfall-opts" class="st-panel">
+      <div class="st-sub" style="margin-top:0">Back valance <span style="font-weight:400;color:#888">(optional)</span></div>
+      <div class="opt-row" id="grp-roman-back-valance">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-back-valance');romanToggleBackValance(false)">No back valance</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-back-valance');romanToggleBackValance(true)">Add back valance</button>
+      </div>
+      <div id="roman-back-valance-opts" style="display:none">
+        <div class="st-sub" style="margin-top:0">Back valance height</div>
+        <div class="opt-row" id="grp-rn-back-val-h">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-back-val-h');rnToggleBackValCustom(false)">6"</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rn-back-val-h');rnToggleBackValCustom(true)">Custom</button>
         </div>
-
-        <!-- Mounting style: Waterfall / Off Back -->
-        <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
-          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Mounting style</div>
-          <div class="opt-row" id="grp-roman-mount-style">
-            <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-mount-style');romanToggleMountStyle('waterfall')">Waterfall</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-roman-mount-style');romanToggleMountStyle('offback')">Off Back</button>
-          </div>
-
-          <!-- WATERFALL sub-options: optional back valance -->
-          <div id="roman-waterfall-opts" style="margin-top:12px;padding:10px 12px;background:#fafaf8;border-radius:8px">
-            <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.3px;margin-bottom:7px">Back valance (optional)</div>
-            <div class="opt-row" id="grp-roman-back-valance">
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-back-valance');romanToggleBackValance(false)">No back valance</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-roman-back-valance');romanToggleBackValance(true)">Add back valance</button>
-            </div>
-            <div id="roman-back-valance-opts" style="display:none;margin-top:10px">
-              <div class="form-row" style="margin-bottom:8px">
-                <div class="form-group">
-                  <label style="font-size:12px">Back valance height <span style="font-weight:400;color:#999">default 6"</span></label>
-                  <div class="opt-row" id="grp-rn-back-val-h" style="margin-top:6px;margin-bottom:6px">
-                    <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-back-val-h');rnToggleBackValCustom(false)">6"</button>
-                    <button class="opt-btn" onclick="selOpt(this,'grp-rn-back-val-h');rnToggleBackValCustom(true)">Custom</button>
-                  </div>
-                  <div id="rn-back-val-custom" style="display:none">
-                    <input type="number" id="rn-valance-back" value="6" min="2" max="24" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
-                    <span style="font-size:12px;color:#888;margin-left:6px">inches</span>
-                  </div>
-                </div>
-              </div>
-              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Back valance fabric</div>
-              <div class="opt-row" id="grp-rn-back-val-fabric">
-                <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-back-val-fabric')">Same face fabric</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-rn-back-val-fabric')">Lined</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- OFF BACK sub-options: front valance (auto-shown) -->
-          <div id="roman-offback-opts" style="display:none;margin-top:12px;padding:10px 12px;background:#fafaf8;border-radius:8px">
-            <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.3px;margin-bottom:7px">Front valance <span style="font-weight:400;color:#888;text-transform:none">— covers the mounting board</span></div>
-            <div class="form-row" style="margin-bottom:8px">
-              <div class="form-group">
-                <label style="font-size:12px">Front valance height <span style="font-weight:400;color:#999">default 6"</span></label>
-                <div class="opt-row" id="grp-rn-front-val-h" style="margin-top:6px;margin-bottom:6px">
-                  <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-front-val-h');rnToggleFrontValCustom(false)">6"</button>
-                  <button class="opt-btn" onclick="selOpt(this,'grp-rn-front-val-h');rnToggleFrontValCustom(true)">Custom</button>
-                </div>
-                <div id="rn-front-val-custom" style="display:none">
-                  <input type="number" id="rn-valance-front" value="6" min="2" max="24" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
-                  <span style="font-size:12px;color:#888;margin-left:6px">inches</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="rn-back-val-custom" style="display:none;margin:-6px 0 12px">
+          <input type="number" id="rn-valance-back" value="6" min="2" max="24" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+          <span style="font-size:12px;color:#888;margin-left:6px">inches</span>
         </div>
-
-        <!-- QUOTE FORM -->
-        <div id="roman-form" style="margin-top:4px">
-
-          <!-- TRIM ADD-ON -->
-          <div style="border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:14px">
-            <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Trim on cornice</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
-              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-                <input type="checkbox" class="rn-trim-check" data-loc="sides" onchange="calcRoman();rnShowTrimSupply()"> Both sides
-              </label>
-              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-                <input type="checkbox" class="rn-trim-check" data-loc="top" onchange="calcRoman();rnShowTrimSupply()"> Top
-              </label>
-              <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff">
-                <input type="checkbox" class="rn-trim-check" data-loc="bottom" onchange="calcRoman();rnShowTrimSupply()"> Bottom (hem)
-              </label>
-            </div>
-            <div id="grp-rn-trim-supply" style="display:none">
-              <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Trim supply</div>
-              <div class="opt-row" id="grp-roman-trim-supply">
-                <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-trim-supply')">We supply trim</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-roman-trim-supply')">I supply trim</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-roman-trim-supply')">Not sure</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- DELIVERY -->
-          <div class="delivery-section" style="margin-top:16px">
-            <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong>.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
-          </div>
-
-          <div style="border-top:1px solid #e8e8e4;margin:20px 0 16px"></div>
-          <button onclick="reqMoreInfo('Custom Roman Shades')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Custom Roman Shades →</button>
-          <div id="roman-final-step"></div>
+        <div class="st-sub" style="margin-top:0">Back valance fabric</div>
+        <div class="opt-row" id="grp-rn-back-val-fabric" style="margin-bottom:0">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-back-val-fabric')">Same face fabric</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-rn-back-val-fabric')">Lined</button>
         </div>
-        <div class="success-box" id="roman-success">
-          <strong>Order submitted!</strong><br>Your email opened with your full spec pre-filled — just hit Send. We'll review and send you an invoice within a few hours.<br><br>
-          Questions? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
-        </div>
+      </div>
+    </div>
+
+    <!-- OFF BACK: front valance -->
+    <div id="roman-offback-opts" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Front valance height <span style="font-weight:400;color:#888">— covers the mounting board</span></div>
+      <div class="opt-row" id="grp-rn-front-val-h">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-rn-front-val-h');rnToggleFrontValCustom(false)">6"</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-rn-front-val-h');rnToggleFrontValCustom(true)">Custom</button>
+      </div>
+      <div id="rn-front-val-custom" style="display:none;margin-top:-6px">
+        <input type="number" id="rn-valance-front" value="6" min="2" max="24" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
+        <span style="font-size:12px;color:#888;margin-left:6px">inches</span>
+      </div>
+    </div>
+
+    <div class="form-group" style="max-width:220px;margin-top:14px">
+      <label>Return size (inches) <span style="font-weight:400;color:#999">default 4"</span></label>
+      <input type="number" id="rn-return" value="4" min="1" max="12" style="font-size:14px">
+    </div>
+
+    <!-- Trim — toggle pills, select any -->
+    <div class="st-sub">Trim <span style="font-weight:400;color:#888">(optional)</span></div>
+    <div class="opt-row">
+      <button class="opt-btn rn-trim-check" data-loc="sides" onclick="stToggle(this);calcRoman();rnShowTrimSupply()">Both sides</button>
+      <button class="opt-btn rn-trim-check" data-loc="top" onclick="stToggle(this);calcRoman();rnShowTrimSupply()">Top</button>
+      <button class="opt-btn rn-trim-check" data-loc="bottom" onclick="stToggle(this);calcRoman();rnShowTrimSupply()">Bottom (hem)</button>
+    </div>
+    <div id="grp-rn-trim-supply" style="display:none">
+      <div class="st-sub" style="margin-top:0">Trim supply</div>
+      <div class="opt-row" id="grp-roman-trim-supply">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-roman-trim-supply')">We supply trim</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-trim-supply')">I supply trim</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-roman-trim-supply')">Not sure</button>
+      </div>
+    </div>
   </div>
 
+  <div id="roman-form">
+    <!-- STEP 7: DELIVERY -->
+    <div class="step-block" id="roman-step-delivery">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">7</div>
+        <div class="step-title" style="margin-bottom:0">Delivery</div>
+      </div>
+      <div id="roman-delivery"></div>
+    </div>
+    <button onclick="reqMoreInfo(romanState.style === 'Roman Valance' ? 'Custom Roman Valance' : 'Custom Roman Shades')" class="req-info-link" style="display:block;margin:10px 0">Request more information about Custom Roman Shades →</button>
+    <!-- STEP 8: YOUR DETAILS — pbContactStepHTML, idPrefix 'rn-' -->
+    <div id="roman-final-step"></div>
+  </div>
+  <div class="success-box" id="roman-success">
+    <strong>Order submitted!</strong><br>We'll review your configuration and send you a custom quote, usually within one business day.<br><br>
+    Questions? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
+  </div>
+
+</div><!-- /left column -->
+
+<!-- RIGHT: summary card (ids rn-pb-* are written by calcRoman) -->
+<div>
+  <div class="summary-card" id="roman-summary">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val" id="rn-pb-style">—</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="rn-pb-dims">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="rn-pb-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="rn-pb-qty">1</span></div>
+    <div class="summary-row" id="rn-pb-lining-row"><span class="sr-key">Lining</span><span class="sr-val" id="rn-pb-lining">Unlined</span></div>
+    <div class="summary-row" id="rn-pb-motor-row"><span class="sr-key">Operation</span><span class="sr-val" id="rn-pb-motor">Cordless</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="rn-pb-delivery">Ship to me</span></div>
+    <div class="summary-row"><span class="sr-key" style="color:var(--cream);font-weight:600">Price</span><span class="sr-val" id="rn-pb-price" style="color:var(--gold);font-weight:700">Custom quote — we confirm pricing</span></div>
+    <div id="rn-pb-min-note" style="display:none"></div>
+    <div class="summary-note">Roman shades are custom quoted — send your configuration and we price it by hand, usually within one business day.</div>
+  </div>
+  <div id="roman-pricebox" class="st-msg" style="display:none"></div>
+</div>
+
+</div><!-- /config-grid -->
+</div><!-- /config-wrap -->
 </div><!-- /roman step-wrap -->
 </div><!-- /tab-roman -->
 
+
 <!-- ══════════════════════════════════════════════════════════
      TAB: CORNICES & VALANCES
+     Frame: 1 Window measurements & mount · 2 Cornice or valance · 3 Fabric ·
+            4 Finishing · 5 Delivery · 6 Your details
 ════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-cornval">
 
@@ -1297,154 +1057,160 @@
   </div>
 
 <div class="step-wrap">
+<div class="config-wrap">
+<div class="config-grid">
+<div>
 
-  <!-- Type selector -->
-  <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">What are you making?</div>
-  <div class="opt-row" id="grp-cv-type" style="margin-bottom:20px">
-    <button class="opt-btn sel" onclick="selOpt(this,'grp-cv-type');cvSetType('cornice')">Cornice</button>
-    <button class="opt-btn" onclick="selOpt(this,'grp-cv-type');cvSetType('valance')">Valance</button>
+  <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT — pbSizeMountStepHTML
+       (cv-corn-w / cv-corn-h / grp-cv-corn-mount / cv-corn-qty) + return + splice -->
+  <div class="step-block" id="corn-step-size">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">1</div>
+      <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
+    </div>
+    <div id="corn-size-fields"></div>
   </div>
-  <div id="cv-type-note" style="font-size:13px;color:#666;margin-bottom:20px;margin-top:-10px">Fabric-wrapped wood box valance. Custom quoted — submit for pricing.</div>
-  <div style="background:#fff;border:1px solid #e8e8e4;border-radius:14px;padding:24px;margin-bottom:36px">
-    <div class="dim-box" style="margin-bottom:18px">
-      <div class="dim-box-label">Cornice dimensions</div>
-      <div class="form-row">
-        <div class="form-group"><label>Width</label><input type="number" id="cv-corn-w" min="12" max="300" placeholder="72" oninput="calcCornice()"><div class="dim-unit">inches (48" / 4 ft min.)</div></div>
-        <div class="form-group"><label>Height</label><input type="number" id="cv-corn-h" min="4" max="36" value="8" oninput="calcCornice()"><div class="dim-unit">inches</div></div>
-      </div>
-      <div style="margin-top:12px"><label style="font-size:12px;font-weight:600;color:#333;display:block;margin-bottom:5px">Return size <span style="font-weight:400;color:#999">default 4"</span></label>
-        <input type="number" id="cv-corn-return" value="4" min="1" max="18" oninput="calcCornice()" style="width:100px;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit">
-        <span style="font-size:12px;color:#888;margin-left:8px">inches</span></div>
-      <!-- Over 80" the board will not ship parcel. Splicing joints the board so it
-           can; the fabric stays a single piece either way. -->
-      <div id="corn-splice-wrap" style="margin-top:12px">
-        <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#444;cursor:pointer">
-          <input type="checkbox" id="corn-splice" onchange="calcCornice()" style="margin-top:2px">
-          <span>Over 80&Prime; wide &mdash; splice the board so it ships normally
-            <span style="color:#888">(board jointed, fabric still one piece; avoids the $500 oversize freight)</span></span>
-        </label>
-      </div>
-    </div>
 
-    <!-- Mount type -->
-    <div style="margin-bottom:14px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Mount type</div>
-      <div class="opt-row" id="grp-cv-corn-mount">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-cv-corn-mount')">Inside mount</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-cv-corn-mount')">Outside mount</button>
-      </div>
+  <!-- STEP 2: CORNICE OR VALANCE -->
+  <div class="step-block" id="corn-step-type">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">2</div>
+      <div class="step-title" style="margin-bottom:0">Cornice or valance</div>
     </div>
-    <!-- Quantity -->
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">
-      <span style="font-size:12px;color:#666">Qty:</span>
-      <div class="qty-btns">
-        <button class="qty-btn" onclick="pbAdjQty('cv-corn-qty',-1,1,50);calcCornice()">&#8722;</button>
-        <input class="qty-num" type="number" id="cv-corn-qty" value="1" min="1" max="50" oninput="calcCornice()">
-        <button class="qty-btn" onclick="pbAdjQty('cv-corn-qty',1,1,50);calcCornice()">&#43;</button>
-      </div>
-      <span style="font-size:12px;color:#666">cornice(s)</span>
+    <div class="opt-row" id="grp-cv-type">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-cv-type');cvSetType('cornice')">Cornice</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-cv-type');cvSetType('valance')">Valance</button>
     </div>
+    <div id="cv-type-note" class="step-note" style="margin-top:-8px">Fabric-wrapped wood box valance. Custom quoted — submit for pricing.</div>
+  </div>
 
-    <!-- Fabric direction -->
-    <div style="margin-bottom:14px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:4px">Fabric direction</div>
-      <div style="font-size:11px;color:#888;margin-bottom:8px;line-height:1.5">Run vertically: standard cut, pattern runs up-down. Railroad: fabric turned 90° — pattern runs horizontally (great for stripes and horizontal designs).</div>
-      <div class="opt-row" id="grp-corn-direction">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-direction');calcCornice()">Run vertically (standard)</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-corn-direction');calcCornice()">Railroad (horizontal)</button>
-      </div>
+  <!-- STEP 3: FABRIC -->
+  <div class="step-block" id="corn-step-fabric">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">3</div>
+      <div class="step-title" style="margin-bottom:0">Fabric</div>
     </div>
-
-    <div style="margin-bottom:14px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Finishing</div>
-      <!-- Cornice: self welt or trim (both options) -->
-      <div id="cv-cornice-finish">
-        <div class="opt-row" id="grp-corn-trim">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(false);calcCornice()">Self welt</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(false);calcCornice()">Double self welt</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(true);calcCornice()">Applied trim</button>
-        </div>
-        <div style="font-size:11px;color:#888;margin-top:4px">Self welt: single strip of shade fabric. Double self welt: two strips — fuller, more tailored look.</div>
-      </div>
-      <!-- Valance: trim only (always open the trim edge picker) -->
-      <div id="cv-valance-finish" style="display:none">
-        <div style="font-size:12px;color:#555;margin-bottom:8px">Applied trim options:</div>
-      </div>
-      <!-- Self / Double welt placement (shown when Self welt or Double self welt selected) -->
-      <div id="corn-welt-opts" style="margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
-        <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Where should the welt go?</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-welt-edge" data-loc="top" onchange="calcCornice()"> Top</label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-welt-edge" data-loc="bottom" checked onchange="calcCornice()"> Bottom</label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-welt-edge" data-loc="sides" onchange="calcCornice()"> Both sides</label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-welt-edge" data-loc="returns" onchange="calcCornice()"> Returns</label>
-        </div>
-        <div style="font-size:10px;color:#999;margin-top:6px">Welt is made from your shade fabric — no separate trim to supply.</div>
-      </div>
-      <div id="corn-trim-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
-        <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Which edges?</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
-          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-trim-edge" data-loc="top" onchange="calcCornice()"> Top</label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-trim-edge" data-loc="bottom" onchange="calcCornice()"> Bottom</label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-trim-edge" data-loc="sides" onchange="calcCornice()"> Both sides</label>
-          <label style="display:flex;align-items:center;gap:7px;font-size:12px;color:#444;cursor:pointer;padding:8px 10px;border:1px solid #e8e8e4;border-radius:7px;background:#fff"><input type="checkbox" class="corn-trim-edge" data-loc="returns" onchange="calcCornice()"> Returns</label>
-        </div>
-        <div class="opt-row" id="grp-corn-trim-supply">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-trim-supply')">We supply trim</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim-supply')">I supply trim</button>
-          <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim-supply')">Not sure</button>
-        </div>
-      </div>
+    <div class="opt-row" id="grp-corn-fabric">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-fabric');calcCornice()">We supply fabric</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-corn-fabric');calcCornice()">I supply fabric</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-corn-fabric');calcCornice()">Not sure</button>
     </div>
-    <div style="margin-bottom:14px">
-      <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Who supplies the fabric?</div>
-      <div class="opt-row" id="grp-corn-fabric">
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-fabric');calcCornice()">We supply fabric</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-corn-fabric');calcCornice()">I supply fabric</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-corn-fabric');calcCornice()">Not sure</button>
-      </div>
+    <div class="step-note" style="margin-top:-8px">Fabric is not included in the per-foot price — it is quoted separately.</div>
+    <div class="st-sub">Fabric direction</div>
+    <div class="opt-row" id="grp-corn-direction">
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-direction');calcCornice()">Run vertically (standard)</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-corn-direction');calcCornice()">Railroad (horizontal)</button>
     </div>
+    <div class="step-note" style="margin-top:-8px">Run vertically: standard cut, pattern runs up-down. Railroad: fabric turned 90° — pattern runs horizontally (great for stripes).</div>
 
     <!-- Fabric yardage estimate — standalone display -->
-    <div id="corn-yardage-display" style="display:none;margin-bottom:14px;padding:14px 16px;background:var(--gold-mid);border:1.5px solid var(--gold);border-radius:10px">
+    <div id="corn-yardage-display" style="display:none;margin-top:12px;padding:14px 16px;background:var(--gold-mid);border:1.5px solid var(--gold);border-radius:10px">
       <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:6px">&#129514; Estimated fabric needed</div>
       <div id="corn-yardage-text" style="font-size:18px;font-weight:700;color:#111110;margin-bottom:4px"></div>
       <div id="corn-yardage-sub" style="font-size:11px;color:#666;line-height:1.5"></div>
     </div>
+  </div>
 
-    <div id="corn-price-box" style="display:none;background:var(--espresso);border-radius:12px;padding:16px 18px;margin-bottom:16px">
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Your configuration</div>
+  <!-- STEP 4: FINISHING -->
+  <div class="step-block" id="corn-step-finish">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">4</div>
+      <div class="step-title" style="margin-bottom:0">Finishing</div>
+    </div>
+    <div id="cv-cornice-finish">
+      <div class="opt-row" id="grp-corn-trim">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(false);calcCornice()">Self welt</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(false);calcCornice()">Double self welt</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim');cornToggleTrim(true);calcCornice()">Applied trim</button>
+      </div>
+      <div class="step-note" style="margin-top:-8px">Self welt: single strip of your fabric. Double self welt: two strips — fuller, more tailored. Applied trim: $15/ft.</div>
+    </div>
+    <div id="cv-valance-finish" style="display:none"></div>
+    <!-- Welt placement (Self welt / Double self welt) — toggle pills, select any -->
+    <div id="corn-welt-opts" class="st-panel">
+      <div class="st-sub" style="margin-top:0">Where should the welt go?</div>
+      <div class="opt-row" style="margin-bottom:0">
+        <button class="opt-btn corn-welt-edge" data-loc="top" onclick="stToggle(this);calcCornice()">Top</button>
+        <button class="opt-btn corn-welt-edge sel" data-loc="bottom" onclick="stToggle(this);calcCornice()">Bottom</button>
+        <button class="opt-btn corn-welt-edge" data-loc="sides" onclick="stToggle(this);calcCornice()">Both sides</button>
+        <button class="opt-btn corn-welt-edge" data-loc="returns" onclick="stToggle(this);calcCornice()">Returns</button>
+      </div>
+      <div class="step-note">Welt is made from your fabric — no separate trim to supply.</div>
+    </div>
+    <!-- Applied trim edges + supply -->
+    <div id="corn-trim-opts" class="st-panel" style="display:none">
+      <div class="st-sub" style="margin-top:0">Which edges?</div>
+      <div class="opt-row">
+        <button class="opt-btn corn-trim-edge" data-loc="top" onclick="stToggle(this);calcCornice()">Top</button>
+        <button class="opt-btn corn-trim-edge" data-loc="bottom" onclick="stToggle(this);calcCornice()">Bottom</button>
+        <button class="opt-btn corn-trim-edge" data-loc="sides" onclick="stToggle(this);calcCornice()">Both sides</button>
+        <button class="opt-btn corn-trim-edge" data-loc="returns" onclick="stToggle(this);calcCornice()">Returns</button>
+      </div>
+      <div class="st-sub" style="margin-top:0">Trim supply</div>
+      <div class="opt-row" id="grp-corn-trim-supply" style="margin-bottom:0">
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-corn-trim-supply')">We supply trim</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim-supply')">I supply trim</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-corn-trim-supply')">Not sure</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="corn-form">
+    <!-- STEP 5: DELIVERY -->
+    <div class="step-block" id="corn-step-delivery">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">5</div>
+        <div class="step-title" style="margin-bottom:0">Delivery</div>
+      </div>
+      <div id="corn-delivery"></div>
+    </div>
+    <div style="display:flex;align-items:flex-start;gap:10px;background:#fef9ec;border:1px solid #f0d070;border-radius:8px;padding:10px 14px;margin:14px 0 4px;font-size:12px;color:#7a5c00;line-height:1.5">
+      <span style="font-size:15px;flex-shrink:0">&#9888;</span>
+      <span><strong>Specialty shapes</strong> — angled cornices, rounded returns, or heavily carved / decorative valances require a custom quote. Call <a href="tel:6097421720" style="color:#7a5c00;font-weight:600">(609) 742-1720</a> or use the <strong>Specialty ✦</strong> tab above.</span>
+    </div>
+    <!-- STEP 6: YOUR DETAILS — pbContactStepHTML, idPrefix 'cn-' -->
+    <div id="cornice-final-step" style="margin-top:14px"></div>
+  </div>
+  <div class="success-box" id="corn-success"><strong>Order submitted!</strong> We'll review your configuration and send you a quote. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a></div>
+
+</div><!-- /left column -->
+
+<!-- RIGHT: summary card; the price breakdown (corn-price-box) is written by calcCornice -->
+<div>
+  <div class="summary-card" id="corn-summary">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val" id="cs-product">Cornice</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="cs-size">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="cs-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="cs-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Finishing</span><span class="sr-val" id="cs-finish">Self welt</span></div>
+    <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val" id="cs-fabric">We supply fabric</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="cs-delivery">Ship to me</span></div>
+    <div class="summary-row"><span class="sr-key" style="color:var(--cream);font-weight:600">Estimate</span><span class="sr-val" id="cs-price" style="color:var(--gold);font-weight:700">—</span></div>
+    <div id="corn-price-box" class="st-breakdown" style="display:none">
       <div id="corn-price-rows"></div>
       <span id="corn-price-total" style="display:none"></span>
       <div id="corn-fabric-note" style="font-size:11px;background:rgba(45,224,193,.1);border:1px solid rgba(45,224,193,.2);border-radius:7px;padding:6px 9px;color:var(--cream);margin-top:8px;line-height:1.5"></div>
-      <div style="font-size:10px;color:var(--text-faint);margin-top:6px">Pricing confirmed at order. Fabric and trim options confirmed during consultation.</div>
     </div>
-    <div id="corn-form">
-      <div class="delivery-section">
-        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong>.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
-      </div>
-      <div style="display:flex;align-items:flex-start;gap:10px;background:#fef9ec;border:1px solid #f0d070;border-radius:8px;padding:10px 14px;margin-top:14px;margin-bottom:12px;font-size:12px;color:#7a5c00;line-height:1.5">
-        <span style="font-size:15px;flex-shrink:0">&#9888;</span>
-        <span><strong>Specialty shapes</strong> — angled cornices, rounded returns, or heavily carved / decorative valances require a custom quote. Call <a href="tel:6097421720" style="color:#7a5c00;font-weight:600">(609) 742-1720</a> or use the <strong>Specialty ✦</strong> tab above.</span>
-      </div>
-      <div style="border-top:1px solid #e8e8e4;margin:20px 0 16px"></div>
-      <div id="cornice-final-step"></div>
-    </div>
-    <div class="success-box" id="corn-success"><strong>Order submitted!</strong> Your email opened with your spec — hit Send. We'll review and send you an invoice. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a></div>
+    <div class="summary-note">$35/linear ft up to 15″ high, $200 minimum per piece; taller boards step up per foot. Fabric not included — quoted separately.</div>
   </div>
+</div>
 
+</div><!-- /config-grid -->
+</div><!-- /config-wrap -->
 </div><!-- /cornval step-wrap -->
 </div><!-- /tab-cornval -->
+
 
 <!-- ══════════════════════════════════════════════════════════
      TAB: WOVEN WOOD SHADES
 ════════════════════════════════════════════════════════════ -->
 <div class="tab-panel" id="tab-woven">
   <div class="step-wrap">
-    <div class="step">
-      <div class="step-label">Soft Treatment</div>
-      <div class="step-title">Natural Woven Wood Shades</div>
-      <div class="step-sub">Bamboo, jute, reeds, and grasses — available as roman shades, roller shades, sliding panels, and drapery. Choose a collection below to configure and get an instant quote.</div>
+    <div>
+      <div class="wv-label">Soft Treatment</div>
+      <div class="wv-title">Natural Woven Wood Shades</div>
+      <div class="wv-sub">Bamboo, jute, reeds, and grasses — available as roman shades, roller shades, sliding panels, and drapery. Choose a collection below to configure and get an instant quote.</div>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:40px">
@@ -1612,8 +1378,8 @@
       <div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" name="address" data-pb-contact="address" placeholder="123 Main St, Philadelphia PA"></div>
       <div class="form-group">
         <label>What are you looking for?</label>
-        <select name="product" style="width:100%;padding:10px 12px;border:1px solid #e8e8e4;border-radius:8px;font-size:13px;font-family:var(--font);background:#fff;color:#333">
-          <option value="">Select...</option>
+        <select name="product" data-pb-pills style="width:100%;padding:10px 12px;border:1px solid #e8e8e4;border-radius:8px;font-size:13px;font-family:var(--font);background:#fff;color:#333">
+          <option value="" disabled selected>Select...</option>
           <option>Custom drapery panels</option>
           <option>Roman shades</option>
           <option>Both drapery and roman shades</option>
@@ -1639,33 +1405,107 @@
   </div>
 </div>
 
+
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/soft-treatments.js"></script>
 <script>
-// Canonical final "Your details" step — the SAME markup on all five tabs, so a
-// customer fills out an identical form whichever product they configure. idPrefix
-// keeps each tab's ids unique while reproducing the ids this page's submit
-// functions already read, so no JS below had to change. Every tab now carries the
-// Terms checkbox, the spam honeypot and file upload, which none of them had.
-// cartFn is set only where an add-to-cart function actually exists.
+// ── Step 1 on every tab — the shared pbSizeMountStepHTML markup (bare, inside this
+// page's own step-block so each tab keeps unique ids). ──
+(function () {
+  // Drapery: Width × Finished length (+ return), qty — no mount (standard exception).
+  var dReturn =
+    '<div class="form-row" id="drape-return-wrap" style="margin-top:12px">' +
+      '<div class="form-group" style="margin-bottom:0"><label>Return</label>' +
+        '<input type="number" id="d-return" value="4" min="1" max="24" step="0.5" oninput="calcDrapePrice()">' +
+        '<div class="dim-unit">inches &mdash; default 4&Prime;</div></div>' +
+    '</div>' +
+    '<div id="d-min-warn" style="display:none;background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.5"></div>';
+  var d = pbSizeMountStepHTML({
+    bare: true, noMount: true,
+    widthId: 'd-exact-width', heightId: 'd-exact-length', qtyId: 'drape-qty',
+    widthMin: 10, widthMax: 300, heightMin: 12, heightMax: 300,
+    widthPlaceholder: '84', heightPlaceholder: '96',
+    qtyMax: 20, calc: 'calcDrapePrice()', measureHref: 'measure-drapes.html',
+    extraFieldsHTML: dReturn
+  });
+  d = d.replace('Enter your window size', 'Enter your rod / window size')
+       .replace('<label>Height</label>', '<label>Finished length</label>')
+       .replace('<span style="font-size:12px;color:#666">Qty:</span>', '<span style="font-size:12px;color:#666">Qty (sets):</span>');
+  document.getElementById('drape-size-fields').innerHTML = d;
+
+  // Roman: standard Step 1 — Inside mount pre-selected; the deduction note follows the pill.
+  document.getElementById('roman-size-fields').innerHTML = pbSizeMountStepHTML({
+    bare: true,
+    widthId: 'rn-w', heightId: 'rn-h', qtyId: 'rn-qty', mountGroupId: 'grp-roman-mount',
+    widthMin: 12, widthMax: 300, heightMin: 12, heightMax: 250,
+    widthPlaceholder: '36', heightPlaceholder: '48', qtyMax: 30,
+    calc: 'calcRoman()',
+    mountOnclick: "selOpt(this,'grp-roman-mount');rnMountNote();calcRoman()"
+  });
+
+  // Cornice / valance: Width × Height (face) + return, Inside/Outside mount, qty.
+  var cExtra =
+    '<div class="form-row" style="margin-top:12px">' +
+      '<div class="form-group" style="margin-bottom:0"><label>Return</label>' +
+        '<input type="number" id="cv-corn-return" value="4" min="1" max="18" oninput="calcCornice()">' +
+        '<div class="dim-unit">inches &mdash; default 4&Prime;</div></div>' +
+    '</div>' +
+    // Over 80" the board will not ship parcel. Splicing joints the board so it can;
+    // the fabric stays a single piece either way.
+    '<div id="corn-splice-wrap" style="margin-top:12px">' +
+      '<label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#444;cursor:pointer">' +
+        '<input type="checkbox" id="corn-splice" onchange="calcCornice()" style="margin-top:2px">' +
+        '<span>Over 80&Prime; wide &mdash; splice the board so it ships normally ' +
+          '<span style="color:#888">(board jointed, fabric still one piece; avoids the oversize freight)</span></span>' +
+      '</label>' +
+    '</div>';
+  var c = pbSizeMountStepHTML({
+    bare: true,
+    widthId: 'cv-corn-w', heightId: 'cv-corn-h', qtyId: 'cv-corn-qty', mountGroupId: 'grp-cv-corn-mount',
+    widthMin: 12, widthMax: 300, heightMin: 4, heightMax: 120,
+    widthPlaceholder: '72', heightPlaceholder: '8',
+    heightHint: 'face height &mdash; over 15&Prime; costs more per foot',
+    qtyMax: 50, calc: 'calcCornice()', extraFieldsHTML: cExtra
+  });
+  document.getElementById('corn-size-fields').innerHTML = c;
+  document.getElementById('cv-corn-h').value = '8';   // same default face height as before
+})();
+
+// ── Delivery — the shared grid, once per tab. pbDeliveryStepHTML only supports one
+// id="pb-delivery-grid" per page, so the drapery tab keeps that id (the shared cart /
+// notes code looks for it) and the other two get their own. The choice itself is the
+// single global window.pbDelivery; stDeliverySync() keeps all three grids in step. ──
+(function () {
+  var g = pbDeliveryStepHTML({ bare: true, onPick: 'stDeliverySync()' });
+  document.getElementById('drape-delivery').innerHTML = g;
+  document.getElementById('roman-delivery').innerHTML = g.replace('id="pb-delivery-grid"', 'id="roman-delivery-grid"');
+  document.getElementById('corn-delivery').innerHTML  = g.replace('id="pb-delivery-grid"', 'id="corn-delivery-grid"');
+})();
+
+// ── Last step on every tab — "Your details" (pbContactStepHTML). idPrefix keeps each
+// tab's ids unique while reproducing the ids this page's submit functions read. ──
 [
-  { mount: 'drape-final-step',      prefix: 'd-',   err: 'drape-contact-err', submit: 'submitDrape()',     cart: 'addDrapeToCart()' },
-  { mount: 'roman-final-step',      prefix: 'rn-',  err: 'roman-contact-err', submit: 'submitRoman()',     cart: 'addRomanToCart()' },
-  { mount: 'valance-final-step',    prefix: 'val-', err: 'val-contact-err',   submit: 'submitValance()' },
-  { mount: 'cornice-final-step',    prefix: 'cn-',  err: 'corn-contact-err',  submit: 'submitCornice()' },
-  { mount: 'valance-cv-final-step', prefix: 'vn-',  err: 'vcv-contact-err',   submit: 'submitValanceCv()' }
+  { mount: 'drape-final-step',      prefix: 'd-',   err: 'drape-contact-err', step: 8, submit: 'submitDrape()',    cart: 'addDrapeToCart()' },
+  { mount: 'roman-final-step',      prefix: 'rn-',  err: 'roman-contact-err', step: 8, submit: 'submitRomanTab()', cart: 'addRomanToCart()' },
+  { mount: 'cornice-final-step',    prefix: 'cn-',  err: 'corn-contact-err',  step: 6, submit: 'submitCornice()' },
+  // Legacy standalone valance form — kept hidden (#__valance_placeholder), not reachable.
+  { mount: 'valance-cv-final-step', prefix: 'vn-',  err: 'vcv-contact-err',   bare: true, submit: 'submitValanceCv()' }
 ].forEach(function (t) {
   var el = document.getElementById(t.mount);
   if (!el) return;
   el.innerHTML = pbContactStepHTML({
-    bare: true,
+    bare: !!t.bare,
+    stepNum: t.step,
     idPrefix: t.prefix,
     errId: t.err,
     submitFn: t.submit,
     cartFn: t.cart
   });
 });
+
+['tab-drapes', 'tab-roman', 'tab-cornval'].forEach(stRenumber);
+stSummary();
 </script>
 </body>
 </html>
