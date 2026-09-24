@@ -33,14 +33,6 @@
 
 .step-block.active .step-body,.step-block.open .step-body{display:block}
 
-.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
-@media(max-width:500px){.product-grid{grid-template-columns:1fr}}
-.product-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:14px;padding:22px 18px;cursor:pointer;transition:all .15s}
-.product-card:hover{border-color:var(--gold);box-shadow:0 2px 14px rgba(45,224,193,.12)}
-.product-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.product-card h3{font-size:15px;font-weight:500;color:#111;margin-bottom:5px}
-.product-card p{font-size:12px;color:#555;line-height:1.6}
-.product-badge{font-size:10px;padding:2px 8px;border-radius:6px;background:var(--gold-mid);color:#0A4A42;font-weight:500;display:inline-block;margin-top:8px}
 
 .opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .opt-btn{padding:8px 16px;border:1.5px solid #e8e8e4;border-radius:24px;font-size:13px;color:#333;cursor:pointer;background:#fff;font-family:inherit;transition:.15s;white-space:nowrap}
@@ -48,7 +40,6 @@
 .opt-btn.sel{border:2px solid var(--gold);color:var(--espresso);font-weight:500;background:var(--gold-mid)}
 .opt-btn.disabled-rule{opacity:.4;cursor:not-allowed;text-decoration:line-through}
 
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
 .dim-field{display:flex;flex-direction:column;gap:4px}
 .dim-label{font-size:12px;font-weight:500;color:#444}
 .dim-input{width:90px;padding:9px 12px;border:1.5px solid #ddd;border-radius:8px;font-size:16px;text-align:center;font-family:inherit}
@@ -73,11 +64,6 @@
 .coll-section{margin-top:14px}
 .coll-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:6px}
 
-.acc-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:.5px solid #f0f0ee}
-.acc-item:last-child{border-bottom:none}
-.acc-check{flex-shrink:0;margin-top:1px;width:17px;height:17px;cursor:pointer}
-.acc-label{font-size:13px;font-weight:500;color:#111}
-.acc-sub{font-size:11px;color:#666;line-height:1.4;margin-top:2px}
 
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
@@ -87,14 +73,6 @@
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:500px){.form-row{grid-template-columns:1fr}}
 
-.spec-panel{background:var(--espresso);border-radius:14px;padding:20px;position:sticky;top:80px}
-.spec-title{font-size:11px;font-weight:600;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
-.spec-row{display:flex;justify-content:space-between;align-items:flex-start;font-size:12px;padding:5px 0;border-bottom:.5px solid #2A201A;gap:8px}
-.spec-row:last-of-type{border-bottom:none}
-.spec-key{color:#7A6A58;flex-shrink:0}
-.spec-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word}
-.spec-val.empty{color:#3A2E24;font-style:italic}
-.spec-divider{border:.5px solid #2A201A;margin:10px 0}
 .price-estimate{margin-top:14px;background:#2A201A;border-radius:10px;padding:14px}
 .price-est-label{font-size:10px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
 .price-line{display:flex;justify-content:space-between;font-size:12px;padding:3px 0}
@@ -113,6 +91,7 @@
 .success-box h3{font-size:20px;margin-bottom:8px}
 
 .pdf-confirm-banner{background:#FFF3CD;border:1px solid #FFC107;border-radius:10px;padding:14px 16px;font-size:12px;color:#7d5a00;margin-bottom:20px;line-height:1.7}
+.summary-row .sr-val.empty{color:var(--text-faint,#888);font-style:italic}
 </style>
 </head>
 <body data-page="Soft treatments">
@@ -176,11 +155,13 @@
         <div class="step-note" style="margin-bottom:12px">Inside mount requires minimum 2&frac34;&Prime; window depth. Outside mount covers the opening &mdash; overlap recommended.</div>
 
         <!-- Quantity -->
-        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Quantity</div>
-        <div class="qty-btns">
-          <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
-          <input class="qty-num" type="number" id="qty-inp" value="1" min="1" max="50" oninput="setQtyVal(parseInt(this.value)||1)">
-          <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="font-size:12px;color:#666">Qty:</span>
+          <div class="qty-btns">
+            <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
+            <input class="qty-num" type="number" id="qty-inp" value="1" min="1" max="50" oninput="setQtyVal(parseInt(this.value)||1)">
+            <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
+          </div>
         </div>
         <div class="step-note">Number of shades of this size. Note any size differences in the notes field.</div>
       </div>
@@ -190,21 +171,15 @@
     <div class="step-block" id="step1">
       <div class="step-head" onclick="toggleStep('step1')">
         <div class="step-num">2</div>
-        <div class="step-head-title">Product Type</div>
+        <div class="step-head-title">Product type</div>
         <div class="step-head-val" id="val1">&mdash;</div>
       </div>
       <div class="step-body">
-        <div class="product-grid">
-          <div class="product-card" id="type-standard" onclick="setType('standard',this)">
-            <h3>Standard Centerpiece Roman</h3>
-            <p>Single shade. AeroLite&trade; Cordless, Cord Loop, SmartRelease&trade;, or motorized. All fabric collections available.</p>
-          </div>
-          <div class="product-card" id="type-dn" onclick="setType('dn',this)">
-            <h3>Day &amp; Night</h3>
-            <p>Two shades in one headrail &mdash; Roman shade in front, roller shade behind. Privacy by day, Blackout by night.</p>
-            <span class="product-badge">Premium</span>
-          </div>
+        <div class="opt-row" id="grp-type">
+          <button class="opt-btn" id="type-standard" onclick="setType('standard',this)">Standard Centerpiece Roman</button>
+          <button class="opt-btn" id="type-dn" onclick="setType('dn',this)">Day &amp; Night</button>
         </div>
+        <div class="step-note">Standard &mdash; single shade; AeroLite&trade; Cordless, Cord Loop, SmartRelease&trade; or motorized; all fabric collections. Day &amp; Night &mdash; two shades in one headrail: Roman shade in front, roller shade behind &mdash; privacy by day, Blackout by night.</div>
       </div>
     </div>
 
@@ -212,7 +187,7 @@
     <div class="step-block" id="step3">
       <div class="step-head" onclick="toggleStep('step3')">
         <div class="step-num">3</div>
-        <div class="step-head-title">Lift System</div>
+        <div class="step-head-title">Lift system</div>
         <div class="step-head-val" id="val3">&mdash;</div>
       </div>
       <div class="step-body">
@@ -240,6 +215,16 @@
           </div>
         </div>
         <div id="lift-note" class="info-box" style="display:none;margin-top:10px"></div>
+        <!-- Motorization (shown for a motorized lift) -->
+        <div id="step13" style="display:none;margin-top:14px">
+          <div class="step-sub-head" style="margin-top:0">Motorization</div>
+          <div style="background:var(--espresso);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
+            <span style="font-size:10px;font-weight:700;color:var(--gold);letter-spacing:1px">NORMAN&reg;</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.6)">Norman Centerpiece Roman uses Norman motorization only. Third-party motors are not compatible.</span>
+          </div>
+          <!-- Shared Norman motor section — populated by normanMotorSection('centerpiece-motor-config','Centerpiece Roman') when a motorized lift is selected -->
+          <div id="centerpiece-motor-config" style="margin-top:4px"></div>
+        </div>
       </div>
     </div>
 
@@ -247,7 +232,7 @@
     <div class="step-block" id="step5">
       <div class="step-head" onclick="toggleStep('step5')">
         <div class="step-num">4</div>
-        <div class="step-head-title">Shade Style</div>
+        <div class="step-head-title">Shade style</div>
         <div class="step-head-val" id="val5">&mdash;</div>
       </div>
       <div class="step-body">
@@ -265,7 +250,7 @@
     <div class="step-block" id="step6">
       <div class="step-head" onclick="toggleStep('step6')">
         <div class="step-num">5</div>
-        <div class="step-head-title">Main Roman Fabric</div>
+        <div class="step-head-title">Main Roman fabric</div>
         <div class="step-head-val" id="val6">&mdash;</div>
       </div>
       <div class="step-body">
@@ -286,6 +271,19 @@
         </div>
         <div id="fabric-grid-wrap" style="margin-top:12px"></div>
         <div id="fabric-width-warn" class="warn-box" style="display:none;margin-top:10px"></div>
+        <!-- Day & Night rear roller fabric (shown for Day & Night) -->
+        <div id="step9" style="display:none;margin-top:18px;padding-top:14px;border-top:1px solid #eee">
+          <div class="step-sub-head" style="margin-top:0">Day &amp; Night &mdash; rear roller fabric <span id="val9" style="font-weight:400;color:#888"></span></div>
+        <div class="info-box" style="margin-top:0;margin-bottom:12px">
+          The rear roller provides Blackout privacy when lowered. <strong>&#9888; PDF CONFIRM:</strong> Roller fabric codes need verification against Norman Centerpiece Roman PDF pages 31&ndash;38. Discontinued roller fabrics from appendix pages 44&ndash;45 are excluded.
+        </div>
+        <div class="opt-row" id="grp-roller-filter">
+          <button class="opt-btn sel" onclick="filterRoller('all',this)">All</button>
+          <button class="opt-btn" onclick="filterRoller('Sheer',this)">Sheer</button>
+          <button class="opt-btn" onclick="filterRoller('Light Filtering',this)">Light Filtering</button>
+        </div>
+        <div id="roller-fabric-grid" style="margin-top:12px"></div>
+      </div>
       </div>
     </div>
 
@@ -309,7 +307,7 @@
     <div class="step-block" id="step8">
       <div class="step-head" onclick="toggleStep('step8')">
         <div class="step-num">7</div>
-        <div class="step-head-title">Banding / Border</div>
+        <div class="step-head-title">Banding / border</div>
         <div class="step-head-val" id="val8">None</div>
       </div>
       <div class="step-body">
@@ -334,30 +332,10 @@
       </div>
     </div>
 
-    <!-- STEP 9: D&N Roller -->
-    <div class="step-block" id="step9" style="display:none">
-      <div class="step-head" onclick="toggleStep('step9')">
-        <div class="step-num">8</div>
-        <div class="step-head-title">Day &amp; Night &mdash; Rear Roller Fabric</div>
-        <div class="step-head-val" id="val9">&mdash;</div>
-      </div>
-      <div class="step-body">
-        <div class="info-box" style="margin-top:0;margin-bottom:12px">
-          The rear roller provides Blackout privacy when lowered. <strong>&#9888; PDF CONFIRM:</strong> Roller fabric codes need verification against Norman Centerpiece Roman PDF pages 31&ndash;38. Discontinued roller fabrics from appendix pages 44&ndash;45 are excluded.
-        </div>
-        <div class="opt-row" id="grp-roller-filter">
-          <button class="opt-btn sel" onclick="filterRoller('all',this)">All</button>
-          <button class="opt-btn" onclick="filterRoller('Sheer',this)">Sheer</button>
-          <button class="opt-btn" onclick="filterRoller('Light Filtering',this)">Light Filtering</button>
-        </div>
-        <div id="roller-fabric-grid" style="margin-top:12px"></div>
-      </div>
-    </div>
-
     <!-- STEP 10: Valance -->
     <div class="step-block" id="step10">
       <div class="step-head" onclick="toggleStep('step10')">
-        <div class="step-num">9</div>
+        <div class="step-num">8</div>
         <div class="step-head-title">Valance</div>
         <div class="step-head-val" id="val10">None</div>
       </div>
@@ -374,8 +352,8 @@
     <!-- STEP 11: Side-by-Side -->
     <div class="step-block" id="step11">
       <div class="step-head" onclick="toggleStep('step11')">
-        <div class="step-num">10</div>
-        <div class="step-head-title">Side-by-Side Alignment</div>
+        <div class="step-num">9</div>
+        <div class="step-head-title">Side-by-side alignment</div>
         <div class="step-head-val" id="val11">No</div>
       </div>
       <div class="step-body">
@@ -390,95 +368,44 @@
     <!-- STEP 12: Accessories -->
     <div class="step-block" id="step12">
       <div class="step-head" onclick="toggleStep('step12')">
-        <div class="step-num">11</div>
-        <div class="step-head-title">Accessories</div>
+        <div class="step-num">10</div>
+        <div class="step-head-title">Accessories <span style="font-weight:400;color:#888">(optional)</span></div>
         <div class="step-head-val" id="val12">None</div>
       </div>
-      <div class="step-body" style="padding-top:8px">
-        <div class="acc-item">
-          <input type="checkbox" class="acc-check" id="acc-holddown" onchange="updateAcc()">
-          <div>
-            <div class="acc-label">Magnetic hold-down</div>
-            <div class="acc-sub">Keeps shade taut at the bottom &mdash; required for door applications.</div>
-          </div>
-        </div>
-        <div class="acc-item">
-          <input type="checkbox" class="acc-check" id="acc-pole" onchange="updateAcc()">
-          <div>
-            <div class="acc-label">Pole attachment</div>
-            <div class="acc-sub">Mounts shade from a decorative rod with a fabric hem pocket.</div>
-          </div>
-        </div>
-        <div class="acc-item">
-          <input type="checkbox" class="acc-check" id="acc-cordless-pole" onchange="updateAcc()">
-          <div>
-            <div class="acc-label">Cordless operating pole</div>
-            <div class="acc-sub">Extends reach for high-mounted cordless shades.</div>
-          </div>
-        </div>
-        <div class="acc-item">
-          <div style="display:flex;align-items:center;gap:10px">
-            <div style="flex:1">
-              <div class="acc-label">Shims</div>
-              <div class="acc-sub">For uneven window frames or to create a level mounting surface.</div>
-            </div>
-            <div style="display:flex;align-items:center;gap:8px">
-              <button class="opt-btn" style="padding:6px 12px;border-radius:6px" onclick="adjShims(-1)">&minus;</button>
-              <span id="shim-count" style="font-size:14px;font-weight:600;min-width:20px;text-align:center">0</span>
-              <button class="opt-btn" style="padding:6px 12px;border-radius:6px" onclick="adjShims(1)">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 13: Motorization -->
-    <div class="step-block" id="step13" style="display:none">
-      <div class="step-head" onclick="toggleStep('step13')">
-        <div class="step-num">12</div>
-        <div class="step-head-title">Motorization</div>
-        <div class="step-head-val" id="val13">&mdash;</div>
-      </div>
       <div class="step-body">
-        <div style="background:var(--espresso);border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;gap:10px;align-items:center">
-          <span style="font-size:10px;font-weight:700;color:var(--gold);letter-spacing:1px">NORMAN&reg;</span>
-          <span style="font-size:11px;color:rgba(255,255,255,.6)">Norman Centerpiece Roman uses Norman motorization only. Third-party motors are not compatible.</span>
+        <div class="opt-row" id="grp-acc">
+          <button class="opt-btn" id="acc-holddown" onclick="this.classList.toggle('sel');updateAcc()">Magnetic hold-down</button>
+          <button class="opt-btn" id="acc-pole" onclick="this.classList.toggle('sel');updateAcc()">Pole attachment</button>
+          <button class="opt-btn" id="acc-cordless-pole" onclick="this.classList.toggle('sel');updateAcc()">Cordless operating pole</button>
         </div>
-        <!-- Shared Norman motor section — populated by normanMotorSection('centerpiece-motor-config','Centerpiece Roman') when a motorized lift is selected -->
-        <div id="centerpiece-motor-config" style="margin-top:4px"></div>
+        <div class="step-note">Select any. Magnetic hold-down &mdash; keeps the shade taut at the bottom; required for door applications. Pole attachment &mdash; mounts the shade from a decorative rod with a fabric hem pocket. Cordless operating pole &mdash; extends reach for high-mounted cordless shades.</div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <span style="font-size:12px;color:#666">Shims:</span>
+          <div class="qty-btns">
+            <button class="qty-btn" onclick="adjShims(-1)">&#8722;</button>
+            <input class="qty-num" type="number" id="shim-count" value="0" min="0" max="4" readonly>
+            <button class="qty-btn" onclick="adjShims(1)">&#43;</button>
+          </div>
+        </div>
+        <div class="step-note">For uneven window frames or to create a level mounting surface (up to 4).</div>
       </div>
     </div>
 
-    <!-- STEP 14: Delivery -->
+    <!-- STEP 11: Delivery (shared pbDeliveryStepHTML) -->
     <div class="step-block" id="step14">
-      <div class="step-head" onclick="toggleStep('step14')">
-        <div class="step-num">13</div>
+      <div class="step-head">
+        <div class="step-num">11</div>
         <div class="step-head-title">Delivery</div>
         <div class="step-head-val" id="val14">Ship to me</div>
       </div>
-      <div class="step-body">
-        <div class="delivery-section" style="margin-top:12px;margin-bottom:0">
-          <div class="delivery-title">How would you like to receive your order?</div>
-          <div class="delivery-opt-grid">
-            <div class="delivery-opt-card sel" onclick="setDelivery('ship',this)">
-              <div class="delivery-opt-title">Ship to me</div>
-              <div class="delivery-opt-body">UPS or FedEx. Freight: $25 first shade + $11 each additional. Shades 90″+ carry $80 oversize surcharge. Tariffs additional.</div>
-            </div>
-            <div class="delivery-opt-card" style="grid-column:1/-1" onclick="setDelivery('install',this)">
-              <div class="delivery-opt-title">Professional installation (Philadelphia / South Jersey)</div>
-              <div class="delivery-opt-body">We supply and install. Measurement visit included.</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="step-body"><div id="cp-delivery"></div></div>
     </div>
 
-    <!-- STEP 15: Quote -->
+    <!-- STEP 12: Your details (shared pbContactStepHTML) -->
     <div class="step-block" id="step15">
-      <div class="step-head" onclick="toggleStep('step15')">
-        <div class="step-num">14</div>
-        <div class="step-head-title">Your Quote Request</div>
-        <div class="step-head-val" id="val15">&mdash;</div>
+      <div class="step-head">
+        <div class="step-num">12</div>
+        <div class="step-head-title">Your details</div>
       </div>
       <div class="step-body" id="step15-body">
         <button onclick="reqMoreInfo('Norman Centerpiece&trade; Roman Shades')" class="req-info-link" style="display:block;margin-bottom:12px">Request more information about Norman Centerpiece&trade; Roman Shades &rarr;</button>
@@ -493,25 +420,25 @@
 
   </div><!-- /left steps -->
 
-  <!-- RIGHT: SPEC PANEL -->
+  <!-- RIGHT: SUMMARY CARD -->
   <div>
-    <div class="spec-panel">
-      <div class="spec-title">Your Configuration</div>
-      <div class="spec-row"><span class="spec-key">Product</span><span class="spec-val empty" id="sp-type">&mdash;</span></div>
-      <div class="spec-row"><span class="spec-key">Quantity</span><span class="spec-val empty" id="sp-qty">&mdash;</span></div>
-      <div class="spec-row"><span class="spec-key">Lift system</span><span class="spec-val empty" id="sp-lift">&mdash;</span></div>
-      <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val empty" id="sp-size">&mdash;</span></div>
-      <div class="spec-row"><span class="spec-key">Mount</span><span class="spec-val" id="sp-mount">Inside mount</span></div>
-      <div class="spec-row"><span class="spec-key">Style</span><span class="spec-val empty" id="sp-style">&mdash;</span></div>
-      <div class="spec-row"><span class="spec-key">Fabric</span><span class="spec-val empty" id="sp-fabric">&mdash;</span></div>
-      <div class="spec-row"><span class="spec-key">Lining</span><span class="spec-val" id="sp-lining">Translucent</span></div>
-      <div class="spec-row"><span class="spec-key">Banding</span><span class="spec-val" id="sp-banding">None</span></div>
-      <div class="spec-row" id="sp-roller-row" style="display:none"><span class="spec-key">D&amp;N roller</span><span class="spec-val empty" id="sp-roller">&mdash;</span></div>
-      <div class="spec-row"><span class="spec-key">Valance</span><span class="spec-val" id="sp-valance">None</span></div>
-      <div class="spec-row"><span class="spec-key">Side-by-side</span><span class="spec-val" id="sp-sbs">No</span></div>
-      <div class="spec-row" id="sp-motor-row" style="display:none"><span class="spec-key">Motor</span><span class="spec-val empty" id="sp-motor">&mdash;</span></div>
-      <div class="spec-row"><span class="spec-key">Delivery</span><span class="spec-val" id="sp-delivery">Ship to me</span></div>
-      <div class="spec-divider"></div>
+    <div class="summary-card">
+      <div class="summary-head">Your configuration</div>
+      <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val empty" id="sp-type">&mdash;</span></div>
+      <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val empty" id="sp-size">&mdash;</span></div>
+      <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sp-mount">Inside mount</span></div>
+      <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val empty" id="sp-qty">&mdash;</span></div>
+      <div class="summary-row"><span class="sr-key">Lift system</span><span class="sr-val empty" id="sp-lift">&mdash;</span></div>
+      <div class="summary-row"><span class="sr-key">Style</span><span class="sr-val empty" id="sp-style">&mdash;</span></div>
+      <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val empty" id="sp-fabric">&mdash;</span></div>
+      <div class="summary-row"><span class="sr-key">Lining</span><span class="sr-val" id="sp-lining">Translucent</span></div>
+      <div class="summary-row"><span class="sr-key">Banding</span><span class="sr-val" id="sp-banding">None</span></div>
+      <div class="summary-row" id="sp-roller-row" style="display:none"><span class="sr-key">D&amp;N roller</span><span class="sr-val empty" id="sp-roller">&mdash;</span></div>
+      <div class="summary-row"><span class="sr-key">Valance</span><span class="sr-val" id="sp-valance">None</span></div>
+      <div class="summary-row"><span class="sr-key">Side-by-side</span><span class="sr-val" id="sp-sbs">No</span></div>
+      <div class="summary-row" id="sp-motor-row" style="display:none"><span class="sr-key">Motor</span><span class="sr-val empty" id="sp-motor">&mdash;</span></div>
+      <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="sp-delivery">Ship to me</span></div>
+      <div class="summary-row"><span class="sr-key">Estimate</span><span class="sr-val">Custom quote &mdash; we confirm pricing</span></div>
       <div class="price-estimate">
         <div class="price-note">Norman retail pricing with 25% discount on product subtotal. Shipping at retail rate. Final price confirmed at quote.</div>
         <span id="pr-base" style="display:none"></span><span id="pr-lining" style="display:none"></span>
@@ -549,6 +476,7 @@
 <script src="../js/pages/norman-centerpiece-roman.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('cp-delivery').innerHTML = pbDeliveryStepHTML({ bare: true, onPick: 'setDelivery()' });
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addNormanCenterpieceToCart()', submitFn: 'submitQuote()' });
 </script>

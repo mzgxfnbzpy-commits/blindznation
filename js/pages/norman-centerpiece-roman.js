@@ -194,7 +194,7 @@ function sp(id, val) { var el=document.getElementById(id); if(el){el.textContent
 // ── STEP 1 ────────────────────────────────────────────────────────────────────
 function setType(type, el) {
   S.type = type;
-  document.querySelectorAll('#step1 .product-card').forEach(function(c){c.classList.remove('sel');});
+  document.querySelectorAll('#grp-type .opt-btn').forEach(function(c){c.classList.remove('sel');});
   el.classList.add('sel');
   document.getElementById('val1').textContent = type==='standard' ? 'Standard' : 'Day & Night';
   document.getElementById('step1').classList.add('done');
@@ -500,9 +500,10 @@ function updateSBS() {
 
 // ── ACCESSORIES ───────────────────────────────────────────────────────────────
 function updateAcc() {
-  S.holddown    = document.getElementById('acc-holddown').checked;
-  S.pole        = document.getElementById('acc-pole').checked;
-  S.cordlessPole= document.getElementById('acc-cordless-pole').checked;
+  // Accessories are toggle pills (.opt-btn.sel), select any.
+  S.holddown    = document.getElementById('acc-holddown').classList.contains('sel');
+  S.pole        = document.getElementById('acc-pole').classList.contains('sel');
+  S.cordlessPole= document.getElementById('acc-cordless-pole').classList.contains('sel');
   var acc=[S.holddown?'Hold-down':'',S.pole?'Pole attach':'',S.cordlessPole?'Cordless pole':'',S.shims>0?S.shims+' shim'+(S.shims>1?'s':''):''].filter(Boolean);
   document.getElementById('val12').textContent=acc.length?acc.join(', '):'None';
   document.getElementById('step12').classList.add('done');
@@ -513,7 +514,7 @@ var shimsCount=0;
 function adjShims(d) {
   shimsCount=Math.min(4,Math.max(0,shimsCount+d));
   S.shims=shimsCount;
-  document.getElementById('shim-count').textContent=shimsCount;
+  document.getElementById('shim-count').value=shimsCount;
   updateAcc();
 }
 
@@ -522,10 +523,11 @@ function adjShims(d) {
 // power-source picker/handler here. Quote summary uses nmGetMotorSummary().
 
 // ── DELIVERY ──────────────────────────────────────────────────────────────────
-function setDelivery(opt,card) {
+// Shared Delivery step (pbDeliveryStepHTML) keeps the choice in window.pbDelivery
+// ('ship' | 'install') and calls setDelivery() after each pick.
+function setDelivery() {
+  var opt = window.pbDelivery === 'install' ? 'install' : 'ship';
   S.delivery=opt;
-  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
-  card.classList.add('sel');
   var labels={ship:'Ship to me',install:'Professional installation'};
   document.getElementById('val14').textContent=labels[opt]||opt;
   sp('sp-delivery',labels[opt]||opt);
@@ -589,7 +591,7 @@ function updateCalc() {
   var accT=(S.holddown?28:0)+(S.pole?89:0)+(S.cordlessPole?89:0)+((S.shims||0)*7);
   showRow('pr-acc-row',accT>0); if(accT>0)setVal('pr-acc','+$'+accT+'/shade');
   var isOversized=w>=90;
-  var freight=S.delivery==='install'?0:isOversized?(80+(qty>1?(qty-1)*50:0)):(25+(qty>1?(qty-1)*11:0));
+  var freight=(window.pbDelivery||S.delivery)==='install'?0:isOversized?(80+(qty>1?(qty-1)*50:0)):(25+(qty>1?(qty-1)*11:0));
   showRow('pr-freight-row',freight>0); if(freight>0)setVal('pr-freight','$'+freight);
   // Detail hidden per owner request — base/lining/fold/banding/SmartRelease/valance/accessories roll into
   // retail; only the Day & Night surcharge (an allowed add-on) stays visible.
@@ -650,7 +652,7 @@ function submitQuote() {
   if(!S.width||!S.height) errs.push('Enter dimensions (Step 1).');
   if(!S.style)      errs.push('Select shade style (Step 4).');
   if(!S.fabric)     errs.push('Select fabric (Step 5).');
-  if(S.type==='dn'&&!S.rollerFabric) errs.push('Select D&N rear roller fabric (Step 8).');
+  if(S.type==='dn'&&!S.rollerFabric) errs.push('Select D&N rear roller fabric (Step 5).');
   if(S.banding==='ribbon'&&!S.ribbonColor) errs.push('Select ribbon banding color (Step 7).');
   if(S.banding==='edge'&&(!S.edgeBase||!S.edgeBorder)) errs.push('Select base and border colors for edge banding (Step 7).');
   if(S.banding==='edge'&&S.edgeBase&&S.edgeBorder&&S.edgeBase.code===S.edgeBorder.code) errs.push('Edge banding: base and border must be different colors.');
@@ -663,7 +665,7 @@ function submitQuote() {
   var valance=S.valance?'Fabric valance ($'+getValanceSurcharge(S.width)+')':'None';
   var sbs=S.sbs?'Yes':'No';
   var sLabels={flat:'Flat Fold without Seams',batten:'Flat Fold with Batten Back',soft:'Soft Fold'};
-  var delivery='Ship (UPS/FedEx)'||S.delivery;
+  var delivery=(typeof pbDeliveryLabel==='function')?pbDeliveryLabel():'Ship to me';
   var isMotorized=(S.lift==='motor'||S.lift==='motor-dn');
   var motorSummary=isMotorized?(typeof nmGetMotorSummary==='function'?nmGetMotorSummary():'Norman Smart Motor'):('None — '+liftLabel);
   var accList=[(S.holddown?'Magnetic hold-down':''),(S.pole?'Pole attachment':''),(S.cordlessPole?'Cordless operating pole':''),((S.shims||0)>0?S.shims+' shim(s)':'')].filter(Boolean).join(', ')||'None';
