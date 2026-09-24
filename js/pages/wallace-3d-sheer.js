@@ -139,21 +139,21 @@ const S = {
   rail:'Moon Shape', deluxeInsert:false,
   ctrl:null, chainColor:'White', stainlessChain:false, stainlessFinish:'Stainless Steel',
   charger10:false, charger16:false, remote1:false, remote15:false, smartHub:false, solarPanel:false,
-  headrail:'single', sideBySide:false, qty:1, del:'ship'
+  headrail:'single', sideBySide:false, qty:1
+  // Delivery lives in window.pbDelivery ('ship' | 'install') — shared pbDeliveryStepHTML.
 };
+function w3dDelLabel(){ return typeof pbDeliveryLabel==='function'?pbDeliveryLabel():'Ship to me'; }
+function w3dDeliveryPicked(){
+  document.getElementById('s8val').textContent=w3dDelLabel();
+  document.getElementById('sp-del').textContent=w3dDelLabel();
+  markDone('step8');
+}
 
 // ── BUILD COLLECTION GRID ─────────────────────────────────────────────────
 function buildCollGrid(){
   const g=document.getElementById('coll-grid');
-  g.innerHTML=COLLECTIONS.map((c,i)=>`
-    <div class="coll-card" onclick="pickCollection(${i})">
-      <div class="coll-name">${c.name}</div>
-      <div class="coll-meta">
-        <span class="pg-badge">Group ${c.group}</span>
-        ${c.lc==='Blackout'?'<span class="rd-badge">Blackout</span>':''}
-        ${c.band} band · ${c.rail==='Deluxe'?'Deluxe bottom rail':c.rail}
-      </div>
-    </div>`).join('');
+  // Text choice → pills; the chosen collection's group / band / rail shows in the note.
+  g.innerHTML=COLLECTIONS.map((c,i)=>'<button class="opt-btn" onclick="pickCollection('+i+')">'+c.name+'</button>').join('');
 }
 buildCollGrid();
 
@@ -184,9 +184,11 @@ function markDone(id){document.getElementById(id).classList.add('done');}
 
 // ── STEP 1: COLLECTION ────────────────────────────────────────────────────
 function pickCollection(idx){
-  document.querySelectorAll('.coll-card').forEach(c=>c.classList.remove('sel'));
-  document.querySelectorAll('.coll-card')[idx].classList.add('sel');
+  document.querySelectorAll('#coll-grid .opt-btn').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#coll-grid .opt-btn')[idx].classList.add('sel');
   S.coll=COLLECTIONS[idx];
+  const cn=document.getElementById('coll-note');
+  if(cn) cn.textContent=S.coll.name+': Group '+S.coll.group+' · '+S.coll.band+' band · '+S.coll.lc+' · '+(S.coll.rail==='Deluxe'?'Deluxe bottom rail':S.coll.rail+' bottom rail')+'.';
   document.getElementById('s1val').textContent=S.coll.name+' (Group '+S.coll.group+')';
   markDone('step1');
   // Build color grid
@@ -253,7 +255,7 @@ function pickColor(el,code,label,hwSuggested){
 
 // ── STEP 3: MOUNT & DIMS ──────────────────────────────────────────────────
 function pickMount(el,key){
-  document.querySelectorAll('#step3 .opt-btn').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#step3 .opt-row .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.mount=key;
   calcDims();
@@ -317,7 +319,7 @@ function fmtDim(v){
 
 // ── STEP 4: CASSETTE ─────────────────────────────────────────────────────
 function pickCassette(el,key){
-  document.querySelectorAll('#step4 .opt-btn').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#cas-round, #cas-square').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.cassette=key;
   document.getElementById('s4val').textContent=(key==='round'?'Round':'Square')+' cassette · '+(S.hwColor||'—');
@@ -358,10 +360,8 @@ function updateBottomRail(){
   } else {
     sec.innerHTML=`
       <div class="msg-info" style="margin-top:4px">${c.name} uses a Deluxe round bottom rail with fabric insert (+$40 per shade).</div>
-      <div class="addon-row sel" id="deluxe-rail-row" onclick="toggleAddon(this,'deluxeInsert')" style="margin-top:10px">
-        <div class="addon-left"><div class="addon-check" style="background:var(--gold);border-color:var(--gold);color:#111110">✓</div><div><div class="addon-name">Deluxe bottom rail with fabric insert</div><div class="addon-sub">Required for this collection · +$40</div></div></div>
-        <div class="addon-price">+$40</div>
-      </div>`;
+      <div class="opt-row" style="margin-top:10px"><button class="opt-btn sel" id="deluxe-rail-row" onclick="toggleAddon(this,'deluxeInsert')">Deluxe bottom rail with fabric insert +$40</button></div>
+      <div class="step-note">Required for this collection &middot; +$40 per shade.</div>`;
     S.deluxeInsert=true;
     document.getElementById('s5val').textContent='Deluxe + fabric insert (+$40)';
     markDone('step5');
@@ -374,17 +374,17 @@ const STAINLESS_FINISHES=['Stainless Steel Metal','Oil-Rubbed Bronze Metal','Gun
 
 function buildChainColorGrid(){
   const g=document.getElementById('chain-color-grid');
-  g.innerHTML=CHAIN_COLORS.map(c=>`<div class="chain-chip${c===S.chainColor?' sel':''}" onclick="pickChainColor(this,'${c}')">${c}</div>`).join('');
+  g.innerHTML=CHAIN_COLORS.map(c=>`<button class="opt-btn${c===S.chainColor?' sel':''}" onclick="pickChainColor(this,'${c}')">${c}</button>`).join('');
 }
 function buildStainlessGrid(){
   const g=document.getElementById('stainless-finish-grid');
-  g.innerHTML=STAINLESS_FINISHES.map(f=>`<div class="chain-chip${f===S.stainlessFinish?' sel':''}" onclick="pickStainlessFinish(this,'${f}')">${f}</div>`).join('');
+  g.innerHTML=STAINLESS_FINISHES.map(f=>`<button class="opt-btn${f===S.stainlessFinish?' sel':''}" onclick="pickStainlessFinish(this,'${f}')">${f}</button>`).join('');
 }
 buildChainColorGrid();
 buildStainlessGrid();
 
 function pickControl(el,key){
-  document.querySelectorAll('#step6 .opt-btn').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#ctrl-ccl, #ctrl-motor').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.ctrl=key;
   const note=document.getElementById('ctrl-msg');
@@ -404,14 +404,14 @@ function pickControl(el,key){
 }
 
 function pickChainColor(el,name){
-  document.querySelectorAll('#chain-color-grid .chain-chip').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#chain-color-grid .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.chainColor=name;
   updateSpec();
 }
 
 function pickStainlessFinish(el,name){
-  document.querySelectorAll('#stainless-finish-grid .chain-chip').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#stainless-finish-grid .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.stainlessFinish=name;
   updateSpec();
@@ -426,7 +426,7 @@ function updateChainNote(){
 
 // ── STEP 7: MULTI-SHADE ────────────────────────────────────────────────────
 function pickHeadrail(el,key){
-  document.querySelectorAll('.radio-chip').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#grp-headrail .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.headrail=key;
   const mf=document.getElementById('multi-fields');
@@ -456,12 +456,11 @@ function checkMulti(){
 }
 
 // ── ACCESSORIES ────────────────────────────────────────────────────────────
+// Multi-select add-ons are toggle pills (.opt-btn); .sel is the state.
 function toggleAddon(el,key){
-  if(!el.classList.contains('addon-row')) return;
+  if(!el.classList.contains('opt-btn')) return;
   el.classList.toggle('sel');
   S[key]=el.classList.contains('sel');
-  const check=el.querySelector('.addon-check');
-  if(check){check.style.background=S[key]?'var(--gold)':'';check.style.borderColor=S[key]?'var(--gold)':'#ccc';check.style.color=S[key]?'#111110':'transparent';}
   if(key==='stainlessChain'){
     document.getElementById('stainless-options').style.display=S[key]?'block':'none';
   }
@@ -469,11 +468,6 @@ function toggleAddon(el,key){
 }
 
 // ── DELIVERY ───────────────────────────────────────────────────────────────
-function pickDel(btn,key){
-  document.querySelectorAll('.delivery-opt-card').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  S.del=key;
-    }
 
 // ── QUANTITY STEPPER ─────────────────────────────────────────────────────────
 function adjQty(delta){
@@ -487,6 +481,11 @@ function adjQty(delta){
 
 // ── SPEC PANEL ─────────────────────────────────────────────────────────────
 function updateSpec(){
+  // Standard rows (Product · Size · Mount · Qty) are always live.
+  const qtyNow=parseInt(document.getElementById('qty').value)||1;
+  document.getElementById('sp-size').textContent=(S.w&&S.h)?S.w+'″ × '+S.h+'″':'—';
+  document.getElementById('sp-mount').textContent=S.mount==='inside'?'Inside mount':'Outside mount';
+  document.getElementById('sp-qty').textContent=qtyNow+' shade'+(qtyNow>1?'s':'');
   const ready=S.coll&&S.color&&S.w&&S.h&&S.ctrl;
   document.getElementById('sp-pending').style.display=ready?'none':'block';
   document.getElementById('sp-detail').style.display=ready?'block':'none';
@@ -496,8 +495,6 @@ function updateSpec(){
   document.getElementById('sp-pg').textContent='Group '+S.coll.group;
   document.getElementById('sp-color').textContent=(S.color.label||'—')+' ('+S.color.code+')';
   document.getElementById('sp-band').textContent=S.coll.band+' · '+S.coll.lc;
-  document.getElementById('sp-mount').textContent=S.mount==='inside'?'Inside mount':'Outside mount';
-  document.getElementById('sp-size').textContent=S.w+'″ × '+S.h+'″';
   document.getElementById('sp-cassette').textContent=(S.cassette==='round'?'Round':'Square')+' cassette';
   document.getElementById('sp-hwcolor').textContent=S.hwColor||'—';
   document.getElementById('sp-insert').textContent=S.fabInsert?'Yes (+$30)':'No';
@@ -521,7 +518,7 @@ function updateSpec(){
   const qty=parseInt(document.getElementById('qty').value)||1;
   S.qty=qty;
   document.getElementById('sp-qty').textContent=qty+' shade'+(qty>1?'s':'');
-  document.getElementById('s8val').textContent=qty+' shade'+(qty>1?'s':'')+' · '+'Ship';
+
 
   // Oversize warning
   document.getElementById('sp-warn-os').style.display=S.w>=90?'block':'none';
@@ -639,7 +636,7 @@ function submitQuote(){
     '',
     'QUANTITY & DELIVERY:',
     'Quantity: '+qty+' shade'+(qty>1?'s':''),
-    'Delivery: '+'Ship (UPS/FedEx)',
+    'Delivery: '+w3dDelLabel(),
     '',
     'NOTES:',
     document.getElementById('cf-notes').value.trim()||'None',

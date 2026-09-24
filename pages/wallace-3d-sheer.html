@@ -38,13 +38,6 @@
 .opt-card.sel .opt-card-title{color:#0A4A42}
 .opt-card-desc{font-size:11px;color:#666;line-height:1.45}
 .opt-card.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
-/* Collection grid */
-.coll-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-top:8px}
-.coll-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:11px 13px;cursor:pointer;transition:all .15s;background:#fff}
-.coll-card:hover{border-color:var(--gold)}
-.coll-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.coll-name{font-size:13px;font-weight:600;color:#111;margin-bottom:3px}
-.coll-meta{font-size:10px;color:#888;line-height:1.4}
 .pg-badge{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;background:#f0ece4;color:#555;font-weight:600;margin-right:4px}
 .rd-badge{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;background:#fee2e2;color:#7f1d1d;font-weight:600;margin-right:4px}
 /* Color chips */
@@ -63,37 +56,20 @@
 .hw-dot-label{font-size:9px;text-align:center;margin-top:3px;color:#555}
 .hw-col-item{display:flex;flex-direction:column;align-items:center}
 /* Dims */
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
 .dim-inputs{display:flex;gap:6px;align-items:center}
 .dim-whole{width:54px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
 .dim-frac{padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff;color:#333}
 .dim-unit{font-size:13px;color:#555;font-weight:500}
-/* Addon rows */
-.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
-.addon-row:hover{border-color:var(--gold)}
-.addon-row.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.addon-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
-.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#111110}
-.addon-name{font-size:13px;font-weight:500;color:#111}
-.addon-sub{font-size:11px;color:#666;margin-top:1px}
-.addon-price{font-size:12px;font-weight:600;color:var(--gold);flex-shrink:0}
 /* Messages */
 .msg-box{border-radius:8px;padding:9px 13px;font-size:12px;margin-top:8px;line-height:1.5}
 .msg-err{background:#FEE2E2;border:1px solid #EF4444;color:#7f1d1d}
 .msg-warn{background:#FFF3CD;border:1px solid #FFC107;color:#7d5a00}
 .msg-info{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);color:#0A4A42}
 .sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 5px}
-.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
 /* Del btns */
-/* Spec panel */
-.spec-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.sp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
-.sp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
-.sp-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:7px;gap:8px;align-items:baseline}
-.sp-label{color:var(--text-muted);line-height:1.4}
-.sp-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0;max-width:160px;word-break:break-word}
+/* Summary card uses the global CONFIGURATOR STANDARD classes */
+.sp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:12px 0;font-style:italic;line-height:1.6}
 .sp-div{border:none;border-top:.5px solid var(--border-dark);margin:10px 0}
 .sp-note{font-size:10px;color:var(--text-dark);margin-top:10px;line-height:1.6}
 .sp-warn{font-size:10px;color:#FFC107;margin-top:6px;line-height:1.6}
@@ -105,14 +81,6 @@
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
 .success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center;margin-top:12px}
-.chain-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:7px;margin-top:6px}
-.chain-chip{border:1.5px solid #e8e8e4;border-radius:8px;padding:8px 10px;cursor:pointer;text-align:center;font-size:12px;font-weight:500;transition:all .15s;background:#fff;color:#333}
-.chain-chip:hover{border-color:var(--gold)}
-.chain-chip.sel{border:2px solid var(--gold);background:var(--gold-mid);color:#0A4A42}
-.radio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-.radio-chip{padding:7px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;background:#fff;color:#444}
-.radio-chip:hover{border-color:var(--gold)}
-.radio-chip.sel{border-color:var(--gold);background:var(--gold-mid);color:#0A4A42}
 .dims-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
 .dims-table th{text-align:left;font-weight:600;color:#555;padding:4px 6px;border-bottom:1px solid #e8e8e4}
 .dims-table td{padding:4px 6px;color:#333;border-bottom:.5px solid #f0f0ee}
@@ -181,7 +149,6 @@
         <input class="qty-num" type="number" id="qty" value="1" min="1" max="50" oninput="updateSpec()">
         <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
       </div>
-      <span style="font-size:12px;color:#666">shade(s) of this size &amp; color</span>
     </div>
   </div>
 </div>
@@ -194,8 +161,8 @@
     <div class="step-head-val" id="s1val">—</div>
   </div>
   <div class="step-body">
-    <div class="step-note" style="margin-bottom:8px">Choose collection first — it determines band size, light control, headrail options, and bottom rail type.</div>
-    <div class="coll-grid" id="coll-grid"><!-- filled by JS --></div>
+    <div class="opt-row" id="coll-grid"><!-- filled by JS --></div>
+    <div class="step-note" id="coll-note">The collection sets the price group, band size, light control, headrail options and bottom rail.</div>
   </div>
 </div>
 
@@ -216,13 +183,13 @@
 <div class="step-block" id="step4">
   <div class="step-head" onclick="toggleStep('step4')">
     <div class="step-num">4</div>
-    <div class="step-head-title">Cassette Style</div>
+    <div class="step-head-title">Cassette style</div>
     <div class="step-head-val" id="s4val">—</div>
   </div>
   <div class="step-body">
     <div class="opt-row">
-      <button class="opt-btn sel" id="cas-round" onclick="pickCassette(this,'round')">Round Cassette</button>
-      <button class="opt-btn" id="cas-square" onclick="pickCassette(this,'square')">Square Cassette</button>
+      <button class="opt-btn sel" id="cas-round" onclick="pickCassette(this,'round')">Round cassette</button>
+      <button class="opt-btn" id="cas-square" onclick="pickCassette(this,'square')">Square cassette</button>
     </div>
     <div class="step-note">Round Cassette: 3⅜″ deep × 3″ high · Standard · IM min 3¾″ depth · Square Cassette: 3½″ deep × 3″ high · IM min 4″ depth.</div>
     <div class="sub-label">Hardware color</div>
@@ -230,10 +197,8 @@
     <!-- Fabric headrail insert -->
     <div id="fab-insert-section" style="display:none">
       <div class="sub-label">Fabric Headrail Insert</div>
-      <div class="addon-row" id="fab-insert-row" onclick="toggleAddon(this,'fabInsert')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Add fabric headrail insert</div><div class="addon-sub">Matches shade fabric · +$30 per shade</div></div></div>
-        <div class="addon-price">+$30</div>
-      </div>
+      <div class="opt-row"><button class="opt-btn" id="fab-insert-row" onclick="toggleAddon(this,'fabInsert')">Add fabric headrail insert +$30</button></div>
+      <div class="step-note">Matches the shade fabric &middot; +$30 per shade.</div>
     </div>
     <div id="fab-insert-na" class="msg-info" style="display:none;margin-top:8px">Fabric headrail insert is not available for this collection.</div>
   </div>
@@ -243,7 +208,7 @@
 <div class="step-block" id="step5">
   <div class="step-head" onclick="toggleStep('step5')">
     <div class="step-num">5</div>
-    <div class="step-head-title">Bottom Rail</div>
+    <div class="step-head-title">Bottom rail</div>
     <div class="step-head-val" id="s5val">—</div>
   </div>
   <div class="step-body">
@@ -263,8 +228,8 @@
   </div>
   <div class="step-body">
     <div class="opt-row">
-      <button class="opt-btn" id="ctrl-ccl" onclick="pickControl(this,'ccl')">Continuous Cord Loop</button>
-      <button class="opt-btn" id="ctrl-motor" onclick="pickControl(this,'motor')">Battery Motor</button>
+      <button class="opt-btn" id="ctrl-ccl" onclick="pickControl(this,'ccl')">Continuous cord loop</button>
+      <button class="opt-btn" id="ctrl-motor" onclick="pickControl(this,'motor')">Battery motor</button>
     </div>
     <div class="step-note">Continuous Cord Loop: Standard · Metal bead chain · No width limit · Battery Motor: Min 23″W · Max 100″W · Rechargeable Li-ion.</div>
     <div id="ctrl-msg" class="msg-box" style="display:none"></div>
@@ -272,46 +237,29 @@
     <!-- CCL options -->
     <div id="ccl-options" style="display:none;margin-top:14px">
       <div class="sub-label" style="margin-top:0">Chain color</div>
-      <div class="chain-grid" id="chain-color-grid"><!-- filled by JS --></div>
+      <div class="opt-row" id="chain-color-grid"><!-- filled by JS --></div>
       <div class="sub-label">Stainless chain upgrade (optional)</div>
-      <div class="addon-row" id="stainless-chain-row" onclick="toggleAddon(this,'stainlessChain')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Stainless steel chain</div><div class="addon-sub">Replaces standard plastic chain · +$15</div></div></div>
-        <div class="addon-price">+$15</div>
-      </div>
+      <div class="opt-row"><button class="opt-btn" id="stainless-chain-row" onclick="toggleAddon(this,'stainlessChain')">Stainless steel chain +$15</button></div>
+      <div class="step-note">Replaces the standard plastic chain &middot; +$15.</div>
       <div id="stainless-options" style="display:none;margin-top:8px">
         <div class="sub-label" style="margin-top:0">Stainless chain finish</div>
-        <div class="chain-grid" id="stainless-finish-grid"><!-- filled by JS --></div>
+        <div class="opt-row" id="stainless-finish-grid"><!-- filled by JS --></div>
       </div>
       <div class="step-note" style="margin-top:6px" id="chain-length-note">Chain length calculated from shade height.</div>
     </div>
 
     <!-- Motor accessories -->
     <div id="motor-options" style="display:none;margin-top:14px">
-      <div class="sub-label" style="margin-top:0">Motor base includes rechargeable battery. Select accessories:</div>
-      <div class="addon-row" id="acc-charger10" onclick="toggleAddon(this,'charger10')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">10 ft USB charger cable</div><div class="addon-sub">Standard charger</div></div></div>
-        <div class="addon-price">+$45</div>
+      <div class="sub-label" style="margin-top:0">Motor accessories</div>
+      <div class="opt-row">
+        <button class="opt-btn" id="acc-charger10" onclick="toggleAddon(this,'charger10')">10 ft USB charger +$45</button>
+        <button class="opt-btn" id="acc-charger16" onclick="toggleAddon(this,'charger16')">16 ft USB charger +$45</button>
+        <button class="opt-btn" id="acc-remote1" onclick="toggleAddon(this,'remote1')">Single remote +$85</button>
+        <button class="opt-btn" id="acc-remote15" onclick="toggleAddon(this,'remote15')">15-channel remote +$120</button>
+        <button class="opt-btn" id="acc-hub" onclick="toggleAddon(this,'smartHub')">Smart Connector Hub +$350</button>
+        <button class="opt-btn" id="acc-solar" onclick="toggleAddon(this,'solarPanel')">Solar panel charger</button>
       </div>
-      <div class="addon-row" id="acc-charger16" onclick="toggleAddon(this,'charger16')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">16 ft USB charger cable</div><div class="addon-sub">Extended reach</div></div></div>
-        <div class="addon-price">+$45</div>
-      </div>
-      <div class="addon-row" id="acc-remote1" onclick="toggleAddon(this,'remote1')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Single remote</div></div></div>
-        <div class="addon-price">+$85</div>
-      </div>
-      <div class="addon-row" id="acc-remote15" onclick="toggleAddon(this,'remote15')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">15-channel remote</div></div></div>
-        <div class="addon-price">+$120</div>
-      </div>
-      <div class="addon-row" id="acc-hub" onclick="toggleAddon(this,'smartHub')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Smart Connector Hub (P-Box DD7006)</div><div class="addon-sub">Alexa · Google · SmartThings · Control4 · Crestron · Wi-Fi / Ethernet</div></div></div>
-        <div class="addon-price">+$350</div>
-      </div>
-      <div class="addon-row" id="acc-solar" onclick="toggleAddon(this,'solarPanel')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Solar panel charger</div><div class="addon-sub">Direct sunshine locations only</div></div></div>
-        <div class="addon-price">Add-on</div>
-      </div>
+      <div class="step-note">Select any. The motor base includes a rechargeable battery. Smart Connector Hub (P-Box DD7006): Alexa &middot; Google &middot; SmartThings &middot; Control4 &middot; Crestron &middot; Wi-Fi / Ethernet. Solar panel charger: direct-sunshine locations only (priced at quote).</div>
     </div>
   </div>
 </div>
@@ -320,15 +268,15 @@
 <div class="step-block" id="step7">
   <div class="step-head" onclick="toggleStep('step7')">
     <div class="step-num">7</div>
-    <div class="step-head-title">Multi-Shade Options</div>
+    <div class="step-head-title">Multi-shade options <span style="font-weight:400;color:#888">(optional)</span></div>
     <div class="step-head-val" id="s7val">Single shade</div>
   </div>
   <div class="step-body">
     <div class="sub-label" style="margin-top:4px">Headrail type</div>
-    <div class="radio-row">
-      <div class="radio-chip sel" id="hr-single" onclick="pickHeadrail(this,'single')">Single shade</div>
-      <div class="radio-chip" id="hr-2on1" onclick="pickHeadrail(this,'2on1')">2-on-1 headrail</div>
-      <div class="radio-chip" id="hr-3on1" onclick="pickHeadrail(this,'3on1')">3-on-1 headrail</div>
+    <div class="opt-row" id="grp-headrail">
+      <button class="opt-btn sel" id="hr-single" onclick="pickHeadrail(this,'single')">Single shade</button>
+      <button class="opt-btn" id="hr-2on1" onclick="pickHeadrail(this,'2on1')">2-on-1 headrail</button>
+      <button class="opt-btn" id="hr-3on1" onclick="pickHeadrail(this,'3on1')">3-on-1 headrail</button>
     </div>
     <div id="multi-note" class="msg-info" style="display:none;margin-top:8px"></div>
     <div id="multi-fields" style="display:none;margin-top:10px">
@@ -338,39 +286,28 @@
       </div>
       <div id="multi-warn" class="msg-box" style="display:none"></div>
     </div>
-    <div class="addon-row" id="sxs-row" onclick="toggleAddon(this,'sideBySide')" style="margin-top:10px">
-      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Side-by-side vane alignment requested</div><div class="addon-sub">Must order same style, color, height at same time. ¼″ tolerance only.</div></div></div>
-      <div class="addon-price">Free</div>
-    </div>
+    <div class="sub-label">Side-by-side vane alignment</div>
+    <div class="opt-row"><button class="opt-btn" id="sxs-row" onclick="toggleAddon(this,'sideBySide')">Side-by-side vane alignment requested</button></div>
+    <div class="step-note">Free. Must order the same style, color and height at the same time &mdash; &frac14;&Prime; tolerance only.</div>
     <div class="step-note" style="margin-top:6px">2-on-1 / 3-on-1 priced as separate shades. Max combined headrail: 110″. Fabric insert seam if combined over 106″.</div>
   </div>
 </div>
 
-<!-- STEP 8: ROOM & DELIVERY -->
+<!-- STEP 8: DELIVERY (shared pbDeliveryStepHTML) -->
 <div class="step-block" id="step8">
   <div class="step-head" onclick="toggleStep('step8')">
     <div class="step-num">8</div>
-    <div class="step-head-title">Room &amp; Delivery</div>
-    <div class="step-head-val" id="s8val">—</div>
+    <div class="step-head-title">Delivery</div>
+    <div class="step-head-val" id="s8val">Ship to me</div>
   </div>
-  <div class="step-body">
-    <div style="margin-top:6px">
-      <div class="dim-label" style="margin-bottom:6px">Delivery</div>
-      <div class="delivery-opt-grid">
-        <div class="delivery-opt-card sel" onclick="pickDel(this,'ship')">
-          <div class="delivery-opt-title">Ship to me</div>
-          <div class="delivery-opt-body">UPS or FedEx. Shades 90&#x2033;&#x2013;99&#x215E;&#x2033; add $40 oversize surcharge. Tariffs additional.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="step-body" id="w3d-delivery"></div>
 </div>
 
 <!-- STEP 9: CONTACT & SUBMIT -->
 <div class="step-block" id="step9">
   <div class="step-head" onclick="toggleStep('step9')">
     <div class="step-num">9</div>
-    <div class="step-head-title">Your Info &amp; Submit</div>
+    <div class="step-head-title">Your details</div>
   </div>
   <div class="step-body">
     <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
@@ -385,27 +322,29 @@
 
 <!-- RIGHT: Spec summary panel -->
 <div>
-  <div class="spec-panel">
-    <div class="sp-title">Spec Summary</div>
-    <div id="sp-pending" class="sp-pending">Complete your selections to build your spec sheet.</div>
+  <div class="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Wallace 3D Dual Sheer</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="sp-size">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sp-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sp-qty">1 shade</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="sp-del">Ship to me</span></div>
+    <div id="sp-pending" class="sp-pending">Choose a collection, color and control to see your estimate.</div>
     <div id="sp-detail" style="display:none">
-      <div class="sp-row"><span class="sp-label">Collection</span><span class="sp-val" id="sp-coll">—</span></div>
-      <div class="sp-row"><span class="sp-label">Price group</span><span class="sp-val" id="sp-pg">—</span></div>
-      <div class="sp-row"><span class="sp-label">Color</span><span class="sp-val" id="sp-color">—</span></div>
-      <div class="sp-row"><span class="sp-label">Band / light</span><span class="sp-val" id="sp-band">—</span></div>
-      <div class="sp-row"><span class="sp-label">Mount</span><span class="sp-val" id="sp-mount">—</span></div>
-      <div class="sp-row"><span class="sp-label">Ordered W × H</span><span class="sp-val" id="sp-size">—</span></div>
-      <div class="sp-row"><span class="sp-label">Cassette</span><span class="sp-val" id="sp-cassette">—</span></div>
-      <div class="sp-row"><span class="sp-label">Hardware color</span><span class="sp-val" id="sp-hwcolor">—</span></div>
-      <div class="sp-row"><span class="sp-label">Headrail insert</span><span class="sp-val" id="sp-insert">—</span></div>
-      <div class="sp-row"><span class="sp-label">Bottom rail</span><span class="sp-val" id="sp-rail">—</span></div>
-      <div class="sp-row"><span class="sp-label">Control</span><span class="sp-val" id="sp-ctrl">—</span></div>
-      <div class="sp-row"><span class="sp-label">Chain / motor accs</span><span class="sp-val" id="sp-accs">—</span></div>
-      <div class="sp-row"><span class="sp-label">Qty</span><span class="sp-val" id="sp-qty">—</span></div>
+      <div class="summary-row"><span class="sr-key">Collection</span><span class="sr-val" id="sp-coll">—</span></div>
+      <div class="summary-row"><span class="sr-key">Price group</span><span class="sr-val" id="sp-pg">—</span></div>
+      <div class="summary-row"><span class="sr-key">Color</span><span class="sr-val" id="sp-color">—</span></div>
+      <div class="summary-row"><span class="sr-key">Band / light</span><span class="sr-val" id="sp-band">—</span></div>
+      <div class="summary-row"><span class="sr-key">Cassette</span><span class="sr-val" id="sp-cassette">—</span></div>
+      <div class="summary-row"><span class="sr-key">Hardware color</span><span class="sr-val" id="sp-hwcolor">—</span></div>
+      <div class="summary-row"><span class="sr-key">Headrail insert</span><span class="sr-val" id="sp-insert">—</span></div>
+      <div class="summary-row"><span class="sr-key">Bottom rail</span><span class="sr-val" id="sp-rail">—</span></div>
+      <div class="summary-row"><span class="sr-key">Control</span><span class="sr-val" id="sp-ctrl">—</span></div>
+      <div class="summary-row"><span class="sr-key">Chain / motor accs</span><span class="sr-val" id="sp-accs">—</span></div>
       <div class="sp-div"></div>
       <div class="sp-note">Pricing confirmed with current Wallace price book at quote. Not shown publicly.</div>
       <div class="sp-div"></div>
-      <div class="sp-row"><span class="sp-label">Est. price</span><span class="sp-val" id="sp-price" style="font-size:15px;font-weight:600;color:var(--gold)">—</span></div>
+      <div class="summary-row"><span class="sr-key">Est. price</span><span class="sr-val" id="sp-price" style="font-size:15px;font-weight:600;color:var(--gold)">—</span></div>
       <div id="sp-price-breakdown" style="font-size:10px;color:var(--text-faint);line-height:1.7;margin-top:4px"></div>
       <div class="sp-note">MSRP estimate · confirmed at order · eff. 10/01/2024</div>
       <div id="sp-warn-os" class="sp-warn" style="display:none">⚠ Width ≥90″ — oversize surcharge applies.</div>
@@ -432,6 +371,9 @@
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addWallace3dSheerToCart()', submitFn: 'submitQuote()' });
+// Canonical Delivery step — choice lives in window.pbDelivery ('ship' | 'install').
+document.getElementById('w3d-delivery').innerHTML =
+  pbDeliveryStepHTML({ bare: true, onPick: 'w3dDeliveryPicked()' });
 </script>
 </body>
 </html>
