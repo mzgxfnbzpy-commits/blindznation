@@ -37,58 +37,21 @@
 .step-head{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
 .step-num{width:26px;height:26px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .step-block.done .step-num{background:var(--gold);color:var(--espresso)}
-.step-title{font-size:13px;font-weight:600;color:#111;flex:1}
+.step-head .step-title{flex:1;margin-bottom:0}
 .step-val{font-size:12px;color:var(--gold);font-weight:500;text-align:right;flex-shrink:0;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .step-body{padding:0 16px 16px;display:block}
-
-/* Type cards */
-.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:10px}
-.type-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:14px 12px;cursor:pointer;transition:all .15s;text-align:center}
-.type-card:hover{border-color:var(--gold);background:var(--gold-mid)}
-.type-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.type-card.disabled{opacity:.35;pointer-events:none}
-.type-icon{font-size:22px;margin-bottom:6px}
-.type-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px;line-height:1.3}
-.type-desc{font-size:10px;color:#666;line-height:1.4}
-.type-card.sel .type-name{color:#0A4A42}
-.exterior-card{border-style:dashed !important}
-.exterior-card.sel{border-style:solid !important}
 
 /* Openness sub-options */
 .sub-opts{margin-top:12px;padding:12px;background:#f9f9f7;border-radius:8px;display:none}
 .sub-opts.show{display:block}
 .sub-opts-label{font-size:11px;font-weight:600;color:#555;margin-bottom:8px}
-.openness-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-@media(max-width:420px){.openness-grid{grid-template-columns:repeat(2,1fr)}}
-.openness-btn{padding:10px 4px;border:1.5px solid #e0e0db;border-radius:8px;background:#fff;font-size:12px;font-weight:500;cursor:pointer;text-align:center;transition:all .15s;font-family:inherit}
-.openness-btn:hover{border-color:var(--gold)}
-.openness-btn.sel{border-color:var(--gold);background:var(--gold-mid);color:#0A4A42}
-.openness-pct{font-size:16px;font-weight:700;display:block;margin-bottom:2px}
-.openness-label{font-size:9px;color:#888;display:block;line-height:1.3}
-
 /* Exterior note */
 .exterior-note{background:#FFF8EC;border:1px solid #e8c96b;border-radius:8px;padding:11px 14px;font-size:12px;color:#5a3a00;line-height:1.6;margin-top:12px;display:none}
 .exterior-note strong{display:block;font-size:12px;font-weight:700;margin-bottom:4px;color:#3a2200}
 
-/* Opt cards */
-.opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.opt-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-.opt-grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
-@media(max-width:560px){.opt-grid-3,.opt-grid-5{grid-template-columns:1fr 1fr}}
-.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;transition:all .15s;text-align:center}
-.opt-card:hover{border-color:var(--gold)}
-.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.opt-card.disabled{opacity:.35;pointer-events:none}
-.opt-card-title{font-size:12px;font-weight:600;color:#111;margin-bottom:3px;line-height:1.3}
-.opt-card.sel .opt-card-title{color:#0A4A42}
-.opt-card-desc{font-size:10px;color:#666;line-height:1.4}
-.opt-badge{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:6px;background:var(--gold);color:var(--espresso);margin-bottom:4px}
 .mount-note{font-size:11px;color:#555;margin-top:8px;line-height:1.6;padding:8px 10px;background:#f0f9f8;border:1px solid rgba(45,224,193,.2);border-radius:7px;display:none}
 .mount-note.show{display:block}
 
-/* Dimensions */
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
-@media(max-width:480px){.dim-row{grid-template-columns:1fr}}
 .dim-label{font-size:12px;font-weight:600;color:#444;margin-bottom:6px}
 .dim-inputs{display:flex;gap:6px;align-items:center}
 .dim-whole{width:62px;padding:8px 10px;border:1.5px solid #ddd;border-radius:8px;font-size:15px;text-align:center;font-family:inherit;transition:border-color .12s}
@@ -101,15 +64,6 @@
 .dim-msg.warn{background:#FEE2E2;border:1px solid #EF4444;color:#7f1d1d}
 .dim-msg.info{background:#f0f9f8;border:1px solid rgba(45,224,193,.25);color:#0A4A42}
 
-/* Fabric */
-.fabric-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px}
-.fabric-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;padding:14px 12px;cursor:pointer;transition:all .15s;text-align:center}
-.fabric-card:hover{border-color:var(--gold);background:var(--gold-mid)}
-.fabric-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.fabric-icon{font-size:22px;margin-bottom:6px}
-.fabric-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
-.fabric-desc{font-size:10px;color:#666;line-height:1.4}
-.fabric-card.sel .fabric-name{color:#0A4A42}
 .cust-note{background:#FFF8EC;border:1px solid #e8c96b;border-radius:8px;padding:10px 13px;font-size:11px;color:#5a3a00;line-height:1.6;margin-top:10px;display:none}
 .cust-note.show{display:block}
 
@@ -119,16 +73,6 @@
 .spin-btn:hover{border-color:var(--gold)}
 .spin-num{width:50px;text-align:center;border:1.5px solid #ddd;border-radius:7px;font-size:15px;font-weight:600;padding:6px;font-family:inherit}
 .spin-label{font-size:12px;color:#666}
-
-/* Delivery */
-.delivery-opt{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1.5px solid #e8e8e4;border-radius:10px;cursor:pointer;margin-top:8px;transition:all .15s}
-.delivery-opt:hover{border-color:var(--gold)}
-.delivery-opt.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.del-radio{width:16px;height:16px;border:2px solid #ccc;border-radius:50%;flex-shrink:0;margin-top:2px;transition:all .15s}
-.delivery-opt.sel .del-radio{border-color:var(--gold);background:var(--gold)}
-.del-label{font-size:13px;font-weight:600;color:#111}
-.del-sub{font-size:11px;color:#666;margin-top:2px;line-height:1.5}
-.tariff-note{font-size:10px;color:#999;margin-top:4px;line-height:1.5}
 
 /* Form */
 .form-group{margin-bottom:12px}
@@ -140,20 +84,13 @@
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
 
 /* Quote panel */
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
 .qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:12px 0;font-style:italic;line-height:1.6}
-.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px;gap:8px;align-items:baseline}
-.qrow-label{color:var(--text-muted)}
-.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
 .qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6;font-style:italic}
 .submit-note{font-size:10px;color:var(--text-muted);text-align:center;margin-top:8px;line-height:1.5}
 .success-box{background:#1a3a2a;border:1px solid rgba(45,224,193,.4);border-radius:10px;padding:16px;text-align:center;display:none}
 .success-box h4{color:var(--gold);font-size:14px;margin-bottom:6px}
 .success-box p{color:var(--text-dark);font-size:12px;line-height:1.6}
-/* Teal bubble selection ring — consistent across all selectable cards */
-.type-card.sel,.opt-card.sel,.fabric-card.sel,.delivery-opt.sel,.openness-btn.sel{box-shadow:0 0 0 3px rgba(45,224,193,.15),0 2px 8px rgba(45,224,193,.18)}
 /* Hardware finish swatch dots */
 .hw-sw{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:7px;vertical-align:-2px;border:1px solid rgba(0,0,0,.18);box-shadow:inset 0 1px 2px rgba(255,255,255,.3)}
 </style>
@@ -232,27 +169,25 @@
     <div class="dim-msg info" id="dim-info"></div>
 
     <!-- Mount type -->
-    <div class="dim-label" style="margin-top:16px;margin-bottom:8px">Mount type</div>
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
     <div class="opt-row" id="crs-grp-mount">
-      <button class="opt-btn" id="mc-inside" onclick="crsPickMount('inside','Inside mount')">Inside mount</button>
+      <button class="opt-btn sel" id="mc-inside" onclick="crsPickMount('inside','Inside mount')">Inside mount</button>
       <button class="opt-btn" id="mc-outside" onclick="crsPickMount('outside','Outside mount')">Outside mount</button>
     </div>
     <div class="step-note">Inside mount fits inside the window frame — clean, built-in look, min frame depth required. Outside mount mounts on wall or ceiling above the frame — covers more area, good for shallow frames.</div>
-    <div class="mount-note" id="mount-note-im">Inside mount: give us your exact frame width and height — we'll deduct 1/4" from width for a proper fit.</div>
+    <div class="mount-note show" id="mount-note-im">Inside mount: give us your exact frame width and height — we'll deduct 1/4" from width for a proper fit.</div>
     <div class="mount-note" id="mount-note-om">Outside mount: add 2–4" to each side of the opening for full coverage. Mount 2–4" above the frame to maximize the look.</div>
 
     <!-- Quantity -->
-    <div class="dim-label" style="margin-top:18px;margin-bottom:6px">Quantity</div>
-    <p style="font-size:12px;color:#666;margin-bottom:6px;line-height:1.6">Number of shades with these same specs. Different sizes or rooms? Add notes below or submit separate orders.</p>
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px">
       <span style="font-size:12px;color:#666">Qty:</span>
       <div class="qty-btns">
         <button class="qty-btn" onclick="crsAdjQty(-1)">&#8722;</button>
         <input class="qty-num" type="number" id="qty-num" value="1" min="1" max="20" oninput="crsQtyInput()">
         <button class="qty-btn" onclick="crsAdjQty(1)">&#43;</button>
       </div>
-      <span style="font-size:12px;color:#666">shade(s)</span>
     </div>
+    <div class="step-note">Number of shades with these same specs. Different sizes or rooms? Add each one to the cart separately.</div>
   </div>
 </div>
 
@@ -264,28 +199,22 @@
     <div class="step-val" id="sv-2"></div>
   </div>
   <div class="step-body">
-    <div class="type-grid" style="grid-template-columns:1fr 1fr">
-      <div class="type-card" id="tc-solar" onclick="crsPickType('solar','Solar Screen')">
-        <div class="type-icon">🌅</div>
-        <div class="type-name">Solar Screen</div>
-        <div class="type-desc">Preserves the view, cuts glare &amp; UV. Choose openness factor below.</div>
-      </div>
-      <div class="type-card" id="tc-blackout" onclick="crsPickType('blackout','Blackout')">
-        <div class="type-icon">🌙</div>
-        <div class="type-name">Blackout</div>
-        <div class="type-desc">Maximum light reduction. Add a cassette headrail for the best seal.</div>
-      </div>
+    <div class="opt-row" id="crs-grp-type">
+      <button class="opt-btn" id="tc-solar" onclick="crsPickType('solar','Solar Screen')">Solar Screen</button>
+      <button class="opt-btn" id="tc-blackout" onclick="crsPickType('blackout','Blackout')">Blackout</button>
     </div>
+    <div class="step-note">Solar Screen: preserves the view, cuts glare &amp; UV &mdash; choose an openness below. Blackout: maximum light reduction (+20%).</div>
 
     <!-- Solar openness sub-options -->
     <div class="sub-opts" id="solar-opts">
       <div class="sub-opts-label">Openness factor — how much you see through the fabric</div>
-      <div class="openness-grid" style="grid-template-columns:repeat(4,1fr)">
-        <button class="openness-btn" id="ob-1" onclick="crsPickOpenness('1','1%')"><span class="openness-pct">1%</span><span class="openness-label">Near blackout</span></button>
-        <button class="openness-btn" id="ob-3" onclick="crsPickOpenness('3','3%')"><span class="openness-pct">3%</span><span class="openness-label">Max privacy</span></button>
-        <button class="openness-btn" id="ob-5" onclick="crsPickOpenness('5','5%')"><span class="openness-pct">5%</span><span class="openness-label">Good balance</span></button>
-        <button class="openness-btn" id="ob-10" onclick="crsPickOpenness('10','10%')"><span class="openness-pct">10%</span><span class="openness-label">Open feel</span></button>
+      <div class="opt-row" id="crs-grp-open" style="margin-bottom:0">
+        <button class="opt-btn" id="ob-1" onclick="crsPickOpenness('1','1%')">1%</button>
+        <button class="opt-btn" id="ob-3" onclick="crsPickOpenness('3','3%')">3%</button>
+        <button class="opt-btn" id="ob-5" onclick="crsPickOpenness('5','5%')">5%</button>
+        <button class="opt-btn" id="ob-10" onclick="crsPickOpenness('10','10%')">10%</button>
       </div>
+      <div class="step-note">1%: near blackout &middot; 3%: max privacy &middot; 5%: good balance &middot; 10%: open feel.</div>
     </div>
 
     <!-- Color sub-options (shown after type + openness selected) -->
@@ -331,23 +260,12 @@
     <div class="step-val" id="sv-4"></div>
   </div>
   <div class="step-body">
-    <div class="fabric-grid">
-      <div class="fabric-card" id="fc-we" onclick="crsPickFabric('we','We supply')">
-        <div class="fabric-icon">🎨</div>
-        <div class="fabric-name">We supply</div>
-        <div class="fabric-desc">We'll select from our fabric library. In-home consultation available to view samples.</div>
-      </div>
-      <div class="fabric-card" id="fc-customer" onclick="crsPickFabric('customer','Customer supplies')">
-        <div class="fabric-icon">📦</div>
-        <div class="fabric-name">I supply fabric</div>
-        <div class="fabric-desc">You ship your fabric to our shop. We fabricate and install.</div>
-      </div>
-      <div class="fabric-card" id="fc-consult" onclick="crsPickFabric('consult','Book consult')">
-        <div class="fabric-icon">📅</div>
-        <div class="fabric-name">Not sure — consult</div>
-        <div class="fabric-desc">Free in-home visit. We bring samples, measure, and advise.</div>
-      </div>
+    <div class="opt-row" id="crs-grp-fabric">
+      <button class="opt-btn" id="fc-we" onclick="crsPickFabric('we','We supply')">We supply</button>
+      <button class="opt-btn" id="fc-customer" onclick="crsPickFabric('customer','Customer supplies')">I supply fabric</button>
+      <button class="opt-btn" id="fc-consult" onclick="crsPickFabric('consult','Book consult')">Not sure &mdash; consult</button>
     </div>
+    <div class="step-note">We supply: we select from our fabric library &mdash; in-home consultation available to view samples. I supply fabric: you ship your fabric to our shop; we fabricate and install. Not sure: free in-home visit &mdash; we bring samples, measure, and advise.</div>
     <div class="cust-note" id="cust-fabric-note">
       Customer-supplied fabric: please email a photo or sample details in your notes. <strong>Do not ship fabric until we confirm receipt of your order and provide our shop address.</strong> No payment is collected until your fabric arrives.
     </div>
@@ -404,25 +322,16 @@
   <div class="step-head" onclick="crsToggle('step-6')">
     <div class="step-num">6</div>
     <div class="step-title">Delivery</div>
-    <div class="step-val" id="sv-6">Ship (UPS/FedEx)</div>
+    <div class="step-val" id="sv-6">Ship to me</div>
   </div>
-  <div class="step-body">
-    <div class="delivery-opt sel" id="del-ship" onclick="crsPickDelivery('ship')">
-      <div class="del-radio" style="border-color:var(--gold);background:var(--gold)"></div>
-      <div>
-        <div class="del-label">Shipped to me</div>
-        <div class="del-sub">UPS or FedEx. Lead time provided at quote.</div>
-        <div class="tariff-note">Note: U.S. import tariffs may apply on some products. Any applicable duties are disclosed in your quote before payment.</div>
-      </div>
-    </div>
-  </div>
+  <div class="step-body" id="crs-delivery"></div>
 </div>
 
 <!-- STEP 7: CONTACT & SUBMIT -->
 <div class="step-block" id="step-7">
   <div class="step-head" onclick="crsToggle('step-7')">
     <div class="step-num">7</div>
-    <div class="step-title">Your contact info</div>
+    <div class="step-title">Your details</div>
     <div class="step-val" id="sv-7"></div>
   </div>
   <div class="step-body">
@@ -438,10 +347,10 @@
 </div><!-- /left column -->
 
 <!-- ── QUOTE PANEL ── -->
-<div class="quote-panel" id="quote-panel">
-  <div class="qp-title">Your order</div>
-  <div class="qp-pending" id="qp-pending">Enter your window measurements above to start building your order.</div>
+<div class="summary-card" id="quote-panel">
+  <div class="summary-head">Your configuration</div>
   <div id="qp-rows"></div>
+  <div class="qp-pending" id="qp-pending">Enter your window measurements above to see your estimate.</div>
   <div class="qdiv" id="qp-div" style="display:none"></div>
   <!-- Price breakdown (shown when dims + type selected) -->
   <div id="qp-price" style="display:none;margin-top:4px;background:rgba(255,255,255,.05);border-radius:8px;padding:10px 12px">
@@ -468,6 +377,9 @@
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addCustomRollerToCart()', submitFn: 'crsSubmit()' });
+// Canonical Delivery step (shared.js pbDeliveryStepHTML) — choice lives in window.pbDelivery.
+document.getElementById('crs-delivery').innerHTML =
+  pbDeliveryStepHTML({ bare: true, onPick: "crsDone('step-6',pbDeliveryLabel());crsUpdatePanel()" });
 </script>
 </body>
 </html>

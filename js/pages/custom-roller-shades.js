@@ -2,13 +2,13 @@
 
 var CRS = {
   type: '', openness: '', color: '',
-  mount: '',
+  mount: 'inside',            // Inside mount is pre-selected (standard Step 1)
   headrail: '', hwColor: '',
   w: 0, h: 0,
   fabric: '',
   motor: '',
-  qty: 1,
-  delivery: ''
+  qty: 1
+  // Delivery lives in window.pbDelivery ('ship' | 'install') — shared pbDeliveryStepHTML.
 };
 
 // ── PRICING TABLES ────────────────────────────────────────────
@@ -102,7 +102,7 @@ function crsDone(stepId, val) {
 function crsPickType(val, label) {
   CRS.type = val;
   CRS.color = '';
-  document.querySelectorAll('.type-card').forEach(function(c) { c.classList.remove('sel'); });
+  document.querySelectorAll('#crs-grp-type .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   var card = _crsEl('tc-' + val);
   if (card) card.classList.add('sel');
 
@@ -123,7 +123,7 @@ function crsPickType(val, label) {
 
 function crsPickOpenness(val, label) {
   CRS.openness = val;
-  document.querySelectorAll('.openness-btn').forEach(function(b) { b.classList.remove('sel'); });
+  document.querySelectorAll('#crs-grp-open .opt-btn').forEach(function(b) { b.classList.remove('sel'); });
   var btn = _crsEl('ob-' + val);
   if (btn) btn.classList.add('sel');
   // Colors are already visible for solar; keep them shown
@@ -292,7 +292,7 @@ function crsDimChanged() {
 // ── STEP 5: FABRIC ───────────────────────────────────────────
 function crsPickFabric(val, label) {
   CRS.fabric = val;
-  document.querySelectorAll('.fabric-card').forEach(function(c) { c.classList.remove('sel'); });
+  document.querySelectorAll('#crs-grp-fabric .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
   var card = _crsEl('fc-' + val);
   if (card) card.classList.add('sel');
   var note = _crsEl('cust-fabric-note');
@@ -364,20 +364,10 @@ function crsQtyInput() {
   crsUpdatePanel();
 }
 
-// ── STEP 6: DELIVERY ─────────────────────────────────────────
-function crsPickDelivery(val) {
-  CRS.delivery = val;
-  document.querySelectorAll('.delivery-opt').forEach(function(o) { o.classList.remove('sel'); });
-  var opt = _crsEl('del-' + val);
-  if (opt) opt.classList.add('sel');
-  crsDone('step-6', val === 'ship' ? 'Ship (UPS/FedEx)' : 'Pickup — Huntingdon Valley');
-  crsUpdatePanel();
-  setTimeout(function() { crsOpen('step-7'); }, 350);
-}
 
 // ── PANEL SUMMARY ────────────────────────────────────────────
 function _qrow(label, val) {
-  return '<div class="qrow"><span class="qrow-label">' + label + '</span><span class="qrow-val">' + val + '</span></div>';
+  return '<div class="summary-row"><span class="sr-key">' + label + '</span><span class="sr-val">' + val + '</span></div>';
 }
 function _prow(label, val, isNeg) {
   return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:.5px solid rgba(255,255,255,.07)">' +
@@ -387,21 +377,24 @@ function _prow(label, val, isNeg) {
 
 function crsUpdatePanel() {
   var rows = [];
+  var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
+  var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
+  // Standard summary rows — always Product · Size · Mount · Qty, then the key choices.
+  rows.push(['Product', 'Basic Roller Shades']);
+  rows.push(['Size', (w && h) ? w + '" W × ' + h + '" H' : '—']);
+  rows.push(['Mount', CRS.mount === 'inside' ? 'Inside mount' : CRS.mount === 'outside' ? 'Outside mount' : '—']);
+  rows.push(['Qty', CRS.qty + ' shade' + (CRS.qty === 1 ? '' : 's')]);
   if (CRS.type) {
     var tl = CRS.type === 'solar' ? 'Solar ' + (CRS.openness ? CRS.openness + '%' : 'Screen') : 'Blackout';
     if (CRS.color) tl += ' · ' + CRS.color;
     rows.push(['Type', tl]);
   }
-  if (CRS.mount) rows.push(['Mount', CRS.mount === 'inside' ? 'Inside' : 'Outside']);
   if (CRS.headrail) {
     var hMap = { open: 'Open roll', fascia: 'Metal fascia' };
     var hw = hMap[CRS.headrail] || CRS.headrail;
     if (CRS.hwColor) hw += ' · ' + CRS.hwColor;
     rows.push(['Headrail', hw]);
   }
-  var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
-  var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
-  if (w && h) rows.push(['Size', w + '" W × ' + h + '" H']);
   if (CRS.fabric) {
     var fMap = { we: 'We supply', customer: 'Customer supplies', consult: 'Consult' };
     rows.push(['Fabric', fMap[CRS.fabric] || CRS.fabric]);
@@ -410,8 +403,7 @@ function crsUpdatePanel() {
     var mMap = { cord: 'Manual chain', cordless: 'Cordless → Norman Soluna', motorized: 'Motorized (selecting brand…)', 'norman-motor': 'Motorized — Norman Smart', 'rollease-motor': 'Motorized — Rollease Automate', lutron: 'Motorized — Lutron', somfy: 'Motorized — Somfy', other: 'Motorized — Other' };
     rows.push(['Operation', mMap[CRS.motor] || CRS.motor]);
   }
-  if (CRS.qty > 1) rows.push(['Quantity', CRS.qty + ' shades']);
-  if (CRS.delivery) rows.push(['Delivery', 'Ship']);
+  rows.push(['Delivery', typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me']);
 
   var pending = _crsEl('qp-pending');
   var rowsEl  = _crsEl('qp-rows');
@@ -419,9 +411,9 @@ function crsUpdatePanel() {
   var noteEl  = _crsEl('qp-note');
   var priceEl = _crsEl('qp-price');
 
-  if (!rows.length) {
+  if (rowsEl)  rowsEl.innerHTML = rows.map(function(r) { return _qrow(r[0], r[1]); }).join('');
+  if (!(w && h)) {
     if (pending) pending.style.display = 'block';
-    if (rowsEl)  rowsEl.innerHTML = '';
     if (divEl)   divEl.style.display = 'none';
     if (noteEl)  noteEl.style.display = 'none';
     if (priceEl) priceEl.style.display = 'none';
@@ -544,7 +536,7 @@ function crsSubmit() {
   if (CRS.fabric) selections.push({ label: 'Fabric', value: fMap[CRS.fabric] || CRS.fabric });
   if (CRS.motor)  selections.push({ label: 'Operation', value: mMap[CRS.motor]  || CRS.motor  });
   selections.push({ label: 'Quantity', value: CRS.qty + ' shade' + (CRS.qty === 1 ? '' : 's') });
-  if (CRS.delivery) selections.push({ label: 'Delivery', value: 'Ship via UPS/FedEx' });
+  selections.push({ label: 'Delivery', value: (typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me') });
 
   var btn = _crsEl('submit-btn');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
@@ -599,7 +591,6 @@ function crsSubmit() {
   });
 }
 
-// Init — render color swatches + pre-select ship delivery
+// Init — render color swatches (Inside mount + Ship to me are pre-selected)
 crsRenderColors();
-CRS.delivery = 'ship';
 crsUpdatePanel();
