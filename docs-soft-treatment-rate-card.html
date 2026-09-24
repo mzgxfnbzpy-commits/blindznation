@@ -1,0 +1,680 @@
+<title>Soft Treatments Rate Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#F1F3EF;
+  --panel:#FFFFFF;
+  --sunk:#E7EAE4;
+  --ink:#15181A;
+  --ink-soft:#5B6269;
+  --ink-faint:#878E93;
+  --rule:#D3D8CF;
+  --rule-hard:#B6BDB3;
+  --gold:#9A7A33;
+  --gold-bg:#F3ECDA;
+  --flag:#98362B;
+  --flag-bg:#F7E6E2;
+  --good:#3D6B4A;
+  --good-bg:#E4EFE5;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#15181A;
+    --panel:#1D2124;
+    --sunk:#24292C;
+    --ink:#E9ECE6;
+    --ink-soft:#A3ABB0;
+    --ink-faint:#7C858B;
+    --rule:#30363A;
+    --rule-hard:#454D52;
+    --gold:#D8B260;
+    --gold-bg:#2B2519;
+    --flag:#E08A7C;
+    --flag-bg:#33201D;
+    --good:#8FC59C;
+    --good-bg:#1D2A21;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#15181A;
+  --panel:#1D2124;
+  --sunk:#24292C;
+  --ink:#E9ECE6;
+  --ink-soft:#A3ABB0;
+  --ink-faint:#7C858B;
+  --rule:#30363A;
+  --rule-hard:#454D52;
+  --gold:#D8B260;
+  --gold-bg:#2B2519;
+  --flag:#E08A7C;
+  --flag-bg:#33201D;
+  --good:#8FC59C;
+  --good-bg:#1D2A21;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  margin:0;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px 96px}
+
+/* ---- masthead ---- */
+.mast{
+  border-bottom:2px solid var(--ink);
+  padding:44px 0 18px;
+  margin-bottom:8px;
+}
+.eyebrow{
+  font-family:"Archivo",sans-serif;
+  font-size:11px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);
+  margin:0 0 10px;
+}
+h1{
+  font-family:"Archivo",sans-serif;
+  font-weight:700;font-size:clamp(30px,5vw,46px);
+  letter-spacing:-.02em;line-height:1.05;
+  margin:0 0 12px;text-wrap:balance;
+}
+.standfirst{
+  font-size:17px;color:var(--ink-soft);
+  max-width:64ch;margin:0;
+}
+.mast-meta{
+  display:flex;flex-wrap:wrap;gap:8px 28px;
+  margin-top:18px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;color:var(--ink-faint);
+}
+.mast-meta b{color:var(--ink-soft);font-weight:500}
+
+/* ---- section nav ---- */
+nav.toc{
+  position:sticky;top:0;z-index:5;
+  background:var(--paper);
+  border-bottom:1px solid var(--rule);
+  padding:10px 0;
+  margin-bottom:40px;
+  display:flex;flex-wrap:wrap;gap:4px 22px;
+}
+nav.toc a{
+  font-family:"Archivo",sans-serif;
+  font-size:12px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none;
+  padding:3px 0;border-bottom:2px solid transparent;
+}
+nav.toc a:hover,nav.toc a:focus-visible{color:var(--ink);border-bottom-color:var(--gold)}
+
+/* ---- sections ---- */
+section{margin:0 0 64px;scroll-margin-top:64px}
+h2{
+  font-family:"Archivo",sans-serif;
+  font-weight:700;font-size:26px;letter-spacing:-.01em;
+  margin:0 0 4px;
+  display:flex;align-items:baseline;gap:12px;
+}
+h2 .tag{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;font-weight:500;letter-spacing:0;
+  color:var(--ink-faint);
+}
+.lede{color:var(--ink-soft);margin:0 0 24px;max-width:66ch}
+h3{
+  font-family:"Archivo",sans-serif;
+  font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);
+  margin:32px 0 10px;
+}
+
+/* ---- formula block ---- */
+.formula{
+  background:var(--sunk);
+  border-left:3px solid var(--gold);
+  padding:16px 18px;
+  font-family:"IBM Plex Mono",monospace;
+  font-size:13.5px;line-height:1.85;
+  overflow-x:auto;
+  margin:0 0 6px;
+}
+.formula .c{color:var(--ink-faint)}
+.note{font-size:14px;color:var(--ink-soft);margin:8px 0 0}
+
+/* ---- ordered calc steps (real sequence) ---- */
+ol.steps{list-style:none;counter-reset:s;margin:0;padding:0}
+ol.steps>li{
+  counter-increment:s;
+  display:grid;grid-template-columns:30px 1fr;gap:14px;
+  padding:14px 0;border-top:1px solid var(--rule);
+}
+ol.steps>li:first-child{border-top:none;padding-top:0}
+ol.steps>li::before{
+  content:counter(s);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;font-weight:600;color:var(--gold);
+  border:1px solid var(--rule-hard);border-radius:50%;
+  width:24px;height:24px;
+  display:grid;place-items:center;
+  margin-top:2px;
+}
+ol.steps h4{
+  font-family:"Archivo",sans-serif;font-size:16px;font-weight:600;
+  margin:0 0 4px;
+}
+ol.steps p{margin:0;color:var(--ink-soft);font-size:15px}
+
+/* ---- tables ---- */
+.tscroll{overflow-x:auto;margin:0}
+table{border-collapse:collapse;width:100%;font-size:15px}
+caption{
+  text-align:left;font-family:"Archivo",sans-serif;
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-faint);padding-bottom:8px;
+}
+th,td{
+  text-align:left;padding:9px 14px 9px 0;
+  border-bottom:1px solid var(--rule);
+  vertical-align:top;
+}
+thead th{
+  font-family:"Archivo",sans-serif;
+  font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-faint);
+  border-bottom:1px solid var(--rule-hard);
+  white-space:nowrap;
+}
+td.num,th.num{
+  font-family:"IBM Plex Mono",monospace;
+  font-variant-numeric:tabular-nums;
+  text-align:right;padding-right:0;white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:none}
+.money{font-weight:600;color:var(--gold)}
+td .sub{display:block;font-size:13px;color:var(--ink-faint);margin-top:2px}
+
+/* ---- callout ---- */
+.call{
+  border:1px solid var(--rule-hard);
+  background:var(--panel);
+  padding:16px 18px;
+  margin:22px 0 0;
+}
+.call.flag{border-color:var(--flag);background:var(--flag-bg)}
+.call.good{border-color:var(--good);background:var(--good-bg)}
+.call h4{
+  font-family:"Archivo",sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  margin:0 0 6px;
+}
+.call.flag h4{color:var(--flag)}
+.call.good h4{color:var(--good)}
+.call p{margin:0;font-size:15px;color:var(--ink-soft)}
+.call p+p{margin-top:8px}
+.call b{color:var(--ink)}
+
+/* ---- worked example cards ---- */
+.examples{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.ex{
+  background:var(--panel);
+  border:1px solid var(--rule);
+  border-top:3px solid var(--gold);
+  padding:16px 18px;
+  display:flex;flex-direction:column;
+}
+.ex h4{
+  font-family:"Archivo",sans-serif;font-size:15px;font-weight:600;
+  margin:0 0 10px;
+}
+.ex dl{
+  margin:0 0 12px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;
+  display:grid;grid-template-columns:1fr auto;gap:5px 12px;
+  font-variant-numeric:tabular-nums;
+}
+.ex dt{color:var(--ink-soft)}
+.ex dd{margin:0;text-align:right;color:var(--ink)}
+.ex .tot{
+  margin-top:auto;padding-top:10px;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:baseline;
+  font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+}
+.ex .tot span:first-child{
+  font-family:"Archivo",sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);
+}
+.ex .tot span:last-child{font-size:20px;font-weight:600;color:var(--gold)}
+
+footer{
+  border-top:1px solid var(--rule);
+  margin-top:8px;padding-top:20px;
+  font-size:13.5px;color:var(--ink-faint);
+}
+footer b{color:var(--ink-soft);font-weight:600}
+a{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:620px){
+  nav.toc{gap:4px 16px}
+  .mast{padding-top:32px}
+}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">Blindznation · Workroom Pricing</p>
+  <h1>Soft Treatments Rate Card</h1>
+  <p class="standfirst">Everything we fabricate in house — drapery, Roman shades, cornices and valances — with the calculation order, the rate ladders, the size limits and the shipping rules. These are the figures the site quotes; each one below was driven through the configurator and checked.</p>
+  <div class="mast-meta">
+    <span><b>Rates confirmed</b> September 2026</span>
+    <span><b>Verified</b> 21 Sept 2026</span>
+    <span><b>Fabric width</b> 54″ solid goods</span>
+    <span><b>Shipping</b> $200 drapery · $100 Romans &amp; boards</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#drapery">Drapery</a>
+  <a href="#roman">Roman Shades</a>
+  <a href="#boards">Cornices &amp; Valances</a>
+  <a href="#shipping">Shipping</a>
+  <a href="#examples">Worked Examples</a>
+</nav>
+
+<!-- ============ DRAPERY ============ -->
+<section id="drapery">
+  <h2>Drapery <span class="tag">priced per cut</span></h2>
+  <p class="lede">Drapery is priced by the <em>cut</em> — the number of 54″ fabric widths the job takes — not by finished size. Get the cut count right and everything else follows.</p>
+
+  <h3>The calculation, in order</h3>
+  <div class="formula">
+allowance = return × 3          <span class="c">4″ return → 12″ · 6″ return → 18″</span>
+cuts      = ceil( (rod width + allowance) × fullness ÷ 54″ )
+minimum 2 cuts
+  </div>
+  <p class="note">The allowance goes on <b>before</b> the fullness multiplier — that ordering is what decides whether a job needs one more width of fabric.</p>
+
+  <ol class="steps">
+    <li>
+      <div><h4>Count the cuts</h4>
+      <p>Formula above. Fullness depends on the pleat style — see the table below.</p></div>
+    </li>
+    <li>
+      <div><h4>Apply the base rate per cut</h4>
+      <p>$125 unlined, $135 lined. Goblet or Barrel pleat adds $20 per cut.</p></div>
+    </li>
+    <li>
+      <div><h4>Add the length band</h4>
+      <p>Based on finished length, added to every cut.</p></div>
+    </li>
+    <li>
+      <div><h4>Add interlining, fabric, lining and trim</h4>
+      <p>Only what applies. Yardage per cut is <span style="font-family:'IBM Plex Mono',monospace;font-size:13px">(length + 16″) ÷ 36</span>.</p></div>
+    </li>
+    <li>
+      <div><h4>Apply the $200 set minimum, then shipping</h4>
+      <p>The minimum is per drapery set. Shipping is a flat $100 or $300 — see Shipping.</p></div>
+    </li>
+  </ol>
+
+  <h3>Base rate — per cut</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th>Treatment</th><th class="num">Per cut</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Unlined</td><td class="num money">$125</td><td class="sub" style="display:table-cell">—</td></tr>
+      <tr><td>Lined</td><td class="num money">$135</td><td>Liner included. Blackout and light filtering are the <b>same price</b>.</td></tr>
+      <tr><td>Goblet or Barrel pleat</td><td class="num money">+$20</td><td>On top of whichever base applies.</td></tr>
+      <tr><td>Interlining</td><td class="num money">+$10</td><td>On top of the lined rate.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Length band — added to every cut</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th>Finished length</th><th class="num">Add per cut</th><th>Running rate, unlined</th></tr></thead>
+    <tbody>
+      <tr><td>up to 99″</td><td class="num">+$0</td><td class="num" style="text-align:left">$125</td></tr>
+      <tr><td>100″ – 115″</td><td class="num">+$20</td><td class="num" style="text-align:left">$145</td></tr>
+      <tr><td>116″ – 130″</td><td class="num">+$35</td><td class="num" style="text-align:left">$160</td></tr>
+      <tr><td>131″ – 141″</td><td class="num">+$70</td><td class="num" style="text-align:left">$195</td></tr>
+      <tr><td>142″ and up</td><td class="num">+$70, then +$35 per further 10″</td><td class="num" style="text-align:left">$230 at 142–151″</td></tr>
+      <tr><td>over 185″</td><td class="num" style="color:var(--flag)">no auto price</td><td>Hand quote — the site shows no number.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Fullness by pleat style</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th>Style</th><th>Fullness offered</th><th class="num">Default</th></tr></thead>
+    <tbody>
+      <tr><td>Pinch Pleat</td><td>1.5× · 2.0× · 2.5× · 3.0×</td><td class="num">2.5×</td></tr>
+      <tr><td>Ripple Fold</td><td>60% · 80% · 100% · 120% <span class="sub">fullness = 1 + percent</span></td><td class="num">80% (1.8×)</td></tr>
+      <tr><td>Rod Pocket / Sheered</td><td>Flat (1×) · 1.5× · 2.0× · 2.5× · 3.0×</td><td class="num">2.0×</td></tr>
+      <tr><td>Grommet · Box · Goblet · Barrel</td><td>Fixed — no selector</td><td class="num">2.5×</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Fabric and trim, when we supply it</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th>Item</th><th class="num">Rate</th><th>Basis</th></tr></thead>
+    <tbody>
+      <tr><td>Lining fabric</td><td class="num money">$10 / yd</td><td>White or Cream. Same yardage as the face fabric.</td></tr>
+      <tr><td>Face fabric</td><td class="num money">$25 / yd</td><td>Placeholder estimate — custom per spec at order.</td></tr>
+      <tr><td>Applied trim</td><td class="num money">$15 / linear ft</td><td>Per edge selected; total rounded up to the foot.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call">
+    <h4>Size limits</h4>
+    <p>Minimum <b>10″ × 10″</b>. Maximum <b>200″ wide × 185″ long</b>. Past either, the site stops quoting and asks for a hand quote — the 185″ cap is deliberately tied to the top of the rate ladder so the two can't drift apart.</p>
+  </div>
+</section>
+
+<!-- ============ ROMAN ============ -->
+<section id="roman">
+  <h2>Roman Shades <span class="tag">custom quote only</span></h2>
+  <div class="call flag" style="margin:0 0 22px"><h4>Roman shades are custom quoted</h4><p>As of <b>22 Sept 2026</b> no Roman price is shown to the customer, and none goes into the cart or the emailed spec. The configurator still captures the full specification so the shade can be priced by hand. <b>The rates below are what we price from internally</b> — they remain live in the code behind one flag and come back instantly if we switch pricing on.</p></div>
+  <p class="lede">Romans price on finished area, <b>rounded up to the whole square foot</b> — we never bill a fraction of a foot — with a floor per shade.</p>
+  <div class="tscroll" style="margin-bottom:22px"><table>
+    <caption>How rounding lands</caption>
+    <thead><tr><th>Size</th><th class="num">True area</th><th class="num">Billed as</th><th class="num">At $40</th><th class="num">Charged</th></tr></thead>
+    <tbody>
+      <tr><td>18″ × 18″</td><td class="num">2.25</td><td class="num">3</td><td class="num">$120</td><td class="num money">$150 <span class="sub">floor</span></td></tr>
+      <tr><td>24″ × 22″</td><td class="num">3.67</td><td class="num">4</td><td class="num">$160</td><td class="num money">$160</td></tr>
+      <tr><td>36″ × 60″</td><td class="num">15.00</td><td class="num">15</td><td class="num">$600</td><td class="num money">$600</td></tr>
+      <tr><td>80″ × 60″</td><td class="num">33.33</td><td class="num">34</td><td class="num">$1,360</td><td class="num money">$1,360</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="formula">
+sq ft     = roundUP( (width ÷ 12) × (height ÷ 12) )   <span class="c">always a whole foot</span>
+per shade = max( minimum , sq ft × rate )              <span class="c">lining is added to the rate first</span>
+  </div>
+
+  <h3>Rate per square foot</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th>Style</th><th class="num">Per sq ft</th><th class="num">Minimum / shade</th></tr></thead>
+    <tbody>
+      <tr><td>Flat Roman</td><td class="num money">$40</td><td class="num">$150</td></tr>
+      <tr><td>Relaxed Roman</td><td class="num money">$40</td><td class="num">$150</td></tr>
+      <tr><td>Roman Valance</td><td class="num money">$40</td><td class="num">$150</td></tr>
+      <tr><td>Permanently Pleated</td><td class="num money">$50</td><td class="num">$250</td></tr>
+      <tr><td>Lining</td><td class="num money">+$5</td><td>Added to the style rate <b>before</b> the minimum is tested.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Fabric yardage</h3>
+  <div class="formula">
+cuts per shade = ceil( width ÷ 54″ )
+yards per cut  = (height + 16″) ÷ 36          <span class="c">rounded up to the nearest ¼ yd</span>
+  </div>
+
+  <div class="call flag">
+    <h4>Permanently pleated — the one exception</h4>
+    <p>Permanently pleated shades use <b>height × 3</b> for fabric yardage, because the folds eat the extra. That triple applies to the <b>fabric only</b> — the labour is still charged on the shade's true square footage, not the tripled figure.</p>
+  </div>
+
+  <h3>Trim — $15 per linear foot</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th>Placement</th><th>Feet counted</th></tr></thead>
+    <tbody>
+      <tr><td>Both sides</td><td class="num" style="text-align:left">(height ÷ 12) × 2 × qty</td></tr>
+      <tr><td>Top</td><td class="num" style="text-align:left">(width ÷ 12) × qty</td></tr>
+      <tr><td>Bottom</td><td class="num" style="text-align:left">(width ÷ 12) × qty</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">All selected edges are summed, then rounded up to the whole foot once.</p>
+
+  <div class="call">
+    <h4>Size limits</h4>
+    <p>Minimum <b>12″ × 12″</b> — below that a Roman won't function and the site refuses to quote. Maximum <b>120″ × 120″</b>.</p>
+  </div>
+</section>
+
+<!-- ============ BOARDS ============ -->
+<section id="boards">
+  <h2>Cornices &amp; Valances <span class="tag">priced per linear foot</span></h2>
+  <p class="lede">Both are priced the same way. The rate per foot steps up with the face height, and the returns count toward the length.</p>
+
+  <div class="formula">
+linear ft = ceil( (width + return × 2) ÷ 12 )   <span class="c">minimum 4 ft</span>
+board     = max( $200 , linear ft × rate )      <span class="c">minimum applies before trim</span>
+  </div>
+
+  <h3>Rate per foot, by face height</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th>Face height</th><th class="num">Per linear ft</th><th>6 ft board</th></tr></thead>
+    <tbody>
+      <tr><td>up to 15″ <span class="sub">standard</span></td><td class="num money">$35</td><td class="num" style="text-align:left">$210</td></tr>
+      <tr><td>16″ – 35″</td><td class="num money">$70</td><td class="num" style="text-align:left">$420</td></tr>
+      <tr><td>36″ – 55″</td><td class="num money">$95</td><td class="num" style="text-align:left">$570</td></tr>
+      <tr><td>56″ – 75″</td><td class="num money">$120</td><td class="num" style="text-align:left">$720</td></tr>
+      <tr><td>each further 20″</td><td class="num money">+$25</td><td class="num" style="text-align:left">$870 at 76–95″</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call flag">
+    <h4>Fabric is not included in these rates</h4>
+    <p>The per-foot rate covers the board and the work. <b>Fabric is quoted separately</b> once it's chosen — the site deliberately shows no fabric estimate here rather than putting a placeholder number against it.</p>
+  </div>
+
+  <h3>Add-ons</h3>
+  <div class="tscroll"><table>
+    <thead><tr><th>Item</th><th class="num">Rate</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Minimum per piece</td><td class="num money">$200</td><td>Applied to the board, before trim is added.</td></tr>
+      <tr><td>Applied trim</td><td class="num money">$15 / ft</td><td>Self welt and double self welt are finishing choices, not trim charges.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ SHIPPING ============ -->
+<section id="shipping">
+  <h2>Shipping <span class="tag">FedEx / UPS from Philadelphia</span></h2>
+  <p class="lede">Three different rules, and the difference between them is worth real money on a wide job.</p>
+
+  <div class="tscroll"><table>
+    <caption>Flat rates — per order, not per item</caption>
+    <thead><tr><th>Product</th><th class="num">Standard</th><th class="num">Next step</th><th class="num">Top step</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>Roman shades</b><span class="sub">stepped on the whole shade</span></td>
+        <td class="num money">$100<span class="sub">to 80″ × 100″</span></td>
+        <td class="num money">$150–$400<span class="sub">six bands, see below</span></td>
+        <td class="num money">$500<span class="sub">over 300″ × 250″</span></td>
+      </tr>
+      <tr>
+        <td><b>Cornices &amp; valances</b><span class="sub">ordered width only · five bands, see below</span></td>
+        <td class="num money">$100<span class="sub">to 80″ wide</span></td>
+        <td class="num money">$200–$300<span class="sub">81–250″</span></td>
+        <td class="num money">$400<span class="sub">over 250″</span></td>
+      </tr>
+      <tr>
+        <td><b>Drapery</b><span class="sub">stepped on the whole panel, not on width alone</span></td>
+        <td class="num money">$200<span class="sub">to 180″ × 150″</span></td>
+        <td class="num money">$300<span class="sub">to 250″ × 200″</span></td>
+        <td class="num money">$500<span class="sub">beyond</span></td>
+      </tr>
+    </tbody>
+  </table></div>
+
+  <h3>The drapery steps</h3>
+  <p class="lede" style="margin-bottom:14px">A drape folds into a carton, so a width cut-off alone would be wrong — it is the whole finished panel that sets the box. <b>Both</b> dimensions have to fit a step to earn it.</p>
+  <div class="tscroll"><table>
+    <thead><tr><th>Finished panel</th><th class="num">Shipping</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>up to 180″ wide × 150″ long</td><td class="num money">$200</td><td>100″ × 96″ · 36″ × 84″ · 180″ × 150″</td></tr>
+      <tr><td>up to 250″ wide × 200″ long</td><td class="num money">$300</td><td>181″ × 150″ · 220″ × 180″ · 250″ × 200″</td></tr>
+      <tr><td>larger than that</td><td class="num money">$500</td><td>251″ × 200″ · 300″ × 185″ — <em>freight confirmed at order, may increase</em></td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">The steps are inclusive — exactly 180 × 150 is still $200, and exactly 250 × 200 is still $300. One dimension over is enough to move it up: 180″ × 151″ is $300. Drapery may be ordered to <b>300″ wide</b>; length stops at <b>185″</b>, where the per-cut rate ladder ends, and longer is a hand quote.</p>
+  <p class="note"><b>Each product steps differently, on purpose.</b> Drapery starts at $200 and steps on the whole panel. A Roman starts at $100 and also steps on the whole shade, because it folds into its carton and the drop matters. A cornice or valance steps on <em>width alone</em> — the board is rigid, so its length sets the box and the face height is irrelevant. So a 90″ Roman ships $200 while a 90″ cornice ships $300.</p>
+
+  <h3>Roman shade bands</h3>
+  <p class="lede" style="margin-bottom:14px">Stepped on the whole shade — <b>both</b> dimensions must fit a band. Romans may be ordered to 300″ × 250″.</p>
+  <div class="tscroll"><table>
+    <thead><tr><th>Shade</th><th class="num">Freight</th></tr></thead>
+    <tbody>
+      <tr><td>up to 80″ × 100″</td><td class="num money">$100</td></tr>
+      <tr><td>up to 120″ × 120″</td><td class="num money">$150</td></tr>
+      <tr><td>up to 160″ × 150″</td><td class="num money">$200</td></tr>
+      <tr><td>up to 220″ × 200″</td><td class="num money">$300</td></tr>
+      <tr><td>up to 300″ × 250″</td><td class="num money">$400</td></tr>
+      <tr><td>larger</td><td class="num money">$500</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Cornice &amp; valance bands</h3>
+  <p class="lede" style="margin-bottom:14px">A board is rigid, so its <b>length sets the carton</b> and the face height does not affect freight. Boards can be ordered to 300″, so the steps are finer than the other two products.</p>
+  <div class="tscroll"><table>
+    <thead><tr><th>Ordered width</th><th class="num">Shipping</th><th>Spliced instead</th></tr></thead>
+    <tbody>
+      <tr><td>up to 80″</td><td class="num money">$100</td><td>—</td></tr>
+      <tr><td>over 80″</td><td class="num money">$200</td><td class="num money" style="text-align:left">$100</td></tr>
+      <tr><td>over 120″</td><td class="num money">$250</td><td class="num money" style="text-align:left">$100</td></tr>
+      <tr><td>over 160″</td><td class="num money">$300</td><td class="num money" style="text-align:left">$100</td></tr>
+      <tr><td>over 250″</td><td class="num money">$400</td><td class="num money" style="text-align:left">$100</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="call good">
+    <h4>Splicing saves $200 — or $400</h4>
+    <p>A cornice or valance over 80″ can be <b>spliced</b>: the board is jointed, the fabric stays one piece, and it ships parcel at the $100 base.</p>
+    <p>An 84″ × 16″ cornice is <b>$760 unspliced against $660 spliced</b>. A 260″ board is <b>$2,110 against $1,710</b> — a $400 saving. The default on the form is unspliced, so the freight is quoted rather than quietly left out.</p>
+  </div>
+
+  <div class="call flag">
+    <h4>Norman ships on its own table — never this one</h4>
+    <p>Norman products (cellular, roller, faux and real wood, verticals) charge <b>$25 first unit + $11 each additional</b>, or <b>$80 + $50 each</b> at 90″ and over. That is Norman's freight. The $100/$300/$500 ladder is <b>ours</b>, for what we fabricate, and a Norman order must never get both.</p>
+  </div>
+
+  <div class="call">
+    <h4>Every shipping figure carries this</h4>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink)">“Shipping is an estimate and may change.”</p>
+    <p>It shows under the shipping line on all three products and in the emailed spec.</p>
+  </div>
+</section>
+
+<!-- ============ EXAMPLES ============ -->
+<section id="examples">
+  <h2>Worked Examples</h2>
+  <p class="lede">Every figure here was driven through the live configurator and matched by hand. Use them to sanity-check a quote.</p>
+
+  <div class="examples">
+
+    <article class="ex">
+      <h4>Drapery · 100″ × 96″<br>pinch 2.5×, unlined, 4″ return</h4>
+      <dl>
+        <dt>(100 + 12) × 2.5 ÷ 54</dt><dd>5.19 → 6 cuts</dd>
+        <dt>6 cuts × $125</dt><dd>$750</dd>
+        <dt>Length band (≤ 99″)</dt><dd>+$0</dd>
+        <dt>Inside 150 × 120</dt><dd>$200</dd>
+      </dl>
+      <div class="tot"><span>Total</span><span>$950</span></div>
+    </article>
+
+    <article class="ex">
+      <h4>Drapery · 151″ × 120″<br>one inch over — steps up</h4>
+      <dl>
+        <dt>(151 + 12) × 2.5 ÷ 54</dt><dd>7.55 → 8 cuts</dd>
+        <dt>8 cuts × $160 <span style="opacity:.7">(116–130″)</span></dt><dd>$1,280</dd>
+        <dt>Past 150 × 120</dt><dd>$300</dd>
+      </dl>
+      <div class="tot"><span>Total</span><span>$1,580</span></div>
+    </article>
+
+    <article class="ex">
+      <h4>Drapery · 36″ × 84″<br>a single narrow panel</h4>
+      <dl>
+        <dt>(36 + 12) × 2.5 ÷ 54</dt><dd>2.22 → 3 cuts</dd>
+        <dt>3 cuts × $125</dt><dd>$375</dd>
+        <dt>Inside 150 × 120</dt><dd>$200</dd>
+      </dl>
+      <div class="tot"><span>Total</span><span>$575</span></div>
+    </article>
+
+    <article class="ex">
+      <h4>Roman · 36″ × 60″<br>flat, unlined</h4>
+      <dl>
+        <dt>3 ft × 5 ft</dt><dd>15 sq ft</dd>
+        <dt>15 × $40</dt><dd>$600</dd>
+        <dt>Inside 80 × 100</dt><dd>$100</dd>
+      </dl>
+      <div class="tot"><span>Total</span><span>$700</span></div>
+    </article>
+
+    <article class="ex">
+      <h4>Roman · 12″ × 12″<br>flat — minimum kicks in</h4>
+      <dl>
+        <dt>1 sq ft × $40</dt><dd>$40</dd>
+        <dt>Flat minimum applied</dt><dd>$150</dd>
+        <dt>Inside 80 × 100</dt><dd>$100</dd>
+      </dl>
+      <div class="tot"><span>Total</span><span>$250</span></div>
+    </article>
+
+    <article class="ex">
+      <h4>Roman · 84″ × 60″<br>flat — past 80″ wide</h4>
+      <dl>
+        <dt>7 ft × 5 ft</dt><dd>35 sq ft</dd>
+        <dt>35 × $40</dt><dd>$1,400</dd>
+        <dt>Oversize freight</dt><dd>$200</dd>
+      </dl>
+      <div class="tot"><span>Total</span><span>$1,600</span></div>
+    </article>
+
+    <article class="ex">
+      <h4>Cornice · 60″ × 16″<br>4″ returns</h4>
+      <dl>
+        <dt>(60 + 8) ÷ 12</dt><dd>5.67 → 6 ft</dd>
+        <dt>16″ face → $70/ft</dt><dd>$420</dd>
+        <dt>Shipping</dt><dd>$100</dd>
+      </dl>
+      <div class="tot"><span>Total</span><span>$520</span></div>
+    </article>
+
+    <article class="ex">
+      <h4>Cornice · 84″ × 16″<br>unspliced vs spliced</h4>
+      <dl>
+        <dt>8 ft × $70</dt><dd>$560</dd>
+        <dt>Unspliced freight</dt><dd>$200</dd>
+        <dt>Spliced instead</dt><dd>$100</dd>
+      </dl>
+      <div class="tot"><span>$760 / spliced</span><span>$660</span></div>
+    </article>
+
+    <article class="ex">
+      <h4>Cornice · 130″ × 16″<br>the over-120″ band</h4>
+      <dl>
+        <dt>(130 + 8) ÷ 12</dt><dd>11.5 → 12 ft</dd>
+        <dt>12 ft × $70</dt><dd>$840</dd>
+        <dt>Over 120″ freight</dt><dd>$250</dd>
+        <dt>Spliced instead</dt><dd>$100</dd>
+      </dl>
+      <div class="tot"><span>$1,090 / spliced</span><span>$940</span></div>
+    </article>
+
+  </div>
+</section>
+
+<div class="call" style="margin-top:28px">
+    <h4>One size limit still bites</h4>
+    <p>Drapery length stops at <b>185″</b> — that is where the per-cut rate ladder genuinely ends, so a longer panel is submittable but carries no figure rather than an invented one. Selling longer needs per-cut rates above 185″.</p>
+    <p>Everything else is reachable: drapery goes to 300″ wide, Romans to 300″ × 250″, boards to 300″ wide.</p>
+  </div>
+</section>
+
+<footer>
+  <p><b>One thing to confirm:</b> the Roman minimums above are $150 flat/relaxed and $250 permanently pleated, taken from the site code on both sites. An older note recorded $85 — treated here as the stale figure, but worth a second's thought.</p>
+  <p><b>Not included above:</b> Norman-manufactured products (cellular, roller, faux and real wood, verticals, shutters) price from Norman's own books at retail less 25%. This card covers only what we fabricate in house.</p>
+</footer>
+
+</div>
