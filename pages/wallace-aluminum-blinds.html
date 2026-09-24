@@ -20,9 +20,11 @@
 <link rel="stylesheet" href="../css/global.css">
 <style>
 .cfg-hero{background:var(--espresso);padding:40px 28px 32px}
-.cfg-wrap{max-width:820px;margin:0 auto;padding:28px 22px 90px}
+.cfg-wrap{max-width:1100px;margin:0 auto;padding:28px 22px 90px}
 .opt-desc{font-size:12px;color:#888;line-height:1.6;margin:2px 0 12px}
-#al-price-box{background:#faf9f6;border:1px solid #e8e5de;border-radius:12px;padding:16px 18px;margin-top:18px}
+#al-price-box{margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border-dark,rgba(255,255,255,.12))}
+.al-pl{display:flex;justify-content:space-between;gap:10px;font-size:12px;padding:2px 0;color:var(--text-dark,#aaa)}
+.al-pl b{font-weight:600;color:var(--cream,#f5efe6);text-align:right}
 </style>
 </head>
 <body data-page="Shades & blinds">
@@ -41,6 +43,8 @@
 </div>
 
 <div class="cfg-wrap">
+<div class="config-grid">
+<div><!-- left: steps -->
 
   <!-- Step 1 — canonical size + mount -->
   <div id="step-size"></div>
@@ -65,7 +69,7 @@
     </div>
     <div class="opt-desc">Wallace aluminum comes in a range of standard colors. Tell us a color preference below (or leave blank) &mdash; we'll match it to the current color card and confirm at order.</div>
     <div class="form-group"><label>Color preference <span style="font-weight:400;color:#888">(optional)</span></label>
-      <input type="text" id="al-color" placeholder="e.g. White, Alabaster, Silver, Bronze…" oninput="S.color=this.value">
+      <input type="text" id="al-color" placeholder="e.g. White, Alabaster, Silver, Bronze…" oninput="S.color=this.value;calcPrice()">
     </div>
   </div>
 
@@ -85,9 +89,9 @@
   <!-- Step 5 — options -->
   <div class="step-block" id="step5">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div class="step-num">5</div><div class="step-title" style="margin-bottom:0">Options</div>
+      <div class="step-num">5</div><div class="step-title" style="margin-bottom:0">Options <span style="font-weight:400;color:#888">(optional)</span></div>
     </div>
-    <div class="opt-desc">Standard control is a tilt wand with corded lift. Add options as needed &mdash; some are only available on certain bracket types.</div>
+    <div class="opt-desc">Standard control is a tilt wand with corded lift. Select any options you need &mdash; some are only available on certain bracket types.</div>
     <div class="opt-row" style="flex-wrap:wrap">
       <button class="opt-btn" id="al-opt-cordless" onclick="alTgl('cordless',this)">Cordless lift</button>
       <button class="opt-btn" id="al-opt-concealed" onclick="alTgl('concealed',this)">Concealed headrail (S-3000)</button>
@@ -99,16 +103,35 @@
     <div class="opt-desc" style="margin-top:10px">Ordering 2&Prime; aluminum blinds instead? Those are quote-only &mdash; add a note in your details below and we'll price them for you.</div>
   </div>
 
-  <!-- live estimate -->
-  <div id="al-price-box" style="display:none"></div>
+  <!-- Step 6 — Delivery (shared pbDeliveryStepHTML) -->
+  <div id="pb-delivery-step"></div>
 
-  <!-- Final step — canonical contact + files -->
+  <!-- Step 7 — canonical contact + files -->
   <div class="step-block active" id="step6">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <div class="step-num">6</div><div class="step-title" style="margin-bottom:0">Your details</div>
+      <div class="step-num">7</div><div class="step-title" style="margin-bottom:0">Your details</div>
     </div>
     <div id="pb-final-step"></div>
   </div>
+
+</div><!-- /left -->
+
+  <!-- Summary card -->
+  <div class="summary-card" id="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Wallace 1&Prime; Aluminum Mini-Blinds</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="sum-size">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sum-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sum-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Bracket</span><span class="sr-val" id="sum-bracket">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Color</span><span class="sr-val" id="sum-color">To confirm</span></div>
+    <div class="summary-row"><span class="sr-key">Valance</span><span class="sr-val" id="sum-valance">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Options</span><span class="sr-val" id="sum-options">None</span></div>
+    <!-- live estimate -->
+    <div id="al-price-box" style="display:none"></div>
+    <div class="summary-note" id="al-price-pending">Enter your width and height for an instant estimate.</div>
+  </div>
+</div><!-- /config-grid -->
 
   <div id="success-box" style="display:none;background:#E8FBF6;border:1px solid #b8e6da;border-radius:12px;padding:22px;text-align:center;margin-top:16px">
     <div style="font-size:34px;margin-bottom:6px">&#10003;</div>
@@ -126,6 +149,8 @@
   document.getElementById('step-size').innerHTML =
     pbSizeMountStepHTML({ stepNum:1, title:'Window measurements &amp; mount', calc:'calcPrice()',
       widthMin:12, widthMax:142, heightMin:12, heightMax:144, widthPlaceholder:'36', heightPlaceholder:'48' });
+  document.getElementById('pb-delivery-step').innerHTML =
+    pbDeliveryStepHTML({ stepNum:6, onPick:'calcPrice()' });
   document.getElementById('pb-final-step').innerHTML =
     pbContactStepHTML({ bare:true, cartFn:'addAluminumToCart()', submitFn:'submitQuote()' });
 </script>

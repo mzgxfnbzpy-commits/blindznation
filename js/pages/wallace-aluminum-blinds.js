@@ -75,18 +75,36 @@ function alPrice(){
   return { per:per, subtotal:subtotal, freight:freight, total:subtotal+freight, qty:qty, lines:lines };
 }
 
+// Summary card configuration rows — always current, independent of the estimate.
+function alUpdateSummary(){
+  const w=alGetW(),h=alGetH(),br=AL_BRACKETS[S.bracket];
+  const set=function(id,v){var e=document.getElementById(id); if(e) e.textContent=v;};
+  const mb=document.querySelector('#grp-mount .opt-btn.sel');
+  set('sum-size',(w&&h)?w+'″ W × '+h+'″ H':'—');
+  set('sum-mount',mb?mb.textContent.trim():'Inside mount');
+  set('sum-qty',String(alGetQty()));
+  set('sum-bracket',br.name);
+  set('sum-color',S.color||'To confirm');
+  set('sum-valance',S.valance==='double'?'Double Slat':S.valance==='deluxe'?'Deluxe Slat':br.incl+' (included)');
+  const o=[]; if(S.cordless)o.push('Cordless'); if(S.concealed)o.push('Concealed headrail'); if(S.micro)o.push('Micro box bracket'); if(S.perforated)o.push('Perforated'); if(S.privacy)o.push('Privacy'); if(S.twoOn1)o.push('2-on-1 headrail');
+  set('sum-options',o.length?o.join(', '):'None');
+}
+
 function calcPrice(){
+  alUpdateSummary();
   const out=document.getElementById('al-price-box'); if(!out) return;
-  const p=alPrice(); if(!p){ out.style.display='none'; return; }
+  const pend=document.getElementById('al-price-pending');
+  const p=alPrice(); if(!p){ out.style.display='none'; if(pend) pend.style.display=''; return; }
+  if(pend) pend.style.display='none';
   out.style.display='block';
   out.innerHTML =
     '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Estimated price</div>'+
-    p.lines.map(function(x){return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 0;color:#555"><span>'+x.l+'</span><span style="font-weight:600;color:#333">'+x.v+'</span></div>';}).join('')+
-    '<div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 0;color:#555;border-top:1px dashed #ddd;margin-top:4px;padding-top:5px"><span>Per blind</span><span style="font-weight:700">$'+p.per+'</span></div>'+
-    (p.qty>1?'<div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 0;color:#555"><span>× '+p.qty+' blinds</span><span>$'+p.subtotal+'</span></div>':'')+
-    '<div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 0;color:#555"><span>Freight (est.)</span><span>$'+p.freight+'</span></div>'+
-    '<div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:var(--espresso);border-top:2px solid #e8e8e4;margin-top:6px;padding-top:8px"><span>Estimated total</span><span>$'+Math.round(p.total).toLocaleString()+'</span></div>'+
-    '<div style="font-size:10px;color:#aaa;margin-top:6px;line-height:1.5">Retail estimate only — 2″ blinds are quote-only. Final price, colors, and options confirmed at order.</div>';
+    p.lines.map(function(x){return '<div class="al-pl"><span>'+x.l+'</span><b>'+x.v+'</b></div>';}).join('')+
+    '<div class="al-pl" style="border-top:1px dashed rgba(255,255,255,.18);margin-top:4px;padding-top:5px"><span>Per blind</span><b>$'+p.per+'</b></div>'+
+    (p.qty>1?'<div class="al-pl"><span>× '+p.qty+' blinds</span><b>$'+p.subtotal+'</b></div>':'')+
+    '<div class="al-pl"><span>Freight (est.)</span><b>$'+p.freight+'</b></div>'+
+    '<div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;color:var(--gold);border-top:0.5px solid rgba(255,255,255,.18);margin-top:6px;padding-top:8px"><span>Estimated total</span><span>$'+Math.round(p.total).toLocaleString()+'</span></div>'+
+    '<div style="font-size:10px;color:var(--text-faint,#888);margin-top:6px;line-height:1.5">Retail estimate only — 2″ blinds are quote-only. Final price, colors, and options confirmed at order.</div>';
 }
 
 // ── option setters ──
@@ -141,7 +159,7 @@ async function submitQuote(){
   if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
   try{
     const r=await fetch('/api/quote',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:name,email:email,phone:phone,delivery:'Ship to me',
+      body:JSON.stringify({name:name,email:email,phone:phone,delivery:(typeof pbDeliveryLabel==='function'?pbDeliveryLabel():'Ship to me'),
         product:'Wallace 1″ Aluminum Mini-Blinds',selections:selections,estimate:estimate,notes:notes,
         agreedToTerms:true,agreedToTermsAt:new Date().toISOString(),sourceUrl:window.location.href,_hp:'',_t:Date.now()-(window._formLoadTime||0)})});
     const d=await r.json().catch(function(){return{};});
