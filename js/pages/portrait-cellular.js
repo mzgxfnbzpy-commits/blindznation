@@ -224,7 +224,7 @@ function colorDot(name) {
 
 // ── State ─────────────────────────────────────────────────────
 var CELL = {
-  mount:    null,
+  mount:    'Inside mount',   // Step 1 pre-selects Inside mount (configurator standard)
   lift:     'bu',
   opSys:    'Cordless',
   fabric:   'lf',
@@ -236,15 +236,9 @@ var CELL = {
   dnBottom: '',      // Day & Night night layer (bottom): Light Filtering / Room Darkening / Solus
   dnTopColor:'',     dnTopColorCode:'',     // chosen day-layer color
   dnBottomColor:'',  dnBottomColorCode:'',  // chosen night-layer color
-  qty:      1,
-  delivery: 'ship'
+  qty:      1
+  // Delivery lives in window.pbDelivery (shared Delivery step).
 };
-
-function cellPickDel(v, el) {
-  CELL.delivery = v;
-  document.querySelectorAll('.delivery-opt-card[id^="cell-del"]').forEach(function(c){ c.classList.remove('sel'); });
-  el.classList.add('sel');
-}
 
 var cellMotorOn = false;
 var cellMotorCost = 482;
@@ -264,9 +258,11 @@ function goNext(fromId, toId) {
   setTimeout(function(){ t.scrollIntoView({behavior:'smooth',block:'start'}); }, 80);
 }
 
-function adjCellQty(delta) {
-  CELL.qty = Math.min(20, Math.max(1, CELL.qty + delta));
-  document.getElementById('cell-qty-display').textContent = CELL.qty;
+function adjCellQty(delta) { setCellQty(CELL.qty + delta); }
+function setCellQty(v) {
+  CELL.qty = Math.min(20, Math.max(1, parseInt(v, 10) || 1));
+  var inp = document.getElementById('cell-qty-display');
+  if (inp && String(inp.value) !== String(CELL.qty) && document.activeElement !== inp) inp.value = CELL.qty;
   document.getElementById('qr-cell-qty').textContent = CELL.qty + (CELL.qty === 1 ? ' shade' : ' shades');
   cellCalcPrice();
 }
@@ -303,7 +299,7 @@ function cellDNComboLabel() {
   var c = CELL.dnCombo;
   for (var i = 0; i < CELL_DN_COMBOS.length; i++) {
     if (CELL_DN_COMBOS[i].code === c) {
-      return CELL_DN_COMBOS[i].top + ' (day) + ' + CELL_DN_COMBOS[i].bottom + ' (night)';
+      return pbLightLabel(CELL_DN_COMBOS[i].top) + ' (day) + ' + pbLightLabel(CELL_DN_COMBOS[i].bottom) + ' (night)';
     }
   }
   return '';
@@ -408,7 +404,7 @@ function _dnColorGridHTML(layer, treatment) {
   return html;
 }
 function _dnColorPanel(layer, treatment) {
-  var lbl = layer === 'top' ? (treatment + ' color (day)') : (treatment + ' color (night)');
+  var lbl = layer === 'top' ? (pbLightLabel(treatment) + ' color (day)') : (pbLightLabel(treatment) + ' color (night)');
   return '<div style="margin:6px 0 2px;padding:10px 12px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">'
     + '<div style="font-size:11px;font-weight:600;color:#555;margin-bottom:2px">' + lbl + '</div>'
     + _dnColorGridHTML(layer, treatment) + '</div>';
@@ -724,7 +720,7 @@ async function submitCellQuote(btn) {
     + 'Color: ' + (CELL.color || '—') + (CELL.colorCode ? ' (' + CELL.colorCode + ')' : '') + '\n'
     + 'Quantity: ' + CELL.qty + '\n'
     + 'Estimated total: ' + price + '\n\n'
-    + 'Delivery: ' + ('Ship to customer (UPS/FedEx)') + '\n\n'
+    + 'Delivery: ' + (typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me') + '\n\n'
     + 'Notes: ' + (notes || 'none');
 
   if (typeof _apiSubmit === 'function') {

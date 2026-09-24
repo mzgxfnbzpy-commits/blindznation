@@ -39,7 +39,6 @@
 .opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
 .opt-card.sel .opt-card-title{color:#0A4A42}
 .opt-card-desc{font-size:11px;color:#666;line-height:1.45}
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
 .dim-whole{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:16px;text-align:center;box-sizing:border-box}
 .dim-unit{font-size:11px;color:#888;margin-top:4px;line-height:1.5}
@@ -64,12 +63,7 @@
 .success-box{background:#EEFBE8;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;display:none;margin-top:12px}
 .success-box h3{font-size:15px;font-weight:600;color:#14532d;margin-bottom:6px}
 .success-box p{font-size:13px;color:#166534;line-height:1.6}
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
 .qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:8px 0;font-style:italic;line-height:1.6}
-.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
-.qrow-label{color:var(--text-muted);line-height:1.4}
-.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
 .qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
 .cell-per-shade{font-size:22px;font-weight:700;color:var(--gold)}
@@ -106,7 +100,7 @@
     <div class="step-head" onclick="toggleStep('step1')">
       <div class="step-num">1</div>
       <div class="step-head-title">Window measurements &amp; mount</div>
-      <div class="step-head-val" id="s1val">—</div>
+      <div class="step-head-val" id="s1val">Inside mount</div>
     </div>
     <div class="step-body">
       <div class="dim-box">
@@ -122,8 +116,8 @@
 
       <!-- Mount type (every product except drapes) -->
       <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
-      <div class="opt-row" style="margin-bottom:6px">
-        <button class="opt-btn" onclick="pickCellMount(this,'Inside mount')">Inside mount</button>
+      <div class="opt-row" id="grp-mount" style="margin-bottom:6px">
+        <button class="opt-btn sel" onclick="pickCellMount(this,'Inside mount')">Inside mount</button>
         <button class="opt-btn" onclick="pickCellMount(this,'Outside mount')">Outside mount</button>
       </div>
       <div class="step-note" style="margin-bottom:12px">Inside mount fits inside the window frame (mfr deducts 3/8&Prime; automatically). Outside mount mounts above/outside the frame for better light block and covers more wall.</div>
@@ -133,7 +127,7 @@
         <span style="font-size:12px;color:#666">Qty:</span>
         <div class="qty-btns">
           <button class="qty-btn" onclick="adjCellQty(-1)">&#8722;</button>
-          <span class="qty-num" id="cell-qty-display" style="display:flex;align-items:center;justify-content:center">1</span>
+          <input class="qty-num" type="number" id="cell-qty-display" value="1" min="1" max="20" oninput="setCellQty(this.value)">
           <button class="qty-btn" onclick="adjCellQty(1)">&#43;</button>
         </div>
         <span style="font-size:12px;color:#666">shades (same size)</span>
@@ -145,7 +139,7 @@
   <div class="step-block" id="step2">
     <div class="step-head" onclick="toggleStep('step2')">
       <div class="step-num">2</div>
-      <div class="step-head-title">Lift Direction</div>
+      <div class="step-head-title">Lift direction</div>
       <div class="step-head-val" id="s2val">Bottom Up</div>
     </div>
     <div class="step-body">
@@ -164,18 +158,18 @@
   <div class="step-block" id="step3">
     <div class="step-head" onclick="toggleStep('step3')">
       <div class="step-num">3</div>
-      <div class="step-head-title">Operating System</div>
+      <div class="step-head-title">Operating system</div>
       <div class="step-head-val" id="s3val">Cordless</div>
     </div>
     <div class="step-body">
-      <div class="opt-row">
+      <div class="opt-row" id="grp-cell-op">
         <button class="opt-btn sel" onclick="pickCellOp(this,'Cordless')">Cordless</button>
         <button class="opt-btn" onclick="pickCellOp(this,'Cord Loop')">Cord Loop <span style="font-size:10px;opacity:.65">+$73</span></button>
         <button class="opt-btn" onclick="pickCellOp(this,'Motorized')">Motorized</button>
       </div>
       <div class="step-note">Cordless — Max 108″W × 120″H &middot; child &amp; pet safe &middot; push-to-lift. Cord Loop — Max 120″W × 144″H &middot; 80 sqft area limit &middot; best for large windows. Motorized — Max 120″W × 144″H &middot; app, remote &amp; voice &middot; Norman Smart motor.</div>
       <div id="cell-op-note" class="msg-box msg-info" style="display:none;margin-top:8px"></div>
-      <div id="cell-motor-section" style="display:none;margin-top:10px"></div>
+      <div id="cell-motor-config" style="display:none;margin-top:10px"></div>
     </div>
   </div>
 
@@ -184,13 +178,13 @@
   <div class="step-block" id="step5">
     <div class="step-head" onclick="toggleStep('step5')">
       <div class="step-num">4</div>
-      <div class="step-head-title">Fabric Type &amp; Cell Size</div>
+      <div class="step-head-title">Fabric type &amp; cell size</div>
       <div class="step-head-val" id="s5val">—</div>
     </div>
     <div class="step-body">
       <!-- Single-shade fabric type (shown when Lift ≠ Day & Night) -->
       <div id="cell-fabric-wrap">
-        <div class="sub-label">Fabric Type</div>
+        <div class="sub-label">Fabric type</div>
         <div id="grp-cell-fabric" class="opt-row">
           <button class="opt-btn sel" onclick="pickCellFabric(this,'lf')">Light Filtering</button>
           <button class="opt-btn" onclick="pickCellFabric(this,'rd')">Blackout <span style="font-size:10px;opacity:.65">+20%</span></button>
@@ -206,7 +200,7 @@
         <div class="step-note" style="margin-top:8px">A Day &amp; Night shade stacks two fabrics in one headrail &mdash; pick a day layer, then a night layer (only valid pairings are shown). Exact colors for each are chosen at your free in-home consultation. Not available in Day &amp; Night: Woven Breeze, Ashton, Flame-Resistant. Top &amp; bottom use the same cell size.</div>
         <div id="cell-dn-warn" class="msg-box msg-info" style="display:none;margin-top:8px"></div>
       </div>
-      <div class="sub-label" style="margin-top:16px">Cell Size</div>
+      <div class="sub-label" style="margin-top:16px">Cell size</div>
       <div id="grp-cell-size" class="opt-row">
         <button class="opt-btn" data-size="38s" onclick="pickCellSize(this,'38s')">3⁄8″ Single</button>
         <button class="opt-btn" data-size="916s" onclick="pickCellSize(this,'916s')">9⁄16″ Single</button>
@@ -233,33 +227,22 @@
     </div>
   </div>
 
-  <!-- STEP 7: MOTORIZATION (conditional) -->
-  <div class="step-block" id="step7" style="display:none">
-    <div class="step-head" onclick="toggleStep('step7')">
+  <!-- STEP 6: DELIVERY (shared pbDeliveryStepHTML) -->
+  <div class="step-block" id="step8">
+    <div class="step-head">
       <div class="step-num">6</div>
-      <div class="step-head-title">Motorization Options</div>
-      <div class="step-head-val" id="s7val">—</div>
+      <div class="step-head-title">Delivery</div>
     </div>
-    <div class="step-body">
-      <div id="cell-motor-config" style="margin-top:4px">
-        <!-- Populated by normanMotorSection if available -->
-        <div class="msg-box msg-info">Norman Smart Motorization — power source, remote type, and smart home integration confirmed at your in-home measurement visit.</div>
-      </div>
-    </div>
+    <div class="step-body"><div id="cell-delivery"></div></div>
   </div>
 
-  <!-- STEP 7: QUOTE FORM -->
+  <!-- STEP 7: YOUR DETAILS (shared pbContactStepHTML) -->
   <div class="step-block" id="step9">
-    <div class="step-head" onclick="toggleStep('step9')">
+    <div class="step-head">
       <div class="step-num">7</div>
-      <div class="step-head-title">Request Your Quote</div>
-      <div class="step-head-val" id="s9val">—</div>
+      <div class="step-head-title">Your details</div>
     </div>
     <div class="step-body">
-      <div class="delivery-section" style="margin-bottom:14px">
-        <div class="delivery-note">Shipped via <strong>UPS or FedEx</strong>. Shipping estimated in your quote.<div class="delivery-tariff">Note: tariffs and import fees are additional.</div></div>
-      </div>
-
       <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
       <div id="pb-final-step"></div>
       <div class="success-box" id="cell-success">
@@ -271,24 +254,24 @@
 
 </div><!-- /left column -->
 
-<!-- RIGHT: Quote Panel -->
+<!-- RIGHT: Summary card -->
 <div>
-  <div class="quote-panel">
-    <div class="qp-title">Your Estimate</div>
-    <div class="qp-pending" id="qp-cell-pending">Complete the steps on the left to see your live price estimate.</div>
+  <div class="summary-card">
+    <div class="summary-head">Your configuration</div>
 
-    <div id="cell-selection-summary" style="display:none">
-      <div class="qrow"><span class="qrow-label">Product</span><span class="qrow-val">Norman Portrait™ Cellular</span></div>
-      <div class="qrow"><span class="qrow-label">Mount</span><span class="qrow-val" id="qr-cell-mount">—</span></div>
-      <div class="qrow"><span class="qrow-label">Size</span><span class="qrow-val" id="qr-cell-dims">—</span></div>
-      <div class="qrow"><span class="qrow-label">Lift</span><span class="qrow-val" id="qr-cell-lift">Bottom Up</span></div>
-      <div class="qrow"><span class="qrow-label">Operation</span><span class="qrow-val" id="qr-cell-opsys">Cordless</span></div>
-      <div class="qrow"><span class="qrow-label">Fabric</span><span class="qrow-val" id="qr-cell-fabric">Light Filtering</span></div>
-      <div class="qrow"><span class="qrow-label">Cell size</span><span class="qrow-val" id="qr-cell-size">3⁄4″ Single</span></div>
-      <div class="qrow"><span class="qrow-label">Color</span><span class="qrow-val" id="qr-cell-color">—</span></div>
-      <div class="qrow"><span class="qrow-label">Qty</span><span class="qrow-val" id="qr-cell-qty">1 shade</span></div>
+    <div id="cell-selection-summary">
+      <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Norman Portrait™ Cellular</span></div>
+      <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="qr-cell-dims">—</span></div>
+      <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="qr-cell-mount">Inside mount</span></div>
+      <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="qr-cell-qty">1 shade</span></div>
+      <div class="summary-row"><span class="sr-key">Lift</span><span class="sr-val" id="qr-cell-lift">Bottom Up</span></div>
+      <div class="summary-row"><span class="sr-key">Operation</span><span class="sr-val" id="qr-cell-opsys">Cordless</span></div>
+      <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val" id="qr-cell-fabric">Light Filtering</span></div>
+      <div class="summary-row"><span class="sr-key">Cell size</span><span class="sr-val" id="qr-cell-size">3⁄4″ Single</span></div>
+      <div class="summary-row"><span class="sr-key">Color</span><span class="sr-val" id="qr-cell-color">—</span></div>
       <div class="qdiv"></div>
     </div>
+    <div class="qp-pending" id="qp-cell-pending">Enter your window size in Step 1 to see your live price estimate.</div>
 
     <div id="cell-price-box" style="display:none">
       <div style="font-size:10px;color:var(--text-dark);letter-spacing:1px;margin-bottom:4px">25% NORMAN DISCOUNT APPLIED</div>
@@ -313,10 +296,11 @@
 <script src="../js/pages/portrait-cellular.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('cell-delivery').innerHTML = pbDeliveryStepHTML({ bare: true, onPick: 'cellCalcPrice()' });
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'cellAddToCart()', submitFn: 'submitCellQuote(this)' });
 function pickCellMount(el, label) {
-  document.querySelectorAll('#step1 .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
+  document.querySelectorAll('#grp-mount .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
   el.classList.add('sel');
   CELL.mount = label;
   document.getElementById('s1val').textContent = label;
@@ -341,7 +325,7 @@ function pickCellLift(el, mode) {
   cellCalcPrice();
 }
 function pickCellOp(el, sysName) {
-  document.querySelectorAll('#step3 .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
+  document.querySelectorAll('#grp-cell-op .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
   el.classList.add('sel');
   CELL.opSys = sysName;
   cellMotorOn = (sysName === 'Motorized');
@@ -355,12 +339,12 @@ function pickCellOp(el, sysName) {
   } else if (sysName === 'Motorized') {
     note.style.display = 'block';
     note.textContent   = 'Norman Smart Motorization — power source, remote, and smart home confirmed at measurement visit.';
-    // Show motor step
-    document.getElementById('step7').style.display = 'block';
+    // Show the Norman motor options inside this step
+    document.getElementById('cell-motor-config').style.display = 'block';
     if (typeof normanMotorSection === 'function') normanMotorSection('cell-motor-config', 'Cellular Shade', typeof cellCalcPrice === 'function' ? cellCalcPrice : null);
   } else {
     note.style.display = 'none';
-    document.getElementById('step7').style.display = 'none';
+    document.getElementById('cell-motor-config').style.display = 'none';
   }
   // Update size limit notes
   var lim = SYSTEM_LIMITS_CELL[sysName] || SYSTEM_LIMITS_CELL['Cordless'];
