@@ -29,14 +29,6 @@
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 .config-layout{display:grid;grid-template-columns:1fr 300px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
-.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
-.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;text-align:center;transition:all .15s}
-.opt-card:hover{border-color:var(--gold)}
-.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
-.opt-card.sel .opt-card-title{color:#0A4A42}
-.opt-card-desc{font-size:11px;color:#666;line-height:1.45}
-.opt-card.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
 /* Pattern picker */
 .pattern-search{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);margin-bottom:10px;box-sizing:border-box}
 .pattern-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;max-height:380px;overflow-y:auto;margin-top:6px}
@@ -48,56 +40,20 @@
 .pattern-name{font-size:12px;font-weight:600;color:#111;margin-bottom:3px}
 .pattern-meta{font-size:10px;color:#888;line-height:1.4}
 .pg-badge{display:inline-block;font-size:9px;padding:1px 5px;border-radius:4px;background:#f0ece4;color:#555;font-weight:600;margin-right:4px}
-/* Dim inputs */
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
-.dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
-.dim-inputs{display:flex;gap:6px;align-items:center}
-.dim-whole{width:54px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
-.dim-frac{padding:8px 6px;border:1px solid #ddd;border-radius:8px;font-size:12px;background:#fff;color:#333}
-.dim-unit{font-size:13px;color:#555;font-weight:500}
 /* Messages */
 .msg-box{border-radius:8px;padding:9px 13px;font-size:12px;margin-top:8px;line-height:1.5}
 .msg-err{background:#FEE2E2;border:1px solid #EF4444;color:#7f1d1d}
 .msg-warn{background:#FFF3CD;border:1px solid #FFC107;color:#7d5a00}
 .msg-info{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);color:#0A4A42}
 .msg-ok{background:#DCFCE7;border:1px solid #86EFAC;color:#14532d}
-/* Addons */
-.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
-.addon-row:hover{border-color:var(--gold)}
-.addon-row.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.addon-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
-.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
-.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#111110}
-.addon-name{font-size:13px;font-weight:500;color:#111}
-.addon-sub{font-size:11px;color:#666;margin-top:1px}
-.addon-price{font-size:12px;font-weight:600;color:var(--gold);flex-shrink:0}
 .sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 5px}
-/* Quote panel */
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
-.qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
-.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
-.qrow-label{color:var(--text-muted);line-height:1.4}
-.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0}
-.qdiv{border:none;border-top:.5px solid var(--border-dark);margin:12px 0}
-.qtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700}
-.qtotal-label{color:var(--cream)}.qtotal-val{color:var(--gold)}
-.qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
 .form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);box-sizing:border-box}
 .form-group textarea{resize:vertical;min-height:72px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
-.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
-.liner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-top:8px}
-.liner-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:10px 8px;cursor:pointer;text-align:center;transition:all .15s;background:#fff}
-.liner-card:hover{border-color:var(--gold)}
-.liner-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.liner-card-name{font-size:11px;font-weight:600;color:#111;margin-bottom:2px}
-.liner-card-code{font-size:9px;color:#aaa}
 .success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center;margin-top:12px}
-.estimate-notice{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:10px 14px;font-size:11px;color:#7d5a00;line-height:1.6;margin-top:10px}
 </style>
 </head>
 <body data-page="Shades & blinds">
@@ -141,20 +97,20 @@
 
     <!-- Mount type -->
     <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
-    <div class="opt-row" style="margin-bottom:6px">
+    <div class="opt-row" id="grp-mount" style="margin-bottom:6px">
       <button class="opt-btn sel" id="mc-inside" onclick="pickMount(this,'inside')">Inside mount</button>
       <button class="opt-btn" id="mc-outside" onclick="pickMount(this,'outside')">Outside mount</button>
     </div>
     <div class="step-note" style="margin-bottom:12px">Inside mount fits inside the window frame for a clean built-in look. Outside mount mounts on the wall or above the frame and covers the trim.</div>
 
-    <!-- Quantity (shared stepper) -->
-    <div style="font-size:12px;font-weight:600;color:#555;margin:0 0 6px">Quantity</div>
-    <div class="qty-btns">
-      <button class="qty-btn" onclick="var e=document.getElementById('qty');e.value=Math.max(1,(parseInt(e.value)||1)-1);calcPrice()">&#8722;</button>
-      <input class="qty-num" type="number" id="qty" value="1" min="1" max="50" oninput="calcPrice()">
-      <button class="qty-btn" onclick="var e=document.getElementById('qty');e.value=(parseInt(e.value)||1)+1;calcPrice()">&#43;</button>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:12px;color:#666">Qty:</span>
+      <div class="qty-btns">
+        <button class="qty-btn" onclick="pbAdjQty('qty',-1,1,50);calcPrice()">&#8722;</button>
+        <input class="qty-num" type="number" id="qty" value="1" min="1" max="50" oninput="calcPrice()">
+        <button class="qty-btn" onclick="pbAdjQty('qty',1,1,50);calcPrice()">&#43;</button>
+      </div>
     </div>
-    <div class="step-note">Number of shades of this size &amp; pattern.</div>
   </div>
 </div>
 
@@ -162,7 +118,7 @@
 <div class="step-block" id="step1">
   <div class="step-head" onclick="toggleStep('step1')">
     <div class="step-num">2</div>
-    <div class="step-head-title">Shade Style</div>
+    <div class="step-head-title">Shade style</div>
     <div class="step-head-val" id="s1val">—</div>
   </div>
   <div class="step-body">
@@ -198,7 +154,7 @@
 <div class="step-block" id="step4">
   <div class="step-head" onclick="toggleStep('step4')">
     <div class="step-num">4</div>
-    <div class="step-head-title">Lift / Control</div>
+    <div class="step-head-title">Lift &amp; control</div>
     <div class="step-head-val" id="s4val">—</div>
   </div>
   <div class="step-body">
@@ -211,28 +167,15 @@
     <div id="ctrl-note" class="msg-info" style="display:none;margin-top:8px"></div>
     <!-- Motor accessories -->
     <div id="motor-accessories" style="display:none;margin-top:12px">
-      <div class="sub-label">Motor Accessories</div>
-      <div class="step-note" style="margin-top:0;margin-bottom:8px">Automate ARC-12V Li-Ion battery motor (included). Optional accessories:</div>
-      <div class="addon-row" id="acc-hub" onclick="toggleAddon(this,'accHub')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Pulse 2 Hub</div><div class="addon-sub">Smart home integration · ships separately</div></div></div>
-        <div class="addon-price">+$416</div>
+      <div class="sub-label">Motor accessories</div>
+      <div class="opt-row" id="grp-motor-acc">
+        <button class="opt-btn" id="acc-hub" onclick="toggleAddon(this,'accHub')">Pulse 2 Hub</button>
+        <button class="opt-btn" id="acc-remote" onclick="toggleAddon(this,'accRemote')">15-Ch RF Remote</button>
+        <button class="opt-btn" id="acc-charger" onclick="toggleAddon(this,'accCharger')">Li-Ion 12V Charger (1.8m)</button>
+        <button class="opt-btn" id="acc-solar" onclick="toggleAddon(this,'accSolar')">Solar Panel V1</button>
+        <button class="opt-btn" id="acc-ext" onclick="toggleAddon(this,'accExt')">Extension Cable 1.2M</button>
       </div>
-      <div class="addon-row" id="acc-remote" onclick="toggleAddon(this,'accRemote')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">15-Ch RF Remote</div><div class="addon-sub">Paradigm RF White · with levelling</div></div></div>
-        <div class="addon-price">+$68</div>
-      </div>
-      <div class="addon-row" id="acc-charger" onclick="toggleAddon(this,'accCharger')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Li-Ion 12V Charger (1.8m)</div><div class="addon-sub">Standard recharger</div></div></div>
-        <div class="addon-price">+$52</div>
-      </div>
-      <div class="addon-row" id="acc-solar" onclick="toggleAddon(this,'accSolar')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Solar Panel V1</div><div class="addon-sub">Continuous charging option</div></div></div>
-        <div class="addon-price">+$130</div>
-      </div>
-      <div class="addon-row" id="acc-ext" onclick="toggleAddon(this,'accExt')">
-        <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Extension Cable 1.2M</div><div class="addon-sub">For charging in hard-to-reach locations</div></div></div>
-        <div class="addon-price">+$21</div>
-      </div>
+      <div class="step-note">Automate ARC-12V Li-Ion battery motor included &mdash; select any accessories. Pulse 2 Hub &mdash; smart home integration, ships separately. 15-Ch RF Remote &mdash; Paradigm RF White with levelling. Charger &mdash; standard recharger. Solar Panel &mdash; continuous charging. Extension Cable &mdash; for charging in hard-to-reach locations.</div>
     </div>
   </div>
 </div>
@@ -245,22 +188,23 @@
     <div class="step-head-val" id="s5val">No liner</div>
   </div>
   <div class="step-body">
-    <div class="opt-row">
+    <div class="opt-row" id="grp-liner">
       <button class="opt-btn sel" onclick="pickLiner(this,'none','No liner','')">No liner</button>
-      <button class="opt-btn" id="liner-privacy-opt" onclick="pickLiner(this,'privacy','Privacy liner','')">Privacy Liner</button>
-      <button class="opt-btn" id="liner-blackout-opt" onclick="pickLiner(this,'blackout','Blackout Liner','')">Blackout Liner</button>
+      <button class="opt-btn" id="liner-privacy-opt" onclick="pickLiner(this,'privacy','Privacy liner','')">Privacy liner</button>
+      <button class="opt-btn" id="liner-blackout-opt" onclick="pickLiner(this,'blackout','Blackout liner','')">Blackout liner</button>
     </div>
-    <div class="step-note">Privacy Liner and Blackout Liner — +surcharge · folds into hem.</div>
+    <div class="step-note">Privacy liner and Blackout liner &mdash; added surcharge &middot; folds into hem.</div>
     <!-- Liner color (shown when liner selected) -->
     <div id="liner-color-section" style="display:none;margin-top:12px">
-      <div class="sub-label">Liner Color</div>
-      <div class="liner-grid">
-        <div class="liner-card sel" onclick="pickLinerColor(this,'White','2294')"><div class="liner-card-name">White</div><div class="liner-card-code" id="lc-white-code">2294P</div></div>
-        <div class="liner-card" onclick="pickLinerColor(this,'Natural','2277')"><div class="liner-card-name">Natural</div><div class="liner-card-code" id="lc-nat-code">2277P</div></div>
-        <div class="liner-card" onclick="pickLinerColor(this,'Cream','2290')"><div class="liner-card-name">Cream</div><div class="liner-card-code" id="lc-cream-code">2290P</div></div>
-        <div class="liner-card" onclick="pickLinerColor(this,'Teak','2291')"><div class="liner-card-name">Teak</div><div class="liner-card-code" id="lc-teak-code">2291P</div></div>
-        <div class="liner-card" onclick="pickLinerColor(this,'Gray','2273')"><div class="liner-card-name">Gray</div><div class="liner-card-code" id="lc-gray-code">2273P</div></div>
+      <div class="sub-label">Liner color</div>
+      <div class="opt-row" id="grp-liner-color">
+        <button class="opt-btn sel" onclick="pickLinerColor(this,'White','2294')">White</button>
+        <button class="opt-btn" onclick="pickLinerColor(this,'Natural','2277')">Natural</button>
+        <button class="opt-btn" onclick="pickLinerColor(this,'Cream','2290')">Cream</button>
+        <button class="opt-btn" onclick="pickLinerColor(this,'Teak','2291')">Teak</button>
+        <button class="opt-btn" onclick="pickLinerColor(this,'Gray','2273')">Gray</button>
       </div>
+      <div class="step-note">Liner code: <span id="liner-code-note">2294P</span></div>
     </div>
     <div class="step-note" style="margin-top:8px">Liner exterior/back side is off-white. Hobbled shade liner subject to additional +30% surcharge.</div>
   </div>
@@ -270,7 +214,7 @@
 <div class="step-block" id="step6">
   <div class="step-head" onclick="toggleStep('step6')">
     <div class="step-num">6</div>
-    <div class="step-head-title">Edge Binding</div>
+    <div class="step-head-title">Edge binding</div>
     <div class="step-head-val" id="s6val">None</div>
   </div>
   <div class="step-body">
@@ -307,26 +251,17 @@
 <div class="step-block" id="step8">
   <div class="step-head" onclick="toggleStep('step8')">
     <div class="step-num">8</div>
-    <div class="step-head-title">Accessories &amp; Options</div>
+    <div class="step-head-title">Accessories &amp; options <span style="font-weight:400;color:#888">(optional)</span></div>
     <div class="step-head-val" id="s8val">Optional</div>
   </div>
   <div class="step-body">
-    <div class="addon-row" id="acc-holddown" onclick="toggleAddon(this,'holdDown')">
-      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Hold Down Clips</div><div class="addon-sub">Stabilizes bottom of shade at sill · no bottom edge binding if selected</div></div></div>
-      <div class="addon-price">Included</div>
+    <div class="opt-row" id="grp-acc">
+      <button class="opt-btn" id="acc-holddown" onclick="toggleAddon(this,'holdDown')">Hold down clips</button>
+      <button class="opt-btn" id="acc-sidereturn" onclick="toggleAddon(this,'sideReturn')">Side returns</button>
+      <button class="opt-btn" id="acc-cutout" onclick="toggleAddon(this,'cutOut')">Cut-outs needed</button>
+      <button class="opt-btn" id="acc-2on1" onclick="toggleAddon(this,'twoOn1')">2-on-1 headrail</button>
     </div>
-    <div class="addon-row" id="acc-sidereturn" onclick="toggleAddon(this,'sideReturn')">
-      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Side Returns</div><div class="addon-sub">Standard on all outside mount · L-shaped from ordered material</div></div></div>
-      <div class="addon-price">Included</div>
-    </div>
-    <div class="addon-row" id="acc-cutout" onclick="toggleAddon(this,'cutOut')">
-      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">Cut-Outs Needed</div><div class="addon-sub">Corner or edge cut-outs — describe in notes</div></div></div>
-      <div class="addon-price">Quote</div>
-    </div>
-    <div class="addon-row" id="acc-2on1" onclick="toggleAddon(this,'twoOn1')">
-      <div class="addon-left"><div class="addon-check">✓</div><div><div class="addon-name">2-on-1 Headrail</div><div class="addon-sub">Two shades on one headrail · Flat Fold &amp; Waterfall only · not with Hobble · max combined 102&Prime; · price each shade and add</div></div></div>
-      <div class="addon-price">See note</div>
-    </div>
+    <div class="step-note">Select any. Hold down clips &mdash; stabilizes bottom of shade at sill, included; no bottom edge binding if selected. Side returns &mdash; standard on all outside mount, L-shaped from ordered material, included. Cut-outs &mdash; corner or edge cut-outs, describe in notes, quoted. 2-on-1 headrail &mdash; two shades on one headrail, Flat Fold &amp; Waterfall only, not with Hobble, max combined 102&Prime;; each shade priced separately.</div>
   </div>
 </div>
 
@@ -335,18 +270,10 @@
   <div class="step-head" onclick="toggleStep('step9')">
     <div class="step-num">9</div>
     <div class="step-head-title">Delivery</div>
-    <div class="step-head-val" id="s9val">—</div>
+    <div class="step-head-val" id="s9val">Ship to me</div>
   </div>
   <div class="step-body">
-    <div>
-      <div class="dim-label" style="margin-bottom:6px">Delivery</div>
-      <div class="delivery-opt-grid">
-        <div class="delivery-opt-card sel" onclick="pickDel(this,'ship')">
-          <div class="delivery-opt-title">Ship to me</div>
-          <div class="delivery-opt-body">UPS or FedEx. Shades 90&#x2033;+ carry $80 oversize surcharge. Tariffs additional.</div>
-        </div>
-      </div>
-    </div>
+    <div id="pb-delivery-slot"></div>
   </div>
 </div>
 
@@ -354,7 +281,7 @@
 <div class="step-block" id="step10">
   <div class="step-head" onclick="toggleStep('step10')">
     <div class="step-num">10</div>
-    <div class="step-head-title">Your Info &amp; Submit</div>
+    <div class="step-head-title">Your details</div>
   </div>
   <div class="step-body">
     <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
@@ -367,32 +294,40 @@
 
 </div><!-- /left col -->
 
-<!-- RIGHT: Quote panel -->
+<!-- RIGHT: Summary card -->
 <div>
-  <div class="quote-panel">
-    <div class="qp-title">Estimate Summary</div>
-    <div id="qp-pending" class="qp-pending">Complete your selections to see an estimate.</div>
-    <div id="qp-detail" style="display:none">
-      <div class="qrow"><span class="qrow-label">Style</span><span class="qrow-val" id="qr-style">—</span></div>
-      <div class="qrow"><span class="qrow-label">Pattern</span><span class="qrow-val" id="qr-pattern">—</span></div>
-      <div class="qrow"><span class="qrow-label">Size</span><span class="qrow-val" id="qr-size">—</span></div>
-      <div class="qrow"><span class="qrow-label">Control</span><span class="qrow-val" id="qr-ctrl">—</span></div>
-      <div class="qrow"><span class="qrow-label">Liner</span><span class="qrow-val" id="qr-liner">—</span></div>
-      <div class="qrow"><span class="qrow-label">Qty</span><span class="qrow-val" id="qr-qty">1</span></div>
-      <div class="qdiv"></div>
-      <div class="qrow"><span class="qrow-label">Base (1 shade)</span><span class="qrow-val" id="qr-base">—</span></div>
-      <div class="qrow" id="qr-ctrl-row" style="display:none"><span class="qrow-label">Control surcharge</span><span class="qrow-val" id="qr-ctrl-s">—</span></div>
-      <div class="qrow" id="qr-hobble-row" style="display:none"><span class="qrow-label">Hobbled +30%</span><span class="qrow-val" id="qr-hobble-s">—</span></div>
-      <div class="qrow" id="qr-liner-row" style="display:none"><span class="qrow-label">Liner surcharge</span><span class="qrow-val" id="qr-liner-s">—</span></div>
-      <div class="qrow" id="qr-edge-row" style="display:none"><span class="qrow-label">Edge binding</span><span class="qrow-val" id="qr-edge-s">—</span></div>
-      <div class="qrow" id="qr-valance-row" style="display:none"><span class="qrow-label">Valance upgrade</span><span class="qrow-val" id="qr-valance-s">—</span></div>
-      <div class="qrow" id="qr-motor-row" style="display:none"><span class="qrow-label">Motor base</span><span class="qrow-val" id="qr-motor-s">—</span></div>
-      <div class="qrow"><span class="qrow-label">Subtotal</span><span class="qrow-val" id="qr-sub">—</span></div>
-      <div class="qrow" id="qr-freight-row" style="display:none"><span class="qrow-label">Freight</span><span class="qrow-val" id="qr-freight-s">—</span></div>
-      <div class="qdiv"></div>
-      <div class="qtotal"><span class="qtotal-label">Est. Total</span><span class="qtotal-val" id="qr-total">—</span></div>
-      <div class="estimate-notice">Estimated only — final price confirmed with current Wallace Galaxy price book. Hobbled and liner surcharges may stack.</div>
+  <div class="summary-card" id="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Wallace Galaxy Woven Woods</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="qr-size">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="qr-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="qr-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Style</span><span class="sr-val" id="qr-style">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Pattern</span><span class="sr-val" id="qr-pattern">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Control</span><span class="sr-val" id="qr-ctrl">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Liner</span><span class="sr-val" id="qr-liner">None</span></div>
+    <div class="summary-row"><span class="sr-key">Edge binding</span><span class="sr-val" id="qr-edge">None</span></div>
+    <div class="summary-row"><span class="sr-key">Valance</span><span class="sr-val" id="qr-valance">Standard</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="qr-del">Ship to me</span></div>
+    <div class="summary-row"><span class="sr-key">Estimate</span><span class="sr-val" id="s-quote">Custom quote &mdash; we confirm pricing</span></div>
+    <!-- Internal estimate: computed for the cart but never displayed (quote-only product;
+         the "price" class is hidden by the .pb-quote-only rule in global.css). -->
+    <div class="price-breakdown" id="price-breakdown" style="display:none">
+      <div id="qp-pending"></div>
+      <div id="qp-detail" style="display:none">
+        <span id="qr-base"></span>
+        <div id="qr-ctrl-row"><span id="qr-ctrl-s"></span></div>
+        <div id="qr-hobble-row"><span id="qr-hobble-s"></span></div>
+        <div id="qr-liner-row"><span id="qr-liner-s"></span></div>
+        <div id="qr-edge-row"><span id="qr-edge-s"></span></div>
+        <div id="qr-valance-row"><span id="qr-valance-s"></span></div>
+        <div id="qr-motor-row"><span id="qr-motor-s"></span></div>
+        <span id="qr-sub"></span>
+        <div id="qr-freight-row"><span id="qr-freight-s"></span></div>
+        <span id="qr-total"></span>
+      </div>
     </div>
+    <div class="summary-note">Custom quote &mdash; final price confirmed with the current Wallace Galaxy price book.</div>
   </div>
 </div>
 
@@ -411,6 +346,9 @@
 <script src="../js/fabric-picker.js"></script>
 <script src="../js/pages/galaxy-woven-woods.js"></script>
 <script>
+// Canonical Delivery step (shared.js pbDeliveryStepHTML) — choice lives in window.pbDelivery.
+document.getElementById('pb-delivery-slot').innerHTML =
+  pbDeliveryStepHTML({ bare: true, onPick: 'galPickDel()' });
 // Canonical final "Your details" contact + files step — identical on every product.
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addGalaxyToCart()', submitFn: 'submitQuote()' });

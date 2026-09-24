@@ -285,7 +285,7 @@ function checkPatternCompat(){
 
 // ── STEP 3: DIMENSIONS ────────────────────────────────────────────────────────
 function pickMount(el,key){
-  document.querySelectorAll('#step3 .opt-btn').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#grp-mount .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.mount=key;
   calcPrice();
@@ -342,23 +342,23 @@ function pickLiner(el,type,label,code){
   S.liner=type;
   document.getElementById('s5val').textContent=label;
   document.getElementById('liner-color-section').style.display=(type==='none')?'none':'block';
-  // Update codes shown
-  const suffix=type==='blackout'?'BO':(type==='privacy'?'P':'');
-  ['2294','2277','2290','2291','2273'].forEach((c,i)=>{
-    const ids=['white','nat','cream','teak','gray'];
-    const el2=document.getElementById('lc-'+ids[i]+'-code');
-    if(el2&&suffix) el2.textContent=c+suffix;
-  });
+  galLinerCodeNote();
   if(type==='none') markDone('step5');
   calcPrice();
 }
 
 function pickLinerColor(el,name,code){
-  document.querySelectorAll('#liner-color-section .liner-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#grp-liner-color .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   S.linerColor=name; S.linerCode=code;
+  galLinerCodeNote();
   markDone('step5');
   calcPrice();
+}
+
+function galLinerCodeNote(){
+  var n=document.getElementById('liner-code-note'); if(!n) return;
+  n.textContent=S.linerCode+(S.liner==='blackout'?'BO':'P');
 }
 
 // ── STEP 6: EDGE BINDING ─────────────────────────────────────────────────────
@@ -397,12 +397,14 @@ function toggleAddon(el,key){
   calcPrice();
 }
 
-// ── STEP 9 ────────────────────────────────────────────────────────────────────
-function pickDel(btn,key){
-  document.querySelectorAll('.delivery-opt-card').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  S.del=key;
-      calcPrice();
+// ── DELIVERY (shared pbDeliveryStepHTML) ─────────────────────────────────────
+// Freight is only estimated for "Ship to me" — same rule as before; installation
+// is priced in the quote.
+function galPickDel(){
+  S.del=(window.pbDelivery==='install')?'install':'ship';
+  document.getElementById('s9val').textContent=(typeof pbDeliveryLabel==='function')?pbDeliveryLabel():'Ship to me';
+  markDone('step9');
+  calcPrice();
 }
 
 // ── PRICE LOOKUP HELPERS ──────────────────────────────────────────────────────
@@ -428,7 +430,6 @@ function calcPrice(){
   S.w=parseFloat(document.getElementById('w-whole').value)||0;
   S.h=parseFloat(document.getElementById('h-whole').value)||0;
   S.qty=parseInt(document.getElementById('qty').value)||1;
-  document.getElementById('s9val').textContent=S.qty+' shade'+(S.qty>1?'s':'');
 
   const dimMsg=document.getElementById('dim-msg');
   const sizeInfo=document.getElementById('size-info');
@@ -478,7 +479,24 @@ function calcPrice(){
   updateQuote();
 }
 
+// Summary card configuration rows — always shown, independent of the (hidden) estimate.
+function galSummary(){
+  var set=function(id,v){var e=document.getElementById(id); if(e) e.textContent=v;};
+  var qty=S.qty||1;
+  set('qr-size',(S.w&&S.h)?(S.w+'″ × '+S.h+'″'):'—');
+  set('qr-mount',S.mount==='outside'?'Outside mount':'Inside mount');
+  set('qr-qty',qty+' shade'+(qty>1?'s':''));
+  set('qr-style',({waterfall:'Waterfall',flat:'Flat Fold',hobbled:'Hobbled',tdbu:'TDBU Cordless',motor:'Motorized',dual:'Dual Shade'}[S.style])||'—');
+  set('qr-pattern',S.sku?(S.patternName+' ('+S.sku+') PG'+S.pg):'—');
+  set('qr-ctrl',S.control?(({loop:'Loop / '+S.chain,cordless:'Cordless',motor:'Motorized (Rollease Acmeda)'}[S.control])||S.control):'—');
+  set('qr-liner',S.liner==='none'?'None':(S.liner==='privacy'?'Privacy':'Blackout')+' — '+S.linerColor);
+  set('qr-edge',({none:'None',half:'½″ Twill',one5:'1½″ Twill'}[S.edge])||'None');
+  set('qr-valance',({standard:'Standard',classic6:'6″ Classic',double12:'12″ Double Hobble',triple18:'18″ Triple Hobble'}[S.valance])||'Standard');
+  set('qr-del',(typeof pbDeliveryLabel==='function')?pbDeliveryLabel():'Ship to me');
+}
+
 function updateQuote(){
+  galSummary();
   const qty=S.qty||1;
   const ready=S.pg&&S.style&&S.control&&S.w&&S.h;
   if(!ready){document.getElementById('qp-pending').style.display='block';document.getElementById('qp-detail').style.display='none';return;}
@@ -564,7 +582,6 @@ function updateQuote(){
   document.getElementById('qp-detail').style.display='block';
   document.getElementById('qr-style').textContent=({waterfall:'Waterfall',flat:'Flat Fold',hobbled:'Hobbled',tdbu:'TDBU Cordless',motor:'Motorized',dual:'Dual Shade'}[S.style])||S.style;
   document.getElementById('qr-pattern').textContent=S.patternName+' ('+S.sku+') PG'+S.pg;
-  document.getElementById('qr-size').textContent=S.w+'″ × '+S.h+'″ '+S.mount;
   document.getElementById('qr-ctrl').textContent=({loop:'Loop / '+S.chain,cordless:'Cordless',motor:'Motorized (Rollease Acmeda)'}[S.control])||S.control;
   document.getElementById('qr-liner').textContent=S.liner==='none'?'None':(S.liner==='privacy'?'Privacy':'Blackout')+' — '+S.linerColor;
   document.getElementById('qr-qty').textContent=qty+' shade'+(qty>1?'s':'');
@@ -665,7 +682,7 @@ function submitQuote(){
     'Motor accessories: '+(motorAccs.length?motorAccs.join(', '):'None'),
     'Accessories: '+(accs.length?accs.join(', '):'None'),
     '',
-    'Delivery: '+'Ship to me (UPS/FedEx)',
+    'Delivery: '+((typeof pbDeliveryLabel==='function')?pbDeliveryLabel():'Ship to me'),
     '',
     'Notes: '+(document.getElementById('cf-notes').value.trim()||'None'),
     '',
@@ -683,3 +700,4 @@ function submitQuote(){
 
 // Init: set mount default
 document.getElementById('mc-inside').classList.add('sel');
+galSummary();
