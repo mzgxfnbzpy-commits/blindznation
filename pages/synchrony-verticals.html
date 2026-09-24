@@ -49,7 +49,6 @@
 .opt-card.sel .opt-card-title{color:#0A4A42}
 .opt-card-desc{font-size:11px;color:#666;line-height:1.45}
 .opt-card-price{font-size:12px;color:var(--gold);font-weight:600;margin-top:5px}
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
 .dim-inputs{display:flex;gap:6px;align-items:center}
 .dim-whole{width:54px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center}
@@ -77,8 +76,6 @@
 .spin-num{width:44px;text-align:center;border:1px solid #ddd;border-radius:7px;font-size:14px;padding:5px}
 .spin-label{font-size:12px;color:#666}
 .step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
 .qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
 .qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px;gap:8px;align-items:baseline}
 .qrow-label{color:var(--text-muted);line-height:1.4}
@@ -94,7 +91,6 @@
 .form-group textarea{resize:vertical;min-height:72px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.form-row{grid-template-columns:1fr}}
-.delivery-wrap{background:#F9F7F4;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px;margin-bottom:14px}
 .submit-btn{width:100%;padding:14px;background:var(--gold);color:#111110;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;margin-top:2px}
 .submit-btn:hover{opacity:.88}
 .form-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-bottom:10px;display:none}
@@ -153,7 +149,7 @@
     <div class="step-head" onclick="toggleStep('step2')">
       <div class="step-num">1</div>
       <div class="step-head-title">Window measurements &amp; mount</div>
-      <div class="step-head-val" id="s2val">—</div>
+      <div class="step-head-val" id="s2val">Inside mount</div>
     </div>
     <div class="step-body">
       <div class="dim-box">
@@ -174,10 +170,10 @@
 
       <!-- Mount type -->
       <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
-      <div class="opt-row" style="margin-bottom:6px">
-        <button class="opt-btn" onclick="pickMount(this,'inside','Inside mount — Fully Flushed')">Inside mount</button>
-        <button class="opt-btn" onclick="pickMount(this,'semi','Semi-inside mount')">Semi-inside mount</button>
+      <div class="opt-row" id="grp-mount" style="margin-bottom:6px">
+        <button class="opt-btn sel" onclick="pickMount(this,'inside','Inside mount')">Inside mount</button>
         <button class="opt-btn" onclick="pickMount(this,'outside','Outside mount')">Outside mount</button>
+        <button class="opt-btn" onclick="pickMount(this,'semi','Semi-inside mount')">Semi-inside mount</button>
       </div>
       <div class="step-note" style="margin-bottom:6px"><strong>Inside:</strong> fully flushed, no valance needed — min depth 3¾&Prime;, mfr deducts 3/8&Prime; W &amp; 3/16&Prime; H. <strong>Semi-inside:</strong> partial recess into opening — min depth 2 13/16&Prime;, same deductions. <strong>Outside:</strong> mounts above/outside the frame — no deductions, add ~1½&Prime; each side for light block, total projection 3¾&Prime;–4⅛&Prime;.</div>
       <div id="mount-note" class="msg-box msg-info" style="display:none;margin-bottom:12px"></div>
@@ -199,7 +195,7 @@
   <div class="step-block" id="step1">
     <div class="step-head" onclick="toggleStep('step1')">
       <div class="step-num">2</div>
-      <div class="step-head-title">Fabric &amp; Color</div>
+      <div class="step-head-title">Fabric &amp; color</div>
       <div class="step-head-val" id="s1val">—</div>
     </div>
     <div class="step-body">
@@ -460,22 +456,16 @@
   <div class="step-block" id="step4">
     <div class="step-head" onclick="toggleStep('step4')">
       <div class="step-num">3</div>
-      <div class="step-head-title">Options &amp; Add-ons</div>
+      <div class="step-head-title">Options &amp; add-ons</div>
       <div class="step-head-val" id="s4val">None selected</div>
     </div>
     <div class="step-body">
-      <div class="sub-label">Shim <span style="font-weight:400;color:#999">(outside mount only — optional)</span></div>
+      <div class="sub-label">Shims <span style="font-weight:400;color:#888">(optional &middot; outside mount only)</span></div>
       <div id="shim-na-note" class="step-note" style="display:none;margin-bottom:6px">Shims are only available with outside mount.</div>
-      <div class="addon-row" id="shim-addon" onclick="toggleShim(this)">
-        <div class="addon-left">
-          <div class="addon-check" id="shim-check">✓</div>
-          <div>
-            <div class="addon-name">Shim</div>
-            <div class="addon-sub">Projects blind further from wall for clearance over trim or molding &middot; 3/8&Prime; per shim</div>
-          </div>
-        </div>
-        <div class="addon-price">$7 each</div>
+      <div class="opt-row" style="margin-bottom:0">
+        <button class="opt-btn" id="shim-addon" onclick="toggleShim(this)">Add shims <span style="font-weight:400;color:#999">($7 each)</span></button>
       </div>
+      <div class="step-note" style="margin-top:4px">Projects the blind further from the wall for clearance over trim or molding &middot; 3/8&Prime; per shim.</div>
       <div id="shim-qty-wrap" style="display:none;margin-top:8px">
         <div class="spinner-row">
           <button class="spin-btn" onclick="adjShim(-1)">−</button>
@@ -487,39 +477,23 @@
       <div class="step-note">For outside mount, we recommend at least one shim per bracket when mounting above a trim or molding. Shims are plastic, 3/8″ thick; stack two for 1 11/16″ total extension.</div>
 
       <div class="sub-label" style="margin-top:16px">Wand / control side <span style="font-weight:400;color:#999">(headrail is reversible)</span></div>
-      <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap">
-        <button style="flex:1;padding:10px 8px;border:1.5px solid #e8e8e4;border-radius:9px;cursor:pointer;background:#fff;font-size:12px;font-weight:500;transition:all .15s" onclick="pickWand(this,'Left side')">Wand on left</button>
-        <button style="flex:1;padding:10px 8px;border:1.5px solid #e8e8e4;border-radius:9px;cursor:pointer;background:#fff;font-size:12px;font-weight:500;transition:all .15s" onclick="pickWand(this,'Right side')">Wand on right</button>
-        <button style="flex:1;padding:10px 8px;border:1.5px solid #e8e8e4;border-radius:9px;cursor:pointer;background:#fff;font-size:12px;font-weight:500;transition:all .15s" onclick="pickWand(this,'No preference')">No preference</button>
+      <div class="opt-row" id="grp-wand" style="margin-top:6px;margin-bottom:0">
+        <button class="opt-btn" onclick="pickWand(this,'Left side')">Wand on left</button>
+        <button class="opt-btn" onclick="pickWand(this,'Right side')">Wand on right</button>
+        <button class="opt-btn sel" onclick="pickWand(this,'No preference')">No preference</button>
       </div>
       <div class="step-note" style="margin-top:4px">The wand tilts the vanes. Vanes always stack on the same side as the wand (tilt side). Installer confirms at measurement.</div>
     </div>
   </div>
 
-  <!-- STEP 4: DELIVERY -->
-  <div class="step-block" id="step6">
-    <div class="step-head" onclick="toggleStep('step6')">
-      <div class="step-num">4</div>
-      <div class="step-head-title">Delivery</div>
-      <div class="step-head-val" id="s6val">—</div>
-    </div>
-    <div class="step-body">
-      <div class="delivery-wrap">
-        <div class="delivery-opt-grid">
-        <div class="delivery-opt-card sel" onclick="pickDel(this,'ship')">
-          <div class="delivery-opt-title">Ship to me</div>
-          <div class="delivery-opt-body">UPS or FedEx. Freight: $25 first blind + $11 each additional. Verticals 92&#x2033;+ add $80 oversize. Tariffs additional.</div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
+  <!-- STEP 4: DELIVERY (shared pbDeliveryStepHTML) -->
+  <div id="pb-delivery-step"></div>
 
-  <!-- STEP 5: QUOTE FORM -->
+  <!-- STEP 5: YOUR DETAILS -->
   <div class="step-block" id="step7">
     <div class="step-head" onclick="toggleStep('step7')">
       <div class="step-num">5</div>
-      <div class="step-head-title">Request Your Quote</div>
+      <div class="step-head-title">Your details</div>
       <div class="step-head-val" id="s7val">—</div>
     </div>
     <div class="step-body">
@@ -534,19 +508,20 @@
 
 </div><!-- /left column -->
 
-<!-- RIGHT: Quote Panel -->
-<div>
-  <div class="quote-panel">
-    <div class="qp-title">Your Estimate</div>
+<!-- RIGHT: Summary card -->
+  <div class="summary-card" id="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Synchrony™ Vertical Blind</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="qr-dims">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="qr-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="qr-qty">1 blind</span></div>
+    <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val" id="qr-group">—</span></div>
+    <div class="summary-row"><span class="sr-key">Vane style</span><span class="sr-val" id="qr-vane">—</span></div>
+    <div class="summary-row"><span class="sr-key">Wand side</span><span class="sr-val" id="qr-wand">No preference</span></div>
+    <div class="summary-row"><span class="sr-key">Add-ons</span><span class="sr-val" id="qr-addons">None</span></div>
+    <div class="qdiv"></div>
     <div class="qp-pending" id="qp-pending">Complete the steps on the left and we&rsquo;ll prepare your quote.</div>
     <div id="qp-detail" style="display:none">
-      <div class="qrow"><span class="qrow-label">Product</span><span class="qrow-val">Synchrony™ Vertical Blind</span></div>
-      <div class="qrow"><span class="qrow-label">Fabric</span><span class="qrow-val" id="qr-group">—</span></div>
-      <div class="qrow"><span class="qrow-label">Vane style</span><span class="qrow-val" id="qr-vane">—</span></div>
-      <div class="qrow"><span class="qrow-label">Mount</span><span class="qrow-val" id="qr-mount">—</span></div>
-      <div class="qrow"><span class="qrow-label">Dimensions</span><span class="qrow-val" id="qr-dims">—</span></div>
-      <div class="qrow"><span class="qrow-label">Qty</span><span class="qrow-val" id="qr-qty">—</span></div>
-      <div class="qdiv"></div>
       <div class="qrow"><span class="qrow-label">Price per blind</span><span class="qrow-val" id="qr-price">—</span></div>
       <div class="qrow qrow-surcharge" id="qr-shim-row" style="display:none"><span class="qrow-label">Shim(s)</span><span class="qrow-val" id="qr-shim-s">—</span></div>
       <div class="qrow qrow-surcharge" id="qr-freight-row" style="display:none"><span class="qrow-label">Freight</span><span class="qrow-val" id="qr-freight-s">—</span></div>
@@ -555,7 +530,6 @@
       <div class="qnote">Norman retail pricing — 25% discount applied to subtotal. Shipping at retail rate. Final price confirmed at order.</div>
     </div>
   </div>
-</div>
 
 </div><!-- /config-layout -->
 
@@ -565,6 +539,8 @@
 <script src="../js/pages/synchrony-verticals.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-delivery-step').innerHTML =
+  pbDeliveryStepHTML({ stepNum: 4, onPick: 'calcPrice()' });
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addSynchronyToCart()', submitFn: 'submitQuote()' });
 </script>

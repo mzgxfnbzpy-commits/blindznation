@@ -16,7 +16,8 @@ const MATRICES={
   4:{48:[319,394,480,549,633,692,781,888],60:[338,423,514,580,664,730,829,938],72:[359,441,543,614,696,764,866,988],84:[374,463,573,649,736,800,911,1037],96:[394,486,598,679,776,842,958,1089],108:[406,510,629,710,811,888,1001,1141]}
 };
 
-let state={group:null,collection:null,colorName:null,vane:null,mount:null,w:0,h:0,shim:false,shimQty:1,qty:1,del:null,wand:'No preference'};
+// mount: Inside pre-selected (standard). del: freight always applies — the shared Delivery step only records ship vs. installation.
+let state={group:null,collection:null,colorName:null,vane:null,mount:'inside',w:0,h:0,shim:false,shimQty:1,qty:1,del:'ship',wand:'No preference'};
 
 function toggleStep(id){
   const b=document.getElementById(id);
@@ -84,7 +85,7 @@ function pickSynFabric(collection,colorName){
 synBuildPicker();
 
 function pickMount(el,key,label){
-  document.querySelectorAll('#step2 .opt-btn').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#grp-mount .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   state.mount=key;
   document.getElementById('s2val').textContent=label;
@@ -104,7 +105,7 @@ function pickMount(el,key,label){
     if(shimAddon){shimAddon.style.opacity='0.35';shimAddon.style.pointerEvents='none';shimAddon.classList.remove('sel');}
     if(shimNa)shimNa.style.display='block';
     state.shim=false;document.getElementById('shim-qty-wrap').style.display='none';
-    document.getElementById('shim-check').style.color='transparent';
+    document.getElementById('s4val').textContent='None selected';
   } else {
     if(shimAddon){shimAddon.style.opacity='';shimAddon.style.pointerEvents='';}
     if(shimNa)shimNa.style.display='none';
@@ -147,8 +148,6 @@ function toggleShim(row){
   row.classList.toggle('sel');
   state.shim=row.classList.contains('sel');
   document.getElementById('shim-qty-wrap').style.display=state.shim?'block':'none';
-  const addonCheck=document.getElementById('shim-check');
-  addonCheck.style.color=state.shim?'#111110':'transparent';
   document.getElementById('s4val').textContent=state.shim?state.shimQty+' shim':'None selected';
   calcPrice();
 }
@@ -166,17 +165,22 @@ function adjQty(d){
   calcPrice();
 }
 function pickWand(btn,side){
-  btn.parentElement.querySelectorAll('button').forEach(b=>{b.style.borderColor='#e8e8e4';b.style.color='';b.style.background='#fff';});
-  btn.style.borderColor='var(--gold)';btn.style.color='#0A4A42';btn.style.background='var(--gold-mid)';
+  selOpt(btn,'grp-wand');
   state.wand=side;
+  updateSummary();
 }
-function pickDel(btn,key){
-  document.querySelectorAll('.delivery-opt-card').forEach(b=>b.classList.remove('sel'));
-  btn.classList.add('sel');
-  state.del=key;
-      document.getElementById('s6val').textContent=key==='ship'?'Ship to me':'Pick up';
-  markDone('step6');
-  calcPrice();
+// Summary card configuration rows — always current, even before a price is available.
+function updateSummary(){
+  const q=parseInt(document.getElementById('qty').value)||1;
+  const w=parseFloat(document.getElementById('w-whole').value)||0, h=parseFloat(document.getElementById('h-whole').value)||0;
+  const set=(id,v)=>{const e=document.getElementById(id); if(e) e.textContent=v;};
+  set('qr-dims',(w&&h)?w+'″ × '+h+'″':'—');
+  set('qr-mount',state.mount==='outside'?'Outside mount':state.mount==='semi'?'Semi-inside mount':'Inside mount');
+  set('qr-qty',q+(q>1?' blinds':' blind'));
+  set('qr-group',state.collection?state.collection+' — '+state.colorName:'—');
+  set('qr-vane',state.vane||'—');
+  set('qr-wand',state.wand||'No preference');
+  set('qr-addons',state.shim?state.shimQty+' shim'+(state.shimQty>1?'s':''):'None');
 }
 
 const NORMAN_DISC = 0.25; // 25% off retail subtotal — not applied to shipping
@@ -184,6 +188,7 @@ const NORMAN_DISC = 0.25; // 25% off retail subtotal — not applied to shipping
 function updateQuote(){
   const qty=parseInt(document.getElementById('qty').value)||1;
   state.qty=qty;
+  updateSummary();
   const mountLabel=state.mount==='inside'?'Inside mount':state.mount==='semi'?'Semi-inside mount':state.mount==='outside'?'Outside mount':'';
   const ready=state.group&&state.colorName&&state.mount&&state.w&&state.h;
   if(!ready){document.getElementById('qp-pending').style.display='block';document.getElementById('qp-detail').style.display='none';return;}
@@ -284,7 +289,7 @@ function submitQuote(){
     'Height: '+state.h+'″',
     'Shims: '+(state.shim?state.shimQty+' × $7':'No'),
     'Quantity: '+qty,
-    'Delivery: '+(state.del==='ship'?'Ship to me':'Pick up'),
+    'Delivery: '+pbDeliveryLabel(),
     '',
     'Notes: '+(document.getElementById('cf-notes').value.trim()||'None'),
     '','Name: '+name,'Phone: '+phone,
@@ -295,3 +300,6 @@ function submitQuote(){
   window.location.href='mailto:justin@blindznation.com?subject='+subject+'&body='+body;
   document.getElementById('success-box').style.display='block';
 }
+
+// Inside mount is pre-selected — apply its effects (shims disabled until Outside mount).
+(function(){ var m=document.querySelector('#grp-mount .opt-btn.sel'); if(m) pickMount(m,'inside','Inside mount'); })();
