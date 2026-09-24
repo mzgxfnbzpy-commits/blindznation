@@ -1370,6 +1370,8 @@ function pbRenderShadeLabels(wrap) {
 function _initShadeLabels() {
   document.querySelectorAll('.qty-btns').forEach(function(q) {
     if (q._pbLabelsInit) return; q._pbLabelsInit = true;
+    // The rod-spec Brackets counter is a stepper too, but a bracket needs no label.
+    if (q.querySelector('[data-pb-rod]')) return;
     var qtyEl = q.querySelector('.qty-num') || q.querySelector('input, span');
     var wrap = document.createElement('div');
     wrap.className = 'pb-labels-wrap';
