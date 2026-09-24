@@ -362,7 +362,7 @@ function getStack(w) {
 /* ── State ── */
 const S = {
   collection:'', productType:'', qty:1,
-  mountType:'', w:0, h:0, pattern:null,
+  mountType:'inside', w:0, h:0, pattern:null,
   shadeStyle:'', multi:'none', twin:false,
   openingStyle:'', trackColor:'', bracketType:'',
   valanceBoard:false, trackProfile:'', wallOrCeiling:'',
@@ -378,40 +378,42 @@ function hide(id){var e=$(id);if(e)e.style.display='none';}
 function showb(id){var e=$(id);if(e){e.style.display='block';}}
 function hideb(id){var e=$(id);if(e)e.style.display='none';}
 
-function togglePill(el, grp) {
-  el.closest('.opt-row,.step-block').querySelectorAll('.opt-pill').forEach(function(p){
-    if(p.dataset.group===grp||!grp) p.classList.remove('sel');
-  });
-  if(grp) el.closest('.step-block, .config-wrap').querySelectorAll('.opt-pill').forEach(function(p){
-    if(p.getAttribute('onclick')&&p.getAttribute('onclick').includes(grp)) p.classList.remove('sel');
-  });
+// Single-select pill: clears the other pills in the same .opt-row only.
+function togglePill(el) {
+  var row = el.closest('.opt-row');
+  if(row) row.querySelectorAll('.opt-btn').forEach(function(p){ p.classList.remove('sel'); });
   el.classList.add('sel');
+  wwSummary();
 }
+function selInRow(el) { togglePill(el); }
 
-/* ── Step navigation ── */
-function goS(n) {
-  // Validate current step before moving forward
-  if(n===5 && S.productType==='drapery' && S.collection==='select') {
-    // will filter fabric grid on show
-  }
-  $('s'+n).style.display='block';
-  $('s'+n).scrollIntoView({behavior:'smooth',block:'start'});
-  if(n===5) buildFabricGrid();
-  if(n===7) updateControls();
-  if(n===8) buildLinerOpts();
-  if(n===9) buildEBOpts();
-  if(n===10) updateSpecials();
-  if(n===11) updateMotor();
+/* ── Refresh dependent steps (every step is always visible — no Next/Back) ── */
+function wwRefresh() {
+  setupS6();
+  updateControls();
+  buildLinerOpts();
+  updateSpecials();
+  updateMotor();
+  wwSummary();
 }
+function goS(n) { wwRefresh(); }
 
 /* ── Style picker (Roller vs Roman) ── */
-var rS = { mount:'', ctrl:'', liner:'', cass:'', delivery:'' };
+var rS = { mount:'Inside mount', ctrl:'', liner:'', cass:'', delivery:'' };
+var wwFlow = '';
 
 function pickStyle(s, el) {
-  document.querySelectorAll('#s0 .choice-card').forEach(function(c){c.classList.remove('sel');});
+  wwFlow = s;
+  document.querySelectorAll('#style-opts .opt-btn').forEach(function(c){c.classList.remove('sel');});
   if(el) el.classList.add('sel');
+  document.getElementById('ww-config').style.display = 'block';
   document.getElementById('roller-section').style.display = s==='roller' ? 'block' : 'none';
   document.getElementById('roman-section').style.display  = s==='roman'  ? 'block' : 'none';
+  // Delivery + Your details are shared by both flows — renumber them to follow the open flow.
+  var last = s==='roller' ? 5 : 10;
+  var dn = document.querySelector('#pb-delivery-block .step-num'); if(dn) dn.textContent = last+1;
+  var cn = document.querySelector('#contact-block .step-num');     if(cn) cn.textContent = last+2;
+  wwRefresh();
   if(s==='roman') setTimeout(function(){
     document.getElementById('roman-section').scrollIntoView({behavior:'smooth',block:'start'});
   },80);
@@ -423,21 +425,20 @@ function pickStyle(s, el) {
 function rPill(el, grpId) {
   // For opt-pill groups, remove sel from siblings; for delivery-opt groups remove sel
   if(grpId==='r-del-grp') {
-    ['r-del-install','r-del-ship'].forEach(function(id){
-      var e=document.getElementById(id); if(e) e.classList.remove('sel');
-    });
     el.classList.add('sel');
   } else {
     var grp = document.getElementById(grpId);
-    if(grp) grp.querySelectorAll('.opt-pill').forEach(function(p){p.classList.remove('sel');});
+    if(grp) grp.querySelectorAll('.opt-btn').forEach(function(p){p.classList.remove('sel');});
     el.classList.add('sel');
   }
+  wwSummary();
 }
 
 function submitRollerQuote() {
-  var name = (document.getElementById('r-name')||{}).value||'';
-  var contact = (document.getElementById('r-contact')||{}).value||'';
-  name = name.trim(); contact = contact.trim();
+  var name = ((document.getElementById('cf-name')||{}).value||'').trim();
+  var phone = ((document.getElementById('cf-phone')||{}).value||'').trim();
+  var email = ((document.getElementById('cf-email')||{}).value||'').trim();
+  var contact = [phone, email].filter(Boolean).join(' / ');
   if(!name||!contact){ alert('Please enter your name and contact info.'); return; }
 
   var body =
@@ -457,19 +458,19 @@ function submitRollerQuote() {
     +'  Control        : '+(rS.ctrl||'—')+'\n'
     +'  Light / liner  : '+(rS.liner||'—')+'\n'
     +'  Cassette color : '+(rS.cass||'—')+'\n\n'
-    +'DELIVERY: '+(rS.delivery||'—')+'\n\n'
+    +'DELIVERY: '+wwDeliveryLabel()+'\n\n'
     +'CONTACT\n'
     +'  Name    : '+name+'\n'
     +'  Contact : '+contact+'\n'
-    +'  Address : '+((document.getElementById('r-address')||{}).value||'—')+'\n'
-    +'  Notes   : '+((document.getElementById('r-notes')||{}).value||'—');
+    +'  Address : '+((document.getElementById('cf-address')||{}).value||'—')+'\n'
+    +'  Notes   : '+((document.getElementById('cf-notes')||{}).value||'—');
 
   window.location.href = 'mailto:justin@blindznation.com'
     +'?subject='+encodeURIComponent('Blindznation — ' + 'Natural Woven Roller Shades Quote — '+name)
     +'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
 
   document.getElementById('success-box').style.display = 'block';
-  document.getElementById('roller-section').style.display = 'none';
+  document.getElementById('ww-config').style.display = 'none';
   document.getElementById('s0').style.display = 'none';
 }
 
@@ -477,32 +478,38 @@ function submitRollerQuote() {
 function pickCollection(c, el) {
   S.collection = c;
   _s6setup = false;
-  document.querySelectorAll('#s1 .choice-card').forEach(function(cc){cc.classList.remove('sel');});
+  document.querySelectorAll('#coll-opts .opt-btn').forEach(function(cc){cc.classList.remove('sel');});
   el.classList.add('sel');
   // Portfolio and Galaxy are Roman-shade-only in this flow
   var romanOnly = (c === 'portfolio' || c === 'galaxy');
   $('s2-panel-card').style.display    = romanOnly ? 'none' : '';
   $('s2-drapery-card').style.display  = romanOnly ? 'none' : '';
   $('s2-valance-card').style.display  = romanOnly ? 'none' : '';
-  $('s2-extra-row').style.display     = romanOnly ? 'none' : '';
   $('s2-roman-only-note').style.display = romanOnly ? 'block' : 'none';
+  if(romanOnly && S.productType && S.productType!=='roman') pickType('roman', $('s2-roman-card'));
   // Galaxy supports hobbled style
   $('hobbled-style-pill').style.display = (c === 'galaxy') ? '' : 'none';
+  if(c !== 'galaxy' && S.shadeStyle === 'hobbled') { S.shadeStyle=''; $('hobbled-style-pill').classList.remove('sel'); }
   $('hobbled-note').style.display = 'none';
-  $('s2').style.display='block';
-  $('s2').scrollIntoView({behavior:'smooth',block:'start'});
+  buildFabricGrid();
+  buildEBOpts();
+  if(S.liner==='lf'||S.liner==='bo'){ var lb=document.querySelector('#liner-type-opts .opt-btn.sel'); if(lb) pickLiner(S.liner, lb); }
+  wwRefresh();
 }
 
 /* ── Step 2: Product type ── */
 function pickType(t, el) {
   S.productType = t;
   _s6setup = false; // reset so step 6 re-renders for new product type
-  document.querySelectorAll('#s2 .choice-card').forEach(function(cc){cc.classList.remove('sel');});
+  document.querySelectorAll('#type-opts .opt-btn').forEach(function(cc){cc.classList.remove('sel');});
   el.classList.add('sel');
   // Ceiling mount only for panels/draperies
-  $('mount-ceiling').style.display = (t==='roman'||t==='valance') ? 'none' : '';
-  $('s3').style.display='block';
-  $('s3').scrollIntoView({behavior:'smooth',block:'start'});
+  var noCeiling = (t==='roman'||t==='valance');
+  $('mount-ceiling').style.display = noCeiling ? 'none' : '';
+  if(noCeiling && S.mountType==='ceiling') pickMount('inside', document.querySelector('#mount-opts .opt-btn'));
+  if(S.collection) buildFabricGrid();
+  dimChanged();
+  wwRefresh();
 }
 
 /* ── Step 3: Mount ── */
@@ -510,7 +517,8 @@ function pickMount(m, el) {
   S.mountType = m;
   document.querySelectorAll('#mount-opts .opt-btn').forEach(function(p){p.classList.remove('sel');});
   el.classList.add('sel');
-  $('warn-im-deduction').style.display = m==='inside' ? 'block' : 'none';
+  if(S.control) pickControl(S.control, document.getElementById('ctrl-'+S.control)); // re-check TDBU/returns rule
+  wwSummary();
 }
 
 /* ── Step 3: Quantity stepper ── */
@@ -518,6 +526,7 @@ function adjQty(d) {
   var el = $('qty'); if(!el) return;
   var v = Math.max(1, Math.min(50, (parseInt(el.value,10)||1) + d));
   el.value = v; S.qty = v;
+  wwSummary();
 }
 
 /* ── Step 4: Dimensions ── */
@@ -538,6 +547,7 @@ function dimChanged() {
     drapery:'Min 48"W × 24"H &nbsp;|&nbsp; Max 192"W × 96"H. Tracks over 94" spliced.',
     valance:'Max 96"W × 18"H.'
   }[S.productType]||'';
+  $si.style.display = $si.innerHTML ? 'block' : 'none';
   var errs=[];
   if(w&&h){
     if(w<limits.minW) errs.push('Width below minimum '+limits.minW+'".');
@@ -561,6 +571,7 @@ function dimChanged() {
     $('stack-display').style.display='block';
     $('stack-text').textContent=st+'" (÷2 for split draw)';
   } else $('stack-display').style.display='none';
+  wwSummary();
 }
 
 /* ── Step 5: Fabric grid ── */
@@ -581,6 +592,9 @@ function buildFabricGrid() {
     select:'<strong>Walden Select</strong> — 57 fabrics, price groups with WS- fabric codes.'
   };
   $('fabric-collection-note').innerHTML = collNotes[S.collection]||'';
+  $('fabric-wait-note').style.display = S.collection ? 'none' : 'block';
+  $('fabric-picker-wrap').style.display = S.collection ? 'block' : 'none';
+  if(S.pattern && patterns.indexOf(S.pattern)<0){ S.pattern=null; $('fabric-summary').style.display='none'; }
   patterns.forEach(function(p){
     var el=document.createElement('div');
     el.className='fabric-card';
@@ -600,6 +614,7 @@ function buildFabricGrid() {
       +'<div class="fabric-group">Group '+(p.group||'?')+'</div>'
       +(flags?'<div class="fabric-flags">'+flags+'</div>':'');
     el.onclick=function(){selectFabric(p,this);};
+    if(S.pattern===p) el.classList.add('sel');
     grid.appendChild(el);
   });
 }
@@ -621,13 +636,15 @@ function selectFabric(p, el) {
   $('warn-eb-required').style.display=p.edgeBindingRequired?'block':'none';
   $('warn-panel-ineligible').style.display=(S.productType==='panel'&&p.slidingPanel===false)?'block':'none';
   $('warn-drape-ineligible').style.display=(S.productType==='drapery'&&p.naturalDrapery===false)?'block':'none';
+  buildEBOpts();
+  if(S.control) pickControl(S.control, document.getElementById('ctrl-'+S.control));
+  wwSummary();
 }
 
 /* ── Step 6: Style ── */
 function pickShadeStyle(st, el) {
   S.shadeStyle=st;
-  document.querySelectorAll('#roman-style-opts .opt-row:first-of-type .opt-pill').forEach(function(p){p.classList.remove('sel');});
-  el.classList.add('sel');
+  selInRow(el);
   // Waterfall and Hobbled: block 3-on-1, TDBU, Pro Wand
   if(st==='waterfall'||st==='hobbled'){
     $('multi-3on1').classList.add('disabled');
@@ -637,25 +654,26 @@ function pickShadeStyle(st, el) {
     $('twin-yes').classList.remove('disabled');
   }
   $('hobbled-note').style.display = st==='hobbled' ? 'block' : 'none';
+  updateControls();
 }
 function pickMulti(m, el) {
   S.multi=m;
-  document.querySelectorAll('#roman-style-opts .opt-row:nth-of-type(2) .opt-pill').forEach(function(p){p.classList.remove('sel');});
-  el.classList.add('sel');
+  selInRow(el);
   $('warn-multi-width').style.display=(m==='2on1'||m==='3on1')?'block':'none';
   if(m==='3on1') $('twin-yes').classList.add('disabled');
   else if(S.shadeStyle!=='waterfall') $('twin-yes').classList.remove('disabled');
+  updateControls();
 }
 function pickTwin(yes, el) {
   S.twin=yes;
-  document.querySelectorAll('#roman-style-opts .opt-row:nth-of-type(3) .opt-pill').forEach(function(p){p.classList.remove('sel');});
-  el.classList.add('sel');
+  selInRow(el);
   $('twin-info').style.display=yes?'block':'none';
+  updateControls();
+  buildLinerOpts();
 }
 function pickOpening(o, el) {
   S.openingStyle=o;
-  document.querySelectorAll('#opening-style-opts .opt-row .opt-pill').forEach(function(p){p.classList.remove('sel');});
-  el.classList.add('sel');
+  selInRow(el);
   // Update panel config display
   if(S.productType==='panel'&&S.w){
     var cfg=getPanelConfig(S.w,o);
@@ -670,41 +688,35 @@ function pickOpening(o, el) {
   }
 }
 
-// Show correct style section in step 6
-(function setupS6(){
-  document.addEventListener('DOMContentLoaded',function(){});
-})();
-
-// Called when step 6 shown
+// Show the style section that matches the product type (step 5).
 var _s6setup=false;
-var _origGoS=goS;
-goS=function(n){
-  _origGoS(n);
-  if(n===6&&!_s6setup){
-    _s6setup=true;
-    hideb('roman-style-opts'); hideb('opening-style-opts'); hideb('valance-only-opts');
-    hideb('panel-extras'); hideb('drapery-extras');
-    if(S.productType==='roman'){
-      $('s6-title').textContent='Shade Style';
-      showb('roman-style-opts');
-    } else if(S.productType==='panel'){
-      $('s6-title').textContent='Panel Opening';
-      showb('opening-style-opts');
-      showb('panel-extras');
-    } else if(S.productType==='drapery'){
-      $('s6-title').textContent='Drapery Opening';
-      showb('opening-style-opts');
-      showb('drapery-extras');
-    } else {
-      $('s6-title').textContent='Valance Options';
-      showb('valance-only-opts');
-    }
+function setupS6(){
+  hideb('roman-style-opts'); hideb('opening-style-opts'); hideb('valance-only-opts');
+  hideb('panel-extras'); hideb('drapery-extras');
+  $('s6-wait-note').style.display = S.productType ? 'none' : 'block';
+  if(!S.productType){ $('s6-title').textContent='Shade style'; return; }
+  if(S.productType==='roman'){
+    $('s6-title').textContent='Shade style';
+    showb('roman-style-opts');
+  } else if(S.productType==='panel'){
+    $('s6-title').textContent='Panel opening';
+    showb('opening-style-opts');
+    showb('panel-extras');
+  } else if(S.productType==='drapery'){
+    $('s6-title').textContent='Drapery opening';
+    showb('opening-style-opts');
+    showb('drapery-extras');
+  } else {
+    $('s6-title').textContent='Valance options';
+    showb('valance-only-opts');
   }
-};
+}
 
 /* ── Step 7: Controls ── */
 function updateControls() {
   hideb('roman-controls'); hideb('panel-ctrl-note'); hideb('drape-ctrl-note'); hideb('valance-ctrl-note');
+  $('s7-wait-note').style.display = S.productType ? 'none' : 'block';
+  if(!S.productType) return;
   if(S.productType==='roman'){
     showb('roman-controls');
     // Power Lift: Premier only
@@ -720,11 +732,13 @@ function updateControls() {
   } else if(S.productType==='panel') showb('panel-ctrl-note');
   else if(S.productType==='drapery') showb('drape-ctrl-note');
   else showb('valance-ctrl-note');
+  // drop a control that the new style/twin/3-on-1 choice just disabled
+  if(S.control){ var cur=$('ctrl-'+S.control); if(cur && (cur.classList.contains('disabled')||cur.style.display==='none')){ cur.classList.remove('sel'); S.control=''; $('ctrl-err').style.display='none'; $('ctrl-limit-info').style.display='none'; updateMotor(); } }
 }
 function pickControl(c, el) {
   S.control=c;
-  document.querySelectorAll('#ctrl-opts .opt-pill').forEach(function(p){p.classList.remove('sel');});
-  el.classList.add('sel');
+  document.querySelectorAll('#ctrl-opts .opt-btn').forEach(function(p){p.classList.remove('sel');});
+  if(el) el.classList.add('sel');
   var w=S.w, h=S.h, lm=CTRL_LIMITS[c]||{};
   var errs=[];
   var isTdbu = c==='tdbu';
@@ -753,6 +767,8 @@ function pickControl(c, el) {
   } else $('warn-motor-sqft').style.display='none';
   // TDBU inside mount + returns warning
   $('warn-tdbu-returns').style.display=(c==='tdbu'&&S.mountType==='inside')?'block':'none';
+  updateMotor();
+  wwSummary();
 }
 
 /* ── Step 8: Liners ── */
@@ -764,11 +780,13 @@ function getLiners() {
 }
 function buildLinerOpts() {
   $('liner-twin-opt').style.display = S.twin ? '' : 'none';
+  if(!S.twin && S.liner==='twin') pickLiner('none', document.querySelector('#liner-type-opts .opt-btn'));
 }
 function pickLiner(type, el) {
   S.liner=type;
-  document.querySelectorAll('#s8 .opt-row .opt-pill').forEach(function(p){p.classList.remove('sel');});
+  document.querySelectorAll('#liner-type-opts .opt-btn').forEach(function(p){p.classList.remove('sel');});
   el.classList.add('sel');
+  S.linerColor='';
   if(type==='none'||type==='twin'){
     hideb('liner-color-section');
   } else {
@@ -776,34 +794,43 @@ function pickLiner(type, el) {
     var liners = getLiners()[type]||[];
     var $opts=$('liner-color-opts'); $opts.innerHTML='';
     liners.forEach(function(l){
-      var p=document.createElement('div');
-      p.className='opt-pill';
+      var p=document.createElement('button');
+      p.type='button'; p.className='opt-btn';
       p.textContent=l.name+' ('+l.code+')';
       p.onclick=function(){
         S.linerColor=l.code+' '+l.name;
-        document.querySelectorAll('#liner-color-opts .opt-pill').forEach(function(x){x.classList.remove('sel');});
+        document.querySelectorAll('#liner-color-opts .opt-btn').forEach(function(x){x.classList.remove('sel');});
         this.classList.add('sel');
         $('warn-black-seam').style.display=(l.note==='seam>53'&&S.w>53)?'block':'none';
+        wwSummary();
       };
       $opts.appendChild(p);
     });
   }
+  wwSummary();
 }
 
 /* ── Step 9: Edge binding ── */
 function buildEBOpts() {
   var $eto=$('eb-type-opts'); $eto.innerHTML='';
+  $('eb-wait-note').style.display = S.collection ? 'none' : 'block';
+  if(!S.collection){ hideb('eb-color-section'); return; }
   $('warn-eb-req-step9').style.display=(S.pattern&&S.pattern.edgeBindingRequired)?'block':'none';
   $('warn-edge-seal').style.display='none';
 
+  var ebReq = !!(S.pattern&&S.pattern.edgeBindingRequired);
+  var keys = S.collection==='premier' ? ['none','narrow','wide','ramie'] : ['none','ramie'];
+  if(keys.indexOf(S.ebType)<0 || (ebReq && S.ebType==='none')) { S.ebType = ebReq ? '' : 'none'; S.ebColor=''; }
+  if(!S.ebType || S.ebType==='none') hideb('eb-color-section');
   function addEBType(label, key) {
-    var p=document.createElement('div');
-    p.className='opt-pill';
-    if(S.pattern&&S.pattern.edgeBindingRequired&&key==='none') p.classList.add('disabled');
+    var p=document.createElement('button');
+    p.type='button'; p.className='opt-btn';
+    if(ebReq&&key==='none') p.classList.add('disabled');
+    if(S.ebType===key) p.classList.add('sel');
     p.textContent=label;
     p.onclick=function(){
-      S.ebType=key;
-      document.querySelectorAll('#eb-type-opts .opt-pill').forEach(function(x){x.classList.remove('sel');});
+      S.ebType=key; S.ebColor='';
+      document.querySelectorAll('#eb-type-opts .opt-btn').forEach(function(x){x.classList.remove('sel');});
       this.classList.add('sel');
       if(key==='none'){
         hideb('eb-color-section');
@@ -815,6 +842,7 @@ function buildEBOpts() {
         buildEBColors(key);
         $('warn-cutout-eb').style.display=(S.cutouts>0)?'block':'none';
       }
+      wwSummary();
     };
     $eto.appendChild(p);
   }
@@ -838,12 +866,13 @@ function buildEBColors(type) {
   var colors = getEBColors(type);
   var $ec=$('eb-color-opts'); $ec.innerHTML='';
   colors.forEach(function(c){
-    var p=document.createElement('div');
-    p.className='opt-pill'; p.textContent=c;
+    var p=document.createElement('button');
+    p.type='button'; p.className='opt-btn'; p.textContent=c;
     p.onclick=function(){
       S.ebColor=c;
-      document.querySelectorAll('#eb-color-opts .opt-pill').forEach(function(x){x.classList.remove('sel');});
+      document.querySelectorAll('#eb-color-opts .opt-btn').forEach(function(x){x.classList.remove('sel');});
       this.classList.add('sel');
+      wwSummary();
     };
     $ec.appendChild(p);
   });
@@ -852,14 +881,15 @@ function buildEBColors(type) {
 /* ── Step 10: Specials ── */
 function updateSpecials() {
   hideb('roman-specials'); hideb('panel-specials'); hideb('valance-specials');
+  $('s10-wait-note').style.display = S.productType ? 'none' : 'block';
+  if(!S.productType) return;
   if(S.productType==='roman') showb('roman-specials');
   else if(S.productType==='panel') showb('panel-specials');
   else showb('valance-specials');
 }
 function pickReturns(r, el) {
   S.returns=r;
-  document.querySelectorAll('#s10 .opt-row .opt-pill[id^="ret"]').forEach(function(p){p.classList.remove('sel');});
-  el.classList.add('sel');
+  selInRow(el);
   $('warn-tdbu-ret').style.display=(r==='yes'&&S.control==='tdbu'&&S.mountType==='inside')?'block':'none';
 }
 function updateCutoutWarn() {
@@ -884,16 +914,42 @@ function toggleMotorAcc(el, key) {
   if(idx>=0) S.motorAccs.splice(idx,1); else S.motorAccs.push(key);
 }
 
-/* ── Delivery ── */
-function pickDel(opt) {
-  S.delivery=opt;
-  ['install','ship'].forEach(function(o){
-    $('del-'+o).classList.toggle('sel', o===opt);
-  });
+/* ── Delivery — shared pbDeliveryStepHTML; the choice lives in window.pbDelivery ── */
+function wwDeliveryLabel() { return (typeof pbDeliveryLabel==='function') ? pbDeliveryLabel() : 'Ship to me'; }
+function wwMountLabel(m) { return {inside:'Inside mount',outside:'Outside mount',ceiling:'Ceiling mount'}[m] || '—'; }
+
+/* ── Summary card ── */
+function wwSummary() {
+  var set=function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v||'—'; };
+  var val=function(id){ var e=document.getElementById(id); return e ? (e.value||'').trim() : ''; };
+  if(wwFlow==='roller'){
+    var w=val('r-w'), h=val('r-h');
+    set('ws-product','Portfolio Natural Woven Roller');
+    set('ws-size',(w&&h)?(w+'″ × '+h+'″'):'—');
+    set('ws-mount',rS.mount);
+    set('ws-qty',val('r-qty')||'1');
+    set('ws-type','Roller shade');
+    set('ws-fabric',[val('r-pattern'),val('r-color')].filter(Boolean).join(' · '));
+    set('ws-control',rS.ctrl);
+    set('ws-liner',rS.liner);
+  } else {
+    var collMap={portfolio:'Wallace Portfolio Natural Woven',galaxy:'Wallace Galaxy Woven',premier:'Walden Premier',select:'Walden Select'};
+    var ctrlEl=S.control?document.getElementById('ctrl-'+S.control):null;
+    set('ws-product',collMap[S.collection]||'Natural Woven');
+    set('ws-size',(S.w&&S.h)?(S.w+'″ × '+S.h+'″'):'—');
+    set('ws-mount',wwMountLabel(S.mountType));
+    set('ws-qty',String(S.qty||1));
+    set('ws-type',{roman:'Roman shade',panel:'Sliding panel',drapery:'Natural drapery',valance:'Valance only'}[S.productType]);
+    set('ws-fabric',S.pattern?(S.pattern.name+' ('+S.pattern.code+')'):'');
+    set('ws-control',ctrlEl?ctrlEl.textContent:'');
+    set('ws-liner',S.liner==='none'?'No liner':({lf:'Light filtering',bo:'Blackout',twin:'Twin / movable liner'}[S.liner])+(S.linerColor?' · '+S.linerColor:''));
+  }
+  set('ws-del',wwDeliveryLabel());
 }
 
 /* ── Submit ── */
 function submitQuote() {
+  if(wwFlow==='roller') return submitRollerQuote();
   var name=$('cf-name').value.trim();
   var phone=($('cf-phone')||{value:''}).value.trim();
   var email=($('cf-email')||{value:''}).value.trim();
@@ -917,7 +973,7 @@ function submitQuote() {
     'Collection: Wallace '+coll,
     'Product Type: '+prod,
     'Quantity: '+S.qty,
-    'Mount type: '+S.mountType,
+    'Mount type: '+wwMountLabel(S.mountType),
     'Width: '+S.w+'"',
     'Height: '+S.h+'"',
     '',
@@ -935,7 +991,7 @@ function submitQuote() {
     'Opening Style: '+(S.openingStyle||'N/A'),
     'Track Color: '+(S.trackColor||'N/A'),
     'Track Profile: '+(S.trackProfile||'N/A'),
-    'Wall or Ceiling mount: '+(S.wallOrCeiling||S.mountType),
+    'Wall or Ceiling mount: '+(S.wallOrCeiling||wwMountLabel(S.mountType)),
     'Valance Board: '+(S.valanceBoard?'Yes':'No'),
     '',
     'CONTROL',
@@ -960,7 +1016,7 @@ function submitQuote() {
     'Motor Accessories: '+(S.motorAccs.length?S.motorAccs.join(', '):'None'),
     '',
     'DELIVERY / SERVICE',
-    'Preference: '+(S.delivery==='install'?'Professional Installation':'Ship to Customer'),
+    'Preference: '+wwDeliveryLabel(),
     '',
     'NOTES',
     $('cf-notes').value||'None',
@@ -973,10 +1029,31 @@ function submitQuote() {
 
   $('success-box').style.display='block';
   $('success-box').scrollIntoView({behavior:'smooth'});
-  document.querySelectorAll('.step-block').forEach(function(b){b.style.display='none';});
+  $('ww-config').style.display='none';
+  $('s0').style.display='none';
 }
 
 function addWallaceWovenToCart() {
+  if(wwFlow==='roller'){
+    var v=function(id){ var e=document.getElementById(id); return e ? (e.value||'').trim() : ''; };
+    var rq=parseInt(v('r-qty'),10)||1;
+    var rl=[
+      { label: 'Product', value: 'Wallace Portfolio Natural Woven Rollers' },
+      { label: 'Type', value: 'Roller Shade' },
+      { label: 'Pattern', value: v('r-pattern') || '—' },
+      { label: 'Color', value: v('r-color') || '—' },
+      { label: 'Size', value: (v('r-w')||'—') + '″ × ' + (v('r-h')||'—') + '″' },
+      { label: 'Mount', value: rS.mount || '—' },
+      { label: 'Control', value: rS.ctrl || '—' },
+      { label: 'Liner', value: rS.liner || '—' },
+      { label: 'Cassette', value: rS.cass || '—' },
+      { label: 'Room', value: v('r-room') || '—' },
+      { label: 'Quantity', value: String(rq) }
+    ];
+    pbAddToCart({ product: 'Wallace Portfolio Natural Woven Rollers', lines: rl, specs: rl.map(function(l){ return l.label+': '+l.value; }).join(' | '), qty: rq });
+    pbOpenCart();
+    return;
+  }
   var collMap = {portfolio:'Wallace Portfolio Natural Woven',galaxy:'Wallace Galaxy Woven',premier:'Walden Premier',select:'Walden Select'};
   var prodMap = {roman:'Roman Shade',panel:'Sliding Panel',drapery:'Natural Drapery',valance:'Valance Only'};
   var coll = collMap[S.collection] || (S.collection || 'Natural Woven');
@@ -986,7 +1063,9 @@ function addWallaceWovenToCart() {
     { label: 'Type', value: prod },
     { label: 'Pattern', value: S.pattern ? S.pattern.name : '—' },
     { label: 'Size', value: (S.w||'—') + '″ × ' + (S.h||'—') + '″' },
+    { label: 'Mount', value: wwMountLabel(S.mountType) },
     { label: 'Control', value: S.control || '—' },
+    { label: 'Liner', value: S.liner + (S.linerColor ? ' — ' + S.linerColor : '') },
     { label: 'Quantity', value: String(S.qty||1) }
   ];
   pbAddToCart({ product: coll, lines: lines, specs: lines.map(function(l){ return l.label+': '+l.value; }).join(' | '), qty: S.qty||1 });

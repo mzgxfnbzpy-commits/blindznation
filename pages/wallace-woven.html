@@ -29,32 +29,9 @@
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7)}
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 
-.config-wrap{max-width:820px;margin:0 auto;padding:32px 20px 72px}
-
-/* Step bubbles */
-.step-hd{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-.step-num-circle{width:28px;height:28px;border-radius:50%;background:var(--espresso);color:var(--gold);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:var(--font)}
-.step-title{font-size:18px;font-weight:500;color:#111;letter-spacing:-.3px;margin:0}
-.step-block.done .step-num-circle{background:var(--gold);color:var(--espresso)}
-.step-sub{font-size:13px;color:#666;line-height:1.6;margin-bottom:16px}
-
-/* Choice cards */
-.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-@media(max-width:540px){.choice-grid{grid-template-columns:1fr}}
-.choice-card{background:#fff;border:1.5px solid #e8e4de;border-radius:12px;padding:18px;cursor:pointer;transition:.15s}
-.choice-card:hover{border-color:var(--gold)}
-.choice-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.choice-card-title{font-size:14px;font-weight:600;color:#111;margin-bottom:4px}
-.choice-card-sub{font-size:11px;color:#666;line-height:1.5}
-.choice-badge{display:inline-block;background:var(--gold);color:var(--espresso);font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase}
-
-/* Opt pills */
-.opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.opt-pill{padding:8px 16px;border:1.5px solid #e0dbd2;border-radius:24px;font-size:12px;color:#333;cursor:pointer;transition:.15s;background:#fff;white-space:nowrap}
-.opt-pill:hover{border-color:var(--gold)}
-.opt-pill.sel{border:2px solid var(--gold);color:var(--espresso);font-weight:500;background:var(--gold-mid)}
-.opt-pill.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
-
+.ww-outer{max-width:1100px;margin:0 auto;padding:32px 28px 72px}
+@media(max-width:600px){.ww-outer{padding:24px 16px 56px}}
+.step-block{padding:14px 16px}
 /* Fabric grid */
 .fabric-search{width:100%;padding:9px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;margin-bottom:12px;font-family:var(--font)}
 .fabric-search:focus{outline:none;border-color:var(--gold)}
@@ -70,16 +47,6 @@
 .fabric-flag{font-size:9px;padding:1px 5px;border-radius:4px;background:#f0ece4;color:#666}
 .fabric-flag.warn{background:#fff3cd;color:#7a5900}
 
-/* Input rows */
-.inp-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-@media(max-width:540px){.inp-row{grid-template-columns:1fr}}
-.inp-group{display:flex;flex-direction:column;gap:4px}
-.inp-label{font-size:12px;font-weight:500;color:#444}
-.inp-field{padding:9px 13px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);color:#222;background:#fff;transition:.15s}
-.inp-field:focus{outline:none;border-color:var(--gold)}
-.inp-hint{font-size:11px;color:#888;line-height:1.4}
-textarea.inp-field{resize:vertical;min-height:80px}
-
 /* Warnings & banners */
 .warn-box{background:#fff8e8;border:1px solid #f0d070;border-radius:8px;padding:12px 14px;font-size:12px;color:#7a5a00;line-height:1.6;margin-bottom:12px;display:none}
 .warn-box.show{display:block}
@@ -91,19 +58,6 @@ textarea.inp-field{resize:vertical;min-height:80px}
 
 /* Section separator */
 .divider{height:1px;background:#e8e4de;margin:18px 0}
-
-/* Delivery opts */
-.delivery-section{background:#f0ece4;border-radius:12px;padding:18px;margin-bottom:16px}
-.delivery-opt{background:#fff;border:1.5px solid #e0dbd2;border-radius:10px;padding:13px;margin-bottom:8px;cursor:pointer;transition:.15s}
-.delivery-opt:hover{border-color:var(--gold)}
-.delivery-opt.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.delivery-opt-title{font-size:13px;font-weight:600;color:#111;margin-bottom:2px}
-.delivery-opt-sub{font-size:11px;color:#777;line-height:1.5}
-
-/* Buttons */
-.btn-row{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap}
-.btn-submit{background:var(--espresso);color:var(--cream);border:none;padding:14px 36px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:var(--font);transition:.15s}
-.btn-submit:hover{background:#2c221a}
 
 /* Success */
 .success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center}
@@ -142,527 +96,456 @@ textarea.inp-field{resize:vertical;min-height:80px}
   </div>
 </section>
 
-<div class="config-wrap">
+<div class="ww-outer">
   <div class="success-box" id="success-box">
     <h3>Quote request sent!</h3>
     <p>We've received your Wallace Natural Woven configuration and will follow up within 1 business day.<br><strong>Questions? Call or text (609) 742-1720 anytime.</strong></p>
   </div>
 
-  <!-- ── ROMAN WOVEN CHOICE ANCHOR ── -->
+  <!-- anchors used by links from other pages (#roman-woven-choice / #roller-woven-choice) -->
   <div id="roman-woven-choice" style="height:0;overflow:hidden;margin:0;padding:0"></div>
-
-  <!-- ── STYLE CHOOSER ── -->
-  <div class="step-block" id="s0">
-    <div class="step-hd"><div class="step-num-circle" style="background:var(--gold);color:var(--espresso)">→</div><h2 class="step-title" style="font-size:16px">What type of shade?</h2></div>
-    <div class="choice-grid">
-      <div class="choice-card" id="style-roller" onclick="pickStyle('roller',this)">
-        <div class="choice-badge">Natural Woven</div>
-        <div class="choice-card-title">Roller Shade</div>
-        <div class="choice-card-sub">Portfolio Natural Woven Roller Shades — natural &amp; woven fabrics on a roller. Motorized, chain, or cordless.</div>
-      </div>
-      <div class="choice-card" id="style-roman" onclick="pickStyle('roman',this)">
-        <div class="choice-card-title">Roman Shade / Panels / Drapery</div>
-        <div class="choice-card-sub">Five collections: Portfolio, Galaxy, Dynasty, Walden Premier, and Walden Select. Roman shades, sliding panels, and natural draperies.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── ROLLER WOVEN ANCHOR ── -->
   <div id="roller-woven-choice" style="height:0;overflow:hidden;margin:0;padding:0"></div>
 
-  <!-- ── ROLLER QUOTE SECTION ── -->
+  <!-- ── ENTRY QUESTION: roller vs roman (each leads to its own standard frame) ── -->
+  <div class="step-block" id="s0" style="padding-top:0">
+    <div class="step-title">What type of shade?</div>
+    <div class="opt-row" id="style-opts">
+      <button class="opt-btn" type="button" id="style-roller" onclick="pickStyle('roller',this)">Roller shade</button>
+      <button class="opt-btn" type="button" id="style-roman" onclick="pickStyle('roman',this)">Roman shade / panels / drapery</button>
+    </div>
+    <div class="step-note" style="margin-top:-6px">Roller shade &mdash; Portfolio Natural Woven Roller Shades: natural &amp; woven fabrics on a roller, motorized, chain or cordless. Roman shade / panels / drapery &mdash; Portfolio, Galaxy, Walden Premier and Walden Select collections: Roman shades, sliding panels and natural draperies.</div>
+  </div>
+
+  <div class="config-wrap" id="ww-config" style="display:none;margin-top:14px">
+  <div class="config-grid">
+  <div>
+
+  <!-- ══ ROLLER FLOW ══ -->
   <div id="roller-section" style="display:none">
-    <div class="info-box" style="margin-bottom:16px"><strong>Portfolio Natural Woven Roller Shades</strong> — Natural woven &amp; solar fabrics on a roller. Bamboo, grass, jute, and textured weaves. Motorized or manual.</div>
+    <div class="info-box" style="margin-bottom:6px"><strong>Portfolio Natural Woven Roller Shades</strong> — Natural woven &amp; solar fabrics on a roller. Bamboo, grass, jute, and textured weaves. Motorized or manual.</div>
 
     <div class="step-block">
-      <div class="step-hd"><div class="step-num-circle">1</div><h2 class="step-title">Fabric preference</h2></div>
-      <div class="step-sub">Describe the look, color, or pattern you have in mind. We&rsquo;ll match you with the best options from the collection.</div>
-      <div class="inp-row">
-        <div class="inp-group">
-          <label class="inp-label">Pattern / style preference</label>
-          <input class="inp-field" type="text" id="r-pattern" placeholder="e.g. Bamboo Natural, Seagrass Ivory, light weave…">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">1</div>
+        <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
+      </div>
+      <div class="dim-box">
+        <div class="dim-box-label">Enter your window size</div>
+        <div class="form-row">
+          <div class="form-group"><label>Width</label><input type="number" id="r-w" min="12" max="120" step="0.125" placeholder="36" oninput="wwSummary()"><div class="dim-unit">inches &mdash; 12&Prime; min &middot; 120&Prime; max</div></div>
+          <div class="form-group"><label>Height</label><input type="number" id="r-h" min="12" max="108" step="0.125" placeholder="60" oninput="wwSummary()"><div class="dim-unit">inches &mdash; 12&Prime; min &middot; 108&Prime; max</div></div>
         </div>
-        <div class="inp-group">
-          <label class="inp-label">Color preference</label>
-          <input class="inp-field" type="text" id="r-color" placeholder="e.g. natural, wheat, dark brown…">
+        <div class="form-group" style="margin-top:4px;margin-bottom:0"><label>Room / window label <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="r-room" placeholder="e.g. Living Room — Left" oninput="wwSummary()"></div>
+      </div>
+      <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
+      
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
+      <div class="opt-row" id="r-mount-opts" style="margin-bottom:14px">
+        <button class="opt-btn sel" type="button" onclick="rPill(this,'r-mount-opts');rS.mount='Inside mount';wwSummary()">Inside mount</button>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-mount-opts');rS.mount='Outside mount';wwSummary()">Outside mount</button>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:12px;color:#666">Qty:</span>
+        <div class="qty-btns">
+          <button class="qty-btn" type="button" onclick="pbAdjQty('r-qty',-1,1,50);wwSummary()">&#8722;</button>
+          <input class="qty-num" type="number" id="r-qty" value="1" min="1" max="50" oninput="wwSummary()">
+          <button class="qty-btn" type="button" onclick="pbAdjQty('r-qty',1,1,50);wwSummary()">&#43;</button>
         </div>
       </div>
     </div>
 
     <div class="step-block">
-      <div class="step-hd"><div class="step-num-circle">2</div><h2 class="step-title">Dimensions</h2></div>
-      <div class="inp-row">
-        <div class="inp-group">
-          <label class="inp-label">Width (inches)</label>
-          <input class="inp-field" type="number" id="r-w" min="12" max="120" step="0.125" placeholder="e.g. 36">
-        </div>
-        <div class="inp-group">
-          <label class="inp-label">Height (inches)</label>
-          <input class="inp-field" type="number" id="r-h" min="12" max="108" step="0.125" placeholder="e.g. 72">
-        </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">2</div>
+        <div class="step-title" style="margin-bottom:0">Fabric preference</div>
       </div>
-      <div class="inp-row">
-        <div class="inp-group">
-          <label class="inp-label">Quantity</label>
-          <input class="inp-field" type="number" id="r-qty" min="1" max="50" value="1">
-        </div>
-        <div class="inp-group">
-          <label class="inp-label">Room / window label</label>
-          <input class="inp-field" type="text" id="r-room" placeholder="e.g. Living Room — Left">
-        </div>
+      <div class="form-row">
+        <div class="form-group"><label>Pattern / style preference</label><input type="text" id="r-pattern" placeholder="e.g. Bamboo Natural, Seagrass Ivory, light weave…" oninput="wwSummary()"></div>
+        <div class="form-group"><label>Color preference</label><input type="text" id="r-color" placeholder="e.g. natural, wheat, dark brown…" oninput="wwSummary()"></div>
       </div>
+      <div class="step-note" style="margin-top:0">Describe the look, color, or pattern you have in mind. We&rsquo;ll match you with the best options from the collection.</div>
     </div>
 
     <div class="step-block">
-      <div class="step-hd"><div class="step-num-circle">3</div><h2 class="step-title">Mount &amp; control</h2></div>
-      <label class="inp-label" style="display:block;margin-bottom:6px">Mount type</label>
-      <div class="opt-row" id="r-mount-opts">
-        <div class="opt-pill" onclick="rPill(this,'r-mount-opts');rS.mount='Inside mount'">Inside mount</div>
-        <div class="opt-pill" onclick="rPill(this,'r-mount-opts');rS.mount='Outside mount'">Outside mount</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">3</div>
+        <div class="step-title" style="margin-bottom:0">Control</div>
       </div>
-      <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:12px">Control method</label>
       <div class="opt-row" id="r-ctrl-opts">
-        <div class="opt-pill" onclick="rPill(this,'r-ctrl-opts');rS.ctrl='Chain'">Chain (manual)</div>
-        <div class="opt-pill" onclick="rPill(this,'r-ctrl-opts');rS.ctrl='Cordless'">Cordless</div>
-        <div class="opt-pill" onclick="rPill(this,'r-ctrl-opts');rS.ctrl='Motorized'">Motorized</div>
-      </div>
-      <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:12px">Light control / liner</label>
-      <div class="opt-row" id="r-liner-opts">
-        <div class="opt-pill" onclick="rPill(this,'r-liner-opts');rS.liner='Open weave (no liner)'">Open weave — no liner</div>
-        <div class="opt-pill" onclick="rPill(this,'r-liner-opts');rS.liner='Light filtering liner'">Light filtering liner</div>
-        <div class="opt-pill" onclick="rPill(this,'r-liner-opts');rS.liner='Privacy liner'">Privacy liner</div>
-        <div class="opt-pill" onclick="rPill(this,'r-liner-opts');rS.liner='Blackout liner'">Blackout liner</div>
-      </div>
-      <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:12px">Cassette color</label>
-      <div class="opt-row" id="r-cass-opts">
-        <div class="opt-pill" onclick="rPill(this,'r-cass-opts');rS.cass='White'">White</div>
-        <div class="opt-pill" onclick="rPill(this,'r-cass-opts');rS.cass='Cream'">Cream</div>
-        <div class="opt-pill" onclick="rPill(this,'r-cass-opts');rS.cass='Brown'">Brown</div>
-        <div class="opt-pill" onclick="rPill(this,'r-cass-opts');rS.cass='Black'">Black</div>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-ctrl-opts');rS.ctrl='Chain'">Chain (manual)</button>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-ctrl-opts');rS.ctrl='Cordless'">Cordless</button>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-ctrl-opts');rS.ctrl='Motorized'">Motorized</button>
       </div>
     </div>
 
     <div class="step-block">
-      <div class="step-hd"><div class="step-num-circle">4</div><h2 class="step-title">Delivery &amp; contact</h2></div>
-      <div class="delivery-section">
-        <div class="delivery-opt" id="r-del-install" onclick="rPill(this,'r-del-grp');rS.delivery='Professional Installation'">
-          <div class="delivery-opt-title">Professional Installation (Philadelphia / South Jersey)</div>
-          <div class="delivery-opt-sub">We measure, supply, and install.</div>
-        </div>
-        <div class="delivery-opt" id="r-del-ship" onclick="rPill(this,'r-del-grp');rS.delivery='Ship to Me'">
-          <div class="delivery-opt-title">Ship to Me</div>
-          <div class="delivery-opt-sub">Shipped from manufacturer. Freight quoted at order. Tariffs and duties may apply.</div>
-        </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">4</div>
+        <div class="step-title" style="margin-bottom:0">Light control &amp; liner</div>
       </div>
-      <div class="inp-row" style="margin-top:12px">
-        <div class="inp-group">
-          <label class="inp-label">Your Name *</label>
-          <input class="inp-field" type="text" id="r-name" placeholder="Full name">
-        </div>
-        <div class="inp-group">
-          <label class="inp-label">Phone / Email *</label>
-          <input class="inp-field" type="text" id="r-contact" placeholder="Best way to reach you">
-        </div>
+      <div class="opt-row" id="r-liner-opts">
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-liner-opts');rS.liner='Open weave (no liner)'">Open weave &mdash; no liner</button>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-liner-opts');rS.liner='Light filtering liner'">Light filtering liner</button>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-liner-opts');rS.liner='Privacy liner'">Privacy liner</button>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-liner-opts');rS.liner='Blackout liner'">Blackout liner</button>
       </div>
-      <div class="inp-group" style="margin-bottom:12px">
-        <label class="inp-label">Project Address / City</label>
-        <input class="inp-field" type="text" id="r-address" placeholder="City, State">
+    </div>
+
+    <div class="step-block">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">5</div>
+        <div class="step-title" style="margin-bottom:0">Cassette color</div>
       </div>
-      <div class="inp-group" style="margin-bottom:16px">
-        <label class="inp-label">Notes / questions</label>
-        <textarea class="inp-field" id="r-notes" placeholder="Pattern preferences, timeline, any special requirements…"></textarea>
-      </div>
-      <div class="btn-row">
-        <button class="btn-submit" onclick="submitRollerQuote()">Send Quote Request →</button>
+      <div class="opt-row" id="r-cass-opts">
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-cass-opts');rS.cass='White'">White</button>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-cass-opts');rS.cass='Cream'">Cream</button>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-cass-opts');rS.cass='Brown'">Brown</button>
+        <button class="opt-btn" type="button" onclick="rPill(this,'r-cass-opts');rS.cass='Black'">Black</button>
       </div>
     </div>
   </div><!-- /#roller-section -->
 
-  <!-- ── ROMAN SECTION (existing flow) ── -->
+  <!-- ══ ROMAN / PANEL / DRAPERY FLOW ══ -->
   <div id="roman-section" style="display:none">
-
-  <!-- Natural material warning -->
-  <div class="info-box" style="margin-bottom:16px">
-    <strong>Natural Woven Materials:</strong> Bamboo, grass, jute, and woven fabrics have normal variation in color, texture, and weave pattern — this is characteristic of the material, not a defect. Edge binding may be required or recommended for select fabrics.
-  </div>
-
-  <!-- ── STEP 1: COLLECTION ── -->
-  <div class="step-block" id="s1">
-    <div class="step-hd"><div class="step-num-circle">1</div><h2 class="step-title">Choose a Collection</h2></div>
-    <div class="choice-grid">
-      <div class="choice-card" onclick="pickCollection('portfolio',this)">
-        <div class="choice-badge">Natural Woven</div>
-        <div class="choice-card-title">Portfolio Natural Woven Shades</div>
-        <div class="choice-card-sub">Classic natural woven Roman shades in bamboo, grass, and jute. ZH- fabric codes. Privacy and blackout liner options. Cordless, clutch, Pro Wand, and motorized. Sliding panels and draperies available.</div>
-      </div>
-      <div class="choice-card" onclick="pickCollection('galaxy',this)">
-        <div class="choice-card-title">Galaxy Natural Woven Shades</div>
-        <div class="choice-card-sub">Natural woven Roman shades with flat, waterfall, and hobbled styles. Pattern-specific motor and size limits. Privacy and blackout liner options. Roman shades only in this line.</div>
-      </div>
-    </div>
-    <div class="choice-grid" style="margin-top:0">
-      <div class="choice-card" onclick="pickCollection('premier',this)">
-        <div class="choice-badge">Premium</div>
-        <div class="choice-card-title">Walden Premier Natural Woven Shades</div>
-        <div class="choice-card-sub">47 natural woven fabrics. Narrow Twill, Wide Twill &amp; Ramie edge binding. 3 liner types. Power Lift motor available. TDBU max 60"W × 72"H. Sliding panels &amp; draperies available.</div>
-      </div>
-      <div class="choice-card" onclick="pickCollection('select',this)">
-        <div class="choice-card-title">Walden Select Natural Woven Shades</div>
-        <div class="choice-card-sub">56 natural woven fabrics with WS fabric codes. Ramie edge binding only. TDBU for all fabrics (max 70"W × 96"H). 3 liner types. Sliding panels &amp; draperies available.</div>
-      </div>
-    </div>
-    <div class="choice-grid" style="margin-top:0">
-      <div class="choice-card" onclick="window.location='dynasty-woven-woods.html'">
-        <div class="choice-card-title">Dynasty Natural Woven Shades</div>
-        <div class="choice-card-sub">48 patterns across 5 price groups. Roman shades, sliding panels, and draperies. Fabric and blackout liner options. Opens full Dynasty configurator.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── STEP 2: PRODUCT TYPE ── -->
-  <div class="step-block" id="s2" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">2</div><h2 class="step-title">Choose Product Type</h2></div>
-    <div class="choice-grid">
-      <div class="choice-card" onclick="pickType('roman',this)">
-        <div class="choice-card-title">Roman / Woven Shade</div>
-        <div class="choice-card-sub">Standard (6" valance) or Waterfall. Cordless, TDBU, clutch, Pro Wand, or motorized. Twin shade / movable liner available.</div>
-      </div>
-      <div class="choice-card" id="s2-panel-card" onclick="pickType('panel',this)">
-        <div class="choice-card-title">Sliding Panel</div>
-        <div class="choice-card-sub">Large window / sliding door system. 48"–192"W × 24"–120"H. Aluminum track in White or Silver. One-way or center opening.</div>
-      </div>
-    </div>
-    <div class="choice-grid" id="s2-extra-row">
-      <div class="choice-card" id="s2-drapery-card" onclick="pickType('drapery',this)">
-        <div class="choice-card-title">Natural Drapery</div>
-        <div class="choice-card-sub">Wave tape heading on included decorative traversing track. 48"–192"W × 24"–96"H. Edge binding required. One-way or split draw.</div>
-      </div>
-      <div class="choice-card" id="s2-valance-card" onclick="pickType('valance',this)">
-        <div class="choice-card-title">Valance Only</div>
-        <div class="choice-card-sub">All fabrics available. Max 96"W. Max valance length 18".</div>
-      </div>
-    </div>
-    <div class="info-box" id="s2-roman-only-note" style="display:none"><strong>Galaxy and Portfolio collections</strong> are available for Roman shades only in this configurator. For sliding panels and draperies, contact us directly.</div>
-  </div>
-
-  <!-- ── STEP 3: WINDOW MEASUREMENTS & MOUNT (merged dimensions + mount + quantity) ── -->
-  <div class="step-block" id="s3" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">3</div><h2 class="step-title">Window measurements &amp; mount</h2></div>
-
-    <!-- Dimensions -->
-    <div class="dim-box">
-      <div class="dim-box-label">Enter your window size</div>
-      <div class="form-row">
-        <div class="form-group"><label>Width</label><input type="number" id="w" min="1" max="192" step="0.125" placeholder="48" oninput="dimChanged()"><div class="dim-unit">inches · decimals ok (e.g. 48.5)</div></div>
-        <div class="form-group"><label>Height / Length</label><input type="number" id="h" min="1" max="120" step="0.125" placeholder="72" oninput="dimChanged()"><div class="dim-unit">inches · height / length</div></div>
-      </div>
-    </div>
-    <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure →</a> · Approximate is fine — we confirm at the home visit.</div>
-    <div class="info-box" id="size-limits-info"></div>
-    <div class="err-box" id="dim-err"></div>
-    <div class="warn-box show" id="warn-splice" style="display:none">Track lengths over 94" will be <strong>spliced</strong>. This is standard; splice is concealed within the track.</div>
-    <!-- Sliding panel auto-config -->
-    <div class="panel-calc" id="panel-calc">
-      <strong>Estimated panel configuration:</strong> <span id="panel-calc-text"></span>
-    </div>
-    <!-- Drapery stack depth -->
-    <div class="stack-display" id="stack-display">
-      <strong>Estimated stack depth:</strong> <span id="stack-text"></span>
+    <div class="info-box" style="margin-bottom:6px">
+      <strong>Natural Woven Materials:</strong> Bamboo, grass, jute, and woven fabrics have normal variation in color, texture, and weave pattern — this is characteristic of the material, not a defect. Edge binding may be required or recommended for select fabrics.
     </div>
 
-    <!-- Mount type -->
-    <label class="inp-label" style="display:block;margin:16px 0 6px">Mount type <span style="color:#c00">*</span></label>
-    <div class="opt-row" id="mount-opts">
-      <button class="opt-btn" type="button" onclick="pickMount('inside',this)">Inside mount</button>
-      <button class="opt-btn" type="button" onclick="pickMount('outside',this)">Outside / Face Mount</button>
-      <button class="opt-btn" id="mount-ceiling" type="button" onclick="pickMount('ceiling',this)">Ceiling mount</button>
-    </div>
-    <div class="warn-box" id="warn-im-deduction">Inside mount: deduct ¼" from width, ½" from height. Enter your <em>opening</em> measurements — we handle the deduction.</div>
-    <div class="step-note">Mount type is required. Inside mount fits inside the window frame; outside / face mount covers the trim; ceiling mount is for sliding panels &amp; draperies.</div>
-
-    <!-- Quantity -->
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px">
-      <label class="inp-label" style="margin:0">Quantity</label>
-      <div class="qty-btns">
-        <button class="qty-btn" type="button" onclick="adjQty(-1)">−</button>
-        <input class="qty-num" type="number" id="qty" min="1" max="50" value="1" oninput="S.qty=+this.value">
-        <button class="qty-btn" type="button" onclick="adjQty(1)">+</button>
+    <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT -->
+    <div class="step-block" id="s3">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">1</div>
+        <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
       </div>
-      <span class="inp-hint">unit(s) of this size</span>
-    </div>
-
-    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="if(!S.mountType){alert('Please select a mount type.');return;} goS(5)">Next →</button></div>
-  </div>
-
-  <!-- ── STEP 5: FABRIC ── -->
-  <div class="step-block" id="s5" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">4</div><h2 class="step-title">Fabric / Pattern</h2></div>
-    <div class="info-box" id="fabric-collection-note"></div>
-    <input class="fabric-search" type="text" id="fabric-search" placeholder="Search fabric name or code…" oninput="filterFabrics(this.value)">
-    <div class="fabric-grid" id="fabric-grid"></div>
-    <div class="fabric-summary" id="fabric-summary"></div>
-    <div class="warn-box" id="warn-eb-required">This fabric requires edge binding. Ordering without it voids the fraying warranty.</div>
-    <div class="warn-box" id="warn-panel-ineligible">This fabric is not available for Sliding Panels in this collection.</div>
-    <div class="warn-box" id="warn-drape-ineligible">This fabric is not available for Natural Draperies in this collection.</div>
-    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(6)">Next →</button></div>
-  </div>
-
-  <!-- ── STEP 6: STYLE / OPENING ── -->
-  <div class="step-block" id="s6" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">5</div><h2 class="step-title" id="s6-title">Shade Style</h2></div>
-
-    <!-- Roman shade style -->
-    <div id="roman-style-opts" style="display:none">
-      <label class="inp-label" style="display:block;margin-bottom:6px">Shade style</label>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="pickShadeStyle('standard',this)">Standard (6" front valance)</div>
-        <div class="opt-pill" onclick="pickShadeStyle('waterfall',this)">Waterfall (no valance — shade falls from front)</div>
-        <div class="opt-pill" id="hobbled-style-pill" style="display:none" onclick="pickShadeStyle('hobbled',this)">Hobbled (permanent soft cascading folds)</div>
+      <div class="dim-box">
+        <div class="dim-box-label">Enter your window size</div>
+        <div class="form-row">
+          <div class="form-group"><label>Width</label><input type="number" id="w" min="14" max="192" step="0.125" placeholder="36" oninput="dimChanged()"><div class="dim-unit">inches &mdash; 14&Prime; min &middot; 192&Prime; max</div></div>
+          <div class="form-group"><label>Height / length</label><input type="number" id="h" min="1" max="120" step="0.125" placeholder="60" oninput="dimChanged()"><div class="dim-unit">inches &mdash; 1&Prime; min &middot; 120&Prime; max</div></div>
+        </div>
       </div>
-      <div class="info-box" id="hobbled-note" style="display:none;margin-top:8px">Hobbled style: the shade has permanent soft folds sewn in. Not available with TDBU or Pro Wand.</div>
-      <div class="divider"></div>
-      <label class="inp-label" style="display:block;margin-bottom:6px">Multiple shades on one headrail?</label>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="pickMulti('none',this)">Single shade</div>
-        <div class="opt-pill" onclick="pickMulti('2on1',this)">2-on-1 headrail</div>
-        <div class="opt-pill" id="multi-3on1" onclick="pickMulti('3on1',this)">3-on-1 headrail</div>
+      <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
+      <div class="info-box" id="size-limits-info" style="display:none"></div>
+      <div class="err-box" id="dim-err"></div>
+      <div class="warn-box show" id="warn-splice" style="display:none">Track lengths over 94" will be <strong>spliced</strong>. This is standard; splice is concealed within the track.</div>
+      <div class="panel-calc" id="panel-calc"><strong>Estimated panel configuration:</strong> <span id="panel-calc-text"></span></div>
+      <div class="stack-display" id="stack-display"><strong>Estimated stack depth:</strong> <span id="stack-text"></span></div>
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
+      <div class="opt-row" id="mount-opts" style="margin-bottom:6px">
+        <button class="opt-btn sel" type="button" onclick="pickMount('inside',this)">Inside mount</button>
+        <button class="opt-btn" type="button" onclick="pickMount('outside',this)">Outside mount</button>
+        <button class="opt-btn" id="mount-ceiling" type="button" style="display:none" onclick="pickMount('ceiling',this)">Ceiling mount</button>
       </div>
-      <div class="warn-box show" id="warn-multi-width">Total width of all shades on one headrail cannot exceed 108". Common valance is made in sections if wider than 96".</div>
-      <div class="divider"></div>
-      <label class="inp-label" style="display:block;margin-bottom:6px">Twin shade / movable liner?</label>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="pickTwin(false,this)">No — single layer</div>
-        <div class="opt-pill" id="twin-yes" onclick="pickTwin(true,this)">Yes — woven shade + separate movable liner behind</div>
+      <div class="step-note" id="warn-im-deduction" style="margin-bottom:12px">Inside mount: we deduct &frac14;&Prime; from width and &frac12;&Prime; from height &mdash; enter your <em>opening</em> measurements. Outside mount covers the trim (face mount). Ceiling mount is for sliding panels &amp; draperies.</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:12px;color:#666">Qty:</span>
+        <div class="qty-btns">
+          <button class="qty-btn" type="button" onclick="adjQty(-1)">&#8722;</button>
+          <input class="qty-num" type="number" id="qty" value="1" min="1" max="50" oninput="S.qty=+this.value;wwSummary()">
+          <button class="qty-btn" type="button" onclick="adjQty(1)">&#43;</button>
+        </div>
       </div>
-      <div class="info-box" id="twin-info" style="display:none">Twin shade uses two controls. Controls recommended on the same side. Cordless, clutch, or remote motor controls are compatible.</div>
     </div>
 
-    <!-- Sliding panel / drapery opening style -->
-    <div id="opening-style-opts" style="display:none">
-      <label class="inp-label" style="display:block;margin-bottom:6px">Opening direction</label>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="pickOpening('one-left',this)">One-way → Stack Left</div>
-        <div class="opt-pill" onclick="pickOpening('one-right',this)">One-way → Stack Right</div>
-        <div class="opt-pill" onclick="pickOpening('center',this)">Center Opening / Split Draw</div>
+    <!-- STEP 2: COLLECTION -->
+    <div class="step-block" id="s1">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">2</div>
+        <div class="step-title" style="margin-bottom:0">Collection</div>
       </div>
-      <!-- Panel-only extras -->
-      <div id="panel-extras" style="display:none">
-        <div class="divider"></div>
-        <label class="inp-label" style="display:block;margin-bottom:6px">Track color</label>
+      <div class="opt-row" id="coll-opts">
+        <button class="opt-btn" type="button" onclick="pickCollection('portfolio',this)">Portfolio</button>
+        <button class="opt-btn" type="button" onclick="pickCollection('galaxy',this)">Galaxy</button>
+        <button class="opt-btn" type="button" onclick="pickCollection('premier',this)">Walden Premier</button>
+        <button class="opt-btn" type="button" onclick="pickCollection('select',this)">Walden Select</button>
+      </div>
+      <div class="step-note">Portfolio &mdash; classic bamboo, grass and jute Roman shades, ZH- fabric codes, privacy and blackout liners. Galaxy &mdash; flat, waterfall and hobbled styles, pattern-specific motor and size limits, Roman shades only. Walden Premier &mdash; 47 fabrics, Narrow Twill, Wide Twill &amp; Ramie binding, Power Lift motor, TDBU max 60&Prime;W &times; 72&Prime;H. Walden Select &mdash; 56 fabrics, Ramie binding only, TDBU for all fabrics (max 70&Prime;W &times; 96&Prime;H). Looking for Dynasty? <a href="dynasty-woven-woods.html" style="color:var(--gold)">Open the Dynasty configurator &rarr;</a></div>
+    </div>
+
+    <!-- STEP 3: PRODUCT TYPE -->
+    <div class="step-block" id="s2">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">3</div>
+        <div class="step-title" style="margin-bottom:0">Product type</div>
+      </div>
+      <div class="opt-row" id="type-opts">
+        <button class="opt-btn" type="button" id="s2-roman-card" onclick="pickType('roman',this)">Roman / woven shade</button>
+        <button class="opt-btn" type="button" id="s2-panel-card" onclick="pickType('panel',this)">Sliding panel</button>
+        <button class="opt-btn" type="button" id="s2-drapery-card" onclick="pickType('drapery',this)">Natural drapery</button>
+        <button class="opt-btn" type="button" id="s2-valance-card" onclick="pickType('valance',this)">Valance only</button>
+      </div>
+      <div class="step-note">Roman / woven shade &mdash; Standard (6&Prime; valance) or Waterfall; cordless, TDBU, clutch, Pro Wand or motorized; twin shade / movable liner available. Sliding panel &mdash; 48&Prime;&ndash;192&Prime;W &times; 24&Prime;&ndash;120&Prime;H, aluminum track in White or Silver. Natural drapery &mdash; wave tape heading on included traversing track, 48&Prime;&ndash;192&Prime;W &times; 24&Prime;&ndash;96&Prime;H, edge binding required. Valance only &mdash; max 96&Prime;W, max length 18&Prime;.</div>
+      <div class="info-box" id="s2-roman-only-note" style="display:none;margin-top:10px"><strong>Galaxy and Portfolio collections</strong> are available for Roman shades only in this configurator. For sliding panels and draperies, contact us directly.</div>
+    </div>
+
+    <!-- STEP 4: FABRIC -->
+    <div class="step-block" id="s5">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">4</div>
+        <div class="step-title" style="margin-bottom:0">Fabric &amp; pattern</div>
+      </div>
+      <div class="step-note" id="fabric-wait-note" style="margin-top:0">Choose a collection in step 2 to see its fabrics.</div>
+      <div id="fabric-picker-wrap" style="display:none">
+        <div class="info-box" id="fabric-collection-note"></div>
+        <input class="fabric-search" type="text" id="fabric-search" placeholder="Search fabric name or code…" oninput="filterFabrics(this.value)">
+        <div class="fabric-grid" id="fabric-grid"></div>
+      </div>
+      <div class="fabric-summary" id="fabric-summary"></div>
+      <div class="warn-box" id="warn-eb-required">This fabric requires edge binding. Ordering without it voids the fraying warranty.</div>
+      <div class="warn-box" id="warn-panel-ineligible">This fabric is not available for Sliding Panels in this collection.</div>
+      <div class="warn-box" id="warn-drape-ineligible">This fabric is not available for Natural Draperies in this collection.</div>
+    </div>
+
+    <!-- STEP 5: STYLE / OPENING -->
+    <div class="step-block" id="s6">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">5</div>
+        <div class="step-title" style="margin-bottom:0" id="s6-title">Shade style</div>
+      </div>
+      <div class="step-note" id="s6-wait-note" style="margin-top:0">Choose a product type in step 3.</div>
+
+      <div id="roman-style-opts" style="display:none">
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Shade style</div>
+        <div class="opt-row" id="shade-style-opts">
+          <button class="opt-btn" type="button" onclick="pickShadeStyle('standard',this)">Standard (6" front valance)</button>
+          <button class="opt-btn" type="button" onclick="pickShadeStyle('waterfall',this)">Waterfall (no valance)</button>
+          <button class="opt-btn" type="button" id="hobbled-style-pill" style="display:none" onclick="pickShadeStyle('hobbled',this)">Hobbled</button>
+        </div>
+        <div class="step-note" style="margin-top:-8px">Standard &mdash; 6&Prime; front valance. Waterfall &mdash; no valance, shade falls from the front. Hobbled (Galaxy) &mdash; permanent soft cascading folds.</div>
+        <div class="info-box" id="hobbled-note" style="display:none;margin-top:8px">Hobbled style: the shade has permanent soft folds sewn in. Not available with TDBU or Pro Wand.</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Multiple shades on one headrail?</div>
+        <div class="opt-row" id="multi-opts">
+          <button class="opt-btn sel" type="button" onclick="pickMulti('none',this)">Single shade</button>
+          <button class="opt-btn" type="button" onclick="pickMulti('2on1',this)">2-on-1 headrail</button>
+          <button class="opt-btn" type="button" id="multi-3on1" onclick="pickMulti('3on1',this)">3-on-1 headrail</button>
+        </div>
+        <div class="warn-box" id="warn-multi-width">Total width of all shades on one headrail cannot exceed 108". Common valance is made in sections if wider than 96".</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Twin shade / movable liner?</div>
+        <div class="opt-row" id="twin-opts">
+          <button class="opt-btn sel" type="button" onclick="pickTwin(false,this)">No &mdash; single layer</button>
+          <button class="opt-btn" type="button" id="twin-yes" onclick="pickTwin(true,this)">Yes &mdash; woven shade + movable liner behind</button>
+        </div>
+        <div class="info-box" id="twin-info" style="display:none">Twin shade uses two controls. Controls recommended on the same side. Cordless, clutch, or remote motor controls are compatible.</div>
+      </div>
+
+      <div id="opening-style-opts" style="display:none">
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Opening direction</div>
+        <div class="opt-row" id="opening-opts">
+          <button class="opt-btn" type="button" onclick="pickOpening('one-left',this)">One-way &rarr; stack left</button>
+          <button class="opt-btn" type="button" onclick="pickOpening('one-right',this)">One-way &rarr; stack right</button>
+          <button class="opt-btn" type="button" onclick="pickOpening('center',this)">Center opening / split draw</button>
+        </div>
+        <div id="panel-extras" style="display:none">
+          <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Track color</div>
+          <div class="opt-row">
+            <button class="opt-btn" type="button" onclick="S.trackColor='white';togglePill(this)">White</button>
+            <button class="opt-btn" type="button" onclick="S.trackColor='silver';togglePill(this)">Silver</button>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Bracket type</div>
+          <div class="opt-row">
+            <button class="opt-btn" type="button" onclick="S.bracketType='top';togglePill(this)">Top mount</button>
+            <button class="opt-btn" type="button" onclick="S.bracketType='face';togglePill(this)">Face mount</button>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">8" valance board?</div>
+          <div class="opt-row">
+            <button class="opt-btn sel" type="button" onclick="S.valanceBoard=false;togglePill(this)">No valance board</button>
+            <button class="opt-btn" type="button" onclick="S.valanceBoard=true;togglePill(this)">Add 8" valance board</button>
+          </div>
+          <div class="panel-calc show" id="panel-calc-s6" style="display:none"><strong>Track configuration:</strong> <span id="panel-calc-s6-text"></span></div>
+        </div>
+        <div id="drapery-extras" style="display:none">
+          <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Track profile</div>
+          <div class="opt-row">
+            <button class="opt-btn" type="button" onclick="S.trackProfile='round';togglePill(this)">Round 1⅜"</button>
+            <button class="opt-btn" type="button" onclick="S.trackProfile='rect';togglePill(this)">Rectangular 1⅜"</button>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Track color</div>
+          <div class="opt-row" id="drape-track-colors">
+            <button class="opt-btn" type="button" onclick="S.trackColor='anthracite';togglePill(this)">Anthracite</button>
+            <button class="opt-btn" type="button" onclick="S.trackColor='black';togglePill(this)">Black</button>
+            <button class="opt-btn" type="button" onclick="S.trackColor='bronze';togglePill(this)">Bronze</button>
+            <button class="opt-btn" type="button" onclick="S.trackColor='champagne';togglePill(this)">Champagne</button>
+            <button class="opt-btn" type="button" onclick="S.trackColor='silver';togglePill(this)">Silver</button>
+            <button class="opt-btn" type="button" onclick="S.trackColor='white';togglePill(this)">White</button>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Track mount</div>
+          <div class="opt-row">
+            <button class="opt-btn" type="button" onclick="S.wallOrCeiling='wall';togglePill(this)">Wall mount (adj. 3½"–5")</button>
+            <button class="opt-btn" type="button" onclick="S.wallOrCeiling='ceiling';togglePill(this)">Ceiling mount</button>
+          </div>
+          <div class="stack-display show" id="drape-stack" style="display:none"><strong>Stack depth:</strong> <span id="drape-stack-text"></span>. For split draw, divide by 2.</div>
+          <div class="info-box" style="margin-top:8px">48" color-coordinated aluminum baton included. Two batons provided for split draw. Track spliced when over 94". Edge binding required on all four sides — included in price.</div>
+        </div>
+      </div>
+
+      <div id="valance-only-opts" style="display:none">
+        <div class="info-box">Valance max width 96". Max valance length 18". Available for all fabrics in both collections.</div>
+      </div>
+    </div>
+
+    <!-- STEP 6: CONTROL -->
+    <div class="step-block" id="s7">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">6</div>
+        <div class="step-title" style="margin-bottom:0" id="s7-title">Control</div>
+      </div>
+      <div class="step-note" id="s7-wait-note" style="margin-top:0">Choose a product type in step 3.</div>
+      <div class="err-box" id="ctrl-err"></div>
+      <div id="roman-controls" style="display:none">
+        <div class="opt-row" id="ctrl-opts">
+          <button class="opt-btn" type="button" id="ctrl-cordless" onclick="pickControl('cordless',this)">Cordless</button>
+          <button class="opt-btn" type="button" id="ctrl-tdbu" onclick="pickControl('tdbu',this)">Cordless TDBU</button>
+          <button class="opt-btn" type="button" id="ctrl-twin-ctrl" style="display:none" onclick="pickControl('twin',this)">Cordless twin (movable liner)</button>
+          <button class="opt-btn" type="button" id="ctrl-clutch" onclick="pickControl('clutch',this)">Clutch / loop</button>
+          <button class="opt-btn" type="button" id="ctrl-prowand" onclick="pickControl('prowand',this)">Pro Wand</button>
+          <button class="opt-btn" type="button" id="ctrl-motorLI" onclick="pickControl('motorLI',this)">Remote motor &mdash; lithium ion</button>
+          <button class="opt-btn" type="button" id="ctrl-motorDC" onclick="pickControl('motorDC',this)">Remote motor &mdash; DC</button>
+          <button class="opt-btn" type="button" id="ctrl-motorAC" onclick="pickControl('motorAC',this)">Remote motor &mdash; AC</button>
+          <button class="opt-btn" type="button" id="ctrl-motorPL" onclick="pickControl('motorPL',this)">Power Lift motor (Premier only)</button>
+        </div>
+        <div class="info-box" id="ctrl-limit-info" style="display:none"></div>
+        <div class="warn-box" id="warn-motor-sqft">This fabric's motor square footage limit may be exceeded. Verify pattern eligibility before ordering. Power Lift motor has no sq ft restriction.</div>
+        <div class="warn-box" id="warn-tdbu-returns">Inside mount TDBU cannot be ordered with returns.</div>
+      </div>
+      <div id="panel-ctrl-note" style="display:none"><div class="info-box">Sliding panels operate with a clear acrylic wand. No additional control selection needed.</div></div>
+      <div id="drape-ctrl-note" style="display:none"><div class="info-box">Natural draperies operate via included 48" color-coordinated aluminum baton (two batons for split draw).</div></div>
+      <div id="valance-ctrl-note" style="display:none"><div class="info-box">Valance only — no operating control.</div></div>
+    </div>
+
+    <!-- STEP 7: LINER -->
+    <div class="step-block" id="s8">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">7</div>
+        <div class="step-title" style="margin-bottom:0">Liner</div>
+      </div>
+      <div class="opt-row" id="liner-type-opts">
+        <button class="opt-btn sel" type="button" onclick="pickLiner('none',this)">No liner</button>
+        <button class="opt-btn" type="button" onclick="pickLiner('lf',this)">Light filtering</button>
+        <button class="opt-btn" type="button" onclick="pickLiner('bo',this)">Blackout</button>
+        <button class="opt-btn" type="button" id="liner-twin-opt" onclick="pickLiner('twin',this)" style="display:none">Twin / movable liner</button>
+      </div>
+      <div class="step-note" style="margin-top:-8px">If lined, the valance is lined with the same liner. Light-filtering liners are the same color on both sides. Blackout liners are off-white on the street side.</div>
+      <div id="liner-color-section" style="display:none">
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Liner color</div>
+        <div class="opt-row" id="liner-color-opts"></div>
+        <div class="warn-box" id="warn-black-seam">Black light-filtering liner wider than 53" will be <strong>seamed</strong>. This is standard and does not affect function.</div>
+      </div>
+    </div>
+
+    <!-- STEP 8: EDGE BINDING -->
+    <div class="step-block" id="s9">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">8</div>
+        <div class="step-title" style="margin-bottom:0">Edge binding</div>
+      </div>
+      <div class="step-note" id="eb-wait-note" style="margin-top:0">Choose a collection in step 2.</div>
+      <div class="warn-box" id="warn-eb-req-step9">This fabric <strong>requires</strong> edge binding — ordering without it voids the fraying warranty.</div>
+      <div class="warn-box" id="warn-cutout-eb">Edge binding cannot be combined with cutouts.</div>
+      <div class="opt-row" id="eb-type-opts"></div>
+      <div class="step-note" style="margin-top:-8px">Edge binding is sewn down both sides of the shade and valance (not the bottom). About &frac12;&Prime; shows on the face. No additional charge on Roman shades. Draperies include edge binding on all four sides.</div>
+      <div id="eb-color-section" style="display:none">
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Edge binding color</div>
+        <div class="opt-row" id="eb-color-opts"></div>
+      </div>
+      <div class="warn-box" id="warn-edge-seal">This fabric gets <strong>Edge Seal</strong> applied if no edge binding is selected, to protect cut edges.</div>
+    </div>
+
+    <!-- STEP 9: SPECIAL OPTIONS -->
+    <div class="step-block" id="s10">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">9</div>
+        <div class="step-title" style="margin-bottom:0">Special options <span style="font-weight:400;color:#888">(optional)</span></div>
+      </div>
+      <div class="step-note" id="s10-wait-note" style="margin-top:0">Choose a product type in step 3.</div>
+      <div id="roman-specials" style="display:none">
+        <div class="form-group" style="max-width:220px">
+          <label>Number of cutouts</label>
+          <input type="number" id="cutouts" min="0" max="10" value="0" oninput="S.cutouts=+this.value;updateCutoutWarn()">
+        </div>
+        <div class="step-note" style="margin-top:-8px">Cutouts are not available with edge binding.</div>
+        <div class="warn-box" id="warn-cutout-conflict">Cannot combine cutouts with edge binding. Please remove edge binding or set cutouts to 0.</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Hold-down brackets</div>
         <div class="opt-row">
-          <div class="opt-pill" onclick="S.trackColor='white';togglePill(this,'tc')">White</div>
-          <div class="opt-pill" onclick="S.trackColor='silver';togglePill(this,'tc')">Silver</div>
+          <button class="opt-btn sel" type="button" onclick="S.holdDown=false;togglePill(this)">No hold-down</button>
+          <button class="opt-btn" type="button" onclick="S.holdDown=true;togglePill(this)">Add hold-down brackets</button>
         </div>
-        <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">Bracket type</label>
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Spacer blocks</div>
         <div class="opt-row">
-          <div class="opt-pill" onclick="S.bracketType='top';togglePill(this,'bt')">Top Mount</div>
-          <div class="opt-pill" onclick="S.bracketType='face';togglePill(this,'bt')">Face Mount</div>
+          <button class="opt-btn sel" type="button" onclick="S.spacer=false;togglePill(this)">No spacer blocks</button>
+          <button class="opt-btn" type="button" onclick="S.spacer=true;togglePill(this)">Add spacer blocks (for handles/cranks)</button>
         </div>
-        <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">8" Valance board?</label>
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Fabric valance returns</div>
         <div class="opt-row">
-          <div class="opt-pill" onclick="S.valanceBoard=false;togglePill(this,'vb')">No valance board</div>
-          <div class="opt-pill" onclick="S.valanceBoard=true;togglePill(this,'vb')">Add 8" valance board</div>
+          <button class="opt-btn sel" type="button" id="ret-none" onclick="pickReturns('none',this)">No returns</button>
+          <button class="opt-btn" type="button" id="ret-add" onclick="pickReturns('yes',this)">Add fabric valance returns</button>
         </div>
-        <div class="panel-calc show" id="panel-calc-s6" style="display:none"><strong>Track configuration:</strong> <span id="panel-calc-s6-text"></span></div>
+        <div class="warn-box" id="warn-tdbu-ret">Cordless TDBU inside mount cannot be ordered with returns.</div>
       </div>
-      <!-- Drapery-only extras -->
-      <div id="drapery-extras" style="display:none">
-        <div class="divider"></div>
-        <label class="inp-label" style="display:block;margin-bottom:6px">Track profile</label>
-        <div class="opt-row">
-          <div class="opt-pill" onclick="S.trackProfile='round';togglePill(this,'tp')">Round 1⅜"</div>
-          <div class="opt-pill" onclick="S.trackProfile='rect';togglePill(this,'tp')">Rectangular 1⅜"</div>
+      <div id="panel-specials" style="display:none"><div class="info-box">Sliding panels can include free-floating configuration or reverse stacking. Please note any special requirements in the notes field.</div></div>
+      <div id="valance-specials" style="display:none"><div class="info-box">No additional special options for this product.</div></div>
+    </div>
+
+    <!-- STEP 10: MOTORIZATION -->
+    <div class="step-block" id="s11">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div class="step-num">10</div>
+        <div class="step-title" style="margin-bottom:0">Motorization &amp; accessories <span style="font-weight:400;color:#888">(optional)</span></div>
+      </div>
+      <div id="motor-eligible" style="display:none">
+        <div class="info-box">Wallace motorization systems. <strong>Do not combine with Norman motor rules.</strong> Chargers are not included with motorized shades — specify charger quantity in notes.</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Motor accessories</div>
+        <div class="opt-row" id="motor-acc-opts">
+          <button class="opt-btn" type="button" onclick="toggleMotorAcc(this,'remote15ch')">15-channel handheld remote</button>
+          <button class="opt-btn" type="button" onclick="toggleMotorAcc(this,'wallswitch')">15-channel wall switch</button>
+          <button class="opt-btn" type="button" onclick="toggleMotorAcc(this,'prohub')">Pro Hub (Wi-Fi / smart home)</button>
+          <button class="opt-btn" type="button" onclick="toggleMotorAcc(this,'lipack')">Rechargeable LI battery pack</button>
+          <button class="opt-btn" type="button" onclick="toggleMotorAcc(this,'plugadapter')">Plug-in power adapter</button>
+          <button class="opt-btn" type="button" onclick="toggleMotorAcc(this,'cable6')">6" extension cable</button>
+          <button class="opt-btn" type="button" onclick="toggleMotorAcc(this,'cable48')">48" extension cable</button>
+          <button class="opt-btn" type="button" onclick="toggleMotorAcc(this,'cable96')">96" extension cable</button>
+          <button class="opt-btn" type="button" onclick="toggleMotorAcc(this,'charger')">Charger (16.5')</button>
         </div>
-        <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">Track color</label>
-        <div class="opt-row" id="drape-track-colors">
-          <div class="opt-pill" onclick="S.trackColor='anthracite';togglePill(this,'dtc')">Anthracite</div>
-          <div class="opt-pill" onclick="S.trackColor='black';togglePill(this,'dtc')">Black</div>
-          <div class="opt-pill" onclick="S.trackColor='bronze';togglePill(this,'dtc')">Bronze</div>
-          <div class="opt-pill" onclick="S.trackColor='champagne';togglePill(this,'dtc')">Champagne</div>
-          <div class="opt-pill" onclick="S.trackColor='silver';togglePill(this,'dtc')">Silver</div>
-          <div class="opt-pill" onclick="S.trackColor='white';togglePill(this,'dtc')">White</div>
-        </div>
-        <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">Track mount</label>
-        <div class="opt-row">
-          <div class="opt-pill" onclick="S.wallOrCeiling='wall';togglePill(this,'woc')">Wall mount (adj. 3½"–5")</div>
-          <div class="opt-pill" onclick="S.wallOrCeiling='ceiling';togglePill(this,'woc')">Ceiling mount</div>
-        </div>
-        <div class="stack-display show" id="drape-stack" style="display:none"><strong>Stack depth:</strong> <span id="drape-stack-text"></span>. For split draw, divide by 2.</div>
-        <div class="info-box" style="margin-top:8px">48" color-coordinated aluminum baton included. Two batons provided for split draw. Track spliced when over 94". Edge binding required on all four sides — included in price.</div>
+        <div class="step-note" style="margin-top:-8px">Select any. Pro Hub connects via 2.4 GHz Wi-Fi or ethernet &mdash; works with Connector+ App, Amazon Alexa, Control4, Google Home, IFTTT, RTI, Samsung SmartThings, and Siri Shortcuts.</div>
       </div>
+      <div class="step-note" id="motor-not-eligible" style="margin-top:0">Only needed for Pro Wand or remote-motor controls &mdash; nothing to choose for this configuration.</div>
     </div>
-
-    <!-- Valance only -->
-    <div id="valance-only-opts" style="display:none">
-      <div class="info-box">Valance max width 96". Max valance length 18". Available for all fabrics in both collections.</div>
-    </div>
-
-    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(7)">Next →</button></div>
-  </div>
-
-  <!-- ── STEP 7: CONTROL ── -->
-  <div class="step-block" id="s7" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">6</div><h2 class="step-title" id="s7-title">Control System</h2></div>
-    <div class="err-box" id="ctrl-err"></div>
-    <div id="roman-controls" style="display:none">
-      <div class="opt-row" id="ctrl-opts">
-        <div class="opt-pill" id="ctrl-cordless" onclick="pickControl('cordless',this)">Cordless</div>
-        <div class="opt-pill" id="ctrl-tdbu" onclick="pickControl('tdbu',this)">Cordless TDBU</div>
-        <div class="opt-pill" id="ctrl-twin-ctrl" style="display:none" onclick="pickControl('twin',this)">Cordless Twin (movable liner)</div>
-        <div class="opt-pill" id="ctrl-clutch" onclick="pickControl('clutch',this)">Clutch / Loop</div>
-        <div class="opt-pill" id="ctrl-prowand" onclick="pickControl('prowand',this)">Pro Wand</div>
-        <div class="opt-pill" id="ctrl-motorLI" onclick="pickControl('motorLI',this)">Remote Motor — Lithium Ion</div>
-        <div class="opt-pill" id="ctrl-motorDC" onclick="pickControl('motorDC',this)">Remote Motor — DC</div>
-        <div class="opt-pill" id="ctrl-motorAC" onclick="pickControl('motorAC',this)">Remote Motor — AC</div>
-        <div class="opt-pill" id="ctrl-motorPL" onclick="pickControl('motorPL',this)">Power Lift Motor (Premier only)</div>
-      </div>
-      <div class="info-box" id="ctrl-limit-info" style="display:none"></div>
-      <div class="warn-box" id="warn-motor-sqft">This fabric's motor square footage limit may be exceeded. Verify pattern eligibility before ordering. Power Lift motor has no sq ft restriction.</div>
-      <div class="warn-box" id="warn-tdbu-returns">Inside mount TDBU cannot be ordered with returns.</div>
-    </div>
-    <div id="panel-ctrl-note" style="display:none">
-      <div class="info-box">Sliding panels operate with a clear acrylic wand. No additional control selection needed.</div>
-    </div>
-    <div id="drape-ctrl-note" style="display:none">
-      <div class="info-box">Natural draperies operate via included 48" color-coordinated aluminum baton (two batons for split draw).</div>
-    </div>
-    <div id="valance-ctrl-note" style="display:none">
-      <div class="info-box">Valance only — no operating control.</div>
-    </div>
-    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(8)">Next →</button></div>
-  </div>
-
-  <!-- ── STEP 8: LINER ── -->
-  <div class="step-block" id="s8" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">7</div><h2 class="step-title">Liner</h2></div>
-    <div class="info-box">If lined, the valance is lined with the same liner. Light-filtering liners are the same color on both sides. Black-out liners are off-white on the street side.</div>
-    <label class="inp-label" style="display:block;margin-bottom:6px">Liner type</label>
-    <div class="opt-row">
-      <div class="opt-pill" onclick="pickLiner('none',this)">No liner</div>
-      <div class="opt-pill" onclick="pickLiner('lf',this)">Light-Filtering</div>
-      <div class="opt-pill" onclick="pickLiner('bo',this)">Black-Out</div>
-      <div class="opt-pill" id="liner-twin-opt" onclick="pickLiner('twin',this)" style="display:none">Twin / Movable Liner</div>
-    </div>
-    <div id="liner-color-section" style="display:none;margin-top:12px">
-      <label class="inp-label" style="display:block;margin-bottom:6px">Liner color</label>
-      <div class="opt-row" id="liner-color-opts"></div>
-      <div class="warn-box" id="warn-black-seam">Black light-filtering liner wider than 53" will be <strong>seamed</strong>. This is standard and does not affect function.</div>
-    </div>
-    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(9)">Next →</button></div>
-  </div>
-
-  <!-- ── STEP 9: EDGE BINDING ── -->
-  <div class="step-block" id="s9" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">8</div><h2 class="step-title">Edge Binding</h2></div>
-    <div class="info-box">Edge binding is sewn down both sides of the shade and valance (not the bottom). About ½" shows on the face. No additional charge on Roman shades. Draperies include edge binding on all four sides.</div>
-    <div class="warn-box show" id="warn-eb-req-step9">This fabric <strong>requires</strong> edge binding — ordering without it voids the fraying warranty.</div>
-    <div class="warn-box" id="warn-cutout-eb">Edge binding cannot be combined with cutouts.</div>
-    <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">Edge binding choice</label>
-    <div class="opt-row" id="eb-type-opts"></div>
-    <div id="eb-color-section" style="display:none;margin-top:10px">
-      <label class="inp-label" style="display:block;margin-bottom:6px">Edge binding color</label>
-      <div class="opt-row" id="eb-color-opts"></div>
-    </div>
-    <div class="warn-box" id="warn-edge-seal">This fabric gets <strong>Edge Seal</strong> applied if no edge binding is selected, to protect cut edges.</div>
-    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(10)">Next →</button></div>
-  </div>
-
-  <!-- ── STEP 10: SPECIAL OPTIONS ── -->
-  <div class="step-block" id="s10" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">9</div><h2 class="step-title">Special Options</h2></div>
-    <div id="roman-specials" style="display:none">
-      <label class="inp-label" style="display:block;margin-bottom:6px">Cutouts</label>
-      <div class="inp-row" style="max-width:340px">
-        <div class="inp-group">
-          <label class="inp-label">Number of cutouts</label>
-          <input class="inp-field" type="number" id="cutouts" min="0" max="10" value="0" oninput="S.cutouts=+this.value;updateCutoutWarn()">
-          <span class="inp-hint">Cutouts are not available with edge binding.</span>
-        </div>
-      </div>
-      <div class="warn-box" id="warn-cutout-conflict">Cannot combine cutouts with edge binding. Please remove edge binding or set cutouts to 0.</div>
-      <div class="divider"></div>
-      <label class="inp-label" style="display:block;margin-bottom:6px">Hold-down brackets</label>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="S.holdDown=false;togglePill(this,'hd')">No hold-down</div>
-        <div class="opt-pill" onclick="S.holdDown=true;togglePill(this,'hd')">Add hold-down brackets</div>
-      </div>
-      <div class="divider"></div>
-      <label class="inp-label" style="display:block;margin-bottom:6px">Spacer blocks</label>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="S.spacer=false;togglePill(this,'sp')">No spacer blocks</div>
-        <div class="opt-pill" onclick="S.spacer=true;togglePill(this,'sp')">Add spacer blocks (for handles/cranks)</div>
-      </div>
-      <div class="divider"></div>
-      <label class="inp-label" style="display:block;margin-bottom:6px">Fabric valance returns</label>
-      <div class="opt-row">
-        <div class="opt-pill" id="ret-none" onclick="pickReturns('none',this)">No returns</div>
-        <div class="opt-pill" id="ret-add" onclick="pickReturns('yes',this)">Add fabric valance returns</div>
-      </div>
-      <div class="warn-box" id="warn-tdbu-ret">Cordless TDBU inside mount cannot be ordered with returns.</div>
-    </div>
-    <div id="panel-specials" style="display:none">
-      <div class="info-box">Sliding panels can include free-floating configuration or reverse stacking. Please note any special requirements in the notes field.</div>
-    </div>
-    <div id="valance-specials" style="display:none">
-      <div class="info-box">Valance only — no additional special options.</div>
-    </div>
-    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(11)">Next →</button></div>
-  </div>
-
-  <!-- ── STEP 11: MOTORIZATION ── -->
-  <div class="step-block" id="s11" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">10</div><h2 class="step-title">Motorization &amp; Accessories</h2></div>
-    <div id="motor-eligible" style="display:none">
-      <div class="info-box">Wallace motorization systems. <strong>Do not combine with Norman motor rules.</strong> Chargers are not included with motorized shades — specify charger quantity in notes.</div>
-      <label class="inp-label" style="display:block;margin-bottom:6px">Motor accessories (select all that apply)</label>
-      <div class="opt-row" style="flex-wrap:wrap">
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'remote15ch')">15-Channel Handheld Remote</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'wallswitch')">15-Channel Wall Switch</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'prohub')">Pro Hub (Wi-Fi / Smart Home)</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'lipack')">Rechargeable LI Battery Pack</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'plugadapter')">Plug-In Power Adapter</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'cable6')">6" Extension Cable</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'cable48')">48" Extension Cable</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'cable96')">96" Extension Cable</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'charger')">Charger (16.5')</div>
-      </div>
-      <div class="info-box" style="margin-top:10px">Pro Hub connects via 2.4 GHz Wi-Fi or ethernet — works with Connector+ App, Amazon Alexa, Control4, Google Home, IFTTT, RTI, Samsung SmartThings, and Siri Shortcuts.</div>
-    </div>
-    <div id="motor-not-eligible">
-      <div class="info-box">No motorization selection needed for this configuration.</div>
-    </div>
-    <div class="btn-row"><button class="btn-submit" style="font-size:13px;padding:10px 24px" onclick="goS(12)">Next →</button></div>
-  </div>
-
-  <!-- ── STEP 12: DELIVERY + CONTACT ── -->
-  <div class="step-block" id="s12" style="display:none">
-    <div class="step-hd"><div class="step-num-circle">11</div><h2 class="step-title">Delivery &amp; Contact</h2></div>
-
-    <div class="delivery-section">
-      <div class="delivery-opt" id="del-install" onclick="pickDel('install')">
-        <div class="delivery-opt-title">Professional Installation (Philadelphia / South Jersey)</div>
-        <div class="delivery-opt-sub">We measure, supply, and install. Freight from manufacturer to our shop; we deliver and install.</div>
-      </div>
-      <div class="delivery-opt" id="del-ship" onclick="pickDel('ship')">
-        <div class="delivery-opt-title">Ship to Me</div>
-        <div class="delivery-opt-sub">Shipped from manufacturer. Sliding panels: $40 freight Continental US / $150 AK-HI. Natural draperies ≤94": $30 / &gt;94": $100 / AK-HI: $150. Roman shades: freight quoted at order. Tariffs and duties may apply.</div>
-      </div>
-    </div>
-
-    <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-    <div id="pb-final-step"></div>
-  </div>
-
   </div><!-- /#roman-section -->
-</div><!-- end config-wrap -->
+
+  <!-- Shared final steps for whichever flow is open (numbers set by pickStyle) -->
+  <div id="ww-delivery-slot"></div>
+  <div id="pb-final-step"></div>
+
+  </div>
+
+  <!-- Summary card -->
+  <div class="summary-card" id="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val" id="ws-product">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="ws-size">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="ws-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="ws-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Type</span><span class="sr-val" id="ws-type">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val" id="ws-fabric">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Control</span><span class="sr-val" id="ws-control">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Liner</span><span class="sr-val" id="ws-liner">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="ws-del">Ship to me</span></div>
+    <div class="summary-row"><span class="sr-key">Estimate</span><span class="sr-val">Custom quote &mdash; we confirm pricing</span></div>
+    <div class="summary-note">Quote-only product &mdash; we follow up within 1 business day with confirmed pricing.</div>
+  </div>
+
+  </div><!-- /config-grid -->
+  </div><!-- /config-wrap -->
+</div><!-- /ww-outer -->
 
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/wallace-woven.js"></script>
 <script>
-// Canonical final "Your details" contact + files step — identical on every product.
-document.getElementById('pb-final-step').innerHTML =
-  pbContactStepHTML({ bare: true, cartFn: 'addWallaceWovenToCart()', submitFn: 'submitQuote()' });
+// Canonical Delivery + "Your details" steps, shared by both flows (one instance → no duplicate ids).
+document.getElementById('ww-delivery-slot').outerHTML = pbDeliveryStepHTML({ stepNum: 11, onPick: 'wwSummary()' });
+document.getElementById('pb-final-step').outerHTML =
+  pbContactStepHTML({ stepNum: 12, cartFn: 'addWallaceWovenToCart()', submitFn: 'submitQuote()' });
 </script>
 </body>
 </html>
