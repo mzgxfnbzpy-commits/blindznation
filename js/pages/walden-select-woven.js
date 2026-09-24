@@ -1,29 +1,27 @@
-let wsDelivery = 'ship';
-function wsSetDelivery(val) {
-  wsDelivery = val;
-  document.getElementById('ws-del-ship').classList.toggle('sel', true);
+// Summary card — mirrors every choice; this product is quote-only (no price shown).
+function wsVal(id){ var e=document.getElementById(id); return e ? (e.value||'') : ''; }
+function wsSummary() {
+  var set=function(id,v){ var e=document.getElementById(id); if(e) e.textContent=v; };
+  var w=wsVal('ws-width'), h=wsVal('ws-height'), qty=parseInt(wsVal('ws-qty'),10)||1;
+  var pick=function(id){ var s=document.getElementById(id); return (s && s.value) ? s.options[s.selectedIndex].textContent : '—'; };
+  set('ws-s-size', (w&&h) ? (w+'″ × '+h+'″') : '—');
+  set('ws-s-mount', getOpt('ws-mount-grp'));
+  set('ws-s-qty', String(qty));
+  set('ws-s-pattern', wsVal('ws-pattern') || '—');
+  set('ws-s-type', pick('ws-type'));
+  set('ws-s-style', pick('ws-style'));
+  set('ws-s-control', pick('ws-control'));
+  set('ws-s-del', (typeof pbDeliveryLabel==='function') ? pbDeliveryLabel() : 'Ship to me');
 }
-
-// Step 1 canonical dim-box: mount pills write to the hidden #ws-mount field.
-function wsSetMount(val) {
-  document.getElementById('ws-mount').value = val;
-}
-
-// Step 1 canonical qty stepper — clamps #ws-qty to 1–20.
-function wsAdjustQty(delta) {
-  const el = document.getElementById('ws-qty');
-  let v = (parseInt(el.value, 10) || 1) + delta;
-  if (v < 1) v = 1;
-  if (v > 20) v = 20;
-  el.value = v;
-}
+function wsDeliveryLabel(){ return (typeof pbDeliveryLabel==='function') ? pbDeliveryLabel() : 'Ship to me'; }
 
 function submitWSQuote() {
   const name = document.getElementById('cf-name').value.trim();
   const phone = document.getElementById('cf-phone').value.trim();
   if (!name) { alert('Please enter your name.'); return; }
   if (!phone) { alert('Please enter your phone number.'); return; }
-  if (!document.getElementById('ws-mount').value.trim()) { alert('Please select a mount type (Inside or Outside).'); return; }
+  const mount = getOpt('ws-mount-grp');
+  if (!mount || mount === '—') { alert('Please select a mount type (Inside or Outside).'); return; }
   const subject = encodeURIComponent('Walden Select Woven Shade Quote — ' + name);
   const body = encodeURIComponent([
     'WALDEN SELECT WOVEN SHADE QUOTE REQUEST',
@@ -42,8 +40,8 @@ function submitWSQuote() {
     'Height: ' + (document.getElementById('ws-height').value ? document.getElementById('ws-height').value + '"' : 'Not entered'),
     'Quantity: ' + (document.getElementById('ws-qty').value || '1'),
     'Control: ' + (document.getElementById('ws-control').value || 'Not selected'),
-    'Mount: ' + (document.getElementById('ws-mount').value || 'Not selected'),
-    'Delivery: ' + ('Ship via UPS/FedEx'),
+    'Mount: ' + mount,
+    'Delivery: ' + wsDeliveryLabel(),
     '',
     'NOTES',
     document.getElementById('cf-notes').value || '(none)',
@@ -64,6 +62,8 @@ function addWaldenSelectToCart() {
     { label: 'Pattern', value: pattern },
     { label: 'Size', value: w + '″ × ' + h + '″' },
     { label: 'Control', value: control },
+    { label: 'Mount', value: getOpt('ws-mount-grp') },
+    { label: 'Style', value: document.getElementById('ws-style').value || '—' },
     { label: 'Quantity', value: String(qty) }
   ];
   pbAddToCart({ product: 'Walden Select Natural Woven Shade', lines: lines, specs: lines.map(function(l){ return l.label+': '+l.value; }).join(' | '), qty: qty });
@@ -82,7 +82,7 @@ function wsBuildPicker(){
     hideTabs:true, showPriceGroups:true, priceGroupTabs:true,
     types:[{key:"w",label:"Pattern"}],
     collections:collections,
-    onSelect:function(sel){ var el=document.getElementById("ws-pattern"); if(el){ el.value=sel.name+" ("+sel.code+")"; } }
+    onSelect:function(sel){ var el=document.getElementById("ws-pattern"); if(el){ el.value=sel.name+" ("+sel.code+")"; } wsSummary(); }
   });
 }
 wsBuildPicker();
