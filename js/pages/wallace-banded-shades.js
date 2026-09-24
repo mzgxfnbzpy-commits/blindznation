@@ -525,7 +525,7 @@ function updateCalc(){
   else if(S.ctrl==='motor')ctrlUp=460;
   if(S.cassette==='square')wrapUp=80;
   var bbWrap=document.querySelector('#grp-bar-wrap .opt-btn.sel');
-  if(bbWrap&&bbWrap.textContent.includes('wrap'))wrapUp+=getWrapP(w);
+  if(bbWrap&&bbWrap.hasAttribute('data-wrap'))wrapUp+=getWrapP(w);
   if(document.getElementById('acc-bat')?.checked)accUp+=160;
   if(document.getElementById('acc-plug')?.checked)accUp+=60;
   if(document.getElementById('acc-charger')?.checked)accUp+=83;
@@ -600,11 +600,11 @@ function submitQ(){
   var del=bandDelLabel();
   var sbs=document.querySelector('#grp-sbs .opt-btn.sel')?.textContent.trim().includes('Yes')?'Yes':'No';
   var bar=document.querySelector('#grp-bar .opt-btn.sel')?.textContent.trim()||'Standard';
-  var barWrap=document.querySelector('#grp-bar-wrap .opt-btn.sel')?.textContent.trim().includes('wrap')?'Yes (+$'+getWrapP(S.w)+')':'No';
+  var barWrap=document.querySelector('#grp-bar-wrap .opt-btn.sel')?.hasAttribute('data-wrap')?'Yes (+$'+getWrapP(S.w)+')':'No';
   var base=S.prod==='dual'?lookupPrice(S.w,S.h,S.fabric?S.fabric.g:null):null;
   var ctrlUp=S.ctrl==='cordless'?192:S.ctrl==='prowand'?232:S.ctrl==='motor'?460:0;
   var wrapUp=S.cassette==='square'?80:0;
-  var bbW=document.querySelector('#grp-bar-wrap .opt-btn.sel');if(bbW&&bbW.textContent.includes('wrap'))wrapUp+=getWrapP(S.w);
+  var bbW=document.querySelector('#grp-bar-wrap .opt-btn.sel');if(bbW&&bbW.hasAttribute('data-wrap'))wrapUp+=getWrapP(S.w);
   var accUp=(document.getElementById('acc-bat')?.checked?160:0)+(document.getElementById('acc-plug')?.checked?60:0)+(document.getElementById('acc-charger')?.checked?83:0)+(document.getElementById('acc-ext6')?.checked?32:0)+(document.getElementById('acc-ext48')?.checked?43:0)+(document.getElementById('acc-pole')?.checked?80:0);
   var _bmax=Math.max(S.w||0,S.h||0), _bos=(_bmax>=100?80:_bmax>=90?40:0);
   var freight=(S.del==='install')?0:25+(S.qty>1?(S.qty-1)*10:0)+_bos*S.qty;
@@ -635,7 +635,7 @@ function submitQ(){
     'Control: '+(ctrlUp>0?'+$'+ctrlUp:'Included'),
     'Wrap: '+(wrapUp>0?'+$'+wrapUp:'None'),
     'Accessories: '+(accUp>0?'+$'+accUp:'None'),
-    'Est. total: ~$'+Math.round((base||0+ctrlUp+wrapUp+accUp)*S.qty+freight),
+    'Est. total: ~$'+Math.round(((base||0)+ctrlUp+wrapUp+accUp)*S.qty+freight),
   ]:['CONTROL',document.querySelector('#grp-ctrl-2d .opt-btn.sel')?.textContent.trim()||'—']).concat([
     '','OPTIONS','Side-by-side matching: '+sbs,'Delivery: '+del,
     '','NOTES',document.getElementById('cf-notes').value||'None','',
