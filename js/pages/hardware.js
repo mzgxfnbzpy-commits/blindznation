@@ -1,8 +1,40 @@
 ﻿var hwState = { type:'', style:'', brand:'' };
 
+// Number the visible order steps 1..N. Which steps exist depends on the path
+// (decorative vs Kirsch Basics, traverse vs curtain rod), so this runs after every reveal.
+function hwShown(el) {
+  for (var e = el; e && e !== document.body; e = e.parentElement) {
+    if (e.style && e.style.display === 'none') return false;
+    if (e.classList && e.classList.contains('hw-section') && !e.classList.contains('on')) return false;
+  }
+  return true;
+}
+function hwRenumber() {
+  var n = 0;
+  document.querySelectorAll('.step-wrap .step-block').forEach(function(b) {
+    if (!hwShown(b)) return;
+    var num = b.querySelector('.step-num'); if (num) { n++; num.textContent = n; }
+  });
+}
+// Step 1 "Rod measurements" is one block; it moves to the top of whichever path is open.
+function hwPlaceMeasure(type) {
+  var step = document.getElementById('hw-measure-step');
+  var slot = document.getElementById(type === 'functional' ? 'hw-measure-slot-functional' : 'hw-measure-slot-quote');
+  if (step && slot && step.parentNode !== slot) slot.appendChild(step);
+  // Kirsch Basics is white/black hardware chosen in its own steps — no finish preference step.
+  var fin = document.getElementById('hw-finish-step');
+  if (fin) fin.style.display = type === 'functional' ? 'none' : '';
+}
+function hwWidthChanged() {
+  var w = document.getElementById('hw-width'), a = document.getElementById('arch-width');
+  if (a && w) a.value = w.value;
+  if (kfType === 'traverse') archCalc();
+}
+
 function hwReveal(id) {
   var el = document.getElementById(id);
   el.classList.add('on');
+  hwRenumber();
   setTimeout(function(){ el.scrollIntoView({ behavior:'smooth', block:'nearest' }); }, 60);
 }
 function hwUpdateSummary() {
@@ -19,6 +51,7 @@ function hwPickType(type) {
   document.getElementById('sec-quote').classList.remove('on');
   document.querySelectorAll('#dec-type-cards .opt-btn').forEach(function(c){ c.classList.remove('sel'); });
   document.querySelectorAll('#dec-brand-cards .brand-card').forEach(function(c){ c.classList.remove('sel'); });
+  hwPlaceMeasure(type);
 
   if (type === 'decorative') {
     hwReveal('sec-decorative');
@@ -26,6 +59,7 @@ function hwPickType(type) {
     hwReveal('sec-functional');
     // Kirsch basics starts at type selection — no auto-reveal of form
   }
+  hwRenumber();
 }
 
 // ── KIRSCH BASICS CONFIGURATOR ────────────────────────────
@@ -50,11 +84,16 @@ function kfSetType(type, el) {
   };
   document.getElementById('kf-step2-title').textContent = titles[type] || 'Options';
   document.getElementById('kf-step2').style.display = 'block';
-  document.getElementById('kf-step3').style.display = 'block';
-  // Mount is already chosen inside the Architrac configurator — don't repeat it in Step 3
+  // Mount is already chosen inside the Architrac configurator — the Mount step is for rods only.
+  // Tension rods have no mount choice, so the step is just their configuration summary.
+  document.getElementById('kf-step3').style.display = type === 'traverse' ? 'none' : 'block';
   var mountGroup = document.getElementById('kf-mount-group');
-  if (mountGroup) mountGroup.style.display = type === 'traverse' ? 'none' : '';
+  if (mountGroup) mountGroup.style.display = type === 'tension' ? 'none' : '';
+  var s3t = document.querySelector('#kf-step3 .step-title');
+  if (s3t) s3t.textContent = type === 'tension' ? 'Your rod' : 'Mount type';
+  if (type === 'traverse') hwWidthChanged();
   kfUpdate();
+  hwRenumber();
   // Traverse: wait until user enters a width before showing the quote form (archCalc reveals it)
   if (type !== 'traverse') hwReveal('sec-quote');
   setTimeout(function() {
@@ -64,7 +103,7 @@ function kfSetType(type, el) {
 }
 
 function kfUpdate() {
-  var qty = parseInt(document.getElementById('kf-qty').value) || 1;
+  var qty = parseInt(document.getElementById('hw-qty').value) || 1;
   var mount = (document.querySelector('#grp-kf-mount .opt-btn.sel') || {}).textContent || 'Wall mount';
   var lines = [];
 
@@ -110,21 +149,21 @@ function kfUpdate() {
 
   if (!lines.length) return;
   var html = lines.map(function(l) {
-    return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:.5px solid rgba(45,224,193,.15)">' +
-      '<span style="color:var(--text-muted)">' + l.l + '</span>' +
-      '<span style="color:var(--cream);font-weight:500">' + l.v + '</span>' +
-      '</div>';
+    return '<div class="summary-row"><span class="sr-key">' + l.l + '</span><span class="sr-val">' + l.v + '</span></div>';
   }).join('');
   document.getElementById('kf-summary-lines').innerHTML = html;
   document.getElementById('kf-summary').style.display = 'block';
 
-  // Pre-fill the quote form
-  document.getElementById('hw-notes').placeholder = 'e.g. ' + (lines[0].v) + ', ' + qty + ' window(s), ' + mount.toLowerCase() + '. Any other details…';
+  // Pre-fill the notes hint
+  var notesEl = document.getElementById('cf-notes');
+  if (notesEl) notesEl.placeholder = 'e.g. ' + (lines[0].v) + ', ' + qty + ' window(s), ' + mount.toLowerCase() + '. Any other details…';
 }
 
 function kfGetSummary() {
   if (kfType === 'traverse') {
-    // Architrac configurator — use its dedicated summary only
+    // Architrac configurator — rebuild from the current inputs so hand-edited
+    // quantities and the chosen baton lengths reach the order.
+    archBuildSummary();
     return (window._archSummary || []).join('\n');
   }
   var lines = [];
@@ -264,9 +303,19 @@ function archCalc() {
     }
   });
 
+  archBuildSummary();
+}
+
+function archBuildSummary() {
+  var w = parseFloat(document.getElementById('arch-width').value) || 0;
+  var drawSel = (document.querySelector('#grp-kf-draw .opt-btn.sel') || {}).textContent || '';
+  var isSplit = drawSel.indexOf('Split') !== -1;
+  var numPanels = isSplit ? 2 : 1;
+  var pleatSelNow = (document.querySelector('#grp-arch-pleat .opt-btn.sel') || {}).textContent || '';
+  var isRipple = pleatSelNow.toLowerCase().indexOf('ripple') !== -1;
   // Read actual user-adjusted quantities (not auto-calculated)
-  var finalBrackets = parseInt((document.getElementById('arch-brackets-inp') || {}).value) || totalBrackets;
-  var finalCarriers = parseInt((document.getElementById('arch-carriers-inp') || {}).value) || rawCarriers;
+  var finalBrackets = parseInt((document.getElementById('arch-brackets-inp') || {}).value) || (Math.ceil(w / 12) + 2);
+  var finalCarriers = parseInt((document.getElementById('arch-carriers-inp') || {}).value) || 0;
   var finalMasters  = parseInt((document.getElementById('arch-masters-inp')  || {}).value) || 1;
   var finalBatons   = parseInt((document.getElementById('arch-batons-inp')   || {}).value) || numPanels;
 
@@ -286,6 +335,8 @@ function archCalc() {
   var cordSel = _archModel === '94001'
     ? ((document.querySelector('#grp-arch-cord .opt-btn.sel') || {}).textContent || '').trim()
     : '';
+  var batonLens = ARCH_BATONS.filter(function(b){ return _archSelectedBatons.indexOf(b.sku) !== -1; })
+    .map(function(b){ return b.len + '" ' + b.sku; });
 
   window._archSummary = [
     'Architrac model: ' + _archModel,
@@ -300,7 +351,8 @@ function archCalc() {
       ? 'Master carriers: ' + finalMasters + ' overlap set(s) (over + under arm each)'
       : 'Master carrier: ' + finalMasters + ' single-arm (specify left or right in notes)',
     (isRipple ? 'Ripplefold snap carriers' : 'Ball bearing carriers') + ': ' + finalCarriers + ' — ' + carrierColor,
-    'Batons: ' + finalBatons + ' (1 per panel, sold individually)'
+    'Batons: ' + finalBatons + ' (1 per panel, sold individually)',
+    (batonLens.length ? 'Baton lengths: ' + batonLens.join(', ') : '')
   ].filter(Boolean);
 }
 
@@ -318,27 +370,20 @@ function archRenderBatons() {
   });
   var grid = document.getElementById('arch-baton-grid');
   if (!grid) return;
+  // Multi-select pills; the unit price carries a *price* class so the quote-only scope hides it.
   grid.innerHTML = filtered.map(function(b) {
     var sel = _archSelectedBatons.indexOf(b.sku) !== -1;
-    return '<div onclick="archToggleBaton(\'' + b.sku + '\',this)" style="border:1.5px solid ' + (sel ? 'var(--gold)' : '#e8e8e4') + ';background:' + (sel ? 'var(--gold-mid)' : '#fff') + ';border-radius:8px;padding:10px 12px;cursor:pointer;transition:border-color .15s">' +
-      '<div style="font-size:13px;font-weight:600;color:#1a1a1a">' + b.len + '"</div>' +
-      '<div style="font-size:10px;color:#888;margin-top:2px">' + b.sku + '</div>' +
-      '<div style="font-size:13px;font-weight:700;color:var(--espresso);margin-top:4px">$' + b.price.toFixed(2) + '</div>' +
-      '</div>';
+    return '<button class="opt-btn' + (sel ? ' sel' : '') + '" onclick="archToggleBaton(\'' + b.sku + '\',this)">' +
+      b.len + '" <span style="font-size:10px;color:#888">' + b.sku + '</span>' +
+      '<span class="baton-price" style="font-size:11px;color:var(--espresso);margin-left:4px">$' + b.price.toFixed(2) + '</span></button>';
   }).join('');
 }
 
 function archToggleBaton(sku, el) {
   var idx = _archSelectedBatons.indexOf(sku);
-  if (idx === -1) {
-    _archSelectedBatons.push(sku);
-    el.style.borderColor = 'var(--gold)';
-    el.style.background = 'var(--gold-mid)';
-  } else {
-    _archSelectedBatons.splice(idx, 1);
-    el.style.borderColor = '#e8e8e4';
-    el.style.background = '#fff';
-  }
+  if (idx === -1) _archSelectedBatons.push(sku);
+  else _archSelectedBatons.splice(idx, 1);
+  el.classList.toggle('sel', idx === -1);
 }
 
 // Auto-init: make Traverse the default when non-decorative is selected
@@ -382,25 +427,53 @@ function hwPickBrand(el, brand) {
   hwReveal('sec-quote');
 }
 
+function hwOrderSummary() {
+  var kirschSummary = (hwState.type !== 'decorative' && typeof kfGetSummary === 'function') ? kfGetSummary() : '';
+  return {
+    type: hwState.type === 'decorative' ? 'Decorative' : 'Non-decorative — Kirsch Basics',
+    kirsch: kirschSummary,
+    qty: document.getElementById('hw-qty').value,
+    width: document.getElementById('hw-width').value,
+    finish: document.getElementById('hw-finish').value
+  };
+}
+
+function addHardwareToCart() {
+  var o = hwOrderSummary();
+  var lines = [
+    { label: 'Product', value: 'Drapery hardware — ' + (hwState.brand || hwState.style || o.type) },
+    { label: 'Hardware type', value: o.type },
+    { label: 'Rod width', value: o.width ? o.width + '″' : '—' },
+    { label: 'Quantity', value: String(o.qty || 1) }
+  ];
+  if (hwState.type === 'decorative') lines.push({ label: 'Finish', value: o.finish });
+  (o.kirsch ? o.kirsch.split('\n') : []).forEach(function(l) {
+    var i = l.indexOf(': '); if (i > 0) lines.push({ label: l.slice(0, i), value: l.slice(i + 2) });
+  });
+  pbAddToCart({ product: 'Drapery Hardware', lines: lines, specs: lines.map(function(l){ return l.label + ': ' + l.value; }).join(' | '), qty: parseInt(o.qty) || 1 });
+  pbOpenCart();
+}
+
 function submitHardware() {
-  var name  = document.getElementById('hw-name').value.trim();
-  var phone = document.getElementById('hw-phone').value.trim();
+  var name  = document.getElementById('cf-name').value.trim();
+  var phone = document.getElementById('cf-phone').value.trim();
   if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
-  var delivery = getOpt('grp-del-hw');
+  // Shared Delivery step (window.pbDelivery).
+  var delivery = pbDeliveryLabel();
   // Include Kirsch selection if non-decorative
   var kirschSummary = (hwState.type !== 'decorative' && typeof kfGetSummary === 'function') ? kfGetSummary() : '';
   var body = 'HARDWARE QUOTE REQUEST\n\n'
     + 'Name: ' + name + '\nPhone: ' + phone
-    + '\nEmail: ' + (document.getElementById('hw-email').value.trim() || '—') + '\n\n'
+    + '\nEmail: ' + (document.getElementById('cf-email').value.trim() || '—') + '\n\n'
     + 'Hardware type: ' + (hwState.type === 'decorative' ? 'Decorative' : 'Non-decorative — Kirsch Basics') + '\n'
     + (hwState.style ? 'Style: ' + hwState.style + '\n' : '')
     + (hwState.brand ? 'Brand: ' + hwState.brand + '\n' : '')
     + (kirschSummary ? '\nKIRSCH SELECTION:\n' + kirschSummary + '\n' : '')
-    + '\nQty (windows): ' + (document.getElementById('kf-qty') ? document.getElementById('kf-qty').value : document.getElementById('hw-qty').value) + '\n'
+    + '\nQty (windows): ' + document.getElementById('hw-qty').value + '\n'
     + 'Width: ' + document.getElementById('hw-width').value + '\n'
     + 'Finish: ' + document.getElementById('hw-finish').value + '\n'
     + 'Delivery: ' + delivery + '\n\n'
-    + 'Notes:\n' + (document.getElementById('hw-notes').value.trim() || 'None');
+    + 'Notes:\n' + (document.getElementById('cf-notes').value.trim() || 'None');
   window.location.href = 'mailto:justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Blindznation — ' + 'Hardware Quote — ' + (hwState.style || hwState.type) + ' — ' + name)
     + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);

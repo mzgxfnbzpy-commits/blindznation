@@ -33,7 +33,9 @@
 .step-wrap{max-width:900px;margin:0 auto;padding:32px 28px}
 .step{margin-bottom:36px}
 .step-label{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
-.step-title{font-size:18px;font-weight:500;color:#1a1a1a;margin-bottom:4px;letter-spacing:-0.3px}
+.hub-title{font-size:18px;font-weight:500;color:#1a1a1a;margin-bottom:4px;letter-spacing:-0.3px}
+.step-block{margin-bottom:28px}
+.acc-box{background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:12px}
 .step-sub{font-size:13px;color:#666;line-height:1.6}
 
 /* ── CHOICE CARDS (big 2-up) ── */
@@ -46,19 +48,6 @@
 .choice-title{font-size:16px;font-weight:500;color:#111;margin-bottom:5px}
 .choice-desc{font-size:13px;color:#555;line-height:1.6}
 .choice-brands{font-size:11px;color:var(--gold);font-weight:500;margin-top:10px}
-
-/* ── OPTION CARDS (sub-type) ── */
-.opt-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:14px}
-.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s}
-.opt-card:hover{border-color:var(--gold)}
-.opt-card.sel{border:2px solid var(--gold);box-shadow:0 2px 12px rgba(45,224,193,.15)}
-.opt-card.sel .opt-label-bar{background:var(--gold)}
-.opt-card.sel .opt-name,.opt-card.sel .opt-desc{color:var(--espresso)}
-.opt-art{height:110px;background:#F8F4EE;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.opt-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.opt-label-bar{background:#f2ede6;padding:10px 12px;transition:background .15s}
-.opt-name{font-size:13px;font-weight:500;color:#222;margin-bottom:1px}
-.opt-desc{font-size:11px;color:#888;line-height:1.4}
 
 /* ── BRAND CARDS ── */
 .brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:14px}
@@ -77,12 +66,6 @@
 .drape-crosssell-text{font-size:13px;color:var(--cream)}
 .drape-crosssell-text strong{color:var(--gold)}
 
-/* ── QTY CONTROLS ── */
-.qty-btns{display:flex;align-items:center;gap:0;border:1px solid #ddd;border-radius:8px;overflow:hidden;width:fit-content}
-.qty-btn{width:36px;height:36px;border:none;background:#f5f5f3;color:#333;font-size:18px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .12s;flex-shrink:0}
-.qty-btn:hover{background:#e8e4de}
-.qty-num{width:52px;height:36px;border:none;border-left:1px solid #ddd;border-right:1px solid #ddd;text-align:center;font-size:15px;font-weight:600;color:#1a1a1a;font-family:var(--font);-moz-appearance:textfield}
-.qty-num::-webkit-inner-spin-button,.qty-num::-webkit-outer-spin-button{-webkit-appearance:none}
 /* ── TOOLTIP NOTE ── */
 .tooltip-note{font-size:11px;color:#666;line-height:1.6;background:#fafaf8;border:1px solid #e8e4de;border-radius:8px;padding:8px 12px}
 /* ── SUCCESS ── */
@@ -112,9 +95,9 @@
 
 <div class="step-wrap">
 
-  <!-- PICK TYPE — always visible -->
+  <!-- HUB: PICK TYPE — always visible (routing, not an order step) -->
   <div class="step">
-    <div class="step-title" style="margin-bottom:4px">What type of hardware?</div>
+    <div class="hub-title" style="margin-bottom:4px">What type of hardware?</div>
     <div class="step-sub">Decorative hardware is meant to be seen. Functional/traverse tracks are engineered for smooth operation and are typically hidden behind a valance.</div>
     <div class="choice-grid">
       <div class="choice-card" id="card-decorative" onclick="hwPickType('decorative')">
@@ -132,12 +115,11 @@
     </div>
   </div>
 
-  <!-- ── DECORATIVE PATH ─────────────────────────── -->
+  <!-- ── DECORATIVE PATH (hub: style → brand; four brands open their own configurators) ── -->
   <div class="hw-section" id="sec-decorative">
 
-    <!-- STYLE — appears after type pick -->
     <div class="step" id="dec-style-step">
-      <div class="step-title" style="margin-bottom:4px">Which style?</div>
+      <div class="hub-title" style="margin-bottom:4px">Which style?</div>
       <div class="opt-row" id="dec-type-cards">
         <button class="opt-btn" onclick="hwPickStyle(this,'Rods &amp; Rings')">Rods &amp; Rings</button>
         <button class="opt-btn" onclick="hwPickStyle(this,'Traverse Rod')">Traverse Rod</button>
@@ -146,10 +128,9 @@
       <div class="step-note">Rods &amp; Rings — classic ring-and-rod for pinch, goblet &amp; grommet pleat. Traverse Rod — cord or wand operated, great for ripple fold. Specialty / Custom — bay windows, arches, curved tracks.</div>
     </div>
 
-    <!-- BRAND — appears after style pick (hidden for specialty) -->
     <div class="hw-section" id="dec-brand-step">
       <div class="step">
-        <div class="step-title" style="margin-bottom:4px">Which brand?</div>
+        <div class="hub-title" style="margin-bottom:4px">Which brand?</div>
         <div class="step-sub" style="margin-bottom:12px">All brands offer custom lengths, finishes &amp; bracket configs. We'll help you match to your space.</div>
         <div class="brand-grid" id="dec-brand-cards">
           <div class="brand-card" onclick="window.location.href='select-rods.html'" style="position:relative">
@@ -186,8 +167,7 @@
 
   </div><!-- /sec-decorative -->
 
-  <!-- ── FUNCTIONAL PATH ────────────────────────── -->
-  <!-- ── KIRSCH BASICS CONFIGURATOR ──────────────────────────── -->
+  <!-- ── FUNCTIONAL PATH — Kirsch Basics order form ── -->
   <div class="hw-section" id="sec-functional">
 
     <!-- Header -->
@@ -199,10 +179,13 @@
       </div>
     </div>
 
-    <!-- Step 1: System type -->
-    <div class="step" id="kf-step1">
+    <!-- (Rod measurements step is placed here by hwPickType for this path) -->
+    <div id="hw-measure-slot-functional"></div>
+
+    <!-- System type -->
+    <div class="step-block" id="kf-step1">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-        <div class="step-num">1</div>
+        <div class="step-num">2</div>
         <div class="step-title" style="margin-bottom:0">What type of system?</div>
       </div>
       <div class="opt-row">
@@ -214,19 +197,17 @@
       <div class="step-note">Traverse Rod — cord-draw system, panels open &amp; close on a track. Lockseam Curtain Rod — stationary rod for rod pocket, grommet, or tab panels. Tension Rod — spring-loaded, no holes needed (café curtains &amp; sheers). Sash Rod — flat or round for door panels, café tiers, small windows.</div>
     </div>
 
-    <!-- Step 2: Sub-options (changes per type) -->
-    <div class="step" id="kf-step2" style="display:none">
+    <!-- Sub-options (changes per type) -->
+    <div class="step-block" id="kf-step2" style="display:none">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-        <div class="step-num">2</div>
+        <div class="step-num">3</div>
         <div class="step-title" id="kf-step2-title" style="margin-bottom:0">Options</div>
       </div>
 
-      <!-- TRAVERSE sub-options -->
-      <!-- ── ARCHITRAC FULL CONFIGURATOR ── -->
+      <!-- TRAVERSE sub-options — Architrac configurator -->
       <div id="kf-traverse-opts" style="display:none">
 
-        <!-- Model selection -->
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:10px">Kirsch Architrac® model</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Kirsch Architrac® model</div>
         <div class="opt-row" style="margin-bottom:6px">
           <button id="arch-94003-card" class="opt-btn sel" onclick="archSelModel('94003',this)">94003 <span style="font-size:9px;font-weight:700;background:var(--gold);color:var(--espresso);padding:2px 7px;border-radius:8px;margin-left:4px">RECOMMENDED</span></button>
           <button id="arch-94001-card" class="opt-btn" onclick="archSelModel('94001',this)">94001</button>
@@ -237,8 +218,7 @@
 
         <!-- Cord length — 94001 only -->
         <div id="arch-cord-wrap" style="display:none;margin-bottom:14px">
-          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Cord length</div>
-          <div style="font-size:11px;color:#666;margin-bottom:8px;line-height:1.6">Cord length = your panel drop (floor-to-top-of-pocket) + ~12" for operation. Measure ceiling-to-floor if unsure.</div>
+          <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Cord length</div>
           <div class="opt-row" id="grp-arch-cord">
             <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-cord');archCalc()">36"</button>
             <button class="opt-btn" onclick="selOpt(this,'grp-arch-cord');archCalc()">48"</button>
@@ -248,21 +228,15 @@
             <button class="opt-btn" onclick="selOpt(this,'grp-arch-cord');archCalc()">96"</button>
             <button class="opt-btn" onclick="selOpt(this,'grp-arch-cord');archCalc()">Custom — note in quote</button>
           </div>
+          <div class="step-note">Cord length = your panel drop (floor-to-top-of-pocket) + ~12" for operation. Measure ceiling-to-floor if unsure.</div>
         </div>
 
-        <!-- Exact width -->
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:4px">Exact track width (inches)</div>
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-          <div class="dim-box" style="flex:0 0 auto;padding:12px 16px;margin-bottom:0">
-            <div class="dim-box-label" style="margin-bottom:8px">Track width</div>
-            <input type="number" id="arch-width" min="12" max="240" step="0.5" placeholder="84" oninput="archCalc()" style="font-size:22px;font-weight:600;height:50px;text-align:center;width:110px">
-            <div class="dim-unit">inches</div>
-          </div>
-          <div style="font-size:12px;color:#666;line-height:1.7">Enter the exact finished width of your window opening or desired coverage. We cut the track to size.</div>
-        </div>
+        <!-- Track width comes from Step 1 "Rod measurements" (kept here as the hidden calc input) -->
+        <input type="hidden" id="arch-width" value="">
+        <div class="tooltip-note" style="margin-bottom:14px">Track width is taken from <strong>Rod measurements</strong> above — we cut the track to size.</div>
 
         <!-- Draw type -->
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Draw type</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Draw type</div>
         <div class="opt-row" id="grp-kf-draw">
           <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-draw');archCalc()">Split draw — pair of panels opens from center</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-draw');archCalc()">One-way right — single panel draws right</button>
@@ -270,16 +244,16 @@
         </div>
 
         <!-- Color + Mount -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px">
           <div>
-            <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Track color</div>
+            <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Track color</div>
             <div class="opt-row" id="grp-arch-color">
               <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-color');archCalc()"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#F0F0F0;border:1px solid #ccc;margin-right:5px;vertical-align:middle"></span>White</button>
               <button class="opt-btn" onclick="selOpt(this,'grp-arch-color');archCalc()"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#222;margin-right:5px;vertical-align:middle"></span>Black</button>
             </div>
           </div>
           <div>
-            <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Mount type</div>
+            <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Mount type</div>
             <div class="opt-row" id="grp-arch-mount">
               <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-mount');archCalc()">Wall mount</button>
               <button class="opt-btn" onclick="selOpt(this,'grp-arch-mount');archCalc()">Ceiling mount</button>
@@ -288,14 +262,13 @@
         </div>
 
         <!-- Pleat / drapery style -->
-        <div style="margin-top:14px">
-          <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Drapery style on this track</div>
+        <div style="margin-top:4px">
+          <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Drapery style on this track</div>
           <div class="opt-row" id="grp-arch-pleat">
             <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-pleat');archTogglePleat('pinch')">Pinch pleat</button>
             <button class="opt-btn" onclick="selOpt(this,'grp-arch-pleat');archTogglePleat('ripple')">Ripple fold</button>
           </div>
-          <!-- Ripple fold fullness — shown only for ripple fold -->
-          <div id="arch-ripple-opts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+          <div id="arch-ripple-opts" style="display:none;margin-top:4px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
             <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:7px">Ripple fold fullness %</div>
             <div class="opt-row" id="grp-arch-ripple-pct">
               <button class="opt-btn" onclick="selOpt(this,'grp-arch-ripple-pct');archCalc()">60%</button>
@@ -303,7 +276,7 @@
               <button class="opt-btn" onclick="selOpt(this,'grp-arch-ripple-pct');archCalc()">100%</button>
               <button class="opt-btn" onclick="selOpt(this,'grp-arch-ripple-pct');archCalc()">120%</button>
             </div>
-            <div style="font-size:10px;color:#aaa;margin-top:6px">80% is standard ripple fold. Higher % = more wave depth.</div>
+            <div class="step-note">80% is standard ripple fold. Higher % = more wave depth.</div>
           </div>
         </div>
 
@@ -312,7 +285,7 @@
           <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Recommended accessories</div>
 
           <!-- Brackets -->
-          <div style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+          <div class="acc-box">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
               <div style="font-size:13px;font-weight:600;color:#1a1a1a">Brackets</div>
               <div id="arch-bracket-count" style="font-size:16px;font-weight:700;color:var(--espresso)"></div>
@@ -325,14 +298,14 @@
             </div>
             <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Adjust quantity if needed</div>
             <div class="qty-btns">
-              <button class="qty-btn" onclick="var n=document.getElementById('arch-brackets-inp');n.value=Math.max(1,parseInt(n.value)-1)">−</button>
+              <button class="qty-btn" onclick="pbAdjQty('arch-brackets-inp',-1,1,50)">&#8722;</button>
               <input class="qty-num" id="arch-brackets-inp" type="number" value="2" min="1" max="50">
-              <button class="qty-btn" onclick="var n=document.getElementById('arch-brackets-inp');n.value=parseInt(n.value)+1">+</button>
+              <button class="qty-btn" onclick="pbAdjQty('arch-brackets-inp',1,1,50)">&#43;</button>
             </div>
           </div>
 
           <!-- Master carriers -->
-          <div id="arch-master-wrap" style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+          <div id="arch-master-wrap" class="acc-box">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
               <div style="font-size:13px;font-weight:600;color:#1a1a1a">Master carriers</div>
               <span style="font-size:10px;background:var(--gold-mid);color:#7A5A28;padding:2px 8px;border-radius:6px">Sold in pairs</span>
@@ -340,14 +313,14 @@
             <div id="arch-master-note" style="font-size:11px;color:#666;line-height:1.6;margin-bottom:10px"></div>
             <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Pairs needed (1 pair = 1 over + 1 under)</div>
             <div class="qty-btns">
-              <button class="qty-btn" onclick="var n=document.getElementById('arch-masters-inp');n.value=Math.max(1,parseInt(n.value)-1)">−</button>
+              <button class="qty-btn" onclick="pbAdjQty('arch-masters-inp',-1,1,20)">&#8722;</button>
               <input class="qty-num" id="arch-masters-inp" type="number" value="1" min="1" max="20">
-              <button class="qty-btn" onclick="var n=document.getElementById('arch-masters-inp');n.value=parseInt(n.value)+1">+</button>
+              <button class="qty-btn" onclick="pbAdjQty('arch-masters-inp',1,1,20)">&#43;</button>
             </div>
           </div>
 
           <!-- Ball bearing / Ripplefold snap carriers -->
-          <div style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+          <div class="acc-box">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
               <div id="arch-carrier-label" style="font-size:13px;font-weight:600;color:#1a1a1a">Ball bearing carriers</div>
               <div id="arch-carrier-count" style="font-size:16px;font-weight:700;color:var(--espresso)"></div>
@@ -360,41 +333,36 @@
             </div>
             <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Adjust quantity</div>
             <div class="qty-btns">
-              <button class="qty-btn" onclick="var n=document.getElementById('arch-carriers-inp');n.value=Math.max(1,parseInt(n.value)-1)">−</button>
+              <button class="qty-btn" onclick="pbAdjQty('arch-carriers-inp',-1,1,200)">&#8722;</button>
               <input class="qty-num" id="arch-carriers-inp" type="number" value="6" min="1" max="200">
-              <button class="qty-btn" onclick="var n=document.getElementById('arch-carriers-inp');n.value=parseInt(n.value)+1">+</button>
+              <button class="qty-btn" onclick="pbAdjQty('arch-carriers-inp',1,1,200)">&#43;</button>
             </div>
           </div>
 
           <!-- Batons -->
-          <div style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:12px">
+          <div class="acc-box">
             <div style="font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Batons (manual pull)</div>
             <div style="font-size:11px;color:#666;margin-bottom:10px;line-height:1.5">White only — standard option. Pull to open/close panels. <span id="arch-baton-custom-note"></span></div>
-
-            <!-- Attachment type -->
             <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:6px">Attachment clip</div>
             <div class="opt-row" id="grp-arch-baton-clip">
               <button class="opt-btn sel" onclick="selOpt(this,'grp-arch-baton-clip');archRenderBatons()">Plastic clip</button>
               <button class="opt-btn" onclick="selOpt(this,'grp-arch-baton-clip');archRenderBatons()">Stainless steel clip</button>
             </div>
-
-            <!-- Baton length grid -->
-            <div style="font-size:11px;font-weight:600;color:#555;margin:10px 0 6px">Length (select one or more)</div>
-            <div id="arch-baton-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px"></div>
-
-            <div style="margin-top:10px;padding:10px 13px;background:var(--gold-mid);border-radius:8px;font-size:11px;color:#7A5A28;line-height:1.5">
-              Need a custom color baton? <button onclick="pbShowContact('Custom color baton for Architrac traverse system')" style="background:none;border:none;color:var(--gold);font-weight:600;cursor:pointer;font-size:11px;font-family:inherit;text-decoration:underline;padding:0">Request a quote →</button>
+            <div style="font-size:11px;font-weight:600;color:#555;margin:4px 0 6px">Length <span style="font-weight:400;color:#888">(select any)</span></div>
+            <div class="opt-row" id="arch-baton-grid"></div>
+            <div style="margin-top:4px;padding:10px 13px;background:var(--gold-mid);border-radius:8px;font-size:11px;color:#7A5A28;line-height:1.5">
+              Need a custom color baton? <button onclick="pbShowContact('Custom color baton for Architrac traverse system')" style="background:none;border:none;color:var(--gold);font-weight:600;cursor:pointer;font-size:11px;font-family:inherit;text-decoration:underline;padding:0">Ask about custom colors →</button>
             </div>
           </div>
 
           <!-- Qty of baton sets -->
-          <div style="background:#fafaf8;border:1px solid #e8e8e4;border-radius:10px;padding:14px 16px;margin-bottom:4px">
+          <div class="acc-box" style="margin-bottom:4px">
             <div style="font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Number of baton sets</div>
             <div style="font-size:11px;color:#666;margin-bottom:10px">1 baton per panel — split draw defaults to 2 (one per panel), one-way defaults to 1. Edit below if needed.</div>
             <div class="qty-btns">
-              <button class="qty-btn" onclick="var n=document.getElementById('arch-batons-inp');n.value=Math.max(1,parseInt(n.value)-1)">−</button>
+              <button class="qty-btn" onclick="pbAdjQty('arch-batons-inp',-1,1,20)">&#8722;</button>
               <input class="qty-num" id="arch-batons-inp" type="number" value="2" min="1" max="20">
-              <button class="qty-btn" onclick="var n=document.getElementById('arch-batons-inp');n.value=parseInt(n.value)+1">+</button>
+              <button class="qty-btn" onclick="pbAdjQty('arch-batons-inp',1,1,20)">&#43;</button>
             </div>
           </div>
         </div>
@@ -402,14 +370,14 @@
 
       <!-- LOCKSEAM sub-options -->
       <div id="kf-lockseam-opts" style="display:none">
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Rod configuration</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Rod configuration</div>
         <div class="opt-row" id="grp-kf-rconfig">
           <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-rconfig');kfUpdate()">Single rod</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-rconfig');kfUpdate()">Double rod</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-rconfig');kfUpdate()">Triple rod</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-rconfig');kfUpdate()">Bay rod</button>
         </div>
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Rod diameter (front rod)</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Rod diameter (front rod)</div>
         <div class="opt-row" id="grp-kf-diam">
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">½″ <span style="font-size:10px;color:#888">sheer/café</span></button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">1½″</button>
@@ -418,140 +386,140 @@
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">5½″ <span style="font-size:10px;color:#888">wide valance</span></button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-diam');kfUpdate()">8½″ <span style="font-size:10px;color:#888">wide valance</span></button>
         </div>
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Width range</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Width range</div>
         <div class="opt-row" id="grp-kf-ls-width">
           <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-ls-width');kfUpdate()">Under 28″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-ls-width');kfUpdate()">28″ – 48″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-ls-width');kfUpdate()">48″ – 84″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-ls-width');kfUpdate()">84″ – 120″</button>
         </div>
-        <div class="tooltip-note" style="margin-top:8px">All White finish. Center support bracket included on orders over 48″. Bay rod available 78″–127″.</div>
+        <div class="tooltip-note">All White finish. Center support bracket included on orders over 48″. Bay rod available 78″–127″.</div>
       </div>
 
       <!-- TENSION sub-options -->
       <div id="kf-tension-opts" style="display:none">
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Tension rod type</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Tension rod type</div>
         <div class="opt-row" id="grp-kf-ten-type">
           <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-ten-type');kfUpdate()">⅝″ Oval</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-type');kfUpdate()">⁷⁄₁₆″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-type');kfUpdate()">Door sash (zinc)</button>
         </div>
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Width range</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Width range</div>
         <div class="opt-row" id="grp-kf-ten-width">
           <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-ten-width');kfUpdate()">8″ – 16″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-width');kfUpdate()">16″ – 28″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-width');kfUpdate()">22″ – 48″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-ten-width');kfUpdate()">36″ – 72″</button>
         </div>
-        <div class="tooltip-note" style="margin-top:8px">Spring tension — no drilling required. ⅝″ oval and ⁷⁄₁₆″ are White; door sash tension rod is Zinc (#1958666, 20″–36″).</div>
+        <div class="tooltip-note">Spring tension — no drilling required. ⅝″ oval and ⁷⁄₁₆″ are White; door sash tension rod is Zinc (#1958666, 20″–36″).</div>
       </div>
 
       <!-- SASH sub-options -->
       <div id="kf-sash-opts" style="display:none">
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px">Sash rod type</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Sash rod type</div>
         <div class="opt-row" id="grp-kf-sash-type">
           <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-sash-type');kfUpdate()">⁵⁄₁₆″ Door sash rod (11″–36″)</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-type');kfUpdate()">⁷⁄₁₆″ Door sash rod (18″–28″)</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-type');kfUpdate()">¹¹⁄₁₆″ Flat sash rod (16″–50″)</button>
         </div>
-        <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:8px;margin-top:14px">Width range</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Width range</div>
         <div class="opt-row" id="grp-kf-sash-width">
           <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-sash-width');kfUpdate()">11″ – 19″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-width');kfUpdate()">16″ – 28″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-width');kfUpdate()">20″ – 36″</button>
           <button class="opt-btn" onclick="selOpt(this,'grp-kf-sash-width');kfUpdate()">28″ – 50″</button>
         </div>
-        <div class="tooltip-note" style="margin-top:8px">All White finish. ⁵⁄₁₆″ and ⁷⁄₁₆″ are door sash rods (bracket-free inside a frame). ¹¹⁄₁₆″ is a flat sash rod for café tiers, sheers, and small windows.</div>
+        <div class="tooltip-note">All White finish. ⁵⁄₁₆″ and ⁷⁄₁₆″ are door sash rods (bracket-free inside a frame). ¹¹⁄₁₆″ is a flat sash rod for café tiers, sheers, and small windows.</div>
       </div>
     </div>
 
-    <!-- Step 3: Quantity + mount + summary -->
-    <div class="step" id="kf-step3" style="display:none">
+    <!-- Mount (curtain / sash rods) + configuration summary -->
+    <div class="step-block" id="kf-step3" style="display:none">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-        <div class="step-num">3</div>
-        <div class="step-title" style="margin-bottom:0">Quantity &amp; details</div>
+        <div class="step-num">4</div>
+        <div class="step-title" style="margin-bottom:0">Mount type</div>
       </div>
-      <div class="form-row" style="margin-top:12px">
-        <div class="form-group">
-          <label>How many rods / windows?</label>
-          <div class="qty-btns">
-            <button class="qty-btn" onclick="var n=document.getElementById('kf-qty');n.value=Math.max(1,parseInt(n.value)-1);kfUpdate()">−</button>
-            <input class="qty-num" id="kf-qty" type="number" value="1" min="1" max="50" oninput="kfUpdate()">
-            <button class="qty-btn" onclick="var n=document.getElementById('kf-qty');n.value=parseInt(n.value)+1;kfUpdate()">+</button>
-          </div>
-        </div>
-        <div class="form-group" id="kf-mount-group">
-          <label>Mount</label>
-          <div class="opt-row" id="grp-kf-mount" style="margin-top:8px">
-            <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-mount');kfUpdate()">Wall mount</button>
-            <button class="opt-btn" onclick="selOpt(this,'grp-kf-mount');kfUpdate()">Ceiling mount</button>
-          </div>
+      <div id="kf-mount-group">
+        <div class="opt-row" id="grp-kf-mount">
+          <button class="opt-btn sel" onclick="selOpt(this,'grp-kf-mount');kfUpdate()">Wall mount</button>
+          <button class="opt-btn" onclick="selOpt(this,'grp-kf-mount');kfUpdate()">Ceiling mount</button>
         </div>
       </div>
 
       <!-- Summary box -->
-      <div id="kf-summary" style="display:none;background:var(--espresso);border-radius:12px;padding:16px 18px;margin:16px 0">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px">Your selection</div>
+      <div id="kf-summary" class="summary-card" style="display:none;position:static;margin:16px 0">
+        <div class="summary-head">Your configuration</div>
         <div id="kf-summary-lines"></div>
-        <div style="font-size:11px;color:var(--text-faint);margin-top:10px;line-height:1.5">Kirsch Basic hardware — White finish · Quote includes supply only. Installation available — ask in notes.</div>
+        <div class="summary-note">Kirsch Basic hardware — White finish · Quote includes supply only. Installation available — choose it in Delivery.</div>
       </div>
     </div>
 
-  </div>
+  </div><!-- /sec-functional -->
 
-  <!-- ── QUOTE FORM — appears automatically ────────────────────── -->
+  <!-- ── ORDER FORM — appears once a product is chosen ────────────────────── -->
   <div class="hw-section" id="sec-quote">
-    <div class="step">
-      <div id="hw-form">
+    <div id="hw-form">
+      <button onclick="reqMoreInfo('Drapery Hardware')" class="req-info-link" style="display:block;margin-bottom:14px">Request more information about Drapery Hardware →</button>
 
-        <div class="form-row">
-          <div class="form-group"><label>Your name *</label><input type="text" id="hw-name" placeholder="Jane Smith"></div>
-          <div class="form-group"><label>Phone *</label><input type="tel" id="hw-phone" placeholder="(215) 555-0100"></div>
-        </div>
-        <div class="form-group"><label>Email</label><input type="email" id="hw-email" placeholder="jane@example.com"></div>
-        <div class="form-row">
-          <div class="form-group"><label>Number of windows / rods</label><input type="number" id="hw-qty" min="1" value="1"></div>
-          <div class="form-group">
-            <label>Exact rod width (inches) *</label>
-            <input type="number" id="hw-width" min="1" max="480" step="0.25" placeholder="e.g. 84" style="font-size:15px;padding:10px 12px">
-            <div style="font-size:11px;color:#888;margin-top:4px">Measure the finished rod length you need. For multiple windows, enter the widest — note others in the Notes field.</div>
+      <!-- (Rod measurements step sits here on the decorative path) -->
+      <div id="hw-measure-slot-quote">
+        <!-- STEP 1: ROD MEASUREMENTS -->
+        <div class="step-block" id="hw-measure-step">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">1</div>
+            <div class="step-title" style="margin-bottom:0">Rod measurements</div>
           </div>
-        </div>
-        <div class="form-group"><label>Finish preference</label>
-          <select id="hw-finish">
-            <option>Not sure yet — please advise</option>
-            <option>Matte black</option><option>Brushed nickel</option><option>Polished chrome</option>
-            <option>Antique bronze / oil rubbed</option><option>Brushed gold / champagne</option>
-            <option>Satin brass</option><option>Ivory / white</option><option>Custom — specify in notes</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Notes — drapery type, panel weight, motorization plans, anything else</label>
-          <textarea id="hw-notes" style="min-height:80px" placeholder="e.g. ripple fold panels, ceiling mount, 3 windows, considering Somfy motor…"></textarea>
-        </div>
-
-        <div class="drape-crosssell">
-          <div class="drape-crosssell-text"><strong>Also need custom drapery panels?</strong><br><span style="font-size:12px;color:var(--text-muted)">We fabricate in-house — panels &amp; hardware quoted together.</span></div>
-          <a href="soft-treatments.html" class="btn-gold" style="font-size:12px;padding:8px 14px;white-space:nowrap">Custom Drapery &rarr;</a>
-        </div>
-
-        <div class="delivery-section" style="margin-top:16px">
-          <div style="font-size:13px;font-weight:500;color:#111;margin-bottom:8px">Delivery</div>
-          <div class="opt-row" id="grp-del-hw">
-            <button class="opt-btn sel" onclick="selOpt(this,'grp-del-hw');document.getElementById('del-hw-s').style.display='block'">Ship to me</button>
+          <div class="dim-box">
+            <div class="dim-box-label">Enter your rod width</div>
+            <div class="form-row">
+              <div class="form-group"><label>Width</label><input type="number" id="hw-width" min="1" max="480" step="0.25" placeholder="84" oninput="hwWidthChanged()"><div class="dim-unit">inches &mdash; the finished rod / track length you need</div></div>
+            </div>
           </div>
-          <div id="del-hw-s" class="delivery-note">Shipped via <strong>UPS or FedEx</strong>.<div class="delivery-tariff">Note: tariffs and import fees are additional and itemized separately.</div></div>
+          <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; For several windows, enter the widest and list the others in your notes.</div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="font-size:12px;color:#666">Qty:</span>
+            <div class="qty-btns">
+              <button class="qty-btn" type="button" onclick="pbAdjQty('hw-qty',-1,1,50);kfUpdate()">&#8722;</button>
+              <input class="qty-num" type="number" id="hw-qty" value="1" min="1" max="50" oninput="kfUpdate()">
+              <button class="qty-btn" type="button" onclick="pbAdjQty('hw-qty',1,1,50);kfUpdate()">&#43;</button>
+            </div>
+            <span style="font-size:12px;color:#666">rod(s) / window(s)</span>
+          </div>
+          <div style="font-size:12px;font-weight:600;color:#555;margin:16px 0 6px">Exact rod length &amp; brackets <span style="font-weight:400;color:#888">(optional)</span></div>
+          <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML, bare) -->
+          <div id="pb-rod-spec"></div>
         </div>
+      </div>
 
-        <button onclick="reqMoreInfo('Drapery Hardware')" class="req-info-link" style="display:block;margin-bottom:14px">Request more information about Drapery Hardware →</button>
-        <button class="btn-submit-cta" onclick="submitHardware()" style="font-family:var(--font)">
-          Get Custom Hardware Quote →
-          <span class="cta-sub">We'll follow up within a few hours · (609) 742-1720 · 24/7</span>
-        </button>
+      <!-- FINISH PREFERENCE (decorative path) -->
+      <div class="step-block" id="hw-finish-step">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <div class="step-num">2</div>
+          <div class="step-title" style="margin-bottom:0">Finish preference</div>
+        </div>
+        <select id="hw-finish" data-pb-pills>
+          <option>Not sure yet — please advise</option>
+          <option>Matte black</option><option>Brushed nickel</option><option>Polished chrome</option>
+          <option>Antique bronze / oil rubbed</option><option>Brushed gold / champagne</option>
+          <option>Satin brass</option><option>Ivory / white</option><option>Custom — specify in notes</option>
+        </select>
+        <div class="step-note">Drapery type, panel weight or motorization plans? Add them to your notes below.</div>
       </div>
-      <div class="success-box" id="hw-success">
-        <strong>Quote request sent!</strong> We'll follow up within a few hours.<br>
-        Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
+
+      <div class="drape-crosssell" style="margin:18px 0">
+        <div class="drape-crosssell-text"><strong>Also need custom drapery panels?</strong><br><span style="font-size:12px;color:var(--text-muted)">We fabricate in-house — panels &amp; hardware quoted together.</span></div>
+        <a href="soft-treatments.html" class="btn-gold" style="font-size:12px;padding:8px 14px;white-space:nowrap">Custom Drapery &rarr;</a>
       </div>
+
+      <!-- DELIVERY (shared) -->
+      <div id="pb-delivery-step"></div>
+
+      <!-- YOUR DETAILS (shared) -->
+      <div id="pb-final-step"></div>
+    </div>
+    <div class="success-box" id="hw-success">
+      <strong>Quote request sent!</strong> We'll follow up within a few hours.<br>
+      Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
     </div>
   </div>
 
@@ -571,6 +539,14 @@
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/hardware.js"></script>
+<script>
+// Exact rod length + bracket count live inside Step 1 "Rod measurements".
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ bare: true });
+// Shared Delivery (second-to-last) and "Your details" (last) steps.
+document.getElementById('pb-delivery-step').outerHTML = pbDeliveryStepHTML({ stepNum: 3 });
+document.getElementById('pb-final-step').outerHTML = pbContactStepHTML({ stepNum: 4, cartFn: 'addHardwareToCart()', submitFn: 'submitHardware()' });
+hwRenumber();
+</script>
 </body>
 </html>
 
