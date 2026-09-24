@@ -213,8 +213,11 @@ function selOpt(btn, grpId) {
 
 function show(id) { const el = document.getElementById(id); if(el) el.style.display='block'; }
 function hide(id) { const el = document.getElementById(id); if(el) el.style.display='none'; }
-function showStep(id) { const el = document.getElementById(id); if(el) el.classList.add('on'); }
-function hideStep(id) { const el = document.getElementById(id); if(el) el.classList.remove('on'); }
+// Every step is always visible now (standard frame) — these are kept as harmless no-ops
+// so the existing call sites don't need rewiring.
+function showStep(id) {}
+function hideStep(id) {}
+function mountLabel(m) { return m === 'outside' ? 'Outside mount' : m === 'ceiling' ? 'Ceiling mount' : 'Inside mount'; }
 function warn(id, on) {
   const el = document.getElementById(id);
   if(el) { el.classList.toggle('on', on); el.style.display = on ? 'block' : 'none'; }
@@ -223,8 +226,7 @@ function warn(id, on) {
 // ── Step 1: Pick type ───────────────────────────────────────
 function pickType(t, cardEl) {
   W.type = t;
-  document.querySelectorAll('.type-card').forEach(c => c.classList.remove('sel'));
-  if(cardEl) cardEl.classList.add('sel');
+  if(cardEl) selOpt(cardEl, 'grp-type');
 
   // Filter patterns by type
   renderPatterns(currentGroup);
@@ -238,15 +240,12 @@ function pickType(t, cardEl) {
 
   // Step labels
   document.getElementById('style-ttl').textContent =
-    t==='shade' ? 'Shade Style' : t==='panel' ? 'Opening Direction' :
-    t==='drape' ? 'Draw Direction' : 'Valance Style';
+    t==='shade' ? 'Shade style' : t==='panel' ? 'Opening direction' :
+    t==='drape' ? 'Draw direction' : 'Valance style';
 
-  // Dims label
-  document.getElementById('dims-ttl').textContent =
-    t==='panel' ? 'Opening Dimensions' : t==='drape' ? 'Drapery Dimensions' : 'Dimensions';
-
-  // Show/hide control step
-  if(t === 'shade') showStep('sec-control'); else hideStep('sec-control');
+  // Control step stays in place (numbering is fixed); only shades have a control choice.
+  document.getElementById('ctrl-shade-opts').style.display = t === 'shade' ? 'block' : 'none';
+  document.getElementById('ctrl-na-note').style.display   = t === 'shade' ? 'none' : 'block';
 
   // Show/hide multi/twin for shade only
   document.getElementById('twin-opt').style.display = t==='shade' ? 'block' : 'none';
@@ -255,16 +254,19 @@ function pickType(t, cardEl) {
   // Valance step changes
   hide('valance-shade-opts'); hide('valance-panel-opts'); hide('valance-drape-opts');
   document.getElementById('valance-ttl').textContent =
-    t==='panel' ? 'Track &amp; Hardware' : t==='drape' ? 'Hardware' : 'Valance &amp; Hardware';
+    t==='panel' ? 'Track & hardware' : t==='drape' ? 'Hardware' : 'Valance & hardware';
   if(t==='panel')   show('valance-panel-opts');
   else if(t==='drape') show('valance-drape-opts');
   else show('valance-shade-opts');
 
-  // Style defaults
+  // Style defaults (first pill of the visible style row)
   if(t==='shade')   { W.style = 'standard'; }
   if(t==='panel')   { W.style = 'left'; }
   if(t==='drape')   { W.style = 'left'; }
   if(t==='valance') { W.style = 'cornice'; }
+  var sr = document.querySelector('#grp-style-' + t + ' .opt-btn');
+  if(sr) selOpt(sr, 'grp-style-' + t);
+  if(W.width > 0) updateDims();
 
   updateSummary();
 }
@@ -563,14 +565,12 @@ function checkMotorSqFt() {
 // ── Step 7: Liner ───────────────────────────────────────────
 function renderLiners() {
   const grid = document.getElementById('liner-grid');
-  grid.innerHTML = LINERS.map(l => {
-    const isSelected = W.linerCode === l.code ? 'sel' : '';
-    const catLine = l.cat ? `<span class="liner-cat">${l.cat}</span>` : '';
-    return `<button class="liner-btn ${isSelected}" onclick="pickLiner('${l.code}','${l.name}')">
-      <span class="liner-code">${l.code || '—'}</span>
-      ${l.name}${catLine}
-    </button>`;
-  }).join('');
+  const btn = l => `<button class="opt-btn ${W.linerCode === l.code ? 'sel' : ''}" title="${l.code || ''}" onclick="pickLiner('${l.code}','${l.name}')">${l.code ? l.name : 'No liner'}</button>`;
+  const row = (label, list) => (label ? `<div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">${label}</div>` : '') +
+    `<div class="opt-row" style="margin-bottom:0">${list.map(btn).join('')}</div>`;
+  grid.innerHTML = row('', LINERS.filter(l => !l.cat)) +
+    row('Light filtering', LINERS.filter(l => l.cat === 'Light Filtering')) +
+    row('Blackout', LINERS.filter(l => l.cat === 'Blackout'));
 }
 
 function pickLiner(code, name) {
@@ -590,18 +590,12 @@ function renderBindings() {
 
   rGrid.innerHTML = BINDINGS_RAMIE.map(b => {
     const isSel = W.bindingCode === b.code ? 'sel' : '';
-    return `<button class="binding-btn ${isSel}" onclick="pickBinding('${b.code}','${b.name}','ramie')">
-      <span class="binding-code">${b.code}</span>${b.name}
-      <span class="binding-cat">Ramie</span>
-    </button>`;
+    return `<button class="opt-btn ${isSel}" title="${b.code}" onclick="pickBinding('${b.code}','${b.name}','ramie')">${b.name}</button>`;
   }).join('');
 
   sGrid.innerHTML = BINDINGS_SILK.map(b => {
     const isSel = W.bindingCode === b.code ? 'sel' : '';
-    return `<button class="binding-btn ${isSel}" onclick="pickBinding('${b.code}','${b.name}','silk')">
-      <span class="binding-code">${b.code}</span>${b.name}
-      <span class="binding-cat">Silk Blend</span>
-    </button>`;
+    return `<button class="opt-btn ${isSel}" title="${b.code}" onclick="pickBinding('${b.code}','${b.name}','silk')">${b.name}</button>`;
   }).join('');
 
   // Highlight no-binding button
@@ -676,8 +670,10 @@ function updateSummary() {
   setText('s-pattern', W.pattern ? `${W.pattern.name} (${W.pattern.code})` : '—');
   setText('s-color',   W.pattern ? W.pattern.color : '—');
   setText('s-group',   W.pattern ? `Group ${W.pattern.group} · ${W.pattern.comp}` : '—');
-  setText('s-mount',   W.mount ? W.mount.charAt(0).toUpperCase() + W.mount.slice(1) + ' Mount' : '—');
-  setText('s-size',    W.width && W.height ? `${W.width}″ W × ${W.height}″ H${W.qty > 1 ? ` · Qty ${W.qty}` : ''}` : '—');
+  setText('s-mount',   mountLabel(W.mount));
+  setText('s-size',    W.width && W.height ? `${W.width}″ W × ${W.height}″ H` : '—');
+  setText('s-qty',     String(W.qty));
+  setText('s-del',     typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me');
   setText('s-style',   W.style || '—');
   setText('s-control', W.type === 'shade' ? (CTRL_LABELS[W.control] || '—') + (W.controlSide ? ` · ${W.controlSide} side` : '') : 'N/A');
   setText('s-liner',   W.liner || '—');
@@ -705,8 +701,7 @@ function setText(id, val) {
 
 // ── Quote builder ────────────────────────────────────────────
 function buildQuote() {
-  const delivery = document.querySelector('#grp-wf-del .opt-btn.sel');
-  const deliveryStr = delivery ? delivery.textContent.trim() : 'Ship to me';
+  const deliveryStr = typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me';
 
   const specials = [];
   if(W.twinShade) specials.push('Twin Shade');
@@ -749,7 +744,7 @@ Edge Seal:   ${W.pattern && W.pattern.edgeSeal ? 'Yes (factory sealed)' : 'No'}
 Binding Req: ${W.pattern && W.pattern.ebReq ? 'YES — required' : 'No'}
 
 DIMENSIONS & MOUNT
-Mount:  ${W.mount ? W.mount.charAt(0).toUpperCase() + W.mount.slice(1) + ' Mount' : '—'}
+Mount:  ${mountLabel(W.mount)}
 Width:  ${W.width || '—'}″
 Height: ${W.height || '—'}″
 Qty:    ${W.qty}
@@ -781,7 +776,7 @@ Hold-Down Brk:   ${W.holdDown ? 'Yes' : 'No'}
 Other:           ${specials.filter(s => !['Twin Shade','Cutouts','Hold-Down Brackets'].includes(s)).join(', ') || 'None'}
 
 ${warnings.length ? 'VALIDATION FLAGS\n' + warnings.map(w => '  ! ' + w).join('\n') + '\n' : ''}
-DELIVERY / PICKUP
+DELIVERY
 ${deliveryStr}
 
 CONTACT
@@ -807,7 +802,7 @@ function addWallacePortfolioNaturalToCart(){
     {label:'Pattern',value:W.pattern?W.pattern.name+' ('+W.pattern.code+')':'—'},
     {label:'Color',value:W.pattern?W.pattern.color:'—'},
     {label:'Price Group',value:W.pattern?W.pattern.group:'—'},
-    {label:'Mount',value:W.mount==='inside'?'Inside mount':'Outside mount'},
+    {label:'Mount',value:mountLabel(W.mount)},
     {label:'Width',value:(W.width||'—')+'"'},
     {label:'Height',value:(W.height||'—')+'"'},
     {label:'Style',value:W.style||'—'},

@@ -26,89 +26,26 @@
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
-.cfg-wrap{max-width:880px;margin:0 auto;padding:32px 24px}
-.cfg-step{margin-bottom:32px;display:none}
-.cfg-step.on{display:block}
-.cfg-step.always{display:block}
-.step-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
-.step-ttl{font-size:17px;font-weight:500;color:#1a1a1a;margin-bottom:4px}
-.step-sub{font-size:13px;color:#666;line-height:1.6;margin-bottom:14px}
-.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:12px}
-.type-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:12px;padding:20px 16px;cursor:pointer;transition:border-color .15s;text-align:center}
-.type-card:hover{border-color:var(--gold)}
-.type-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.type-icon{font-size:24px;margin-bottom:8px}
-.type-name{font-size:14px;font-weight:600;color:#111;margin-bottom:3px}
-.type-desc{font-size:11px;color:#666;line-height:1.4}
-.pattern-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px}
-.pat-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:11px;overflow:hidden;cursor:pointer;transition:border-color .15s}
-.pat-card:hover{border-color:var(--gold)}
-.pat-card.sel{border:2px solid var(--gold)}
-.pat-swatch{height:56px}
-.pat-body{padding:8px 10px 10px}
-.pat-code{font-size:9px;color:#999;margin-bottom:2px}
-.pat-name{font-size:12px;font-weight:600;color:#111;margin-bottom:1px}
-.pat-color{font-size:11px;color:#555;margin-bottom:4px}
-.pat-group{display:inline-block;font-size:9px;padding:1px 6px;border-radius:4px;background:var(--gold-mid);color:var(--gold);font-weight:600}
-.pat-seal{display:inline-block;font-size:9px;padding:1px 6px;border-radius:4px;background:#FFF3E0;color:#E65100;font-weight:600;margin-left:3px}
+.cfg-outer{max-width:1100px;margin:0 auto;padding:32px 28px 56px}
+.step-block{padding:14px 16px}
 .pat-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 .pat-filter-btn{background:#fff;border:1.5px solid #e8e8e4;border-radius:20px;padding:5px 14px;font-size:11px;cursor:pointer;font-family:inherit;color:#555;transition:border-color .15s}
 .pat-filter-btn:hover{border-color:var(--gold)}
 .pat-filter-btn.sel{border:2px solid var(--gold);background:var(--gold-mid);color:#0A4A42;font-weight:500}
-.opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.opt-btn{background:#fff;border:1.5px solid #e8e8e4;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:12px;font-weight:500;color:#333;transition:border-color .15s;font-family:inherit}
-.opt-btn:hover{border-color:var(--gold)}
-.opt-btn.sel{border:2px solid var(--gold);background:var(--gold-mid);color:#111110}
-.opt-btn:disabled{opacity:.4;cursor:not-allowed;border-color:#e8e8e4;background:#f5f5f5}
 .warn-box{background:#FFF8E1;border:1px solid #FFD54F;border-radius:8px;padding:10px 14px;font-size:12px;color:#7A5800;margin-top:10px;line-height:1.6;display:none}
 .warn-box.on{display:block}
 .info-box{background:#E8F4FD;border:1px solid #90CAF9;border-radius:8px;padding:10px 14px;font-size:12px;color:#1565C0;margin-top:10px;line-height:1.6}
-.dim-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px}
-.dim-field{display:flex;flex-direction:column;gap:4px}
-.dim-field label{font-size:11px;font-weight:500;color:#555}
-.dim-field input{width:90px;padding:8px 10px;border:1.5px solid #e8e8e4;border-radius:8px;font-size:16px;font-weight:600;font-family:inherit;text-align:center}
-.dim-field input:focus{outline:none;border-color:var(--gold)}
 .dim-note{font-size:11px;color:#888;margin-top:6px;line-height:1.5}
-.liner-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-top:10px}
-.liner-btn{background:#fff;border:1.5px solid #e8e8e4;border-radius:9px;padding:9px 12px;cursor:pointer;font-size:11px;font-weight:500;color:#333;text-align:left;transition:border-color .15s;font-family:inherit;line-height:1.4}
-.liner-btn:hover{border-color:var(--gold)}
-.liner-btn.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.liner-code{font-size:9px;color:#999;display:block;margin-bottom:2px}
-.liner-cat{font-size:9px;color:#888;display:block;margin-top:2px;font-style:italic}
-.binding-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:7px;margin-top:10px}
-.binding-btn{background:#fff;border:1.5px solid #e8e8e4;border-radius:8px;padding:8px 10px;cursor:pointer;font-size:11px;font-weight:500;color:#333;text-align:left;transition:border-color .15s;font-family:inherit;line-height:1.3}
-.binding-btn:hover{border-color:var(--gold)}
-.binding-btn.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.binding-code{font-size:9px;color:#999;display:block;margin-bottom:2px}
-.binding-cat{font-size:9px;color:#888;font-style:italic;display:block;margin-top:2px}
-.summary-panel{background:var(--espresso);border-radius:12px;padding:18px;border:.5px solid var(--border-dark);margin-bottom:20px}
-.sum-ttl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px}
-.sum-line{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:.5px solid rgba(45,224,193,.1)}
-.sum-line:last-child{border-bottom:none}
-.sum-key{color:var(--text-muted)}
-.sum-val{color:var(--cream);font-weight:500;text-align:right;max-width:55%}
-.sec-div{height:1px;background:linear-gradient(90deg,var(--gold),rgba(45,224,193,.1),transparent);margin:24px 0}
 .panel-info{background:#F9F6F1;border:1px solid #E0D4B8;border-radius:10px;padding:14px 16px;font-size:12px;color:#4A3820;margin-top:12px;line-height:1.7}
 .panel-info strong{color:#111110}
 .stack-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
 .stack-table th{background:#f5f0e8;padding:5px 8px;text-align:left;color:#555;font-weight:600}
 .stack-table td{padding:5px 8px;border-top:1px solid #ede8de;color:#333}
-.check-row{display:flex;align-items:center;gap:10px;margin-top:10px}
-.check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--gold);cursor:pointer}
-.check-row label{font-size:13px;color:#333;cursor:pointer}
-.num-field{display:flex;align-items:center;gap:8px;margin-top:8px}
-.num-field label{font-size:12px;color:#555;font-weight:500}
-.num-field input{width:60px;padding:6px 8px;border:1.5px solid #e8e8e4;border-radius:7px;font-size:14px;font-weight:600;font-family:inherit;text-align:center}
 .cta-banner{background:var(--espresso);padding:32px 28px;text-align:center}
 .cta-banner h3{font-size:20px;font-weight:500;color:var(--cream);margin-bottom:8px}
 .cta-banner p{font-size:13px;color:var(--text-dark);margin-bottom:18px}
-.delivery-note{font-size:12px;color:#666;margin-top:8px;padding:8px 12px;background:#f9f9f9;border-radius:7px;line-height:1.6}
-.delivery-tariff{font-size:11px;color:#888;margin-top:4px}
 @media(max-width:600px){
-  .type-grid{grid-template-columns:1fr 1fr}
-  .pattern-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
-  .dim-row{flex-direction:column}
-  .dim-field input{width:100%}
+  .cfg-outer{padding:24px 16px 40px}
 }
 </style>
 </head>
@@ -137,327 +74,283 @@
   <img loading="lazy" src="../images/portfolio/IMG_5583.JPEG" alt="Interior window treatment" style="width:100%;height:100%;object-fit:cover" onerror="this.style.background='#C8B090';this.removeAttribute('src')">
 </div>
 
-<div class="cfg-wrap">
+<div class="cfg-outer">
+<div class="config-wrap">
+<div class="config-grid">
+<div>
 
   <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT -->
-  <div class="cfg-step always" id="sec-measure">
-    <div class="step-lbl">Step 1</div>
-    <div class="step-ttl">Window measurements &amp; mount</div>
-    <div class="step-sub">Enter your window size, choose your mount, and set the quantity.</div>
-    <span id="dims-ttl" hidden></span>
-
+  <div class="step-block" id="sec-measure">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">1</div>
+      <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
+    </div>
     <div class="dim-box">
       <div class="dim-box-label">Enter your window size</div>
       <div class="form-row">
         <div class="form-group">
           <label>Width</label>
           <input type="number" id="inp-width" min="12" max="192" step="0.125" placeholder="36" oninput="updateDims()">
-          <div class="dim-unit">inches</div>
+          <div class="dim-unit">inches &mdash; 12&Prime; min &middot; 192&Prime; max</div>
         </div>
         <div class="form-group">
           <label>Height</label>
           <input type="number" id="inp-height" min="12" max="144" step="0.125" placeholder="60" oninput="updateDims()">
-          <div class="dim-unit">inches</div>
+          <div class="dim-unit">inches &mdash; 12&Prime; min &middot; 144&Prime; max</div>
         </div>
       </div>
     </div>
-
     <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
-
     <div class="dim-note" id="dim-note">
-      Natural shades: width 14″–96″ · height 18″–120″. TDBU max 60″W × 72″H. Sliding panels: 48″–192″ wide · up to 120″ tall. Exact limits depend on control selected.
+      Natural shades: width 14&Prime;&ndash;96&Prime; &middot; height 18&Prime;&ndash;120&Prime;. TDBU max 60&Prime;W &times; 72&Prime;H. Sliding panels: 48&Prime;&ndash;192&Prime; wide &middot; up to 120&Prime; tall. Exact limits depend on control selected.
     </div>
     <div class="warn-box" id="warn-dims"></div>
-    <!-- Panel auto-config info -->
     <div class="panel-info" id="panel-info" style="display:none">
       <strong>Panel Track Auto-Configuration</strong>
       <div id="panel-config-text" style="margin-top:6px"></div>
-      <div style="margin-top:8px;font-size:11px;color:#7A5A3A">Track over 94″ will be spliced for shipping.</div>
+      <div style="margin-top:8px;font-size:11px;color:#7A5A3A">Track over 94&Prime; will be spliced for shipping.</div>
     </div>
-    <!-- Drapery stack depth info -->
     <div class="panel-info" id="drape-stack-info" style="display:none">
       <strong>Estimated Stack Depth</strong>
       <div id="drape-stack-text" style="margin-top:6px"></div>
     </div>
 
-    <!-- Mount type -->
-    <div style="font-size:12px;font-weight:600;color:#555;margin:16px 0 6px">Mount type</div>
-    <div class="opt-row" id="grp-mount">
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
+    <div class="opt-row" id="grp-mount" style="margin-bottom:6px">
       <button class="opt-btn sel" onclick="pickMount('inside',this)">Inside mount</button>
       <button class="opt-btn" onclick="pickMount('outside',this)">Outside mount</button>
       <button class="opt-btn" onclick="pickMount('ceiling',this)">Ceiling mount</button>
     </div>
-    <div class="dim-note" id="mount-note">Inside mount: minimum 2″ depth required. Shade width = ordered width − 3/8″.</div>
+    <div class="step-note" id="mount-note" style="margin-bottom:12px">Inside mount: minimum 2&Prime; depth required. Shade width = ordered width &minus; 3/8&Prime;.</div>
 
-    <!-- Quantity -->
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font-size:12px;color:#666">Qty:</span>
       <div class="qty-btns">
         <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
         <input class="qty-num" type="number" id="qty-input" value="1" min="1" max="50" oninput="updateQty()">
         <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
       </div>
-      <span style="font-size:12px;color:#666">of this size &amp; configuration</span>
     </div>
   </div>
 
-  <div class="sec-div"></div>
-
-  <!-- STEP 2: Product Type -->
-  <div class="cfg-step always" id="sec-type">
-    <div class="step-lbl">Step 2</div>
-    <div class="step-ttl">What would you like?</div>
-    <div class="step-sub">Choose the product type to configure.</div>
-    <div class="type-grid">
-      <div class="type-card sel" onclick="pickType('shade',this)">
-        <div class="type-icon">🪟</div>
-        <div class="type-name">Natural Shade</div>
-        <div class="type-desc">Roller-style shade with bamboo, jute, or sisal weave</div>
-      </div>
-      <div class="type-card" onclick="pickType('panel',this)">
-        <div class="type-icon">⬛</div>
-        <div class="type-name">Sliding Panel</div>
-        <div class="type-desc">Woven panel track system for wide openings and patio doors</div>
-      </div>
-      <div class="type-card" onclick="pickType('drape',this)">
-        <div class="type-icon">🎭</div>
-        <div class="type-name">Natural Drapery</div>
-        <div class="type-desc">Woven fabric drapes on a drapery rod or track</div>
-      </div>
-      <div class="type-card" onclick="pickType('valance',this)">
-        <div class="type-icon">🪚</div>
-        <div class="type-name">Valance Only</div>
-        <div class="type-desc">Decorative woven valance — cornice, roman, or flat fold</div>
-      </div>
+  <!-- STEP 2: PRODUCT TYPE -->
+  <div class="step-block" id="sec-type">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">2</div>
+      <div class="step-title" style="margin-bottom:0">Product type</div>
     </div>
+    <div class="opt-row" id="grp-type">
+      <button class="opt-btn sel" onclick="pickType('shade',this)">Natural shade</button>
+      <button class="opt-btn" onclick="pickType('panel',this)">Sliding panel</button>
+      <button class="opt-btn" onclick="pickType('drape',this)">Natural drapery</button>
+      <button class="opt-btn" onclick="pickType('valance',this)">Valance only</button>
+    </div>
+    <div class="step-note">Natural shade &mdash; bamboo, jute or sisal weave. Sliding panel &mdash; woven panel track system for wide openings and patio doors. Natural drapery &mdash; woven fabric drapes on a rod or track. Valance only &mdash; decorative woven valance (cornice, roman or flat fold).</div>
   </div>
 
-  <div class="sec-div"></div>
-
-  <!-- STEP 3: Pattern -->
-  <div class="cfg-step on" id="sec-pattern">
-    <div class="step-lbl">Step 3</div>
-    <div class="step-ttl">Choose a Pattern</div>
-    <div class="step-sub">Wallace Portfolio Collection — 30 patterns in Groups A–D. <span style="font-size:11px;color:#888">Groups reflect pricing tiers — confirmed at quote.</span></div>
-
-    <!-- Filter row -->
+  <!-- STEP 3: PATTERN -->
+  <div class="step-block" id="sec-pattern">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">3</div>
+      <div class="step-title" style="margin-bottom:0">Pattern</div>
+    </div>
+    <div class="step-note" style="margin:0 0 10px">Wallace Portfolio Collection &mdash; groups A&ndash;D reflect pricing tiers, confirmed at quote.</div>
     <div class="pat-filter">
-      <button class="pat-filter-btn sel" onclick="filterPatterns('all',this)">All Groups</button>
+      <button class="pat-filter-btn sel" onclick="filterPatterns('all',this)">All groups</button>
       <button class="pat-filter-btn" onclick="filterPatterns('A',this)">Group A</button>
       <button class="pat-filter-btn" onclick="filterPatterns('B',this)">Group B</button>
       <button class="pat-filter-btn" onclick="filterPatterns('C',this)">Group C</button>
       <button class="pat-filter-btn" onclick="filterPatterns('D',this)">Group D</button>
     </div>
-
     <div class="pattern-grid" id="pattern-grid"></div>
-
     <div class="warn-box" id="warn-ebreq">
-      ⚠ This fabric requires edge binding. Ordering without binding voids the frayed-edge warranty.
+      &#9888; This fabric requires edge binding. Ordering without binding voids the frayed-edge warranty.
     </div>
     <div class="warn-box" id="warn-edgeseal">
-      ℹ This fabric has heat-sealed edges — edge binding is optional (decorative).
+      &#8505; This fabric has heat-sealed edges &mdash; edge binding is optional (decorative).
     </div>
   </div>
 
-  <div class="sec-div"></div>
-
-  <!-- STEP 4: Style / Opening -->
-  <div class="cfg-step" id="sec-style">
-    <div class="step-lbl">Step 4</div>
-    <div class="step-ttl" id="style-ttl">Shade Style</div>
-    <div class="step-sub" id="style-sub">Choose how the shade rolls and folds.</div>
-    <!-- Shade styles -->
+  <!-- STEP 4: STYLE / OPENING -->
+  <div class="step-block" id="sec-style">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">4</div>
+      <div class="step-title" style="margin-bottom:0" id="style-ttl">Shade style</div>
+    </div>
     <div id="style-shade">
       <div class="opt-row" id="grp-style-shade">
-        <button class="opt-btn sel" onclick="pickStyle('standard',this,'shade')">Standard (Roller)</button>
+        <button class="opt-btn sel" onclick="pickStyle('standard',this,'shade')">Standard (roller)</button>
         <button class="opt-btn" onclick="pickStyle('waterfall',this,'shade')">Waterfall</button>
       </div>
-      <div class="dim-note">Standard: fabric rolls over the front of the roller. Waterfall: fabric hangs flat — no roll.</div>
+      <div class="step-note">Standard: fabric rolls over the front of the roller. Waterfall: fabric hangs flat &mdash; no roll.</div>
     </div>
-    <!-- Panel opening -->
     <div id="style-panel" style="display:none">
       <div class="opt-row" id="grp-style-panel">
-        <button class="opt-btn sel" onclick="pickStyle('left',this,'panel')">One-Way Left</button>
-        <button class="opt-btn" onclick="pickStyle('right',this,'panel')">One-Way Right</button>
-        <button class="opt-btn" onclick="pickStyle('center',this,'panel')">Center Open</button>
+        <button class="opt-btn sel" onclick="pickStyle('left',this,'panel')">One-way left</button>
+        <button class="opt-btn" onclick="pickStyle('right',this,'panel')">One-way right</button>
+        <button class="opt-btn" onclick="pickStyle('center',this,'panel')">Center open</button>
       </div>
     </div>
-    <!-- Drapery draw -->
     <div id="style-drape" style="display:none">
       <div class="opt-row" id="grp-style-drape">
-        <button class="opt-btn sel" onclick="pickStyle('left',this,'drape')">One-Way Left</button>
-        <button class="opt-btn" onclick="pickStyle('right',this,'drape')">One-Way Right</button>
-        <button class="opt-btn" onclick="pickStyle('split',this,'drape')">Split Draw</button>
+        <button class="opt-btn sel" onclick="pickStyle('left',this,'drape')">One-way left</button>
+        <button class="opt-btn" onclick="pickStyle('right',this,'drape')">One-way right</button>
+        <button class="opt-btn" onclick="pickStyle('split',this,'drape')">Split draw</button>
       </div>
     </div>
-    <!-- Valance style -->
     <div id="style-valance" style="display:none">
       <div class="opt-row" id="grp-style-valance">
         <button class="opt-btn sel" onclick="pickStyle('cornice',this,'valance')">Cornice</button>
-        <button class="opt-btn" onclick="pickStyle('roman',this,'valance')">Roman Valance</button>
-        <button class="opt-btn" onclick="pickStyle('flatfold',this,'valance')">Flat Fold</button>
+        <button class="opt-btn" onclick="pickStyle('roman',this,'valance')">Roman valance</button>
+        <button class="opt-btn" onclick="pickStyle('flatfold',this,'valance')">Flat fold</button>
       </div>
     </div>
   </div>
 
-  <div class="sec-div"></div>
-
-  <!-- STEP 5: Control (Shade only) -->
-  <div class="cfg-step" id="sec-control">
-    <div class="step-lbl">Step 5</div>
-    <div class="step-ttl">Control System</div>
-    <div class="step-sub">Select how the shade will be operated.</div>
-    <div class="opt-row" id="grp-control">
-      <button class="opt-btn sel" onclick="pickControl('cordless',this)">Cordless</button>
-      <button class="opt-btn" onclick="pickControl('tdbu',this)">Top-Down/Bottom-Up</button>
-      <button class="opt-btn" onclick="pickControl('clutch',this)">Loop Clutch</button>
-      <button class="opt-btn" onclick="pickControl('prowand',this)">Pro Wand</button>
-      <button class="opt-btn" onclick="pickControl('motor-li',this)">Motor — Li-Ion</button>
-      <button class="opt-btn" onclick="pickControl('motor-dc',this)">Motor — DC Low Voltage</button>
-      <button class="opt-btn" onclick="pickControl('motor-ac',this)">Motor — AC Hardwired</button>
-      <button class="opt-btn" onclick="pickControl('motor-pl',this)">Motor — Power Lift</button>
+  <!-- STEP 5: CONTROL -->
+  <div class="step-block" id="sec-control">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">5</div>
+      <div class="step-title" style="margin-bottom:0">Control</div>
     </div>
-    <div class="warn-box" id="warn-ctrl"></div>
-    <div class="warn-box" id="warn-motor-sqft">
-      ⚠ Selected dimensions exceed the motor capacity for this fabric. Consider Power Lift motor or reduce the shade size.
-    </div>
-
-    <!-- Control side -->
-    <div id="ctrl-side-row" style="margin-top:16px;display:none">
-      <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Control side</div>
-      <div class="opt-row" id="grp-ctrl-side">
-        <button class="opt-btn sel" onclick="W.controlSide='right';selOpt(this,'grp-ctrl-side');updateSummary()">Right</button>
-        <button class="opt-btn" onclick="W.controlSide='left';selOpt(this,'grp-ctrl-side');updateSummary()">Left</button>
+    <div id="ctrl-shade-opts">
+      <div class="opt-row" id="grp-control">
+        <button class="opt-btn sel" onclick="pickControl('cordless',this)">Cordless</button>
+        <button class="opt-btn" onclick="pickControl('tdbu',this)">Top-down/bottom-up</button>
+        <button class="opt-btn" onclick="pickControl('clutch',this)">Loop clutch</button>
+        <button class="opt-btn" onclick="pickControl('prowand',this)">Pro Wand</button>
+        <button class="opt-btn" onclick="pickControl('motor-li',this)">Motor &mdash; Li-Ion</button>
+        <button class="opt-btn" onclick="pickControl('motor-dc',this)">Motor &mdash; DC low voltage</button>
+        <button class="opt-btn" onclick="pickControl('motor-ac',this)">Motor &mdash; AC hardwired</button>
+        <button class="opt-btn" onclick="pickControl('motor-pl',this)">Motor &mdash; Power Lift</button>
+      </div>
+      <div class="warn-box" id="warn-ctrl"></div>
+      <div class="warn-box" id="warn-motor-sqft">
+        &#9888; Selected dimensions exceed the motor capacity for this fabric. Consider Power Lift motor or reduce the shade size.
+      </div>
+      <div id="ctrl-side-row" style="display:none">
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Control side</div>
+        <div class="opt-row" id="grp-ctrl-side">
+          <button class="opt-btn sel" onclick="W.controlSide='right';selOpt(this,'grp-ctrl-side');updateSummary()">Right</button>
+          <button class="opt-btn" onclick="W.controlSide='left';selOpt(this,'grp-ctrl-side');updateSummary()">Left</button>
+        </div>
+      </div>
+      <div id="motor-opts" style="display:none">
+        <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Motor accessories <span style="font-weight:400;color:#888">(optional)</span></div>
+        <div class="opt-row" id="grp-motor-remote">
+          <button class="opt-btn sel" onclick="W.motorRemote='remote';selOpt(this,'grp-motor-remote');updateSummary()">15-Ch remote</button>
+          <button class="opt-btn" onclick="W.motorRemote='wall-switch';selOpt(this,'grp-motor-remote');updateSummary()">Wall switch</button>
+          <button class="opt-btn" onclick="W.motorRemote='hub';selOpt(this,'grp-motor-remote');updateSummary()">Smart hub (Wi-Fi)</button>
+          <button class="opt-btn" onclick="W.motorRemote='none';selOpt(this,'grp-motor-remote');updateSummary()">None for now</button>
+        </div>
       </div>
     </div>
+    <div class="step-note" id="ctrl-na-note" style="display:none;margin-top:0">No control selection needed &mdash; sliding panels, draperies and valances operate by hand (wand or baton) or have no control.</div>
+  </div>
 
-    <!-- Motor remote -->
-    <div id="motor-opts" style="margin-top:16px;display:none">
-      <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Motor accessories (optional)</div>
-      <div class="opt-row" id="grp-motor-remote">
-        <button class="opt-btn sel" onclick="W.motorRemote='remote';selOpt(this,'grp-motor-remote');updateSummary()">15-Ch Remote</button>
-        <button class="opt-btn" onclick="W.motorRemote='wall-switch';selOpt(this,'grp-motor-remote');updateSummary()">Wall Switch</button>
-        <button class="opt-btn" onclick="W.motorRemote='hub';selOpt(this,'grp-motor-remote');updateSummary()">Smart Hub (Wi-Fi)</button>
-        <button class="opt-btn" onclick="W.motorRemote='none';selOpt(this,'grp-motor-remote');updateSummary()">None for now</button>
-      </div>
+  <!-- STEP 6: LINER -->
+  <div class="step-block" id="sec-liner">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">6</div>
+      <div class="step-title" style="margin-bottom:0">Liner</div>
     </div>
+    <div id="liner-grid"></div>
+    <div class="step-note">Liners add privacy and light control without changing the look of your shade. Natural woven shades are open-weave by nature &mdash; a liner is recommended for bedrooms or south-facing windows.</div>
   </div>
 
-  <div class="sec-div"></div>
-
-  <!-- STEP 6: Liner -->
-  <div class="cfg-step" id="sec-liner">
-    <div class="step-lbl">Step 6</div>
-    <div class="step-ttl">Liner</div>
-    <div class="step-sub">Liners add privacy and light control without changing the look of your shade. Natural woven shades are open-weave by nature — a liner is recommended for bedrooms or south-facing windows.</div>
-    <div class="liner-grid" id="liner-grid"></div>
-  </div>
-
-  <div class="sec-div"></div>
-
-  <!-- STEP 7: Edge Binding -->
-  <div class="cfg-step" id="sec-binding">
-    <div class="step-lbl">Step 7</div>
-    <div class="step-ttl">Edge Binding</div>
-    <div class="step-sub" id="binding-sub">Edge binding frames the shade with a woven or silk-blend tape. Required on certain fabrics. Optional as a decorative upgrade on others.</div>
+  <!-- STEP 7: EDGE BINDING -->
+  <div class="step-block" id="sec-binding">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">7</div>
+      <div class="step-title" style="margin-bottom:0">Edge binding</div>
+    </div>
     <div class="warn-box on" id="warn-binding-req" style="display:none">
-      ⚠ Edge binding is required for this fabric. Ordering without binding voids the frayed-edge warranty.
+      &#9888; Edge binding is required for this fabric. Ordering without binding voids the frayed-edge warranty.
     </div>
     <div class="warn-box" id="warn-binding-cutout">
-      ⚠ Cutouts cannot be combined with edge binding. To use cutouts, select No Binding.
+      &#9888; Cutouts cannot be combined with edge binding. To use cutouts, select No binding.
     </div>
-
-    <!-- No binding option -->
-    <div style="margin-top:10px;margin-bottom:12px">
-      <button class="binding-btn sel" id="btn-no-binding" onclick="pickBinding('','No Binding','')">
-        <span class="binding-code">—</span>
-        No Binding
-      </button>
+    <div class="opt-row" id="grp-no-binding" style="margin-bottom:0">
+      <button class="opt-btn sel" id="btn-no-binding" onclick="pickBinding('','No Binding','')">No binding</button>
     </div>
-
-    <div style="font-size:11px;font-weight:600;color:#888;letter-spacing:1px;text-transform:uppercase;margin:14px 0 6px">Ramie Binding</div>
-    <div class="binding-grid" id="ramie-grid"></div>
-
-    <div style="font-size:11px;font-weight:600;color:#888;letter-spacing:1px;text-transform:uppercase;margin:14px 0 6px">Silk Blend Binding</div>
-    <div class="binding-grid" id="silk-grid"></div>
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Ramie binding</div>
+    <div class="opt-row" id="ramie-grid"></div>
+    <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Silk blend binding</div>
+    <div class="opt-row" id="silk-grid"></div>
+    <div class="step-note" id="binding-sub">Edge binding frames the shade with a woven or silk-blend tape. Required on certain fabrics; optional as a decorative upgrade on others.</div>
   </div>
 
-  <div class="sec-div"></div>
-
-  <!-- STEP 8: Valance / Track / Accessories -->
-  <div class="cfg-step" id="sec-valance">
-    <div class="step-lbl">Step 8</div>
-    <div class="step-ttl" id="valance-ttl">Valance &amp; Hardware</div>
-    <div class="step-sub" id="valance-sub">Choose valance, track color, and hardware options.</div>
-
-    <!-- Shade valance -->
+  <!-- STEP 8: VALANCE / TRACK / HARDWARE -->
+  <div class="step-block" id="sec-valance">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">8</div>
+      <div class="step-title" style="margin-bottom:0" id="valance-ttl">Valance &amp; hardware</div>
+    </div>
     <div id="valance-shade-opts">
-      <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Valance</div>
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Valance</div>
       <div class="opt-row" id="grp-valance">
         <button class="opt-btn sel" onclick="W.valance='standard';selOpt(this,'grp-valance');updateSummary()">Standard (included)</button>
-        <button class="opt-btn" onclick="W.valance='none';selOpt(this,'grp-valance');updateSummary()">No Valance</button>
-        <button class="opt-btn" onclick="W.valance='roman12';selOpt(this,'grp-valance');updateSummary()">Roman 12″</button>
-        <button class="opt-btn" onclick="W.valance='roman18';selOpt(this,'grp-valance');updateSummary()">Roman 18″</button>
+        <button class="opt-btn" onclick="W.valance='none';selOpt(this,'grp-valance');updateSummary()">No valance</button>
+        <button class="opt-btn" onclick="W.valance='roman12';selOpt(this,'grp-valance');updateSummary()">Roman 12&Prime;</button>
+        <button class="opt-btn" onclick="W.valance='roman18';selOpt(this,'grp-valance');updateSummary()">Roman 18&Prime;</button>
       </div>
-      <div style="font-size:12px;font-weight:500;color:#444;margin-top:14px;margin-bottom:8px">Returns (Outside / Ceiling mount)</div>
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Returns (outside / ceiling mount)</div>
       <div class="opt-row" id="grp-returns">
-        <button class="opt-btn sel" onclick="W.returns='none';selOpt(this,'grp-returns');updateSummary()">No Returns</button>
-        <button class="opt-btn" onclick="W.returns='2in';selOpt(this,'grp-returns');updateSummary()">2″ Returns</button>
-        <button class="opt-btn" onclick="W.returns='3in';selOpt(this,'grp-returns');updateSummary()">3″ Returns</button>
-        <button class="opt-btn" onclick="W.returns='4in';selOpt(this,'grp-returns');updateSummary()">4″ Returns</button>
+        <button class="opt-btn sel" onclick="W.returns='none';selOpt(this,'grp-returns');updateSummary()">No returns</button>
+        <button class="opt-btn" onclick="W.returns='2in';selOpt(this,'grp-returns');updateSummary()">2&Prime; returns</button>
+        <button class="opt-btn" onclick="W.returns='3in';selOpt(this,'grp-returns');updateSummary()">3&Prime; returns</button>
+        <button class="opt-btn" onclick="W.returns='4in';selOpt(this,'grp-returns');updateSummary()">4&Prime; returns</button>
       </div>
       <div class="warn-box" id="warn-tdbu-returns">
-        ⚠ Inside mount TDBU cannot be ordered with returns. Select No Returns or change to outside/ceiling mount.
+        &#9888; Inside mount TDBU cannot be ordered with returns. Select No returns or change to outside/ceiling mount.
       </div>
     </div>
-
-    <!-- Panel track options -->
     <div id="valance-panel-opts" style="display:none">
-      <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Track Color</div>
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Track color</div>
       <div class="opt-row" id="grp-track-color">
         <button class="opt-btn sel" onclick="W.trackColor='white';selOpt(this,'grp-track-color');updateSummary()">White</button>
         <button class="opt-btn" onclick="W.trackColor='silver';selOpt(this,'grp-track-color');updateSummary()">Silver</button>
         <button class="opt-btn" onclick="W.trackColor='black';selOpt(this,'grp-track-color');updateSummary()">Black</button>
         <button class="opt-btn" onclick="W.trackColor='bronze';selOpt(this,'grp-track-color');updateSummary()">Bronze</button>
       </div>
-      <div style="font-size:12px;font-weight:500;color:#444;margin-top:14px;margin-bottom:8px">Track Profile</div>
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Track profile</div>
       <div class="opt-row" id="grp-track-profile">
-        <button class="opt-btn sel" onclick="W.trackProfile='standard';selOpt(this,'grp-track-profile');updateSummary()">Standard Channel</button>
-        <button class="opt-btn" onclick="W.trackProfile='narrow';selOpt(this,'grp-track-profile');updateSummary()">Narrow Channel</button>
+        <button class="opt-btn sel" onclick="W.trackProfile='standard';selOpt(this,'grp-track-profile');updateSummary()">Standard channel</button>
+        <button class="opt-btn" onclick="W.trackProfile='narrow';selOpt(this,'grp-track-profile');updateSummary()">Narrow channel</button>
       </div>
-      <div style="font-size:12px;font-weight:500;color:#444;margin-top:14px;margin-bottom:8px">Wall Spacer Blocks (for uneven walls)</div>
-      <div class="num-field">
-        <label>Qty:</label>
-        <input type="number" id="inp-spacers" min="0" max="20" value="0" oninput="W.spacerBlocks=parseInt(this.value)||0;updateSummary()">
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Wall spacer blocks (for uneven walls)</div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:12px;color:#666">Qty:</span>
+        <div class="qty-btns">
+          <button class="qty-btn" onclick="pbAdjQty('inp-spacers',-1,0,20);W.spacerBlocks=parseInt(document.getElementById('inp-spacers').value)||0;updateSummary()">&#8722;</button>
+          <input class="qty-num" type="number" id="inp-spacers" min="0" max="20" value="0" oninput="W.spacerBlocks=parseInt(this.value)||0;updateSummary()">
+          <button class="qty-btn" onclick="pbAdjQty('inp-spacers',1,0,20);W.spacerBlocks=parseInt(document.getElementById('inp-spacers').value)||0;updateSummary()">&#43;</button>
+        </div>
       </div>
     </div>
-
-    <!-- Drapery hardware -->
     <div id="valance-drape-opts" style="display:none">
       <div class="info-box">Natural draperies are installed on a drapery rod or Architrac functional track. Please specify hardware preference in the notes field below, or book a consultation and we'll recommend the right system for your project.</div>
     </div>
   </div>
 
-  <div class="sec-div"></div>
-
-  <!-- STEP 9: Special Options -->
-  <div class="cfg-step" id="sec-special">
-    <div class="step-lbl">Step 9</div>
-    <div class="step-ttl">Special Options</div>
-    <div class="step-sub">Twin shade, multi-on-one headrail, cutouts, and hold-down brackets.</div>
-
-    <!-- Twin shade (shade only) -->
-    <div id="twin-opt" style="margin-bottom:16px">
-      <div class="check-row">
-        <input type="checkbox" id="chk-twin" onchange="W.twinShade=this.checked;validateSpecial();updateSummary()">
-        <label for="chk-twin"><strong>Twin Shade</strong> — two independent fabrics on one headrail (front and back)</label>
-      </div>
-      <div class="warn-box" id="warn-twin"></div>
+  <!-- STEP 9: SPECIAL OPTIONS -->
+  <div class="step-block" id="sec-special">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">9</div>
+      <div class="step-title" style="margin-bottom:0">Special options <span style="font-weight:400;color:#888">(optional)</span></div>
     </div>
-
-    <!-- Multi-on-one -->
-    <div id="multi-opt" style="margin-bottom:16px">
-      <div style="font-size:12px;font-weight:500;color:#444;margin-bottom:8px">Multiple shades on one headrail</div>
+    <div id="twin-opt">
+      <div class="opt-row" id="grp-special" style="margin-bottom:6px">
+        <button class="opt-btn" id="chk-twin" onclick="this.classList.toggle('sel');W.twinShade=this.classList.contains('sel');validateSpecial();updateSummary()">Twin shade</button>
+        <button class="opt-btn" id="chk-cutout" onclick="this.classList.toggle('sel');W.cutouts=this.classList.contains('sel');validateSpecial();updateSummary()">Cutouts</button>
+        <button class="opt-btn" id="chk-holddown" onclick="this.classList.toggle('sel');W.holdDown=this.classList.contains('sel');updateSummary()">Hold-down brackets</button>
+      </div>
+      <div class="step-note">Select any. Twin shade &mdash; two independent fabrics on one headrail (front and back). Cutouts &mdash; for door handles, knobs or irregular openings. Hold-down brackets &mdash; keep the shade flat at a door or windy location.</div>
+      <div class="warn-box" id="warn-twin"></div>
+      <div class="warn-box" id="warn-cutout"></div>
+    </div>
+    <div id="multi-opt">
+      <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Multiple shades on one headrail</div>
       <div class="opt-row" id="grp-multi">
         <button class="opt-btn sel" onclick="W.multiOn=1;selOpt(this,'grp-multi');validateSpecial();updateSummary()">1 shade (standard)</button>
         <button class="opt-btn" onclick="W.multiOn=2;selOpt(this,'grp-multi');validateSpecial();updateSummary()">2-on-1 headrail</button>
@@ -465,82 +358,47 @@
       </div>
       <div class="warn-box" id="warn-multi"></div>
     </div>
-
-    <!-- Cutouts -->
-    <div id="cutout-opt" style="margin-bottom:16px">
-      <div class="check-row">
-        <input type="checkbox" id="chk-cutout" onchange="W.cutouts=this.checked;validateSpecial();updateSummary()">
-        <label for="chk-cutout"><strong>Cutouts</strong> — for door handles, knobs, or irregular openings</label>
-      </div>
-      <div class="warn-box" id="warn-cutout"></div>
-    </div>
-
-    <!-- Hold-down brackets -->
-    <div id="holddown-opt">
-      <div class="check-row">
-        <input type="checkbox" id="chk-holddown" onchange="W.holdDown=this.checked;updateSummary()">
-        <label for="chk-holddown"><strong>Hold-Down Brackets</strong> — keeps shade flat (door or windy location)</label>
-      </div>
-    </div>
   </div>
 
-  <div class="sec-div"></div>
+  <!-- STEP 10: DELIVERY (shared pbDeliveryStepHTML) -->
+  <div id="pb-delivery-slot"></div>
 
-  <!-- SUMMARY -->
-  <div class="cfg-step always" id="sec-summary">
-    <div class="step-lbl">Summary</div>
-    <div class="summary-panel" id="summary-panel">
-      <div class="sum-ttl">Your Configuration</div>
-      <div id="sum-lines">
-        <div class="sum-line"><span class="sum-key">Product</span><span class="sum-val">Wallace Portfolio Natural Shades</span></div>
-        <div class="sum-line"><span class="sum-key">Type</span><span class="sum-val" id="s-type">—</span></div>
-        <div class="sum-line"><span class="sum-key">Pattern</span><span class="sum-val" id="s-pattern">—</span></div>
-        <div class="sum-line"><span class="sum-key">Color</span><span class="sum-val" id="s-color">—</span></div>
-        <div class="sum-line"><span class="sum-key">Group</span><span class="sum-val" id="s-group">—</span></div>
-        <div class="sum-line"><span class="sum-key">Mount</span><span class="sum-val" id="s-mount">—</span></div>
-        <div class="sum-line"><span class="sum-key">Size</span><span class="sum-val" id="s-size">—</span></div>
-        <div class="sum-line"><span class="sum-key">Style</span><span class="sum-val" id="s-style">—</span></div>
-        <div class="sum-line"><span class="sum-key">Control</span><span class="sum-val" id="s-control">—</span></div>
-        <div class="sum-line"><span class="sum-key">Liner</span><span class="sum-val" id="s-liner">—</span></div>
-        <div class="sum-line"><span class="sum-key">Edge Binding</span><span class="sum-val" id="s-binding">—</span></div>
-        <div class="sum-line"><span class="sum-key">Valance / Track</span><span class="sum-val" id="s-valance">—</span></div>
-        <div class="sum-line"><span class="sum-key">Special</span><span class="sum-val" id="s-special">—</span></div>
-      </div>
-      <div style="font-size:11px;color:rgba(45,224,193,.5);margin-top:14px;text-align:center">No public pricing — custom quote within 24 hours</div>
-    </div>
+  <!-- STEP 11: YOUR DETAILS (shared pbContactStepHTML) -->
+  <div id="wallace-form">
+    <div id="pb-final-step"></div>
+  </div>
+  <div id="wf-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7">
+    <strong>Quote request sent!</strong> We'll follow up within 24 hours.<br>
+    Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> &middot; 24/7.
   </div>
 
-  <div class="sec-div"></div>
+</div>
 
-  <!-- QUOTE FORM -->
-  <div class="cfg-step always" id="sec-form">
-    <div class="step-lbl">Request a Quote</div>
-    <div class="step-ttl">Get Your Custom Quote</div>
-    <div class="step-sub">Fill in your contact info and we'll follow up within 24 hours with pricing.</div>
+<!-- SUMMARY CARD -->
+<div class="summary-card" id="summary-panel">
+  <div class="summary-head">Your configuration</div>
+  <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Wallace Portfolio Natural Shades</span></div>
+  <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="s-size">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="s-mount">Inside mount</span></div>
+  <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="s-qty">1</span></div>
+  <div class="summary-row"><span class="sr-key">Type</span><span class="sr-val" id="s-type">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Pattern</span><span class="sr-val" id="s-pattern">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Color</span><span class="sr-val" id="s-color">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Group</span><span class="sr-val" id="s-group">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Style</span><span class="sr-val" id="s-style">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Control</span><span class="sr-val" id="s-control">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Liner</span><span class="sr-val" id="s-liner">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Edge binding</span><span class="sr-val" id="s-binding">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Valance / track</span><span class="sr-val" id="s-valance">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Special</span><span class="sr-val" id="s-special">&mdash;</span></div>
+  <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="s-del">Ship to me</span></div>
+  <div class="summary-row"><span class="sr-key">Estimate</span><span class="sr-val">Custom quote &mdash; we confirm pricing</span></div>
+  <div class="summary-note">No public pricing &mdash; custom quote within 24 hours.</div>
+</div>
 
-    <div id="wallace-form">
-      <!-- Delivery section -->
-      <div style="margin-bottom:16px">
-        <div class="opt-row" id="grp-wf-del">
-          <button class="opt-btn sel" onclick="selOpt(this,'grp-wf-del')">Ship to me</button>
-        </div>
-        <div class="delivery-note">
-          Shipped via UPS or FedEx.
-          <div class="delivery-tariff">Tariffs and import fees are additional.</div>
-        </div>
-      </div>
-
-      <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-      <div id="pb-final-step"></div>
-    </div>
-
-    <div id="wf-success" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;border-radius:10px;padding:20px;color:#2e7d32;font-size:14px;line-height:1.7">
-      <strong>Quote request sent!</strong> We'll follow up within 24 hours.<br>
-      Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a> · 24/7.
-    </div>
-  </div>
-
-</div><!-- /cfg-wrap -->
+</div><!-- /config-grid -->
+</div><!-- /config-wrap -->
+</div><!-- /cfg-outer -->
 
 <!-- CTA BANNER -->
 <div class="cta-banner">
@@ -556,9 +414,10 @@
 <script src="../js/fabric-picker.js"></script>
 <script src="../js/pages/wallace-portfolio-natural-shades.js"></script>
 <script>
-// Canonical final "Your details" contact + files step — identical on every product.
-document.getElementById('pb-final-step').innerHTML =
-  pbContactStepHTML({ bare: true, cartFn: 'addWallacePortfolioNaturalToCart()', submitFn: 'submitQuote()' });
+// Canonical Delivery + "Your details" steps — identical on every product.
+document.getElementById('pb-delivery-slot').outerHTML = pbDeliveryStepHTML({ stepNum: 10, onPick: 'updateSummary()' });
+document.getElementById('pb-final-step').outerHTML =
+  pbContactStepHTML({ stepNum: 11, cartFn: 'addWallacePortfolioNaturalToCart()', submitFn: 'submitQuote()' });
 </script>
 </body>
 </html>
