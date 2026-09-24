@@ -759,7 +759,7 @@ var D_RATE_LINED   = 135;   // per cut/width — liner included (BO or LF, same 
 var D_SPECIALTY_PLEAT_ADD = 20;  // Goblet / Barrel, on top of the base rate
 var D_LEN_BAND_ADD = 35;    // added per 10" band above 141"
 var D_LEN_MAX_AUTO = 300;   // longer than this is a manual quote, no number shown (was 185)
-var D_APPROVE_W    = 200;   // wider than this  → priced, but approval required before payment
+var D_APPROVE_W    = 250;   // wider than this  → priced, but approval required before payment (Justin: 250 W x 110 L is fine)
 var D_APPROVE_H    = 150;   // longer than this → priced, but approval required before payment
 // Width has no rate ladder of its own: a wider panel simply takes more cuts and the
 // cut formula handles any width, so this cap is only about what we quote
@@ -1015,12 +1015,12 @@ function calcDrapePrice() {
   }
 
   // Shipping estimate — FedEx/UPS from Philadelphia; min $75 for drapes
-  // $200 up to 180x150, $300 up to 250x200, $500 past that. Drapery carries its
+  // $100 up to 180x150, $300 up to 250x200, $500 past that (base was $200 until 2026-09-23).
   // own base (higher than the $100 on Romans and boards) because a made-up drape
   // is bulkier. The finished panel decides it, not the cut count.
   var dShipEst = (typeof pbDraperyFreight === 'function')
     ? pbDraperyFreight(w, h)
-    : ((w <= 180 && h <= 150) ? 200 : (w <= 250 && h <= 200) ? 300 : 500);
+    : ((w <= 180 && h <= 150) ? 100 : (w <= 250 && h <= 200) ? 300 : 500);
 
   // Per-window costs (labor, fabric, lining, trim) scale with quantity; the D_SET_MIN minimum
   // applies per set, with shipping added on top. Cornice/valance are single shared pieces and shipping is one estimate —
@@ -1077,7 +1077,7 @@ function calcDrapePrice() {
   if (trimTotal)    drapeLines.push({ label: 'Trim', value: '$' + trimTotal.toFixed(0) });
   if (dShipEst) {
     drapeLines.push({ label: (dShipEst >= 500 ? 'Oversize freight (over 250″ × 200″)'
-                           : dShipEst > 200 ? 'Oversize freight (over 180″ × 150″)'
+                           : dShipEst > 100 ? 'Oversize freight (over 180″ × 150″)'
                            : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + dShipEst });
     drapeLines.push({ label: '', value: (dShipEst >= 500
       ? 'This size can be ordered, but the freight is confirmed at order and may increase.'
@@ -1089,9 +1089,9 @@ function calcDrapePrice() {
     drapeLines.push(pbApprovalLine('Drapery over ' + D_APPROVE_W + '″ wide or ' + D_APPROVE_H + '″ long'));
   }
   var cvOverH = [];
-  if (corniceTotal && ch > CV_APPROVE_H) cvOverH.push('Cornice');
-  if (valanceTotal && vh > CV_APPROVE_H) cvOverH.push('Valance');
-  if (cvOverH.length) drapeLines.push(pbApprovalLine(cvOverH.join(' and ') + ' over ' + CV_APPROVE_H + '″ tall'));
+  if (corniceTotal && cvOverApproval(cw, ch)) cvOverH.push('Cornice');
+  if (valanceTotal && cvOverApproval(vw, vh)) cvOverH.push('Valance');
+  if (cvOverH.length) drapeLines.push(pbApprovalLine(cvOverH.join(' and ') + ' ' + CV_APPROVE_TXT));
   // Past the published length ladder there is no rate to apply, so show the
   // spec without a price rather than a number we would have to walk back.
   if (overMaxLength) {
@@ -1151,6 +1151,9 @@ var CV_TRIM_PER_FT= 15;
 // but need our approval before they can be paid for (Justin, 2026-09-23).
 // Applies to the standalone forms and the add-ons on the drapery form.
 var CV_APPROVE_H  = 40;
+var CV_APPROVE_W  = 150;   // Justin, 2026-09-23 — over either one needs approval
+function cvOverApproval(w, h) { return w > CV_APPROVE_W || h > CV_APPROVE_H; }
+var CV_APPROVE_TXT = 'over ' + CV_APPROVE_W + '″ wide or ' + CV_APPROVE_H + '″ tall';
 
 function cvSetType(type) {
   var isCorn = type === 'cornice';
@@ -1292,9 +1295,9 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
     + ' <span style="color:var(--gold)">$' + cvFreight + '</span></div>';
   rows += '<div style="font-size:11px;color:var(--text-dark);opacity:.75;padding:2px 0">' +
     ((typeof PB_ST_SHIP_NOTE !== 'undefined') ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') + '</div>';
-  if (h > CV_APPROVE_H) {
+  if (cvOverApproval(w, h)) {
     rows += '<div style="font-size:12px;color:var(--gold);font-weight:600;padding:6px 0 2px">&#9888; ' + PB_APPROVAL_LABEL +
-      ' <span style="font-weight:400;color:var(--text-dark)">&mdash; over ' + CV_APPROVE_H + '&Prime; tall. We review and approve this size before it can be paid for. Submit it as a request.</span></div>';
+      ' <span style="font-weight:400;color:var(--text-dark)">&mdash; ' + CV_APPROVE_TXT + '. We review and approve this size before it can be paid for. Submit it as a request.</span></div>';
   }
   rows += '<div style="font-size:11px;font-weight:700;color:var(--cream);padding-top:8px;margin-top:6px;border-top:1px solid rgba(255,255,255,.1)">Est. total: $' + Math.ceil(total).toLocaleString() + '<span style="font-weight:400;color:var(--text-dark)"> + fabric</span></div>';
   document.getElementById(rowsId).innerHTML = rows;
@@ -1365,8 +1368,9 @@ async function submitCornice() {
   if (cBox && cBox._cvTotal) selections.push({ label: 'Estimate', value: '$' + cBox._cvTotal.toLocaleString() + ' + fabric (quoted separately)' });
   var cLabels = (typeof pbGetShadeLabels === 'function') ? pbGetShadeLabels() : '';
   if (cLabels) selections.push({ label: 'Labels', value: cLabels });
-  if ((parseFloat(document.getElementById('cv-corn-h').value) || 0) > CV_APPROVE_H) {
-    selections.push(pbApprovalLine('Cornice over ' + CV_APPROVE_H + '″ tall'));
+  if (cvOverApproval(parseFloat(document.getElementById('cv-corn-w').value) || 0,
+                     parseFloat(document.getElementById('cv-corn-h').value) || 0)) {
+    selections.push(pbApprovalLine('Cornice ' + CV_APPROVE_TXT));
   }
   await _stApiSubmit('corn-form', 'corn-success', name, email, phone, getOpt('grp-cv-type') === 'Valance' ? 'Valance' : 'Cornice', selections, document.getElementById('cn-notes').value.trim());
 }
@@ -1387,8 +1391,9 @@ async function submitValanceCv() {
     { label: 'Fabric',       value: getOpt('grp-cv-val-fabric') || '—' },
     { label: 'Delivery',     value: 'Ship to me (UPS/FedEx)' }
   ];
-  if ((parseFloat(document.getElementById('cv-val-h').value) || 0) > CV_APPROVE_H) {
-    selections.push(pbApprovalLine('Valance over ' + CV_APPROVE_H + '″ tall'));
+  if (cvOverApproval(parseFloat(document.getElementById('cv-val-w').value) || 0,
+                     parseFloat(document.getElementById('cv-val-h').value) || 0)) {
+    selections.push(pbApprovalLine('Valance ' + CV_APPROVE_TXT));
   }
   await _stApiSubmit('val-form', 'val-cv-success', name, email, phone, 'Valance', selections, document.getElementById('vn-notes').value.trim());
 }

@@ -670,11 +670,11 @@ function pbBoardFreight(widthIn) {
 }
 // Kept as the old name for anything still calling it.
 function pbSoftTreatmentFreight(widthIn) { return pbBoardFreight(widthIn); }
-// Drapery — its own base rate, higher than the Roman/board one.
-var PB_DRAPE_SHIP_BASE = 200;
+// Drapery base — $100 (Justin, 2026-09-23: "drape shipping starts at 100"; was $200).
+var PB_DRAPE_SHIP_BASE = 100;
 // Each tier needs BOTH dimensions to fit before it applies.
 var PB_DRAPE_SHIP_TIERS = [
-  { w: 180, h: 150, fee: PB_DRAPE_SHIP_BASE },   // $200
+  { w: 180, h: 150, fee: PB_DRAPE_SHIP_BASE },   // $100
   { w: 250, h: 200, fee: PB_ST_SHIP_MID     }    // $300
 ];                                               // past both -> PB_ST_SHIP_MAX ($500)
 function pbDraperyFreight(widthIn, lengthIn) {
