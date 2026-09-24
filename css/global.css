@@ -861,7 +861,7 @@ html, body { overflow-x: hidden; }
    CANONICAL TYPOGRAPHY — three consistent levels site-wide
    ============================================================ */
 .page-hero h1 { font-size: 36px !important; }
-.step-head-title { font-size: 15px !important; font-weight: 500; }
+.step-head-title, .step-title { font-size: 14px !important; font-weight: 500; color: #111; }
 .opt-card-title { font-size: 14px !important; font-weight: 500; }
 .brand-name { font-size: 18px !important; }
 
