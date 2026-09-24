@@ -6,7 +6,6 @@ const S = {
   finish:'', gloss:'', draw:'', trackSystem:'',
   motor:'', motorAccs:[], delivery:''
 };
-const TOTAL_STEPS = 8;
 
 /* ── DATA ── */
 const COLLECTIONS = {
@@ -182,236 +181,193 @@ const FINISH_SWATCHES = {
 function $(id){return document.getElementById(id);}
 function show(id){var e=$(id);if(e)e.style.display='';}
 function hide(id){var e=$(id);if(e)e.style.display='none';}
-function togglePill(el, grp){
+// Single-select pill inside its .opt-row
+function togglePill(el){
   var row=el.closest('.opt-row');
-  if(row) row.querySelectorAll('.opt-pill').forEach(p=>p.classList.remove('sel'));
+  if(row) row.querySelectorAll('.opt-btn').forEach(p=>p.classList.remove('sel'));
   el.classList.add('sel');
+  updateSummary();
 }
+// Multi-select pill (controls, batons, accessories)
 function toggleMotorAcc(el, key){
   el.classList.toggle('sel');
   var idx=S.motorAccs.indexOf(key);
   if(idx>=0) S.motorAccs.splice(idx,1); else S.motorAccs.push(key);
+  updateSummary();
 }
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
 
-/* ── STEP BAR ── */
-function renderStepBar(cur){
-  var bar=$('step-bar'); var html='';
-  for(var i=1;i<=TOTAL_STEPS;i++){
-    var cls=i<cur?'done':i===cur?'active':'';
-    html+=`<div class="step-dot"><div class="step-circle ${cls}">${i<cur?'✓':i}</div></div>`;
-    if(i<TOTAL_STEPS) html+=`<div class="step-line ${i<cur?'done':''}"></div>`;
-  }
-  bar.innerHTML=html;
-}
+const TYPE_LABELS={decorative:'Decorative Rod',traverse:'Traversing System',motorized:'Motorized Traversing','3d':'3D Hardware',cornice:'Cornice/Crown/Scroll',tieback:'Tieback/Swing Arm'};
+const TYPE_DESC={
+  decorative:'<strong>Decorative rod</strong> — stationary; panels hang from rings that slide manually. Iron Art, Italian, Wood, Crystal, Tropical.',
+  traverse:'<strong>Traversing system</strong> — drapery opens and closes on a track. Single or double. Up to 30ft. Center, left, or right stack.',
+  motorized:'<strong>Motorized traversing</strong> — Somfy-powered. Glydea 60e (132 lb), Glydea 35e (77 lb), Irismo 35 Mini DC, or Irismo 45 WireFree.',
+  '3d':'<strong>3D hardware</strong> — finials sit in front of the rod. Adjustable position. Iron Art or Italian finishes. 1" round hollow rod only.',
+  cornice:'<strong>Cornice / crown / scroll</strong> — decorative top treatment mounted above the window. Custom sizing and finish.',
+  tieback:'<strong>Tieback / swing arm</strong> — expandable post projection, fixed post projection, or U-shape bend. Must specify style.'
+};
+function isTrav(){return S.type==='traverse'||S.type==='motorized';}
+function noRodType(){return S.type==='cornice'||S.type==='tieback';}
 
-/* ── NAVIGATION ── */
-let currentStep=1;
-function goStep(n){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
-  currentStep=n;
-  renderStepBar(n);
-  var sec=$('sec-'+n);
-  if(sec) sec.classList.add('on');
-  if(n===2) buildCollGrid();
-  if(n===3) buildRodStep();
-  if(n===4) buildFinialStep();
-  if(n===5) buildMountStep();
-  if(n===6) buildRingStep();
-  if(n===7) buildFinishStep();
-  if(n===8) buildSummary();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-/* ── STEP 1 ── */
-function pickType(t, el){
-  S.type=t; S.collection=''; S.rodType=''; S.rodDia=''; S.finial=''; S.finish='';
-  document.querySelectorAll('#sec-1 .type-card').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
-  goStep(2);
-}
-
-/* ── STEP 2 ── */
-function buildCollGrid(){
-  var colls=COLLECTIONS[S.type]||[];
-  var grid=$('coll-grid'); grid.innerHTML='';
-  var note=$('s2-note');
-  if(S.type==='cornice'||S.type==='tieback'){
-    note.style.display='block';
-    note.innerHTML='<strong>'+({cornice:'Cornice / Crown / Scroll',tieback:'Tieback / Swing Arm'}[S.type])+'</strong> — all custom quote. Describe your requirements in the notes field at the end.';
-  } else note.style.display='none';
-
-  colls.forEach(function(c){
-    var div=document.createElement('div');
-    div.className='coll-card'+(c.limited?' limited':'');
-    div.innerHTML=`<div class="coll-swatch" style="background:${c.swatch}"></div>
-      <div class="coll-body"><div class="coll-name">${c.name}</div><div class="coll-sub">${c.sub}</div></div>`;
-    div.onclick=function(){
-      document.querySelectorAll('.coll-card').forEach(cc=>cc.classList.remove('sel'));
-      div.classList.add('sel');
-      S.collection=c.id;
-      goStep(3);
-    };
-    grid.appendChild(div);
+/* ── STEP NUMBERING — visible steps run 1..N with no gaps ── */
+function renumberSteps(){
+  var n=0;
+  document.querySelectorAll('#cfg-steps > .step-block').forEach(function(b){
+    if(b.style.display==='none') return;
+    n++; var s=b.querySelector('.step-num'); if(s) s.textContent=n;
   });
-  if(S.type==='cornice'||S.type==='tieback') goStep(8);
+}
+function refreshVisibility(){
+  var hideRod=noRodType();
+  ['step-rod','step-finial','step-mount','step-rings','step-finish'].forEach(function(id){ var e=$(id); if(e) e.style.display=hideRod?'none':''; });
+  $('step-trav').style.display=isTrav()?'':'none';
+  $('step-motor').style.display=S.type==='motorized'?'':'none';
+  // Inside-mount socket is stationary only
+  var ins=$('mnt-inside');
+  if(ins){ ins.style.display=isTrav()?'none':''; if(isTrav()&&S.mount==='inside'){ S.mount=''; ins.classList.remove('sel'); } }
+  renumberSteps();
 }
 
-/* ── STEP 3: ROD ── */
-function buildRodStep(){
-  var rods=ROD_TYPES[S.collection]||ROD_TYPES['ironart'];
-  var el=$('s3-content'); el.innerHTML='';
-  var is3d=S.type==='3d';
-  $('warn-3d-rod').style.display=is3d?'block':'none';
-  $('warn-fluted').style.display='none';
+/* ── STEP 2: HARDWARE TYPE ── */
+function pickType(t, el){
+  S.type=t; S.collection=''; S.rodType=''; S.rodTypeName=''; S.rodDia=''; S.finial=''; S.finish='';
+  document.querySelectorAll('#grp-type .opt-btn').forEach(c=>c.classList.remove('sel'));
+  if(el) el.classList.add('sel');
+  // Traverse / motor answers only apply to those types — clear them when they are hidden.
+  if(!isTrav()){ S.draw=''; S.trackSystem=''; document.querySelectorAll('#draw-row .opt-btn, #track-row .opt-btn').forEach(b=>b.classList.remove('sel')); }
+  if(S.type!=='motorized'){ S.motor=''; document.querySelectorAll('#motor-row .opt-btn').forEach(b=>b.classList.remove('sel')); }
+  $('type-note').innerHTML=TYPE_DESC[t]||'';
+  buildCollGrid(); buildRodStep(); buildFinialStep(); buildFinishStep(); updateRingAvail();
+  refreshVisibility();
+  updateSummary();
+}
 
-  // Rod type label
-  el.innerHTML='<div class="sec-label" style="margin-top:0">Rod / Pole type</div>';
-  var typeRow=document.createElement('div'); typeRow.className='opt-row';
+/* ── STEP 3: COLLECTION ── */
+function buildCollGrid(){
+  var grid=$('coll-grid'); grid.innerHTML='';
+  var note=$('s2-note'); var cnote=$('coll-note');
+  cnote.innerHTML='';
+  if(!S.type){ note.style.display='none'; grid.innerHTML='<div class="placeholder-note">Choose a hardware type above to see its collections.</div>'; return; }
+  if(noRodType()){
+    note.style.display='block';
+    note.innerHTML='<strong>'+({cornice:'Cornice / Crown / Scroll',tieback:'Tieback / Swing Arm'}[S.type])+'</strong> — all custom quote. Describe your requirements in the notes field in Your details.';
+  } else note.style.display='none';
+  (COLLECTIONS[S.type]||[]).forEach(function(c){
+    var b=document.createElement('button');
+    b.className='opt-btn'+(S.collection===c.id?' sel':'');
+    b.innerHTML=esc(c.name)+(c.limited?' <span class="pill-hint">limited</span>':'');
+    b.onclick=function(){
+      grid.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+      S.collection=c.id; S.rodType=''; S.rodTypeName=''; S.rodDia=''; S.finial=''; S.finish='';
+      cnote.textContent=c.sub;
+      buildRodStep(); buildFinialStep(); buildFinishStep(); updateRingAvail();
+      updateSummary();
+    };
+    grid.appendChild(b);
+  });
+}
+function collName(){
+  var c=(COLLECTIONS[S.type]||[]).find(x=>x.id===S.collection);
+  return c?c.name:(S.collection||'');
+}
+
+/* ── STEP 4: ROD ── */
+function buildRodStep(){
+  var el=$('s3-content'); el.innerHTML='';
+  $('warn-3d-rod').style.display=S.type==='3d'?'block':'none';
+  $('warn-fluted').style.display='none';
+  if(!S.collection){ el.innerHTML='<div class="placeholder-note">Choose a collection above to see its rod profiles and diameters.</div>'; return; }
+  var rods=ROD_TYPES[S.collection]||ROD_TYPES['ironart'];
+  el.innerHTML='<div class="sub-label">Rod / pole type</div>';
+  var typeRow=document.createElement('div'); typeRow.className='opt-row'; typeRow.id='rod-type-row';
   rods.forEach(function(r){
-    var p=document.createElement('div'); p.className='opt-pill';
+    var p=document.createElement('button'); p.className='opt-btn wrap';
     p.textContent=r.name+(r.note?' ('+r.note+')':'');
     p.onclick=function(){
-      document.querySelectorAll('#rod-type-row .opt-pill').forEach(x=>x.classList.remove('sel'));
+      typeRow.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('sel'));
       p.classList.add('sel');
-      S.rodType=r.id;
-      S.rodTypeName=r.name;
-      // Show fluted warning
+      S.rodType=r.id; S.rodTypeName=r.name; S.rodDia='';
       $('warn-fluted').style.display=(r.id==='fluted-iron')?'block':'none';
       buildDiaOptions(r.dias);
+      updateRingAvail();
+      updateSummary();
     };
     typeRow.appendChild(p);
   });
-  typeRow.id='rod-type-row';
   el.appendChild(typeRow);
-
-  // Diameter placeholder
-  var diaSection=document.createElement('div');
-  diaSection.id='dia-section'; diaSection.style.marginTop='16px';
+  var diaSection=document.createElement('div'); diaSection.id='dia-section';
+  diaSection.innerHTML='<div class="placeholder-note">Pick a rod type to see its diameters.</div>';
   el.appendChild(diaSection);
 }
 function buildDiaOptions(dias){
   var sec=$('dia-section'); if(!sec) return;
-  sec.innerHTML='<div class="sec-label">Diameter</div><div class="opt-row" id="dia-row"></div>';
+  sec.innerHTML='<div class="sub-label">Diameter</div><div class="opt-row" id="dia-row"></div>';
   var row=$('dia-row');
   dias.forEach(function(d){
-    var p=document.createElement('div'); p.className='opt-pill';
+    var p=document.createElement('button'); p.className='opt-btn';
     p.textContent=d;
     p.onclick=function(){
-      document.querySelectorAll('#dia-row .opt-pill').forEach(x=>x.classList.remove('sel'));
+      row.querySelectorAll('.opt-btn').forEach(x=>x.classList.remove('sel'));
       p.classList.add('sel');
       S.rodDia=d;
+      updateSummary();
     };
     row.appendChild(p);
   });
 }
 
-/* ── STEP 4: FINIALS ── */
+/* ── STEP 5: FINIALS ── */
+function selectFinialPill(el, val){
+  document.querySelectorAll('#s4-content .opt-btn').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+  S.finial=val;
+  updateSummary();
+}
 function buildFinialStep(){
-  var groups=FINIALS[S.collection]||FINIALS['ironart'];
   var el=$('s4-content'); el.innerHTML='';
-  var is3d=S.type==='3d';
-  $('warn-3d-finial').style.display=is3d?'block':'none';
-
+  $('warn-3d-finial').style.display=S.type==='3d'?'block':'none';
+  if(!S.collection){ el.innerHTML='<div class="placeholder-note">Choose a collection above to see its finials.</div>'; return; }
+  var groups=FINIALS[S.collection]||FINIALS['ironart'];
   Object.entries(groups).forEach(function([grpName, ids]){
-    var grp=document.createElement('div'); grp.className='finial-group';
-    grp.innerHTML=`<div class="finial-group-label">${grpName}</div>`;
-    var pills=document.createElement('div'); pills.className='finial-pills';
-    // Show as selectable range pill
-    var p=document.createElement('div'); p.className='opt-pill';
+    var lab=document.createElement('div'); lab.className='sub-label'; lab.textContent=grpName;
+    var row=document.createElement('div'); row.className='opt-row';
+    var p=document.createElement('button'); p.className='opt-btn wrap';
     p.textContent=ids;
-    p.style.maxWidth='100%'; p.style.whiteSpace='normal'; p.style.textAlign='left';
-    p.onclick=function(){
-      document.querySelectorAll('#s4-content .opt-pill').forEach(x=>x.classList.remove('sel'));
-      p.classList.add('sel');
-      S.finial=grpName+': '+ids;
-      setTimeout(function(){goStep(5);},250);
-    };
-    pills.appendChild(p);
-    grp.appendChild(pills);
-    el.appendChild(grp);
+    p.onclick=function(){ selectFinialPill(p, grpName+': '+ids); };
+    row.appendChild(p);
+    el.appendChild(lab); el.appendChild(row);
   });
-  // Endcap fallback
-  var ecDiv=document.createElement('div'); ecDiv.style.marginTop='8px';
-  ecDiv.innerHTML='<div class="opt-pill" onclick="document.querySelectorAll(\'#s4-content .opt-pill\').forEach(x=>x.classList.remove(\'sel\'));this.classList.add(\'sel\');S.finial=\'Endcap/Socket only\';setTimeout(function(){goStep(5)},250)" style="display:inline-block">Endcap / Socket only (no finial)</div>';
-  el.appendChild(ecDiv);
+  var lab=document.createElement('div'); lab.className='sub-label'; lab.textContent='No finial';
+  var row=document.createElement('div'); row.className='opt-row';
+  var ec=document.createElement('button'); ec.className='opt-btn'; ec.textContent='Endcap / socket only (no finial)';
+  ec.onclick=function(){ selectFinialPill(ec,'Endcap/Socket only'); };
+  row.appendChild(ec); el.appendChild(lab); el.appendChild(row);
 }
 
-/* ── STEP 5: MOUNT ── */
-function buildMountStep(){
-  var el=$('s5-content'); el.innerHTML='';
-  var isTrav=(S.type==='traverse'||S.type==='motorized');
-  el.innerHTML=`
-    <div class="sec-label" style="margin-top:0">Mount type</div>
-    <div class="opt-row" id="mount-row">
-      <div class="opt-pill" onclick="S.mount='wall';togglePill(this,'mnt')">Wall mount</div>
-      <div class="opt-pill" onclick="S.mount='ceiling';togglePill(this,'mnt')">Ceiling mount</div>
-      ${!isTrav?'<div class="opt-pill" onclick="S.mount=\'inside\';togglePill(this,\'mnt\')">Inside mount Socket</div>':''}
-    </div>
-    <div class="sec-label" style="margin-top:12px">Bracket type</div>
-    <div class="opt-row">
-      <div class="opt-pill" onclick="S.bracketType='single-wall';togglePill(this,'bkt')">Single Wall (1010/1021)</div>
-      <div class="opt-pill" onclick="S.bracketType='double-wall';togglePill(this,'bkt')">Double Wall (1028/1030)</div>
-      <div class="opt-pill" onclick="S.bracketType='ceiling';togglePill(this,'bkt')">Ceiling mount (1100–1106)</div>
-      <div class="opt-pill" onclick="S.bracketType='support';togglePill(this,'bkt')">Center Support Bracket</div>
-      <div class="opt-pill" onclick="S.bracketType='heavy-duty';togglePill(this,'bkt')">Heavy Duty (1028HD/1040HD)</div>
-      <div class="opt-pill" onclick="S.bracketType='expandable';togglePill(this,'bkt')">Expandable Projection (1028EXP)</div>
-      <div class="opt-pill" onclick="S.bracketType='bypass';togglePill(this,'bkt')">Bypass Bracket</div>
-    </div>
-    <div class="sec-label" style="margin-top:12px">Projection</div>
-    <div class="opt-row">
-      <div class="opt-pill" onclick="S.projection='1.5';togglePill(this,'prj')">1½"</div>
-      <div class="opt-pill" onclick="S.projection='3';togglePill(this,'prj')">3"</div>
-      <div class="opt-pill" onclick="S.projection='4';togglePill(this,'prj')">4"</div>
-      <div class="opt-pill" onclick="S.projection='6';togglePill(this,'prj')">6"</div>
-      <div class="opt-pill" onclick="S.projection='expandable';togglePill(this,'prj')">Expandable 3"–4¼"</div>
-    </div>
-    <div class="sec-label" style="margin-top:12px">Single or double rod system?</div>
-    <div class="opt-row">
-      <div class="opt-pill" onclick="S.single='single';togglePill(this,'sys')">Single rod</div>
-      <div class="opt-pill" onclick="S.single='double';togglePill(this,'sys')">Double rod (sheer + drape)</div>
-    </div>
-    <div class="info-box" style="margin-top:12px">Brackets recommended every 48". Double systems require a center support bracket. Miter returns available at additional charge — note in Step 8.</div>`;
+/* ── STEP 9: RINGS ── */
+function pickRing(r, el){
+  S.ring=r;
+  togglePill(el);
+  $('warn-bypass').style.display=(r==='330C'||r==='7330C')?'block':'none';
 }
-
-/* ── STEP 6: RINGS ── */
-function buildRingStep(){
-  var el=$('s6-content'); el.innerHTML='';
+function updateRingAvail(){
   var isHammered=S.rodType&&(S.rodType.includes('hammered')||S.rodType.includes('hammer'));
   var isRoundHollow=S.rodType&&(S.rodType.includes('round-hollow')||S.rodType.includes('1-smooth')||S.rodType==='ironart');
-  $('warn-bypass').style.display='none';
+  var bypassOK=!!(!isHammered&&isRoundHollow);
+  ['ring-330c','ring-7330c'].forEach(function(id){ var b=$(id); if(b){ b.style.display=bypassOK?'':'none'; if(!bypassOK) b.classList.remove('sel'); } });
+  if(!bypassOK&&(S.ring==='330C'||S.ring==='7330C')) S.ring='';
+  $('warn-bypass').style.display=(S.ring==='330C'||S.ring==='7330C')?'block':'none';
   $('warn-chrome-3d').style.display=(S.type==='3d'&&S.collection==='3dit')?'block':'none';
-
-  el.innerHTML=`
-    <div class="sec-label" style="margin-top:0">Rings</div>
-    <div class="info-box">Ring inner diameter should be ½" larger than rod diameter. Standard rings are ¼" thick.</div>
-    <div class="opt-row" id="ring-row">
-      <div class="opt-pill" onclick="S.ring='350';togglePill(this,'rng')">350 — Round Ring</div>
-      <div class="opt-pill" onclick="S.ring='351';togglePill(this,'rng')">351 — Twisted Ring</div>
-      <div class="opt-pill" onclick="S.ring='352';togglePill(this,'rng')">352 — Square Ring</div>
-      <div class="opt-pill" onclick="S.ring='353';togglePill(this,'rng')">353 — Forged Ring</div>
-      <div class="opt-pill" onclick="S.ring='354';togglePill(this,'rng')">354 — Hook Ring</div>
-      <div class="opt-pill" onclick="S.ring='355';togglePill(this,'rng')">355 — Round with Clip</div>
-      <div class="opt-pill" onclick="S.ring='356';togglePill(this,'rng')">356 — Round Hammered</div>
-      ${!isHammered&&isRoundHollow?'<div class="opt-pill" onclick="S.ring=\'330C\';togglePill(this,\'rng\');document.getElementById(\'warn-bypass\').style.display=\'block\'">330C — Bypass C Ring (iron)</div>':''}
-      ${!isHammered&&isRoundHollow?'<div class="opt-pill" onclick="S.ring=\'7330C\';togglePill(this,\'rng\');document.getElementById(\'warn-bypass\').style.display=\'block\'">7330C — Bypass C Ring (Italian)</div>':''}
-      <div class="opt-pill" onclick="S.ring='none';togglePill(this,'rng')">No rings (grommet / rod pocket)</div>
-    </div>
-    <div class="sec-label" style="margin-top:14px">Batons / Accessories</div>
-    <div class="opt-row">
-      <div class="opt-pill" onclick="toggleMotorAcc(this,'baton-1015')">Baton 1015–1020 (specify length)</div>
-      <div class="opt-pill" onclick="toggleMotorAcc(this,'baton-it1014')">Italian Baton 1014</div>
-      <div class="opt-pill" onclick="toggleMotorAcc(this,'baton-trav')">Traversing Baton IT1016BT/IT1020BT</div>
-      <div class="opt-pill" onclick="toggleMotorAcc(this,'tieback-acc')">Tieback / Holdback</div>
-    </div>`;
 }
 
-/* ── STEP 7: FINISH ── */
+/* ── STEP 10: FINISH ── */
 function buildFinishStep(){
   var el=$('s7-content'); el.innerHTML='';
+  if(!S.collection){ el.innerHTML='<div class="placeholder-note">Choose a collection above to see its finishes.</div>'; return; }
   var collMap={'ironart':'ironart','village':'ironart','bohemia':'ironart','tropical':'tropical','3dia':'ironart','3dit':'italian','3dpanel':'ironart','italian':'italian','woodart':'woodart'};
   var finKey=collMap[S.collection]||'ironart';
   var groups=FINISHES[finKey]||FINISHES['ironart'];
-
   Object.entries(groups).forEach(function([grpName, fins]){
     var grpDiv=document.createElement('div'); grpDiv.className='finish-group';
     grpDiv.innerHTML=`<div class="finish-group-label">${grpName}</div>`;
@@ -426,6 +382,7 @@ function buildFinishStep(){
         document.querySelectorAll('.finish-card').forEach(x=>x.classList.remove('sel'));
         card.classList.add('sel');
         S.finish=f.id+' — '+f.name;
+        updateSummary();
       };
       grid.appendChild(card);
     });
@@ -437,57 +394,46 @@ function pickGloss(g, el){
   ['pill-standard','pill-semi','pill-high','pill-custom-finish'].forEach(function(id){ var e=$(id); if(e) e.classList.remove('sel'); });
   el.classList.add('sel');
   S.gloss=g;
-  setTimeout(function(){ goStep(8); }, 300);
+  updateSummary();
 }
 
-/* ── STEP 8: SUMMARY ── */
-function buildSummary(){
-  // Traverse/motor fields
-  var isTrav=(S.type==='traverse'||S.type==='motorized');
-  $('trav-fields').style.display=isTrav?'block':'none';
-  $('motor-fields').style.display=S.type==='motorized'?'block':'none';
-
+/* ── SUMMARY CARD ── */
+function updateSummary(){
+  var sum=$('quote-summary'); if(!sum) return;
+  var len=($('m-length')||{value:''}).value;
+  var qty=($('m-qty')||{value:'1'}).value||'1';
+  var mountLbl={wall:'Wall mount',ceiling:'Ceiling mount',inside:'Inside mount socket'}[S.mount]||'—';
   var rows=[
-    ['Hardware Type', {decorative:'Decorative Rod',traverse:'Traversing System',motorized:'Motorized Traversing','3d':'3D Hardware',cornice:'Cornice/Crown/Scroll',tieback:'Tieback/Swing Arm'}[S.type]||'—'],
-    ['Collection', S.collection||'—'],
-    ['Rod Type', S.rodTypeName||S.rodType||'—'],
-    ['Diameter', S.rodDia||'—'],
-    ['Finial', S.finial?S.finial.split(':')[0]:'—'],
-    ['Mount', S.mount||'—'],
-    ['Bracket', S.bracketType||'—'],
-    ['Projection', S.projection?S.projection+'"':'—'],
-    ['System', S.single||'—'],
-    ['Ring', S.ring||'—'],
-    ['Finish', S.finish||'—'],
+    ['Product','Orion decorative hardware'],
+    ['Size', len?len+'" wide':'—'],
+    ['Mount', mountLbl],
+    ['Qty', qty],
+    ['Hardware type', TYPE_LABELS[S.type]||'—'],
+    ['Collection', S.collection?collName():'—'],
+    ['Rod type', S.rodTypeName||S.rodType||''],
+    ['Diameter', S.rodDia||''],
+    ['Finial', S.finial?S.finial.split(':')[0]:''],
+    ['Bracket', S.bracketType||''],
+    ['Projection', S.projection?S.projection+'"':''],
+    ['System', S.single||''],
+    ['Draw', isTrav()?S.draw:''],
+    ['Track', isTrav()?S.trackSystem:''],
+    ['Motor', S.type==='motorized'?S.motor:''],
+    ['Ring', S.ring||''],
+    ['Finish', S.finish||''],
     ['Gloss', S.gloss||'Standard'],
-  ].filter(r=>r[1]&&r[1]!=='—');
-
-  var sum=$('quote-summary');
-  sum.innerHTML='<div class="summary-title">Your Orion Configuration</div>'+
-    rows.map(r=>`<div class="summary-row"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('');
+  ].filter(r=>r[1]);
+  sum.innerHTML=rows.map(r=>`<div class="summary-row"><span class="sr-key">${r[0]}</span><span class="sr-val">${esc(r[1])}</span></div>`).join('')+
+    '<div class="summary-row" style="border-top:0.5px solid rgba(255,255,255,.2);margin-top:6px;padding-top:10px"><span class="sr-key">Price</span><span class="sr-val">Custom quote — we confirm pricing</span></div>';
 }
-
-/* ── QUANTITY STEPPER (canonical Step 1 qty, reuses id m-qty) ── */
-function adjQty(d){
-  var el=$('m-qty'); if(!el) return;
-  var v=(parseInt(el.value,10)||1)+d;
-  if(v<1) v=1; if(v>50) v=50;
-  el.value=v;
-}
-
-/* ── DELIVERY ── */
-function pickDel(opt){
-  S.delivery=opt;
-  ['install','ship'].forEach(o=>{
-    var e=$('del-'+o); if(e) e.classList.toggle('sel',o===opt);
-  });
-}
+// Kept for any legacy caller.
+function buildSummary(){ updateSummary(); }
 
 /* ── SUBMIT ── */
 function addOrionToCart(){
   if(!S.type){ alert('Please select a hardware type before adding to cart.'); return; }
 
-  var typeLabel2={decorative:'Decorative Rod',traverse:'Traversing System',motorized:'Motorized Traversing','3d':'3D Hardware',cornice:'Cornice/Crown/Scroll',tieback:'Tieback/Swing Arm'}[S.type]||S.type;
+  var typeLabel2=TYPE_LABELS[S.type]||S.type;
   var length=($('m-length')||{value:''}).value;
   var qty=($('m-qty')||{value:'1'}).value;
 
@@ -513,8 +459,8 @@ function submitQuote(){
   var name=$('cf-name').value.trim(), contact=$('cf-phone').value.trim(), email=$('cf-email').value.trim();
   if(!name||!contact){alert('Please enter your name and contact info.');return;}
 
-  var typeLabel={decorative:'Decorative Rod',traverse:'Traversing System',motorized:'Motorized Traversing','3d':'3D Hardware',cornice:'Cornice/Crown/Scroll',tieback:'Tieback/Swing Arm'}[S.type]||S.type;
-  var isTrav=(S.type==='traverse'||S.type==='motorized');
+  var typeLabel=TYPE_LABELS[S.type]||S.type;
+  var trav=isTrav();
 
   var bodyLines=[
     '=== ORION HARDWARE QUOTE REQUEST ===',
@@ -540,7 +486,7 @@ function submitQuote(){
     'Finish: '+(S.finish||'N/A'),
     'Gloss: '+(S.gloss||'Standard'),
     '',
-    isTrav?'TRAVERSING\nDraw Direction: '+(S.draw||'N/A')+'\nTrack System: '+(S.trackSystem||'N/A'):'',
+    trav?'TRAVERSING\nDraw Direction: '+(S.draw||'N/A')+'\nTrack System: '+(S.trackSystem||'N/A'):'',
     S.type==='motorized'?'MOTORIZATION\nMotor: '+(S.motor||'N/A')+'\nMotor Controls/Accessories: '+(S.motorAccs.join(', ')||'None'):'',
     '',
     'MEASUREMENTS',
@@ -551,7 +497,7 @@ function submitQuote(){
     'PRICING NOTE: Orion — Request Quote Only (catalog pricing to be confirmed)',
     '',
     'DELIVERY/SERVICE',
-    'Preference: '+(S.delivery==='install'?'Professional Installation':'Ship to Customer'),
+    'Preference: '+(window.pbDelivery==='install'?'Professional Installation':'Ship to Customer'),
     '',
     'NOTES',
     $('cf-notes').value||'None',
@@ -562,11 +508,14 @@ function submitQuote(){
   var subj='Orion Hardware Quote — '+typeLabel+' — '+S.collection+' — '+name;
   window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + bodyLines);
 
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));
+  $('config-main').style.display='none';
   $('success-box').style.display='block';
-  $('step-bar').style.display='none';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-// Init
-renderStepBar(1);
+/* ── INIT (called after the shared delivery/contact steps are rendered) ── */
+function initOrion(){
+  buildCollGrid(); buildRodStep(); buildFinialStep(); buildFinishStep(); updateRingAvail();
+  refreshVisibility();
+  updateSummary();
+}

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -29,109 +29,29 @@
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7)}
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 
-.config-wrap{max-width:860px;margin:0 auto;padding:32px 20px 72px}
+/* Page frame around the standard configurator */
+.cfg-section{background:var(--gold-mid);padding:36px 20px 64px}
+.cfg-content{max-width:1000px;margin:0 auto}
+.sub-label{font-size:12px;font-weight:600;color:#555;margin:14px 0 6px}
+.sub-label:first-child{margin-top:0}
+.opt-btn.wrap{white-space:normal;text-align:left}
+.pill-hint{font-size:10px;color:#888;font-weight:400}
 
-/* Step bar */
-.step-bar{display:flex;align-items:center;gap:0;margin-bottom:28px;overflow-x:auto;padding-bottom:4px}
-.step-dot{display:flex;align-items:center;gap:0;flex-shrink:0}
-.step-circle{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:#e8e4de;color:#888;flex-shrink:0;transition:.15s}
-.step-circle.active{background:var(--gold);color:var(--espresso)}
-.step-circle.done{background:var(--espresso);color:var(--gold)}
-.step-line{width:28px;height:2px;background:#e8e4de;flex-shrink:0}
-.step-line.done{background:var(--espresso)}
-
-/* Sections */
-.section{display:none}.section.on{display:block}
-.sec-label{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600;margin-bottom:6px}
-.sec-title{font-size:20px;font-weight:500;color:#111;margin-bottom:6px;letter-spacing:-.3px}
-.sec-sub{font-size:13px;color:#666;line-height:1.6;margin-bottom:18px}
-
-/* Type cards (step 1) */
-.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:20px}
-.type-card{background:#fff;border:1.5px solid #e8e4de;border-radius:12px;padding:18px 16px;cursor:pointer;transition:.15s}
-.type-card:hover{border-color:var(--gold)}
-.type-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.type-icon{font-size:22px;margin-bottom:8px}
-.type-title{font-size:14px;font-weight:600;color:#111;margin-bottom:4px}
-.type-sub{font-size:11px;color:#666;line-height:1.5}
-
-/* Collection cards */
-.coll-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:20px}
-.coll-card{border:1.5px solid #e8e4de;border-radius:10px;overflow:hidden;cursor:pointer;transition:.15s;background:#fff;position:relative}
-.coll-card:hover{border-color:var(--gold)}
-.coll-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.coll-card.limited::after{content:'Limited';position:absolute;top:6px;right:6px;background:#e67e22;color:#fff;font-size:8px;padding:1px 5px;border-radius:4px;font-weight:700}
-.coll-swatch{height:40px}
-.coll-body{padding:10px 12px}
-.coll-name{font-size:13px;font-weight:600;color:#111;margin-bottom:2px}
-.coll-sub{font-size:10px;color:#777;line-height:1.4}
-
-/* Option pills */
-.opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.opt-pill{padding:8px 15px;border:1.5px solid #e0dbd2;border-radius:24px;font-size:12px;color:#333;cursor:pointer;transition:.15s;background:#fff}
-.opt-pill:hover{border-color:var(--gold)}
-.opt-pill.sel{border:2px solid var(--gold);color:var(--espresso);font-weight:500;background:var(--gold-mid)}
-.opt-pill.disabled{opacity:.35;cursor:not-allowed;pointer-events:none}
-
-/* Finial grid */
-.finial-group{margin-bottom:20px}
-.finial-group-label{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
-.finial-pills{display:flex;flex-wrap:wrap;gap:7px}
-
-/* Finish grid */
-.finish-group{margin-bottom:18px}
+/* Finish swatch grid (visual picker) */
+.finish-group{margin-bottom:14px}
 .finish-group-label{font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
-.finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
 .finish-card{border:1.5px solid #e8e4de;border-radius:8px;overflow:hidden;cursor:pointer;transition:.15s;background:#fff}
 .finish-card:hover{border-color:var(--gold)}
 .finish-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.finish-swatch{height:40px}
+.finish-swatch{height:36px}
 .finish-name{font-size:11px;text-align:center;padding:5px 4px;color:#333;font-weight:500;line-height:1.3}
 
-/* Inputs */
-.inp-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-@media(max-width:540px){.inp-row{grid-template-columns:1fr}}
-.inp-group{display:flex;flex-direction:column;gap:4px}
-.inp-label{font-size:12px;font-weight:500;color:#444}
-.inp-field{padding:9px 13px;border:1.5px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);color:#222;background:#fff;transition:.15s}
-.inp-field:focus{outline:none;border-color:var(--gold)}
-textarea.inp-field{resize:vertical;min-height:80px}
-.inp-hint{font-size:11px;color:#888;line-height:1.4}
-
 /* Banners */
-.info-box{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:11px 14px;font-size:12px;color:#555;line-height:1.6;margin-bottom:14px}
+.info-box{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:11px 14px;font-size:12px;color:#555;line-height:1.6;margin-bottom:12px}
 .info-box strong{color:var(--espresso)}
 .warn-box{background:#fff8e8;border:1px solid #f0d070;border-radius:8px;padding:11px 14px;font-size:12px;color:#7a5a00;line-height:1.6;margin-bottom:12px;display:none}
-.warn-box.show{display:block}
-
-/* Delivery */
-.delivery-section{background:#f0ece4;border-radius:12px;padding:18px;margin-bottom:16px}
-.delivery-opt{background:#fff;border:1.5px solid #e0dbd2;border-radius:10px;padding:12px;margin-bottom:8px;cursor:pointer;transition:.15s}
-.delivery-opt:hover{border-color:var(--gold)}
-.delivery-opt.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.delivery-opt-title{font-size:13px;font-weight:600;color:#111;margin-bottom:2px}
-.delivery-opt-sub{font-size:11px;color:#777;line-height:1.5}
-
-/* Buttons */
-.btn-row{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap}
-.btn-next{background:var(--gold);color:var(--espresso);border:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font)}
-.btn-next:hover{background:#b5852e}
-.btn-back{background:none;border:1.5px solid #ccc;color:#555;padding:11px 22px;border-radius:8px;font-size:14px;cursor:pointer;transition:.15s;font-family:var(--font)}
-.btn-back:hover{border-color:#888;color:#222}
-.btn-submit{background:var(--espresso);color:var(--cream);border:none;padding:13px 32px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--font)}
-.btn-submit:hover{background:#2c221a}
-
-/* Summary */
-.summary-card{background:#f8f4ee;border:1px solid #e0dbd2;border-radius:10px;padding:18px;margin-bottom:20px}
-.summary-title{font-size:12px;font-weight:600;color:var(--espresso);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
-.summary-row{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #e8e4de;font-size:12px;color:#444}
-.summary-row:last-child{border-bottom:none}
-.summary-row strong{color:#111;font-weight:500}
-
-/* Success */
-.success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:24px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center}
-.success-box h3{font-size:20px;margin-bottom:8px}
-.divider{height:1px;background:#e8e4de;margin:18px 0}
+.placeholder-note{font-size:12px;color:#999;font-style:italic;padding:4px 0}
 </style>
 </head>
 <body data-page="Hardware">
@@ -153,242 +73,251 @@ textarea.inp-field{resize:vertical;min-height:80px}
   </div>
 </section>
 
-<div class="config-wrap">
+<section class="cfg-section" id="configure">
+<div class="cfg-content">
   <div class="success-box" id="success-box">
     <h3>Quote request sent!</h3>
     <p>We've received your Orion hardware configuration and will follow up within 1 business day.<br><strong>Questions? Call or text (609) 742-1720 anytime.</strong></p>
   </div>
 
-  <div class="step-bar" id="step-bar"></div>
+  <div class="config-wrap" id="config-main">
+    <div class="config-grid">
+      <div id="cfg-steps">
 
-  <!-- ── STEP 1: HARDWARE TYPE ── -->
-  <div class="section on" id="sec-1">
-    <div class="sec-label">Step 1 of 8</div>
-    <div class="sec-title">What type of hardware?</div>
-    <div class="sec-sub">This determines the available collections, rod sizes, and options.</div>
-    <div class="type-grid">
-      <div class="type-card" onclick="pickType('decorative',this)">
-        <div class="type-icon">🪩</div>
-        <div class="type-title">Decorative Rod</div>
-        <div class="type-sub">Stationary — panels hang from rings that slide manually. Iron Art, Italian, Wood, Crystal, Tropical.</div>
-      </div>
-      <div class="type-card" onclick="pickType('traverse',this)">
-        <div class="type-icon">↔️</div>
-        <div class="type-title">Traversing System</div>
-        <div class="type-sub">Drapery opens and closes on a track. Single or double. Up to 30ft. Center, left, or right stack.</div>
-      </div>
-      <div class="type-card" onclick="pickType('motorized',this)">
-        <div class="type-icon">⚡</div>
-        <div class="type-title">Motorized Traversing</div>
-        <div class="type-sub">Somfy-powered. Glydea 60e (132 lb), Glydea 35e (77 lb), Irismo 35 Mini DC, or Irismo 45 WireFree.</div>
-      </div>
-      <div class="type-card" onclick="pickType('3d',this)">
-        <div class="type-icon">✦</div>
-        <div class="type-title">3D Hardware</div>
-        <div class="type-sub">Finials sit in front of the rod. Adjustable position. Iron Art or Italian finishes. 1" round hollow rod only.</div>
-      </div>
-      <div class="type-card" onclick="pickType('cornice',this)">
-        <div class="type-icon">🏛️</div>
-        <div class="type-title">Cornice / Crown / Scroll</div>
-        <div class="type-sub">Decorative top treatment mounted above the window. Custom sizing and finish.</div>
-      </div>
-      <div class="type-card" onclick="pickType('tieback',this)">
-        <div class="type-icon">🎗️</div>
-        <div class="type-title">Tieback / Swing Arm</div>
-        <div class="type-sub">Expandable post projection, fixed post projection, or U-shape bend. Must specify style.</div>
-      </div>
-    </div>
-  </div>
+        <!-- Step 1: Rod measurements -->
+        <div class="step-block" id="size-mount-block">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">1</div>
+            <div class="step-title" style="margin-bottom:0">Rod measurements</div>
+          </div>
+          <div class="dim-box">
+            <div class="dim-box-label">Enter your rod width</div>
+            <div class="form-group"><label>Width</label><input type="number" id="m-length" min="1" max="360" step="0.125" placeholder="96" oninput="updateSummary()"><div class="dim-unit">inches &middot; bracket-to-bracket finished rod width</div></div>
+          </div>
+          <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit. Add 6&Prime;&ndash;12&Prime; per side beyond the window frame for most applications.</div>
+          <div class="form-group" style="max-width:260px">
+            <label style="font-size:12px">Projection / return <span style="font-weight:400;color:#888">(optional)</span></label>
+            <input type="number" id="m-return" min="1" max="24" placeholder="e.g. 3" oninput="updateSummary()">
+            <div class="step-note" style="margin-top:2px">Wall to rod center. Common: 3&Prime; or 6&Prime;.</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <span style="font-size:12px;color:#666">Qty:</span>
+            <div class="qty-btns">
+              <button class="qty-btn" type="button" onclick="pbAdjQty('m-qty',-1,1,50);updateSummary()">&#8722;</button>
+              <input class="qty-num" type="number" id="m-qty" value="1" min="1" max="50" oninput="updateSummary()">
+              <button class="qty-btn" type="button" onclick="pbAdjQty('m-qty',1,1,50);updateSummary()">&#43;</button>
+            </div>
+          </div>
+          <div class="sub-label" style="margin-top:16px">Exact rod length &amp; brackets <span style="font-weight:400;color:#888">(optional)</span></div>
+          <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
+          <div id="pb-rod-spec"></div>
+        </div>
 
-  <!-- ── STEP 2: COLLECTION ── auto-advances on collection pick -->
-  <div class="section" id="sec-2">
-    <div class="sec-label">Step 2 of 8</div>
-    <div class="sec-title">Choose a Collection</div>
-    <div class="sec-sub" id="s2-sub">Select the hardware collection that matches your design style.</div>
-    <div class="info-box" id="s2-note" style="display:none"></div>
-    <div class="coll-grid" id="coll-grid"></div>
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(1)">← Back</button>
-    </div>
-  </div>
+        <!-- Step 2: Hardware type -->
+        <div class="step-block" id="step-type">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">2</div>
+            <div class="step-title" style="margin-bottom:0">What type of hardware?</div>
+          </div>
+          <div class="opt-row" id="grp-type">
+            <button class="opt-btn" data-type="decorative" onclick="pickType('decorative',this)">Decorative rod</button>
+            <button class="opt-btn" data-type="traverse" onclick="pickType('traverse',this)">Traversing system</button>
+            <button class="opt-btn" data-type="motorized" onclick="pickType('motorized',this)">Motorized traversing</button>
+            <button class="opt-btn" data-type="3d" onclick="pickType('3d',this)">3D hardware</button>
+            <button class="opt-btn" data-type="cornice" onclick="pickType('cornice',this)">Cornice / crown / scroll</button>
+            <button class="opt-btn" data-type="tieback" onclick="pickType('tieback',this)">Tieback / swing arm</button>
+          </div>
+          <div class="step-note" id="type-note">This determines the available collections, rod sizes, and options.</div>
+        </div>
 
-  <!-- ── STEP 3: ROD / POLE TYPE + SIZE — multi-choice, keep Continue -->
-  <div class="section" id="sec-3" data-multi>
-    <div class="sec-label">Step 3 of 8</div>
-    <div class="sec-title" id="s3-title">Rod / Pole Type &amp; Size</div>
-    <div class="sec-sub" id="s3-sub">Choose the rod profile and diameter. Restrictions apply per collection.</div>
-    <div id="s3-content"></div>
-    <div class="warn-box" id="warn-fluted">Fluted iron rod is only available in 1¼" OD.</div>
-    <div class="warn-box" id="warn-3d-rod">3D hardware requires 1" round hollow rod (smooth or hammered). Smooth rod supports bypass rings; hammered does not.</div>
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(2)">← Back</button>
-      <button class="btn-next" onclick="goStep(4)">Continue →</button>
-    </div>
-  </div>
+        <!-- Step 3: Collection -->
+        <div class="step-block" id="step-coll">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">3</div>
+            <div class="step-title" style="margin-bottom:0">Collection</div>
+          </div>
+          <div class="info-box" id="s2-note" style="display:none"></div>
+          <div class="opt-row" id="coll-grid"></div>
+          <div class="step-note" id="coll-note"></div>
+        </div>
 
-  <!-- ── STEP 4: FINIAL / END CAP — auto-advances on finial pick -->
-  <div class="section" id="sec-4">
-    <div class="sec-label">Step 4 of 8</div>
-    <div class="sec-title">Finial / End Cap</div>
-    <div class="sec-sub">Select a finial style. Item numbers shown for reference.</div>
-    <div class="warn-box" id="warn-3d-finial">Some finials are not compatible with 3D hardware: Iron Art 410, 416, 506, 711, 939, 954, 979, 982; Village Forge 600, 601, 603, 606.</div>
-    <div id="s4-content"></div>
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(3)">← Back</button>
-    </div>
-  </div>
+        <!-- Step 4: Rod / pole type & size -->
+        <div class="step-block" id="step-rod">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">4</div>
+            <div class="step-title" style="margin-bottom:0" id="s3-title">Rod / pole type &amp; size</div>
+          </div>
+          <div id="s3-content"></div>
+          <div class="warn-box" id="warn-fluted">Fluted iron rod is only available in 1¼" OD.</div>
+          <div class="warn-box" id="warn-3d-rod">3D hardware requires 1" round hollow rod (smooth or hammered). Smooth rod supports bypass rings; hammered does not.</div>
+        </div>
 
-  <!-- ── STEP 5: MOUNT & BRACKETS — multi-choice, keep Continue -->
-  <div class="section" id="sec-5" data-multi>
-    <div class="sec-label">Step 5 of 8</div>
-    <div class="sec-title">Mount &amp; Brackets</div>
-    <div class="sec-sub">Orion recommends brackets every 48". Double systems require a center support bracket.</div>
-    <div id="s5-content"></div>
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(4)">← Back</button>
-      <button class="btn-next" onclick="goStep(6)">Continue →</button>
-    </div>
-  </div>
+        <!-- Step 5: Finial / end cap -->
+        <div class="step-block" id="step-finial">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">5</div>
+            <div class="step-title" style="margin-bottom:0">Finial / end cap</div>
+          </div>
+          <div class="warn-box" id="warn-3d-finial">Some finials are not compatible with 3D hardware: Iron Art 410, 416, 506, 711, 939, 954, 979, 982; Village Forge 600, 601, 603, 606.</div>
+          <div id="s4-content"></div>
+          <div class="step-note">Item numbers shown for reference — tell us the exact number in the notes if you have one in mind.</div>
+        </div>
 
-  <!-- ── STEP 6: RINGS / ACCESSORIES — multi-choice, keep Continue -->
-  <div class="section" id="sec-6" data-multi>
-    <div class="sec-label">Step 6 of 8</div>
-    <div class="sec-title">Rings &amp; Accessories</div>
-    <div class="sec-sub">Choose rings, glides, batons, tiebacks, or motor controls as needed.</div>
-    <div class="warn-box" id="warn-bypass">Bypass "C" rings require a straight round hollow rod, ¾" diameter or larger. Not available on hammered rods.</div>
-    <div class="warn-box" id="warn-chrome-3d">Polished Chrome (IT206) is not available for 3D Italian hardware.</div>
-    <div id="s6-content"></div>
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(5)">← Back</button>
-      <button class="btn-next" onclick="goStep(7)">Continue →</button>
-    </div>
-  </div>
+        <!-- Step 6: Mount & brackets -->
+        <div class="step-block" id="step-mount">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">6</div>
+            <div class="step-title" style="margin-bottom:0">Mount &amp; brackets</div>
+          </div>
+          <div class="sub-label">Mount type</div>
+          <div class="opt-row" id="mount-row">
+            <button class="opt-btn" onclick="S.mount='wall';togglePill(this)">Wall mount</button>
+            <button class="opt-btn" onclick="S.mount='ceiling';togglePill(this)">Ceiling mount</button>
+            <button class="opt-btn" id="mnt-inside" onclick="S.mount='inside';togglePill(this)">Inside mount socket</button>
+          </div>
+          <div class="sub-label">Bracket type</div>
+          <div class="opt-row" id="bracket-row">
+            <button class="opt-btn" onclick="S.bracketType='single-wall';togglePill(this)">Single wall (1010/1021)</button>
+            <button class="opt-btn" onclick="S.bracketType='double-wall';togglePill(this)">Double wall (1028/1030)</button>
+            <button class="opt-btn" onclick="S.bracketType='ceiling';togglePill(this)">Ceiling mount (1100–1106)</button>
+            <button class="opt-btn" onclick="S.bracketType='support';togglePill(this)">Center support bracket</button>
+            <button class="opt-btn" onclick="S.bracketType='heavy-duty';togglePill(this)">Heavy duty (1028HD/1040HD)</button>
+            <button class="opt-btn" onclick="S.bracketType='expandable';togglePill(this)">Expandable projection (1028EXP)</button>
+            <button class="opt-btn" onclick="S.bracketType='bypass';togglePill(this)">Bypass bracket</button>
+          </div>
+          <div class="sub-label">Projection</div>
+          <div class="opt-row" id="proj-row">
+            <button class="opt-btn" onclick="S.projection='1.5';togglePill(this)">1½"</button>
+            <button class="opt-btn" onclick="S.projection='3';togglePill(this)">3"</button>
+            <button class="opt-btn" onclick="S.projection='4';togglePill(this)">4"</button>
+            <button class="opt-btn" onclick="S.projection='6';togglePill(this)">6"</button>
+            <button class="opt-btn" onclick="S.projection='expandable';togglePill(this)">Expandable 3"–4¼"</button>
+          </div>
+          <div class="sub-label">Single or double rod system?</div>
+          <div class="opt-row" id="system-row">
+            <button class="opt-btn" onclick="S.single='single';togglePill(this)">Single rod</button>
+            <button class="opt-btn" onclick="S.single='double';togglePill(this)">Double rod (sheer + drape)</button>
+          </div>
+          <div class="step-note">Orion recommends brackets every 48". Double systems require a center support bracket. Miter returns available at additional charge — note it in Your details.</div>
+        </div>
 
-  <!-- ── STEP 7: FINISH — auto-advances on finish pick -->
-  <div class="section" id="sec-7">
-    <div class="sec-label">Step 7 of 8</div>
-    <div class="sec-title">Finish</div>
-    <div class="sec-sub">Select a finish. Semi-gloss or high-gloss adds 20% where available. Custom finishes are custom-quote-only.</div>
-    <div id="s7-content"></div>
-    <div class="opt-row" style="margin-top:8px">
-      <div class="opt-pill" id="pill-standard" onclick="pickGloss('standard',this)">Standard Gloss — Continue →</div>
-      <div class="opt-pill" id="pill-semi" onclick="pickGloss('semi',this)">Semi-Gloss (+20%)</div>
-      <div class="opt-pill" id="pill-high" onclick="pickGloss('high',this)">High-Gloss (+20%)</div>
-      <div class="opt-pill" id="pill-custom-finish" onclick="pickGloss('custom',this)">Custom Finish (quote only)</div>
-    </div>
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(6)">← Back</button>
-    </div>
-  </div>
+        <!-- Step 7: Traversing options (traverse / motorized only) -->
+        <div class="step-block" id="step-trav" style="display:none">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">7</div>
+            <div class="step-title" style="margin-bottom:0">Traversing options</div>
+          </div>
+          <div class="sub-label">Draw direction</div>
+          <div class="opt-row" id="draw-row">
+            <button class="opt-btn" onclick="S.draw='center';togglePill(this)">Center open</button>
+            <button class="opt-btn" onclick="S.draw='left';togglePill(this)">Left stack →</button>
+            <button class="opt-btn" onclick="S.draw='right';togglePill(this)">← Right stack</button>
+          </div>
+          <div class="sub-label">Single or double track?</div>
+          <div class="opt-row" id="track-row">
+            <button class="opt-btn" onclick="S.trackSystem='single';togglePill(this)">Single track</button>
+            <button class="opt-btn" onclick="S.trackSystem='double';togglePill(this)">Double track (sheer + drape)</button>
+          </div>
+        </div>
 
-  <!-- ── STEP 8: MEASUREMENTS + CONTACT ── -->
-  <div class="section" id="sec-8">
-    <div class="sec-label">Step 8 of 8</div>
-    <div class="sec-title">Measurements &amp; Contact</div>
-    <div class="sec-sub">Enter your project measurements and contact info. We'll build your complete Orion quote.</div>
+        <!-- Step 8: Motor & controls (motorized only) -->
+        <div class="step-block" id="step-motor" style="display:none">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">8</div>
+            <div class="step-title" style="margin-bottom:0">Motor &amp; controls</div>
+          </div>
+          <div class="sub-label">Motor</div>
+          <div class="opt-row" id="motor-row">
+            <button class="opt-btn" onclick="S.motor='Glydea60e';togglePill(this)">Glydea 60e — up to 132 lb</button>
+            <button class="opt-btn" onclick="S.motor='Glydea35e';togglePill(this)">Glydea 35e — up to 77 lb</button>
+            <button class="opt-btn" onclick="S.motor='Irismo35';togglePill(this)">Irismo 35 Mini DC — up to 77 lb</button>
+            <button class="opt-btn" onclick="S.motor='Irismo45';togglePill(this)">Irismo 45 WireFree — up to 99 lb</button>
+          </div>
+          <div class="sub-label">Controls &amp; accessories <span style="font-weight:400;color:#888">(select any)</span></div>
+          <div class="opt-row">
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'DecoFlex')">DecoFlex RTS wall switch</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'Situo')">Situo RTS remote</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'Telis')">Telis 1 Chronis RTS</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'myLink')">Somfy myLink RTS</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'SunisIndoor')">Sunis indoor sun sensor</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'SunisTemp')">Sunis sun/temp sensor</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'WFBattery')">WireFree battery (Irismo 45 only)</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'WFCharger')">WireFree charger (Irismo 45 only)</button>
+          </div>
+        </div>
 
-    <!-- Summary -->
-    <div class="summary-card" id="quote-summary">
-      <div class="summary-title">Your Configuration</div>
-    </div>
+        <!-- Step 9: Rings & accessories -->
+        <div class="step-block" id="step-rings">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">9</div>
+            <div class="step-title" style="margin-bottom:0">Rings &amp; accessories</div>
+          </div>
+          <div class="warn-box" id="warn-bypass">Bypass "C" rings require a straight round hollow rod, ¾" diameter or larger. Not available on hammered rods.</div>
+          <div class="warn-box" id="warn-chrome-3d">Polished Chrome (IT206) is not available for 3D Italian hardware.</div>
+          <div class="sub-label">Rings</div>
+          <div class="opt-row" id="ring-row">
+            <button class="opt-btn" onclick="pickRing('350',this)">350 — Round ring</button>
+            <button class="opt-btn" onclick="pickRing('351',this)">351 — Twisted ring</button>
+            <button class="opt-btn" onclick="pickRing('352',this)">352 — Square ring</button>
+            <button class="opt-btn" onclick="pickRing('353',this)">353 — Forged ring</button>
+            <button class="opt-btn" onclick="pickRing('354',this)">354 — Hook ring</button>
+            <button class="opt-btn" onclick="pickRing('355',this)">355 — Round with clip</button>
+            <button class="opt-btn" onclick="pickRing('356',this)">356 — Round hammered</button>
+            <button class="opt-btn" id="ring-330c" onclick="pickRing('330C',this)">330C — Bypass C ring (iron)</button>
+            <button class="opt-btn" id="ring-7330c" onclick="pickRing('7330C',this)">7330C — Bypass C ring (Italian)</button>
+            <button class="opt-btn" onclick="pickRing('none',this)">No rings (grommet / rod pocket)</button>
+          </div>
+          <div class="step-note" style="margin-top:-6px;margin-bottom:10px">Ring inner diameter should be ½" larger than rod diameter. Standard rings are ¼" thick.</div>
+          <div class="sub-label">Batons / accessories <span style="font-weight:400;color:#888">(select any)</span></div>
+          <div class="opt-row">
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'baton-1015')">Baton 1015–1020 (specify length)</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'baton-it1014')">Italian baton 1014</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'baton-trav')">Traversing baton IT1016BT/IT1020BT</button>
+            <button class="opt-btn" onclick="toggleMotorAcc(this,'tieback-acc')">Tieback / holdback</button>
+          </div>
+        </div>
 
-    <!-- Measurements — canonical dim-box (rod width only, no height/mount) -->
-    <div class="dim-box">
-      <div class="dim-box-label">Enter your rod width</div>
-      <div class="form-row">
-        <div class="form-group"><label>Width</label><input type="number" id="m-length" min="1" max="360" step="0.125" placeholder="96"><div class="dim-unit">inches &middot; bracket-to-bracket finished rod width</div></div>
+        <!-- Step 10: Finish -->
+        <div class="step-block" id="step-finish">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div class="step-num">10</div>
+            <div class="step-title" style="margin-bottom:0">Finish</div>
+          </div>
+          <div id="s7-content"></div>
+          <div class="sub-label" style="margin-top:14px">Gloss level</div>
+          <div class="opt-row">
+            <button class="opt-btn sel" id="pill-standard" onclick="pickGloss('standard',this)">Standard gloss</button>
+            <button class="opt-btn" id="pill-semi" onclick="pickGloss('semi',this)">Semi-gloss (+20%)</button>
+            <button class="opt-btn" id="pill-high" onclick="pickGloss('high',this)">High-gloss (+20%)</button>
+            <button class="opt-btn" id="pill-custom-finish" onclick="pickGloss('custom',this)">Custom finish (quote only)</button>
+          </div>
+          <div class="step-note">Semi-gloss or high-gloss adds 20% where available. Custom finishes are custom-quote-only.</div>
+        </div>
+
+        <!-- Delivery (shared) + Your details (shared) -->
+        <div id="pb-delivery-slot"></div>
+        <div id="pb-final-slot"></div>
+      </div>
+
+      <!-- Summary card -->
+      <div class="summary-card" id="summary-card">
+        <div class="summary-head">Your configuration</div>
+        <div id="quote-summary"></div>
+        <div class="summary-note">Orion hardware is custom quoted — catalog pricing, freight and tariffs are confirmed in your written quote.</div>
       </div>
     </div>
-    <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
-    <div class="info-box"><strong>Measure tip:</strong> Rod length is the finished rod width (bracket-to-bracket). Add 6"–12" per side beyond the window frame for most applications. Return = distance from wall to rod center.</div>
-    <div class="inp-row">
-      <div class="inp-group">
-        <label class="inp-label">Projection / Return (inches)</label>
-        <input class="inp-field" type="number" id="m-return" min="1" max="24" placeholder="e.g. 3">
-        <span class="inp-hint">Wall to rod center. Common: 3" or 6"</span>
-      </div>
-    </div>
-    <!-- Quantity — shared canonical stepper (reuses id m-qty) -->
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px">
-      <span style="font-size:12px;color:#666">Qty:</span>
-      <div class="qty-btns">
-        <button class="qty-btn" type="button" onclick="adjQty(-1)">&#8722;</button>
-        <input class="qty-num" type="number" id="m-qty" value="1" min="1" max="50">
-        <button class="qty-btn" type="button" onclick="adjQty(1)">&#43;</button>
-      </div>
-      <span style="font-size:12px;color:#666">window(s) of this size</span>
-    </div>
-    <!-- Traverse-specific -->
-    <div id="trav-fields" style="display:none">
-      <div class="divider"></div>
-      <div class="sec-label" style="margin-top:0">Traversing Options</div>
-      <label class="inp-label" style="display:block;margin-bottom:6px">Draw direction</label>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="S.draw='center';togglePill(this,'draw')">Center Open</div>
-        <div class="opt-pill" onclick="S.draw='left';togglePill(this,'draw')">Left Stack →</div>
-        <div class="opt-pill" onclick="S.draw='right';togglePill(this,'draw')">← Right Stack</div>
-      </div>
-      <label class="inp-label" style="display:block;margin-bottom:6px;margin-top:8px">Single or double track?</label>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="S.trackSystem='single';togglePill(this,'trk')">Single track</div>
-        <div class="opt-pill" onclick="S.trackSystem='double';togglePill(this,'trk')">Double track (sheer + drape)</div>
-      </div>
-    </div>
-    <!-- Motor-specific -->
-    <div id="motor-fields" style="display:none">
-      <div class="divider"></div>
-      <div class="sec-label" style="margin-top:0">Motor Selection</div>
-      <div class="opt-row">
-        <div class="opt-pill" onclick="S.motor='Glydea60e';togglePill(this,'mtr')">Glydea 60e — up to 132 lb</div>
-        <div class="opt-pill" onclick="S.motor='Glydea35e';togglePill(this,'mtr')">Glydea 35e — up to 77 lb</div>
-        <div class="opt-pill" onclick="S.motor='Irismo35';togglePill(this,'mtr')">Irismo 35 Mini DC — up to 77 lb</div>
-        <div class="opt-pill" onclick="S.motor='Irismo45';togglePill(this,'mtr')">Irismo 45 WireFree — up to 99 lb</div>
-      </div>
-      <div class="sec-label" style="margin-top:10px;margin-bottom:6px">Control / Accessories</div>
-      <div class="opt-row" style="flex-wrap:wrap">
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'DecoFlex')">DecoFlex RTS Wall Switch</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'Situo')">Situo RTS Remote</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'Telis')">Telis 1 Chronis RTS</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'myLink')">Somfy myLink RTS</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'SunisIndoor')">Sunis Indoor Sun Sensor</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'SunisTemp')">Sunis Sun/Temp Sensor</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'WFBattery')">WireFree Battery (Irismo 45 only)</div>
-        <div class="opt-pill" onclick="toggleMotorAcc(this,'WFCharger')">WireFree Charger (Irismo 45 only)</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- Delivery -->
-    <div class="delivery-section">
-      <div class="delivery-opt" id="del-install" onclick="pickDel('install')">
-        <div class="delivery-opt-title">Professional Installation (Philadelphia / South Jersey area)</div>
-        <div class="delivery-opt-sub">We supply, deliver, and install. On-site measurement available.</div>
-      </div>
-      <div class="delivery-opt" id="del-ship" onclick="pickDel('ship')">
-        <div class="delivery-opt-title">Ship to Me</div>
-        <div class="delivery-opt-sub">UPS/FedEx. Tariffs, duties, and freight charges disclosed at quote stage.</div>
-      </div>
-    </div>
-
-    <!-- Contact -->
-    <div class="btn-row">
-      <button class="btn-back" onclick="goStep(7)">← Back</button>
-    </div>
-        <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
-    <div id="pb-rod-spec"></div>
-    <div id="pb-final-step"></div>
   </div>
 </div>
+</section>
 
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
 <script src="../js/pages/orion-rods.js"></script>
 <script>
-document.getElementById('pb-final-step').innerHTML = pbContactStepHTML({ bare: true, cartFn: 'addOrionToCart()', submitFn: 'submitQuote()' });
-
-document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ bare: true, calc: 'updateSummary()' });
+document.getElementById('pb-delivery-slot').outerHTML = pbDeliveryStepHTML({ stepNum: 11, onPick: 'updateSummary()' });
+document.getElementById('pb-final-slot').outerHTML = pbContactStepHTML({ stepNum: 12, cartFn: 'addOrionToCart()', submitFn: 'submitQuote()' });
+initOrion();
 </script>
 </body>
 </html>
-
