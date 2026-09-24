@@ -190,7 +190,7 @@ rendered, so image-only charts can't be read. Text extraction works via
 
 **When a book page has two charts side by side, the flattened text layer does NOT
 tell you which caption belongs to which.** Read the text-item **x/y coordinates**
-instead (`pdfpos.js` in the scratchpad). This settled Centerpiece's price groups —
+instead (`tools/pdfpos.js`). This settled Centerpiece's price groups —
 a 22% difference — where reading order gave the wrong answer, and confirmed
 Synchrony's four groups were already right.
 
@@ -213,7 +213,7 @@ one calculation, cart reads the stored result.
   replacer **function**.
 - Quote paths with spaces in shell loops, or the path splits on "Important PB".
 
-**jsdom harness gotchas:** it fetches neither `<script src>` nor stylesheets —
+**jsdom harness gotchas** (harness + regression scripts saved in `tools/`, see `tools/README.md`)**:** it fetches neither `<script src>` nor stylesheets —
 inline both in document order. A literal closing script tag inside a `.js` file
 ends the inlined tag early (`shared.js` has one in a comment). `offsetParent` is
 always null, so any visibility-dependent check can't be tested. `DOMContentLoaded`
