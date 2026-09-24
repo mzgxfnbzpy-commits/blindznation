@@ -362,7 +362,10 @@ function submitForm(){
   // Area overage: +$18 per sq ft over 48 sq ft (must match calcPrice)
   const overageAdd=Math.max(0,Math.ceil((S.w*S.h)/144-48))*18;
   const unit=base+printedAdd+valAdd+sideAdd+shimAdd+overageAdd;
-  const subtotal=unit*S.qty;
+  // Same 25% Norman discount the price panel applies (freight is not discounted).
+  const retailSub=unit*S.qty;
+  const discountAmt=Math.round(retailSub*NORMAN_DISC);
+  const subtotal=retailSub-discountAmt;
   const isOversized=S.w>=90;
   const freight=isOversized?(80+(S.qty>1?(S.qty-1)*50:0)):(25+(S.qty>1?(S.qty-1)*11:0));
   const total=subtotal+freight;
@@ -404,7 +407,9 @@ function submitForm(){
     'Shims: '+(shimAdd?'+$'+shimAdd:'—'),
     'Unit price: $'+unit,
     'Qty: ×'+S.qty,
-    'Subtotal: $'+subtotal,
+    'Retail subtotal: $'+retailSub,
+    '25% Norman discount: -$'+discountAmt,
+    'Your price: $'+subtotal,
     'Freight: $'+freight+(isOversized?' (oversized — width 90″+)':''),
     'TOTAL: $'+total,
     '',
@@ -435,7 +440,10 @@ function addFauxWoodToCart(){
   // Area overage: +$18 per sq ft over 48 sq ft (must match calcPrice)
   const overageAdd=Math.max(0,Math.ceil((S.w*S.h)/144-48))*18;
   const unit=base+printedAdd+valAdd+sideAdd+shimAdd+overageAdd;
-  const subtotal=unit*S.qty;
+  // Same 25% Norman discount the price panel applies (freight is not discounted).
+  const retailSub=unit*S.qty;
+  const discountAmt=Math.round(retailSub*NORMAN_DISC);
+  const subtotal=retailSub-discountAmt;
   const isOversized=S.w>=90;
   const freight=isOversized?(80+(S.qty>1?(S.qty-1)*50:0)):(25+(S.qty>1?(S.qty-1)*11:0));
   const total=subtotal+freight;
