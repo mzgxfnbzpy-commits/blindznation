@@ -27,7 +27,7 @@
 .hero-pills{display:flex;gap:8px;flex-wrap:wrap}
 .hero-pill{font-size:11px;padding:4px 12px;border-radius:20px;border:.5px solid var(--border-dark);color:var(--text-faint)}
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
-.config-wrap{max-width:640px;margin:0 auto;padding:28px 20px 60px}
+.vw-wrap{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
 /* Color swatches */
 .color-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
 @media(min-width:420px){.color-grid{grid-template-columns:repeat(6,1fr)}}
@@ -50,7 +50,6 @@
 .del-label{font-size:13px;font-weight:500;color:#111;margin-bottom:8px}
 /* Form */
 .form-section{margin-top:20px}
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .note-inline{font-size:11px;color:#888;margin-top:5px}
 </style>
 </head>
@@ -86,13 +85,15 @@
   </div>
 </div>
 
-<div class="config-wrap">
+<div class="vw-wrap">
+<div class="config-grid">
+<div><!-- left: steps -->
 
   <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT -->
   <div class="step-block" id="step-measure-mount">
-    <div class="step-hd">
-      <div class="step-num-circle">1</div>
-      <div class="step-title">Window measurements &amp; mount</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">1</div>
+      <div class="step-title" style="margin-bottom:0">Window measurements &amp; mount</div>
     </div>
 
     <div class="dim-box">
@@ -100,12 +101,12 @@
       <div class="form-row">
         <div class="form-group">
           <label>Width</label>
-          <input type="number" id="vw-width" min="18" max="240" step="0.125" placeholder="72">
+          <input type="number" id="vw-width" min="18" max="240" step="0.125" placeholder="72" oninput="vwUpdateSummary()">
           <div class="dim-unit">inches &mdash; 18&Prime; min &middot; 240&Prime; max</div>
         </div>
         <div class="form-group">
           <label>Height</label>
-          <input type="number" id="vw-height" min="36" max="108" step="0.125" placeholder="84">
+          <input type="number" id="vw-height" min="36" max="108" step="0.125" placeholder="84" oninput="vwUpdateSummary()">
           <div class="dim-unit">inches &mdash; 36&Prime; min &middot; 108&Prime; max</div>
         </div>
       </div>
@@ -116,17 +117,18 @@
     <!-- Mount type -->
     <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
     <div class="opt-row" id="grp-vw-mount" style="margin-bottom:6px">
-      <button class="opt-btn sel" onclick="selOpt(this,'grp-vw-mount')">Wall mount</button>
-      <button class="opt-btn" onclick="selOpt(this,'grp-vw-mount')">Ceiling mount</button>
+      <button class="opt-btn sel" onclick="selOpt(this,'grp-vw-mount');vwUpdateSummary()">Inside mount</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-vw-mount');vwUpdateSummary()">Outside mount</button>
+      <button class="opt-btn" onclick="selOpt(this,'grp-vw-mount');vwUpdateSummary()">Ceiling mount</button>
     </div>
-    <div class="step-note" style="margin-bottom:12px"><strong>Wall mount:</strong> track attached to the wall above the window or door. <strong>Ceiling mount:</strong> track attached to the ceiling &mdash; ideal for sliding doors and room dividers.</div>
+    <div class="step-note" style="margin-bottom:12px"><strong>Inside mount:</strong> headrail fits inside the window or door opening. <strong>Outside mount:</strong> headrail attached to the wall above the window or door. <strong>Ceiling mount:</strong> headrail attached to the room ceiling &mdash; ideal for sliding doors and room dividers.</div>
 
     <!-- Quantity (shared stepper) -->
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
       <span style="font-size:12px;color:#666">Qty:</span>
       <div class="qty-btns">
         <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
-        <input class="qty-num" type="number" id="vw-qty" value="1" min="1" max="20">
+        <input class="qty-num" type="number" id="vw-qty" value="1" min="1" max="20" oninput="vwUpdateSummary()">
         <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
       </div>
       <span style="font-size:12px;color:#666">blinds (same size)</span>
@@ -135,9 +137,9 @@
 
   <!-- STEP 2: COLOR -->
   <div class="step-block" id="step-color">
-    <div class="step-hd">
-      <div class="step-num-circle">2</div>
-      <div class="step-title">Color</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">2</div>
+      <div class="step-title" style="margin-bottom:0">Color</div>
     </div>
     <div class="color-grid">
       <div class="color-card" onclick="pickColor('White',this)">
@@ -169,49 +171,41 @@
 
   <!-- STEP 3: VALANCE -->
   <div class="step-block" id="step-valance">
-    <div class="step-hd">
-      <div class="step-num-circle">3</div>
-      <div class="step-title">Valance</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">3</div>
+      <div class="step-title" style="margin-bottom:0">Valance</div>
     </div>
-    <div class="delivery-opt-grid" id="grp-vw-valance" style="margin-top:12px">
-      <div class="delivery-opt-card sel" onclick="pickValance('yes',this)">
-        <div class="delivery-opt-title">With valance</div>
-        <div class="delivery-opt-body">Fabric valance covers the track for a finished, polished look.</div>
-      </div>
-      <div class="delivery-opt-card" onclick="pickValance('no',this)">
-        <div class="delivery-opt-title">No valance</div>
-        <div class="delivery-opt-body">Track exposed — clean and minimal, often used in commercial settings.</div>
-      </div>
+    <div class="opt-row" id="grp-vw-valance" style="margin-bottom:0">
+      <button class="opt-btn sel" onclick="pickValance('yes',this)">With valance</button>
+      <button class="opt-btn" onclick="pickValance('no',this)">No valance</button>
     </div>
+    <div class="step-note"><strong>With valance:</strong> a fabric valance covers the track for a finished, polished look. <strong>No valance:</strong> track exposed &mdash; clean and minimal, often used in commercial settings.</div>
 
     <!-- Return size — shown only when valance is selected -->
     <div id="return-size-row" style="margin-top:14px;padding:12px 14px;background:var(--gold-mid);border:1px solid #E8DCC8;border-radius:9px">
       <div style="font-size:12px;font-weight:600;color:#0A4A42;margin-bottom:8px">Return size</div>
       <div style="font-size:12px;color:#555;margin-bottom:10px;line-height:1.5">The return is the side portion of the valance that wraps back toward the wall. Standard recommended size is <strong>3.5 inches</strong>.</div>
       <div class="opt-row" id="grp-vw-return" style="flex-wrap:wrap;gap:8px">
-        <button class="opt-btn" onclick="selOpt(this,'grp-vw-return');setCustomReturn(false)">2.5″</button>
-        <button class="opt-btn sel" onclick="selOpt(this,'grp-vw-return');setCustomReturn(false)">3.5″ <span style="font-size:9px;opacity:.7">(recommended)</span></button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-vw-return');setCustomReturn(false)">4.5″</button>
-        <button class="opt-btn" onclick="selOpt(this,'grp-vw-return');setCustomReturn(true)">Custom</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-vw-return');setCustomReturn(false);vwUpdateSummary()">2.5″</button>
+        <button class="opt-btn sel" onclick="selOpt(this,'grp-vw-return');setCustomReturn(false);vwUpdateSummary()">3.5″ <span style="font-size:9px;opacity:.7">(recommended)</span></button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-vw-return');setCustomReturn(false);vwUpdateSummary()">4.5″</button>
+        <button class="opt-btn" onclick="selOpt(this,'grp-vw-return');setCustomReturn(true);vwUpdateSummary()">Custom</button>
       </div>
       <div id="return-custom-row" style="display:none;margin-top:8px;display:none;align-items:center;gap:8px">
-        <input type="number" id="vw-return-custom" min="1" max="12" step="0.5" placeholder="e.g. 5" style="width:80px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px">
+        <input type="number" id="vw-return-custom" min="1" max="12" step="0.5" placeholder="e.g. 5" oninput="vwUpdateSummary()" style="width:80px;padding:8px 10px;border:1px solid #ddd;border-radius:8px;font-size:14px">
         <span style="font-size:13px;color:#666">inches</span>
       </div>
     </div>
   </div>
 
-  <!-- STEP 4: CONTACT + DELIVERY + SUBMIT -->
+  <!-- STEP 4: DELIVERY (shared pbDeliveryStepHTML) -->
+  <div id="pb-delivery-step"></div>
+
+  <!-- STEP 5: YOUR DETAILS -->
   <div class="step-block" id="step-contact">
-    <div class="step-hd">
-      <div class="step-num-circle">4</div>
-      <div class="step-title">Request quote</div>
-    </div>
-    <div class="delivery-opt-grid" id="grp-vw-del" style="margin-top:12px;margin-bottom:14px">
-      <div class="delivery-opt-card sel" onclick="pickCard(this,'grp-vw-del')">
-        <div class="delivery-opt-title">Ship to me</div>
-        <div class="delivery-opt-body">UPS or FedEx.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>
-      </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">5</div>
+      <div class="step-title" style="margin-bottom:0">Your details</div>
     </div>
 
     <button onclick="reqMoreInfo('Wallace Vertical Blinds')" class="req-info-link" style="display:block;margin-bottom:10px">Request more information about Wallace Vertical Blinds &rarr;</button>
@@ -225,7 +219,22 @@
     <p>We'll follow up within a few hours with pricing and availability. For anything urgent call <strong>(609) 742-1720</strong> — available 24/7.</p>
   </div>
 
-</div><!-- /config-wrap -->
+</div><!-- /left -->
+
+  <!-- Summary card -->
+  <div class="summary-card" id="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Wallace Vertical Blinds</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="sum-size">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sum-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sum-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Color</span><span class="sr-val" id="sum-color">&mdash;</span></div>
+    <div class="summary-row"><span class="sr-key">Valance</span><span class="sr-val" id="sum-valance">With valance (3.5&Prime; return)</span></div>
+    <div class="summary-row"><span class="sr-key">Price</span><span class="sr-val">Custom quote</span></div>
+    <div class="summary-note">Custom quote &mdash; we confirm pricing and availability after you submit, usually within a few hours. No charge until you approve.</div>
+  </div>
+</div><!-- /config-grid -->
+</div><!-- /vw-wrap -->
 
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
@@ -233,6 +242,8 @@
 <script src="../js/pages/wallace-verticals.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
+document.getElementById('pb-delivery-step').innerHTML =
+  pbDeliveryStepHTML({ stepNum: 4 });
 document.getElementById('pb-final-step').innerHTML =
   pbContactStepHTML({ bare: true, cartFn: 'addWallaceVerticalsToCart()', submitFn: 'submitVWForm(this)' });
 </script>

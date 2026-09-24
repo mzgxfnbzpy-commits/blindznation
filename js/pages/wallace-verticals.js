@@ -4,6 +4,22 @@ function pickColor(name, card) {
   vwColor = name;
   document.querySelectorAll('.color-card').forEach(function(c){c.classList.remove('sel');});
   card.classList.add('sel');
+  vwUpdateSummary();
+}
+
+// Summary card configuration rows (quote-only product — no price shown).
+function vwUpdateSummary() {
+  var g = function(id){ var e = document.getElementById(id); return e ? e.value : ''; };
+  var set = function(id, v){ var e = document.getElementById(id); if (e) e.textContent = v; };
+  var w = g('vw-width'), h = g('vw-height');
+  var m = document.querySelector('#grp-vw-mount .opt-btn.sel');
+  var v = document.querySelector('#grp-vw-valance .opt-btn.sel');
+  var hasVal = v && v.textContent.trim().toLowerCase().indexOf('with') === 0;
+  set('sum-size', (w && h) ? w + '″ W × ' + h + '″ H' : '—');
+  set('sum-mount', m ? m.textContent.trim() : '—');
+  set('sum-qty', g('vw-qty') || '1');
+  set('sum-color', vwColor || '—');
+  set('sum-valance', v ? (hasVal ? 'With valance (' + getReturnSize() + ' return)' : 'No valance') : '—');
 }
 
 // Consistent shared picker — parse the existing HTML color cards (data unchanged)
@@ -29,7 +45,7 @@ function wvBuildPicker(){
     hideTabs:true,
     types:[{key:'v',label:'Color'}],
     collections:[{type:'v', name:'', colors:colors}],
-    onSelect:function(sel){ vwColor=sel.name; }
+    onSelect:function(sel){ vwColor=sel.name; vwUpdateSummary(); }
   });
 }
 wvBuildPicker();
@@ -37,6 +53,7 @@ wvBuildPicker();
 function adjQty(d) {
   var el = document.getElementById('vw-qty');
   el.value = Math.max(1, Math.min(20, (parseInt(el.value) || 1) + d));
+  vwUpdateSummary();
 }
 
 function pickCard(card, groupId) {
@@ -45,8 +62,9 @@ function pickCard(card, groupId) {
 }
 
 function pickValance(val, card) {
-  pickCard(card, 'grp-vw-valance');
+  selOpt(card, 'grp-vw-valance');
   document.getElementById('return-size-row').style.display = val === 'yes' ? 'block' : 'none';
+  vwUpdateSummary();
 }
 
 function setCustomReturn(show) {
@@ -74,7 +92,7 @@ function addWallaceVerticalsToCart(){
   if(!w||!h){ alert('Please enter width and height before adding to cart.'); return; }
 
   var mount=document.querySelector('#grp-vw-mount .opt-btn.sel')?.textContent.trim()||'—';
-  var valSel=document.querySelector('#grp-vw-valance .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim()||'—';
+  var valSel=document.querySelector('#grp-vw-valance .opt-btn.sel')?.textContent.trim()||'—';
 
   var lines=[
     {label:'Product',value:'Wallace Vertical Blinds'},
@@ -83,7 +101,8 @@ function addWallaceVerticalsToCart(){
     {label:'Height',value:(h||'—')+'″'},
     {label:'Quantity',value:String(qty)},
     {label:'Mount',value:mount},
-    {label:'Valance',value:valSel}
+    {label:'Valance',value:valSel},
+    {label:'Return',value:valSel.toLowerCase().includes('with')?getReturnSize():'N/A'}
   ];
   var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
   pbAddToCart({product:'Wallace Vertical Blinds',lines:lines,specs:specs,price:null,qty:parseInt(qty)||1});
@@ -103,10 +122,10 @@ async function submitVWForm(btn) {
   var notes   = document.getElementById('cf-notes').value.trim();
 
   var mount   = document.querySelector('#grp-vw-mount .opt-btn.sel')?.textContent.trim() || '—';
-  var valSel  = document.querySelector('#grp-vw-valance .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim() || '—';
+  var valSel  = document.querySelector('#grp-vw-valance .opt-btn.sel')?.textContent.trim() || '—';
   var hasVal  = valSel.toLowerCase().includes('with');
   var returnSz = hasVal ? getReturnSize() : 'N/A';
-  var delivery = document.querySelector('#grp-vw-del .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim() || 'Ship to me';
+  var delivery = (typeof pbDeliveryLabel === 'function') ? pbDeliveryLabel() : 'Ship to me';
 
   var body =
     'WALLACE VERTICAL BLINDS QUOTE REQUEST\n' +
