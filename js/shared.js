@@ -758,6 +758,44 @@ function pbApplyPricingScope() {
     });
   });
 }
+// Quote-only products must show no dollar figure anywhere, but surcharge chips
+// written straight into option pills ("SmartRelease +$89", "Group 3 +30%") carry no
+// class the stylesheet can target. This wraps each such fragment inside a pill in a
+// hidden span. Pills only — explanatory notes keep their wording.
+var _PB_CHIP_RE = /\s*[(]?\s*(?:\+\s*\$[\d,]+(?:\.\d+)?(?:\s*(?:\/|per|each)\s*[a-z. ]{1,12})?|\+\s*\d+(?:\.\d+)?\s*%|\$[\d,]+(?:\.\d+)?(?:\s*(?:\/|per|each)\s*[a-z. ]{1,12})?)\s*[)]?/gi;
+function pbHideQuoteOnlyChips(root) {
+  if (!pbPageIsQuoteOnly()) return;
+  var pills = (root || document).querySelectorAll('.opt-btn, .opt-pill, .delivery-opt-card');
+  Array.prototype.forEach.call(pills, function(pill) {
+    var walker = document.createTreeWalker(pill, NodeFilter.SHOW_TEXT, null);
+    var texts = [], n;
+    while ((n = walker.nextNode())) texts.push(n);
+    texts.forEach(function(t) {
+      if (t.parentNode && t.parentNode.hasAttribute && t.parentNode.hasAttribute('data-pb-price-hidden')) return;
+      var s = t.nodeValue; _PB_CHIP_RE.lastIndex = 0;
+      if (!_PB_CHIP_RE.test(s)) return;
+      _PB_CHIP_RE.lastIndex = 0;
+      var frag = document.createDocumentFragment(), last = 0, m;
+      while ((m = _PB_CHIP_RE.exec(s))) {
+        if (m.index > last) frag.appendChild(document.createTextNode(s.slice(last, m.index)));
+        var sp = document.createElement('span');
+        sp.setAttribute('data-pb-price-hidden', '1');
+        sp.textContent = m[0];
+        frag.appendChild(sp);
+        last = m.index + m[0].length;
+      }
+      if (last < s.length) frag.appendChild(document.createTextNode(s.slice(last)));
+      t.parentNode.replaceChild(frag, t);
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', function() {
+  try { pbHideQuoteOnlyChips(); } catch (e) {}
+  // Several configurators render their pills after load.
+  setTimeout(function() { try { pbHideQuoteOnlyChips(); } catch (e) {} }, 600);
+  setTimeout(function() { try { pbHideQuoteOnlyChips(); } catch (e) {} }, 2000);
+});
+
 // Run once as soon as this file is parsed so the class and the stylesheet rule
 // land before any price markup renders, then again on DOMContentLoaded to tag
 // the elements themselves (they do not exist yet on this first pass).
@@ -983,7 +1021,7 @@ function pbContactStepHTML(opts) {
 // lives in window.pbDelivery ('ship' | 'install') and reaches the order on its own:
 // the submit interceptor folds it into cf-notes and _pbMergeCartExtras adds it to
 // cart items, so no page has to wire it into its own quote builder.
-// opts: { stepNum, onPick (string of JS run after a pick, e.g. "updateSummary()"), bare }
+// opts: { stepNum, onPick (string of JS run after a pick, e.g. "updateSummary()"), bare, noId }
 window.pbDelivery = 'ship';
 function pbDeliveryLabel() {
   return window.pbDelivery === 'install'
@@ -1001,7 +1039,9 @@ function pbDeliveryStepHTML(opts) {
   opts = opts || {};
   var after = opts.onPick ? ';' + opts.onPick : '';
   var inner =
-    '<div class="delivery-opt-grid" id="pb-delivery-grid">' +
+    // Only the first instance on a page may carry the id; extra copies (one per
+    // tab/flow on multi-form pages) pass noId:true.
+    '<div class="delivery-opt-grid"' + (opts.noId ? '' : ' id="pb-delivery-grid"') + '>' +
       '<div class="delivery-opt-card sel" onclick="pbPickDelivery(this,\'ship\')' + after + '">' +
         '<div class="delivery-opt-title">Ship to me</div>' +
         '<div class="delivery-opt-body">UPS or FedEx to your door.<br><em style="font-size:10px;color:#999">Tariffs and import fees additional.</em></div>' +
@@ -1279,7 +1319,7 @@ function _pbMergeCartExtras(item) {
     item.installation = true;
     item.lines = (item.lines || []).concat([{ label: 'Professional Installation', value: 'Requested — priced at quote' }]);
   }
-  if (document.getElementById('pb-delivery-grid') && window.pbDelivery === 'install' && !item.installation) {
+  if (document.querySelector('.delivery-opt-card[onclick*="pbPickDelivery"]') && window.pbDelivery === 'install' && !item.installation) {
     item.installation = true;
     item.lines = (item.lines || []).concat([{ label: 'Delivery', value: pbDeliveryLabel() }]);
   }
@@ -3192,7 +3232,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var btn = e.target.closest('[data-pb-require-contact]');
     if (!btn || btn.disabled) return;
     // Honeypot: a filled hidden field means a bot — silently block submission.
-    var _hp = document.getElementById('pb-hp');
+    // Scope to the form this button belongs to, so pages hosting several contact
+    // steps (idPrefix — soft-treatments, shades hub) check their own fields.
+    var _form = btn.closest('.pb-cart-extras');
+    var _hp = (_form && _form.querySelector('.pb-hp')) || document.getElementById('pb-hp');
     if (_hp && _hp.value.trim() !== '') { e.stopImmediatePropagation(); e.preventDefault(); return; }
     var errId = btn.getAttribute('data-pb-require-contact');
     if (!pbContactValid(errId)) {
@@ -3209,12 +3252,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // Fold per-unit labels into the notes so they reach the quote email/cart.
     var _lbl = pbGetShadeLabels();
-    var _n = document.getElementById('cf-notes');
+    var _n = (_form && _form.querySelector('textarea[data-pb-contact="notes"]')) || document.getElementById('cf-notes');
     if (_lbl && _n && (_n.value || '').indexOf(_lbl) < 0) {
       _n.value = (_n.value ? _n.value.replace(/\n?Labels: .*/,'') + '\n' : '') + 'Labels: ' + _lbl;
     }
     // Same for the shared Delivery step (only on pages that render it).
-    if (_n && document.getElementById('pb-delivery-grid')) {
+    if (_n && document.querySelector('.delivery-opt-card[onclick*="pbPickDelivery"]')) {
       _n.value = (_n.value || '').replace(/\n?Delivery: .*/, '');
       _n.value = (_n.value ? _n.value + '\n' : '') + 'Delivery: ' + pbDeliveryLabel();
     }
