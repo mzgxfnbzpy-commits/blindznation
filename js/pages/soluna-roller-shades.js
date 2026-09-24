@@ -109,14 +109,10 @@ var SOLUNA_FABRIC_DATA = {
     {name:'Breeze Screen 3% ⚠ Linen', colors:[{n:'Linen Flax',c:'F1787'},{n:'Linen Khaki',c:'F1789'},{n:'Linen Almond Milk',c:'F1792'},{n:'Linen Stone',c:'F1793'},{n:'Linen Graphite',c:'F1791'},{n:'Linen Cloud',c:'F1845'},{n:'Linen Warm Ivory',c:'F1849'},{n:'Linen Dune',c:'F1790'}]},
     {name:'Galaxy 3%', colors:[{n:'Black',c:'F1727'},{n:'Soft White',c:'F1728'},{n:'Ash',c:'F1731'}]},
     {_divider:'Commercial Solar Screens (NA Series)'},
-    {name:'NA300 1%', colors:[{n:'Pearl',c:'F0355'},{n:'Pearl/Linen',c:'F0356'},{n:'Pearl/Pewter',c:'F0357'},{n:'Charcoal/Chestnut',c:'F0358'},{n:'Charcoal/Gray',c:'F0359'},{n:'Charcoal',c:'F1872'}]},
-    {name:'NA400 1%', colors:[{n:'Charcoal/Chestnut',c:'F0379'},{n:'Charcoal',c:'F0378'},{n:'Chalk',c:'F1875'},{n:'Chalk/Beige',c:'F1876'}]},
-    {name:'NA300 3%', colors:[{n:'Pearl',c:'F0360'},{n:'Pearl/Linen',c:'F0361'},{n:'Pearl/Pewter',c:'F0362'},{n:'Charcoal/Chestnut',c:'F0363'},{n:'Charcoal/Gray',c:'F0364'},{n:'Charcoal',c:'F1873'}]},
-    {name:'NA400 3%', colors:[{n:'Chalk',c:'F0381'},{n:'Chalk/Beige',c:'F0382'},{n:'Charcoal',c:'F0384'}]},
-    {name:'NA820 3%', colors:[{n:'Oyster/Pewter',c:'F0407'}]},
-    {name:'NA300 5%', colors:[{n:'Pearl',c:'F0365'},{n:'Pearl/Linen',c:'F0366'},{n:'Pearl/Pewter',c:'F0367'},{n:'Charcoal/Chestnut',c:'F0368'},{n:'Charcoal/Gray',c:'F0369'},{n:'Charcoal',c:'F1874'}]},
-    {name:'NA400 5%', colors:[{n:'Chalk/Beige',c:'F0388'},{n:'Charcoal',c:'F0390'}]},
-    {name:'NA400 10%', colors:[{n:'Charcoal',c:'F0396'}]}
+    {name:'NA300 1%', colors:[{n:'Charcoal',c:'F1872'}]},
+    {name:'NA400 1%', colors:[{n:'Chalk',c:'F1875'},{n:'Chalk/Beige',c:'F1876'}]},
+    {name:'NA300 3%', colors:[{n:'Charcoal',c:'F1873'}]},
+    {name:'NA300 5%', colors:[{n:'Charcoal',c:'F1874'}]}
   ],
   'lf': [
     {name:'Kendra', colors:[{n:'LF Foliage',c:'F0890'}]},
@@ -156,7 +152,6 @@ var SOLUNA_FABRIC_DATA = {
   ],
   'rd': [
     {name:'Garden', colors:[{n:'RD Foliage',c:'F0853'},{n:'Winter White',c:'F1514'},{n:'Ecru',c:'F1515'}]},
-    {name:'Elements White Backing', colors:[{n:'White',c:'F1108'},{n:'Stone Gray',c:'F1109'},{n:'Broken White',c:'F1110'},{n:'Cloudy Gray',c:'F1111'},{n:'Gray',c:'F1112'},{n:'Anthracite Gray',c:'F1113'}]},
     {name:'Elements', colors:[{n:'Stone Gray',c:'F2109'},{n:'Broken White',c:'F2110'},{n:'Cloudy Gray',c:'F2111'},{n:'Gray',c:'F2112'},{n:'Anthracite Gray',c:'F2113'},{n:'Weathered White',c:'F2114'},{n:'Soft Sandstone',c:'F2115'},{n:'Gentle Ash',c:'F2116'},{n:'Soothing Gray',c:'F2117'},{n:'Graphite',c:'F2118'},{n:'Desert Beige',c:'F2119'},{n:'Warm Mocha',c:'F2120'},{n:'Rich Truffle',c:'F2121'},{n:'Alabaster',c:'F2043'},{n:'Canvas',c:'F2044'},{n:'New Khaki',c:'F2045'}]},
     {name:'Jamaica', colors:[{n:'Latte',c:'F0827'},{n:'Crystal',c:'F0828'},{n:'Biscuit',c:'F0829'}]},
     {name:'Fiji', colors:[{n:'Pure White',c:'F0822'},{n:'Cream/Ash',c:'F0823'},{n:'Flax/Brown',c:'F0824'},{n:'Charcoal/Brown',c:'F0826'},{n:'Chocolate/Cream',c:'F0825'}]},
@@ -412,13 +407,13 @@ var _SOL_GRIDS = {
 var _SOL_COLL_GROUP = {
   // Price group per collection, from the Sept 2026 fabric list (only collections offered in the picker).
   // Solar PG1
-  'Flow 7%':'s1', 'NA300 3%':'s1', 'NA400 3%':'s1', 'NA300 5%':'s1', 'NA400 5%':'s1', 'NA400 10%':'s1',
+  'Flow 7%':'s1', 'NA300 3%':'s1', 'NA300 5%':'s1',
   // Solar PG2
-  'Moon 5%':'s2', 'Serene 1%':'s2', 'Serene 3%':'s2', 'Flow 1%':'s2', 'Flow 5%':'s2', 'Breeze Screen 1%':'s2', 'Breeze Screen 3%':'s2', 'NA300 1%':'s2', 'NA400 1%':'s2', 'NA820 3%':'s2',
+  'Moon 5%':'s2', 'Serene 1%':'s2', 'Serene 3%':'s2', 'Flow 1%':'s2', 'Flow 5%':'s2', 'Breeze Screen 1%':'s2', 'Breeze Screen 3%':'s2', 'NA300 1%':'s2', 'NA400 1%':'s2',
   // Solar PG3
   'Lakeview 3%':'s3', 'Lakeview 10%':'s3', 'Meadows 1%':'s3', 'Meadows 3%':'s3', 'Galaxy 3%':'s3',
   // Fabric PG1
-  'Scarlett':'f1', 'Brook':'f1', 'Chelsea':'f1', 'Verona LF':'f1', 'Callie':'f1', 'Leah':'f1', 'Cara':'f1', 'Elements White Backing':'f1', 'Elements':'f1', 'Callie RD':'f1', 'Catalina (Natural)':'f1',
+  'Scarlett':'f1', 'Brook':'f1', 'Chelsea':'f1', 'Verona LF':'f1', 'Callie':'f1', 'Leah':'f1', 'Cara':'f1', 'Elements':'f1', 'Callie RD':'f1', 'Catalina (Natural)':'f1',
   // Fabric PG2
   'Sheer':'f2', 'Dazzle':'f2', 'Lakeshore':'f2', 'Valerie':'f2', 'Emery':'f2', 'Sierra':'f2', 'Remy':'f2', 'Ohara':'f2', 'Waikiki':'f2', 'Rockville':'f2', 'Brill':'f2', 'Charlotte':'f2', 'Jamaica':'f2', 'Fiji':'f2', 'Francis RD':'f2', 'Amelia RD':'f2', 'Leah RD':'f2', 'Cara RD':'f2', 'Bali (Natural)':'f2', 'Phuket (Natural)':'f2', 'Java (Natural)':'f2', 'Riviera (Natural)':'f2',
   // Fabric PG3

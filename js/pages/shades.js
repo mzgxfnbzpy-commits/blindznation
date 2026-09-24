@@ -1294,7 +1294,6 @@ const SOLUNA_COLLECTIONS = {
   ],
   'rd': [
     {name:'Garden', colors:[{n:'RD Foliage',c:'F0853'},{n:'Winter White',c:'F1514'},{n:'Ecru',c:'F1515'}]},
-    {name:'Elements White Backing', colors:[{n:'White',c:'F1108'},{n:'Stone Gray',c:'F1109'},{n:'Broken White',c:'F1110'},{n:'Cloudy Gray',c:'F1111'},{n:'Gray',c:'F1112'},{n:'Anthracite Gray',c:'F1113'}]},
     {name:'Elements', colors:[{n:'Stone Gray',c:'F2109'},{n:'Broken White',c:'F2110'},{n:'Cloudy Gray',c:'F2111'},{n:'Gray',c:'F2112'},{n:'Anthracite Gray',c:'F2113'},{n:'Weathered White',c:'F2114'},{n:'Soft Sandstone',c:'F2115'},{n:'Gentle Ash',c:'F2116'},{n:'Soothing Gray',c:'F2117'},{n:'Graphite',c:'F2118'},{n:'Desert Beige',c:'F2119'},{n:'Warm Mocha',c:'F2120'},{n:'Rich Truffle',c:'F2121'},{n:'Alabaster',c:'F2043'},{n:'Canvas',c:'F2044'},{n:'New Khaki',c:'F2045'}]},
     {name:'Jamaica', colors:[{n:'Latte',c:'F0827'},{n:'Crystal',c:'F0828'},{n:'Biscuit',c:'F0829'}]},
     {name:'Fiji', colors:[{n:'Pure White',c:'F0822'},{n:'Cream/Ash',c:'F0823'},{n:'Flax/Brown',c:'F0824'},{n:'Charcoal/Brown',c:'F0826'},{n:'Chocolate/Cream',c:'F0825'}]},
@@ -1330,14 +1329,10 @@ const SOLUNA_COLLECTIONS = {
     {name:'Galaxy 3%', colors:[{n:'Black',c:'F1727'},{n:'Soft White',c:'F1728'},{n:'Ash',c:'F1731'}]}
   ],
   'commercial': [
-    {name:'NA300 1%', colors:[{n:'Pearl',c:'F0355'},{n:'Pearl/Linen',c:'F0356'},{n:'Pearl/Pewter',c:'F0357'},{n:'Charcoal/Chestnut',c:'F0358'},{n:'Charcoal/Gray',c:'F0359'},{n:'Charcoal',c:'F1872'}]},
-    {name:'NA400 1%', colors:[{n:'Charcoal/Chestnut',c:'F0379'},{n:'Charcoal',c:'F0378'},{n:'Chalk',c:'F1875'},{n:'Chalk/Beige',c:'F1876'}]},
-    {name:'NA300 3%', colors:[{n:'Pearl',c:'F0360'},{n:'Pearl/Linen',c:'F0361'},{n:'Pearl/Pewter',c:'F0362'},{n:'Charcoal/Chestnut',c:'F0363'},{n:'Charcoal/Gray',c:'F0364'},{n:'Charcoal',c:'F1873'}]},
-    {name:'NA400 3%', colors:[{n:'Chalk',c:'F0381'},{n:'Chalk/Beige',c:'F0382'},{n:'Charcoal',c:'F0384'}]},
-    {name:'NA820 3%', colors:[{n:'Oyster/Pewter',c:'F0407'}]},
-    {name:'NA300 5%', colors:[{n:'Pearl',c:'F0365'},{n:'Pearl/Linen',c:'F0366'},{n:'Pearl/Pewter',c:'F0367'},{n:'Charcoal/Chestnut',c:'F0368'},{n:'Charcoal/Gray',c:'F0369'},{n:'Charcoal',c:'F1874'}]},
-    {name:'NA400 5%', colors:[{n:'Chalk/Beige',c:'F0388'},{n:'Charcoal',c:'F0390'}]},
-    {name:'NA400 10%', colors:[{n:'Charcoal',c:'F0396'}]}
+    {name:'NA300 1%', colors:[{n:'Charcoal',c:'F1872'}]},
+    {name:'NA400 1%', colors:[{n:'Chalk',c:'F1875'},{n:'Chalk/Beige',c:'F1876'}]},
+    {name:'NA300 3%', colors:[{n:'Charcoal',c:'F1873'}]},
+    {name:'NA300 5%', colors:[{n:'Charcoal',c:'F1874'}]}
   ],
   // Designer: linen weaves and Kendra — priced off the fabric charts
   'designer': [
@@ -2212,7 +2207,7 @@ const RN_SURCHARGE_RACEWAY      = [54,59,65,70,70,75,81,91,97,107,113,118,129,14
 // Map: collection name → price group (verified against Feb 2026 PDF catalog)
 // Price group per collection name (Sept 2026 fabric list). Solar vs fabric chart is chosen by rnFabricType.
 const RN_COLL_PG = {
-  'Sheer':2, 'Dazzle':2, 'Scarlett':1, 'Lakeshore':2, 'Kendra — Light Filtering (PG3)':3, 'Breeze Linen — Light Filtering (PG3)':3, 'Valerie':2, 'Emery':2, 'Brook':1, 'Chelsea':1, 'Sierra':2, 'Clarissa — Light Filtering (PG3)':3, 'Verona LF':1, 'Callie':1, 'Remy':2, 'Ohara':2, 'Waikiki':2, 'Olivia':3, 'Rockville':2, 'Brill':2, 'Etch':3, 'Leah':1, 'Cara':1, 'Charlotte':2, 'Springtide':4, 'Garden':3, 'Elements White Backing':1, 'Elements':1, 'Jamaica':2, 'Fiji':2, 'Lola BO':3, 'Summerland Linen — Blackout (PG3)':3, 'Cory':3, 'Callie RD':1, 'Remy RD':3, 'Francis RD':2, 'Breeze Linen — Blackout (PG3)':3, 'Amelia RD':2, 'Ohara RD':3, 'Waikiki RD':3, 'Olivia RD':4, 'Rockville RD':3, 'Brill RD':3, 'Etch RD':4, 'Leah RD':2, 'Cara RD':2, 'Simplicity RD':3, 'Bali':2, 'Phuket':2, 'Java':2, 'Riviera':2, 'Maui Natural':3, 'Catalina':1, 'Cove':3, 'Lakeview 3%':3, 'Lakeview 10%':3, 'Meadows 1%':3, 'Meadows 3%':3, 'Moon 5%':2, 'Serene 1%':2, 'Serene 3%':2, 'Flow 1%':2, 'Flow 5%':2, 'Flow 7%':1, 'Breeze Screen 1%':2, 'Breeze Screen 3%':2, 'Galaxy 3%':3, 'NA300 1%':2, 'NA400 1%':2, 'NA300 3%':1, 'NA400 3%':1, 'NA820 3%':2, 'NA300 5%':1, 'NA400 5%':1, 'NA400 10%':1
+  'Sheer':2, 'Dazzle':2, 'Scarlett':1, 'Lakeshore':2, 'Kendra — Light Filtering (PG3)':3, 'Breeze Linen — Light Filtering (PG3)':3, 'Valerie':2, 'Emery':2, 'Brook':1, 'Chelsea':1, 'Sierra':2, 'Clarissa — Light Filtering (PG3)':3, 'Verona LF':1, 'Callie':1, 'Remy':2, 'Ohara':2, 'Waikiki':2, 'Olivia':3, 'Rockville':2, 'Brill':2, 'Etch':3, 'Leah':1, 'Cara':1, 'Charlotte':2, 'Springtide':4, 'Garden':3, 'Elements':1, 'Jamaica':2, 'Fiji':2, 'Lola BO':3, 'Summerland Linen — Blackout (PG3)':3, 'Cory':3, 'Callie RD':1, 'Remy RD':3, 'Francis RD':2, 'Breeze Linen — Blackout (PG3)':3, 'Amelia RD':2, 'Ohara RD':3, 'Waikiki RD':3, 'Olivia RD':4, 'Rockville RD':3, 'Brill RD':3, 'Etch RD':4, 'Leah RD':2, 'Cara RD':2, 'Simplicity RD':3, 'Bali':2, 'Phuket':2, 'Java':2, 'Riviera':2, 'Maui Natural':3, 'Catalina':1, 'Cove':3, 'Lakeview 3%':3, 'Lakeview 10%':3, 'Meadows 1%':3, 'Meadows 3%':3, 'Moon 5%':2, 'Serene 1%':2, 'Serene 3%':2, 'Flow 1%':2, 'Flow 5%':2, 'Flow 7%':1, 'Breeze Screen 1%':2, 'Breeze Screen 3%':2, 'Galaxy 3%':3, 'NA300 1%':2, 'NA400 1%':2, 'NA300 3%':1, 'NA300 5%':1
 };
 function rnGetPriceGroup() {
   const pg = RN_COLL_PG[(currentRollerColl || '').replace(/ ⚠.*$/, '')];
