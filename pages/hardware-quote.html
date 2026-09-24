@@ -31,27 +31,7 @@
 .config-layout{display:grid;grid-template-columns:1fr 308px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:880px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
 
-.step-block.active .step-body,.step-block.open .step-body{display:block}
-
-.opt-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
-.opt-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
-.opt-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
-@media(max-width:520px){.opt-grid-3{grid-template-columns:1fr 1fr}.opt-grid-4{grid-template-columns:1fr 1fr}}
-.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:12px 11px;cursor:pointer;text-align:center;transition:all .15s}
-.opt-card:hover{border-color:var(--gold)}
-.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:2px}
-.opt-card.sel .opt-card-title{color:#0A4A42}
-.opt-card-desc{font-size:11px;color:#666;line-height:1.4}
-.opt-card-price{font-size:11px;font-weight:600;color:var(--gold);margin-top:4px}
-
-.sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 5px}
-.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
-
-.spinner-row{display:flex;align-items:center;gap:9px;margin-top:8px}
-.spin-btn{width:32px;height:32px;border:1px solid #ddd;border-radius:7px;background:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;line-height:1}
-.spin-btn:hover{border-color:var(--gold)}
-.spin-num{width:44px;text-align:center;border:1px solid #ddd;border-radius:7px;font-size:14px;padding:5px}
+.sub-label{font-size:12px;font-weight:600;color:#555;margin:14px 0 6px}
 
 .finish-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:6px;margin-top:10px}
 .finish-card{border:1.5px solid #e8e8e4;border-radius:8px;padding:6px 5px;cursor:pointer;text-align:center;transition:all .15s}
@@ -63,31 +43,6 @@
 .info-box{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:10px 13px;font-size:12px;color:#0A4A42;margin-top:8px;line-height:1.6}
 .warn-box{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:10px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.6}
 
-/* Quote panel */
-.quote-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.qp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
-.qp-pending{font-size:12px;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;line-height:1.6}
-.qrow{display:flex;justify-content:space-between;font-size:12px;margin-bottom:7px;gap:8px;align-items:baseline}
-.qrow-label{color:var(--text-muted);line-height:1.4;flex:1}
-.qrow-val{color:var(--cream);font-weight:500;text-align:right;flex-shrink:0}
-.qdiv{border:none;border-top:.5px solid var(--border-dark);margin:11px 0}
-.qtotal{display:flex;justify-content:space-between;font-size:15px;font-weight:700}
-.qtotal-label{color:var(--cream)}
-.qtotal-val{color:var(--gold)}
-.qnote{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.5}
-.qbrand{font-size:10px;background:rgba(45,224,193,.15);color:var(--gold);padding:1px 6px;border-radius:3px;margin-left:4px}
-
-/* Form */
-.form-group{margin-bottom:14px}
-.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:inherit;box-sizing:border-box}
-.form-group textarea{resize:vertical;min-height:72px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:480px){.form-row{grid-template-columns:1fr}}
-.delivery-wrap{background:#F9F7F4;border:1px solid #e8e4dc;border-radius:10px;padding:14px 16px;margin-bottom:14px}
-.submit-btn{width:100%;padding:14px;background:var(--gold);color:#111110;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;margin-top:2px}
-.submit-btn:hover{opacity:.88}
-.form-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-bottom:10px;display:none}
 .success-box{background:#EEFBE8;border:1px solid #86EFAC;border-radius:12px;padding:22px;text-align:center;display:none}
 .success-box h3{font-size:15px;font-weight:600;color:#14532d;margin-bottom:6px}
 .success-box p{font-size:13px;color:#166534;line-height:1.6}
@@ -102,7 +57,7 @@
     <h1>Drapery Hardware</h1>
     <p>Configure your rod set — brand, diameter, length, finish, finials, brackets and rings. We price it by hand, confirm with you, then schedule.</p>
     <div class="hero-pills">
-      <span class="hero-pill hero-pill-gold">Instant estimate</span>
+      <span class="hero-pill hero-pill-gold">Custom quote</span>
       <span class="hero-pill">Paris Texas</span>
       <span class="hero-pill">Select Metal</span>
       <span class="hero-pill">Kirsch</span>
@@ -112,175 +67,159 @@
 </div>
 
 <div class="config-layout">
-<div>
+<div id="hq-steps">
 
-  <!-- STEP 1: BRAND & PRODUCT TYPE -->
-  <div class="step-block active" id="step1">
-    <div class="step-head" onclick="toggleStep('step1')">
+  <!-- STEP 1: ROD MEASUREMENTS -->
+  <div class="step-block" id="step0">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <div class="step-num">1</div>
-      <div class="step-head-title">Brand &amp; Rod Type</div>
-      <div class="step-head-val" id="s1val">—</div>
+      <div class="step-title" style="margin-bottom:0">Rod measurements</div>
     </div>
-    <div class="step-body">
-      <div class="opt-row">
-        <button class="opt-btn" onclick="pickBrand(this,'pt','Paris Texas','Decorative')">Paris Texas Hardware</button>
-        <button class="opt-btn" onclick="pickBrand(this,'sm','Select Metal','Decorative')">Select Metal</button>
-        <button class="opt-btn" onclick="pickBrand(this,'kdm','Kirsch Designer Metals','Decorative')">Kirsch Designer Metals</button>
-        <button class="opt-btn" onclick="pickBrand(this,'kb','Kirsch Basic','Traverse')">Kirsch Superfine Pro</button>
-        <button class="opt-btn" onclick="pickBrand(this,'moto','Motorized Traverse','Motorized')">Motorized Drapery Track</button>
-        <button class="opt-btn" onclick="pickBrand(this,'other','Other / Not Sure','Custom')">Other / Not Sure</button>
-      </div>
-      <div class="step-note">
-        <strong>Paris Texas Hardware</strong> — Premium decorative rods · 35 finishes · 1⅝&Prime; &amp; 1⅞&Prime; · Retail pricing<br>
-        <strong>Select Metal</strong> — Brass &amp; steel decorative rods · ¾&Prime; &amp; 1⅜&Prime; · 8 finishes<br>
-        <strong>Kirsch Designer Metals</strong> — Decorative metal rods · 1&Prime; diameter · 6 classic finishes<br>
-        <strong>Kirsch Superfine Pro</strong> — Functional traverse rods · split draw &amp; one-way · white only<br>
-        <strong>Motorized Drapery Track</strong> — Sonoran motorized track · app / remote / wall switch control<br>
-        <strong>Other / Not Sure</strong> — Orion, The Finial Company, or not sure — we&rsquo;ll recommend
+    <div class="dim-box">
+      <div class="dim-box-label">Enter your rod width</div>
+      <div class="form-row">
+        <div class="form-group"><label>Width</label><input type="number" id="hq-width" min="12" max="480" step="0.125" placeholder="84" oninput="calcPrice()"><div class="dim-unit">inches &mdash; window or rod width</div></div>
       </div>
     </div>
-  </div>
-
-  <!-- STEP 2: DIAMETER / TRACK SIZE -->
-  <div class="step-block" id="step2">
-    <div class="step-head" onclick="toggleStep('step2')">
-      <div class="step-num">2</div>
-      <div class="step-head-title" id="s2-title">Diameter</div>
-      <div class="step-head-val" id="s2val">—</div>
-    </div>
-    <div class="step-body" id="s2-body">
-    </div>
-  </div>
-
-  <!-- STEP 3: LENGTH -->
-  <div class="step-block" id="step3">
-    <div class="step-head" onclick="toggleStep('step3')">
-      <div class="step-num">3</div>
-      <div class="step-head-title">Rod Length</div>
-      <div class="step-head-val" id="s3val">—</div>
-    </div>
-    <div class="step-body" id="s3-body">
-    </div>
-  </div>
-
-  <!-- STEP 4: FINISH -->
-  <div class="step-block" id="step4">
-    <div class="step-head" onclick="toggleStep('step4')">
-      <div class="step-num">4</div>
-      <div class="step-head-title">Finish</div>
-      <div class="step-head-val" id="s4val">—</div>
-    </div>
-    <div class="step-body" id="s4-body">
-    </div>
-  </div>
-
-  <!-- STEP 5: FINIALS -->
-  <div class="step-block" id="step5">
-    <div class="step-head" onclick="toggleStep('step5')">
-      <div class="step-num">5</div>
-      <div class="step-head-title">Finials</div>
-      <div class="step-head-val" id="s5val">—</div>
-    </div>
-    <div class="step-body" id="s5-body">
-    </div>
-  </div>
-
-  <!-- STEP 6: BRACKETS -->
-  <div class="step-block" id="step6">
-    <div class="step-head" onclick="toggleStep('step6')">
-      <div class="step-num">6</div>
-      <div class="step-head-title">Brackets</div>
-      <div class="step-head-val" id="s6val">—</div>
-    </div>
-    <div class="step-body" id="s6-body">
-    </div>
-  </div>
-
-  <!-- STEP 7: RINGS -->
-  <div class="step-block" id="step7">
-    <div class="step-head" onclick="toggleStep('step7')">
-      <div class="step-num">7</div>
-      <div class="step-head-title">Rings</div>
-      <div class="step-head-val" id="s7val">—</div>
-    </div>
-    <div class="step-body" id="s7-body">
-    </div>
-  </div>
-
-  <!-- STEP 8: MOTORIZATION -->
-  <div class="step-block" id="step8">
-    <div class="step-head" onclick="toggleStep('step8')">
-      <div class="step-num">8</div>
-      <div class="step-head-title">Motorization</div>
-      <div class="step-head-val" id="s8val">None</div>
-    </div>
-    <div class="step-body" id="s8-body">
-    </div>
-  </div>
-
-  <!-- STEP 9: QUOTE FORM -->
-  <div class="step-block" id="step9">
-    <div class="step-head" onclick="toggleStep('step9')">
-      <div class="step-num">9</div>
-      <div class="step-head-title">Review &amp; Submit</div>
-      <div class="step-head-val"></div>
-    </div>
-    <div class="step-body">
-
-      <!-- INLINE PRICE SUMMARY — always visible in step 9 -->
-      <div id="inline-summary" style="background:var(--espresso);border-radius:12px;padding:18px 20px;margin-bottom:20px">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px">Your Configuration &amp; Estimate</div>
-        <div id="inline-rows"><div style="font-size:12px;color:var(--text-muted);font-style:italic">Select brand and size above to see your estimate build in real time.</div></div>
-        <div style="border-top:.5px solid rgba(255,255,255,.12);margin:12px 0"></div>
-        <div style="display:flex;justify-content:space-between;font-size:17px;font-weight:700;align-items:baseline">
-          <span style="color:var(--cream)">Total Estimate</span>
-          <span style="color:var(--gold)" id="inline-total">—</span>
-        </div>
-        <div style="font-size:10px;color:var(--text-dark);margin-top:6px;line-height:1.5">Hardware only &middot; installation quoted separately &middot; final price confirmed at order</div>
+    <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm at the home visit.</div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:12px;color:#666">Qty:</span>
+      <div class="qty-btns">
+        <button class="qty-btn" type="button" onclick="pbAdjQty('hq-qty',-1,1,50);calcPrice()">&#8722;</button>
+        <input class="qty-num" type="number" id="hq-qty" value="1" min="1" max="50" oninput="calcPrice()">
+        <button class="qty-btn" type="button" onclick="pbAdjQty('hq-qty',1,1,50);calcPrice()">&#43;</button>
       </div>
-
-      <!-- VALIDATION CHECKLIST — shows what's still needed before submit -->
-      <div id="checklist-box" style="background:#FFF8EC;border:1px solid #F59E0B;border-radius:10px;padding:14px 16px;margin-bottom:16px;display:none">
-        <div style="font-size:12px;font-weight:600;color:#92400E;margin-bottom:8px">Complete these before submitting:</div>
-        <div id="checklist-items" style="font-size:12px;color:#78350F;line-height:1.8"></div>
-      </div>
-
-      <div class="delivery-wrap">
-        <div style="font-size:13px;font-weight:500;color:#333;margin-bottom:8px">Delivery</div>
-        <div class="delivery-opt-grid">
-          <div class="delivery-opt-card sel" id="del-ship" onclick="pickDel('ship',this)">
-            <div class="delivery-opt-title">Ship to me</div>
-            <div class="delivery-opt-body">UPS or FedEx. Tariffs and import fees additional.</div>
-          </div>
-        </div>
-      </div>
-      <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-          <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
+      <span style="font-size:12px;color:#666">rod set(s) of this spec</span>
+    </div>
+    <div style="font-size:12px;font-weight:600;color:#555;margin:16px 0 6px">Exact rod length &amp; brackets <span style="font-weight:400;color:#888">(optional)</span></div>
+    <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML, bare) -->
     <div id="pb-rod-spec"></div>
-    <div id="pb-final-step"></div>
-      <div class="success-box" id="success-box">
-        <h3>Quote request sent!</h3>
-        <p>We&rsquo;ll follow up within a few hours to confirm your specs. Call <strong>(609) 742-1720</strong> 24/7 for anything urgent.</p>
-      </div>
+  </div>
+
+  <!-- STEP 2: BRAND & PRODUCT TYPE -->
+  <div class="step-block" id="step1">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">2</div>
+      <div class="step-title" style="margin-bottom:0">Brand &amp; rod type</div>
     </div>
+    <div class="opt-row">
+      <button class="opt-btn" onclick="pickBrand(this,'pt','Paris Texas','Decorative')">Paris Texas Hardware</button>
+      <button class="opt-btn" onclick="pickBrand(this,'sm','Select Metal','Decorative')">Select Metal</button>
+      <button class="opt-btn" onclick="pickBrand(this,'kdm','Kirsch Designer Metals','Decorative')">Kirsch Designer Metals</button>
+      <button class="opt-btn" onclick="pickBrand(this,'kb','Kirsch Basic','Traverse')">Kirsch Superfine Pro</button>
+      <button class="opt-btn" onclick="pickBrand(this,'moto','Motorized Traverse','Motorized')">Motorized Drapery Track</button>
+      <button class="opt-btn" onclick="pickBrand(this,'other','Other / Not Sure','Custom')">Other / Not Sure</button>
+    </div>
+    <div class="step-note">
+      <strong>Paris Texas Hardware</strong> — Premium decorative rods · 35 finishes · 1⅝&Prime; &amp; 1⅞&Prime;<br>
+      <strong>Select Metal</strong> — Brass &amp; steel decorative rods · ¾&Prime; &amp; 1⅜&Prime; · 8 finishes<br>
+      <strong>Kirsch Designer Metals</strong> — Decorative metal rods · 1&Prime; diameter · 6 classic finishes<br>
+      <strong>Kirsch Superfine Pro</strong> — Functional traverse rods · split draw &amp; one-way · white only<br>
+      <strong>Motorized Drapery Track</strong> — Sonoran motorized track · app / remote / wall switch control<br>
+      <strong>Other / Not Sure</strong> — Orion, The Finial Company, or not sure — we&rsquo;ll recommend
+    </div>
+  </div>
+
+  <!-- STEP 3: DIAMETER / TRACK SIZE -->
+  <div class="step-block" id="step2">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">3</div>
+      <div class="step-title" style="margin-bottom:0" id="s2-title">Diameter</div>
+    </div>
+    <div id="s2-body"><div class="step-note">Select a brand above first.</div></div>
+  </div>
+
+  <!-- STEP 4: LENGTH -->
+  <div class="step-block" id="step3">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">4</div>
+      <div class="step-title" style="margin-bottom:0">Rod length</div>
+    </div>
+    <div id="s3-body"><div class="step-note">Choose a brand and diameter above first.</div></div>
+  </div>
+
+  <!-- STEP 5: FINISH -->
+  <div class="step-block" id="step4">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">5</div>
+      <div class="step-title" style="margin-bottom:0">Finish</div>
+    </div>
+    <div id="s4-body"><div class="step-note">Select a brand above first.</div></div>
+  </div>
+
+  <!-- STEP 6: FINIALS -->
+  <div class="step-block" id="step5">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">6</div>
+      <div class="step-title" style="margin-bottom:0">Finials</div>
+    </div>
+    <div id="s5-body"><div class="step-note">Select a brand above first.</div></div>
+  </div>
+
+  <!-- STEP 7: BRACKETS -->
+  <div class="step-block" id="step6">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">7</div>
+      <div class="step-title" style="margin-bottom:0">Brackets</div>
+    </div>
+    <div id="s6-body"><div class="step-note">Select a brand above first.</div></div>
+  </div>
+
+  <!-- STEP 8: RINGS -->
+  <div class="step-block" id="step7">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">8</div>
+      <div class="step-title" style="margin-bottom:0">Rings</div>
+    </div>
+    <div id="s7-body"><div class="step-note">Select a brand above first.</div></div>
+  </div>
+
+  <!-- STEP 9: MOTORIZATION -->
+  <div class="step-block" id="step8">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div class="step-num">9</div>
+      <div class="step-title" style="margin-bottom:0">Motorization</div>
+    </div>
+    <div id="s8-body"><div class="step-note">Select a brand above first.</div></div>
+  </div>
+
+  <!-- STEP 10: DELIVERY (shared) -->
+  <div id="pb-delivery-step"></div>
+
+  <!-- STEP 11: YOUR DETAILS (shared) -->
+  <div id="pb-final-step"></div>
+  <div class="success-box" id="success-box">
+    <h3>Quote request sent!</h3>
+    <p>We&rsquo;ll follow up within a few hours to confirm your specs. Call <strong>(609) 742-1720</strong> 24/7 for anything urgent.</p>
   </div>
 
 </div>
 
-<!-- QUOTE PANEL -->
-<div class="quote-panel">
-  <div class="qp-title">Price Estimate</div>
-  <div id="qp-pending" class="qp-pending">Select brand and options to see your estimate</div>
-  <div id="qp-detail" style="display:none">
-    <div class="qrow" id="q-brand-row"><span class="qrow-label">Brand</span><span class="qrow-val" id="q-brand">—</span></div>
-    <div class="qrow" id="q-rod-row" style="display:none"><span class="qrow-label">Rod(s)</span><span class="qrow-val" id="q-rod">—</span></div>
-    <div class="qrow" id="q-finial-row" style="display:none"><span class="qrow-label">Finials</span><span class="qrow-val" id="q-finial">—</span></div>
-    <div class="qrow" id="q-bracket-row" style="display:none"><span class="qrow-label">Brackets</span><span class="qrow-val" id="q-bracket">—</span></div>
-    <div class="qrow" id="q-rings-row" style="display:none"><span class="qrow-label">Rings</span><span class="qrow-val" id="q-rings">—</span></div>
-    <div class="qrow" id="q-motor-row" style="display:none"><span class="qrow-label">Motorization</span><span class="qrow-val" id="q-motor">—</span></div>
-    <div class="qdiv"></div>
-    <div class="qtotal"><span class="qtotal-label">Estimate</span><span class="qtotal-val" id="q-total">—</span></div>
-    <div class="qnote">Estimate includes hardware only. Installation quoted separately. Final price confirmed at order.</div>
+<!-- SUMMARY CARD -->
+<div>
+  <div class="summary-card" id="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val" id="q-brand">Drapery hardware</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="s-size">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="s-mount">—</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="s-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Diameter / type</span><span class="sr-val" id="s-dia">—</span></div>
+    <div class="summary-row"><span class="sr-key">Length</span><span class="sr-val" id="s-length">—</span></div>
+    <div class="summary-row"><span class="sr-key">Finish</span><span class="sr-val" id="s-finish">—</span></div>
+    <div class="summary-row" id="q-rod-row" style="display:none"><span class="sr-key">Rod(s)</span><span class="sr-val" id="q-rod">—</span></div>
+    <div class="summary-row" id="q-finial-row" style="display:none"><span class="sr-key">Finials</span><span class="sr-val" id="q-finial">—</span></div>
+    <div class="summary-row" id="q-bracket-row" style="display:none"><span class="sr-key">Brackets</span><span class="sr-val" id="q-bracket">—</span></div>
+    <div class="summary-row" id="q-rings-row" style="display:none"><span class="sr-key">Rings</span><span class="sr-val" id="q-rings">—</span></div>
+    <div class="summary-row" id="q-motor-row" style="display:none"><span class="sr-key">Motorization</span><span class="sr-val" id="q-motor">—</span></div>
+    <div class="summary-row"><span class="sr-key">Price</span><span class="sr-val" style="color:var(--gold)">Custom quote — we confirm pricing</span></div>
+    <div class="summary-row qtotal" style="display:none"><span class="sr-key">Estimate</span><span class="sr-val qtotal-val" id="q-total">—</span></div>
+    <div class="summary-note">Hardware only &middot; installation quoted separately &middot; final price confirmed at order.</div>
+  </div>
+
+  <!-- VALIDATION CHECKLIST — shows what's still needed before submit -->
+  <div id="checklist-box" style="background:#FFF8EC;border:1px solid #F59E0B;border-radius:10px;padding:14px 16px;margin-top:14px;display:none">
+    <div style="font-size:12px;font-weight:600;color:#92400E;margin-bottom:8px">Still needed before you submit:</div>
+    <div id="checklist-items" style="font-size:12px;color:#78350F;line-height:1.8"></div>
   </div>
 </div>
 
@@ -293,10 +232,12 @@
 <script src="../js/pages/hardware-quote.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
-document.getElementById('pb-final-step').innerHTML =
-  pbContactStepHTML({ bare: true, cartFn: 'addHardwareQuoteToCart()', submitFn: 'submitForm()' });
-
-document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
+// Exact rod length + bracket count live inside Step 1 "Rod measurements".
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ bare: true });
+// Shared Delivery (second-to-last) and "Your details" (last) steps.
+document.getElementById('pb-delivery-step').outerHTML = pbDeliveryStepHTML({ stepNum: 10 });
+document.getElementById('pb-final-step').outerHTML =
+  pbContactStepHTML({ stepNum: 11, cartFn: 'addHardwareQuoteToCart()', submitFn: 'submitForm()' });
 </script>
 </body>
 </html>
