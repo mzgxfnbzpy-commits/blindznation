@@ -29,49 +29,22 @@
 .hero-pill-gold{background:rgba(45,224,193,.12);border-color:rgba(45,224,193,.35);color:var(--gold)}
 .config-layout{display:grid;grid-template-columns:1fr 310px;gap:24px;max-width:1100px;margin:0 auto;padding:28px 28px 60px;align-items:start}
 @media(max-width:900px){.config-layout{grid-template-columns:1fr;padding:20px 16px 48px}}
-/* Steps */
-.step-block.active .step-body,.step-block.open .step-body{display:block}
-/* Opt cards */
-.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:10px}
-.opt-card{background:#fff;border:1.5px solid #e8e8e4;border-radius:10px;padding:13px 11px;cursor:pointer;text-align:center;transition:all .15s}
-.opt-card:hover{border-color:var(--gold)}
-.opt-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.opt-card-title{font-size:13px;font-weight:500;color:#111;margin-bottom:3px}
-.opt-card.sel .opt-card-title{color:#0A4A42}
-.opt-card-desc{font-size:11px;color:#666;line-height:1.45}
-.opt-card.blocked{opacity:.35;pointer-events:none;cursor:default}
-/* Collection cards */
-.coll-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:10px}
-.coll-card{border:1.5px solid #e8e8e4;border-radius:12px;padding:16px 14px;cursor:pointer;transition:all .15s;background:#fff}
-.coll-card:hover{border-color:var(--gold)}
-.coll-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.coll-card-title{font-size:13px;font-weight:600;color:#111;margin-bottom:4px}
-.coll-card-sub{font-size:11px;color:#777;line-height:1.5}
-.coll-badge{display:inline-block;font-size:9px;padding:1px 6px;border-radius:4px;background:#f0ece4;color:#555;font-weight:600;margin-bottom:6px}
-/* Finish chips */
+.opt-btn.blocked{opacity:.35;pointer-events:none;cursor:default}
+/* Finish swatch chips (colour swatches stay a visual grid) */
 .finish-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
 .fin-chip{display:flex;align-items:center;gap:7px;padding:7px 12px;border:1.5px solid #e8e8e4;border-radius:20px;cursor:pointer;font-size:12px;font-weight:500;transition:all .15s;background:#fff;color:#333;white-space:nowrap}
 .fin-chip:hover{border-color:var(--gold)}
 .fin-chip.sel{border:2px solid var(--gold);background:var(--gold-mid);color:#0A4A42}
 .fin-chip.blocked{opacity:.35;pointer-events:none}
 .fin-dot{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.1);flex-shrink:0}
-/* Finial selector */
-.finial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:8px;max-height:300px;overflow-y:auto}
-.finial-card{border:1.5px solid #e8e8e4;border-radius:9px;padding:10px 12px;cursor:pointer;transition:all .15s;background:#fff}
-.finial-card:hover{border-color:var(--gold)}
-.finial-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.finial-name{font-size:12px;font-weight:600;color:#111;margin-bottom:2px}
-.finial-sku{font-size:9px;color:#aaa;letter-spacing:.4px;font-weight:600}
-.finial-dim{font-size:10px;color:#888;margin-top:2px}
-/* Standard finish search */
+/* Standard finish search (50-finish catalog) */
 .sf-search{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);box-sizing:border-box;margin-bottom:8px}
 .sf-list{max-height:200px;overflow-y:auto;border:1px solid #eee;border-radius:8px}
 .sf-item{padding:8px 12px;cursor:pointer;font-size:12px;transition:background .1s;display:flex;align-items:center;gap:8px;border-bottom:.5px solid #f5f5f5}
 .sf-item:last-child{border-bottom:none}
 .sf-item:hover{background:var(--gold-mid)}
 .sf-item.sel{background:var(--gold-mid);font-weight:500}
-/* Dims */
-.dim-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+/* Length inputs */
 .dim-label{font-size:12px;font-weight:500;color:#444;margin-bottom:5px}
 .dim-input{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:var(--font);box-sizing:border-box}
 /* Messages */
@@ -79,38 +52,15 @@
 .msg-err{background:#FEE2E2;border:1px solid #EF4444;border-radius:8px;padding:9px 13px;font-size:12px;color:#7f1d1d;margin-top:8px;line-height:1.5}
 .msg-warn{background:#FFF3CD;border:1px solid #FFC107;border-radius:8px;padding:9px 13px;font-size:12px;color:#7d5a00;margin-top:8px;line-height:1.55}
 .msg-info{background:var(--gold-mid);border:1px solid rgba(45,224,193,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:#0A4A42;margin-top:8px;line-height:1.55}
-.sub-label{font-size:12px;font-weight:500;color:#444;margin:14px 0 6px}
-.step-note{font-size:11px;color:#999;line-height:1.6;margin-top:6px}
-/* Addon rows */
-.addon-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1.5px solid #e8e8e4;border-radius:9px;margin-top:7px;cursor:pointer;transition:all .15s;gap:10px}
-.addon-row:hover{border-color:var(--gold)}
-.addon-row.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.addon-left{display:flex;align-items:center;gap:10px;flex:1}
-.addon-check{width:18px;height:18px;border:2px solid #ccc;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:transparent;flex-shrink:0;transition:all .15s}
-.addon-row.sel .addon-check{background:var(--gold);border-color:var(--gold);color:#111110}
-.addon-name{font-size:13px;font-weight:500;color:#111}
-.addon-sub{font-size:11px;color:#666;margin-top:1px}
-/* Spec panel */
-.spec-panel{background:var(--espresso);border-radius:14px;padding:22px;position:sticky;top:72px}
-.sp-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
-.sp-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px;gap:8px;align-items:baseline}
-.sp-label{color:var(--text-muted);flex-shrink:0;line-height:1.4}
-.sp-val{color:var(--cream);font-weight:500;text-align:right;word-break:break-word;max-width:170px;font-size:11px}
-.sp-div{border:none;border-top:.5px solid var(--border-dark);margin:10px 0}
-.sp-warn{font-size:10px;color:#FFC107;margin-top:5px;line-height:1.5}
-.sp-note{font-size:10px;color:var(--text-dark);margin-top:8px;line-height:1.6}
-/* Form */
-.form-group{margin-bottom:12px}
-.form-group label{display:block;font-size:12px;font-weight:500;color:#444;margin-bottom:4px}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:9px 12px;border:1px solid #ddd;border-radius:8px;font-size:13px;font-family:var(--font);box-sizing:border-box}
-.form-group textarea{resize:vertical;min-height:80px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.sub-label{font-size:12px;font-weight:600;color:#555;margin:14px 0 6px}
+/* Summary-card warnings */
+.sp-warn{font-size:10px;color:#FFC107;margin-top:8px;line-height:1.5}
 .success-box{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:12px;padding:22px;color:#2e7d32;font-size:14px;line-height:1.8;display:none;text-align:center;margin-top:12px}
 /* Warning banner */
 .restriction-banner{background:#1a1208;border:1px solid rgba(45,224,193,.25);border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:12px;color:var(--text-dark);line-height:1.7}
 .restriction-banner strong{color:var(--gold)}
 </style>
+
 </head>
 <body data-page="Hardware">
 <nav class="site-nav" id="site-nav"></nav>
@@ -128,246 +78,184 @@
 </div>
 
 <div class="config-layout">
-<div><!-- left col -->
+<div id="fc-steps"><!-- left col -->
 
 <div class="restriction-banner">
   <strong>All items are custom-manufactured to order.</strong> No changes or cancellations after 24 hours of order confirmation. Pricing is from The Finial Company Retail Price List — not shown publicly. Lead time: Modern Metal &amp; Metal Collection ship within 48 hours (non-painted options); all painted products, custom products, and traverse systems ship within <strong>10–15 business days</strong>. Rush orders (+30%) available in 5 business days — <strong>not available</strong> for arch rods, bay windows, custom brackets, or mitered returns. Poles/tracks over 96″ must ship common carrier.
 </div>
 
-<!-- STEP 1: ROD WIDTH & QUANTITY -->
-<div class="step-block active open" id="stepMeasure">
-  <div class="step-head" onclick="toggleStep('stepMeasure')">
+<!-- STEP 1: ROD MEASUREMENTS -->
+<div class="step-block" id="stepMeasure">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">1</div>
-    <div class="step-head-title">Rod width &amp; quantity</div>
-    <div class="step-head-val" id="sMval">—</div>
+    <div class="step-title" style="margin-bottom:0">Rod measurements</div>
   </div>
-  <div class="step-body">
-    <div class="dim-box">
-      <div class="dim-box-label">Enter your rod width</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Width</label>
-          <input type="number" id="rod-width" min="12" max="480" step="0.125" placeholder="e.g. 96" oninput="updateRodWidth()">
-          <div class="dim-unit">inches · overall rod length needed</div>
-        </div>
+  <div class="dim-box">
+    <div class="dim-box-label">Enter your rod width</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Width</label>
+        <input type="number" id="rod-width" min="12" max="480" step="0.125" placeholder="96" oninput="updateRodWidth()">
+        <div class="dim-unit">inches &mdash; overall rod length needed</div>
       </div>
     </div>
-    <div class="step-note"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> · Approximate is fine — we confirm exact pole/track length in the steps below.</div>
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px">
-      <span style="font-size:12px;color:#666">Qty:</span>
-      <div class="qty-btns">
-        <button class="qty-btn" onclick="adjQty(-1)">&#8722;</button>
-        <input class="qty-num" type="number" id="qty" value="1" min="1" max="99" oninput="updateSpec()">
-        <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
-      </div>
-      <span style="font-size:12px;color:#666">rod(s) / system(s) of this spec</span>
+  </div>
+  <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine &mdash; we confirm exact pole/track length in the steps below.</div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <span style="font-size:12px;color:#666">Qty:</span>
+    <div class="qty-btns">
+      <button class="qty-btn" onclick="pbAdjQty('qty',-1,1,99);updateSpec()">&#8722;</button>
+      <input class="qty-num" type="number" id="qty" value="1" min="1" max="99" oninput="updateSpec()">
+      <button class="qty-btn" onclick="pbAdjQty('qty',1,1,99);updateSpec()">&#43;</button>
     </div>
   </div>
+  <div style="font-size:12px;font-weight:600;color:#555;margin:16px 0 6px">Exact rod length &amp; brackets <span style="font-weight:400;color:#888">(optional)</span></div>
+  <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML, bare) -->
+  <div id="pb-rod-spec"></div>
 </div>
 
 <!-- STEP 2: COLLECTION CATEGORY -->
-<div class="step-block active" id="step1">
-  <div class="step-head" onclick="toggleStep('step1')">
+<div class="step-block" id="step1">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">2</div>
-    <div class="step-head-title">Collection category</div>
-    <div class="step-head-val" id="s1val">—</div>
+    <div class="step-title" style="margin-bottom:0">Collection category</div>
   </div>
-  <div class="step-body">
-    <div class="coll-grid">
-      <div class="coll-card" onclick="pickColl('modern-metal',this)">
-        <div class="coll-badge">1⅛″ · 1⅜″</div>
-        <div class="coll-card-title">Modern Metal</div>
-        <div class="coll-card-sub">14 finials · 3 cuff/collar options · 5 contemporary finishes + acrylic · 400+ design combos</div>
-      </div>
-      <div class="coll-card" onclick="pickColl('metal-138',this)">
-        <div class="coll-badge">1⅜″ only</div>
-        <div class="coll-card-title">1⅜″ Metal</div>
-        <div class="coll-card-sub">9 finials · 8 plated finishes + all 50 standard hand-painted finishes</div>
-      </div>
-      <div class="coll-card" onclick="pickColl('steel',this)">
-        <div class="coll-badge">½″ – 1¾″</div>
-        <div class="coll-card-title">Steel</div>
-        <div class="coll-card-sub">5 subcollections · all 50 finishes · round, square, hammered, twisted profiles · bypass available</div>
-      </div>
-      <div class="coll-card" onclick="pickColl('wood',this)">
-        <div class="coll-badge">1⅜″ · 2″–2¼″ · 3″</div>
-        <div class="coll-card-title">Wood &amp; Resin</div>
-        <div class="coll-card-sub">3 diameters · smooth, grooved, fluted, reeded profiles · max 192″ (1⅜″: max 144″)</div>
-      </div>
-      <div class="coll-card" onclick="pickColl('outdoor',this)">
-        <div class="coll-badge">5-year warranty</div>
-        <div class="coll-card-title">Outdoor Hardware</div>
-        <div class="coll-card-sub">5 weather-resistant finishes · 5-year rust/fade warranty · ¾″–1¾″ poles</div>
-      </div>
-      <div class="coll-card" onclick="pickColl('traverse',this)">
-        <div class="coll-badge">Light · Heavy · Motorized</div>
-        <div class="coll-card-title">Traverse Systems</div>
-        <div class="coll-card-sub">Corded/baton or motorized (BTX/Somfy) · pinch pleat or Ripplefold™ · wood fascia optional</div>
-      </div>
-    </div>
+  <div class="opt-row">
+    <button class="opt-btn" onclick="pickColl('modern-metal',this)">Modern Metal</button>
+    <button class="opt-btn" onclick="pickColl('metal-138',this)">1⅜″ Metal</button>
+    <button class="opt-btn" onclick="pickColl('steel',this)">Steel</button>
+    <button class="opt-btn" onclick="pickColl('wood',this)">Wood &amp; Resin</button>
+    <button class="opt-btn" onclick="pickColl('outdoor',this)">Outdoor Hardware</button>
+    <button class="opt-btn" onclick="pickColl('traverse',this)">Traverse Systems</button>
   </div>
+  <div class="step-note"><strong>Modern Metal</strong> (1⅛″ · 1⅜″) — 14 finials · 3 cuff/collar options · 5 contemporary finishes + acrylic · 400+ design combos<br><strong>1⅜″ Metal</strong> (1⅜″ only) — 9 finials · 8 plated finishes + all 50 standard hand-painted finishes<br><strong>Steel</strong> (½″ – 1¾″) — 5 subcollections · all 50 finishes · round, square, hammered, twisted profiles · bypass available<br><strong>Wood &amp; Resin</strong> (1⅜″ · 2″–2¼″ · 3″) — smooth, grooved, fluted, reeded profiles · max 192″ (1⅜″: max 144″)<br><strong>Outdoor Hardware</strong> — 5 weather-resistant finishes · 5-year rust/fade warranty · ¾″–1¾″ poles<br><strong>Traverse Systems</strong> (light · heavy · motorized) — corded/baton or motorized (BTX/Somfy) · pinch pleat or Ripplefold™ · wood fascia optional</div>
 </div>
 
-<!-- STEP 2: SUB-SELECTION (diameter/profile/system) — filled by JS -->
-<div class="step-block" id="step2" style="display:none">
-  <div class="step-head" onclick="toggleStep('step2')">
+<!-- STEP 3: SUB-SELECTION (diameter/profile/system) — filled by JS -->
+<div class="step-block" id="step2">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">3</div>
-    <div class="step-head-title" id="s2title">Diameter / system</div>
-    <div class="step-head-val" id="s2val">—</div>
+    <div class="step-title" style="margin-bottom:0" id="s2title">Diameter / system</div>
   </div>
-  <div class="step-body" id="s2body"></div>
+  <div id="s2body"><div class="step-note">Select a collection above first.</div></div>
 </div>
 
-<!-- STEP 3: FINISH -->
-<div class="step-block" id="step3" style="display:none">
-  <div class="step-head" onclick="toggleStep('step3')">
+<!-- STEP 4: FINISH -->
+<div class="step-block" id="step3">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">4</div>
-    <div class="step-head-title">Finish</div>
-    <div class="step-head-val" id="s3val">—</div>
+    <div class="step-title" style="margin-bottom:0">Finish</div>
   </div>
-  <div class="step-body" id="s3body"></div>
+  <div id="s3body"><div class="step-note">Select a collection above first.</div></div>
 </div>
 
-<!-- STEP 4: FINIALS (left + right) -->
-<div class="step-block" id="step4" style="display:none">
-  <div class="step-head" onclick="toggleStep('step4')">
+<!-- STEP 5: FINIALS (left + right) -->
+<div class="step-block" id="step4">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">5</div>
-    <div class="step-head-title">Finials</div>
-    <div class="step-head-val" id="s4val">—</div>
+    <div class="step-title" style="margin-bottom:0">Finials</div>
   </div>
-  <div class="step-body" id="s4body"></div>
+  <div id="s4body"><div class="step-note">Select a collection above first.</div></div>
 </div>
 
-<!-- STEP 5: CUFF / COLLAR (Modern Metal only) -->
+<!-- STEP 6: CUFF / COLLAR (Modern Metal only — hidden otherwise; steps renumber) -->
 <div class="step-block" id="step5" style="display:none">
-  <div class="step-head" onclick="toggleStep('step5')">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">6</div>
-    <div class="step-head-title">Cuff or collar</div>
-    <div class="step-head-val" id="s5val">—</div>
+    <div class="step-title" style="margin-bottom:0">Cuff or collar</div>
   </div>
-  <div class="step-body" id="s5body"></div>
+  <div id="s5body"><div class="step-note">Pick your left and right finials first.</div></div>
 </div>
 
-<!-- STEP 6: POLE LENGTH -->
-<div class="step-block" id="step6" style="display:none">
-  <div class="step-head" onclick="toggleStep('step6')">
+<!-- STEP 7: POLE LENGTH -->
+<div class="step-block" id="step6">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">7</div>
-    <div class="step-head-title">Pole length</div>
-    <div class="step-head-val" id="s6val">—</div>
+    <div class="step-title" style="margin-bottom:0">Pole length</div>
   </div>
-  <div class="step-body" id="s6body"></div>
+  <div id="s6body"><div class="step-note">Select a collection above first.</div></div>
 </div>
 
-<!-- STEP 7: BRACKETS -->
-<div class="step-block" id="step7" style="display:none">
-  <div class="step-head" onclick="toggleStep('step7')">
+<!-- STEP 8: BRACKETS -->
+<div class="step-block" id="step7">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">8</div>
-    <div class="step-head-title">Brackets &amp; mount</div>
-    <div class="step-head-val" id="s7val">—</div>
+    <div class="step-title" style="margin-bottom:0">Brackets &amp; mount</div>
   </div>
-  <div class="step-body" id="s7body"></div>
+  <div id="s7body"><div class="step-note">Select a collection above first.</div></div>
 </div>
 
-<!-- STEP 8: RINGS -->
-<div class="step-block" id="step8" style="display:none">
-  <div class="step-head" onclick="toggleStep('step8')">
+<!-- STEP 9: RINGS -->
+<div class="step-block" id="step8">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">9</div>
-    <div class="step-head-title">Rings</div>
-    <div class="step-head-val" id="s8val">—</div>
+    <div class="step-title" style="margin-bottom:0">Rings</div>
   </div>
-  <div class="step-body" id="s8body"></div>
+  <div id="s8body"><div class="step-note">Select a collection above first.</div></div>
 </div>
 
-<!-- STEP 9: ACCESSORIES (batons, tiebacks, rosettes, extras) -->
-<div class="step-block" id="step9" style="display:none">
-  <div class="step-head" onclick="toggleStep('step9')">
+<!-- STEP 10: ACCESSORIES (batons, tiebacks, rosettes, extras) -->
+<div class="step-block" id="step9">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">10</div>
-    <div class="step-head-title">Accessories &amp; special options</div>
-    <div class="step-head-val" id="s9val">Optional</div>
+    <div class="step-title" style="margin-bottom:0">Accessories &amp; special options <span style="font-weight:400;color:#888">(optional)</span></div>
   </div>
-  <div class="step-body" id="s9body"></div>
+  <div id="s9body"><div class="step-note">Select a collection above first.</div></div>
 </div>
 
-<!-- STEP 10: TRAVERSE-SPECIFIC DETAILS (shown only for traverse) -->
-<div class="step-block" id="step10" style="display:none">
-  <div class="step-head" onclick="toggleStep('step10')">
+<!-- STEP 11: LEAD TIME -->
+<div class="step-block" id="step11">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
     <div class="step-num">11</div>
-    <div class="step-head-title">Traverse specifications</div>
-    <div class="step-head-val" id="s10val">—</div>
+    <div class="step-title" style="margin-bottom:0">Lead time</div>
   </div>
-  <div class="step-body" id="s10body"></div>
+  <div class="opt-row" id="grp-rush">
+    <button class="opt-btn sel" id="rush-no" onclick="pickRush(this,'no','Standard')">Standard</button>
+    <button class="opt-btn" id="rush-yes" onclick="pickRush(this,'yes','Rush +30%')">Rush +30%</button>
+  </div>
+  <div class="step-note">Standard: 10–15 business days · Rush +30%: 5 business days. Poles over 96″ ship by common carrier.</div>
+  <div id="rush-warn" class="msg-warn" style="display:none">⚠ Rush not available for arch rods, bay windows, custom brackets, or mitered returns.</div>
 </div>
 
-<!-- STEP 11: QUANTITY & DELIVERY -->
-<div class="step-block" id="step11" style="display:none">
-  <div class="step-head" onclick="toggleStep('step11')">
-    <div class="step-num" id="qtyStepNum">12</div>
-    <div class="step-head-title">Delivery</div>
-    <div class="step-head-val" id="s11val">—</div>
-  </div>
-  <div class="step-body">
-    <div style="margin-top:8px">
-      <div class="dim-label" style="margin-bottom:6px">Rush order?</div>
-      <div class="opt-row">
-        <button class="opt-btn sel" id="rush-no" onclick="pickRush(this,'no','Standard')">Standard</button>
-        <button class="opt-btn" id="rush-yes" onclick="pickRush(this,'yes','Rush +30%')">Rush +30%</button>
-      </div>
-      <div class="step-note">Standard: 10–15 bus. days · Rush +30%: 5 bus. days</div>
-      <div id="rush-warn" class="msg-warn" style="display:none">⚠ Rush not available for arch rods, bay windows, custom brackets, or mitered returns.</div>
-    </div>
-    <div style="margin-top:12px">
-      <div class="dim-label" style="margin-bottom:6px">Delivery</div>
-      <div class="opt-row">
-        <button class="opt-btn sel" id="del-ship" onclick="pickDel(this,'ship')">📦 Ship to me</button>
-      </div>
-      <div class="step-note">UPS/FedEx · poles over 96″ = common carrier</div>
-    </div>
-  </div>
-</div>
+<!-- STEP 12: DELIVERY (shared) -->
+<div id="pb-delivery-step"></div>
 
-<!-- STEP 12: CONTACT & SUBMIT -->
-<div class="step-block" id="step12" style="display:none">
-  <div class="step-head" onclick="toggleStep('step12')">
-    <div class="step-num" id="contactStepNum">13</div>
-    <div class="step-head-title">Your info &amp; submit</div>
-  </div>
-  <div class="step-body">
-        <!-- Exact rod length + editable bracket count (shared.js pbRodSpecHTML) -->
-    <div id="pb-rod-spec"></div>
-    <div id="pb-final-step"></div>
-    <div class="success-box" id="success-box">
-      <strong>Quote request sent!</strong><br>We'll follow up within a few hours. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a>
-    </div>
-  </div>
+<!-- STEP 13: YOUR DETAILS (shared) -->
+<div id="pb-final-step"></div>
+<div class="success-box" id="success-box">
+  <strong>Quote request sent!</strong><br>We'll follow up within a few hours. Urgent? <a href="tel:6097421720" style="color:#2e7d32">(609) 742-1720</a>
 </div>
 
 </div><!-- /left col -->
 
-<!-- RIGHT: Spec panel -->
+<!-- RIGHT: Summary card -->
 <div>
-  <div class="spec-panel">
-    <div class="sp-title">Order Specification</div>
-    <div class="sp-row"><span class="sp-label">Collection</span><span class="sp-val" id="sp-coll">—</span></div>
-    <div class="sp-row" id="sp-sub-row"><span class="sp-label">Diameter/Profile</span><span class="sp-val" id="sp-sub">—</span></div>
-    <div class="sp-row"><span class="sp-label">Finish</span><span class="sp-val" id="sp-finish">—</span></div>
-    <div class="sp-row"><span class="sp-label">Finial (L)</span><span class="sp-val" id="sp-fin-l">—</span></div>
-    <div class="sp-row"><span class="sp-label">Finial (R)</span><span class="sp-val" id="sp-fin-r">—</span></div>
-    <div class="sp-row" id="sp-cuff-row"><span class="sp-label">Cuff/Collar</span><span class="sp-val" id="sp-cuff">—</span></div>
-    <div class="sp-row"><span class="sp-label">Pole length</span><span class="sp-val" id="sp-len">—</span></div>
-    <div class="sp-row"><span class="sp-label">Brackets</span><span class="sp-val" id="sp-brkt">—</span></div>
-    <div class="sp-row"><span class="sp-label">Rings</span><span class="sp-val" id="sp-rings">—</span></div>
-    <div class="sp-row" id="sp-trav-row" style="display:none"><span class="sp-label">Traverse</span><span class="sp-val" id="sp-trav">—</span></div>
-    <div class="sp-row"><span class="sp-label">Qty · Rush</span><span class="sp-val" id="sp-qty">—</span></div>
-    <div class="sp-div"></div>
+  <div class="summary-card" id="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">The Finial Company</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="sp-width">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sp-brkt">—</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sp-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Collection</span><span class="sr-val" id="sp-coll">—</span></div>
+    <div class="summary-row" id="sp-sub-row"><span class="sr-key">Diameter / profile</span><span class="sr-val" id="sp-sub">—</span></div>
+    <div class="summary-row"><span class="sr-key">Finish</span><span class="sr-val" id="sp-finish">—</span></div>
+    <div class="summary-row"><span class="sr-key">Finial (L)</span><span class="sr-val" id="sp-fin-l">—</span></div>
+    <div class="summary-row"><span class="sr-key">Finial (R)</span><span class="sr-val" id="sp-fin-r">—</span></div>
+    <div class="summary-row" id="sp-cuff-row"><span class="sr-key">Cuff / collar</span><span class="sr-val" id="sp-cuff">—</span></div>
+    <div class="summary-row"><span class="sr-key">Pole length</span><span class="sr-val" id="sp-len">—</span></div>
+    <div class="summary-row"><span class="sr-key">Rings</span><span class="sr-val" id="sp-rings">—</span></div>
+    <div class="summary-row"><span class="sr-key">Lead time</span><span class="sr-val" id="sp-rush">Standard</span></div>
+    <div class="summary-row"><span class="sr-key">Price</span><span class="sr-val" style="color:var(--gold)">Custom quote — we confirm pricing</span></div>
     <div class="sp-warn" id="sp-warn-cs" style="display:none">⚠ Pole over 96″ — common carrier shipping required.</div>
     <div class="sp-warn" id="sp-warn-bp" style="display:none">⚠ Bypass brackets: install standard brackets at both ends.</div>
     <div class="sp-warn" id="sp-warn-ret" style="display:none">⚠ Return/drop over 8″ — additional fees + support arm required.</div>
     <div class="sp-warn" id="sp-warn-acr" style="display:none">⚠ Clear acrylic cannot be spliced.</div>
-    <div class="sp-note">All items are custom-manufactured. Pricing from The Finial Company Retail Price List — not displayed publicly. No cancellations after 24 hours of order confirmation.</div>
+    <div class="summary-note">All items are custom-manufactured. Pricing from The Finial Company Retail Price List — not displayed publicly. No cancellations after 24 hours of order confirmation.</div>
   </div>
 </div>
 
 </div><!-- /config-layout -->
+
 
 <div class="cta-banner">
   <div><h2>Need help specifying Finial Company hardware?</h2><p>Call Justin — we work with TFC regularly and can walk you through finish selection, sizing, and custom options.</p></div>
@@ -381,9 +269,12 @@
 <script src="../js/shared.js"></script>
 <script src="../js/pages/finial-company.js"></script>
 <script>
-document.getElementById('pb-final-step').innerHTML = pbContactStepHTML({ bare: true, cartFn: 'addFinialToCart()', submitFn: 'submitQuote()' });
-
-document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ title: 'Rod length &amp; brackets' });
+// Exact rod length + bracket count live inside Step 1 "Rod measurements".
+document.getElementById('pb-rod-spec').innerHTML = pbRodSpecHTML({ bare: true });
+// Shared Delivery (second-to-last) and "Your details" (last) steps.
+document.getElementById('pb-delivery-step').outerHTML = pbDeliveryStepHTML({ stepNum: 12 });
+document.getElementById('pb-final-step').outerHTML = pbContactStepHTML({ stepNum: 13, cartFn: 'addFinialToCart()', submitFn: 'submitQuote()' });
+renumberSteps(); // the Modern Metal-only cuff step starts hidden
 </script>
 </body>
 </html>
