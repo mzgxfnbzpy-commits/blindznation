@@ -1040,8 +1040,7 @@ async function submitPBForm(btn) {
   const phone = document.getElementById('pb-phone').value.trim();
   if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
   const email    = document.getElementById('pb-email').value.trim();
-  const delBtn   = document.querySelector('#grp-del-pb .delivery-opt-card.sel');
-  const delivery = delBtn ? delBtn.querySelector('.delivery-opt-title').textContent.trim() : 'Ship to me';
+  const delivery = pbDeliveryLabel(); // shared Delivery step (window.pbDelivery)
   const w     = document.getElementById('pb-width').value;   // fixed: was inp-width
   const h     = document.getElementById('pb-height').value;  // fixed: was inp-height
   const gPB   = function(id) { const b = document.querySelector('#' + id + ' .opt-btn.sel'); return b ? b.textContent.trim() : '—'; };
@@ -1072,7 +1071,9 @@ async function submitPBForm(btn) {
     'Fabric source:  ' + gPB('pb-grp-fabric')    + '\n' +
     'Delivery:       ' + delivery                + '\n\n' +
     'Fabric notes:\n' + (notes || '(none)') +
-    pbInstallLine(document.getElementById('brand-pb-content')) +
+    // Installation now comes from the shared Delivery step (this form has no
+    // separate install checkbox any more, so pbInstallLine() would always say no).
+    '\nInstallation: ' + (window.pbDelivery === 'install' ? 'REQUESTED — Justin will follow up with pricing.' : 'Not requested') +
     (function(){ var fu = document.querySelector('#brand-pb-content .pb-fu-wrap input[type="file"]'); return fu && fu.files.length ? '\n\nFiles to send: ' + Array.from(fu.files).map(function(f){return f.name;}).join(', ') + '\n(Customer will email these to justin@blindznation.com)' : ''; }());
   await _apiSubmit(name, email, phone, 'Basic Roller Shade', body, 'pb-success', null, btn);
 }
@@ -1254,240 +1255,97 @@ let currentCellColor   = null;
 // Colors: {n: name, c: fabric code}. Lakeview 1% removed (not in 2026 guide).
 // ⚠ Linen = linen content, color variation normal. Maui Natural max height 120".
 const SOLUNA_COLLECTIONS = {
+  // Norman CURRENT SOLUNA PATTERNS (Sept 2026) minus NIC RS16 "to be discontinued" list (2026-08-15).
+  // Price group for every collection lives in RN_COLL_PG below — keep the two in step.
   'sheer': [
     {name:'Sheer', colors:[{n:'Linen Weave',c:'F0908'}]},
-    {name:'Dazzle', colors:[
-      {n:'Soft White',c:'F1538'},{n:'Eggshell',c:'F1539'},{n:'Pewter Green',c:'F1540'},
-      {n:'Charcoal',c:'F1541'},{n:'Ink',c:'F1542'}
-    ]},
-    {name:'Scarlett ⚠ Linen', colors:[
-      {n:'Cottage Linen',c:'F1599'},{n:'Seashell',c:'F1600'},{n:'Crema',c:'F1601'},{n:'Stone',c:'F1602'}
-    ]},
+    {name:'Dazzle', colors:[{n:'Soft White',c:'F1538'}]},
+    {name:'Scarlett ⚠ Linen', colors:[{n:'Cottage Linen',c:'F1599'}]},
     {name:'Lakeshore', colors:[{n:'Natural Gray',c:'F1642'}]}
   ],
   'lf': [
-    {name:'Francis', colors:[
-      {n:'Pearl',c:'F0876'},{n:'Barley',c:'F0877'},{n:'Sandstone',c:'F0878'},{n:'Toast',c:'F0879'},
-      {n:'Espresso',c:'F0882'},{n:'Brownie',c:'F0883'},{n:'Oatmeal',c:'F0884'},{n:'Doe',c:'F0885'},
-      {n:'Shale',c:'F0886'},{n:'Black',c:'F0888'},{n:'Denim',c:'F0889'}
-    ]},
-    {name:'Hayes', colors:[
-      {n:'Maple',c:'F0747'},{n:'Hickory',c:'F0748'},{n:'Birch',c:'F0749'},{n:'Mahogany',c:'F0751'}
-    ]},
-    {name:'Valerie', colors:[
-      {n:'Moonscape',c:'F0738'},{n:'Cove',c:'F0739'},{n:'Dolphin',c:'F0740'},
-      {n:'Pomegranate',c:'F0741'},{n:'Sapphire',c:'F0742'},{n:'Silhouette',c:'F0743'},
-      {n:'Daylight',c:'F0752'}
-    ]},
-    {name:'Emery', colors:[
-      {n:'Creamy',c:'F0753'},{n:'Khaki',c:'F0754'},
-      {n:'Chiffon',c:'F1560'},{n:'Maize',c:'F1561'}
-    ]},
-    {name:'Brook', colors:[
-      {n:'Egret',c:'F1121'},{n:'Smoke',c:'F1122'},
-      {n:'Beige',c:'F1123'},{n:'Latte',c:'F1124'}
-    ]},
-    {name:'Chelsea', colors:[
-      {n:'Snow',c:'F1445'},{n:'Cream',c:'F1446'},{n:'Natural',c:'F1447'},
-      {n:'Stone',c:'F1448'},{n:'Caviar',c:'F1449'}
-    ]},
-    {name:'Sierra', colors:[
-      {n:'Snow',c:'F1450'},{n:'Cream',c:'F1451'},{n:'Natural',c:'F1452'},
-      {n:'Stone',c:'F1453'},{n:'Caviar',c:'F1454'},{n:'Canvas',c:'F1966'},{n:'Graphite',c:'F1967'}
-    ]},
-    {name:'Shimmer', colors:[
-      {n:'Goldmine',c:'F1436'},{n:'Starry Night',c:'F1437'},{n:'Pewter',c:'F1439'},{n:'Midnight',c:'F1440'}
-    ]},
-    {name:'Amelia', colors:[
-      {n:'Mist Gray',c:'F1484'},{n:'Heather Gray',c:'F1485'},
-      {n:'Heather Charcoal',c:'F1486'},{n:'Heather Smoke',c:'F1487'}
-    ]},
-    {name:'Lola LF', colors:[
-      {n:'Porcelain',c:'F1551'},{n:'Almond',c:'F1552'},{n:'Light Khaki',c:'F1553'},
-      {n:'Wheat',c:'F1554'},{n:'Platinum',c:'F1555'},{n:'Cement',c:'F1556'},
-      {n:'Pewter',c:'F1557'},{n:'Iron',c:'F1558'},{n:'Indigo',c:'F1559'}
-    ]},
+    {name:'Valerie', colors:[{n:'Dolphin',c:'F0740'},{n:'Pomegranate',c:'F0741'},{n:'Cove',c:'F0739'},{n:'Silhouette',c:'F0743'},{n:'Moonscape',c:'F0738'},{n:'Sapphire',c:'F0742'}]},
+    {name:'Emery', colors:[{n:'Daylight',c:'F0752'},{n:'Creamy',c:'F0753'},{n:'Khaki',c:'F0754'},{n:'Chiffon',c:'F1560'}]},
+    {name:'Brook', colors:[{n:'Pewter',c:'F1120'},{n:'Egret',c:'F1121'},{n:'Smoke',c:'F1122'},{n:'Beige',c:'F1123'},{n:'Latte',c:'F1157'}]},
+    {name:'Chelsea', colors:[{n:'Snow',c:'F1445'}]},
+    {name:'Sierra', colors:[{n:'Snow',c:'F1450'},{n:'Cream',c:'F1451'},{n:'Canvas',c:'F1966'},{n:'Graphite',c:'F1967'}]},
     {name:'Verona LF', colors:[{n:'Pearl Cotton',c:'F1641'}]},
-    {name:'Callie', colors:[
-      {n:'Pure White',c:'F1734'},{n:'Vanilla Cream',c:'F1735'},{n:'Natural Tan',c:'F1736'},
-      {n:'Silver Ash',c:'F1737'},{n:'Pebble Gray',c:'F1738'},{n:'Black Iron',c:'F1739'},
-      {n:'Cloudy Gray',c:'F2028'},{n:'Gray',c:'F2030'},{n:'Rich Truffle',c:'F2032'}
-    ]},
-    {name:'Remy', colors:[
-      {n:'White Dove',c:'F1746'},{n:'Seashell Gray',c:'F1747'},{n:'Dune',c:'F1748'},
-      {n:'Hickory Bark',c:'F1749'},{n:'Creamy Mocha',c:'F1750'},{n:'Natural Slate',c:'F1751'}
-    ]}
+    {name:'Callie', colors:[{n:'Pure White',c:'F1734'},{n:'Natural Tan',c:'F1736'},{n:'Silver Ash',c:'F1737'},{n:'Pebble Gray',c:'F1738'},{n:'Black Iron',c:'F1739'},{n:'Vanilla Cream',c:'F1735'},{n:'Cloudy Gray',c:'F2028'},{n:'Gray',c:'F2030'},{n:'Rich Truffle',c:'F2032'}]},
+    {name:'Remy', colors:[{n:'White Dove',c:'F1746'},{n:'Seashell Gray',c:'F1747'},{n:'Dune',c:'F1748'},{n:'Hickory Bark',c:'F1749'},{n:'Creamy Mocha',c:'F1750'},{n:'Natural Slate',c:'F1751'}]},
+    {name:'Ohara', colors:[{n:'Light Gray',c:'F2203'},{n:'Taupe',c:'F2204'},{n:'Coconut Shell',c:'F2205'},{n:'Denim Blue',c:'F2206'},{n:'Rosemary Green',c:'F2207'}]},
+    {name:'Waikiki', colors:[{n:'Mauve Gray',c:'F2249'},{n:'Indigo Blue',c:'F2250'},{n:'Driftwood',c:'F2251'}]},
+    {name:'Olivia', colors:[{n:'Polar White',c:'F2093'},{n:'Sea Salt',c:'F2095'},{n:'Raw Sugar',c:'F2099'},{n:'Antique Sage',c:'F2097'},{n:'Fossil',c:'F2098'}]},
+    {name:'Rockville', colors:[{n:'Whisper White',c:'F2189'},{n:'Pale Wheat',c:'F2190'},{n:'Stone',c:'F2191'},{n:'Khaki Sage',c:'F2192'}]},
+    {name:'Brill', colors:[{n:'Titanium',c:'F2228'},{n:'Birch',c:'F2229'},{n:'Walnut',c:'F2230'},{n:'Steel',c:'F2231'}]},
+    {name:'Etch', colors:[{n:'White',c:'F2197'},{n:'Gray',c:'F2198'},{n:'Taupe',c:'F2199'},{n:'Graphite',c:'F2200'}]},
+    {name:'Leah', colors:[{n:'White',c:'F2255'},{n:'Cornfield',c:'F2256'},{n:'Oatmeal',c:'F2257'},{n:'Fawn',c:'F2258'},{n:'Gray',c:'F2259'}]},
+    {name:'Cara', colors:[{n:'White',c:'F2239'},{n:'Nectar',c:'F2240'},{n:'Gray',c:'F2241'},{n:'Charcoal',c:'F2242'},{n:'Black',c:'F2243'}]},
+    {name:'Charlotte', colors:[{n:'Milky White',c:'F2170'},{n:'Swiss Coffee',c:'F2172'},{n:'Creamy Oak',c:'F2171'},{n:'Midnight',c:'F2179'},{n:'Silverstone',c:'F2176'},{n:'Linen Taupe',c:'F2174'},{n:'Taupe Gray',c:'F2175'},{n:'Shark',c:'F2177'},{n:'Welded Iron',c:'F2178'},{n:'Oxford Blue',c:'F2182'},{n:'Toasted Nut',c:'F2173'},{n:'Breezeway',c:'F2180'}]},
+    {name:'Springtide', colors:[{n:'Sandy Taupe',c:'F2221'},{n:'Teal Haze',c:'F2225'},{n:'Dusty Navy',c:'F2226'},{n:'Sage',c:'F2222'},{n:'Midnight',c:'F2227'},{n:'Blush',c:'F2223'},{n:'Mulberry',c:'F2224'}]}
   ],
   'natural': [
-    {name:'Aruba', colors:[
-      {n:'Sparkle Ivory',c:'F0860'},{n:'Sparkle Khaki',c:'F0861'},{n:'Sparkle Espresso',c:'F0862'}
-    ]},
-    {name:'Caroline', colors:[{n:'White Sand',c:'F0867'}]},
-    {name:'Samoa', colors:[
-      {n:'Daylight',c:'F0863'},{n:'Sand',c:'F0864'},{n:'Cumin',c:'F0865'},{n:'Old Teak',c:'F0866'}
-    ]},
-    {name:'Bali', colors:[
-      {n:'Black Walnut',c:'F0668'},{n:'Sand',c:'F1668'},{n:'Flax',c:'F1669'},
-      {n:'Latte',c:'F1926'},{n:'Stone Gray',c:'F1927'},{n:'Desert Beige',c:'F2023'},
-      {n:'Warm Mocha',c:'F2024'},{n:'Soft Sandstone',c:'F2025'},{n:'Gentle Ash',c:'F2026'},{n:'Gray',c:'F2027'}
-    ]},
-    {name:'Phuket', colors:[
-      {n:'Snow White',c:'F0656'},{n:'Honey',c:'F0657'},{n:'Black Olive',c:'F0659'},
-      {n:'Grey Fog',c:'F0660'},{n:'Dust',c:'F0661'},{n:'Dough',c:'F0868'},{n:'Mocha',c:'F1670'}
-    ]},
-    {name:'Bora Bora', colors:[
-      {n:'Seashell White',c:'F0662'},{n:'Straw',c:'F0663'},{n:'Cinnamon',c:'F0869'}
-    ]},
-    {name:'Sumatra', colors:[{n:'Fog',c:'F0854'}]},
-    {name:'Java', colors:[
-      {n:'Raffia',c:'F0856'},{n:'Haystack',c:'F0857'},{n:'Natural',c:'F0858'},
-      {n:'Sage',c:'F0859'},{n:'Toasted Brown',c:'F1562'}
-    ]},
-    {name:'Riviera', colors:[
-      {n:'Frost',c:'F1290'},{n:'Sugar Cane',c:'F1291'},{n:'Honey',c:'F1292'},
-      {n:'Metal',c:'F1293'},{n:'Silver Fox',c:'F1713'}
-    ]},
-    {name:'Maui Natural ⚠ Max 120″H', colors:[
-      {n:'Vanilla Stripe',c:'F1543'},{n:'Natural Stripe',c:'F1544'},{n:'Slate Stripe',c:'F1545'},
-      {n:'Ink/Natural',c:'F1548'},{n:'Coffee/Natural',c:'F1549'}
-    ]},
-    {name:'Lake Tahoe', colors:[{n:'Stone',c:'F1577'}]},
+    {name:'Bali', colors:[{n:'Sand',c:'F1668'},{n:'Flax',c:'F1669'},{n:'Latte',c:'F1926'},{n:'Stone Gray',c:'F1927'},{n:'Desert Beige',c:'F2023'},{n:'Warm Mocha',c:'F2024'},{n:'Soft Sandstone',c:'F2025'},{n:'Gentle Ash',c:'F2026'},{n:'Gray',c:'F2027'}]},
+    {name:'Phuket', colors:[{n:'Snow White',c:'F0656'},{n:'Black Olive',c:'F0659'},{n:'Dust',c:'F0661'},{n:'Mocha',c:'F1670'}]},
+    {name:'Java', colors:[{n:'Raffia',c:'F0856'},{n:'Haystack',c:'F0857'},{n:'Natural',c:'F0858'},{n:'Sage',c:'F0859'},{n:'Toasted Brown',c:'F1562'}]},
+    {name:'Riviera', colors:[{n:'Frost',c:'F1290'},{n:'Sugar Cane',c:'F1291'},{n:'Honey',c:'F1292'},{n:'Metal',c:'F1293'},{n:'Silver Fox',c:'F1713'}]},
+    {name:'Maui Natural ⚠ Max 120″H', colors:[{n:'Vanilla Stripe',c:'F1543'},{n:'Natural Stripe',c:'F1544'}]},
     {name:'Catalina', colors:[{n:'Sea Salt',c:'F1605'},{n:'Oatmeal',c:'F1712'}]},
     {name:'Cove', colors:[{n:'Jet Black',c:'F1714'}]}
   ],
   'rd': [
-    {name:'Garden', colors:[
-      {n:'RD Foliage',c:'F0853'},{n:'Winter White',c:'F1514'},{n:'Ecru',c:'F1515'},
-      {n:'Cinnamon',c:'F1516'},{n:'Forest',c:'F1517'},{n:'Midnight',c:'F1518'}
-    ]},
-    // Elements White Backing: F1108-F1113 are ACTIVE per Feb 2026 PDF (page 16).
-    // Old "Glamour" collection NAME was discontinued; same codes now listed under "Elements White Backing".
-    {name:'Elements White Backing', colors:[
-      {n:'White',c:'F1108'},{n:'Stone Gray',c:'F1109'},{n:'Broken White',c:'F1110'},
-      {n:'Cloudy Gray',c:'F1111'},{n:'Gray',c:'F1112'},{n:'Anthracite Gray',c:'F1113'}
-    ]},
-    {name:'Elements', colors:[
-      {n:'Stone Gray',c:'F2109'},{n:'Broken White',c:'F2110'},{n:'Cloudy Gray',c:'F2111'},
-      {n:'Gray',c:'F2112'},{n:'Anthracite Gray',c:'F2113'},{n:'Weathered White',c:'F2114'},
-      {n:'Soft Sandstone',c:'F2115'},{n:'Gentle Ash',c:'F2116'},{n:'Soothing Gray',c:'F2117'},
-      {n:'Graphite',c:'F2118'},{n:'Desert Beige',c:'F2119'},{n:'Warm Mocha',c:'F2120'},
-      {n:'Rich Truffle',c:'F2121'},{n:'Alabaster',c:'F2043'},{n:'Canvas',c:'F2044'},{n:'New Khaki',c:'F2045'}
-    ]},
-    {name:'Jamaica', colors:[
-      {n:'Latte',c:'F0827'},{n:'Crystal',c:'F0828'},{n:'Biscuit',c:'F0829'}
-    ]},
-    {name:'Bermuda', colors:[
-      {n:'Mushroom',c:'F0831'},{n:'Cocoa',c:'F0832'},{n:'Charcoal',c:'F0834'}
-    ]},
-    {name:'Fiji', colors:[
-      {n:'Pure White',c:'F0822'},{n:'Cream/Ash',c:'F0823'},{n:'Flax/Brown',c:'F0824'},
-      {n:'Chocolate/Cream',c:'F0825'},{n:'Charcoal/Brown',c:'F0826'}
-    ]},
-    {name:'Lola BO', colors:[
-      {n:'Porcelain',c:'F1455'},{n:'Almond',c:'F1456'},{n:'Light Khaki',c:'F1457'},
-      {n:'Wheat',c:'F1458'},{n:'Platinum',c:'F1459'},{n:'Cement',c:'F1460'},
-      {n:'Pewter',c:'F1461'},{n:'Iron',c:'F1462'},{n:'Indigo',c:'F1463'}
-    ]},
+    {name:'Garden', colors:[{n:'RD Foliage',c:'F0853'},{n:'Winter White',c:'F1514'},{n:'Ecru',c:'F1515'}]},
+    {name:'Elements White Backing', colors:[{n:'White',c:'F1108'},{n:'Stone Gray',c:'F1109'},{n:'Broken White',c:'F1110'},{n:'Cloudy Gray',c:'F1111'},{n:'Gray',c:'F1112'},{n:'Anthracite Gray',c:'F1113'}]},
+    {name:'Elements', colors:[{n:'Stone Gray',c:'F2109'},{n:'Broken White',c:'F2110'},{n:'Cloudy Gray',c:'F2111'},{n:'Gray',c:'F2112'},{n:'Anthracite Gray',c:'F2113'},{n:'Weathered White',c:'F2114'},{n:'Soft Sandstone',c:'F2115'},{n:'Gentle Ash',c:'F2116'},{n:'Soothing Gray',c:'F2117'},{n:'Graphite',c:'F2118'},{n:'Desert Beige',c:'F2119'},{n:'Warm Mocha',c:'F2120'},{n:'Rich Truffle',c:'F2121'},{n:'Alabaster',c:'F2043'},{n:'Canvas',c:'F2044'},{n:'New Khaki',c:'F2045'}]},
+    {name:'Jamaica', colors:[{n:'Latte',c:'F0827'},{n:'Crystal',c:'F0828'},{n:'Biscuit',c:'F0829'}]},
+    {name:'Fiji', colors:[{n:'Pure White',c:'F0822'},{n:'Cream/Ash',c:'F0823'},{n:'Flax/Brown',c:'F0824'},{n:'Charcoal/Brown',c:'F0826'},{n:'Chocolate/Cream',c:'F0825'}]},
+    {name:'Lola BO', colors:[{n:'Porcelain',c:'F1455'},{n:'Almond',c:'F1456'},{n:'Light Khaki',c:'F1457'},{n:'Wheat',c:'F1458'},{n:'Platinum',c:'F1459'},{n:'Cement',c:'F1460'}]},
     {name:'Cory', colors:[{n:'White',c:'F1479'},{n:'Ivory',c:'F1480'},{n:'Sand',c:'F1481'}]},
-    {name:'Callie RD', colors:[
-      {n:'Pure White',c:'F1740'},{n:'Vanilla Cream',c:'F1741'},{n:'Natural Tan',c:'F1742'},
-      {n:'Silver Ash',c:'F1743'},{n:'Pebble Gray',c:'F1744'},{n:'Black Iron',c:'F1745'},
-      {n:'Cloudy Gray',c:'F2033'},{n:'Gray',c:'F2035'},{n:'Rich Truffle',c:'F2037'}
-    ]},
-    {name:'Remy RD', colors:[
-      {n:'White Dove',c:'F1752'},{n:'Seashell Gray',c:'F1753'},{n:'Dune',c:'F1754'},
-      {n:'Hickory Bark',c:'F1755'},{n:'Creamy Mocha',c:'F1756'},{n:'Natural Slate',c:'F1757'}
-    ]},
-    {name:'Francis RD', colors:[
-      {n:'Pearl',c:'F1762'},{n:'Sandstone',c:'F1763'},{n:'Oatmeal',c:'F1764'},
-      {n:'Doe',c:'F1765'},{n:'Black',c:'F1766'},{n:'Denim',c:'F1767'}
-    ]},
-    {name:'Amelia RD', colors:[
-      {n:'Mist Gray',c:'F1774'},{n:'Heather Gray',c:'F1775'},
-      {n:'Heather Charcoal',c:'F1776'},{n:'Heather Smoke',c:'F1777'}
-    ]}
+    {name:'Callie RD', colors:[{n:'Pure White',c:'F1740'},{n:'Natural Tan',c:'F1742'},{n:'Silver Ash',c:'F1743'},{n:'Pebble Gray',c:'F1744'},{n:'Black Iron',c:'F1745'},{n:'Vanilla Cream',c:'F1741'},{n:'Cloudy Gray',c:'F2033'},{n:'Gray',c:'F2035'},{n:'Rich Truffle',c:'F2037'}]},
+    {name:'Remy RD', colors:[{n:'White Dove',c:'F1752'},{n:'Seashell Gray',c:'F1753'},{n:'Dune',c:'F1754'},{n:'Hickory Bark',c:'F1755'},{n:'Creamy Mocha',c:'F1756'},{n:'Natural Slate',c:'F1757'}]},
+    {name:'Francis RD', colors:[{n:'Sandstone',c:'F1763'},{n:'Oatmeal',c:'F1764'},{n:'Doe',c:'F1765'},{n:'Black',c:'F1766'},{n:'Denim',c:'F1767'},{n:'Pearl',c:'F1762'}]},
+    {name:'Amelia RD', colors:[{n:'Mist Gray',c:'F1774'},{n:'Heather Gray',c:'F1775'},{n:'Heather Charcoal',c:'F1776'},{n:'Heather Smoke',c:'F1777'}]},
+    {name:'Ohara RD', colors:[{n:'Light Gray',c:'F2208'},{n:'Taupe',c:'F2209'},{n:'Coconut Shell',c:'F2210'},{n:'Denim Blue',c:'F2211'},{n:'Rosemary Green',c:'F2212'}]},
+    {name:'Waikiki RD', colors:[{n:'Mauve Gray',c:'F2252'},{n:'Indigo Blue',c:'F2253'},{n:'Driftwood',c:'F2254'}]},
+    {name:'Olivia RD', colors:[{n:'Polar White',c:'F2102'},{n:'Sea Salt',c:'F2104'},{n:'Raw Sugar',c:'F2108'},{n:'Antique Sage',c:'F2106'},{n:'Fossil',c:'F2107'}]},
+    {name:'Rockville RD', colors:[{n:'Whisper White',c:'F2193'},{n:'Pale Wheat',c:'F2194'},{n:'Stone',c:'F2195'},{n:'Khaki Sage',c:'F2196'}]},
+    {name:'Brill RD', colors:[{n:'Titanium',c:'F2232'},{n:'Birch',c:'F2233'},{n:'Walnut',c:'F2234'},{n:'Steel',c:'F2235'}]},
+    {name:'Etch RD', colors:[{n:'White',c:'F2201'},{n:'Gray',c:'F2202'}]},
+    {name:'Leah RD', colors:[{n:'White',c:'F2260'},{n:'Cornfield',c:'F2261'},{n:'Oatmeal',c:'F2262'},{n:'Fawn',c:'F2263'},{n:'Gray',c:'F2264'}]},
+    {name:'Cara RD', colors:[{n:'White',c:'F2244'},{n:'Nectar',c:'F2245'},{n:'Gray',c:'F2246'},{n:'Charcoal',c:'F2247'},{n:'Black',c:'F2248'}]},
+    {name:'Simplicity RD', colors:[{n:'White',c:'F2236'},{n:'Ecru',c:'F2237'},{n:'Gray',c:'F2238'}]}
   ],
   'solar': [
-    // Lakeview 1% — listed in Price Group 3 on spec but color codes not confirmed; add when codes available
     {name:'Lakeview 3%', colors:[{n:'Light Taupe',c:'F1270'},{n:'Sand Drift',c:'F1271'}]},
-    {name:'Lakeview 7%', colors:[{n:'Flax',c:'F1266'},{n:'Yellow Stone',c:'F1267'}]},
     {name:'Lakeview 10%', colors:[{n:'Frost Gray',c:'F1268'},{n:'Java',c:'F1269'}]},
     {name:'Meadows 1%', colors:[{n:'Travertine',c:'F1274'},{n:'Mushroom',c:'F1275'},{n:'Sun Buff',c:'F1276'}]},
     {name:'Meadows 3%', colors:[{n:'Rustic Brown',c:'F1272'},{n:'Earth Brown',c:'F1273'}]},
-    {name:'Jubilee 3%', colors:[
-      {n:'Sweet Cream',c:'F1277'},{n:'Steel Blue/Beige',c:'F1278'},{n:'Chestnut',c:'F1279'},
-      {n:'Egg Shell',c:'F1280'},{n:'Coal',c:'F1281'}
-    ]},
-    {name:'Moon 5%', colors:[
-      {n:'Chalk',c:'F1519'},{n:'Pearl Linen',c:'F1520'},{n:'Pearl',c:'F1521'},{n:'Pearl Pewter',c:'F1522'},
-      {n:'Charcoal Chestnut',c:'F1523'},{n:'Charcoal Gray',c:'F1524'},{n:'Raven Black',c:'F1525'}
-    ]},
+    {name:'Moon 5%', colors:[{n:'Chalk',c:'F1519'},{n:'Pearl Linen',c:'F1520'},{n:'Pearl',c:'F1521'},{n:'Pearl Pewter',c:'F1522'},{n:'Charcoal Chestnut',c:'F1523'},{n:'Charcoal Gray',c:'F1524'},{n:'Raven Black',c:'F1525'}]},
     {name:'Serene 1%', colors:[{n:'Snow White',c:'F1158'},{n:'Silver',c:'F1150'},{n:'Umber',c:'F1149'},{n:'Steel',c:'F1151'}]},
     {name:'Serene 3%', colors:[{n:'Snow White',c:'F1232'},{n:'Silver',c:'F1233'},{n:'Umber',c:'F1234'},{n:'Steel',c:'F1235'}]},
-    {name:'Serene 7%', colors:[{n:'Snow White',c:'F1240'},{n:'Silver',c:'F1241'},{n:'Umber',c:'F1242'},{n:'Steel',c:'F1243'}]},
     {name:'Flow 1%', colors:[{n:'Polar White',c:'F1244'},{n:'Wheat',c:'F1245'},{n:'Quarry Stone',c:'F1246'},{n:'Ink',c:'F1247'}]},
     {name:'Flow 5%', colors:[{n:'Polar White',c:'F1159'},{n:'Wheat',c:'F1152'},{n:'Quarry Stone',c:'F1154'},{n:'Ink',c:'F1153'}]},
     {name:'Flow 7%', colors:[{n:'Polar White',c:'F1248'},{n:'Wheat',c:'F1249'},{n:'Quarry Stone',c:'F1250'},{n:'Ink',c:'F1251'}]},
-    {name:'Windsong 1%', colors:[{n:'Soft White',c:'F1252'},{n:'Canvas',c:'F1253'},{n:'Graphite',c:'F1254'},{n:'Raven Black',c:'F1255'}]},
-    {name:'Windsong 5%', colors:[
-      {n:'Soft White',c:'F1260'},{n:'Canvas',c:'F1261'},{n:'Nickel',c:'F1262'},
-      {n:'Graphite',c:'F1263'},{n:'Eclipse',c:'F1264'},{n:'Raven Black',c:'F1265'}
-    ]},
-    {name:'Breeze Screen 1% ⚠ Linen', colors:[
-      {n:'Linen Flax',c:'F1780'},{n:'Linen Khaki',c:'F1782'},{n:'Linen Dune',c:'F1783'},
-      {n:'Linen Graphite',c:'F1784'},{n:'Linen Almond Milk',c:'F1785'},{n:'Linen Stone',c:'F1786'},
-      {n:'Linen Cloud',c:'F1846'},{n:'Linen Warm Ivory',c:'F1850'}
-    ]},
-    {name:'Breeze Screen 3% ⚠ Linen', colors:[
-      {n:'Linen Flax',c:'F1787'},{n:'Linen Khaki',c:'F1789'},{n:'Linen Dune',c:'F1790'},
-      {n:'Linen Graphite',c:'F1791'},{n:'Linen Almond Milk',c:'F1792'},{n:'Linen Stone',c:'F1793'},
-      {n:'Linen Cloud',c:'F1845'},{n:'Linen Warm Ivory',c:'F1849'}
-    ]},
-    {name:'Galaxy 3%', colors:[{n:'Soft White',c:'F1728'},{n:'Ash',c:'F1731'},{n:'Black',c:'F1727'}]}
+    {name:'Breeze Screen 1% ⚠ Linen', colors:[{n:'Linen Flax',c:'F1780'},{n:'Linen Khaki',c:'F1782'},{n:'Linen Almond Milk',c:'F1785'},{n:'Linen Stone',c:'F1786'},{n:'Linen Graphite',c:'F1784'},{n:'Linen Cloud',c:'F1846'},{n:'Linen Warm Ivory',c:'F1850'},{n:'Linen Dune',c:'F1783'}]},
+    {name:'Breeze Screen 3% ⚠ Linen', colors:[{n:'Linen Flax',c:'F1787'},{n:'Linen Khaki',c:'F1789'},{n:'Linen Almond Milk',c:'F1792'},{n:'Linen Stone',c:'F1793'},{n:'Linen Graphite',c:'F1791'},{n:'Linen Cloud',c:'F1845'},{n:'Linen Warm Ivory',c:'F1849'},{n:'Linen Dune',c:'F1790'}]},
+    {name:'Galaxy 3%', colors:[{n:'Black',c:'F1727'},{n:'Soft White',c:'F1728'},{n:'Ash',c:'F1731'}]}
   ],
-  // Commercial solar — verified against Feb 2026 Norman Soluna PDF (pages 20 active fabric list).
-  // OLD F0355-F0369 variants (Pearl/Linen/Pewter/Chestnut/Gray in NA300): discontinued per appendix p.66 → NOT in picker
-  // NEW F1872/F1873/F1874 Charcoal (NA300) and F1875/F1876 Chalk (NA400 1%): ACTIVE ✓
-  // NA400 3%: F0381/F0382/F0384 — shown ACTIVE on PDF p.20 (no F1xxx replacement) ✓
-  // NA820 3%: F0407 Oyster/Pewter — shown ACTIVE on PDF p.20 ✓
-  // NA400 5%: F0388/F0390 — shown ACTIVE on PDF p.20 ✓
-  // NA400 10%: F0396 Charcoal — shown ACTIVE on PDF p.20 ✓
-  // Note: appendix also lists F0396/F0407/F0381-F0390 under old "A400"/"A820" naming — these are
-  // the same products now listed as "NA400"/"NA820" in the current Feb 2026 active catalog.
   'commercial': [
-    {name:'NA300 1%', colors:[{n:'Charcoal',c:'F1872'}]},
-    {name:'NA400 1%', colors:[{n:'Chalk',c:'F1875'},{n:'Chalk/Beige',c:'F1876'}]},
-    {name:'NA300 3%', colors:[{n:'Charcoal',c:'F1873'}]},
+    {name:'NA300 1%', colors:[{n:'Pearl',c:'F0355'},{n:'Pearl/Linen',c:'F0356'},{n:'Pearl/Pewter',c:'F0357'},{n:'Charcoal/Chestnut',c:'F0358'},{n:'Charcoal/Gray',c:'F0359'},{n:'Charcoal',c:'F1872'}]},
+    {name:'NA400 1%', colors:[{n:'Charcoal/Chestnut',c:'F0379'},{n:'Charcoal',c:'F0378'},{n:'Chalk',c:'F1875'},{n:'Chalk/Beige',c:'F1876'}]},
+    {name:'NA300 3%', colors:[{n:'Pearl',c:'F0360'},{n:'Pearl/Linen',c:'F0361'},{n:'Pearl/Pewter',c:'F0362'},{n:'Charcoal/Chestnut',c:'F0363'},{n:'Charcoal/Gray',c:'F0364'},{n:'Charcoal',c:'F1873'}]},
     {name:'NA400 3%', colors:[{n:'Chalk',c:'F0381'},{n:'Chalk/Beige',c:'F0382'},{n:'Charcoal',c:'F0384'}]},
     {name:'NA820 3%', colors:[{n:'Oyster/Pewter',c:'F0407'}]},
-    {name:'NA300 5%', colors:[{n:'Charcoal',c:'F1874'}]},
+    {name:'NA300 5%', colors:[{n:'Pearl',c:'F0365'},{n:'Pearl/Linen',c:'F0366'},{n:'Pearl/Pewter',c:'F0367'},{n:'Charcoal/Chestnut',c:'F0368'},{n:'Charcoal/Gray',c:'F0369'},{n:'Charcoal',c:'F1874'}]},
     {name:'NA400 5%', colors:[{n:'Chalk/Beige',c:'F0388'},{n:'Charcoal',c:'F0390'}]},
     {name:'NA400 10%', colors:[{n:'Charcoal',c:'F0396'}]}
   ],
-  // Designer: premium linen weaves and specialty collections (PG3/PG4)
-  // LF linen varieties at PG3; Kendra at PG4; RD linen varieties at PG3
-  // Breeze Screen (solar linen) stays in 'solar' — uses solar pricing matrix
+  // Designer: linen weaves and Kendra — priced off the fabric charts
   'designer': [
-    {name:'Kendra — Light Filtering (PG4)', colors:[{n:'LF Foliage',c:'F0890'}]},
-    {name:'Breeze Linen — Light Filtering (PG3)', colors:[
-      {n:'Linen Flax',c:'F0891'},{n:'Linen Natural',c:'F0893'},{n:'Linen Khaki',c:'F0894'},
-      {n:'Linen Dune',c:'F0895'},{n:'Linen Graphite',c:'F0896'},{n:'Linen Almond Milk',c:'F0927'},
-      {n:'Linen Stone',c:'F1778'},{n:'Linen Cloud',c:'F1847'},{n:'Linen Warm Ivory',c:'F1851'}
-    ]},
-    {name:'Clarissa — Light Filtering (PG3)', colors:[
-      {n:'Wheat',c:'F0870'},{n:'Platinum',c:'F0871'},{n:'Tobacco Brown',c:'F0872'},
-      {n:'Sable Brown',c:'F0873'},{n:'Burlap',c:'F0874'},{n:'Porcelain',c:'F0928'},
-      {n:'Powder',c:'F1532'},{n:'Steel',c:'F1533'},{n:'Silver Satin',c:'F1534'},
-      {n:'Golden Straw',c:'F1535'},{n:'Coffee Bean',c:'F1536'},{n:'Coal',c:'F1550'}
-    ]},
-    {name:'Summerland Linen — Blackout (PG3)', colors:[
-      {n:'Pearl',c:'F1510'},{n:'Maize',c:'F1511'},{n:'Sterling',c:'F1512'}
-    ]},
-    {name:'Breeze Linen — Blackout (PG3)', colors:[
-      {n:'Linen Flax',c:'F1768'},{n:'Linen Natural',c:'F1769'},{n:'Linen Khaki',c:'F1770'},
-      {n:'Linen Dune',c:'F1771'},{n:'Linen Graphite',c:'F1772'},{n:'Linen Almond Milk',c:'F1773'},
-      {n:'Linen Stone',c:'F1779'},{n:'Linen Cloud',c:'F1848'},{n:'Linen Warm Ivory',c:'F1852'}
-    ]}
+    {name:'Kendra — Light Filtering (PG3)', colors:[{n:'LF Foliage',c:'F0890'}]},
+    {name:'Breeze Linen — Light Filtering (PG3)', colors:[{n:'Linen Flax',c:'F0891'},{n:'Linen Natural',c:'F0893'},{n:'Linen Khaki',c:'F0894'},{n:'Linen Dune',c:'F0895'},{n:'Linen Graphite',c:'F0896'},{n:'Linen Almond Milk',c:'F0927'},{n:'Linen Stone',c:'F1778'},{n:'Linen Cloud',c:'F1847'},{n:'Linen Warm Ivory',c:'F1851'}]},
+    {name:'Clarissa — Light Filtering (PG3)', colors:[{n:'Wheat',c:'F0870'},{n:'Platinum',c:'F0871'},{n:'Tobacco Brown',c:'F0872'},{n:'Sable Brown',c:'F0873'},{n:'Burlap',c:'F0874'},{n:'Porcelain',c:'F0928'},{n:'Powder',c:'F1532'},{n:'Steel',c:'F1533'},{n:'Silver Satin',c:'F1534'},{n:'Golden Straw',c:'F1535'},{n:'Coffee Bean',c:'F1536'},{n:'Coal',c:'F1550'}]},
+    {name:'Summerland Linen — Blackout (PG3)', colors:[{n:'Pearl',c:'F1510'},{n:'Maize',c:'F1511'},{n:'Sterling',c:'F1512'}]},
+    {name:'Breeze Linen — Blackout (PG3)', colors:[{n:'Linen Flax',c:'F1768'},{n:'Linen Natural',c:'F1769'},{n:'Linen Khaki',c:'F1770'},{n:'Linen Dune',c:'F1771'},{n:'Linen Graphite',c:'F1772'},{n:'Linen Almond Milk',c:'F1773'},{n:'Linen Stone',c:'F1779'},{n:'Linen Cloud',c:'F1848'},{n:'Linen Warm Ivory',c:'F1852'}]}
   ]
 };
 
@@ -1998,7 +1856,7 @@ async function submitRWBForm(btn) {
   var w         = document.getElementById('rwb-width').value;
   var h         = document.getElementById('rwb-height').value;
   var qty       = document.getElementById('rwb-qty').value;
-  var del       = document.querySelector('#grp-del-rwb .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim() || '';
+  var del       = pbDeliveryLabel(); // shared Delivery step (window.pbDelivery)
   var notes     = document.getElementById('rwb-notes').value.trim();
   var email     = document.getElementById('rwb-email').value.trim();
   var estEl     = document.getElementById('rwb-price-total');
@@ -2023,7 +1881,7 @@ async function submitFWBForm(btn) {
   var w     = document.getElementById('fwb-width').value;
   var h     = document.getElementById('fwb-height').value;
   var qty   = document.getElementById('fwb-qty').value;
-  var del   = document.querySelector('#grp-del-fwb .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim() || '';
+  var del   = pbDeliveryLabel(); // shared Delivery step (window.pbDelivery)
   var notes = document.getElementById('fwb-notes').value.trim();
   var email = document.getElementById('fwb-email').value.trim();
   var body  = 'Norman Faux Wood Blinds Quote Request\n\n'
@@ -2096,6 +1954,7 @@ function pbCalcPrice() {
   var addVal  = document.getElementById('pb-add-fascia');
   if (valOpts && addVal) valOpts.style.display = addVal.checked ? 'block' : 'none';
 
+  window._pbBasicEstimate = null; // last priced config, read by pbBasicAddToCart()
   if (!hasPricing || !w || !h) { box.style.display='none'; return; }
 
   var qty = parseInt(document.getElementById('pb-qty-inp').value) || 1;
@@ -2110,7 +1969,11 @@ function pbCalcPrice() {
   };
 
   if (!result) {
-    box.innerHTML='<div style="font-size:12px;color:var(--gold)">⚠ Width or height exceeds standard sizes — custom quote required. Submit the form and Justin will price this for you.</div>';
+    // Write into the rows (not box.innerHTML) so #pb-price-rows / #pb-price-total
+    // survive — replacing the box used to make every later keystroke throw.
+    document.getElementById('pb-price-rows').innerHTML = '<div style="font-size:12px;color:var(--gold)">⚠ Width or height exceeds standard sizes — custom quote required. Submit the form and Justin will price this for you.</div>';
+    document.getElementById('pb-price-total').textContent = '—';
+    document.getElementById('pb-price-note').textContent = '';
     box.style.display='block'; return;
   }
 
@@ -2173,15 +2036,10 @@ function pbCalcPrice() {
     { label:'Quantity',    value: (parseInt(document.getElementById('pb-qty-inp').value)||1)+' shade(s)' },
     { label:'Freight',     value: isOversized ? rollerFreight.label + ' — $' + freight : 'Standard ($25 first + $11 ea.)' }
   ];
-  pbRenderEstimate('pb-price-box', selLines, grandTotal, '', function(checkout) {
-    pbCollectItem('Basic Roller Shade', selLines, grandTotal, gPB('pb-grp-operation')==='Motorized');
-    pbOpenCart();
-    if (checkout) {
-      setTimeout(function(){
-        var f=document.getElementById('pb-cart-foot'); if(f) f.style.display='block';
-      }, 150);
-    }
-  });
+  // The shared estimate panel (pbRenderEstimate) used to render here with its own
+  // Add to Cart + Submit pair, competing with the "Your details" step. The same
+  // cart item is now added by pbBasicAddToCart() from the final step's button.
+  window._pbBasicEstimate = { lines: selLines, total: grandTotal, motorized: gPB('pb-grp-operation') === 'Motorized' };
 }
 
 const PB_FABRICS = {
@@ -2219,7 +2077,9 @@ function pbRenderFabricColors() {
   var typeBtn = document.querySelector('#pb-grp-fabric-type .opt-btn.sel');
   var type = typeBtn ? typeBtn.textContent.trim() : 'Linen Blend';
   var colors = PB_FABRICS[type] || [];
-  var html = '<div style="display:flex;flex-wrap:wrap;gap:6px">';
+  // The wrapper carries the group id so selOpt() clears the previous pick and
+  // submitPBForm's gPB('pb-grp-fabric-color') can read the chosen color.
+  var html = '<div class="opt-row" id="pb-grp-fabric-color" style="flex-wrap:wrap">';
   colors.forEach(function(c) {
     html += '<button class="opt-btn" style="font-size:11px;display:inline-flex;align-items:center" onclick="selOpt(this,\'pb-grp-fabric-color\')">' + colorDot(c) + c + '</button>';
   });
@@ -2350,37 +2210,13 @@ const RN_SURCHARGE_FABRIC_8     = [182,193,209,220,236,252,273,295,321,343,370,3
 const RN_SURCHARGE_RACEWAY      = [54,59,65,70,70,75,81,91,97,107,113,118,129,145,156,null,null];
 
 // Map: collection name → price group (verified against Feb 2026 PDF catalog)
+// Price group per collection name (Sept 2026 fabric list). Solar vs fabric chart is chosen by rnFabricType.
+const RN_COLL_PG = {
+  'Sheer':2, 'Dazzle':2, 'Scarlett':1, 'Lakeshore':2, 'Kendra — Light Filtering (PG3)':3, 'Breeze Linen — Light Filtering (PG3)':3, 'Valerie':2, 'Emery':2, 'Brook':1, 'Chelsea':1, 'Sierra':2, 'Clarissa — Light Filtering (PG3)':3, 'Verona LF':1, 'Callie':1, 'Remy':2, 'Ohara':2, 'Waikiki':2, 'Olivia':3, 'Rockville':2, 'Brill':2, 'Etch':3, 'Leah':1, 'Cara':1, 'Charlotte':2, 'Springtide':4, 'Garden':3, 'Elements White Backing':1, 'Elements':1, 'Jamaica':2, 'Fiji':2, 'Lola BO':3, 'Summerland Linen — Blackout (PG3)':3, 'Cory':3, 'Callie RD':1, 'Remy RD':3, 'Francis RD':2, 'Breeze Linen — Blackout (PG3)':3, 'Amelia RD':2, 'Ohara RD':3, 'Waikiki RD':3, 'Olivia RD':4, 'Rockville RD':3, 'Brill RD':3, 'Etch RD':4, 'Leah RD':2, 'Cara RD':2, 'Simplicity RD':3, 'Bali':2, 'Phuket':2, 'Java':2, 'Riviera':2, 'Maui Natural':3, 'Catalina':1, 'Cove':3, 'Lakeview 3%':3, 'Lakeview 10%':3, 'Meadows 1%':3, 'Meadows 3%':3, 'Moon 5%':2, 'Serene 1%':2, 'Serene 3%':2, 'Flow 1%':2, 'Flow 5%':2, 'Flow 7%':1, 'Breeze Screen 1%':2, 'Breeze Screen 3%':2, 'Galaxy 3%':3, 'NA300 1%':2, 'NA400 1%':2, 'NA300 3%':1, 'NA400 3%':1, 'NA820 3%':2, 'NA300 5%':1, 'NA400 5%':1, 'NA400 10%':1
+};
 function rnGetPriceGroup() {
-  const c = (currentRollerColl || '').toLowerCase();
-  // SOLAR PG3: Lakeview • Meadows • Jubilee • Galaxy
-  if (c.includes('lakeview')||c.includes('meadows')||c.includes('jubilee')||c.includes('galaxy')) return 3;
-  // SOLAR PG1: Serene 7 • Flow 7 • Windsong 5 • NA400 3/5/10% • NA300 3/5%
-  if (c.includes('serene 7')||c.includes('flow 7')||c.includes('windsong 5')||
-      c.includes('na400 3')||c.includes('na400 5')||c.includes('na400 10')||
-      c.includes('na300 3')||c.includes('na300 5')) return 1;
-  // SOLAR PG2: Serene 1/3 • Flow 1/5 • Windsong 1 • Moon • Breeze Screen • NA300 1% • NA400 1% • NA820
-  if (c.includes('serene 1')||c.includes('serene 3')||c.includes('flow 1')||c.includes('flow 5')||
-      c.includes('windsong 1')||c.includes('moon')||c.includes('breeze screen')||
-      c.includes('na300 1')||c.includes('na400 1')||c.includes('na820')||
-      (rnFabricType==='commercial'&&(c.includes('1%')||c.includes('na820')))) return 2;
-  // FABRIC PG4: Kendra only
-  if (c.includes('kendra')) return 4;
-  // FABRIC PG3: Caroline • Aruba • Maui • Cove • Breeze LF • Clarissa
-  //             Lola BO • Garden • Breeze RD • Remy RD • Summerland • Cory
-  if (c.includes('aruba')||c.includes('caroline')||c.includes('maui')||c.includes('cove')||
-      c.includes('clarissa')||c.includes('breeze')||c.includes('lola bo')||
-      c.includes('summerland')||c.includes('cory')||c.includes('garden')||
-      c.includes('remy rd')) return 3;
-  // FABRIC PG1: Brook • Chelsea • Verona LF • Callie • Callie RD • Elements • Scarlett • Catalina
-  if (c.includes('brook')||c.includes('chelsea')||c.includes('callie')||
-      c.includes('elements')||c.includes('verona')||c.includes('scarlett')||
-      c.includes('catalina')) return 1;
-  // Commercial solar default → PG1 (NA300/NA400 3/5/10%)
-  if (rnFabricType === 'commercial') return 1;
-  // FABRIC PG2: everything else (Samoa, Phuket, Bora Bora, Sumatra, Java, Bali, Riviera,
-  //             Lake Tahoe, Francis, Hayes, Valerie, Emery, Sierra, Shimmer, Amelia,
-  //             Lola LF, Remy, Jamaica, Bermuda, Fiji, Francis RD, Amelia RD, Sheer, Dazzle, Lakeshore)
-  return 2;
+  const pg = RN_COLL_PG[(currentRollerColl || '').replace(/ ⚠.*$/, '')];
+  return pg || 2;
 }
 
 function rnLookupPrice(w, h, overrideFabType) {
@@ -2420,7 +2256,7 @@ const RN_FABRIC_NOTES = {
   sheer:      'Sheer: minimal privacy, maximum view-through. Works with all standard systems.',
   lf:         'Light Filtering: diffused light, medium privacy. Works with all systems.',
   natural:    '⚠ Natural fabrics (bamboo, jute, paper blends) may show variation, bowing, fraying, color shift over time — these are normal material characteristics and not defects.',
-  rd:         'Blackout: high privacy, coated backing. ⚠ Alone it still allows edge light gaps — add Full Blackout Side Channels in Step 7 for the darkest result.',
+  rd:         'Blackout: high privacy, coated backing. ⚠ Alone it still allows edge light gaps — add Full Blackout Side Channels in Step 6 for the darkest result.',
   designer:   '⚠ Linen weaves: natural variation in texture, color, and drape is normal. LF designer fabrics at PG3–PG4 pricing; RD linen varieties also available. Breeze Screen (solar linen) is in the Solar Screen category.',
   solar:      'Solar Screen: UV and glare control. Openness factor = % of light allowed through. ⚠ ±10% tolerance is industry standard — not a defect.',
   commercial: 'Commercial Solar (NA series): PVC/polyester construction rated for high UV environments. Same openness rules as residential solar.'
@@ -2554,10 +2390,9 @@ function selCellDnFabric(el, position, ci, ki, fabType) {
 // ─── selRnFabric ─────────────────────────────────────────────
 // Handles click on fabric card (visual selection + logic)
 function selRnFabric(el, type) {
-  document.querySelectorAll('.rn-fabric-card').forEach(function(c) {
-    c.classList.remove('rn-fc-sel');
-  });
-  el.classList.add('rn-fc-sel');
+  // Step 3 is now a row of .opt-btn pills (was .rn-fabric-card cards), so the
+  // email's g('rn-grp-fabric') read finally finds the selected fabric type.
+  selOpt(el, 'rn-grp-fabric');
   rnSetFabric(type);
 }
 
@@ -2973,7 +2808,7 @@ function rnRunValidation() {
   var isRdFabric = rnFabricType === 'rd' ||
     (rnFabricType === 'designer' && pbIsBlackoutLabel(currentRollerColl || ''));
   if (pbIsFullBlackoutLabel(lgType) && !isRdFabric) {
-    errors.push('Full Blackout Side Channels require a Blackout fabric to be effective. Select Blackout (or a Designer Blackout collection) in Step 2.');
+    errors.push('Full Blackout Side Channels require a Blackout fabric to be effective. Select Blackout (or a Designer Blackout collection) in Step 3.');
   }
   if (rnSystemType === 'dual' || rnSystemType === 'dn') {
     warnings.push('Dual / Day & Night shades require extra mounting depth — confirm depth at order. Price calculated as two individual shades.');
@@ -3264,8 +3099,7 @@ async function rnSubmitForm(btn) {
   const w       = (document.getElementById('rn-width')    || {}).value;
   const h       = (document.getElementById('rn-height')   || {}).value;
   const qty     = (document.getElementById('rn-qty')      || {}).value || 1;
-  const delBtn  = document.querySelector('#grp-del-rn .delivery-opt-card.sel');
-  const delivery = delBtn ? delBtn.querySelector('.delivery-opt-title').textContent.trim() : 'Ship to me';
+  const delivery = pbDeliveryLabel(); // shared Delivery step (window.pbDelivery)
 
   const g = function(id) { const b = document.querySelector('#' + id + ' .opt-btn.sel'); return b ? b.textContent.trim() : '—'; };
 
@@ -3369,7 +3203,7 @@ async function submitExteriorForm(btn) {
   var h       = document.getElementById('ext-height').value;
   var qty     = document.getElementById('ext-qty').value;
   var motorReq= document.getElementById('ext-motor-req').value.trim();
-  var delivery= (document.querySelector('#grp-del-ext .delivery-opt-card.sel')?.querySelector('.delivery-opt-title')?.textContent.trim()) || 'Ship to me';
+  var delivery= pbDeliveryLabel(); // shared Delivery step (window.pbDelivery)
   var body = 'EXTERIOR ROLLER SHADE QUOTE\n' +
     '=====================================\n' +
     'Name:  ' + name + '\nPhone: ' + phone +
@@ -3685,4 +3519,243 @@ async function _apiSubmit(name, email, phone, productName, configText, successId
     var row=btn.closest('[data-goto]');
     if(row) scrollTo(row.dataset.goto);
   });
-})();
+})();
+
+// ════════════════════════════════════════════════════════════════
+// CONFIGURATOR STANDARD FRAME (2026-09-23) — shared Delivery sync, summary
+// cards and the "+ Add to Cart" handlers for the five flows a customer can
+// reach on this page: Norman roller (rn-), Basic roller (pb-), exterior
+// (ext-), faux wood (fwb-), real wood (rwb-). Prices are untouched — the cart
+// handlers read the figures the existing price engines already produced.
+// ════════════════════════════════════════════════════════════════
+
+// Every flow has its own copy of the Delivery cards; the choice itself lives
+// in window.pbDelivery (shared.js). Keep all copies showing the same pick.
+function shSyncDelivery() {
+  var idx = window.pbDelivery === 'install' ? 1 : 0;
+  document.querySelectorAll('.sh-delivery .delivery-opt-grid').forEach(function (g) {
+    g.querySelectorAll('.delivery-opt-card').forEach(function (c, i) { c.classList.toggle('sel', i === idx); });
+  });
+}
+
+// Basic roller "Metal fascia add-on" pills drive the hidden checkbox pbCalcPrice() reads.
+function pbSetFasciaAddon(el, on) {
+  selOpt(el, 'pb-grp-fascia-addon');
+  var cb = document.getElementById('pb-add-fascia');
+  if (cb) cb.checked = !!on;
+  pbCalcPrice();
+}
+
+function _shOpt(grpId) {
+  var b = document.querySelector('#' + grpId + ' .opt-btn.sel');
+  return b ? b.textContent.replace(/\s+/g, ' ').trim() : '—';
+}
+function _shVal(id) { var e = document.getElementById(id); return e ? (e.value || '').trim() : ''; }
+function _shSize(wId, hId) {
+  var w = _shVal(wId), h = _shVal(hId);
+  return (w && h) ? w + '″ W × ' + h + '″ H' : '—';
+}
+function _shRwbColor() {
+  var t = _shOpt('rwb-grp-colortype');
+  var grp = /Premium/.test(t) ? 'rwb-grp-premcol' : /Stain/.test(t) ? 'rwb-grp-staincol' : 'rwb-grp-paintcol';
+  return _shOpt(grp);
+}
+
+// Summary cards (right column). Each lists Product · Size · Mount · Qty, then
+// the flow's key choices. Price boxes inside the cards are run by the existing
+// engines; the note below them shows only while there is no figure yet.
+var SH_SUMMARIES = {
+  'pb-summary': { product: 'Basic Roller Shade', w: 'pb-width', h: 'pb-height', mount: 'pb-grp-mount', qty: 'pb-qty-inp',
+    opts: [['Configuration', 'pb-grp-config'], ['Fabric', 'pb-grp-fabric'], ['Fabric type', 'pb-grp-fabric-type'],
+           ['Headrail', 'pb-grp-fascia'], ['Operation', 'pb-grp-operation']],
+    priceBox: 'pb-price-box', note: 'pb-summary-note' },
+  'ext-summary': { product: 'Exterior Roller Shade', w: 'ext-width', h: 'ext-height', mount: 'ext-grp-mount', qty: 'ext-qty',
+    opts: [['Openness', 'ext-grp-openness'], ['Color', 'ext-grp-color'], ['Side channels', 'ext-grp-channels'],
+           ['Operation', 'ext-grp-op'], ['Fabric', 'ext-grp-fabric']] },
+  'fwb-summary': { product: 'Norman Faux Wood Blinds', w: 'fwb-width', h: 'fwb-height', mount: 'fwb-grp-mount', qty: 'fwb-qty',
+    opts: [['Slat size', 'fwb-grp-slat'], ['Color family', 'fwb-grp-color'], ['Operation', 'fwb-grp-op']] },
+  'rwb-summary': { product: 'Norman Normandy® Real Wood Blinds', w: 'rwb-width', h: 'rwb-height', mount: 'rwb-grp-mount', qty: 'rwb-qty',
+    opts: [['Slat size', 'rwb-grp-slat'], ['Finish', 'rwb-grp-colortype'], ['Color', _shRwbColor],
+           ['Wand side', 'rwb-grp-wand'], ['Valance', 'rwb-grp-valance']],
+    priceBox: 'rwb-price-box', note: 'rwb-summary-note' }
+};
+function shUpdateSummaries() {
+  Object.keys(SH_SUMMARIES).forEach(function (id) {
+    var card = document.getElementById(id);
+    if (!card) return;
+    var c = SH_SUMMARIES[id];
+    var rows = [['Product', c.product], ['Size', _shSize(c.w, c.h)], ['Mount', _shOpt(c.mount)], ['Qty', _shVal(c.qty) || '1']];
+    c.opts.forEach(function (o) { rows.push([o[0], typeof o[1] === 'function' ? o[1]() : _shOpt(o[1])]); });
+    var box = card.querySelector('.sh-sum-rows');
+    if (box) box.innerHTML = rows.map(function (r) {
+      return '<div class="summary-row"><span class="sr-key">' + r[0] + '</span><span class="sr-val">' + r[1] + '</span></div>';
+    }).join('');
+    if (c.priceBox && c.note) {
+      var pb = document.getElementById(c.priceBox), nt = document.getElementById(c.note);
+      if (pb && nt) nt.style.display = (pb.style.display === 'none' || !pb.style.display) ? 'block' : 'none';
+    }
+  });
+  var rnMount = document.getElementById('rn-pb-mount');
+  if (rnMount) rnMount.textContent = _shOpt('rn-grp-mount');
+}
+(function () {
+  var t = null;
+  function later() { clearTimeout(t); t = setTimeout(function () { try { shUpdateSummaries(); } catch (e) {} }, 0); }
+  document.addEventListener('click', later);
+  document.addEventListener('input', later);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', later); else later();
+})();
+
+// Per-flow notes + files go on the cart item (pbAddToCart only fills them in
+// from the FIRST .pb-cart-extras on the page, which on this multi-flow page is
+// the Norman roller's block, not necessarily the one the customer typed in).
+function _shCartItem(prefix, product, lines, price, quoteOnly) {
+  var item = {
+    product: product,
+    lines: lines,
+    specs: lines.map(function (l) { return l.label + ': ' + l.value; }).join(' | '),
+    price: price || null,
+    qty: 1
+  };
+  if (quoteOnly) item.quoteOnly = true;
+  var n = document.getElementById(prefix + 'notes');
+  if (n && n.value.trim()) item.notes = n.value.trim();
+  var f = document.getElementById(prefix + 'files');
+  if (f && f.files && f.files.length) item._files = Array.prototype.slice.call(f.files);
+  return item;
+}
+function _shMoney(id) {
+  var e = document.getElementById(id);
+  var v = e ? parseFloat((e.textContent || '').replace(/[^0-9.]/g, '')) : NaN;
+  return isFinite(v) && v > 0 ? v : null;
+}
+function _shNeedSize(wId, hId) {
+  if (_shVal(wId) && _shVal(hId)) return true;
+  alert('Please enter your width and height in Step 1 first.');
+  var el = document.getElementById(wId); if (el) { try { el.focus(); } catch (e) {} }
+  return false;
+}
+
+function rnAddToCart() {
+  if (!_shNeedSize('rn-width', 'rn-height')) return;
+  rnUpdatePrice();
+  var g = _shOpt;
+  var isDual = (rnSystemType === 'dual' || rnSystemType === 'dn');
+  var lines = [
+    { label: 'Product',    value: 'Premier Norman Roller Shade' },
+    { label: 'Size',       value: _shSize('rn-width', 'rn-height') },
+    { label: 'Mount',      value: g('rn-grp-mount') },
+    { label: 'Quantity',   value: _shVal('rn-qty') || '1' },
+    { label: 'System',     value: g('rn-grp-system') }
+  ];
+  if (isDual) {
+    lines.push({ label: 'Front roll', value: g('rn-grp-day-type') + (currentRollerColl ? ' — ' + currentRollerColl + (currentRollerColor ? ' ' + currentRollerColor : '') : '') });
+    lines.push({ label: 'Back roll',  value: 'Blackout' });
+  } else {
+    lines.push({ label: 'Fabric type', value: g('rn-grp-fabric') });
+    lines.push({ label: 'Fabric',      value: currentRollerColl ? currentRollerColl + (currentRollerColor ? ' — ' + currentRollerColor : '') : 'To be selected' });
+  }
+  lines.push({ label: 'Lift system', value: g('rn-grp-lift') });
+  if (rnLiftType === 'motor' && typeof nmGetMotorSummary === 'function') lines.push({ label: 'Motor', value: nmGetMotorSummary() });
+  lines.push({ label: 'Headrail',       value: g('rn-grp-headrail') });
+  lines.push({ label: 'Side channels',  value: g('rn-grp-lg') });
+  lines.push({ label: 'Hem bar',        value: g('rn-grp-hem-type') });
+  lines.push({ label: 'Hardware color', value: g('rn-grp-hw-color') });
+  if (rnLiftType === 'cord') lines.push({ label: 'Chain color', value: g('rn-grp-chain-color') });
+  pbAddToCart(_shCartItem('rn-sf-', 'Premier Norman Roller Shade', lines, _shMoney('rn-pb-total'), false));
+  pbOpenCart();
+}
+
+function pbBasicAddToCart() {
+  if (!_shNeedSize('pb-width', 'pb-height')) return;
+  pbCalcPrice();
+  var est = window._pbBasicEstimate;
+  var lines;
+  if (est) {
+    lines = est.lines.slice();
+  } else {
+    lines = [
+      { label: 'Product',     value: 'Basic Roller Shade' },
+      { label: 'Fabric type', value: _shOpt('pb-grp-fabric-type') },
+      { label: 'Size',        value: _shSize('pb-width', 'pb-height') },
+      { label: 'Operation',   value: _shOpt('pb-grp-operation') },
+      { label: 'Fascia',      value: _shOpt('pb-grp-fascia') },
+      { label: 'End caps',    value: _shOpt('pb-grp-endcap') },
+      { label: 'Mount',       value: _shOpt('pb-grp-mount') },
+      { label: 'Quantity',    value: (_shVal('pb-qty-inp') || '1') + ' shade(s)' }
+    ];
+  }
+  lines.push({ label: 'Configuration',  value: _shOpt('pb-grp-config') });
+  lines.push({ label: 'Fabric source',  value: _shOpt('pb-grp-fabric') });
+  if (_shOpt('pb-grp-fabric-color') !== '—') lines.push({ label: 'Color', value: _shOpt('pb-grp-fabric-color') });
+  lines.push({ label: 'Hardware color', value: _shOpt('pb-grp-hw-color') });
+  lines.push({ label: 'Control side',   value: _shOpt('pb-grp-control') });
+  var fn = _shVal('pb-fabric-notes');
+  if (fn) lines.push({ label: 'Fabric notes', value: fn });
+  var item = _shCartItem('pb-', 'Basic Roller Shade', lines, est ? est.total : null, !est);
+  item.needsApproval = false;
+  // Same path the old estimate-panel button used: motorized items go through the
+  // shared motor-options modal first.
+  pbAddToCartWithMotor(item, _shOpt('pb-grp-operation') === 'Motorized');
+  pbOpenCart();
+}
+
+function extAddToCart() {
+  if (!_shNeedSize('ext-width', 'ext-height')) return;
+  var motorReq = _shVal('ext-motor-req');
+  var isMotor = /motor/i.test(_shOpt('ext-grp-op'));
+  var lines = [
+    { label: 'Product',       value: 'Exterior Roller Shade' },
+    { label: 'Size',          value: _shSize('ext-width', 'ext-height') },
+    { label: 'Mount',         value: _shOpt('ext-grp-mount') },
+    { label: 'Quantity',      value: _shVal('ext-qty') || '1' },
+    { label: 'Openness',      value: _shOpt('ext-grp-openness') },
+    { label: 'Color',         value: _shOpt('ext-grp-color') },
+    { label: 'Housing',       value: 'Cassette (standard)' },
+    { label: 'Side channels', value: _shOpt('ext-grp-channels') },
+    { label: 'Operation',     value: _shOpt('ext-grp-op') },
+    { label: isMotor ? 'Motor side' : 'Hand crank side', value: _shOpt('ext-grp-control') }
+  ];
+  if (motorReq) lines.push({ label: 'Motor preference', value: motorReq });
+  lines.push({ label: 'Fabric', value: _shOpt('ext-grp-fabric') });
+  pbAddToCart(_shCartItem('ext-', 'Exterior Roller Shade', lines, null, true));
+  pbOpenCart();
+}
+
+function fwbAddToCart() {
+  if (!_shNeedSize('fwb-width', 'fwb-height')) return;
+  var op = _shOpt('fwb-grp-op');
+  var lines = [
+    { label: 'Product',          value: 'Norman Faux Wood Blinds' },
+    { label: 'Size',             value: _shSize('fwb-width', 'fwb-height') },
+    { label: 'Mount',            value: _shOpt('fwb-grp-mount') },
+    { label: 'Quantity',         value: _shVal('fwb-qty') || '1' },
+    { label: 'Slat size',        value: _shOpt('fwb-grp-slat') },
+    { label: 'Color family',     value: _shOpt('fwb-grp-color') },
+    { label: 'Operating system', value: op }
+  ];
+  if (/wand/i.test(op)) lines.push({ label: 'Wand side', value: _shOpt('fwb-grp-wand') });
+  pbAddToCart(_shCartItem('fwb-', 'Norman Faux Wood Blinds', lines, null, true));
+  pbOpenCart();
+}
+
+function rwbAddToCart() {
+  if (!_shNeedSize('rwb-width', 'rwb-height')) return;
+  rwbCalc();
+  var box = document.getElementById('rwb-price-box');
+  var priced = box && box.style.display !== 'none';
+  var lines = [
+    { label: 'Product',   value: 'Norman Normandy® Real Wood Blinds' },
+    { label: 'Size',      value: _shSize('rwb-width', 'rwb-height') },
+    { label: 'Mount',     value: _shOpt('rwb-grp-mount') },
+    { label: 'Quantity',  value: _shVal('rwb-qty') || '1' },
+    { label: 'Slat size', value: _shOpt('rwb-grp-slat') },
+    { label: 'Finish',    value: _shOpt('rwb-grp-colortype') },
+    { label: 'Color',     value: _shRwbColor() },
+    { label: 'Wand side', value: _shOpt('rwb-grp-wand') },
+    { label: 'Valance',   value: _shOpt('rwb-grp-valance') }
+  ];
+  var price = priced ? _shMoney('rwb-price-total') : null;
+  pbAddToCart(_shCartItem('rwb-', 'Norman Normandy® Real Wood Blinds', lines, price, !price));
+  pbOpenCart();
+}
