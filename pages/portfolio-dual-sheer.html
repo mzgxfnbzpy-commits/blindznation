@@ -29,38 +29,16 @@
 .hero-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
 
 /* STEP CARDS */
-.cfg-wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
-.step-block.done{border-color:#e8e8e4}
-.step-block.done:not(.active) .step-body{display:none}
-.step-block.done .step-done-row{display:flex}
-.step-done-row{display:none;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.step-done-val{font-size:13px;color:#444;font-weight:500}
-.step-edit-btn{font-size:11px;color:var(--gold);background:none;border:none;cursor:pointer;font-family:var(--font);padding:0;text-decoration:underline}
-.step-hd{display:flex;align-items:center;gap:12px;margin-bottom:16px}
-.step-title{font-size:14px;font-weight:600;color:#111;margin:0}
+.cfg-wrap{max-width:1100px;margin:0 auto;padding:32px 20px 60px}
+/* All steps are visible (no wizard); the step header layout is page-local, the classes are global. */
+.step-block{margin-bottom:22px}
+.step-hd{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.step-hd .step-title{margin:0}
 .step-sub{font-size:12px;color:#777;margin-top:3px}
-.step-note{font-size:11px;color:#888;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px;padding:9px 12px;margin-bottom:14px;line-height:1.6}
 .step-warn{font-size:11px;color:#7a3a00;background:#fff7ed;border:1px solid #f0c070;border-radius:8px;padding:8px 12px;margin-bottom:12px;line-height:1.6;display:none}
 .step-warn.show{display:block}
 
-/* OPTION CHIPS / BUTTONS */
-.opt-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px}
-.opt-btn{background:#fff;border:1.5px solid #e0e0db;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:500;color:#333;cursor:pointer;transition:border-color .15s,background .15s;font-family:var(--font);text-align:left}
-.opt-btn:hover{border-color:var(--gold)}
-.opt-btn.sel{border:2px solid var(--gold);background:var(--gold-mid);color:var(--espresso)}
-.opt-btn.disabled{opacity:.35;pointer-events:none;text-decoration:line-through}
-.opt-btn-lg{min-width:160px;padding:12px 18px}
-.opt-btn-sm{padding:7px 12px;font-size:12px;border-radius:8px}
 
-/* FABRIC TYPE CARDS */
-.type-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px}
-@media(max-width:520px){.type-cards{grid-template-columns:1fr}}
-.type-card{background:#fff;border:1.5px solid #e0e0db;border-radius:12px;padding:16px 18px;cursor:pointer;transition:border-color .15s,box-shadow .15s;font-family:var(--font)}
-.type-card:hover{border-color:var(--gold)}
-.type-card.sel{border:2px solid var(--gold);background:var(--gold-mid)}
-.type-card-name{font-size:14px;font-weight:700;color:#111;margin-bottom:4px}
-.type-card.sel .type-card-name{color:var(--espresso)}
-.type-card-desc{font-size:12px;color:#888;line-height:1.5}
 
 /* FABRIC GRID */
 .pattern-grid{display:flex;flex-direction:column;gap:10px}
@@ -99,24 +77,10 @@
 .color-circle-btn::after{content:attr(data-label);position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);font-size:10px;color:#888;white-space:nowrap;font-family:var(--font)}
 .color-circles-wrap{padding-bottom:22px}
 
-/* CHECKBOXES */
-.check-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;cursor:pointer}
-.check-row input[type=checkbox]{width:16px;height:16px;margin-top:2px;flex-shrink:0;cursor:pointer;accent-color:var(--gold)}
-.check-label{font-size:13px;color:#333;line-height:1.5}
-.check-sub{font-size:11px;color:#888;margin-top:2px}
-.check-price{font-size:12px;color:var(--espresso);font-weight:600}
 
-/* QTY */
-.qty-wrap{display:flex;align-items:center;gap:0}
-.qty-btn{width:34px;height:34px;border:1px solid #ddd;background:#fff;font-size:18px;cursor:pointer;color:#333;font-family:var(--font);display:flex;align-items:center;justify-content:center;transition:background .1s}
-.qty-btn:first-child{border-radius:8px 0 0 8px}
-.qty-btn:last-child{border-radius:0 8px 8px 0}
-.qty-btn:hover{background:#f5f5f0}
-.qty-num{width:44px;text-align:center;border-top:1px solid #ddd;border-bottom:1px solid #ddd;border-left:none;border-right:none;height:34px;font-size:14px;font-weight:500;color:#111;font-family:var(--font);background:#fff}
-.qty-num:focus{outline:none}
 
 /* PRICE BOX */
-.price-box{background:var(--espresso-mid);border:0.5px solid var(--border-dark);border-radius:12px;padding:18px 20px;margin-top:6px;margin-bottom:20px}
+.price-box{background:var(--espresso-mid);border:0.5px solid var(--border-dark);border-radius:12px;padding:16px 16px;margin-top:14px}
 .price-box-head{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:12px}
 .price-line{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--text-dark);margin-bottom:6px}
 .price-line span:last-child{color:var(--cream)}
@@ -138,9 +102,6 @@ textarea.form-input{resize:vertical;min-height:80px}
 .submit-btn:hover{opacity:.88}
 .submit-btn:disabled{opacity:.4;cursor:not-allowed}
 
-/* NEXT STEP BUTTON */
-.next-btn{display:inline-block;background:var(--espresso);color:var(--gold);font-size:13px;font-weight:600;padding:10px 22px;border:none;border-radius:8px;cursor:pointer;font-family:var(--font);transition:opacity .15s;margin-top:12px}
-.next-btn:hover{opacity:.85}
 
 /* SIDE BY SIDE */
 .sbs-note{font-size:12px;color:#555;line-height:1.6;background:#f0f7ff;border:1px solid #c8dff5;border-radius:8px;padding:10px 12px;margin-bottom:12px}
@@ -184,6 +145,8 @@ textarea.form-input{resize:vertical;min-height:80px}
 </div>
 
 <div class="cfg-wrap">
+<div class="config-grid">
+<div id="pds-steps"><!-- left column: every step is visible; numbers are kept 1..N by pdsRenumber() -->
 
   <!-- STEP 1: WINDOW MEASUREMENTS & MOUNT -->
   <div class="step-block active" id="s1">
@@ -200,7 +163,6 @@ textarea.form-input{resize:vertical;min-height:80px}
         </div>
       </div>
       <div class="step-note" style="margin-bottom:10px"><a href="measure.html" style="color:var(--gold)">How to measure &rarr;</a> &bull; Approximate is fine — we confirm at the home visit.</div>
-      <div class="step-note" id="dim-note-mount">Measure your window opening. For Inside mount, ¼" will be deducted from width.</div>
       <div class="dim-hint" id="w-hint">Max width 110" · varies slightly by fabric</div>
       <div class="dim-err" id="w-err"></div>
       <div class="dim-err" id="h-err"></div>
@@ -209,10 +171,10 @@ textarea.form-input{resize:vertical;min-height:80px}
       <!-- Mount type -->
       <div style="font-size:12px;font-weight:600;color:#555;margin:14px 0 6px">Mount type</div>
       <div class="opt-row" id="mount-opts" style="margin-bottom:6px">
-        <button class="opt-btn opt-btn-lg" onclick="pickMount('inside',this)">Inside mount</button>
-        <button class="opt-btn opt-btn-lg" onclick="pickMount('outside',this)">Outside mount</button>
+        <button class="opt-btn sel" onclick="pickMount('inside',this)">Inside mount</button>
+        <button class="opt-btn" onclick="pickMount('outside',this)">Outside mount</button>
       </div>
-      <div class="step-note" style="margin-bottom:12px">Inside mount: shade installs inside the window frame — ¼" deducted from ordered width. Outside mount: shade mounts on the wall or frame above the window.</div>
+      <div class="step-note" id="dim-note-mount" style="margin-bottom:12px">Inside mount: enter the window opening size &mdash; we deduct &frac14;" from the shade width. Outside mount: enter the finished shade width and height.</div>
 
       <!-- Quantity (shared stepper) -->
       <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
@@ -222,67 +184,56 @@ textarea.form-input{resize:vertical;min-height:80px}
           <input class="qty-num" type="number" id="qty-inp" value="1" min="1" max="50" oninput="S.qty=parseInt(this.value)||1;updatePrice()">
           <button class="qty-btn" onclick="adjQty(1)">&#43;</button>
         </div>
-        <span style="font-size:12px;color:#666">shade(s) of this size &amp; fabric</span>
       </div>
-      <button class="next-btn" onclick="confirmStep1()" id="dim-next-btn">Continue</button>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d1"></span><button class="step-edit-btn" onclick="editStep(1)">Edit</button></div>
   </div>
 
   <!-- STEP 2: Fabric Type -->
   <div class="step-block" id="s2">
     <div class="step-hd">
       <div class="step-num">2</div>
-      <div><div class="step-title">Fabric Type</div><div class="step-sub">Choose light-filtering or Blackout</div></div>
+      <div><div class="step-title">Fabric type</div></div>
     </div>
     <div class="step-body">
-      <div class="type-cards">
-        <div class="type-card" onclick="pickType('LF',this)" id="tc-LF">
-          <div class="type-card-name">Light-Filtering</div>
-          <div class="type-card-desc">16 pattern families · Addison, Alaia, Albion, Asher, Theo &amp; more · Bands 3"–4¾"</div>
-        </div>
-        <div class="type-card" onclick="pickType('RD',this)" id="tc-RD">
-          <div class="type-card-name">Blackout</div>
-          <div class="type-card-desc">9 pattern families · Brantley, Briggs, Evlin, Kane, Lena &amp; more · Large bottom bar included</div>
-        </div>
+      <div class="opt-row" id="grp-type">
+        <button class="opt-btn" id="tc-LF" onclick="pickType('LF',this)">Light Filtering</button>
+        <button class="opt-btn" id="tc-RD" onclick="pickType('RD',this)">Blackout</button>
       </div>
+      <div class="step-note">Light Filtering: 16 pattern families &middot; Addison, Alaia, Albion, Asher, Theo &amp; more &middot; bands 3"&ndash;4&frac34;". Blackout: 9 pattern families &middot; Brantley, Briggs, Evlin, Kane, Lena &amp; more &middot; large bottom bar included.</div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d2"></span><button class="step-edit-btn" onclick="editStep(2)">Edit</button></div>
   </div>
 
   <!-- STEP 3: Fabric Pattern -->
   <div class="step-block" id="s3">
     <div class="step-hd">
       <div class="step-num">3</div>
-      <div><div class="step-title">Select Fabric &amp; Color</div><div class="step-sub">Group A is best value · Group E is premium</div></div>
+      <div><div class="step-title">Fabric &amp; color</div><div class="step-sub">Group A is best value · Group E is premium</div></div>
     </div>
     <div class="step-body">
-      <div id="fabric-grid" class="pattern-grid"></div>
+      <div id="fabric-grid" class="pattern-grid"><div class="step-note">Choose a fabric type above to see the fabrics.</div></div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d3"></span><button class="step-edit-btn" onclick="editStep(3)">Edit</button></div>
   </div>
 
   <!-- STEP 4: Cassette Profile -->
   <div class="step-block" id="s4">
     <div class="step-hd">
       <div class="step-num">4</div>
-      <div><div class="step-title">Cassette Profile</div></div>
+      <div><div class="step-title">Cassette profile</div></div>
     </div>
     <div class="step-body">
-      <div class="step-note">Rounded cassette comes standard with a fabric insert. Square cassette is unwrapped standard (fabric wrap available, +$80).</div>
       <div class="opt-row">
-        <button class="opt-btn opt-btn-lg" onclick="pickCassette('rounded',this)">Rounded <span style="font-size:11px;color:#888">(fabric insert standard)</span></button>
-        <button class="opt-btn opt-btn-lg" onclick="pickCassette('square',this)">Square <span style="font-size:11px;color:#888">(unwrapped standard)</span></button>
+        <button class="opt-btn" onclick="pickCassette('rounded',this)">Rounded</button>
+        <button class="opt-btn" onclick="pickCassette('square',this)">Square</button>
       </div>
+      <div class="step-note">Rounded: comes standard with a fabric insert. Square: unwrapped as standard (fabric wrap available, +$80).</div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d4"></span><button class="step-edit-btn" onclick="editStep(4)">Edit</button></div>
   </div>
 
   <!-- STEP 5: Cassette Color -->
   <div class="step-block" id="s5">
     <div class="step-hd">
       <div class="step-num">5</div>
-      <div><div class="step-title">Cassette &amp; Hardware Color</div><div class="step-sub">Bottom bar and cord color will match</div></div>
+      <div><div class="step-title">Cassette &amp; hardware color</div><div class="step-sub">Bottom bar and cord color will match</div></div>
     </div>
     <div class="step-body">
       <div class="color-circles-wrap">
@@ -296,158 +247,142 @@ textarea.form-input{resize:vertical;min-height:80px}
       </div>
       <div class="step-note" style="margin-top:8px">Tip: choose the color that matches your selected fabric's recommended component color: <strong id="rec-comp-color">—</strong></div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d5"></span><button class="step-edit-btn" onclick="editStep(5)">Edit</button></div>
   </div>
 
   <!-- STEP 6: Cassette Wrap (Square only) -->
-  <div class="step-block" id="s6">
+  <div class="step-block" id="s6" style="display:none">
     <div class="step-hd">
       <div class="step-num">6</div>
-      <div><div class="step-title">Square Cassette — Fabric Wrap</div></div>
+      <div><div class="step-title">Square cassette fabric wrap</div></div>
     </div>
     <div class="step-body">
-      <div class="step-note">Fabric wrap covers the square cassette in the shade fabric for a seamless look.</div>
       <div class="opt-row">
-        <button class="opt-btn opt-btn-lg" onclick="pickCassWrap(false,this)">Unwrapped <span style="font-size:11px;color:#888">(standard)</span></button>
-        <button class="opt-btn opt-btn-lg" onclick="pickCassWrap(true,this)">Fabric Wrapped <span style="font-size:11px;color:#888">(+$80)</span></button>
+        <button class="opt-btn sel" onclick="pickCassWrap(false,this)">Unwrapped</button>
+        <button class="opt-btn" onclick="pickCassWrap(true,this)">Fabric wrapped +$80</button>
       </div>
+      <div class="step-note">Unwrapped is standard. Fabric wrap covers the square cassette in the shade fabric for a seamless look (+$80).</div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d6"></span><button class="step-edit-btn" onclick="editStep(6)">Edit</button></div>
   </div>
 
   <!-- STEP 7: Bottom Bar -->
   <div class="step-block" id="s7">
     <div class="step-hd">
       <div class="step-num">7</div>
-      <div><div class="step-title">Bottom Bar</div></div>
+      <div><div class="step-title">Bottom bar</div></div>
     </div>
     <div class="step-body">
-      <div class="step-note" id="bb-note">Bottom bar color matches the cassette. Choose style and optional fabric wrap.</div>
+      <div class="step-note" id="bb-note">Bottom bar color matches the cassette. Choose a style and optional fabric wrap.</div>
       <div class="step-warn show" id="bb-large-warn" style="display:none">This fabric requires a large bottom bar. It is automatically included.</div>
       <div id="bb-style-wrap">
-        <div class="step-sub" style="margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Bar Style</div>
+        <div style="font-size:12px;font-weight:600;color:#555;margin:10px 0 6px">Bar style</div>
         <div class="opt-row" id="bb-style-opts">
           <button class="opt-btn" onclick="pickBBStyle('rounded',this)">Rounded</button>
           <button class="opt-btn" id="bb-sq-btn" onclick="pickBBStyle('square',this)">Square</button>
         </div>
       </div>
-      <div style="margin-top:14px">
-        <div class="step-sub" style="margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Fabric Wrap</div>
-        <div class="opt-row">
-          <button class="opt-btn" onclick="pickBBWrap(false,this)">Unwrapped <span style="font-size:11px;color:#888">(standard)</span></button>
-          <button class="opt-btn" onclick="pickBBWrap(true,this)" id="bb-wrap-yes-btn">Fabric Wrapped <span style="font-size:11px;color:#888" id="bb-wrap-price">(+$?)</span></button>
-        </div>
+      <div style="font-size:12px;font-weight:600;color:#555;margin:10px 0 6px">Fabric wrap</div>
+      <div class="opt-row">
+        <button class="opt-btn sel" onclick="pickBBWrap(false,this)">Unwrapped</button>
+        <button class="opt-btn" onclick="pickBBWrap(true,this)" id="bb-wrap-yes-btn">Fabric wrapped <span id="bb-wrap-price">(priced by width)</span></button>
       </div>
+      <div class="step-note">Unwrapped is standard. Fabric wrap is priced by shade width.</div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d7"></span><button class="step-edit-btn" onclick="editStep(7)">Edit</button></div>
   </div>
 
   <!-- STEP 8: Control Type -->
   <div class="step-block" id="s8">
     <div class="step-hd">
       <div class="step-num">8</div>
-      <div><div class="step-title">Control Type</div></div>
+      <div><div class="step-title">Control type</div></div>
     </div>
     <div class="step-body">
       <div class="opt-row" id="control-opts">
-        <button class="opt-btn opt-btn-lg" onclick="pickControl('clutch',this)">
-          <strong style="display:block">Clutch</strong>
-          <span style="font-size:11px;color:#888">Beaded chain loop, standard</span>
-        </button>
-        <button class="opt-btn opt-btn-lg" id="ctrl-cordless" onclick="pickControl('cordless',this)">
-          <strong style="display:block">Cordless</strong>
-          <span style="font-size:11px;color:#888">+$192 · Max 96"W × 99"H</span>
-        </button>
-        <button class="opt-btn opt-btn-lg" onclick="pickControl('prowand',this)">
-          <strong style="display:block">Pro Wand</strong>
-          <span style="font-size:11px;color:#888">+$232 · Rechargeable battery motor</span>
-        </button>
-        <button class="opt-btn opt-btn-lg" onclick="pickControl('remote',this)">
-          <strong style="display:block">Remote Motor</strong>
-          <span style="font-size:11px;color:#888">+$460 · LI / DC / AC styles</span>
-        </button>
+        <button class="opt-btn" onclick="pickControl('clutch',this)">Clutch</button>
+        <button class="opt-btn" id="ctrl-cordless" onclick="pickControl('cordless',this)">Cordless +$192</button>
+        <button class="opt-btn" onclick="pickControl('prowand',this)">Pro Wand +$232</button>
+        <button class="opt-btn" onclick="pickControl('remote',this)">Remote motor +$460</button>
       </div>
+      <div class="step-note">Clutch: beaded chain loop, standard. Cordless: max 96"W &times; 99"H. Pro Wand: rechargeable battery motor. Remote motor: LI / DC / AC styles.</div>
       <div class="step-warn" id="cordless-tory-warn">Cordless is not available with Tory fabrics.</div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d8"></span><button class="step-edit-btn" onclick="editStep(8)">Edit</button></div>
   </div>
 
   <!-- STEP 9: Control Accessories -->
   <div class="step-block" id="s9">
     <div class="step-hd">
       <div class="step-num">9</div>
-      <div><div class="step-title" id="s9-title">Control Options</div></div>
+      <div><div class="step-title" id="s9-title">Control options</div></div>
     </div>
     <div class="step-body" id="s9-body">
-      <!-- Populated by JS -->
+      <div class="step-note">Choose a control type above to see its options.</div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d9"></span><button class="step-edit-btn" onclick="editStep(9)">Edit</button></div>
   </div>
 
-  <!-- STEP 10: Remote Motor Accessories -->
-  <div class="step-block" id="s10">
+  <!-- STEP 10: Remote Motor Accessories (remote motor only) -->
+  <div class="step-block" id="s10" style="display:none">
     <div class="step-hd">
       <div class="step-num">10</div>
-      <div><div class="step-title">Motor Accessories</div><div class="step-sub">Add remotes, hubs, power supplies &amp; extensions</div></div>
+      <div><div class="step-title">Motor accessories <span style="font-weight:400;color:#888">(optional)</span></div><div class="step-sub">Add remotes, hubs, power supplies &amp; extensions</div></div>
     </div>
     <div class="step-body" id="s10-body">
-      <!-- Populated by JS -->
+      <div class="step-note">Choose a remote motor type above to see its accessories.</div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d10"></span><button class="step-edit-btn" onclick="editStep(10)">Edit</button></div>
   </div>
 
   <!-- STEP 11: Side-by-Side -->
   <div class="step-block" id="s11">
     <div class="step-hd">
       <div class="step-num">11</div>
-      <div><div class="step-title">Side-by-Side Ordering</div></div>
+      <div><div class="step-title">Side-by-side ordering</div></div>
     </div>
     <div class="step-body">
-      <div class="sbs-note">Side-by-side band matching is available when shades use the same fabric, same control type, and are the exact same length. Be sure to note in your order that shades are side by side.</div>
       <div class="opt-row">
-        <button class="opt-btn" onclick="pickSBS(false,this)">No — single shade or independent</button>
-        <button class="opt-btn" onclick="pickSBS(true,this)">Yes — side-by-side band matching</button>
+        <button class="opt-btn sel" onclick="pickSBS(false,this)">No &mdash; single shade or independent</button>
+        <button class="opt-btn" onclick="pickSBS(true,this)">Yes &mdash; side-by-side band matching</button>
       </div>
+      <div class="step-note">Side-by-side band matching is available when shades use the same fabric, same control type, and are the exact same length. Note in your order which shades are side by side.</div>
       <div id="sbs-count-wrap" style="display:none;margin-top:12px">
         <label style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px;display:block">Number of side-by-side shades</label>
-        <div class="qty-wrap">
+        <div class="qty-btns">
           <button class="qty-btn" onclick="adjSBS(-1)">−</button>
           <input class="qty-num" type="number" id="sbs-count" value="2" min="2" max="10" oninput="S.sideCount=parseInt(this.value)||2">
           <button class="qty-btn" onclick="adjSBS(1)">+</button>
         </div>
       </div>
     </div>
-    <div class="step-done-row"><span class="step-done-val" id="d11"></span><button class="step-edit-btn" onclick="editStep(11)">Edit</button></div>
   </div>
 
-  <!-- STEP 12: Price + Quote -->
-  <div class="step-block" id="s12">
-    <div class="step-hd">
-      <div class="step-num">12</div>
-      <div><div class="step-title">Price Estimate &amp; Quote Request</div></div>
-    </div>
-    <div class="step-body">
-      <div class="price-box" id="price-box-final">
-        <div class="price-box-head">Estimate — Wallace Portfolio Collection™</div>
-        <div id="price-lines"></div>
-        <hr class="price-div">
-        <div class="price-total"><span>Est. Total (×<span id="qty-display">1</span>)</span><span id="total-display">—</span></div>
-        <div class="price-note">Estimated retail — confirmed with current Wallace Blinds 2026 price book. Final pricing confirmed at time of order. Freight not included.</div>
-      </div>
+  <!-- STEP 12: Delivery (shared pbDeliveryStepHTML) -->
+  <div id="pds-delivery"></div>
 
-      <div class="delivery-opt-grid" id="delivery-grid">
-        <div class="delivery-opt-card sel" onclick="pickDelivery('ship',this)">
-          <div class="delivery-opt-title">Ship to me</div>
-          <div class="delivery-opt-body">UPS or FedEx. We'll confirm shipping cost with your quote. Tariffs may apply.</div>
-        </div>
-      </div>
+  <!-- STEP 13: Your details (shared pbContactStepHTML) -->
+  <div id="pb-final-step"></div>
 
-      <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
-      <div id="pb-final-step"></div>
-      <div style="font-size:11px;color:#aaa;margin-top:10px;text-align:center">Opens your email with all specs pre-filled</div>
+</div><!-- /left column -->
+
+<!-- RIGHT: summary card -->
+<div>
+  <div class="summary-card">
+    <div class="summary-head">Your configuration</div>
+    <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Portfolio Dual Sheer</span></div>
+    <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="sum-size">—</span></div>
+    <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="sum-mount">Inside mount</span></div>
+    <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="sum-qty">1</span></div>
+    <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val" id="sum-fabric">—</span></div>
+    <div class="summary-row"><span class="sr-key">Cassette</span><span class="sr-val" id="sum-cass">—</span></div>
+    <div class="summary-row"><span class="sr-key">Control</span><span class="sr-val" id="sum-ctrl">—</span></div>
+    <div class="summary-row"><span class="sr-key">Delivery</span><span class="sr-val" id="sum-del">Ship to me</span></div>
+    <div class="price-box" id="price-box-final">
+      <div class="price-box-head">Estimate — Wallace Portfolio Collection™</div>
+      <div id="price-lines"></div>
+      <hr class="price-div">
+      <div class="price-total"><span>Est. Total (×<span id="qty-display">1</span>)</span><span id="total-display">—</span></div>
+      <div class="price-note">Estimated retail — confirmed with current Wallace Blinds 2026 price book. Final pricing confirmed at time of order. Freight not included.</div>
     </div>
   </div>
+</div>
 
+</div><!-- /config-grid -->
 </div><!-- /cfg-wrap -->
 
 <footer class="site-footer" id="site-footer"></footer>
@@ -456,8 +391,13 @@ textarea.form-input{resize:vertical;min-height:80px}
 <script src="../js/pages/portfolio-dual-sheer.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.
-document.getElementById('pb-final-step').innerHTML =
-  pbContactStepHTML({ bare: true, cartFn: 'addPortfolioDualSheerToCart()', submitFn: 'submitQuote()' });
+document.getElementById('pb-final-step').outerHTML =
+  pbContactStepHTML({ stepNum: 13, cartFn: 'addPortfolioDualSheerToCart()', submitFn: 'submitQuote()' });
+// Canonical Delivery step — choice lives in window.pbDelivery ('ship' | 'install').
+document.getElementById('pds-delivery').outerHTML =
+  pbDeliveryStepHTML({ stepNum: 12, onPick: 'pdsDeliveryPicked()' });
+pdsRenumber();
+updatePrice();
 (function() {
   pbCtx.prefill('inp-w',   'w',   function(v) { if (typeof dimChanged === 'function') dimChanged(); });
   pbCtx.prefill('inp-h',   'h',   function(v) { if (typeof dimChanged === 'function') dimChanged(); });

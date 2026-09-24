@@ -112,7 +112,7 @@ const BB_WRAP_PRICES = [33,40,50,57,65,73,82,89,98,114,130,146];
 
 /* ── STATE ── */
 const S = {
-  type:null, fabricCode:null, mount:null,
+  type:null, fabricCode:null, mount:'inside',   // Inside mount pre-selected (standard Step 1)
   width:'', height:'',
   cassette:null, cassColor:null, cassWrap:false,
   bbStyle:null, bbLarge:false, bbWrap:false,
@@ -126,9 +126,38 @@ const S = {
   ext6:0, ext48:0, ext96:0, charger:false,
   sbs:false, sideCount:2,
   qty:1, name:'', phone:'', notes:'',
-  delivery:'Ship (UPS/FedEx)',
+  // Delivery lives in window.pbDelivery ('ship' | 'install') — shared pbDeliveryStepHTML.
   maxStep:1
 };
+
+/* ── STANDARD FRAME HELPERS ── */
+// Every step is visible; conditional steps (square-cassette wrap, remote-motor accessories)
+// show/hide, so the step numbers are recomputed 1..N in visual order.
+function pdsRenumber(){
+  let n=0;
+  document.querySelectorAll('#pds-steps .step-block').forEach(function(b){
+    if(b.style.display==='none') return;
+    const num=b.querySelector('.step-num'); if(num) num.textContent=++n;
+  });
+}
+function pdsDelLabel(){ return typeof pbDeliveryLabel==='function'?pbDeliveryLabel():'Ship to me'; }
+function pdsDeliveryPicked(){ const e=document.getElementById('sum-del'); if(e) e.textContent=pdsDelLabel(); }
+function pdsSetSum(id,v){ const e=document.getElementById(id); if(e) e.textContent=v; }
+function pdsUpdateSummary(){
+  const f=fab();
+  pdsSetSum('sum-size',(S.width&&S.height)?S.width+'" W × '+S.height+'" H':'—');
+  pdsSetSum('sum-mount',S.mount==='outside'?'Outside mount':'Inside mount');
+  pdsSetSum('sum-qty',String(S.qty||1));
+  pdsSetSum('sum-fabric',f?f.name+' '+f.color+' (Grp '+f.grp+')':(S.type?(S.type==='LF'?'Light Filtering':'Blackout'):'—'));
+  pdsSetSum('sum-cass',S.cassette?(S.cassette==='rounded'?'Rounded':'Square'+(S.cassWrap?' · wrapped':''))+(S.cassColor?' · '+S.cassColor:''):'—');
+  const cl={clutch:'Clutch',cordless:'Cordless',prowand:'Pro Wand',remote:'Remote motor'};
+  pdsSetSum('sum-ctrl',S.control?cl[S.control]:'—');
+  pdsSetSum('sum-del',pdsDelLabel());
+}
+// Multi-select add-on pill (hidden checkbox stays the source of truth for the onchange handler).
+function pdsCheckPill(label,onchange){
+  return '<label class="opt-btn"><input type="checkbox" onchange="this.parentNode.classList.toggle(\'sel\',this.checked);'+onchange+'" style="display:none">'+label+'</label>';
+}
 
 function fab(){ return FABRICS.find(f=>f.code===S.fabricCode); }
 
@@ -195,13 +224,14 @@ function updatePrice(){
   const total=calcTotal();
   document.getElementById('total-display').textContent=total?fmt(total):'—';
   document.getElementById('qty-display').textContent=S.qty;
+  pdsUpdateSummary();
 }
 
 /* ── STEP NAVIGATION ── */
 function showStep(n){
   if(n>S.maxStep) S.maxStep=n;
   const el=document.getElementById('s'+n);
-  if(el){ el.classList.add('active'); el.classList.remove('done'); el.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+  if(el && el.style.display!=='none'){ el.classList.add('active'); el.classList.remove('done'); el.scrollIntoView({behavior:'smooth',block:'nearest'}); }
 }
 function doneStep(n,label){
   const el=document.getElementById('s'+n);
@@ -209,21 +239,6 @@ function doneStep(n,label){
   el.classList.add('done'); el.classList.remove('active');
   const d=document.getElementById('d'+n);
   if(d) d.textContent=label;
-}
-function editStep(n){
-  // Re-activate this step, hide all later steps
-  for(let i=n;i<=12;i++){
-    const el=document.getElementById('s'+i);
-    if(!el) continue;
-    if(i===n){ el.classList.add('active'); el.classList.remove('done'); }
-    else { el.classList.remove('active','done'); }
-  }
-  S.maxStep=n;
-}
-function pickDelivery(v,card){
-  document.querySelectorAll('.delivery-opt-card').forEach(function(c){c.classList.remove('sel');});
-  card.classList.add('sel');
-  S.delivery=v==='ship'?'Ship (UPS/FedEx)':'Pickup (Huntingdon Valley PA 19006)';
 }
 function advance(fromStep, label){
   doneStep(fromStep, label);
@@ -239,6 +254,7 @@ function pickMount(m,el){
   if(note) note.textContent=
     m==='inside'?'Inside mount: enter the window opening size. A ¼" deduction will be made to the shade width.':
     'Outside mount: enter the desired finished shade width and height.';
+  updatePrice();
 }
 function dimChanged(){
   const w=parseFloat(document.getElementById('inp-w').value)||0;
@@ -251,36 +267,31 @@ function dimChanged(){
   else if(w>0 && w<16){ we.textContent='Minimum width is 16".'; we.classList.add('show'); }
   if(h>0 && h>108){ he.textContent='Maximum height is 108".'; he.classList.add('show'); }
   else if(h>0 && h<20){ he.textContent='Minimum height is 20".'; he.classList.add('show'); }
-  updatePrice();
-}
-function confirmStep1(){
-  const w=parseFloat(document.getElementById('inp-w').value)||0;
-  const h=parseFloat(document.getElementById('inp-h').value)||0;
-  if(!w||!h){ alert('Please enter both width and height.'); return; }
-  if(w<16){ alert('Minimum width is 16".'); return; }
-  if(w>110){ alert('Maximum width is 110".'); return; }
-  if(h<20){ alert('Minimum height is 20".'); return; }
-  if(h>108){ alert('Maximum height is 108".'); return; }
-  if(!S.mount){ alert('Please select a mount type (inside or outside).'); return; }
-  S.width=w; S.height=h;
+  // The size only counts once it is inside the product limits (the old Continue
+  // button refused anything else), so an out-of-range size never prices.
+  const ok = w>=16 && w<=110 && h>=20 && h<=108;
+  S.width = ok ? w : ''; S.height = ok ? h : '';
   S.qty=parseInt(document.getElementById('qty-inp').value)||1;
-  // Cordless availability based on dims
-  const ctrl=document.getElementById('ctrl-cordless');
-  if(ctrl){ if(w>96||h>99){ ctrl.classList.add('disabled'); if(S.control==='cordless') S.control=null; } else ctrl.classList.remove('disabled'); }
-  // Bottom bar wrap price display (fabric-independent, width-based)
-  const wi=W_COLS.findIndex(c=>w<=c);
-  const bbp=wi>=0?BB_WRAP_PRICES[wi]:0;
-  const bbEl=document.getElementById('bb-wrap-price'); if(bbEl) bbEl.textContent='(+'+fmt(bbp)+')';
-  advance(1, w+'" W × '+h+'" H · '+(S.mount==='inside'?'Inside':'Outside')+' mount · Qty '+S.qty);
+  if(ok){
+    // Cordless availability based on dims
+    const ctrl=document.getElementById('ctrl-cordless');
+    if(ctrl){ if(w>96||h>99){ ctrl.classList.add('disabled'); if(S.control==='cordless') S.control=null; } else ctrl.classList.remove('disabled'); }
+    // Bottom bar wrap price display (fabric-independent, width-based)
+    const wi=W_COLS.findIndex(c=>w<=c);
+    const bbp=wi>=0?BB_WRAP_PRICES[wi]:0;
+    const bbEl=document.getElementById('bb-wrap-price'); if(bbEl) bbEl.textContent='(+'+fmt(bbp)+')';
+    doneStep(1, w+'" W × '+h+'" H · '+(S.mount==='inside'?'Inside':'Outside')+' mount · Qty '+S.qty);
+  }
   updatePrice();
 }
 
 /* ── STEP 2: Type ── */
 function pickType(t,el){
   S.type=t;
-  document.querySelectorAll('.type-card').forEach(c=>c.classList.remove('sel'));
+  document.querySelectorAll('#grp-type .opt-btn').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
   buildFabricGrid(t);
+  updatePrice();
   advance(2, t==='LF'?'Light-Filtering':'Blackout');
 }
 
@@ -353,6 +364,8 @@ function pickFabric(code){
     alert('Note: '+f.name+' has a maximum width of '+f.maxW+'". Your width '+S.width+'" exceeds it — please Edit Step 1 to adjust.');
   }
   advance(3, f.name+' — '+f.color+' ('+f.code+') · Grp '+f.grp);
+  applyBBRules();
+  updatePrice();
 }
 
 /* ── STEP 4: Cassette ── */
@@ -361,11 +374,15 @@ function pickCassette(v,el){
   document.querySelectorAll('#s4 .opt-btn').forEach(b=>b.classList.remove('sel'));
   el.classList.add('sel');
   advance(4, v==='rounded'?'Rounded cassette':'Square cassette');
-  // Skip step 6 (wrap) if rounded
+  // Step 6 (fabric wrap) applies to the square cassette only
+  const s6=document.getElementById('s6');
+  if(s6) s6.style.display = v==='square' ? '' : 'none';
   if(v==='rounded'){
     S.cassWrap=false;
-    document.getElementById('s6').classList.remove('active','done');
+    document.querySelectorAll('#s6 .opt-btn').forEach((b,i)=>b.classList.toggle('sel',i===0));
   }
+  pdsRenumber();
+  updatePrice();
 }
 
 /* ── STEP 5: Cassette Color ── */
@@ -378,10 +395,10 @@ function pickCassColor(v,el){
     advance(5, label);
   } else {
     doneStep(5, label);
-    // Skip step 6 (wrap) for rounded, go to step 7 (bottom bar)
+    // Step 6 (wrap) is square-only — go to step 7 (bottom bar)
     showStep(7);
-    applyBBRules();
   }
+  updatePrice();
 }
 
 /* ── STEP 6: Cassette Wrap ── */
@@ -406,7 +423,10 @@ function applyBBRules(){
   const sqBtn=document.getElementById('bb-sq-btn');
   if(isTory){ sqBtn.classList.add('disabled'); }
   else sqBtn.classList.remove('disabled');
-  showStep(7);
+  // Tory fabrics cannot be ordered cordless
+  const cordlessBtn=document.getElementById('ctrl-cordless');
+  if(isTory){ cordlessBtn.classList.add('disabled'); document.getElementById('cordless-tory-warn').classList.add('show'); }
+  else { cordlessBtn.classList.remove('disabled'); document.getElementById('cordless-tory-warn').classList.remove('show'); }
 }
 function pickBBStyle(v,el){
   S.bbStyle=v;
@@ -422,17 +442,16 @@ function pickBBWrap(v,el){
   const bbSz=S.bbLarge?'large':'standard';
   advance(7, (bbStyle.charAt(0).toUpperCase()+bbStyle.slice(1))+' '+bbSz+(v?' — fabric wrapped':''));
   updatePrice();
-  // Apply cordless BB square block if needed
-  showStep(8);
-  const f=fab();
-  const cordlessBtn=document.getElementById('ctrl-cordless');
-  if(f&&f.tory){ cordlessBtn.classList.add('disabled'); document.getElementById('cordless-tory-warn').classList.add('show'); }
-  else { cordlessBtn.classList.remove('disabled'); document.getElementById('cordless-tory-warn').classList.remove('show'); }
 }
 
 /* ── STEP 8: Control ── */
 function pickControl(v,el){
   S.control=v;
+  // Options of a previously chosen control no longer apply — clear them so a
+  // hidden add-on can never stay in the price.
+  S.cordLen=null; S.metalChain=false; S.liftAssist=false; S.wandLen=null; S.motorType=null;
+  S.remote=false; S.wallSwitch=false; S.hub=false; S.liPack=false; S.plugAdapter=false;
+  S.ext6=0; S.ext48=0; S.ext96=0; S.charger=false;
   document.querySelectorAll('#control-opts .opt-btn').forEach(b=>b.classList.remove('sel'));
   el.classList.add('sel');
   // Update BB square availability for cordless (square bottom bar not available on cordless)
@@ -459,106 +478,84 @@ function buildControlOptions(ctrl){
   const title=document.getElementById('s9-title');
   const body=document.getElementById('s9-body');
   if(ctrl==='clutch'){
-    title.textContent='Clutch Options';
+    title.textContent='Clutch options';
     const cordLens=['19½"','29½"','39"','49"','59"','69"','79"','89"','98"'];
-    body.innerHTML='<div class="step-sub" style="margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Cord Loop Length <span style="font-size:11px;font-weight:400;color:#999">(standard = closest to ¾ shade height)</span></div>'+
-      '<div class="opt-row" id="cord-len-opts">'+cordLens.map(l=>'<button class="opt-btn opt-btn-sm" onclick="pickCordLen(\''+l+'\',this)">'+l+'</button>').join('')+'</div>'+
-      '<div style="margin-top:14px"><label class="check-row"><input type="checkbox" onchange="S.metalChain=this.checked;updatePrice()"><div class="check-label">Metal bead chain upgrade <span class="check-price">+$62</span><div class="check-sub">Custom length metal bead chain instead of standard plastic</div></div></label></div>'+
-      '<button class="next-btn" onclick="confirmStep10Clutch()" style="margin-top:12px">Continue</button>';
+    body.innerHTML='<div class="step-sub" style="margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Cord loop length <span style="font-size:11px;font-weight:400;color:#999">(standard = closest to ¾ shade height)</span></div>'+
+      '<div class="opt-row" id="cord-len-opts">'+cordLens.map(l=>'<button class="opt-btn" onclick="pickCordLen(\''+l+'\',this)">'+l+'</button>').join('')+'</div>'+
+      '<div style="font-size:12px;font-weight:600;color:#555;margin:12px 0 6px">Upgrade <span style="font-weight:400;color:#999">(optional)</span></div>'+
+      '<div class="opt-row">'+pdsCheckPill('Metal bead chain +$62','S.metalChain=this.checked;updatePrice()')+'</div>'+
+      '<div class="step-note">Metal bead chain: custom length, replaces the standard plastic chain.</div>';
   } else if(ctrl==='cordless'){
-    title.textContent='Cordless Options';
+    title.textContent='Cordless options';
     body.innerHTML='<div class="step-note">Cordless shades are raised/lowered by hand. A handle is included. Bottom bar will be a cordless style (rounded).</div>'+
-      '<label class="check-row"><input type="checkbox" onchange="S.liftAssist=this.checked;updatePrice()"><div class="check-label">Add Lift Assist Pole <span class="check-price">+$80</span><div class="check-sub">Telescoping pole to 53" helps raise and lower cordless shades</div></div></label>'+
-      '<button class="next-btn" onclick="confirmStep10Cordless()" style="margin-top:12px">Continue</button>';
+      '<div class="opt-row">'+pdsCheckPill('Lift assist pole +$80','S.liftAssist=this.checked;updatePrice()')+'</div>'+
+      '<div class="step-note">Optional. Telescoping pole to 53" helps raise and lower tall shades.</div>';
   } else if(ctrl==='prowand'){
-    title.textContent='Pro Wand Options';
-    body.innerHTML='<div class="step-sub" style="margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Wand Length <span style="font-size:11px;font-weight:400;color:#999">(White only)</span></div>'+
-      '<div class="opt-row" id="wand-len-opts">'+['24"','36"','48"','60"'].map(l=>'<button class="opt-btn opt-btn-lg" onclick="pickWandLen(\''+l+'\',this)">'+l+'</button>').join('')+'</div>'+
-      '<button class="next-btn" onclick="confirmStep10Wand()" style="margin-top:12px">Continue</button>';
+    title.textContent='Pro Wand options';
+    body.innerHTML='<div class="step-sub" style="margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Wand length <span style="font-size:11px;font-weight:400;color:#999">(White only)</span></div>'+
+      '<div class="opt-row" id="wand-len-opts">'+['24"','36"','48"','60"'].map(l=>'<button class="opt-btn" onclick="pickWandLen(\''+l+'\',this)">'+l+'</button>').join('')+'</div>';
   } else if(ctrl==='remote'){
-    title.textContent='Remote Motor Type';
-    body.innerHTML='<div class="step-note">All remote motor styles include standard lift. Choose power supply type.</div>'+
-      '<div class="opt-row" id="motor-type-opts">'+
-      '<button class="opt-btn opt-btn-lg" onclick="pickMotorType(\'li\',this)"><strong style="display:block">Rechargeable LI</strong><span style="font-size:11px;color:#888">Internal battery · 16½\' USB-C charger included</span></button>'+
-      '<button class="opt-btn opt-btn-lg" onclick="pickMotorType(\'dc\',this)"><strong style="display:block">12V DC Hardwired</strong><span style="font-size:11px;color:#888">Hardwired · 13" lead wire · 8" wire harness incl.</span></button>'+
-      '<button class="opt-btn opt-btn-lg" onclick="pickMotorType(\'dc-ext\',this)"><strong style="display:block">12V DC External</strong><span style="font-size:11px;color:#888">Battery tube (incl.) · LI battery pack or plug adapter</span></button>'+
-      '<button class="opt-btn opt-btn-lg" onclick="pickMotorType(\'ac\',this)"><strong style="display:block">100-240V AC</strong><span style="font-size:11px;color:#888">Hardwired · 43" lead wire · Requires electrician</span></button>'+
+    title.textContent='Remote motor type';
+    body.innerHTML='<div class="opt-row" id="motor-type-opts">'+
+      '<button class="opt-btn" onclick="pickMotorType(\'li\',this)">Rechargeable LI</button>'+
+      '<button class="opt-btn" onclick="pickMotorType(\'dc\',this)">12V DC hardwired</button>'+
+      '<button class="opt-btn" onclick="pickMotorType(\'dc-ext\',this)">12V DC external</button>'+
+      '<button class="opt-btn" onclick="pickMotorType(\'ac\',this)">100-240V AC</button>'+
       '</div>'+
-      '<button class="next-btn" onclick="confirmStep10Motor()" style="margin-top:12px">Continue</button>';
+      '<div class="step-note">All remote motor styles include standard lift. Rechargeable LI: internal battery &middot; 16&frac12;\' USB-C charger included. 12V DC hardwired: 13" lead wire &middot; 8" wire harness included. 12V DC external: battery tube (included) &middot; LI battery pack or plug adapter. 100-240V AC: hardwired &middot; 43" lead wire &middot; requires an electrician.</div>';
   }
+  // Remote-motor accessories (step 10) only apply to the remote motor
+  const s10=document.getElementById('s10');
+  if(s10){ s10.style.display = ctrl==='remote' ? '' : 'none';
+    if(ctrl==='remote') document.getElementById('s10-body').innerHTML='<div class="step-note">Choose a remote motor type above to see its accessories.</div>'; }
+  pdsRenumber();
   showStep(9);
 }
 
-function pickCordLen(v,el){ S.cordLen=v; document.querySelectorAll('#cord-len-opts .opt-btn').forEach(b=>b.classList.remove('sel')); el.classList.add('sel'); }
-function pickWandLen(v,el){ S.wandLen=v; document.querySelectorAll('#wand-len-opts .opt-btn').forEach(b=>b.classList.remove('sel')); el.classList.add('sel'); }
-function pickMotorType(v,el){ S.motorType=v; document.querySelectorAll('#motor-type-opts .opt-btn').forEach(b=>b.classList.remove('sel')); el.classList.add('sel'); }
-
-function confirmStep10Clutch(){
-  const lbl=(S.cordLen||'Standard length')+(S.metalChain?' · Metal chain':'');
-  advance(9, lbl);
-  skipS11();
-}
-function confirmStep10Cordless(){
-  advance(9, 'Cordless'+(S.liftAssist?' · Lift assist':''));
-  skipS11();
-}
-function confirmStep10Wand(){
-  if(!S.wandLen){ alert('Please select a wand length.'); return; }
-  advance(9, 'Pro Wand · '+S.wandLen);
-  skipS11();
-}
-function confirmStep10Motor(){
-  if(!S.motorType){ alert('Please select a motor type.'); return; }
+function pickCordLen(v,el){ S.cordLen=v; document.querySelectorAll('#cord-len-opts .opt-btn').forEach(b=>b.classList.remove('sel')); el.classList.add('sel'); doneStep(9, v+(S.metalChain?' · Metal chain':'')); updatePrice(); }
+function pickWandLen(v,el){ S.wandLen=v; document.querySelectorAll('#wand-len-opts .opt-btn').forEach(b=>b.classList.remove('sel')); el.classList.add('sel'); doneStep(9, 'Pro Wand · '+v); updatePrice(); }
+function pickMotorType(v,el){
+  // A different motor type has different power accessories — start them fresh.
+  S.remote=false; S.wallSwitch=false; S.hub=false; S.liPack=false; S.plugAdapter=false;
+  S.ext6=0; S.ext48=0; S.ext96=0; S.charger=false;
+  S.motorType=v; document.querySelectorAll('#motor-type-opts .opt-btn').forEach(b=>b.classList.remove('sel')); el.classList.add('sel');
   const labels={li:'Rechargeable LI',dc:'12V DC Hardwired','dc-ext':'12V DC External Power',ac:'100-240V AC Hardwired'};
-  advance(9, labels[S.motorType]);
+  doneStep(9, labels[v]);
   buildMotorAccessories();
+  updatePrice();
 }
 
 /* ── STEP 10: Motor Accessories ── */
 function buildMotorAccessories(){
   const body=document.getElementById('s10-body');
   const t=S.motorType;
-  let html='<div class="step-note">Select any additional accessories for your motor. Shades will operate without a remote (smart button on shade). Remotes and hub are optional upgrades.</div>';
-  html+='<div style="margin-bottom:14px">';
-  html+='<label class="check-row"><input type="checkbox" onchange="S.remote=this.checked;updatePrice()"><div class="check-label">15-Channel Hand-Held Remote <span class="check-price">+$111</span><div class="check-sub">White or black (specify in notes)</div></div></label>';
-  html+='<label class="check-row"><input type="checkbox" onchange="S.wallSwitch=this.checked;updatePrice()"><div class="check-label">15-Channel Wall Switch <span class="check-price">+$114</span></div></label>';
-  html+='<label class="check-row"><input type="checkbox" onchange="S.hub=this.checked;updatePrice()"><div class="check-label">Pro Hub <span class="check-price">+$458</span><div class="check-sub">WiFi / ethernet — works with Alexa, Google Home, Control4, IFTTT</div></div></label>';
+  let html='<div class="opt-row">';
+  html+=pdsCheckPill('15-channel hand-held remote +$111','S.remote=this.checked;updatePrice()');
+  html+=pdsCheckPill('15-channel wall switch +$114','S.wallSwitch=this.checked;updatePrice()');
+  html+=pdsCheckPill('Pro Hub +$458','S.hub=this.checked;updatePrice()');
   html+='</div>';
+  html+='<div class="step-note">Select any. Shades operate without a remote (smart button on the shade). Remote: white or black (specify in notes). Pro Hub: Wi-Fi / ethernet &mdash; works with Alexa, Google Home, Control4 and more.</div>';
   if(t==='li'){
     html+='<div class="step-note" style="margin-top:4px">Rechargeable LI includes internal battery. A 16½\' USB-C charger is included. No additional power supply needed.</div>';
-    html+='<label class="check-row"><input type="checkbox" onchange="S.charger=this.checked;updatePrice()"><div class="check-label">Extra 16½\' USB-C Charger <span class="check-price">+$83</span></div></label>';
+    html+='<div class="opt-row">'+pdsCheckPill('Extra 16½\' USB-C charger +$83','S.charger=this.checked;updatePrice()')+'</div>';
   }
   if(t==='dc-ext'){
-    html+='<div class="step-sub" style="margin-top:12px;margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Power Supply (choose one or both)</div>';
-    html+='<label class="check-row"><input type="checkbox" onchange="S.liPack=this.checked;updatePrice()"><div class="check-label">External LI Rechargeable Battery Pack <span class="check-price">+$160</span><div class="check-sub">5¼" lead wire · Requires recharging · Ships separately</div></div></label>';
-    html+='<label class="check-row"><input type="checkbox" onchange="S.plugAdapter=this.checked;updatePrice()"><div class="check-label">Plug-In Power Adapter <span class="check-price">+$60</span><div class="check-sub">60" lead wire · Powers motor via standard outlet</div></div></label>';
-    html+='<div class="step-sub" style="margin-top:12px;margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Extension Cables</div>';
+    html+='<div class="step-sub" style="margin-top:12px;margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Power supply (choose one or both)</div>';
+    html+='<div class="opt-row">'+pdsCheckPill('External LI battery pack +$160','S.liPack=this.checked;updatePrice()')+pdsCheckPill('Plug-in power adapter +$60','S.plugAdapter=this.checked;updatePrice()')+'</div>';
+    html+='<div class="step-note">External LI battery pack: 5¼" lead wire. Plug-in power adapter: 60" lead wire &mdash; powers the motor from a standard outlet.</div>';
+    html+='<div class="step-sub" style="margin-top:12px;margin-bottom:8px;font-size:12px;font-weight:600;color:#555">Extension cables</div>';
     html+=extRow('ext6','6" Extension Cable (+$32 ea)','For LI battery pack',32,'ext6');
     html+=extRow('ext48','48" Extension Cable (+$43 ea)','For LI battery pack or power adapter',43,'ext48');
     html+=extRow('ext96','96" Extension Cable (+$60 ea)','For power adapter only',60,'ext96');
-    html+='<label class="check-row"><input type="checkbox" onchange="S.charger=this.checked;updatePrice()"><div class="check-label">16½\' USB-C Charger <span class="check-price">+$83</span><div class="check-sub">For LI battery pack</div></div></label>';
+    html+='<div class="opt-row">'+pdsCheckPill('16½\' USB-C charger +$83','S.charger=this.checked;updatePrice()')+'</div>';
   }
-  html+='<button class="next-btn" onclick="confirmStep11()" style="margin-top:12px">Continue</button>';
   body.innerHTML=html;
   showStep(10);
 }
 function extRow(id,label,sub,price,stateKey){
-  return '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div class="qty-wrap"><button class="qty-btn" onclick="adjExt(\''+stateKey+'\',-1,\''+id+'\')">−</button><input class="qty-num" type="number" id="'+id+'" value="0" min="0" max="10" style="width:36px;height:30px" oninput="S[\''+stateKey+'\']=parseInt(this.value)||0;updatePrice()"><button class="qty-btn" onclick="adjExt(\''+stateKey+'\',1,\''+id+'\')">+</button></div><div><div class="check-label" style="font-size:12px">'+label+'</div><div class="check-sub">'+sub+'</div></div></div>';
+  return '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div class="qty-btns"><button class="qty-btn" onclick="adjExt(\''+stateKey+'\',-1,\''+id+'\')">−</button><input class="qty-num" type="number" id="'+id+'" value="0" min="0" max="10" style="width:36px;height:30px" oninput="S[\''+stateKey+'\']=parseInt(this.value)||0;updatePrice()"><button class="qty-btn" onclick="adjExt(\''+stateKey+'\',1,\''+id+'\')">+</button></div><div><div class="check-label" style="font-size:12px">'+label+'</div><div class="check-sub">'+sub+'</div></div></div>';
 }
 function adjExt(key,delta,id){ const el=document.getElementById(id); if(!el) return; let v=parseInt(el.value)||0; v=Math.max(0,v+delta); el.value=v; S[key]=v; updatePrice(); }
-
-function confirmStep11(){
-  let parts=['Motor accessories'];
-  if(S.remote) parts.push('Remote');
-  if(S.wallSwitch) parts.push('Wall switch');
-  if(S.hub) parts.push('Pro Hub');
-  advance(10, parts.join(' · '));
-}
-
-function skipS11(){
-  document.getElementById('s10').classList.remove('active','done');
-  showStep(11);
-}
 
 /* ── STEP 11: SBS ── */
 function pickSBS(v,el){
@@ -566,29 +563,13 @@ function pickSBS(v,el){
   document.querySelectorAll('#s11 .opt-btn').forEach(b=>b.classList.remove('sel'));
   el.classList.add('sel');
   document.getElementById('sbs-count-wrap').style.display=v?'block':'none';
-  if(!v){ advance(11,'No — independent shades'); showStep(12); updatePrice(); }
+  doneStep(11, v?'Side-by-side':'No — independent shades');
+  updatePrice();
 }
 function adjSBS(d){ const el=document.getElementById('sbs-count'); let v=Math.max(2,Math.min(10,(parseInt(el.value)||2)+d)); el.value=v; S.sideCount=v; }
 
 function adjQty(d){ const el=document.getElementById('qty-inp'); let v=Math.max(1,Math.min(50,(parseInt(el.value)||1)+d)); el.value=v; S.qty=v; updatePrice(); }
 
-/* ── SBS confirm button (inject after SBS opt-row) ── */
-(function(){
-  const s11body=document.querySelector('#s11 .step-body');
-  if(s11body){
-    const btn=document.createElement('button');
-    btn.className='next-btn';
-    btn.style.marginTop='12px';
-    btn.textContent='Continue to Quote';
-    btn.onclick=function(){
-      if(S.sbs){ S.sideCount=parseInt(document.getElementById('sbs-count').value)||2; advance(11,'Side-by-side · '+S.sideCount+' shades'); }
-      else advance(11,'Independent');
-      showStep(12);
-      updatePrice();
-    };
-    s11body.appendChild(btn);
-  }
-})();
 
 /* ── SUBMIT ── */
 function addPortfolioDualSheerToCart(){
@@ -671,7 +652,7 @@ function submitQuote(){
     'ORDER DETAILS',
     'Quantity: '+S.qty,
     S.sbs?'Side-by-side: Yes · '+S.sideCount+' shades (same fabric, control, and length)':'Side-by-side: No',
-    'Delivery: '+S.delivery,
+    'Delivery: '+pdsDelLabel(),
     '',
     'ESTIMATE',
     'Unit base (Grp '+f.grp+'): '+fmt(getBasePrice()),
