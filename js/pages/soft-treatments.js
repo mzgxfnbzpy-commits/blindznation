@@ -758,6 +758,12 @@ var D_RATE_LINED   = 135;   // per cut/width — liner included (BO or LF, same 
 var D_SPECIALTY_PLEAT_ADD = 20;  // Goblet / Barrel, on top of the base rate
 var D_LEN_BAND_ADD = 35;    // added per 10" band above 141"
 var D_LEN_MAX_AUTO = 185;   // longer than this is a manual quote, no number shown
+// Width has no rate ladder of its own: a wider panel simply takes more cuts and the
+// cut formula handles any width, so this cap is only about what we quote
+// automatically. Raised 200 -> 300 (Justin, 2026-09-23) so the wide sizes in the
+// freight brackets can actually be ordered. Length still stops at 185, because that
+// is where the per-cut rate ladder ends.
+var D_WIDTH_MAX_AUTO = 300;
 var D_MIN_WIDTHS   = 2;
 var D_FABRIC_WIDTH = 54;    // standard fabric width (inches)
 
@@ -878,9 +884,9 @@ function calcDrapePrice() {
     } else if (tooShort) {
       minWarn.textContent = '⚠ Minimum finished length is 10″. Call (609) 742-1720 to confirm.';
       minWarn.style.display = 'block';
-    } else if (w > 200 || h > D_LEN_MAX_AUTO) {
-      minWarn.textContent = w > 200
-        ? '⚠ Width over 200″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.'
+    } else if (w > D_WIDTH_MAX_AUTO || h > D_LEN_MAX_AUTO) {
+      minWarn.textContent = w > D_WIDTH_MAX_AUTO
+        ? '⚠ Width over ' + D_WIDTH_MAX_AUTO + '″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.'
         : '⚠ Length over ' + D_LEN_MAX_AUTO + '″ exceeds our standard range — custom pricing required. Submit your order and we\'ll quote it.';
       minWarn.style.display = 'block';
     } else {
@@ -892,7 +898,7 @@ function calcDrapePrice() {
   // the rate ladder tops out at, so the cap and the pricing cannot drift apart:
   // raise one and the other follows. It was 150″, which put the top four bands
   // of the ladder (152–161, 162–171, 172–181, 182–185) out of reach.
-  if (w > 200 || h > D_LEN_MAX_AUTO) { _customSizeMsg(box, 'Custom Drapery', 200, D_LEN_MAX_AUTO); return; }
+  if (w > D_WIDTH_MAX_AUTO || h > D_LEN_MAX_AUTO) { _customSizeMsg(box, 'Custom Drapery', D_WIDTH_MAX_AUTO, D_LEN_MAX_AUTO); return; }
 
   // Fullness factor
   var isRipple   = drapeState.pleat === 'Ripple Fold';
@@ -1013,12 +1019,12 @@ function calcDrapePrice() {
   }
 
   // Shipping estimate — FedEx/UPS from Philadelphia; min $75 for drapes
-  // $200 up to 150x120, $300 up to 200x170, $500 past that. Drapery carries its
+  // $200 up to 180x150, $300 up to 250x200, $500 past that. Drapery carries its
   // own base (higher than the $100 on Romans and boards) because a made-up drape
   // is bulkier. The finished panel decides it, not the cut count.
   var dShipEst = (typeof pbDraperyFreight === 'function')
     ? pbDraperyFreight(w, h)
-    : ((w <= 150 && h <= 120) ? 200 : (w <= 200 && h <= 170) ? 300 : 500);
+    : ((w <= 180 && h <= 150) ? 200 : (w <= 250 && h <= 200) ? 300 : 500);
 
   // Per-window costs (labor, fabric, lining, trim) scale with quantity; the $200 minimum
   // applies per set. Cornice/valance are single shared pieces and shipping is one estimate —
@@ -1074,10 +1080,12 @@ function calcDrapePrice() {
   if (valanceTotal) drapeLines.push({ label: 'Valance', value: '$' + valanceTotal.toFixed(0) });
   if (trimTotal)    drapeLines.push({ label: 'Trim', value: '$' + trimTotal.toFixed(0) });
   if (dShipEst) {
-    drapeLines.push({ label: (dShipEst >= 500 ? 'Oversize freight (over 200″ × 170″)'
-                           : dShipEst > 200 ? 'Oversize freight (over 150″ × 120″)'
+    drapeLines.push({ label: (dShipEst >= 500 ? 'Oversize freight (over 250″ × 200″)'
+                           : dShipEst > 200 ? 'Oversize freight (over 180″ × 150″)'
                            : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + dShipEst });
-    drapeLines.push({ label: '', value: (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') });
+    drapeLines.push({ label: '', value: (dShipEst >= 500
+      ? 'This size can be ordered, but the freight is confirmed at order and may increase.'
+      : (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.')) });
   }
   drapeLines.push({ label: 'Fabric needed est.', value: '~' + (totalFabYds * qty).toFixed(1) + ' yds (pattern repeats add more)' });
   if (perSetTotal === 200) drapeLines.push({ label: 'Note', value: '$200 minimum per drapery set' });

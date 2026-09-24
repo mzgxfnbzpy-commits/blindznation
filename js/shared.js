@@ -607,9 +607,10 @@ var PB_OVERSIZE_W = 80;
 //   Drapery — its own ladder, and its own base: a made-up drape is bulkier than
 //   a Roman of the same width, so it starts at $200 rather than $100. Stepped on
 //   the finished panel, not on width alone, because the whole panel sets the box:
-//       up to 150" wide x 120" long   $200
-//       up to 200" wide x 170" long   $300
-//       anything larger               $500   (stated outer bound 250" x 210")
+//       up to 180" wide x 150" long   $200
+//       up to 250" wide x 200" long   $300
+//       anything larger               $500   -- orderable, but that freight is
+//                                     confirmed at order and may increase
 //   Both dimensions have to fit a tier to earn it.
 //
 // Norman products are NOT covered by any of this — they carry their own table
@@ -669,8 +670,8 @@ function pbSoftTreatmentFreight(widthIn) { return pbBoardFreight(widthIn); }
 var PB_DRAPE_SHIP_BASE = 200;
 // Each tier needs BOTH dimensions to fit before it applies.
 var PB_DRAPE_SHIP_TIERS = [
-  { w: 150, h: 120, fee: PB_DRAPE_SHIP_BASE },   // $200
-  { w: 200, h: 170, fee: PB_ST_SHIP_MID     }    // $300
+  { w: 180, h: 150, fee: PB_DRAPE_SHIP_BASE },   // $200
+  { w: 250, h: 200, fee: PB_ST_SHIP_MID     }    // $300
 ];                                               // past both -> PB_ST_SHIP_MAX ($500)
 function pbDraperyFreight(widthIn, lengthIn) {
   var w = parseFloat(widthIn)  || 0;
