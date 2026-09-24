@@ -1,5 +1,29 @@
 # Blindznation — session handoff, 2026-09-23
 
+> ## START HERE after a restart
+>
+> **Nothing is lost.** Everything below is committed and live:
+> `main` = `dev` = `origin` at the commit this file was pushed with.
+> Confirm with `git log --oneline -1` and `git status` (should be clean).
+>
+> **To bring Claude back up to speed, paste this as the first message:**
+>
+> > Read SESSION-HANDOFF.md in the blindznation repo. That is where we left off.
+> > Confirm main and dev match origin, then tell me the open items.
+>
+> **Or resume this exact conversation instead** (transcripts survive a restart):
+> `claude --continue` in this folder picks up the last session with full context;
+> `claude --resume` lets you choose from a list.
+>
+> **The three things waiting on you** (detail in section 6):
+> 1. Get the **Norman shutter price book** — the $/sq ft rates. Only blocker on shutters.
+> 2. **Sanity-check the 300" Roman cap** — the form now accepts 300 x 250.
+> 3. **Per-cut drapery rates above 185"** if you want to sell longer panels.
+>
+> **The one thing I can just get on with:** the Centerpiece fabric list
+> (~147 rows). It is the only blocker on un-gating Centerpiece pricing.
+
+
 Written so nothing is lost across a terminal restart. **Everything described below
 is committed AND live** (`main` = `dev` = `0c4e2d2`), unless it sits under
 "Open / not done".
