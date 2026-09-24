@@ -472,8 +472,13 @@ function addCustomRollerToCart(){
   if(!CRS.mount){ alert('Please select a mount type before adding to cart.'); return; }
   if(!CRS.w||!CRS.h){ alert('Please enter valid dimensions before adding to cart.'); return; }
 
+  // Only carry a price into the cart when the estimate is actually on screen.
+  // Customer-supplied fabric and Lutron/Somfy motors hide it, and #qp-total then
+  // still holds the last priced configuration's figure.
+  var priceBox=document.getElementById('qp-price');
   var totalEl=document.getElementById('qp-total');
-  var priceText=totalEl?totalEl.textContent.trim():'';
+  var priceShown=priceBox&&priceBox.style.display!=='none';
+  var priceText=(priceShown&&totalEl)?totalEl.textContent.trim():'';
   var price=priceText&&priceText!=='—'?parseFloat(priceText.replace(/[^0-9.]/g,''))||null:null;
 
   var typeMap={lf:'Light Filtering',rd:'Blackout',bk:'Blackout',solar:'Solar Screening',exterior:'Exterior Roller'};
