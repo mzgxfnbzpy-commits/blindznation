@@ -2,6 +2,10 @@
 // Blindznation — Shared Components
 // ============================================================
 
+// ─── Blindznation Google Business Profile (Midvale / Salt Lake City, UT) ─────
+// The ONE place the link lives: footer, schema.org sameAs/hasMap, homepage reviews.
+var PB_GBP_URL = 'https://maps.app.goo.gl/Y3fAYAAi5imrpbSz7';
+
 // ─── SECURITY — form load timestamp (bot timing check) ───────────────────────
 var _formLoadTime = Date.now();
 
@@ -107,7 +111,8 @@ function _injectHead(isHome) {
         "postalCode": "84047",
         "addressCountry": "US"
       },
-      "geo": {"@type": "GeoCoordinates", "latitude": 40.6109, "longitude": -111.8997},
+      "geo": {"@type": "GeoCoordinates", "latitude": 40.6247, "longitude": -111.8611},  // = the Google Business Profile pin
+      "hasMap": PB_GBP_URL,
       "areaServed": [
         {"@type": "City", "name": "Salt Lake City"},
         {"@type": "AdministrativeArea", "name": "Salt Lake County, UT"},
@@ -134,7 +139,7 @@ function _injectHead(isHome) {
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Motorized Window Treatment Installation"}},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Free In-Home Window Treatment Consultation"}}
       ],
-      "sameAs": []
+      "sameAs": [PB_GBP_URL]
     });
     document.head.appendChild(s);
   }
@@ -318,10 +323,11 @@ function renderFooter(isHome) {
           </svg>Blind<em>znation</em>
         </div>
         <div class="footer-company">Healy Installations LLC</div>
-        <div class="footer-tagline">Serving Salt Lake City &amp; the surrounding Utah area. Product ships nationwide.</div>
+        <div class="footer-tagline">Based in Midvale, serving Salt Lake City &amp; the surrounding Utah area. Product ships nationwide.</div>
         <a href="tel:6097421720" style="display:block;font-size:15px;font-weight:600;color:var(--gold);text-decoration:none;margin-bottom:2px">(609) 742-1720</a>
         <div style="font-size:11px;color:var(--text-faint);margin-bottom:6px">Justin Healy &mdash; call or text 24/7</div>
         <a href="mailto:justin@blindznation.com" style="font-size:12px;color:var(--text-muted);text-decoration:none">justin@blindznation.com</a>
+        <a href="${PB_GBP_URL}" target="_blank" rel="noopener" style="display:block;margin-top:8px;font-size:12px;color:var(--gold);text-decoration:none">&#9733; Blindznation on Google &rarr;</a>
       </div>
       <div class="footer-col">
         <h4>Shades</h4>
