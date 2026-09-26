@@ -1025,7 +1025,7 @@ function pbContactStepHTML(opts) {
 window.pbDelivery = 'ship';
 function pbDeliveryLabel() {
   return window.pbDelivery === 'install'
-    ? 'Professional installation (Philadelphia / South Jersey)'
+    ? 'Professional installation (Salt Lake City area)'
     : 'Ship to me';
 }
 function pbPickDelivery(el, mode) {
@@ -1048,7 +1048,8 @@ function pbDeliveryStepHTML(opts) {
       '</div>' +
       '<div class="delivery-opt-card" onclick="pbPickDelivery(this,\'install\')' + after + '">' +
         '<div class="delivery-opt-title">Professional installation</div>' +
-        '<div class="delivery-opt-body">Philadelphia / South Jersey area.<br><em style="font-size:10px;color:#999">Installation priced in your quote.</em></div>' +
+        // Salt Lake City area service, from $30/shade — full guide on installation.html#pricing (Justin 2026-09-25).
+        '<div class="delivery-opt-body">Salt Lake City area &middot; from $30 per shade.<br><a href="' + (location.pathname.indexOf('/pages/') !== -1 ? '' : 'pages/') + 'installation.html#pricing" target="_blank" onclick="event.stopPropagation()" style="font-size:10px;color:var(--gold)">Measuring &amp; installation pricing &rarr;</a></div>' +
       '</div>' +
     '</div>';
   if (opts.bare) return inner;
@@ -1888,7 +1889,7 @@ function pbRenderEstimate(priceBoxId, lines, subtotal, conflictMsg, onCheckout) 
       '<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Your configuration</div>' +
       linesHtml +
       estimateHtml +
-      '<div style="font-size:10px;color:#aaa;line-height:1.6;margin-bottom:10px">&#9432; This is an estimate only. Final price is confirmed after your free in-home measurement. Actual price may vary based on exact dimensions, fabric availability, and installation scope.</div>' +
+      '<div style="font-size:10px;color:#aaa;line-height:1.6;margin-bottom:10px">&#9432; This is an estimate only. Final price is confirmed after measurement. Actual price may vary based on exact dimensions, fabric availability, and installation scope.</div>' +
       conflictHtml +
       // Per-item notes + attachments — captured into the cart item on Add to Cart
       '<div style="margin:2px 0 12px">' +
