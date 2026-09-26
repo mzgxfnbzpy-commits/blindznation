@@ -210,7 +210,7 @@ function psCalc() {
   var freight    = w >= 90 ? (80 + Math.max(0, PS.qty - 1) * 50) : (25 + Math.max(0, PS.qty - 1) * 11);
   var grandTotal = (yourPrice * PS.qty) + psMotor + freight;
   if (psMotor) lines.push('Motorization: ' + nmMotorLineText(psMotor, PS.qty));
-  lines.push('Freight (not discounted): +$' + freight.toLocaleString());
+  lines.push('Freight: +$' + freight.toLocaleString());
 
   document.getElementById('ps-price-num').textContent   = '$' + yourPrice.toLocaleString() + '/shade';
   document.getElementById('ps-price-total').textContent = '$' + grandTotal.toLocaleString();
@@ -259,7 +259,9 @@ function psAddToCart() {
   }
   var psMotor = (PS.lift !== 'ccl' && typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('PerfectSheer', PS.qty) : 0;
   var specs = lines.map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
-  pbAddToCart({product:'Norman PerfectSheer™', lines:lines, specs:specs, price:yourPrice * PS.qty + psMotor + freight, qty:PS.qty});
+  // price is the WHOLE order (every blind + freight), so qty stays 1 — the cart multiplies
+  // price × qty, and the real quantity is already in the Quantity line above.
+  pbAddToCart({product:'Norman PerfectSheer™', lines:lines, specs:specs, price:yourPrice * PS.qty + psMotor + freight, qty:1});
   if (typeof pbOpenCart === 'function') pbOpenCart();
 }
 
@@ -287,7 +289,9 @@ async function submitPSQuote(btn) {
   var motorLine = '';
   if (PS.lift !== 'ccl') {
     var motorSummary = (typeof nmGetMotorSummary === 'function') ? nmGetMotorSummary() : 'Norman Smart Motorization';
-    motorLine = 'Motor config: ' + motorSummary + ' (+$' + PS_MOTOR_COST + '/shade)\n';
+    // Same figure the price box shows (motor + charger/remote/hub), not a fixed $/shade.
+    var psMotorTotal = (typeof nmGetMotorPrice === 'function') ? nmGetMotorPrice('PerfectSheer', PS.qty) : PS_MOTOR_COST * PS.qty;
+    motorLine = 'Motor config: ' + motorSummary + ' (motorization ' + (typeof nmMotorLineText === 'function' ? nmMotorLineText(psMotorTotal, PS.qty) : '$' + psMotorTotal) + ')\n';
   }
 
   var body = 'NORMAN PERFECTSHEER™ ORDER\n\n'

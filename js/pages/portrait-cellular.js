@@ -687,7 +687,9 @@ function cellAddToCart() {
     {label:'Quantity',      value: String(CELL.qty)}
   ];
   var specs = lines.map(function(l){ return l.label + ': ' + l.value; }).join(' | ');
-  pbAddToCart({product:'Norman Portrait™ Cellular', lines:lines, specs:specs, price:yourPrice + freight, qty:CELL.qty});
+  // price is the WHOLE order (every blind + freight), so qty stays 1 — the cart multiplies
+  // price × qty, and the real quantity is already in the Quantity line above.
+  pbAddToCart({product:'Norman Portrait™ Cellular', lines:lines, specs:specs, price:yourPrice + freight, qty:1});
   if (typeof pbOpenCart === 'function') pbOpenCart();
 }
 

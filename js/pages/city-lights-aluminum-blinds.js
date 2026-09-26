@@ -341,7 +341,9 @@ function addCityLightsToCart(){
     {label:'Quantity',value:String(state.qty||1)}
   ];
   const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
-  pbAddToCart({product:'Norman City Lights™ Aluminum Blinds',lines:lines,specs:specs,price:price,qty:state.qty||1});
+  // price is the WHOLE order (every blind + freight), so qty stays 1 — the cart multiplies
+  // price × qty, and the real quantity is already in the Quantity line above.
+  pbAddToCart({product:'Norman City Lights™ Aluminum Blinds',lines:lines,specs:specs,price:price,qty:1});
   pbOpenCart();
 }
 

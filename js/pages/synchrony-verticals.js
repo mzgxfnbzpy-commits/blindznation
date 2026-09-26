@@ -269,7 +269,9 @@ function addSynchronyToCart(){
     {label:'Quantity',value:String(qty)}
   ];
   const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
-  pbAddToCart({product:'Norman Synchrony™ Vertical Blinds',lines:lines,specs:specs,price:price,qty:qty});
+  // price is the WHOLE order (every blind + freight), so qty stays 1 — the cart multiplies
+  // price × qty, and the real quantity is already in the Quantity line above.
+  pbAddToCart({product:'Norman Synchrony™ Vertical Blinds',lines:lines,specs:specs,price:price,qty:1});
   pbOpenCart();
 }
 

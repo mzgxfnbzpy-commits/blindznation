@@ -496,7 +496,7 @@ function calcPrice(){
   var altAdd=isAlt?Math.round(base*0.10):0;
   document.getElementById('pr-alt-row').style.display='none';
   per+=altAdd;
-  // Motor — priced at full Norman retail (NOT discounted), added AFTER the shade discount.
+  // Motor — priced at full Norman retail, added on top of the shade subtotal.
   // (Previously $642 was folded into the discounted subtotal; now motor + accessories are
   //  charged at full price via the shared nmGetMotorPrice.)
   var isMotor=S.op==='motor';

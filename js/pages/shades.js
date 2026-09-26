@@ -1833,8 +1833,11 @@ function rwbCalc() {
   lines += '<div class="price-line"><span>25% Norman discount</span><span style="color:var(--gold)">&minus;$' + (totalRetail - customerEach).toLocaleString() + '</span></div>';
   lines += '<div class="price-line"><span>Your price</span><span style="color:var(--gold)">$' + customerEach.toLocaleString() + ' / blind</span></div>';
   if (qty > 1) lines += '<div class="price-line"><span>Quantity</span><span>&times; ' + qty + '</span></div>';
+  // Freight — same table as real-wood-blinds.html, never discounted; none with professional installation.
+  var rwbFreight = window.pbDelivery === 'install' ? 0 : (w >= 90 ? 80 + (qty - 1) * 50 : 25 + (qty - 1) * 11);
+  if (rwbFreight) lines += '<div class="price-line"><span>Freight</span><span>+$' + rwbFreight.toLocaleString() + '</span></div>';
   document.getElementById('rwb-price-lines').innerHTML = lines;
-  document.getElementById('rwb-price-total').textContent = '$' + totalCustomer.toLocaleString();
+  document.getElementById('rwb-price-total').textContent = '$' + (totalCustomer + rwbFreight).toLocaleString();
   box.style.display = 'block';
 }
 async function submitRWBForm(btn) {

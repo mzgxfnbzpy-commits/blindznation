@@ -464,7 +464,9 @@ function addFauxWoodToCart(){
     {label:'Quantity',value:String(S.qty)}
   ];
   const specs=lines.map(l=>l.label+': '+l.value).join(' | ');
-  pbAddToCart({product:'SmartPrivacy Faux Wood Blinds',lines:lines,specs:specs,price:total,qty:S.qty});
+  // price is the WHOLE order (every blind + freight), so qty stays 1 — the cart multiplies
+  // price × qty, and the real quantity is already in the Quantity line above.
+  pbAddToCart({product:'SmartPrivacy Faux Wood Blinds',lines:lines,specs:specs,price:total,qty:1});
   pbOpenCart();
 }
 

@@ -609,7 +609,7 @@ function updateCalc() {
   var isMotCp=(S.lift==='motor'||S.lift==='motor-dn');
   var cpMotor=(isMotCp&&typeof nmGetMotorPrice==='function')?nmGetMotorPrice('Centerpiece Roman', qty*(isDN?2:1)):0;
   var total=cpYourPrice+freight+cpMotor;
-  setVal('pr-total','Norman retail ~$'+Math.round(cpYourPrice+freight).toLocaleString()+' incl. freight'+(cpMotor>0?' + motorization '+nmMotorLineText(cpMotor,qty)+' = ~$'+Math.round(total).toLocaleString()+' total':'')+' (freight at retail)');
+  setVal('pr-total','~$'+Math.round(cpYourPrice+freight).toLocaleString()+' incl. freight'+(cpMotor>0?' + motorization '+nmMotorLineText(cpMotor,qty)+' = ~$'+Math.round(total).toLocaleString()+' total':''));
 }
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
