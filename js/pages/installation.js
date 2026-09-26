@@ -12,7 +12,7 @@ async function submitInstall() {
   var need = val('inst-need') || 'Measure';
   var err = document.getElementById('inst-contact-err');
   var showErr = function (msg) { if (err) { err.innerHTML = msg; err.style.display = 'block'; } else alert(msg); };
-  if (!name || !phone) { showErr('Please enter your name and phone number.'); return; }
+  if (!name) { showErr('Please enter your name.'); return; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('Please enter a valid email so we can confirm your appointment.'); return; }
   if (!address) { showErr('Please enter the address so we can confirm the distance from Midvale.'); return; }
   if (err) err.style.display = 'none';

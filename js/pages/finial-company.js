@@ -837,7 +837,7 @@ function submitQuote(){
   var name=document.getElementById('cf-name').value.trim();
   var phone=document.getElementById('cf-phone').value.trim();
   var err=document.getElementById('cf-contact-err');
-  if(!name||!phone){err.textContent='Please enter your name and phone number.';err.style.display='block';return;}
+  if (!name){err.textContent='Please enter your name.';err.style.display='block';return;}
   err.style.display='none';
   var qty=parseInt(document.getElementById('qty').value)||1;
   var collLabels={'modern-metal':'Modern Metal','metal-138':'1⅜″ Metal','steel':'Steel','wood':'Wood & Resin','outdoor':'Outdoor Hardware','traverse':'Traverse Systems'};
@@ -897,7 +897,7 @@ function submitQuote(){
     'No changes/cancellations after 24 hours of order confirmation.'
   ].filter(function(l){return l!==null&&l!==undefined;}).join('\n');
 
-  window.location.href='mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     +'?subject='+encodeURIComponent('Blindznation — ' + 'Finial Company Hardware Quote — '+name)
     +'&body='+encodeURIComponent('BLINDZNATION\n\n' + lines);
   document.getElementById('success-box').style.display='block';

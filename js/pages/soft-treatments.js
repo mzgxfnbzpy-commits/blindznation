@@ -1326,20 +1326,19 @@ async function _stApiSubmit(formId, successId, name, email, phone, product, sele
   var formEl = document.getElementById(formId);
   var successEl = document.getElementById(successId);
   var btn = formEl ? (formEl.querySelector('.btn-gold') || formEl.querySelector('button[onclick]')) : null;
+  if (!String(name || '').trim()) { alert('Please enter your name.'); return; }
+  if (!_pbValidEmail(email)) { alert('Please enter a valid email address so we can send your quote.'); return; }
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
   try {
-    var resp = await fetch('/api/quote', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, email: email, phone: phone, product: product, selections: selections, notes: notes, sourceUrl: window.location.href })
-    });
-    var data = {}; try { data = await resp.json(); } catch(e) {}
-    if (!resp.ok) throw new Error(data.error || 'Server error');
+    // Shared sender (js/shared.js): _t, every option row, notes, attached files → justin@blindznation.com
+    await pbSendOrder({ name: name, email: email, phone: phone, product: product, lines: selections, notes: notes, scope: formEl });
     if (formEl) formEl.style.display = 'none';
     if (successEl) successEl.style.display = 'block';
   } catch(err) {
     if (btn) { btn.disabled = false; btn.textContent = 'Submit Order for Review →'; }
-    alert((err.message && err.message.length < 200 ? err.message + '\n\n' : '') +
-      'Please email us at justin@blindznation.com or call (609) 742-1720.');
+    var txt = 'Name: ' + name + '\nEmail: ' + email + (phone ? '\nPhone: ' + phone : '') + '\n\n' +
+      (selections || []).map(function (l) { return l.label + ': ' + l.value; }).join('\n') + (notes ? '\n\nNotes: ' + notes : '');
+    _pbShowSendFailure(_pbMailtoFor(product, name, txt), btn);
   }
 }
 
@@ -1472,7 +1471,7 @@ function addRomanToCart(){
 async function submitDrape() {
   var name  = document.getElementById('d-name').value.trim();
   var phone = document.getElementById('d-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
   // Warn if cornice or valance is added but not yet configured in CV tab
   var corniceOn = document.getElementById('d-cornice-check') && document.getElementById('d-cornice-check').checked;
   var valanceOn = document.getElementById('d-valance-check') && document.getElementById('d-valance-check').checked;

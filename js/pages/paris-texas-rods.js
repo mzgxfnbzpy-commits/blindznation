@@ -504,7 +504,7 @@ function submitQuote() {
   const errEl=document.getElementById('cf-contact-err');
   errEl.style.display='none';
   if(!name){ errEl.textContent='Please enter your name.'; errEl.style.display='block'; return; }
-  if(!phone&&!email){ errEl.textContent='Please enter a phone number or email address.'; errEl.style.display='block'; return; }
+  if(!email){ errEl.textContent='Please enter your email address.'; errEl.style.display='block'; return; }
   const contact=[phone,email].filter(Boolean).join(' / ');
   readPTM();
 
@@ -568,7 +568,7 @@ function submitQuote() {
   ].join('\n');
 
   const subject='Paris Texas Hardware Quote — '+typeLabel()+' — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subject)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subject)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('config-main').style.display='none';
   document.getElementById('success-box').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});

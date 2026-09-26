@@ -345,7 +345,7 @@ function submitForm(){
   errEl.style.display='none';
 
   if(!name){ errEl.textContent='Please enter your name.'; errEl.style.display='block'; return; }
-  if(!phone&&!email){ errEl.textContent='Please enter a phone number or email address.'; errEl.style.display='block'; return; }
+  if(!email){ errEl.textContent='Please enter your email address.'; errEl.style.display='block'; return; }
   if(!S.color){ errEl.textContent='Please select a color in Step 3.'; errEl.style.display='block'; return; }
   if(!S.mount){ errEl.textContent='Please select a mount type in Step 1.'; errEl.style.display='block'; return; }
   if(!S.sizeOk){ errEl.textContent='Please enter valid dimensions in Step 1.'; errEl.style.display='block'; return; }
@@ -418,7 +418,7 @@ function submitForm(){
   ].join('\n');
 
   const subj='SmartPrivacy Faux Wood Blinds Quote — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
   $('success-box').style.display='block';
   errEl.style.display='none';
 }

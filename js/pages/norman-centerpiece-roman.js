@@ -648,7 +648,6 @@ function submitQuote() {
   var errEl=document.getElementById('cf-contact-err');
   var errs=[];
   if(!name)         errs.push('Name required.');
-  if(!phone)        errs.push('Phone required.');
   if(!S.type)       errs.push('Select product type (Step 2).');
   if(!S.lift)       errs.push('Select lift system (Step 3).');
   if(!S.width||!S.height) errs.push('Enter dimensions (Step 1).');
@@ -691,7 +690,7 @@ function submitQuote() {
     '--- Sent from blindznation.com/pages/norman-centerpiece-roman.html ---'
   ].join('\n');
   var subj='Norman Centerpiece™ Roman — '+S.width+'"×'+S.height+'" '+(S.fabric?S.fabric.name:'')+' — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('step15-body').querySelectorAll(':not(#success-box)').forEach(function(el){el.style.display='none';});
   document.getElementById('success-box').style.display='block';
 }

@@ -8,7 +8,7 @@
 function submitInperson() {
   var name    = document.getElementById('ip-name').value.trim();
   var phone   = document.getElementById('ip-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
   var email   = document.getElementById('ip-email').value.trim();
   var address = document.getElementById('ip-address').value.trim();
   var day     = document.getElementById('ip-day').value;
@@ -23,7 +23,7 @@ function submitInperson() {
     + 'Products interested in: ' + (products || '—') + '\n'
     + 'Number of windows: ' + windows + '\n\n'
     + 'Notes: ' + (notes || 'None');
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Blindznation — ' + 'In-Home Visit Request — ' + name)
     + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('card-inperson').style.display = 'none';
@@ -33,16 +33,17 @@ function submitInperson() {
 function submitCallback() {
   var name  = document.getElementById('cb-name').value.trim();
   var phone = document.getElementById('cb-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
   var time  = document.getElementById('cb-time').value;
   var topic = document.getElementById('cb-topic').value;
   var notes = document.getElementById('cb-notes').value.trim();
+  var email = ((document.getElementById('cb-email') || {}).value || '').trim();
   var body = 'CALLBACK REQUEST\n\n'
-    + 'Name: ' + name + '\nPhone: ' + phone + '\n'
+    + 'Name: ' + name + '\nEmail: ' + email + '\nPhone: ' + (phone || '—') + '\n'
     + 'Best time to call: ' + time + '\n'
     + 'Topic: ' + topic + '\n\n'
     + 'Notes: ' + (notes || 'None');
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Blindznation — ' + 'Callback Request — ' + name)
     + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('card-callback').style.display = 'none';

@@ -436,7 +436,7 @@ function pbAutoFillContact() {
   });
 }
 
-// Returns true when name + phone + email are filled; shows error in element with id=errId.
+// Returns true when name + email are filled (phone optional); shows error in element with id=errId.
 // Returns the first VISIBLE [data-pb-contact=key] input, falling back to the first match.
 // Pages can have more than one contact form in the DOM; visibility preference stops a hidden
 // form's empty fields from wrongly blocking the active form's submit.
@@ -446,7 +446,7 @@ function _pbContactEl(key) {
   return els[0] || null;
 }
 
-// Returns true when name + phone + email are filled; shows error in element with id=errId.
+// Returns true when name + email are filled (phone optional); shows error in element with id=errId.
 function pbContactValid(errId) {
   var nameEl  = _pbContactEl('name');
   var phoneEl = _pbContactEl('phone');
@@ -458,7 +458,7 @@ function pbContactValid(errId) {
     return false;
   }
   if (!nameEl  || !nameEl.value.trim())  return _fail('Please enter your name.', nameEl);
-  if (!phoneEl || !phoneEl.value.trim()) return _fail('Please enter your phone number.', phoneEl);
+  // Phone is optional (Justin 2026-09-25): only name and email are required.
   if (!emailEl || !emailEl.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim()))
     return _fail('Please enter a valid email address.', emailEl);
   if (errEl) errEl.style.display = 'none';
@@ -986,7 +986,7 @@ function pbContactStepHTML(opts) {
         '<div class="form-group"><label>Name *</label><input type="text" id="' + p + 'name" data-pb-contact="name" autocomplete="name" placeholder="Jane Smith"></div>' +
         '<div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="' + p + 'address" data-pb-contact="address" autocomplete="street-address" placeholder="123 Main St, Midvale, UT 84047"></div>' +
         '<div class="dim-row">' +
-          '<div class="form-group"><label>Phone *</label><input type="tel" id="' + p + 'phone" data-pb-contact="phone" autocomplete="tel" placeholder="(801) 555-0100"></div>' +
+          '<div class="form-group"><label>Phone <span style="font-weight:400;color:#888">(optional)</span></label><input type="tel" id="' + p + 'phone" data-pb-contact="phone" autocomplete="tel" placeholder="(801) 555-0100"></div>' +
           '<div class="form-group"><label>Email *</label><input type="email" id="' + p + 'email" data-pb-contact="email" autocomplete="email" placeholder="jane@example.com"></div>' +
         '</div>' +
         '<div class="form-group"><label>Notes</label><textarea id="' + p + 'notes" data-pb-contact="notes" placeholder="Room name, ceiling height, fabric ideas, timeline &mdash; anything helpful" style="min-height:60px"></textarea></div>' +
@@ -2053,7 +2053,7 @@ function pbShowQuoteModal(lines, productName, estimate, files) {
         '<div class="pb-qm-field"><label>Name *</label><input id="pbq-fname" data-pb-contact="name" type="text" placeholder="Jane Smith" autocomplete="name"></div>' +
         '<div class="pb-qm-field"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input id="pbq-address" data-pb-contact="address" type="text" placeholder="123 Main St, Midvale, UT 84047" autocomplete="street-address"></div>' +
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-          '<div class="pb-qm-field"><label>Phone *</label><input id="pbq-phone" data-pb-contact="phone" type="tel" placeholder="(801) 555-0100" autocomplete="tel"></div>' +
+          '<div class="pb-qm-field"><label>Phone <span style="font-weight:400;color:#888">(optional)</span></label><input id="pbq-phone" data-pb-contact="phone" type="tel" placeholder="(801) 555-0100" autocomplete="tel"></div>' +
           '<div class="pb-qm-field"><label>Email *</label><input id="pbq-email" data-pb-contact="email" type="email" placeholder="jane@example.com" autocomplete="email"></div>' +
         '</div>' +
         '<div class="pb-qm-field"><label>Notes <span style="font-weight:400;color:#888">(optional)</span></label><textarea id="pbq-notes" rows="3" placeholder="Anything else — overall timeline, install questions..."></textarea></div>' +
@@ -2153,11 +2153,7 @@ async function pbSubmitQuote() {
     if (errEl) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; }
     return;
   }
-  if (!phone.trim()) {
-    if (errEl) { errEl.textContent = 'Please enter your phone number.'; errEl.style.display = 'block'; }
-    var _pf = document.getElementById('pbq-phone'); if (_pf) { try { _pf.focus(); } catch(e){} }
-    return;
-  }
+  // Phone is optional — name and email are all we require.
   // Required Terms of Agreement acceptance before submitting for review.
   if (!pbTermsValid(document.querySelector('.pb-qm-body') || document, 'pbq-err')) return;
   if (errEl) errEl.style.display = 'none';
@@ -2848,10 +2844,10 @@ function _initContactPanel() {
       '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">' +
         '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Name *</label>' +
           '<input id="pb-cp-name" type="text" placeholder="Jane Smith" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
-        '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone *</label>' +
+        '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone <span style="font-weight:400;color:#888">(optional)</span></label>' +
           '<input id="pb-cp-phone-inp" type="tel" placeholder="(801) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
       '</div>' +
-      '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Email</label>' +
+      '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Email *</label>' +
         '<input id="pb-cp-email" type="email" placeholder="jane@example.com" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
       '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">What are you interested in?</label>' +
         '<input id="pb-cp-product" type="text" placeholder="e.g. Pirouette shadings, specialty shutters, oversized shade..." style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
@@ -2889,20 +2885,14 @@ async function pbSubmitContact() {
   var notes   = (document.getElementById('pb-cp-notes') || {}).value || '';
   var btn     = document.querySelector('[onclick="pbSubmitContact()"]');
   if (!name.trim()) { alert('Please enter your name.'); return; }
-  if (!phone.trim()) { alert('Please enter your phone number.'); return; }
+  if (!_pbValidEmail(email)) { alert('Please enter a valid email address so we can reply.'); return; }
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
   var selections = [];
   if (product) selections.push({ label: 'Interested in', value: product });
   if (width || height) selections.push({ label: 'Approx. dimensions', value: (width ? width + '″W' : '') + (width && height ? ' × ' : '') + (height ? height + '″H' : '') });
   try {
-    var resp = await fetch('/api/quote', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name.trim(), email: email.trim() || undefined, phone: phone.trim(), product: product || 'Free Consultation Request', selections: selections, notes: notes.trim() })
-    });
-    var data = {};
-    try { data = await resp.json(); } catch(ex) {}
-    if (!resp.ok) throw new Error(data.error || 'Server error');
+    await pbSendOrder({ name: name.trim(), email: email.trim(), phone: phone.trim(), product: product || 'Free Consultation Request',
+                        lines: selections, notes: notes.trim(), files: [] });
     var sent = document.getElementById('pb-cp-sent');
     if (sent) sent.style.display = 'block';
     if (btn) btn.style.display = 'none';
@@ -2932,7 +2922,10 @@ function pbShowContact(title) {
           '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><div style="flex:1;height:1px;background:#eee"></div><span style="font-size:11px;color:#bbb">or send us a message</span><div style="flex:1;height:1px;background:#eee"></div></div>' +
           '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">' +
             '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Name *</label><input id="' + uid + '-name" type="text" placeholder="Jane Smith" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
-            '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone *</label><input id="' + uid + '-phone" type="tel" placeholder="(801) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
+            '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Email *</label><input id="' + uid + '-email" type="email" placeholder="jane@example.com" style="width:100%;padding:9px 11px;border:1px solid #ddd;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
+          '</div>' +
+          '<div style="margin-bottom:10px">' +
+            '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone <span style="font-weight:400;color:#999">(optional)</span></label><input id="' + uid + '-phone" type="tel" placeholder="(801) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
           '</div>' +
           '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Notes</label><textarea id="' + uid + '-msg" rows="3" placeholder="What are you looking for? Window sizes, room, timeline, questions..." style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea></div>' +
           '<div style="border:1.5px dashed #C9A96E;border-radius:9px;padding:12px 14px;margin-bottom:14px;background:#FAF7EF">' +
@@ -2941,18 +2934,7 @@ function pbShowContact(title) {
             '<div id="' + uid + '-fnames" style="font-size:11px;color:#666;margin-top:5px;line-height:1.7"></div>' +
             '<div style="font-size:10px;color:#aaa;margin-top:4px">Window photos, room photos, inspiration images — email to justin@blindznation.com or attach here.</div>' +
           '</div>' +
-          '<button onclick="(function(){'  +
-            'var n=document.getElementById(\'' + uid + '-name\').value.trim();' +
-            'var p=document.getElementById(\'' + uid + '-phone\').value.trim();' +
-            'if(!n||!p){alert(\'Please enter your name and phone number.\');return;}' +
-            'var m=document.getElementById(\'' + uid + '-msg\').value;' +
-            'var fi=document.getElementById(\'' + uid + '-files\');' +
-            'var fn=fi&&fi.files.length?\'\\n\\nFiles: \'+Array.from(fi.files).map(function(f){return f.name}).join(\', \')+\'\\n(Please email to justin@blindznation.com)\':\'\';' +
-            'var subj=\'Quote Request — \'+n;' +
-            'var body=\'QUOTE REQUEST\\n\\nName: \'+n+\'\\nPhone: \'+p+\'\\n\\nMessage:\\n\'+(m||\'(none)\')+fn;' +
-            'window.location.href=\'mailto:justin@blindznation.com?subject=\'+encodeURIComponent(subj)+\'&body=\'+encodeURIComponent(body);' +
-            'document.getElementById(\'' + uid + '\').remove();' +
-          '})()" style="width:100%;background:#111110;color:#C9A96E;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">Send request →</button>' +
+          '<button onclick="pbSendPopup(\'' + uid + '\', this)" data-title="' + String(t).replace(/"/g,'&quot;') + '" style="width:100%;background:#111110;color:#C9A96E;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">Send request →</button>' +
         '</div>' +
       '</div>' +
     '</div>';
@@ -3132,6 +3114,27 @@ function _initChatbot() {
   input.addEventListener('keydown', function(e) { if (e.key === 'Enter') send(); });
 }
 
+// Quote popup (pbShowContact) → shared sender, with any attached files.
+async function pbSendPopup(uid, btn) {
+  var v = function (k) { var el = document.getElementById(uid + '-' + k); return el ? String(el.value || '').trim() : ''; };
+  var name = v('name'), email = v('email'), phone = v('phone'), msg = v('msg');
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!_pbValidEmail(email)) { alert('Please enter a valid email address so we can reply.'); return; }
+  var fi = document.getElementById(uid + '-files');
+  var files = fi && fi.files ? Array.prototype.slice.call(fi.files) : [];
+  var title = (btn && btn.getAttribute('data-title')) || 'Quote request';
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+  try {
+    await pbSendOrder({ name: name, email: email, phone: phone, product: title, lines: [{ label: 'Page', value: document.title }], notes: msg, files: files });
+    var box = document.getElementById(uid);
+    var inner = box && box.querySelector('div > div:last-child');
+    if (inner) inner.innerHTML = '<div style="padding:10px 4px;text-align:center"><div style="font-size:16px;font-weight:600;color:#111;margin-bottom:6px">Sent — thank you!</div><div style="font-size:13px;color:#555;line-height:1.6">Justin has your message and will reply by email' + (phone ? ' or phone' : '') + ', usually within a few hours.</div></div>';
+  } catch (err) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Send request →'; }
+    _pbShowSendFailure(_pbMailtoFor(title, name, 'Name: ' + name + '\nEmail: ' + email + (phone ? '\nPhone: ' + phone : '') + '\n\nMessage:\n' + (msg || '(none)')), btn);
+  }
+}
+
 // ── Request more information ──────────────────────────────────────────────
 function reqMoreInfo(product) {
   var subj = product ? 'Request for more information: ' + product : 'Request for more information';
@@ -3275,29 +3278,180 @@ document.addEventListener('DOMContentLoaded', function() {
   }, true);
 });
 
-// Quote submission helper used by standalone product pages (ported from Philly Blinds).
+// ═════════════════════════════════════════════════════════════════════════════
+// ONE SENDER FOR EVERY FORM (Justin 2026-09-25)
+// Every order, quote and request on the site goes through pbSendOrder() →
+// POST /api/quote → justin@blindznation.com (Resend), with EVERYTHING the customer
+// gave us: name, email, phone, address, delivery, the product, every option chosen
+// (one row each), the estimate, notes, and attached photos / PDFs.
+//   · Required from the customer: NAME and EMAIL only. Phone is optional.
+//   · Always sends _t (ms since the page loaded) and _hp — api/quote.js silently
+//     drops a request without _t ≥ 2000, which is how orders were lost (BUG A1).
+//   · If the email service fails, the customer's mail app opens with the whole
+//     order pre-filled, so nothing is ever lost.
+// Pages that used to build a mailto: link now assign it to window.pbMailto
+// instead (see below) — their text is parsed into rows and sent the same way.
+// ═════════════════════════════════════════════════════════════════════════════
+var PB_ORDER_EMAIL = 'justin@blindznation.com';
+function _pbValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(e || '').trim()); }
+
+// Value of a [data-pb-contact=key] field — the visible one first, then any filled one.
+function _pbContactVal(key, scope) {
+  var els = Array.prototype.slice.call((scope || document).querySelectorAll('[data-pb-contact="' + key + '"]'));
+  var vis = els.filter(function (el) { return el.offsetParent !== null && String(el.value || '').trim(); });
+  var any = els.filter(function (el) { return String(el.value || '').trim(); });
+  var el = vis[0] || any[0];
+  return el ? String(el.value).trim() : '';
+}
+
+// Every file the customer attached on this page (or inside `scope`), de-duplicated.
+function _pbPageFiles(scope) {
+  var out = [], seen = {};
+  Array.prototype.forEach.call((scope || document).querySelectorAll('input[type="file"]'), function (inp) {
+    Array.prototype.forEach.call(inp.files || [], function (f) {
+      var k = f.name + '|' + f.size;
+      if (!seen[k]) { seen[k] = 1; out.push(f); }
+    });
+  });
+  return out;
+}
+
+// Turn an order written as text ("Label: value" lines, section headings, blank lines)
+// into rows for the email table, so every option shows up on its own line.
+var _PB_CONTACT_LABELS = /^(name|email|e-mail|phone|address|customer|project address|installation address)$/i;
+function _pbTextToLines(text) {
+  var rows = [];
+  String(text || '').replace(/\r/g, '').split('\n').forEach(function (raw) {
+    var line = raw.replace(/^\s*[•·\-–]\s*/, '').trim();
+    if (!line || /^=+.*=+$/.test(line) || /^BLINDZNATION$/i.test(line) || /^Sent from /i.test(line)) return;
+    var i = line.indexOf(':');
+    if (i > 0 && i < 60 && !/^https?$/i.test(line.slice(0, i))) {
+      var label = line.slice(0, i).trim(), value = line.slice(i + 1).trim();
+      if (_PB_CONTACT_LABELS.test(label)) return;            // shown at the top of the email already
+      rows.push({ label: label, value: value || '—' });
+    } else {
+      rows.push({ label: '', value: line });                  // a heading or a free-text line
+    }
+  });
+  return rows;
+}
+
+function _pbFindLine(text, label) {
+  // [ \t] not \s: an empty "Phone:" must not swallow the next line ("Email: …").
+  var m = String(text || '').match(new RegExp('^[ \\t]*' + label + '[ \\t]*:[ \\t]*(.*)$', 'im'));
+  var v = m ? m[1].trim() : '';
+  return /^[—–-]?$/.test(v) ? '' : v;
+}
+
+// o: { product, lines:[{label,value}] | text, notes, estimate, name, email, phone, address,
+//      files:[File], scope:Element, fallbackText }
+// Resolves { ok:true } or rejects with an Error (callers show the mailto fallback).
+async function pbSendOrder(o) {
+  o = o || {};
+  var scope = o.scope || null;
+  var name    = String(o.name    || _pbContactVal('name', scope)    || _pbContactVal('name')).trim();
+  var email   = String(o.email   || _pbContactVal('email', scope)   || _pbContactVal('email')).trim();
+  var phone   = String(o.phone   || _pbContactVal('phone', scope)   || _pbContactVal('phone')).trim();
+  var address = String(o.address || _pbContactVal('address', scope) || _pbContactVal('address')).trim();
+  var notes   = String(o.notes != null ? o.notes : (_pbContactVal('notes', scope) || '')).trim();
+  var lines = (o.lines && o.lines.length ? o.lines : _pbTextToLines(o.text)).filter(function (l) { return l && (l.label || l.value); })
+    .map(function (l) { return { label: String(l.label || ''), value: String(l.value == null ? '' : l.value) }; });
+  var has = function (re) { return lines.some(function (l) { return re.test(l.label); }); };
+  if (!has(/^delivery/i) && typeof pbDeliveryLabel === 'function' && document.querySelector('.delivery-opt-card')) lines.push({ label: 'Delivery', value: pbDeliveryLabel() });
+  var shadeLabels = (typeof pbGetShadeLabels === 'function') ? pbGetShadeLabels() : '';
+  if (shadeLabels && !has(/^labels?$/i) && notes.indexOf(shadeLabels) < 0) lines.push({ label: 'Labels', value: shadeLabels });
+  var files = o.files || _pbPageFiles(scope) ;
+  if (!files.length && scope) files = _pbPageFiles();
+  var attachments = [];
+  try { attachments = await _pbBuildAttachments(files); } catch (e) { attachments = []; }
+  if (attachments._overflow) lines.push({ label: 'Files', value: attachments._overflow + ' file(s) were too large to attach — ask the customer to email them' });
+  var r = await fetch('/api/quote', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: name, email: email, phone: phone, address: address,
+      delivery: (typeof pbDeliveryLabel === 'function') ? pbDeliveryLabel() : 'Ship to me',
+      product: o.product || 'Quote request',
+      selections: lines, estimate: o.estimate || null, notes: notes,
+      attachments: attachments,
+      agreedToTerms: true, agreedToTermsAt: new Date().toISOString(),
+      sourceUrl: window.location.href, _hp: '',
+      _t: Math.max(2000, Date.now() - (typeof _formLoadTime === 'number' ? _formLoadTime : 0))
+    })
+  });
+  var d = {}; try { d = await r.json(); } catch (e) {}
+  if (!r.ok) throw new Error(d.error || ('Server error ' + r.status));
+  try { pbSaveContact({ name: name, email: email, phone: phone, address: address }); } catch (e) {}
+  return { ok: true };
+}
+
+// The fallback link: the customer's own mail app, pre-filled with the whole order.
+function _pbMailtoFor(product, name, text) {
+  return 'mailto:' + PB_ORDER_EMAIL + '?subject=' + encodeURIComponent('Blindznation — ' + (product || 'Quote request') + (name ? ' — ' + name : '')) +
+    '&body=' + encodeURIComponent('BLINDZNATION\n\n' + String(text || ''));
+}
+function _pbShowSendFailure(mailHref, anchorEl) {
+  var msg = 'We couldn’t send that automatically. Your email app will open with everything filled in — just press Send. ' +
+            'Or call/text (609) 742-1720, 24/7.';
+  if (anchorEl && anchorEl.insertAdjacentElement) {
+    var d = document.createElement('div');
+    d.style.cssText = 'background:#FEE2E2;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:12px;color:#991B1B;line-height:1.5';
+    d.innerHTML = '<strong>Not sent yet.</strong> <a href="' + mailHref + '" style="color:#991B1B;font-weight:700;text-decoration:underline">Email your order directly →</a> or call <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a>.';
+    anchorEl.insertAdjacentElement('afterend', d);
+  } else { try { alert(msg); } catch (e) {} }
+  try { window.location.href = mailHref; } catch (e) {}
+}
+
+// Pages that used to hand a mailto: link to the browser now hand it here. The
+// subject and body are read back out of the link and sent through pbSendOrder.
+// Returns false (after telling the customer) when name or email is missing.
+function pbSendMailto(href) {
+  var q = String(href || '').split('?')[1] || '';
+  var params = {};
+  q.split('&').forEach(function (kv) { var i = kv.indexOf('='); if (i > 0) { try { params[kv.slice(0, i)] = decodeURIComponent(kv.slice(i + 1).replace(/\+/g, '%20')); } catch (e) { params[kv.slice(0, i)] = kv.slice(i + 1); } } });
+  var subject = (params.subject || '').replace(/^Blindznation\s*—\s*/i, '');
+  var body = params.body || '';
+  var name  = _pbContactVal('name')  || _pbFindLine(body, 'Name');
+  var email = _pbContactVal('email') || _pbFindLine(body, 'Email');
+  var phone = _pbContactVal('phone') || _pbFindLine(body, 'Phone');
+  if (!name || !_pbValidEmail(email)) {
+    alert(!name ? 'Please enter your name.' : 'Please enter a valid email address so we can send your quote.');
+    return false;
+  }
+  // Product = the subject without the customer's name and without empty "—" placeholders.
+  var product = subject.split(/\s*[—–]\s*/).map(function (p) { return p.trim(); })
+    .filter(function (p) { return p && p !== name && /[A-Za-z0-9]/.test(p.replace(/[×"″%]/g, '')); }).join(' — ') || 'Quote request';
+  var address = _pbContactVal('address') || _pbFindLine(body, 'Address') || _pbFindLine(body, 'Project address');
+  pbSendOrder({ product: product, text: body, name: name, email: email, phone: phone, address: address, notes: _pbContactVal('notes') })
+    .catch(function (err) { console.error('Order send failed:', err && err.message); _pbShowSendFailure(href, null); });
+  return true;
+}
+// window.pbMailto = '<mailto link>' sends the order. If name/email are missing it
+// throws a quiet marker so the rest of the page's submit function (the success
+// message) does not run.
+var _PB_STOP = { pbStop: true, toString: function () { return 'order not sent: missing name or email'; } };
+try {
+  Object.defineProperty(window, 'pbMailto', { configurable: true, get: function () { return ''; },
+    set: function (h) { if (!pbSendMailto(h)) throw _PB_STOP; } });
+} catch (e) {}
+window.addEventListener('error', function (e) { if (e && e.error === _PB_STOP) e.preventDefault(); });
+window.addEventListener('unhandledrejection', function (e) { if (e && e.reason === _PB_STOP) e.preventDefault(); });
+
+// Quote submission helper used by the standalone product pages and the shades hub.
+// The whole order arrives as text; it is split into rows and sent via pbSendOrder.
 async function _apiSubmit(name, email, phone, productName, configText, successId, formHideId, btn, onSuccess) {
+  if (!String(name || '').trim()) { alert('Please enter your name.'); return; }
+  if (!_pbValidEmail(email)) { alert('Please enter a valid email address so we can send your quote.'); return; }
   if (btn) { btn._origText = btn.textContent; btn.disabled = true; btn.textContent = 'Sending…'; }
   try {
-    var r = await fetch('/api/quote', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, email: email || '', phone: phone, product: productName, selections: [], notes: configText })
-    });
-    var d = {}; try { d = await r.json(); } catch(e) {}
-    if (!r.ok) throw new Error(d.error || 'Server error ' + r.status);
+    await pbSendOrder({ name: name, email: email, phone: phone, product: productName, text: configText,
+                        notes: '', scope: btn ? (btn.closest('.pb-cart-extras') || btn.closest('form') || null) : null });
     if (onSuccess) onSuccess();
     if (formHideId) { var fEl = document.getElementById(formHideId); if (fEl) { fEl.classList.remove('show'); fEl.style.display = 'none'; } }
     var sEl = document.getElementById(successId);
     if (sEl) { sEl.classList.add('show'); sEl.style.display = 'block'; sEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  } catch(err) {
-    if (btn) { btn.disabled = false; btn.textContent = btn._origText || 'Send quote request'; }
-    var mh = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + 'Quote — ' + name) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + 'Name: ' + name + '\nPhone: ' + phone + '\nProduct: ' + productName + '\n\n' + configText);
-    var eDiv = document.createElement('div');
-    eDiv.style.cssText = 'background:#FEE2E2;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:12px;color:#991B1B;line-height:1.5';
-    eDiv.innerHTML = '<strong>Issue sending.</strong> <a href="' + mh + '" style="color:#991B1B;font-weight:700;text-decoration:underline">Email directly →</a> or call <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a>';
-    if (btn && btn.parentElement) btn.insertAdjacentElement('afterend', eDiv);
-    setTimeout(function(){ if (eDiv.parentElement) eDiv.remove(); }, 15000);
+  } catch (err) {
+    if (btn) { btn.disabled = false; btn.textContent = btn._origText || 'Submit Order for Review →'; }
+    _pbShowSendFailure(_pbMailtoFor(productName, name, 'Name: ' + name + '\nEmail: ' + email + (phone ? '\nPhone: ' + phone : '') + '\n\n' + configText), btn);
   }
 }
 

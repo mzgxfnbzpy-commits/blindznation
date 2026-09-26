@@ -12,7 +12,6 @@ function submitDynastyQuote() {
   const name = document.getElementById('dy-name').value.trim();
   const phone = document.getElementById('dy-phone').value.trim();
   if (!name) { alert('Please enter your name.'); return; }
-  if (!phone) { alert('Please enter your phone number.'); return; }
 
   const subject = encodeURIComponent('Dynasty Woven Wood Shade Quote — ' + name);
   const body = encodeURIComponent([
@@ -38,5 +37,5 @@ function submitDynastyQuote() {
     document.getElementById('dy-notes').value || '(none)',
   ].join('\n'));
 
-  window.location.href = 'mailto:justin@blindznation.com?subject=' + subject + '&body=' + body;
+  window.pbMailto = 'mailto:justin@blindznation.com?subject=' + subject + '&body=' + body;
 }

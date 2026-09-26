@@ -822,8 +822,8 @@ function submitQuote() {
   const phone = document.getElementById('cf-phone').value.trim();
   const errEl = document.getElementById('cf-contact-err');
 
-  if(!name || !phone) {
-    errEl.textContent = 'Please enter your name and phone number.';
+  if (!name) {
+    errEl.textContent = 'Please enter your name.';
     errEl.style.display = 'block';
     return;
   }
@@ -831,7 +831,7 @@ function submitQuote() {
 
   const body = encodeURIComponent(buildQuote());
   const sub  = encodeURIComponent('Wallace Portfolio Natural Shades Quote — ' + name);
-  window.location.href = `mailto:justin@blindznation.com?subject=${sub}&body=${body}`;
+  window.pbMailto = `mailto:justin@blindznation.com?subject=${sub}&body=${body}`;
 
   document.getElementById('wallace-form').style.display = 'none';
   document.getElementById('wf-success').style.display = 'block';

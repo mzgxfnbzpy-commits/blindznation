@@ -588,7 +588,6 @@ function submitQ(){
   var errEl=document.getElementById('cf-contact-err');
   var errs=[];
   if(!name)errs.push('Name required.');
-  if(!phone)errs.push('Phone required.');
   if(!S.prod)errs.push('Select product (Step 2).');
   if(S.prod==='dual'&&!S.fabric)errs.push('Select fabric (Step 3).');
   if(!S.w||!S.h)errs.push('Enter width and height (Step 1).');
@@ -643,7 +642,7 @@ function submitQ(){
   ]).join('\n');
 
   var subj='Wallace '+(S.prod==='dual'?'Dual Sheer':'Banded 2D')+' Quote — '+S.w+'"x'+S.h+'" — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('step8-body').querySelectorAll(':not(#success-box)').forEach(function(el){el.style.display='none';});
   document.getElementById('success-box').style.display='block';
 }

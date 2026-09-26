@@ -741,7 +741,7 @@ function addWallaceNaturalRollerToCart(){
 function submitQuote() {
   var name  = document.getElementById('cf-name').value.trim();
   var phone = document.getElementById('cf-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
 
   var fab = S.fabric;
   var tt = S.topTreatment;
@@ -807,7 +807,7 @@ function submitQuote() {
     + '── NOTES ──\n'
     + (document.getElementById('cf-notes').value.trim() || 'None');
 
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Blindznation — ' + 'Wallace Natural Roller Spec — ' + name + (fab ? ' · ' + fab.name : ''))
     + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
 

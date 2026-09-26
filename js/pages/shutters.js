@@ -489,9 +489,9 @@ async function submitQuote() {
   var email = qs('cf-email').value.trim();
   var errEl = qs('cf-contact-err');
   if (errEl) errEl.style.display = 'none';
-  if (!name || !phone || !email) {
-    if (errEl) { errEl.textContent = 'Please fill in your name, phone, and email.'; errEl.style.display = 'block'; }
-    else alert('Please fill in your name, phone, and email.');
+  if (!name || !email) {
+    if (errEl) { errEl.textContent = 'Please fill in your name and email.'; errEl.style.display = 'block'; }
+    else alert('Please fill in your name and email.');
     return;
   }
   if (!S.line) {
@@ -528,19 +528,14 @@ async function submitQuote() {
     (qs('field-notes') && qs('field-notes').value.trim()) || '',
     (qs('cf-notes') && qs('cf-notes').value.trim()) || ''
   ].filter(Boolean).join(' — ');
+  var product = 'Norman Plantation Shutters — ' + S.line;
   try {
-    var resp = await fetch('/api/quote', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, email: email, phone: phone,
-        product: 'Norman Plantation Shutters — '+S.line,
-        selections: selections, notes: combinedNotes,
-        sourceUrl: window.location.href })
-    });
-    var data = {}; try { data = await resp.json(); } catch(ex) {}
-    if (!resp.ok) throw new Error(data.error||'Server error');
+    // Shared sender (js/shared.js): _t, every option row, notes, attached files → justin@blindznation.com
+    await pbSendOrder({ name: name, email: email, phone: phone, product: product, lines: selections, notes: combinedNotes });
     qs('success-box').classList.add('show');
   } catch(err) {
     if (btn) { btn.disabled = false; btn.textContent = 'Submit Order for Review →'; }
-    alert('Something went wrong. Please call (609) 742-1720 or email justin@blindznation.com');
+    _pbShowSendFailure(_pbMailtoFor(product, name, 'Name: ' + name + '\nEmail: ' + email + (phone ? '\nPhone: ' + phone : '') + '\n\n' +
+      selections.map(function (l) { return l.label + ': ' + l.value; }).join('\n') + (combinedNotes ? '\n\nNotes: ' + combinedNotes : '')), btn);
   }
 }

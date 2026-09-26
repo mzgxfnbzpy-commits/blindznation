@@ -697,10 +697,10 @@ function cellAddToCart() {
 async function submitCellQuote(btn) {
   var name  = document.getElementById('cf-name').value.trim();
   var phone = document.getElementById('cf-phone').value.trim();
-  if (!name || !phone) {
+  if (!name) {
     var errEl = document.getElementById('cf-contact-err');
-    if (errEl) { errEl.textContent = 'Please enter your name and phone number.'; errEl.style.display = 'block'; }
-    else { alert('Please enter your name and phone number.'); }
+    if (errEl) { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; }
+    else { alert('Please enter your name.'); }
     return;
   }
   var w     = document.getElementById('cell-width').value  || '?';

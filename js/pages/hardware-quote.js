@@ -593,7 +593,7 @@ function updateSubmitState(){
   if(!S.length && S.brand!=='other' && S.brand!=='kdm') missing.push('Choose a length (Step 4)');
   if(!S.finish && S.brand!=='kb' && S.brand!=='moto' && S.brand!=='other') missing.push('Choose a finish (Step 5)');
   if(!name.trim()) missing.push('Enter your name');
-  if(!phone.trim() && !email.trim()) missing.push('Enter a phone number or email');
+  if(!email.trim()) missing.push('Enter your email address');
 
   const btn=$('submit-btn');
   const clBox=$('checklist-box');
@@ -641,7 +641,7 @@ function submitForm(){
   const email=$('cf-email').value.trim();
   const errEl=$('cf-contact-err'); errEl.style.display='none';
   if(!name){errEl.textContent='Please enter your name.';errEl.style.display='block';return;}
-  if(!phone&&!email){errEl.textContent='Please enter a phone number or email.';errEl.style.display='block';return;}
+  if(!email){errEl.textContent='Please enter your email address.';errEl.style.display='block';return;}
   if(!S.brand){errEl.textContent='Please select a brand in Step 2.';errEl.style.display='block';return;}
 
   const body=[
@@ -673,6 +673,6 @@ function submitForm(){
   ].join('\n');
 
   const subj='Drapery Hardware Quote — '+name+' — '+S.brandLabel;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
   $('success-box').style.display='block';
 }

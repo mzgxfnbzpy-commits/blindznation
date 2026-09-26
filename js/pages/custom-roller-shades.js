@@ -514,7 +514,7 @@ function crsSubmit() {
   var hp    = ((_crsEl('q-hp')    || {}).value || '');
 
   if (!name)              { alert('Please enter your name.'); return; }
-  if (!email && !phone)   { alert('Please enter an email address or phone number.'); return; }
+  if (!email) { alert('Please enter your email address.'); return; }
 
   var typeMap = { lf: 'Light Filtering', rd: 'Blackout', bk: 'Blackout', solar: 'Solar Screening', exterior: 'Exterior Roller (outdoor)' };
   var hMap    = { open: 'Open roll (no valance)', fascia: 'Metal fascia' };
@@ -546,20 +546,19 @@ function crsSubmit() {
   var btn = _crsEl('submit-btn');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
-  fetch('/api/quote', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: name, email: email, phone: phone,
-      product: 'Basic Roller Shades',
-      notes: notes,
-      selections: selections,
-      sourceUrl: window.location.href,
-      _hp: hp,
-      _t: Date.now() - _crsLoadTime
-    })
-  })
-  .then(function(r) { return r.json(); })
+  if (hp) return;   // honeypot filled — a bot
+  // Price lines go in the email too, not just the fallback.
+  var _p = crsCalcPricing();
+  if (_p) {
+    selections.push({ label: 'Retail (per shade)', value: '$' + _p.retail.toLocaleString() });
+    selections.push({ label: 'Discount', value: '-$' + _p.discount.toLocaleString() });
+    selections.push({ label: 'Your price (×' + CRS.qty + ')', value: '$' + _p.shadeTotal.toLocaleString() });
+    selections.push({ label: 'Shipping', value: '$' + _p.freight.toLocaleString() });
+  }
+  // Shared sender (js/shared.js): _t, every option row, notes, attached files → justin@blindznation.com
+  pbSendOrder({ name: name, email: email, phone: phone, product: 'Basic Roller Shades', lines: selections, notes: notes,
+                estimate: _p ? '$' + _p.grandTotal.toLocaleString() + ' (estimate only)' : null })
+  .then(function() { return { ok: true }; })
   .then(function(data) {
     if (data.ok) {
       var form = _crsEl('pb-final-step');

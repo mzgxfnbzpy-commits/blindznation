@@ -52,7 +52,7 @@ function wCalc() {
 function submitQ() {
   var name=document.getElementById('cf-name').value.trim();
   var phone=document.getElementById('cf-phone').value.trim();
-  if(!name||!phone){alert('Please enter your name and phone number.');return;}
+  if (!name){alert('Please enter your name.');return;}
 
   // Shared Delivery step (window.pbDelivery); the default keeps the original wording.
   var delivery=window.pbDelivery==='install'?pbDeliveryLabel():'Ship to me (UPS/FedEx)';
@@ -76,7 +76,7 @@ function submitQ() {
     +'\n── DELIVERY ──\n'+delivery+'\n\n'
     +'── NOTES ──\n'+(document.getElementById('cf-notes').value.trim()||'None');
 
-  window.location.href='mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     +'?subject='+encodeURIComponent('Blindznation — ' + 'Kirsch Hardware Spec — '+gp('grp-rod-type')+' — '+name)
     +'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('q-success').style.display='block';

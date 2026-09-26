@@ -158,12 +158,9 @@ async function submitQuote(){
   const estimate = p ? ('$'+Math.round(p.total).toLocaleString()+' (estimate only)') : null;
   if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
   try{
-    const r=await fetch('/api/quote',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:name,email:email,phone:phone,delivery:(typeof pbDeliveryLabel==='function'?pbDeliveryLabel():'Ship to me'),
-        product:'Wallace 1″ Aluminum Mini-Blinds',selections:selections,estimate:estimate,notes:notes,
-        agreedToTerms:true,agreedToTermsAt:new Date().toISOString(),sourceUrl:window.location.href,_hp:'',_t:Date.now()-(window._formLoadTime||0)})});
-    const d=await r.json().catch(function(){return{};});
-    if(!r.ok) throw new Error(d.error||'Server error');
+    // Shared sender (js/shared.js): _t, every option row, notes, attached files → justin@blindznation.com
+    await pbSendOrder({name:name,email:email,phone:phone,product:'Wallace 1″ Aluminum Mini-Blinds',
+      lines:selections.filter(function(l){return l.label!=='Notes';}),estimate:estimate,notes:notes});
     const sb=document.getElementById('success-box'); if(sb){ sb.style.display='block'; sb.scrollIntoView({behavior:'smooth',block:'center'}); }
     var form=document.getElementById('contact-block'); if(form) form.style.display='none';
     try{ if(typeof pbSaveContact==='function') pbSaveContact({name:name,email:email,phone:phone}); }catch(e){}

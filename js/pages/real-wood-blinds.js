@@ -303,7 +303,7 @@ function submitForm() {
   errEl.style.display = 'none';
 
   if (!name) { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; return; }
-  if (!phone && !email) { errEl.textContent = 'Please enter a phone or email.'; errEl.style.display = 'block'; return; }
+  if (!email) { errEl.textContent = 'Please enter your email address.'; errEl.style.display = 'block'; return; }
   if (!S.mount) { errEl.textContent = 'Please select a mount type (Step 1).'; errEl.style.display = 'block'; return; }
   if (!S.sizeOk) { errEl.textContent = 'Please enter valid dimensions (Step 1).'; errEl.style.display = 'block'; return; }
   if (!S.color) { errEl.textContent = 'Please select a color (Step 3).'; errEl.style.display = 'block'; return; }
@@ -364,25 +364,17 @@ function submitForm() {
     'TOTAL ESTIMATE: $' + total
   ].join('\n');
 
-  fetch('/api/quote', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      subject: 'Real Wood Blinds Quote — ' + name,
-      body: body
-    })
-  }).then(r => {
-    if (r.ok) {
+  // Shared sender (js/shared.js). This used to post {subject, body} — fields the API does
+  // not read — so no real wood order ever reached us. Now: _t, every line as its own row,
+  // notes and attached files → justin@blindznation.com.
+  const _sb = document.querySelector('[data-pb-require-contact]');
+  pbSendOrder({ name: name, email: email, phone: phone, product: 'Norman Real Wood Blinds', text: body, notes: notes })
+    .then(() => {
       $('cf-contact-err').style.display = 'none';
       $('success-box').style.display = 'block';
-      const _sb = document.querySelector('[data-pb-require-contact]');
       if (_sb) _sb.style.display = 'none';
-    } else {
-      errEl.textContent = 'Submission failed. Please call (609) 742-1720.';
-      errEl.style.display = 'block';
-    }
-  }).catch(() => {
-    errEl.textContent = 'Network error. Please call (609) 742-1720.';
-    errEl.style.display = 'block';
-  });
+    })
+    .catch(() => {
+      _pbShowSendFailure(_pbMailtoFor('Norman Real Wood Blinds', name, 'Name: ' + name + '\nEmail: ' + email + (phone ? '\nPhone: ' + phone : '') + '\n\n' + body), _sb);
+    });
 }

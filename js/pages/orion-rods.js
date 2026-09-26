@@ -457,7 +457,7 @@ function addOrionToCart(){
 
 function submitQuote(){
   var name=$('cf-name').value.trim(), contact=$('cf-phone').value.trim(), email=$('cf-email').value.trim();
-  if(!name||!contact){alert('Please enter your name and contact info.');return;}
+  if(!name||!email){alert('Please enter your name and email address.');return;}
 
   var typeLabel=TYPE_LABELS[S.type]||S.type;
   var trav=isTrav();
@@ -506,7 +506,7 @@ function submitQuote(){
   ].filter(l=>l!==undefined&&l!==null).join('\n');
 
   var subj='Orion Hardware Quote — '+typeLabel+' — '+S.collection+' — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + bodyLines);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + bodyLines);
 
   $('config-main').style.display='none';
   $('success-box').style.display='block';

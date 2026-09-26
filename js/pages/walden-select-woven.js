@@ -19,7 +19,6 @@ function submitWSQuote() {
   const name = document.getElementById('cf-name').value.trim();
   const phone = document.getElementById('cf-phone').value.trim();
   if (!name) { alert('Please enter your name.'); return; }
-  if (!phone) { alert('Please enter your phone number.'); return; }
   const mount = getOpt('ws-mount-grp');
   if (!mount || mount === '—') { alert('Please select a mount type (Inside or Outside).'); return; }
   const subject = encodeURIComponent('Walden Select Woven Shade Quote — ' + name);
@@ -46,7 +45,7 @@ function submitWSQuote() {
     'NOTES',
     document.getElementById('cf-notes').value || '(none)',
   ].join('\n'));
-  window.location.href = 'mailto:justin@blindznation.com?subject=' + subject + '&body=' + body;
+  window.pbMailto = 'mailto:justin@blindznation.com?subject=' + subject + '&body=' + body;
 }
 
 function addWaldenSelectToCart() {

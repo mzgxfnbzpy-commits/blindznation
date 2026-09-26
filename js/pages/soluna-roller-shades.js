@@ -668,7 +668,7 @@ function _solNormanLines(r) {
 function submitQuote() {
   var name  = document.getElementById('cf-name').value.trim();
   var phone = document.getElementById('cf-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
 
   var r = solQuote();
   var op = getOpt('grp-op') || '—';
@@ -716,7 +716,7 @@ function submitQuote() {
 
   var fabricShort = SOL.dual ? 'Dual' : (SOL.sel.main ? SOL.sel.main.collection : 'no fabric');
   var subj = 'Soluna Roller Quote — ' + w + '"×' + h + '" ' + fabricShort + ' — ' + name;
-  window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + subj) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + subj) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
 
   document.getElementById('quote-success').classList.add('show');
   document.getElementById('quote-success').scrollIntoView({ behavior: 'smooth', block: 'start' });

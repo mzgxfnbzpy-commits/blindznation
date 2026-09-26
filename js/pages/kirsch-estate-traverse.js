@@ -428,7 +428,7 @@ function getAMPAcc() {
 function submitQuote() {
   var name  = document.getElementById('cf-name').value.trim();
   var phone = document.getElementById('cf-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
 
   var len    = S.trackLen;
   var brackets = len <= 48 ? 2 : len <= 96 ? 3 : len <= 144 ? 4 : 5;
@@ -473,7 +473,7 @@ function submitQuote() {
     + '\n── DELIVERY ──\n' + delivery + '\n\n'
     + '── CUSTOMER NOTES ──\n' + (document.getElementById('cf-notes').value.trim() || 'None');
 
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Blindznation — ' + 'Kirsch 1⅜" Estate Traverse — ' + (S.finish||'') + ' ' + (COLLECTIONS[S.coll]?COLLECTIONS[S.coll].label:'') + ' — ' + name)
     + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('quote-success').style.display = 'block';

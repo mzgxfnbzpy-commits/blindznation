@@ -457,7 +457,7 @@ function addHardwareToCart() {
 function submitHardware() {
   var name  = document.getElementById('cf-name').value.trim();
   var phone = document.getElementById('cf-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
   // Shared Delivery step (window.pbDelivery).
   var delivery = pbDeliveryLabel();
   // Include Kirsch selection if non-decorative
@@ -474,7 +474,7 @@ function submitHardware() {
     + 'Finish: ' + document.getElementById('hw-finish').value + '\n'
     + 'Delivery: ' + delivery + '\n\n'
     + 'Notes:\n' + (document.getElementById('cf-notes').value.trim() || 'None');
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Blindznation — ' + 'Hardware Quote — ' + (hwState.style || hwState.type) + ' — ' + name)
     + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('hw-form').style.display = 'none';

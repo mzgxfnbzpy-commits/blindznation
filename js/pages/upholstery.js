@@ -131,7 +131,7 @@ document.addEventListener('keydown', function(e) {
 function submitUpholstery() {
   var name  = document.getElementById('u-name').value.trim();
   var phone = document.getElementById('u-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
   var email   = document.getElementById('u-email').value.trim();
   var address = document.getElementById('u-address').value.trim();
   var type    = document.getElementById('u-type').value;
@@ -149,7 +149,7 @@ function submitUpholstery() {
     + 'Delivery preference: ' + delivery + '\n\n'
     + 'Project details:\n' + (notes || 'None provided');
 
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     + '?subject=' + encodeURIComponent('Blindznation — ' + 'Wall Upholstery Quote — ' + name)
     + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
 

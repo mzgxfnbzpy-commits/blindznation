@@ -678,7 +678,6 @@ function submitQuote() {
   var errEl=document.getElementById('cf-contact-err');
   var errs=[];
   if(!name)         errs.push('Name required.');
-  if(!phone)        errs.push('Phone required.');
   if(!S.qty)        errs.push('Select number of shades (Step 1).');
   if(!S.width||!S.length) errs.push('Enter width and height (Step 1).');
   if(!S.shadeStyle) errs.push('Select shade construction style (Step 2).');
@@ -794,7 +793,7 @@ var p=isHob?getPriceHobbled(w,l,f.priceGroup):getPriceFlat(w,l,f.priceGroup);
   ].filter(function(l){return l!==undefined&&l!==null;}).join('\n');
 
   var subj='Wallace Portfolio Roman — '+S.width+'"×'+S.length+'" '+(S.fabric?S.fabric.pattern+' '+S.fabric.color:'')+' — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
 
   document.getElementById('step16-body').querySelectorAll(':not(#success-box)').forEach(function(el){el.style.display='none';});
   document.getElementById('success-box').style.display='block';

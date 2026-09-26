@@ -984,7 +984,7 @@ function pickDelCard(card) {
 async function submitShadeForm(btn) {
   const name = document.getElementById('sf-name').value.trim();
   const phone = document.getElementById('sf-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
 
   const email    = document.getElementById('sf-email').value.trim();
   const notes    = document.getElementById('sf-notes').value.trim();
@@ -1042,7 +1042,7 @@ async function submitShadeForm(btn) {
 async function submitPBForm(btn) {
   const name  = document.getElementById('pb-name').value.trim();
   const phone = document.getElementById('pb-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
   const email    = document.getElementById('pb-email').value.trim();
   const delivery = pbDeliveryLabel(); // shared Delivery step (window.pbDelivery)
   const w     = document.getElementById('pb-width').value;   // fixed: was inp-width
@@ -1088,7 +1088,7 @@ async function submitPBForm(btn) {
 async function submitQuoteForm(btn) {
   const name = document.getElementById('hd-name').value.trim();
   const phone = document.getElementById('hd-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
   const email    = document.getElementById('hd-email').value.trim();
   const product  = document.getElementById('hd-product-sel').value;
   const wincount = document.getElementById('hd-wincount').value;
@@ -1847,7 +1847,7 @@ function rwbCalc() {
 async function submitRWBForm(btn) {
   var name  = document.getElementById('rwb-name').value.trim();
   var phone = document.getElementById('rwb-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
   var slat      = document.querySelector('#rwb-grp-slat .opt-btn.sel')?.textContent.trim() || '';
   var colorType = document.querySelector('#rwb-grp-colortype .opt-btn.sel')?.textContent.trim() || '';
   var activeGrpId = colorType.includes('Premium') ? 'rwb-grp-premcol' : colorType.includes('Stain') ? 'rwb-grp-staincol' : 'rwb-grp-paintcol';
@@ -1874,7 +1874,7 @@ async function submitRWBForm(btn) {
 async function submitFWBForm(btn) {
   var name  = document.getElementById('fwb-name').value.trim();
   var phone = document.getElementById('fwb-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
   var slat  = document.querySelector('#fwb-grp-slat .opt-btn.sel')?.textContent.trim() || '';
   var color = document.querySelector('#fwb-grp-color .opt-btn.sel')?.textContent.trim() || '';
   var op    = document.querySelector('#fwb-grp-op .opt-btn.sel')?.textContent.trim() || '';
@@ -3094,7 +3094,7 @@ function rnShowForm() {
 async function rnSubmitForm(btn) {
   const name  = (document.getElementById('rn-sf-name')  || {}).value.trim();
   const phone = (document.getElementById('rn-sf-phone') || {}).value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
 
   const email   = (document.getElementById('rn-sf-email') || {}).value.trim();
   const notes   = (document.getElementById('rn-sf-notes') || {}).value.trim();
@@ -3199,7 +3199,7 @@ function extChannelNote(btn) {
 async function submitExteriorForm(btn) {
   var name  = (document.getElementById('ext-name') || {}).value || '';
   var phone = (document.getElementById('ext-phone') || {}).value || '';
-  if (!name.trim() || !phone.trim()) { alert('Please enter your name and phone number.'); return; }
+  if (!name.trim()) { alert('Please enter your name.'); return; }
   var gExt = function(id) { var b = document.querySelector('#' + id + ' .opt-btn.sel'); return b ? b.textContent.trim() : '—'; };
   var w       = document.getElementById('ext-width').value;
   var h       = document.getElementById('ext-height').value;
@@ -3247,7 +3247,7 @@ function handleQuickQuote(e) {
     'Timeline: ' + (timeline || 'Not specified'),
     'Notes: ' + (notes || 'None')
   ].join('\n');
-  window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + subject) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + subject) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
   form.style.display = 'none';
   document.getElementById('quick-quote-success').style.display = 'block';
 }
@@ -3257,7 +3257,7 @@ async function submitCart(btn) {
   const phone = document.getElementById('cq-phone').value.trim();
   const email = document.getElementById('cq-email').value.trim();
   const notes = document.getElementById('cq-notes').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
 
   const lines = cart.map((item, i) =>
     (i + 1) + '. ' + item.brandLabel + ' ' + item.productName +
@@ -3418,7 +3418,7 @@ function psUpdateColors(type) {
 async function submitPSForm(btn) {
   var name  = document.getElementById('ps-name').value.trim();
   var phone = document.getElementById('ps-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
 
   var w      = document.getElementById('ps-width').value   || '?';
   var h      = document.getElementById('ps-height').value  || '?';
@@ -3463,31 +3463,7 @@ async function submitPSForm(btn) {
   await _apiSubmit(name, email, phone, 'Norman PerfectSheer', body, 'ps-success', null, btn);
 }
 
-// ── SHARED API SUBMIT HELPER ─────────────────────────────────────────────────
-async function _apiSubmit(name, email, phone, productName, configText, successId, formHideId, btn, onSuccess) {
-  if (btn) { btn._origText = btn.textContent; btn.disabled = true; btn.textContent = 'Sending…'; }
-  try {
-    var r = await fetch('/api/quote', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name, email: email || '', phone: phone, product: productName, selections: [], notes: configText })
-    });
-    var d = {}; try { d = await r.json(); } catch(e) {}
-    if (!r.ok) throw new Error(d.error || 'Server error ' + r.status);
-    if (onSuccess) onSuccess();
-    if (formHideId) { var fEl = document.getElementById(formHideId); if (fEl) { fEl.classList.remove('show'); fEl.style.display = 'none'; } }
-    var sEl = document.getElementById(successId);
-    if (sEl) { sEl.classList.add('show'); sEl.style.display = 'block'; sEl.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  } catch(err) {
-    if (btn) { btn.disabled = false; btn.textContent = btn._origText || 'Send quote request'; }
-    var mh = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + 'Quote — ' + name) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + 'Name: ' + name + '\nPhone: ' + phone + '\nProduct: ' + productName + '\n\n' + configText);
-    var eDiv = document.createElement('div');
-    eDiv.style.cssText = 'background:#FEE2E2;border-radius:8px;padding:10px 13px;margin-top:10px;font-size:12px;color:#991B1B;line-height:1.5';
-    eDiv.innerHTML = '<strong>Issue sending.</strong> <a href="' + mh + '" style="color:#991B1B;font-weight:700;text-decoration:underline">Email directly →</a> or call <a href="tel:6097421720" style="color:#991B1B">(609) 742-1720</a>';
-    if (btn && btn.parentElement) btn.insertAdjacentElement('afterend', eDiv);
-    setTimeout(function(){ if (eDiv.parentElement) eDiv.remove(); }, 15000);
-  }
-}
+// _apiSubmit lives in js/shared.js (one sender for every form → justin@blindznation.com).
 
 // ── AUTO-SELECT FROM URL PARAM ────────────────────────────────────────────────
 (function(){

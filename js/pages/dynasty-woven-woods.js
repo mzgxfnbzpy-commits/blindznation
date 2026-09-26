@@ -582,7 +582,7 @@ function submitQuote(){
   const name=document.getElementById('cf-name').value.trim();
   const phone=document.getElementById('cf-phone').value.trim();
   const err=document.getElementById('cf-contact-err');
-  if(!name||!phone){err.textContent='Please enter your name and phone number.';err.style.display='block';return;}
+  if (!name){err.textContent='Please enter your name.';err.style.display='block';return;}
   err.style.display='none';
 
   const base=getBasePrice(S.grp,S.w,S.h)||0;
@@ -660,7 +660,7 @@ function submitQuote(){
 
   const body=encodeURIComponent(lines.join('\n'));
   const subject=encodeURIComponent('Dynasty Woven Quote — '+S.patName+' (Grp '+S.grp+') — '+name);
-  window.location.href='mailto:justin@blindznation.com?subject='+subject+'&body='+body;
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+subject+'&body='+body;
   document.getElementById('success-box').style.display='block';
   markDone('step9');
 }

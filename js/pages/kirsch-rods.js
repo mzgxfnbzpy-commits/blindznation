@@ -503,7 +503,7 @@ function submitQuote() {
   const errEl = document.getElementById('cf-contact-err');
   if (errEl) errEl.style.display = 'none';
   if (!name) { if (errEl) { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; } return; }
-  if (!phone && !email) { if (errEl) { errEl.textContent = 'Please enter a phone number or email address.'; errEl.style.display = 'block'; } return; }
+  if (!email) { if (errEl) { errEl.textContent = 'Please enter your email address.'; errEl.style.display = 'block'; } return; }
 
   const notes = document.getElementById('cf-notes').value;
   const addr = document.getElementById('cf-address').value;
@@ -554,7 +554,7 @@ function submitQuote() {
   ].join('\n');
 
   const subject = S.type === 'unsure' ? 'Kirsch Hardware Help — ' + name : 'Kirsch Rod Quote — ' + collectionLabel() + ' — ' + name;
-  window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + subject) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
+  window.pbMailto = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + subject) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + body);
 
   document.getElementById('config-main').style.display = 'none';
   document.getElementById('success-box').style.display = 'block';

@@ -21,7 +21,6 @@ function submitWPQuote() {
   const errEl = document.getElementById('cf-contact-err');
   if (errEl) errEl.style.display = 'none';
   if (!name) { if (errEl) { errEl.textContent = 'Please enter your name.'; errEl.style.display = 'block'; } else { alert('Please enter your name.'); } return; }
-  if (!phone) { if (errEl) { errEl.textContent = 'Please enter your phone number.'; errEl.style.display = 'block'; } else { alert('Please enter your phone number.'); } return; }
   const mount = getOpt('wp-mount-grp');
   if (!mount || mount === '—') { if (errEl) { errEl.textContent = 'Please select a mount type (Inside or Outside).'; errEl.style.display = 'block'; } else { alert('Please select a mount type (Inside or Outside).'); } return; }
   const subject = encodeURIComponent('Walden Premier Woven Shade Quote — ' + name);
@@ -48,7 +47,7 @@ function submitWPQuote() {
     'NOTES',
     document.getElementById('cf-notes').value || '(none)',
   ].join('\n'));
-  window.location.href = 'mailto:justin@blindznation.com?subject=' + subject + '&body=' + body;
+  window.pbMailto = 'mailto:justin@blindznation.com?subject=' + subject + '&body=' + body;
 }
 
 function addWaldenPremierToCart() {

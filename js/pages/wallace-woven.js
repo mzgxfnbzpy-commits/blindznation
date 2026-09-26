@@ -439,7 +439,7 @@ function submitRollerQuote() {
   var phone = ((document.getElementById('cf-phone')||{}).value||'').trim();
   var email = ((document.getElementById('cf-email')||{}).value||'').trim();
   var contact = [phone, email].filter(Boolean).join(' / ');
-  if(!name||!contact){ alert('Please enter your name and contact info.'); return; }
+  if(!name||!email){ alert('Please enter your name and email address.'); return; }
 
   var body =
     'Wallace Portfolio Natural Woven Rollers — Quote Request\n'
@@ -465,7 +465,7 @@ function submitRollerQuote() {
     +'  Address : '+((document.getElementById('cf-address')||{}).value||'—')+'\n'
     +'  Notes   : '+((document.getElementById('cf-notes')||{}).value||'—');
 
-  window.location.href = 'mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     +'?subject='+encodeURIComponent('Blindznation — ' + 'Natural Woven Roller Shades Quote — '+name)
     +'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
 
@@ -954,7 +954,7 @@ function submitQuote() {
   var phone=($('cf-phone')||{value:''}).value.trim();
   var email=($('cf-email')||{value:''}).value.trim();
   var contact=phone||(email)||'';
-  if(!name||!contact){alert('Please enter your name and contact info.'); return;}
+  if(!name||!email){alert('Please enter your name and email address.'); return;}
   if(!S.pattern){alert('Please select a fabric pattern.'); return;}
 
   var collMap = {portfolio:'Wallace Portfolio Natural Woven',galaxy:'Wallace Galaxy Woven',premier:'Walden Premier',select:'Walden Select'};
@@ -1025,7 +1025,7 @@ function submitQuote() {
   ];
 
   var subj='Wallace '+coll+' Quote — '+prod+' — '+name;
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + bodyLines.join('\n'));
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + subj)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + bodyLines.join('\n'));
 
   $('success-box').style.display='block';
   $('success-box').scrollIntoView({behavior:'smooth'});

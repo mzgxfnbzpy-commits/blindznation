@@ -598,10 +598,8 @@ async function submitQuote(){
   var btn=document.querySelector('#quote-form .btn-gold');
   if(btn){btn.disabled=true;btn.textContent='Sending…';}
   try{
-    var resp=await fetch('/api/quote',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({name:name,email:email,phone:phone,product:'Norman SmartDrape™',selections:selections,notes:notes})});
-    var data={};try{data=await resp.json();}catch(e){}
-    if(!resp.ok) throw new Error(data.error||'Server error');
+    // Shared sender (js/shared.js): _t, every option row, notes, attached files → justin@blindznation.com
+    await pbSendOrder({name:name,email:email,phone:phone,product:'Norman SmartDrape™',lines:selections,notes:notes});
     document.getElementById('quote-success').style.display='block';
     var form=document.getElementById('quote-form'); if(form) form.style.display='none';
   }catch(err2){

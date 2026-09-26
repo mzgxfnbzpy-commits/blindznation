@@ -51,7 +51,7 @@ function _checkRate(ip) {
 }
 
 // ── Per-field length limits ───────────────────────────────────────────────────
-const FIELD_LIMITS = { name: 200, email: 254, phone: 30, address: 300, delivery: 40, product: 200, notes: 5000, sourceUrl: 500 };
+const FIELD_LIMITS = { name: 200, email: 254, phone: 30, address: 300, delivery: 100, product: 200, notes: 8000, sourceUrl: 500 };
 function _truncate(val, key) { return val ? String(val).slice(0, FIELD_LIMITS[key]) : val; }
 
 // ── Attachment validation ──────────────────────────────────────────────────────
@@ -107,14 +107,15 @@ module.exports = async function handler(req, res) {
   const attachments = _sanitizeAttachments(_b.attachments);
   // Only allow http/https URLs — blocks javascript: scheme injection in email hrefs
   const sourceUrl = (_rawSourceUrl && /^https?:\/\//i.test(_rawSourceUrl.trim())) ? _rawSourceUrl : null;
-  const selections = Array.isArray(_b.selections) ? _b.selections.slice(0, 60) : [];
+  // Every option the customer chose — up to 150 rows (long orders were being cut at 60).
+  const selections = Array.isArray(_b.selections) ? _b.selections.filter(function (x) { return x && typeof x === 'object'; }).slice(0, 150) : [];
   const estimate   = _b.estimate;
   const agreedToTerms = _b.agreedToTerms === true || _b.agreedToTerms === 'true';
   const agreedAtRaw   = typeof _b.agreedToTermsAt === 'string' ? _b.agreedToTermsAt.slice(0, 40) : null;
   const { _hp, _t } = _b;
 
   // Honeypot — bots fill hidden fields, humans don't
-  if (_hp && _hp.trim().length > 0) return res.status(200).json({ ok: true }); // silent reject
+  if (_hp && String(_hp).trim().length > 0) return res.status(200).json({ ok: true }); // silent reject
 
   // Timing check — reject if _t missing or form submitted in under 2 seconds (bot speed)
   if (typeof _t !== 'number' || _t < 2000) return res.status(200).json({ ok: true }); // silent reject
@@ -164,7 +165,9 @@ module.exports = async function handler(req, res) {
 
   const rows = selections.map(function(s) {
     var lbl = String(s.label || '').slice(0, 100).replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    var val = String(s.value || '').slice(0, 500).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    var val = String(s.value == null ? '' : s.value).slice(0, 1000).replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    // A row with no label is a section heading or a free-text line from the order text.
+    if (!lbl) return '<tr><td colspan="2" style="padding:10px 0 4px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#C9A96E">' + val + '</td></tr>';
     return '<tr><td style="padding:6px 14px 6px 0;color:#666;font-size:13px;white-space:nowrap;vertical-align:top">' + lbl + '</td>' +
             '<td style="padding:6px 0;font-weight:600;font-size:13px;color:#1a1a1a">' + val + '</td></tr>';
   }).join('');
@@ -207,7 +210,7 @@ module.exports = async function handler(req, res) {
     ${safeNotes ? `<div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:8px">Customer Notes</div>
     <div style="background:#f9f9f7;padding:12px 16px;border-radius:8px;font-size:13px;color:#333;line-height:1.7;margin-bottom:18px">${safeNotes}</div>` : ''}
 
-    ${attachments.length ? `<div style="font-size:13px;color:#111110;background:#FBF7F0;border:1px solid #e8ddc8;border-radius:8px;padding:11px 15px;margin-bottom:18px">&#128206; <strong>${attachments.length} file attachment(s)</strong> included with this email.</div>` : ''}
+    ${attachments.length ? `<div style="font-size:13px;color:#111110;background:#FBF7F0;border:1px solid #e8ddc8;border-radius:8px;padding:11px 15px;margin-bottom:18px">&#128206; <strong>${attachments.length} file attachment(s)</strong> included with this email: ${attachments.map(function (a) { return String(a.filename).replace(/</g,'&lt;'); }).join(', ')}</div>` : ''}
 
     <div style="border-top:1px solid #e8e8e4;padding-top:14px;font-size:11px;color:#bbb">
       Submitted via ${SITE_URL} &nbsp;·&nbsp; Reply-To: <a href="mailto:${safeEmail}" style="color:#bbb">${safeEmail}</a>
@@ -294,13 +297,17 @@ module.exports = async function handler(req, res) {
       attachments: attachments.length ? attachments : undefined
     });
 
+    // The customer's copy is a courtesy. If it fails, Justin already has the order —
+    // don't show the customer an error (they would resubmit and send a duplicate).
     if (hasValidEmail) {
-      await sendEmail({
-        from: FROM_CONFIRM,
-        to: [safeEmail],
-        subject: `We received your quote request — ${BRAND}`,
-        html: customerHtml
-      });
+      try {
+        await sendEmail({
+          from: FROM_CONFIRM,
+          to: [safeEmail],
+          subject: `We received your quote request — ${BRAND}`,
+          html: customerHtml
+        });
+      } catch (e) { console.error('[quote] customer confirmation failed:', e.message); }
     }
 
     return res.status(200).json({ ok: true });

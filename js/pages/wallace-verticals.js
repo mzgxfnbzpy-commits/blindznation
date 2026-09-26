@@ -112,7 +112,7 @@ function addWallaceVerticalsToCart(){
 async function submitVWForm(btn) {
   var name  = document.getElementById('cf-name').value.trim();
   var phone = document.getElementById('cf-phone').value.trim();
-  if (!name || !phone) { alert('Please enter your name and phone number.'); return; }
+  if (!name) { alert('Please enter your name.'); return; }
 
   var color   = vwColor || '—';
   var w       = document.getElementById('vw-width').value;

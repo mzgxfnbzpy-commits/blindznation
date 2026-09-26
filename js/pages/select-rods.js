@@ -443,9 +443,9 @@ function submitSelect(){
   var phone=document.getElementById('cf-phone').value.trim();
   var errEl=document.getElementById('cf-contact-err');
   if(errEl)errEl.style.display='none';
-  if(!name||!phone){
-    if(errEl){errEl.textContent='Please enter your name and phone number.';errEl.style.display='block';}
-    else{alert('Please enter your name and phone number.');}
+  if (!name){
+    if(errEl){errEl.textContent='Please enter your name.';errEl.style.display='block';}
+    else{alert('Please enter your name.');}
     return;
   }
   updateSummary();
@@ -458,7 +458,7 @@ function submitSelect(){
     +'SPECIFICATION:\n'+spec+'\n\n'
     +'Delivery: '+delivery+'\n\n'
     +'Notes:\n'+(document.getElementById('cf-notes').value.trim()||'None');
-  window.location.href='mailto:justin@blindznation.com'
+  window.pbMailto = 'mailto:justin@blindznation.com'
     +'?subject='+encodeURIComponent('Blindznation — ' + 'Select Hardware Quote — '+(SS.collection||'')+(SS.finish||SS.woodFinish?' · '+(SS.finish||SS.woodFinish):'')+' — '+name)
     +'&body='+encodeURIComponent('BLINDZNATION\n\n' + body);
   document.getElementById('sel-form').style.display='none';

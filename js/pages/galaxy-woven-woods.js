@@ -638,7 +638,7 @@ function submitQuote(){
   const name=document.getElementById('cf-name').value.trim();
   const phone=document.getElementById('cf-phone').value.trim();
   const err=document.getElementById('cf-contact-err');
-  if(!name||!phone){err.textContent='Please enter your name and phone number.';err.style.display='block';return;}
+  if (!name){err.textContent='Please enter your name.';err.style.display='block';return;}
   err.style.display='none';
 
   const qty=S.qty||1;
@@ -694,7 +694,7 @@ function submitQuote(){
     'Pricing is an internal estimate only. Final price confirmed with current Wallace Galaxy price book.'
   ];
 
-  window.location.href='mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + 'Galaxy Woven Woods Quote — '+name)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + lines.join('\n'));
+  window.pbMailto = 'mailto:justin@blindznation.com?subject='+encodeURIComponent('Blindznation — ' + 'Galaxy Woven Woods Quote — '+name)+'&body='+encodeURIComponent('BLINDZNATION\n\n' + lines.join('\n'));
   document.getElementById('success-box').style.display='block';
 }
 

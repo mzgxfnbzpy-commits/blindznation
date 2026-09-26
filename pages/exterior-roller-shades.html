@@ -245,7 +245,7 @@
     <div id="pb-final-step"></div>
     <div class="success-box" id="success-box">
       <h3>Request for Quote Submitted!</h3>
-      <p>Your email opened with your full spec pre-filled — just hit Send. We'll review your order and send you an invoice within a few hours.</p>
+      <p>Sent — Justin has your full spec by email. We'll review your order and send you an invoice within a few hours.</p>
       <p style="margin-top:10px;font-size:13px">Questions? <strong>(609) 742-1720</strong> &middot; 24/7 call or text.</p>
     </div>
   </div>
@@ -482,7 +482,7 @@ function ersSubmit() {
   if (!name) { showErr('Please enter your name.'); return; }
   var email = (document.getElementById('cf-email').value || '').trim();
   var phone = (document.getElementById('cf-phone').value || '').trim();
-  if (!email && !phone) { showErr('Please enter a phone number or email address.'); return; }
+  if (!email) { showErr('Please enter your email address.'); return; }
 
   var trackLabel = ERS.track === 'zipper' ? 'Zipper track' : ERS.track === 'cables' ? 'Cables' : '—';
   var mountLabel = ERS_MOUNT[ERS.mount] || '—';
@@ -513,7 +513,7 @@ function ersSubmit() {
   var mailto = 'mailto:justin@blindznation.com' +
     '?subject=' + encodeURIComponent('Exterior Roller Shade Quote — ' + name + ' — ' + (ERS.openness || '') + '% ' + (ERS.color || '')) +
     '&body=' + encodeURIComponent(body);
-  window.location.href = mailto;
+  window.pbMailto = mailto;
 
   document.getElementById('success-box').style.display = 'block';
   if (errEl) errEl.style.display = 'none';

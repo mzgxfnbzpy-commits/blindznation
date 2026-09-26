@@ -460,7 +460,6 @@ function submitRollerQuote() {
   const notes = document.getElementById('q-notes').value.trim();
 
   if (!name) { alert('Please enter your name.'); return; }
-  if (!phone) { alert('Please enter your phone number.'); return; }
 
   const fab = state.fabric;
   const ctrl = state.control || 'Not selected';
@@ -505,7 +504,7 @@ function submitRollerQuote() {
     'Please confirm pricing and availability. Customer is aware all prices are MSRP estimates confirmed at order.',
   ].join('\n'));
 
-  window.location.href = 'mailto:justin@blindznation.com?subject=' + subject + '&body=' + body;
+  window.pbMailto = 'mailto:justin@blindznation.com?subject=' + subject + '&body=' + body;
 }
 
 // Quantity input
