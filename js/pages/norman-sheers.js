@@ -486,7 +486,7 @@ function calcPrice(){
   var per=base;
   document.getElementById('pr-base').textContent='$'+base.toLocaleString();
   // Detail hidden per owner request — base + RD/alternating-color surcharges roll into retail.
-  // Only the allowed add-on surcharge (motor) stays visible; customer sees retail → 25% off → price.
+  // Only the allowed add-on surcharge (motor) stays visible; customer sees retail → freight → total.
   var _sdBase=document.getElementById('pr-base'); if(_sdBase&&_sdBase.parentElement) _sdBase.parentElement.style.display='none';
   var isRD=S.opacity==='rd';
   var rdAdd=isRD?Math.round(base*0.20):0;
@@ -503,10 +503,10 @@ function calcPrice(){
   var sdMotor=(isMotor&&typeof nmGetMotorPrice==='function')?nmGetMotorPrice('SmartDrape', S.qty):0;
   document.getElementById('pr-motor-row').style.display=isMotor?'flex':'none';
   var _sdMotorEl=document.getElementById('pr-motor'); if(_sdMotorEl&&isMotor)_sdMotorEl.textContent=nmMotorLineText(sdMotor,S.qty);
-  // 25% Norman discount on product subtotal (not applied to shipping/motor)
-  var NORMAN_DISC_SD=0.25;
-  // Accessories are Norman retail line items, so they sit inside the discounted subtotal
-  // (same treatment as faux wood shims and PerfectSheer light guards).
+  // No discount on SmartDrape — full Norman retail (Justin 2026-09-25: the 25% Norman
+  // discount is only for Soluna roller, Portrait cellular, faux wood and real wood).
+  var NORMAN_DISC_SD=0;
+  // Accessories are Norman retail line items, so they sit inside the product subtotal.
   per += sdAccPerShade();
   var sdAccTotal=sdAccEach();
   var sdRetailSub=Math.round(per*S.qty)+sdAccTotal;

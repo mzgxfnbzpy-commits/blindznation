@@ -3383,10 +3383,9 @@ function psCalc() {
   var liftBtn = document.querySelector('#grp-ps-lift .opt-btn.sel');
   if (liftBtn && liftBtn.textContent.indexOf('motor') >= 0) lines.push('Motorization surcharge: added to final quote');
 
-  const NORMAN_DISC_PS = 0.25;
-  const psDiscountAmt = Math.round(total * NORMAN_DISC_PS);
-  const psYourPrice = total - psDiscountAmt;
-  lines.push('<span style="color:#C9A96E;font-weight:500">Retail: $' + total.toLocaleString() + ' &rarr; 25% Norman discount: -$' + psDiscountAmt.toLocaleString() + ' &rarr; Your price: $' + psYourPrice.toLocaleString() + '</span>');
+  // No discount on PerfectSheer — full Norman retail (Justin 2026-09-25).
+  const psYourPrice = total;
+  lines.push('<span style="color:#C9A96E;font-weight:500">Norman retail: $' + psYourPrice.toLocaleString() + '</span>');
   document.getElementById('ps-price-num').textContent = '$' + psYourPrice.toLocaleString();
   document.getElementById('ps-price-breakdown').innerHTML = lines.join('<br>');
   pb.style.display = 'block';

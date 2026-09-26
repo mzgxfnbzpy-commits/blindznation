@@ -242,7 +242,9 @@ function updateQuote(){
   const basePrice=MATRIX[hRow][W_COLS.indexOf(wCol)];
   if(!basePrice){document.getElementById('qp-pending').style.display='block';document.getElementById('qp-detail').style.display='none';return;}
 
-  const NORMAN_DISC = 0.25; // 25% off retail subtotal — not applied to shipping
+  // No discount on City Lights — full Norman retail (Justin 2026-09-25: the 25% Norman
+  // discount is only for Soluna roller, Portrait cellular, faux wood and real wood).
+  const NORMAN_DISC = 0;
 
   // slat multiplier + color finish surcharge + optional privacy
   const slatMult={half:1.10,one:1.00,two:1.20}[state.slat];
@@ -277,7 +279,7 @@ function updateQuote(){
   document.getElementById('qr-base').textContent='$'+basePrice.toFixed(0);
 
   // Detail hidden per owner request — slat/finish/privacy/side-mount/shim surcharges + base roll silently
-  // into the retail subtotal. Customer sees retail → 25% off → your price → freight. (Cordless-only; no motor/TDBU/D&N.)
+  // into the retail subtotal. Customer sees Norman retail → freight → total. (Cordless-only; no motor/TDBU/D&N.)
   const _hideRow=(id)=>{const e=document.getElementById(id);if(e)e.style.display='none';};
   const _qrBase=document.getElementById('qr-base'); if(_qrBase&&_qrBase.closest){const r=_qrBase.closest('.qrow'); if(r)r.style.display='none';}
   ['qr-slat-row','qr-finish-row','qr-privacy-row','qr-sm-row','qr-shim-row'].forEach(_hideRow);
@@ -293,15 +295,17 @@ function updateQuote(){
   if(!retailRow){
     retailRow=document.createElement('div');
     retailRow.className='qrow';retailRow.id='qr-retail-row';
-    retailRow.innerHTML='<span class="qrow-label"><s style="color:var(--text-dark)">Retail subtotal</s></span><span class="qrow-val" style="text-decoration:line-through;color:var(--text-dark)" id="qr-retail-s">—</span>';
+    // No discount on City Lights, so the retail and discount rows stay hidden — the price row says it all.
+    retailRow.style.display='none';
+    retailRow.innerHTML='<span class="qrow-label">Norman retail subtotal</span><span class="qrow-val" id="qr-retail-s">—</span>';
     _qInsert(retailRow, firstDiv);
     discRow=document.createElement('div');
-    discRow.className='qrow';discRow.id='qr-disc-row';
-    discRow.innerHTML='<span class="qrow-label" style="color:#C9A96E">25% Norman discount</span><span class="qrow-val" style="color:#C9A96E" id="qr-disc-s">—</span>';
+    discRow.className='qrow';discRow.id='qr-disc-row';discRow.style.display='none';
+    discRow.innerHTML='<span class="qrow-label" style="color:#C9A96E">Discount</span><span class="qrow-val" style="color:#C9A96E" id="qr-disc-s">—</span>';
     _qInsert(discRow, firstDiv);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='qr-yourprice-row';
-    yourPriceRow.innerHTML='<span class="qrow-label" style="font-weight:600;color:var(--cream)">Your price (before shipping)</span><span class="qrow-val" style="color:var(--cream);font-weight:600" id="qr-yourprice-s">—</span>';
+    yourPriceRow.innerHTML='<span class="qrow-label" style="font-weight:600;color:var(--cream)">Price (before shipping)</span><span class="qrow-val" style="color:var(--cream);font-weight:600" id="qr-yourprice-s">—</span>';
     _qInsert(yourPriceRow, firstDiv);
   }
   document.getElementById('qr-retail-s').textContent='$'+Math.round(retailSub).toLocaleString();

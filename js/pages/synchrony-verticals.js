@@ -183,7 +183,9 @@ function updateSummary(){
   set('qr-addons',state.shim?state.shimQty+' shim'+(state.shimQty>1?'s':''):'None');
 }
 
-const NORMAN_DISC = 0.25; // 25% off retail subtotal — not applied to shipping
+// No discount on Synchrony — full Norman retail (Justin 2026-09-25: the 25% Norman
+// discount is only for Soluna roller, Portrait cellular, faux wood and real wood).
+const NORMAN_DISC = 0;
 
 function updateQuote(){
   const qty=parseInt(document.getElementById('qty').value)||1;
@@ -215,7 +217,7 @@ function updateQuote(){
   document.getElementById('qr-mount').textContent=state.mount==='inside'?'Inside mount':state.mount==='semi'?'Semi-inside mount':'Outside mount';
   document.getElementById('qr-dims').textContent=state.w+'″ × '+state.h+'″';
   document.getElementById('qr-qty').textContent=qty+(qty>1?' blinds':' blind');
-  document.getElementById('qr-price').innerHTML='<s style="color:var(--text-dark);font-weight:400">$'+pricePerBlind+' retail</s> &rarr; $'+Math.round(pricePerBlind*0.75)+' your price';
+  document.getElementById('qr-price').innerHTML='$'+pricePerBlind+' per blind';
   const showRow=(id,show,val)=>{document.getElementById(id).style.display=show?'flex':'none';if(val)document.getElementById(id.replace('-row','-s')).textContent=val;};
   showRow('qr-shim-row',state.shim,'$'+(state.shimQty*7));
 
@@ -228,12 +230,13 @@ function updateQuote(){
   const qdiv = _qdivs.length ? _qdivs[_qdivs.length - 1] : null;
   if(!discRow){
     discRow=document.createElement('div');
-    discRow.className='qrow';discRow.id='qr-disc-row';
-    discRow.innerHTML='<span class="qrow-label" style="color:#C9A96E">25% Norman discount</span><span class="qrow-val" style="color:#C9A96E" id="qr-disc-s">—</span>';
+    // No discount on Synchrony, so the discount row stays hidden.
+    discRow.className='qrow';discRow.id='qr-disc-row';discRow.style.display='none';
+    discRow.innerHTML='<span class="qrow-label" style="color:#C9A96E">Discount</span><span class="qrow-val" style="color:#C9A96E" id="qr-disc-s">—</span>';
     _qInsert(discRow, qdiv);
     yourPriceRow=document.createElement('div');
     yourPriceRow.className='qrow';yourPriceRow.id='qr-yourprice-row';
-    yourPriceRow.innerHTML='<span class="qrow-label" style="font-weight:600;color:var(--cream)">Your price (before shipping)</span><span class="qrow-val" style="color:var(--cream);font-weight:600" id="qr-yourprice-s">—</span>';
+    yourPriceRow.innerHTML='<span class="qrow-label" style="font-weight:600;color:var(--cream)">Price (before shipping)</span><span class="qrow-val" style="color:var(--cream);font-weight:600" id="qr-yourprice-s">—</span>';
     _qInsert(yourPriceRow, qdiv);
   }
   document.getElementById('qr-disc-s').textContent='-$'+discountAmt;

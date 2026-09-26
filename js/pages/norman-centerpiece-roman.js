@@ -600,14 +600,16 @@ function updateCalc() {
   // directly inside .price-estimate, so hiding parentElement blanked the whole price
   // panel. That went unnoticed while this product was quote-only.
   var _cpBaseRow=document.getElementById('pr-base'); if(_cpBaseRow)_cpBaseRow.style.display='none';
-  var NORMAN_DISC_CP=0.25;
+  // No discount on Centerpiece — full Norman retail (Justin 2026-09-25: the 25% Norman
+  // discount is only for Soluna roller, Portrait cellular, faux wood and real wood).
+  var NORMAN_DISC_CP=0;
   var cpRetailSub=(per*qty)+(srAdd*qty)+(dnAdd*qty)+(vSur*qty)+(accT*qty);
   var cpDiscountAmt=Math.round(cpRetailSub*NORMAN_DISC_CP);
   var cpYourPrice=cpRetailSub-cpDiscountAmt;
   var isMotCp=(S.lift==='motor'||S.lift==='motor-dn');
   var cpMotor=(isMotCp&&typeof nmGetMotorPrice==='function')?nmGetMotorPrice('Centerpiece Roman', qty*(isDN?2:1)):0;
   var total=cpYourPrice+freight+cpMotor;
-  setVal('pr-total','Retail $'+Math.round(cpRetailSub).toLocaleString()+' → 25% off → ~$'+Math.round(cpYourPrice+freight).toLocaleString()+(cpMotor>0?' + motorization '+nmMotorLineText(cpMotor,qty)+' = ~$'+Math.round(total).toLocaleString()+' total':'')+' (freight at retail)');
+  setVal('pr-total','Norman retail ~$'+Math.round(cpYourPrice+freight).toLocaleString()+' incl. freight'+(cpMotor>0?' + motorization '+nmMotorLineText(cpMotor,qty)+' = ~$'+Math.round(total).toLocaleString()+' total':'')+' (freight at retail)');
 }
 
 // ── SUBMIT ────────────────────────────────────────────────────────────────────
