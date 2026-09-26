@@ -33,6 +33,7 @@ BUSINESS:
 - Phone: (609) 742-1720 — 24/7 call or text
 - Email: justin@blindznation.com
 - Based in Midvale, UT 84047
+- MOBILE SERVICE, BY APPOINTMENT ONLY. There is NO showroom and no walk-in location — never tell a customer to visit a store or showroom. All samples are brought to the customer at a free in-home consultation.
 - Service area: Salt Lake City, Utah and the surrounding area (based in Midvale). Out-of-state by request. We do NOT serve Philadelphia / Pennsylvania / New Jersey.
 
 PRODUCTS & PRICING:

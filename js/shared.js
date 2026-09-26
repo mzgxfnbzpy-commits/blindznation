@@ -100,7 +100,7 @@ function _injectHead(isHome) {
       "@id": "https://blindznation.com/#business",
       "name": "Blindznation",
       "alternateName": "Healy Installations LLC",
-      "description": "Custom window treatments — roller shades, cellular shades, roman shades, drapery, and plantation shutters. Professional fabrication and installation serving Salt Lake City and the surrounding Utah area.",
+      "description": "Custom window treatments — roller shades, cellular shades, roman shades, drapery, and plantation shutters. Professional fabrication and installation serving Salt Lake City and the surrounding Utah area. Mobile service by appointment only — no showroom; all samples brought to a free in-home consultation.",
       "url": "https://blindznation.com",
       "telephone": "+16097421720",
       "email": "justin@blindznation.com",
@@ -323,7 +323,7 @@ function renderFooter(isHome) {
           </svg>Blind<em>znation</em>
         </div>
         <div class="footer-company">Healy Installations LLC</div>
-        <div class="footer-tagline">Based in Midvale, serving Salt Lake City &amp; the surrounding Utah area. Product ships nationwide.</div>
+        <div class="footer-tagline">Based in Midvale, serving Salt Lake City &amp; the surrounding Utah area. Mobile service by appointment only &mdash; no showroom; we bring every sample to you. Product ships nationwide.</div>
         <a href="tel:6097421720" style="display:block;font-size:15px;font-weight:600;color:var(--gold);text-decoration:none;margin-bottom:2px">(609) 742-1720</a>
         <div style="font-size:11px;color:var(--text-faint);margin-bottom:6px">Justin Healy &mdash; call or text 24/7</div>
         <a href="mailto:justin@blindznation.com" style="font-size:12px;color:var(--text-muted);text-decoration:none">justin@blindznation.com</a>
