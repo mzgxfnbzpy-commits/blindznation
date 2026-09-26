@@ -292,7 +292,7 @@ var _SOL_TOP_NOTE = {
   fascia:   'A fascia covers the roll. It mounts on the rail, which is included.',
   wood:     'A Modern Wood Valance covers the roll. It mounts on the rail, which is included.',
   cassette: 'The cassette encloses the roll and replaces the rail.',
-  lg360:    'Full Blackout Side Channels (Norman LightGuard 360): a housing plus channels down both sides.',
+  lg360:    'Full Blackout Side Channels: fully enclosed, 4-sided blackout.',
   none:     'Open roll: the roll is exposed and there is no mounting rail.'
 };
 

@@ -248,9 +248,9 @@ function selectProduct(productId, productName, isInstant) {
         // Show roller type subsection; hide brand chooser until type is picked
         document.getElementById('roller-types').style.display = 'block';
         document.getElementById('brand-chooser').style.display = 'none';
-        // Auto-select Norman Soluna as default
-        rtSelect('norman');
-        setTimeout(function(){ var el=document.getElementById('rn-wrap')||document.getElementById('brand-norman-content'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }, 120);
+        // Let the customer pick the roller type. (Norman Soluna used to be auto-selected into
+        // the inline rn- calculator; it now lives on soluna-roller-shades.html — see rtSelect.)
+        setTimeout(function(){ var el=document.getElementById('roller-types'); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }, 120);
       } else {
         pbBtn.classList.add('disabled');
         document.getElementById('pb-only-note').style.display = 'block';
@@ -297,6 +297,8 @@ function selectProduct(productId, productName, isInstant) {
 
 // ─── selectBrand ─────────────────────────────────────────────
 function selectBrand(brand) {
+  // Norman roller = Soluna, which is priced only on its own page (see solGoToSolunaPage).
+  if (brand === 'norman' && currentProduct === 'roller') { solGoToSolunaPage(); return; }
   currentBrand = brand;
 
   document.querySelectorAll('.brand-btn').forEach(b => b.classList.remove('sel'));
@@ -356,17 +358,19 @@ function rtSelect(type) {
       window.scrollTo({ top: top, behavior: 'smooth' });
     }, 80);
   } else if (type === 'norman') {
-    selectBrand('norman');
-    setTimeout(function() {
-      // Scroll to rn-wrap (Step 1) — skip the measure question, land directly on the configurator
-      var el = document.getElementById('rn-wrap') || document.getElementById('brand-norman-content');
-      if (!el) return;
-      var nav = document.getElementById('site-nav');
-      var off = nav ? nav.offsetHeight + 16 : 90;
-      var top = el.getBoundingClientRect().top + window.scrollY - off;
-      window.scrollTo({ top: top, behavior: 'smooth' });
-    }, 120);
+    solGoToSolunaPage();
   }
+}
+
+// Norman Soluna roller shades are priced ONLY on soluna-roller-shades.html (Sept 2026 book,
+// js/pages/soluna-engine.js). The old inline rn- calculator below on this page was on May
+// prices — every route to it now goes to the Soluna page instead, carrying any size typed.
+function solGoToSolunaPage() {
+  var p = [];
+  var w = (document.getElementById('inp-width') || {}).value, h = (document.getElementById('inp-height') || {}).value;
+  if (w) p.push('w=' + encodeURIComponent(w));
+  if (h) p.push('h=' + encodeURIComponent(h));
+  window.location.href = 'soluna-roller-shades.html' + (p.length ? '?' + p.join('&') : '') + '#configure';
 }
 
 // ─── toggleMeasure ───────────────────────────────────────────
