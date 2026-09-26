@@ -145,7 +145,7 @@ module.exports = async function handler(req, res) {
 
   const now     = new Date();
   const dateStr = now.toLocaleString('en-US', {
-    timeZone: 'America/New_York',
+    timeZone: 'America/Denver',
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
     hour: 'numeric', minute: '2-digit', hour12: true
   });
@@ -157,9 +157,9 @@ module.exports = async function handler(req, res) {
     let d = null;
     if (agreedAtRaw) { const parsed = new Date(agreedAtRaw); if (!isNaN(parsed.getTime())) d = parsed; }
     acceptedStr = (d || now).toLocaleString('en-US', {
-      timeZone: 'America/New_York', year: 'numeric', month: 'short', day: 'numeric',
+      timeZone: 'America/Denver', year: 'numeric', month: 'short', day: 'numeric',
       hour: 'numeric', minute: '2-digit', hour12: true
-    }) + ' ET';
+    }) + ' MT';
   }
 
   const rows = selections.map(function(s) {
@@ -266,7 +266,7 @@ module.exports = async function handler(req, res) {
   </div>
   <div style="padding:14px 26px;font-size:11px;color:#aaa;text-align:center">
     ${BRAND} &nbsp;·&nbsp; Healy Installations LLC &nbsp;·&nbsp; ${PHONE}<br>
-    Salt Lake City, UT &nbsp;·&nbsp; Philadelphia, PA &nbsp;·&nbsp; Nationwide
+    Salt Lake City, UT &nbsp;·&nbsp; Nationwide
   </div>
 </div></body></html>`;
 

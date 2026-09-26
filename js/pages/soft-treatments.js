@@ -643,7 +643,7 @@ function calcRoman() {
     }
   }
 
-  // Shipping — FedEx/UPS from Philadelphia.
+  // Shipping — FedEx/UPS.
   // $100 up to 80x100, $200 up to 200x200, $300 past that. Flat per order.
   var shipEst = (typeof pbRomanFreight === 'function')
     ? pbRomanFreight(w, h)
@@ -717,7 +717,7 @@ function calcRoman() {
   if (!RN_QUOTE_ONLY) {
     if (shipEst) {
       rnLines.push({ label: (shipEst > 100 ? 'Oversize freight (over 80″ × 100″)'
-                          : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + shipEst });
+                          : 'Shipping (FedEx/UPS)'), value: '$' + shipEst });
       rnLines.push({ label: '', value: (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') });
     }
     if (perShade === rnGetMin()) {
@@ -1014,7 +1014,7 @@ function calcDrapePrice() {
     trimTotal = Math.ceil(trimFt) * D_TRIM_PER_FT;
   }
 
-  // Shipping estimate — FedEx/UPS from Philadelphia; min $75 for drapes
+  // Shipping estimate — FedEx/UPS; min $75 for drapes
   // $100 up to 180x150, $300 up to 250x200, $500 past that (base was $200 until 2026-09-23).
   // own base (higher than the $100 on Romans and boards) because a made-up drape
   // is bulkier. The finished panel decides it, not the cut count.
@@ -1078,7 +1078,7 @@ function calcDrapePrice() {
   if (dShipEst) {
     drapeLines.push({ label: (dShipEst >= 500 ? 'Oversize freight (over 250″ × 200″)'
                            : dShipEst > 100 ? 'Oversize freight (over 180″ × 150″)'
-                           : 'Shipping (FedEx/UPS, Philadelphia)'), value: '$' + dShipEst });
+                           : 'Shipping (FedEx/UPS)'), value: '$' + dShipEst });
     drapeLines.push({ label: '', value: (dShipEst >= 500
       ? 'This size can be ordered, but the freight is confirmed at order and may increase.'
       : (typeof PB_ST_SHIP_NOTE !== 'undefined' ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.')) });
@@ -1291,7 +1291,7 @@ function _cvPriceBox(boxId, rowsId, totalId, noteId, w, h, ret, trimClass, trimG
   var cvBand = w > 250 ? 250 : w > 160 ? 160 : w > 120 ? 120 : 80;
   rows += '<div style="font-size:12px;color:var(--text-dark);padding:3px 0">' + (isOversizeCV
       ? 'Oversize freight (over ' + cvBand + '&Prime; wide, not spliced)'
-      : 'Shipping (FedEx/UPS, Philadelphia)')
+      : 'Shipping (FedEx/UPS)')
     + ' <span style="color:var(--gold)">$' + cvFreight + '</span></div>';
   rows += '<div style="font-size:11px;color:var(--text-dark);opacity:.75;padding:2px 0">' +
     ((typeof PB_ST_SHIP_NOTE !== 'undefined') ? PB_ST_SHIP_NOTE : 'Shipping is an estimate and may change.') + '</div>';

@@ -45,5 +45,97 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/pages/custom-blinds-abington-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-ardmore-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-blue-bell-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-bryn-mawr-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-cherry-hill-nj.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-chestnut-hill-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-doylestown-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-haddonfield-nj.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-huntingdon-valley-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-lansdale-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-marlton-nj.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-media-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-moorestown-nj.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-mount-laurel-nj.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-newtown-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-philadelphia-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-voorhees-nj.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    },
+    {
+      "source": "/pages/custom-blinds-wayne-pa.html",
+      "destination": "/pages/custom-blinds-salt-lake-city-ut.html",
+      "permanent": true
+    }
   ]
 }

@@ -96,7 +96,7 @@ function _injectHead(isHome) {
       "@id": "https://blindznation.com/#business",
       "name": "Blindznation",
       "alternateName": "Healy Installations LLC",
-      "description": "Custom window treatments — roller shades, cellular shades, roman shades, drapery, and plantation shutters. Professional fabrication and installation serving Salt Lake City, Utah and Philadelphia, PA.",
+      "description": "Custom window treatments — roller shades, cellular shades, roman shades, drapery, and plantation shutters. Professional fabrication and installation serving Salt Lake City and the surrounding Utah area.",
       "url": "https://blindznation.com",
       "telephone": "+16097421720",
       "email": "justin@blindznation.com",
@@ -116,8 +116,6 @@ function _injectHead(isHome) {
         {"@type": "City", "name": "Alta"},
         {"@type": "AdministrativeArea", "name": "Utah County, UT"},
         {"@type": "City", "name": "Park City"},
-        {"@type": "City", "name": "Philadelphia"},
-        {"@type": "AdministrativeArea", "name": "Montgomery County, PA"},
         {"@type": "State", "name": "Out of state — available nationwide"}
       ],
       "priceRange": "$$",
@@ -159,7 +157,6 @@ function _injectHead(isHome) {
       "foundingDate": "2014",
       "areaServed": [
         {"@type": "State", "name": "Utah"},
-        {"@type": "State", "name": "Pennsylvania"},
         {"@type": "Country", "name": "United States"}
       ],
       "knowsAbout": [
@@ -199,8 +196,7 @@ function _injectHead(isHome) {
         {"@type": "City", "name": "Orem", "containedInPlace": {"@type": "State", "name": "Utah"}},
         {"@type": "City", "name": "Provo", "containedInPlace": {"@type": "State", "name": "Utah"}},
         {"@type": "City", "name": "Park City", "containedInPlace": {"@type": "State", "name": "Utah"}},
-        {"@type": "City", "name": "Alta", "containedInPlace": {"@type": "State", "name": "Utah"}},
-        {"@type": "City", "name": "Philadelphia", "containedInPlace": {"@type": "State", "name": "Pennsylvania"}}
+        {"@type": "City", "name": "Alta", "containedInPlace": {"@type": "State", "name": "Utah"}}
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -322,7 +318,7 @@ function renderFooter(isHome) {
           </svg>Blind<em>znation</em>
         </div>
         <div class="footer-company">Healy Installations LLC</div>
-        <div class="footer-tagline">Serving Philadelphia, South Jersey, Salt Lake City &amp; surrounding areas. Out-of-state available — product ships nationwide.</div>
+        <div class="footer-tagline">Serving Salt Lake City &amp; the surrounding Utah area. Product ships nationwide.</div>
         <a href="tel:6097421720" style="display:block;font-size:15px;font-weight:600;color:var(--gold);text-decoration:none;margin-bottom:2px">(609) 742-1720</a>
         <div style="font-size:11px;color:var(--text-faint);margin-bottom:6px">Justin Healy &mdash; call or text 24/7</div>
         <a href="mailto:justin@blindznation.com" style="font-size:12px;color:var(--text-muted);text-decoration:none">justin@blindznation.com</a>
@@ -982,9 +978,9 @@ function pbContactStepHTML(opts) {
         // separate field, so every product asks for the same thing (shutters
         // used to carry its own city/zip inputs).
         '<div class="form-group"><label>Name *</label><input type="text" id="' + p + 'name" data-pb-contact="name" autocomplete="name" placeholder="Jane Smith"></div>' +
-        '<div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="' + p + 'address" data-pb-contact="address" autocomplete="street-address" placeholder="123 Main St, Philadelphia PA 19106"></div>' +
+        '<div class="form-group"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input type="text" id="' + p + 'address" data-pb-contact="address" autocomplete="street-address" placeholder="123 Main St, Midvale, UT 84047"></div>' +
         '<div class="dim-row">' +
-          '<div class="form-group"><label>Phone *</label><input type="tel" id="' + p + 'phone" data-pb-contact="phone" autocomplete="tel" placeholder="(215) 555-0100"></div>' +
+          '<div class="form-group"><label>Phone *</label><input type="tel" id="' + p + 'phone" data-pb-contact="phone" autocomplete="tel" placeholder="(801) 555-0100"></div>' +
           '<div class="form-group"><label>Email *</label><input type="email" id="' + p + 'email" data-pb-contact="email" autocomplete="email" placeholder="jane@example.com"></div>' +
         '</div>' +
         '<div class="form-group"><label>Notes</label><textarea id="' + p + 'notes" data-pb-contact="notes" placeholder="Room name, ceiling height, fabric ideas, timeline &mdash; anything helpful" style="min-height:60px"></textarea></div>' +
@@ -2049,9 +2045,9 @@ function pbShowQuoteModal(lines, productName, estimate, files) {
         '<div class="pb-qm-lbl">Your details</div>' +
         // Same fields, order and wording as the Your details step on every product.
         '<div class="pb-qm-field"><label>Name *</label><input id="pbq-fname" data-pb-contact="name" type="text" placeholder="Jane Smith" autocomplete="name"></div>' +
-        '<div class="pb-qm-field"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input id="pbq-address" data-pb-contact="address" type="text" placeholder="123 Main St, Philadelphia PA 19106" autocomplete="street-address"></div>' +
+        '<div class="pb-qm-field"><label>Address <span style="font-weight:400;color:#888">(optional)</span></label><input id="pbq-address" data-pb-contact="address" type="text" placeholder="123 Main St, Midvale, UT 84047" autocomplete="street-address"></div>' +
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">' +
-          '<div class="pb-qm-field"><label>Phone *</label><input id="pbq-phone" data-pb-contact="phone" type="tel" placeholder="(215) 555-0100" autocomplete="tel"></div>' +
+          '<div class="pb-qm-field"><label>Phone *</label><input id="pbq-phone" data-pb-contact="phone" type="tel" placeholder="(801) 555-0100" autocomplete="tel"></div>' +
           '<div class="pb-qm-field"><label>Email *</label><input id="pbq-email" data-pb-contact="email" type="email" placeholder="jane@example.com" autocomplete="email"></div>' +
         '</div>' +
         '<div class="pb-qm-field"><label>Notes <span style="font-weight:400;color:#888">(optional)</span></label><textarea id="pbq-notes" rows="3" placeholder="Anything else — overall timeline, install questions..."></textarea></div>' +
@@ -2661,7 +2657,7 @@ function _initInstallationAddons() {
       '</label>' +
       '<div id="' + id + '-detail" style="display:none;margin-top:12px;padding:12px 14px;background:var(--espresso);border-radius:8px">' +
         '<div style="font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">We\'ll follow up with installation pricing</div>' +
-        '<div style="font-size:13px;color:var(--cream);margin-bottom:6px">Philadelphia, South Jersey, Salt Lake City &amp; surrounding areas. Out-of-state installation available at reasonable rates.</div>' +
+        '<div style="font-size:13px;color:var(--cream);margin-bottom:6px">Salt Lake City &amp; the surrounding Utah area. Out-of-state installation available at reasonable rates.</div>' +
         '<a href="tel:6097421720" style="display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:var(--espresso);font-size:13px;font-weight:700;padding:9px 16px;border-radius:7px;text-decoration:none;margin-bottom:6px">&#128222; (609) 742-1720</a>' +
         '<div style="font-size:12px;color:var(--text-dark);margin-top:4px">Or email: <a href="mailto:justin@blindznation.com" style="color:var(--gold);text-decoration:none">justin@blindznation.com</a></div>' +
       '</div>';
@@ -2776,7 +2772,7 @@ function _initShippingEstimators() {
           'style="width:130px;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;font-family:inherit;background:#fff">' +
         '<span class="pb-zip-result" style="font-size:13px;color:#555;min-width:140px"></span>' +
       '</div>' +
-      '<div style="font-size:10px;color:#aaa;margin-top:6px;line-height:1.5">UPS / FedEx Ground estimate from Huntingdon Valley PA 19006 &nbsp;&middot;&nbsp; Actual rate confirmed at order</div>';
+      '<div style="font-size:10px;color:#aaa;margin-top:6px;line-height:1.5">UPS / FedEx Ground estimate &nbsp;&middot;&nbsp; Actual rate confirmed at order</div>';
     el.appendChild(wrap);
     var input = wrap.querySelector('.pb-zip-input');
     var result = wrap.querySelector('.pb-zip-result');
@@ -2792,7 +2788,7 @@ function _initShippingEstimators() {
         if (dataEl) isOversized = dataEl.getAttribute('data-ship-oversized') === 'true';
         var est = _calcShipping(zip, { softGoods: isSoft, oversized: isOversized, minShip: isSoft ? 50 : 0 });
         if (est) result.innerHTML = '<strong style="color:#111110">~$'+est.low+' – $'+est.high+'</strong> <span style="font-size:11px;color:#888">('+est.region+')</span>';
-        // Note: pickup from SLC/Huntingdon Valley still incurs shipping charges
+        // Note: pickup still incurs shipping charges
         if (result.innerHTML) result.innerHTML += '<div style="font-size:10px;color:#999;margin-top:3px">Note: Pickup still incurs freight — product ships to you first.</div>';
       } else {
         result.textContent = '';
@@ -2847,7 +2843,7 @@ function _initContactPanel() {
         '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Name *</label>' +
           '<input id="pb-cp-name" type="text" placeholder="Jane Smith" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
         '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone *</label>' +
-          '<input id="pb-cp-phone-inp" type="tel" placeholder="(215) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
+          '<input id="pb-cp-phone-inp" type="tel" placeholder="(801) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
       '</div>' +
       '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Email</label>' +
         '<input id="pb-cp-email" type="email" placeholder="jane@example.com" style="width:100%;padding:9px 11px;border:1px solid #e8e8e4;border-radius:7px;font-size:13px;font-family:inherit"></div>' +
@@ -2930,7 +2926,7 @@ function pbShowContact(title) {
           '<div style="display:flex;align-items:center;gap:8px;margin-bottom:14px"><div style="flex:1;height:1px;background:#eee"></div><span style="font-size:11px;color:#bbb">or send us a message</span><div style="flex:1;height:1px;background:#eee"></div></div>' +
           '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">' +
             '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Name *</label><input id="' + uid + '-name" type="text" placeholder="Jane Smith" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
-            '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone *</label><input id="' + uid + '-phone" type="tel" placeholder="(215) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
+            '<div><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Phone *</label><input id="' + uid + '-phone" type="tel" placeholder="(801) 555-0100" style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;box-sizing:border-box"></div>' +
           '</div>' +
           '<div style="margin-bottom:10px"><label style="font-size:11px;font-weight:600;color:#555;display:block;margin-bottom:4px">Notes</label><textarea id="' + uid + '-msg" rows="3" placeholder="What are you looking for? Window sizes, room, timeline, questions..." style="width:100%;padding:9px 11px;border:1px solid #e0e0e0;border-radius:7px;font-size:13px;font-family:inherit;resize:vertical;box-sizing:border-box"></textarea></div>' +
           '<div style="border:1.5px dashed #C9A96E;border-radius:9px;padding:12px 14px;margin-bottom:14px;background:#FAF7EF">' +
