@@ -14,7 +14,7 @@ async function fresh() {
   await tick();
   return p;
 }
-function txt(d, id) { var e = d.getElementById(id); return e ? e.textContent.trim() : null; }
+function txt(d, id) { var e = typeof id === 'undefined' ? d : d.getElementById(id); return e ? e.textContent.trim() : null; }
 function vis(d, id) { var e = d.getElementById(id); return !!e && e.style.display !== 'none'; }
 function pick(d, sel) { return H.click(d, d.querySelector(sel)); }
 function color(d, slot, coll, name) {
@@ -119,6 +119,7 @@ function prices(d) { return { retail: txt(d, 's-retail'), your: txt(d, 's-your')
   check('dual forces the square 8″ fabric valance', d.querySelector('#grp-top .sel').getAttribute('data-top') === 'fascia' &&
         d.querySelector('#grp-fascia-size .sel').getAttribute('data-v') === '8' && d.querySelector('#grp-top [data-top="cassette"]').classList.contains('blocked'));
   color(d, 'bo', 'Callie RD', 'Pure White'); color(d, 'lite', 'Callie', 'Pure White');
+  btn(d, 'grp-fascia-fabric', 'Blackout layer');   // a dual's valance wrap must be chosen
   r = prices(d);
   check('dual Callie + Callie RD: retail $1,259.80 → $944.85 + $36 = $980.85',
         r.retail === '$1,259.80' && r.your === '$944.85' && r.ship === '$36' && r.total === '$980.85', JSON.stringify(r));
@@ -137,10 +138,74 @@ function prices(d) { return { retail: txt(d, 's-retail'), your: txt(d, 's-your')
   check('email names Norman\'s product: Fabric Valance 8″ (raceway included)', /Norman top treatment: Fabric Valance 8" \(raceway included\)/.test(body), body.split('\n').filter(function (l) { return /Norman/.test(l); }).join(' / '));
   check('email carries 25% and shipping lines', /Norman discount 25%/.test(body) && /Shipping \(net, not discounted\): \$36/.test(body));
   check('email goes only to justin@blindznation.com', /mailto:justin@blindznation\.com\?subject=/.test(p.window.submitQuote.toString()) && !/phillyblinds/.test(p.window.submitQuote.toString()));
+  btn(d, 'grp-endcaps', 'Match my shade');   // end caps are always asked on a fascia
   p.window.addSolunaToCart();
   var cart = JSON.parse(p.window.localStorage.getItem('pb_cart_v1') || '[]');
   var item = cart[cart.length - 1] || {};
   check('cart item carries the whole-order total at qty 1', item.qty === 1 && item.price > 980, JSON.stringify({ price: item.price, qty: item.qty }));
+
+  // ── Fixes from the 2026-09-25 review ──
+  p = await fresh(); d = p.document; var W = p.window;
+  size(d, 48, 60); color(d, 'main', 'Callie', 'Pure White');
+  H.set(d, 'inp-qty', '-2');
+  check('qty −2 prices as 1 shade ($503), never negative', prices(d).retail === '$503' && txt(d, 's-qty') === '1', JSON.stringify(prices(d)));
+  H.set(d, 'inp-qty', '2.7');
+  check('qty 2.7 prices and shows as 3', txt(d, 's-qty') === '3' && prices(d).retail === '$1,509', JSON.stringify(prices(d)));
+  H.set(d, 'inp-qty', '1');
+
+  btn(d, 'grp-op', 'Motorized'); await tick(); size(d, 6, 60);
+  check('motorized 6″ wide is refused (12″ minimum)', /12″ wide/.test(prices(d).issue), prices(d).issue);
+  btn(d, 'grp-op', 'Manual with chain'); size(d, -10, 60);
+  check('a negative width does not price', !vis(d, 's-price-block'));
+  size(d, 48, 60);
+
+  pick(d, '#grp-top [data-top="cassette"]'); btn(d, 'grp-mount', 'Semi-inside');
+  check('cassette + semi-inside mount is refused', /inside or outside mount/.test(prices(d).issue), prices(d).issue);
+  btn(d, 'grp-mount', 'Inside mount');
+
+  // Keystones: Callie runs 118″, so one wrapped piece is 111″; a 116″ valance needs 1 keystone.
+  pick(d, '#grp-top [data-top="fascia"]'); pick(d, '#grp-fascia-mat [data-v="fabric"]'); size(d, 116, 60);
+  var rq = W.solQuote(), noKey = JSON.parse(JSON.stringify(rq.built.order)); delete noKey.addons.key;
+  check('116″ fabric-wrapped valance adds 1 keystone ($73 retail)',
+        rq.quote && rq.quote.discountableRetail - W.SolunaEngine.quote(noKey).discountableRetail === 73 && /1 valance keystone/.test(txt(d, 's-addons')),
+        rq.quote ? rq.quote.discountableRetail + ' / ' + txt(d, 's-addons') : JSON.stringify(rq.issues));
+  pick(d, '#grp-fascia-mat [data-v="metal"]');
+  check('metal fascia takes no keystone', !/keystone/.test(txt(d, 's-addons')));
+  size(d, 48, 60);
+
+  // End caps must be answered before the cart
+  var before = JSON.parse(W.localStorage.getItem('pb_cart_v1') || '[]').length;
+  W.addSolunaToCart();
+  check('fascia with no end-cap answer is not added to the cart', JSON.parse(W.localStorage.getItem('pb_cart_v1') || '[]').length === before);
+
+  // Coupled pills stay in step with the priced count
+  H.click(d, d.getElementById('coupled-toggle-btn')); btn(d, 'grp-coupled-count', '3 shades');
+  btn(d, 'grp-coupled-type', 'Different sizes');
+  check('switching to different sizes highlights "3 shades"', /^3/.test(txt(d.querySelector('#grp-coupled-diff-count .sel'))) && d.querySelectorAll('#coupled-dim-fields input').length === 6);
+  check('different sizes: summary shows "see coupled shades", not the stale main size', txt(d, 's-size') === 'see coupled shades');
+  btn(d, 'grp-coupled-diff-count', '2 shades'); btn(d, 'grp-coupled-type', 'Same size');
+  check('back to same size highlights "2 shades"', /^2/.test(txt(d.querySelector('#grp-coupled-count .sel'))));
+  H.click(d, d.getElementById('coupled-toggle-btn'));
+
+  // Several problems, one of them "past the chart" → still NOT added to the cart
+  pick(d, '#grp-top [data-top="race"]');
+  pick(d, '#grp-light [data-cat="natural"]'); color(d, 'main', 'Maui (Natural)', txt(d.querySelector('#sol-fab-main [data-coll="Maui (Natural)"]')));
+  size(d, 119, 130);
+  before = JSON.parse(W.localStorage.getItem('pb_cart_v1') || '[]').length;
+  W.addSolunaToCart();
+  check('past-the-chart + other problems → blocked from the cart', JSON.parse(W.localStorage.getItem('pb_cart_v1') || '[]').length === before, prices(d).issue);
+
+  // Dual: wrap fabric must be chosen; going back to Standard restores the earlier top
+  p = await fresh(); d = p.document; W = p.window;
+  size(d, 48, 60); color(d, 'main', 'Callie', 'Pure White');
+  pick(d, '#grp-top [data-top="none"]'); btn(d, 'grp-premium', 'Premium hardware');
+  btn(d, 'grp-shade-type', 'Dual Shade');
+  color(d, 'bo', 'Callie RD', 'Pure White'); color(d, 'lite', 'Callie', 'Pure White');
+  check('dual: valance wrap fabric must be chosen', !vis(d, 's-price-block') && /wrap fabric/.test(txt(d, 's-note')), txt(d, 's-note'));
+  btn(d, 'grp-fascia-fabric', 'Blackout layer');
+  check('dual with wrap chosen prices ($1,259.80)', prices(d).retail === '$1,259.80', JSON.stringify(prices(d)));
+  btn(d, 'grp-shade-type', 'Standard');
+  check('back to Standard restores open roll + premium hardware ($519)', d.querySelector('#grp-top .sel').getAttribute('data-top') === 'none' && prices(d).retail === '$519', JSON.stringify(prices(d)));
 
   console.log(fails ? fails + ' FAILED' : 'all page checks pass');
   process.exit(fails ? 1 : 0);

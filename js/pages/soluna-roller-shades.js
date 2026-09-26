@@ -55,6 +55,20 @@ function _solMoney(n) {
   return '$' + n.toLocaleString('en-US', { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: 2 });
 }
 function _solInch(v) { return String(v).replace('3.5', '3½').replace('4.5', '4½') + '″'; }
+// Quantity: always a whole number 1–20, whatever was typed or pre-filled. Everything
+// (engine, summary, email, cart) reads it through here so they can't disagree.
+function _solQty() {
+  var q = Math.round(parseFloat(_solVal('inp-qty')));
+  return !(q >= 1) ? 1 : q > 20 ? 20 : q;
+}
+function solFixQty() { var el = document.getElementById('inp-qty'); if (el) el.value = _solQty(); updateSummary(); }
+// Size text for the summary / email / cart. Coupled shades of different sizes carry
+// their own sizes, so the main width × height boxes don't apply.
+function _solSizeText(unit) {
+  if (_solCoupledActive && !_solCoupledSameSize) return 'see coupled shades';
+  var w = _solVal('inp-width'), h = _solVal('inp-height');
+  return (w && h) ? w + unit + ' W × ' + h + unit + ' H' : '—';
+}
 
 // A row of colour pills. selIdx -1 = nothing chosen yet.
 function _solPills(groupId, list, selIdx, withSwatch) {
@@ -87,10 +101,21 @@ function solCheckCoupledOpWarn() {
   _solShow('coupled-op-warn', _solCoupledActive && blocked);
 }
 
+// Both modes have their own "2 / 3 / 4 shades" row but share one count — keep the
+// visible row's highlight on the count that is actually priced.
+function _solSyncCoupledPills() {
+  ['grp-coupled-count', 'grp-coupled-diff-count'].forEach(function (g) {
+    document.querySelectorAll('#' + g + ' .opt-btn').forEach(function (b) {
+      b.classList.toggle('sel', parseInt(b.textContent, 10) === _solCoupledCount);
+    });
+  });
+}
+
 function solShowCoupledSame() {
   _solCoupledSameSize = true;
   _solShow('coupled-same-wrap', true);
   _solShow('coupled-diff-wrap', false);
+  _solSyncCoupledPills();
 }
 
 function solShowCoupledDiff() {
@@ -98,6 +123,7 @@ function solShowCoupledDiff() {
   _solShow('coupled-same-wrap', false);
   _solShow('coupled-diff-wrap', true);
   solRenderCoupledFields(_solCoupledCount);
+  _solSyncCoupledPills();
 }
 
 function solSetCoupledCount(n) { _solCoupledCount = n; }
@@ -214,9 +240,36 @@ function solPickCategory(slot, btn) {
 function _solFabricLabel(s) { return s ? s.collection + ' — ' + s.name + ' (' + s.code + ')' : '—'; }
 
 // ─── Shade type ───────────────────────────────────────────────
+// Wrap-fabric choices for a fabric-wrapped fascia. A standard shade defaults to its own
+// fabric; a dual has two, and the handoff says its valance fabric must be chosen — no default.
+function _solRenderWrapChoices() {
+  var el = document.getElementById('grp-fascia-fabric');
+  if (!el) return;
+  var list = SOL.dual
+    ? ['Blackout layer fabric', 'Light layer fabric', 'A different fabric (I\'ll say which in the notes)']
+    : ['Same as my shade', 'A different fabric (I\'ll say which in the notes)'];
+  _solPills('grp-fascia-fabric', list, SOL.dual ? -1 : 0, false);
+}
+
 function solPickShadeType(type, btn) {
+  var wasDual = SOL.dual;
   selOpt(btn, 'grp-shade-type');
   SOL.dual = type === 'dual';
+  // Going to Dual forces the square 8″ fabric valance; remember what the customer had so
+  // going back to Standard restores it instead of silently keeping the forced valance.
+  if (SOL.dual && !wasDual) {
+    SOL.beforeDual = { top: SOL.top, shape: _solData('grp-fascia-shape'), mat: _solData('grp-fascia-mat'), size: _solData('grp-fascia-size') };
+  }
+  if (SOL.dual !== wasDual) _solRenderWrapChoices();
+  if (!SOL.dual && wasDual && SOL.beforeDual) {
+    var bd = SOL.beforeDual; SOL.beforeDual = null;
+    document.querySelectorAll('#grp-top .opt-btn').forEach(function (b) { b.classList.remove('blocked'); });
+    [['grp-fascia-shape', bd.shape], ['grp-fascia-mat', bd.mat], ['grp-fascia-size', bd.size]].forEach(function (p) {
+      var b = p[1] && document.querySelector('#' + p[0] + ' [data-v="' + p[1] + '"]');
+      if (b) selOpt(b, p[0]);
+    });
+    solPickTop(bd.top, document.querySelector('#grp-top [data-top="' + bd.top + '"]'), true);
+  }
   _solShow('sol-single-fabric', !SOL.dual);
   _solShow('sol-dual-fabric', SOL.dual);
   _solShow('sol-dual-note', SOL.dual);
@@ -338,7 +391,7 @@ function _solSizes() {
 function solBuildOrder() {
   var need = [];
   var sizes = _solSizes();
-  if (sizes.some(function (s) { return !s.w || !s.h; })) need.push(_solCoupledActive && !_solCoupledSameSize ? 'each shade\'s width and height' : 'width and height');
+  if (sizes.some(function (s) { return !(s.w > 0 && s.h > 0); })) need.push(_solCoupledActive && !_solCoupledSameSize ? 'each shade\'s width and height' : 'width and height');
   var shades;
   if (SOL.dual) {
     if (!SOL.sel.bo) need.push('a blackout-layer fabric');
@@ -363,7 +416,7 @@ function solBuildOrder() {
   var order = {
     shades: shades,
     width: sizes[0].w, height: sizes[0].h,
-    qty: parseInt(_solVal('inp-qty'), 10) || 1,
+    qty: _solQty(),
     coupledCount: _solCoupledActive ? _solCoupledCount : 0,
     header: SOL.top,
     mount: _solData('grp-mount', 'data-mount') || 'IM',
@@ -383,7 +436,30 @@ function solBuildOrder() {
   if (_solCoupledActive && (SOL.top === 'fascia' || SOL.top === 'wood'))
     order.valanceWidth = sizes.reduce(function (t, s) { return t + s.w; }, 0);
   if (premium) order.hardwareFinish = (getOpt('grp-hw-color') || 'White').trim();
-  return { order: order, need: need, sizes: sizes, op: op };
+
+  // Fabric-wrapped fascia: the wrap fabric, and keystones where the valance is longer than
+  // one piece of it. Handoff §06: max length = fabric width − 7″; beyond that it splices
+  // with a keystone ($73 each), up to 5 per valance, 3 on a common valance.
+  var keystones = 0, keystoneOver = false;
+  if (SOL.top === 'fascia' && order.material === 'fabric') {
+    var wrap = getOpt('grp-fascia-fabric') || '';
+    if (SOL.dual && !_solSelBtn('grp-fascia-fabric')) need.push('the valance wrap fabric (Step 5)');
+    var wrapFab = !SOL.dual ? SOL.sel.main
+      : /blackout layer/i.test(wrap) ? SOL.sel.bo
+      : /light layer/i.test(wrap) ? SOL.sel.lite
+      : null;
+    var cands = wrapFab ? [wrapFab] : [SOL.sel.bo, SOL.sel.lite].filter(Boolean);   // "different fabric": assume the narrower
+    if (cands.length) {
+      var fw = Math.min.apply(null, cands.map(function (c) { return SolunaEngine.fabricWidth(SolunaEngine.byCollection[c.collection], c.code); }));
+      var piece = fw - 7, vw = order.valanceWidth || order.width;
+      if (vw > piece && piece > 0) {
+        keystones = Math.ceil(vw / piece) - 1;
+        if (keystones > (_solCoupledActive ? 3 : 5)) keystoneOver = true;
+        else addons.key = keystones;
+      }
+    }
+  }
+  return { order: order, need: need, sizes: sizes, op: op, keystones: keystoneOver ? 0 : keystones, keystoneOver: keystoneOver };
 }
 
 // Engine error → one plain sentence for the customer. `manual` = we price it by hand.
@@ -417,9 +493,12 @@ function _solIssue(err, built) {
 // Checks the book states but the engine doesn't model.
 function _solExtraIssues(built) {
   var out = [], o = built.order;
+  if (built.keystoneOver) out.push({ manual: true, text: 'This fabric-wrapped valance is too long to splice from one fabric — we\'ll price it by hand.' });
   if (_solCoupledActive && (built.op === 'PrecisionLift™ Cordless' || built.op === 'SmartRelease™'))
     out.push({ text: 'Coupled shades need Manual with chain or Motorized.' });
-  var mins = { 'PrecisionLift™ Cordless': 9.5, 'SmartRelease™': 12, 'Manual with chain': 8 };
+  var mins = { 'PrecisionLift™ Cordless': 9.5, 'SmartRelease™': 12, 'Manual with chain': 8, 'Motorized': 12 };
+  // Norman: the cassette is inside or outside mount only (SOLUNA_DATA.mount.note).
+  if (o.header === 'cassette' && o.mount === 'SIM') out.push({ text: 'The cassette is made for inside or outside mount — choose one of those in Step 1.' });
   built.sizes.forEach(function (s) {
     if (s.w && mins[built.op] && s.w < mins[built.op]) out.push({ text: built.op + ' shades start at ' + mins[built.op] + '″ wide.' });
     if (s.h && s.h < 12) out.push({ text: 'Shades start at 12″ tall.' });
@@ -443,11 +522,13 @@ function solQuote() {
   if (q.errors) {
     q.errors.forEach(function (err) {
       var it = _solIssue(err, built);
-      if (it.manual) res.manual = true;
       if (!issues.some(function (x) { return x.text === it.text; })) issues.push(it);
     });
   }
   res.issues = issues;
+  // 'Manual quote' only when EVERY problem is a size-past-the-chart one; any other
+  // problem still has to be fixed before the order can go to the cart.
+  res.manual = issues.length > 0 && issues.every(function (i) { return i.manual; });
   if (!q.errors && !issues.length) {
     res.quote = q;
     var motorOn = document.getElementById('motor-sub') && document.getElementById('motor-sub').classList.contains('show');
@@ -495,6 +576,8 @@ function _solOptionParts() {
   document.querySelectorAll('#grp-extras .opt-btn.sel').forEach(function (b) { out.push(b.textContent.trim()); });
   var shims = parseInt(_solData('grp-shims'), 10) || 0;
   if (shims && _solVisible('sol-shim-wrap')) out.push(shims + ' shim' + (shims > 1 ? 's' : ''));
+  var ks = solBuildOrder().keystones;
+  if (ks) out.push(ks + ' valance keystone' + (ks > 1 ? 's' : '') + ' (fabric splice)');
   return out;
 }
 
@@ -507,8 +590,8 @@ function updateSummary() {
   set('s-op', getOpt('grp-op'));
   set('s-mount', getOpt('grp-mount') + (_solIsDoor() ? ' · door' : ''));
   set('s-shade-type', shadeType);
-  set('s-qty', _solVal('inp-qty') || 1);
-  set('s-size', (w && h) ? w + '″ W × ' + h + '″ H' : '—');
+  set('s-qty', _solQty());
+  set('s-size', _solSizeText('″'));
   set('s-top', _solTopDesc());
   set('s-addons', _solOptionParts().join(', '));
 
@@ -591,7 +674,7 @@ function submitQuote() {
   var op = getOpt('grp-op') || '—';
   var shadeType = SOL.dual ? 'Dual Shade' : 'Standard';
   var w = _solVal('inp-width') || '—', h = _solVal('inp-height') || '—';
-  var qty = _solVal('inp-qty') || 1;
+  var qty = _solQty();
   var email = document.getElementById('cf-email').value.trim();
   var notes = document.getElementById('cf-notes').value.trim();
   var motorOn = document.getElementById('motor-sub') && document.getElementById('motor-sub').classList.contains('show');
@@ -610,8 +693,7 @@ function submitQuote() {
     (motorSummary ? 'Motor details: ' + motorSummary : null),
     'Mount type: ' + getOpt('grp-mount'),
     'Door shade: ' + (_solIsDoor() ? 'Yes' : 'No'),
-    'Width: ' + w + '"',
-    'Height: ' + h + '"',
+    'Size: ' + _solSizeText('"'),
     'Quantity: ' + qty,
     (coupledLine ? 'Coupled shades: ' + coupledLine : null),
     'Top of shade: ' + _solTopDesc(),
@@ -644,11 +726,12 @@ function addSolunaToCart() {
   var r = solQuote();
   if (r.built.need.length) { alert('Please choose ' + r.built.need.join(' and ') + ' first.'); return; }
   if (r.issues.length && !r.manual) { alert(r.issues.map(function (i) { return i.text; }).join('\n')); return; }
-  var w = _solVal('inp-width') || '—', h = _solVal('inp-height') || '—';
-  var qty = parseInt(_solVal('inp-qty'), 10) || 1;
+  // Handoff: end caps are ALWAYS asked on a fascia ("Match my shade" is a fine answer).
+  if (SOL.top === 'fascia' && !_solSelBtn('grp-endcaps')) { alert('Please choose an end cap color in Step 5 — "Match my shade" is fine if you have no preference.'); return; }
+  var qty = _solQty();
   var lines = [
     { label: 'Product',  value: 'Norman Soluna Roller Shade' },
-    { label: 'Size',     value: w + '″ × ' + h + '″' },
+    { label: 'Size',     value: _solSizeText('″') },
     { label: 'Type',     value: SOL.dual ? 'Dual Shade' : 'Standard' },
     { label: 'Fabric',   value: _solFabricDesc() },
     { label: 'Control',  value: getOpt('grp-op') },
@@ -686,6 +769,8 @@ function solInit() {
   solSyncFascia();
   solSyncCovers();
   solSyncDoor();
+  var qEl = document.getElementById('inp-qty');
+  if (qEl) qEl.value = _solQty();        // a pre-filled qty from another page may be 0, negative or a decimal
   updateSummary();
 }
 
