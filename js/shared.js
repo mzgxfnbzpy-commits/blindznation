@@ -554,7 +554,7 @@ var PB_QUOTE_ONLY_PAGES = {
   'wallace-banded-shades'           : ['#pr-total-row', '#pr-total'],
   'wallace-3d-sheer'                : ['#sp-price', '#sp-price-breakdown'],
   'wallace-aluminum-blinds'         : ['#al-price-box'],
-  'custom-roller-shades'            : ['#qp-price', '#qp-price-rows', '#qp-total'],
+  // 'custom-roller-shades' — priced live since 2026-09-25 (Basic Roller rule book).
   'galaxy-woven-woods'              : ['#qr-total-row', '#qr-total'],
   'dynasty-woven-woods'             : ['#qr-total-row', '#qr-total'],
   'wallace-natural-roller-shades'   : [],

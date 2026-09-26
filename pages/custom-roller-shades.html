@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Basic roller shades — in-house fabricated to your exact specs. Any fabric type, any motor brand, customer fabric accepted. Serving the Salt Lake City area.">
+<meta name="description" content="Basic roller shades — solar screen or blackout, open roll or metal fascia, manual chain or motorized. Instant pricing, Salt Lake City area.">
 <meta property="og:title" content="Basic Roller Shades | Blindznation">
-<meta property="og:description" content="Basic roller shades — any fabric, any motor brand, customer fabric accepted.">
+<meta property="og:description" content="Basic roller shades — solar screen or blackout, open roll or metal fascia, manual chain or motorized. Instant pricing, Salt Lake City area.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://blindznation.com/pages/custom-roller-shades.html">
 <meta property="og:site_name" content="Blindznation">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Basic Roller Shades | Blindznation">
-<meta name="twitter:description" content="Basic roller shades — any fabric, any motor brand, customer fabric accepted.">
+<meta name="twitter:description" content="Basic roller shades — solar screen or blackout, open roll or metal fascia, manual chain or motorized. Instant pricing, Salt Lake City area.">
 <meta property="og:image" content="https://blindznation.com/img/social-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -43,6 +43,9 @@
 /* Openness sub-options */
 .sub-opts{margin-top:12px;padding:12px;background:#f9f9f7;border-radius:8px;display:none}
 .sub-opts.show{display:block}
+.crs-acc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:10px}
+.crs-acc-grid label{font-size:11px;font-weight:600;color:#555;display:flex;flex-direction:column;gap:4px}
+.crs-acc-grid input{width:100%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;font-family:inherit}
 .sub-opts-label{font-size:11px;font-weight:600;color:#555;margin-bottom:8px}
 /* Exterior note */
 .exterior-note{background:#FFF8EC;border:1px solid #e8c96b;border-radius:8px;padding:11px 14px;font-size:12px;color:#5a3a00;line-height:1.6;margin-top:12px;display:none}
@@ -101,14 +104,13 @@
 <div class="page-hero">
   <div class="breadcrumb"><a href="../index.html">Home</a> &rsaquo; Roller Shades</div>
   <h1>Basic Roller Shades</h1>
-  <p class="sub">In-house fabricated to your exact specs. Any fabric type, any motor brand — or bring your own fabric. Interior and exterior applications.</p>
+  <p class="sub">Our house line: solar screen or blackout, open roll or a metal fascia, manual chain or motorized. Instant pricing.</p>
   <div class="hero-pills">
     <span class="hero-pill hero-pill-gold">In-house fabricated</span>
-    <span class="hero-pill">Any fabric type</span>
-    <span class="hero-pill">Any motor brand</span>
-    <span class="hero-pill">Customer fabric accepted</span>
-    <span class="hero-pill">Exterior available</span>
-  </div>
+    <span class="hero-pill">Solar screen or blackout</span>
+    <span class="hero-pill">Manual or motorized</span>
+    <span class="hero-pill">Instant price</span>
+      </div>
 </div>
 
 <!-- ═══ VARIANT SELECTOR ════════════════════════════════════ -->
@@ -118,11 +120,11 @@
     <span class="vcard v-active">
       <span class="v-active-check">✓</span>
       <div class="vcard-img"><img src="../images/thumbnails/roller-shades-commercial.JPEG" alt="Basic Roller Shades"><span class="vcard-badge" style="background:#C9A96E;color:#2A1E0C">Basic</span></div>
-      <div class="vcard-body"><div class="vcard-name">Basic Roller Shades</div><div class="vcard-desc">In-house fabricated — any fabric, any motor brand. Exterior available.</div></div>
+      <div class="vcard-body"><div class="vcard-name">Basic Roller Shades</div><div class="vcard-desc">House line — solar or blackout, manual or motorized. Instant price.</div></div>
     </span>
     <a class="vcard" href="soluna-roller-shades.html">
       <div class="vcard-img"><img src="../images/thumbnails/CUSTOM LARGE ROLLER SHADES.JPEG" alt="Premier Norman Roller Shades"><span class="vcard-badge" style="background:#C9A96E;color:#111110">Norman</span></div>
-      <div class="vcard-body"><div class="vcard-name">Premier Norman Roller Shades</div><div class="vcard-desc">Premium collection — 7 price groups, cassette &amp; fascia headrail options.</div></div>
+      <div class="vcard-body"><div class="vcard-name">Premier Norman Roller Shades</div><div class="vcard-desc">Premium collection — 75 fabric collections, fascia, valance, cassette &amp; side-channel options.</div></div>
     </a>
     <a class="vcard" href="wallace-natural-roller-shades.html">
       <div class="vcard-img"><img src="../images/thumbnails/roller-shade-bedroom.JPEG" alt="Woven Wood Roller"><span class="vcard-badge" style="background:#7CB87C;color:#0F3010">Natural</span></div>
@@ -153,12 +155,12 @@
       <div class="form-row">
         <div class="form-group">
           <label>Width</label>
-          <input type="number" id="crs-inp-w" min="12" max="144" step="0.5" placeholder="36" oninput="crsDimChanged()">
-          <div class="dim-unit">inches &mdash; 12″ min · 144″ max</div>
+          <input type="number" id="crs-inp-w" min="12" max="120" step="0.125" placeholder="36" oninput="crsDimChanged()">
+          <div class="dim-unit">inches &mdash; up to 120″ wide</div>
         </div>
         <div class="form-group">
           <label>Height</label>
-          <input type="number" id="crs-inp-h" min="12" max="144" step="0.5" placeholder="72" oninput="crsDimChanged()">
+          <input type="number" id="crs-inp-h" min="12" max="144" step="0.125" placeholder="72" oninput="crsDimChanged()">
           <div class="dim-unit">inches &mdash; 12″ min · 144″ max</div>
         </div>
       </div>
@@ -190,127 +192,113 @@
   </div>
 </div>
 
-<!-- STEP 2: SHADE TYPE -->
+<!-- STEP 2: FABRIC — solar screen or blackout; colour and openness never change the price -->
 <div class="step-block" id="step-2">
   <div class="step-head" onclick="crsToggle('step-2')">
     <div class="step-num">2</div>
-    <div class="step-title">Shade type</div>
+    <div class="step-title">Fabric</div>
     <div class="step-val" id="sv-2"></div>
   </div>
   <div class="step-body">
     <div class="opt-row" id="crs-grp-type">
-      <button class="opt-btn" id="tc-solar" onclick="crsPickType('solar','Solar Screen')">Solar Screen</button>
-      <button class="opt-btn" id="tc-blackout" onclick="crsPickType('blackout','Blackout')">Blackout</button>
+      <button class="opt-btn sel" id="tc-solar" onclick="crsPickType('solar')">Solar Screen</button>
+      <button class="opt-btn" id="tc-blackout" onclick="crsPickType('blackout')">Blackout</button>
     </div>
-    <div class="step-note">Solar Screen: preserves the view, cuts glare &amp; UV &mdash; choose an openness below. Blackout: maximum light reduction (+20%).</div>
+    <div class="step-note">Solar Screen keeps your view and cuts glare and UV. Blackout blocks the light.</div>
 
-    <!-- Solar openness sub-options -->
-    <div class="sub-opts" id="solar-opts">
-      <div class="sub-opts-label">Openness factor — how much you see through the fabric</div>
-      <div class="opt-row" id="crs-grp-open" style="margin-bottom:0">
-        <button class="opt-btn" id="ob-1" onclick="crsPickOpenness('1','1%')">1%</button>
-        <button class="opt-btn" id="ob-3" onclick="crsPickOpenness('3','3%')">3%</button>
-        <button class="opt-btn" id="ob-5" onclick="crsPickOpenness('5','5%')">5%</button>
-        <button class="opt-btn" id="ob-10" onclick="crsPickOpenness('10','10%')">10%</button>
-      </div>
-      <div class="step-note">1%: near blackout &middot; 3%: max privacy &middot; 5%: good balance &middot; 10%: open feel.</div>
+    <div class="sub-opts show" id="solar-opts">
+      <div class="sub-opts-label">Openness — how much you see through the fabric</div>
+      <div class="opt-row" id="crs-grp-open" style="margin-bottom:0"></div>
+      <div class="step-note">1%: most privacy &middot; 3%: great balance &middot; 5%: brighter &middot; 10%: most open. Same price.</div>
     </div>
 
-    <!-- Color sub-options (shown after type + openness selected) -->
-    <div class="sub-opts" id="color-opts">
+    <div class="sub-opts show" id="color-opts">
       <div class="sub-opts-label">Color</div>
-      <div id="crs-fabric-picker"></div>
+      <div class="opt-row" id="crs-grp-color" style="flex-wrap:wrap;margin-bottom:0"></div>
     </div>
   </div>
 </div>
 
-<!-- STEP 3: HEADRAIL / VALANCE -->
+<!-- STEP 3: TOP OF THE SHADE — open roll (free) or 4" metal square fascia; roll direction -->
 <div class="step-block" id="step-3">
   <div class="step-head" onclick="crsToggle('step-3')">
     <div class="step-num">3</div>
-    <div class="step-title">Headrail</div>
+    <div class="step-title">Top of the shade</div>
     <div class="step-val" id="sv-3"></div>
   </div>
   <div class="step-body">
     <div class="opt-row" id="crs-grp-headrail">
-      <button class="opt-btn" id="hc-open" onclick="crsPickHeadrail('open','Open roll')">Open roll</button>
-      <button class="opt-btn" id="hc-fascia" onclick="crsPickHeadrail('fascia','Metal fascia')">Metal fascia</button>
+      <button class="opt-btn sel" id="hc-open" onclick="crsPickHeadrail('open roll')">Open roll</button>
+      <button class="opt-btn" id="hc-fascia" onclick="crsPickHeadrail('fascia')">Metal fascia</button>
     </div>
-    <div class="step-note">Open roll: no valance — clean and minimal, fabric tube visible at the top. Metal fascia (most popular): slim metal valance covers the tube for a clean, finished look; color matches hardware.</div>
-    <!-- Hardware / fascia color (shown after headrail selected) -->
-    <div id="hw-color-section" style="display:none;margin-top:14px;padding-top:12px;border-top:1px solid #f0ede8">
-      <div style="font-size:11px;font-weight:600;color:#555;margin-bottom:8px;text-transform:uppercase;letter-spacing:.3px" id="hw-color-label">Hardware color</div>
-      <div class="opt-row" id="crs-grp-hw-color">
-        <button class="opt-btn" onclick="crsPickHwColor(this,'Brass')"><span class="hw-sw" style="background:linear-gradient(135deg,#e3c279,#b8902f)"></span>Brass</button>
-        <button class="opt-btn" onclick="crsPickHwColor(this,'Bronze')"><span class="hw-sw" style="background:linear-gradient(135deg,#a06f3e,#5e3f23)"></span>Bronze</button>
-        <button class="opt-btn" onclick="crsPickHwColor(this,'Brushed Black')"><span class="hw-sw" style="background:linear-gradient(135deg,#4a4a4a,#161616)"></span>Brushed Black</button>
-        <button class="opt-btn" onclick="crsPickHwColor(this,'Matte Silver')"><span class="hw-sw" style="background:linear-gradient(135deg,#dcdcdc,#a4a4a4)"></span>Matte Silver</button>
-        <button class="opt-btn" onclick="crsPickHwColor(this,'White')"><span class="hw-sw" style="background:#f8f8f5"></span>White</button>
+    <div class="step-note">Open roll: the fabric roll shows at the top &mdash; clean and minimal. Metal fascia: a 4″ square metal cover over the roll for a finished look.</div>
+    <div class="sub-opts" id="fascia-opts">
+      <div class="sub-opts-label">Fascia color</div>
+      <div class="opt-row" id="crs-grp-fascia-color" style="flex-wrap:wrap"></div>
+      <div class="sub-opts-label" style="margin-top:12px">End caps <span style="font-weight:400;color:#888">— no charge</span></div>
+      <div class="opt-row" id="crs-grp-endcaps" style="margin-bottom:0">
+        <button class="opt-btn sel" onclick="crsPickEndCaps(false,this)">No end caps</button>
+        <button class="opt-btn" onclick="crsPickEndCaps(true,this)">Add end caps</button>
       </div>
     </div>
+    <div class="sub-opts-label" style="margin-top:14px">Roll direction</div>
+    <div class="opt-row" id="crs-grp-roll" style="margin-bottom:0">
+      <button class="opt-btn sel" onclick="crsPickRoll('regular',this)">Regular roll</button>
+      <button class="opt-btn" onclick="crsPickRoll('reverse',this)">Reverse roll</button>
+    </div>
+    <div class="step-note">Regular: fabric drops behind the roll, close to the window. Reverse: fabric rolls off the front &mdash; usually chosen to clear a handle or trim. No charge either way.</div>
   </div>
 </div>
 
-<!-- STEP 4: FABRIC SUPPLY -->
+<!-- STEP 4: OPERATION — manual chain or motorized. There is NO cordless on this line. -->
 <div class="step-block" id="step-4">
   <div class="step-head" onclick="crsToggle('step-4')">
     <div class="step-num">4</div>
-    <div class="step-title">Fabric</div>
+    <div class="step-title">Operation</div>
     <div class="step-val" id="sv-4"></div>
   </div>
   <div class="step-body">
-    <div class="opt-row" id="crs-grp-fabric">
-      <button class="opt-btn" id="fc-we" onclick="crsPickFabric('we','We supply')">We supply</button>
-      <button class="opt-btn" id="fc-customer" onclick="crsPickFabric('customer','Customer supplies')">I supply fabric</button>
-      <button class="opt-btn" id="fc-consult" onclick="crsPickFabric('consult','Book consult')">Not sure &mdash; consult</button>
-    </div>
-    <div class="step-note">We supply: we select from our fabric library &mdash; in-home consultation available to view samples. I supply fabric: you ship your fabric to our shop; we fabricate and install. Not sure: free in-home visit &mdash; we bring samples and advise.</div>
-    <div class="cust-note" id="cust-fabric-note">
-      Customer-supplied fabric: please email a photo or sample details in your notes. <strong>Do not ship fabric until we confirm receipt of your order and provide our shop address.</strong> No payment is collected until your fabric arrives.
-    </div>
-  </div>
-</div>
-
-<!-- STEP 5: OPERATION -->
-<div class="step-block" id="step-5">
-  <div class="step-head" onclick="crsToggle('step-5')">
-    <div class="step-num">5</div>
-    <div class="step-title">Operation</div>
-    <div class="step-val" id="sv-5"></div>
-  </div>
-  <div class="step-body">
     <div class="opt-row" id="crs-grp-motor">
-      <button class="opt-btn" id="motor-cord" onclick="crsPickMotor('cord','Manual chain')">Manual chain</button>
-      <button class="opt-btn" id="motor-cordless" onclick="crsPickMotor('cordless','Cordless')">Cordless</button>
-      <button class="opt-btn" id="motor-motorized" onclick="crsPickMotor('motorized','Motorized')">Motorized</button>
+      <button class="opt-btn sel" id="motor-manual" onclick="crsPickLift('manual')">Manual chain</button>
+      <button class="opt-btn" id="motor-motorized" onclick="crsPickLift('motorized')">Motorized</button>
     </div>
-    <div class="step-note">Manual chain: continuous bead chain, left or right side — standard and reliable. Cordless: push-up, no cords — safe for children &amp; pets. Motorized: smart motor with app, remote, voice control — multiple brands available.</div>
-
-    <!-- Cordless → Norman Soluna redirect -->
-    <div id="cordless-redirect" style="display:none;margin-top:14px;padding:14px 16px;background:#FFF8EC;border:1px solid #e8c96b;border-radius:10px">
-      <div style="font-size:13px;font-weight:700;color:#5a3a00;margin-bottom:6px">Better fit: Norman Soluna Roller Shades</div>
-      <div style="font-size:12px;color:#5a3a00;line-height:1.7;margin-bottom:10px">Norman Soluna includes a factory-engineered cordless spring-lift with tighter tolerances and a full manufacturer warranty — a better choice than in-house cordless fabrication.</div>
-      <a href="soluna-roller-shades.html" style="display:inline-block;font-size:13px;font-weight:600;color:#111110;background:var(--gold);padding:9px 18px;border-radius:8px;text-decoration:none;margin-right:10px">Go to Norman Soluna →</a>
-      <span style="font-size:11px;color:#888">or scroll down to submit a custom quote here</span>
-    </div>
-
-    <!-- Motorized sub-options -->
-    <div id="motor-subopts" style="display:none;margin-top:14px;padding-top:12px;border-top:1px solid #f0ede8">
-      <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.3px;margin-bottom:10px">Motor brand</div>
-      <div class="opt-row">
-        <button class="opt-btn" id="msub-norman" onclick="crsPickMotorSub('norman-motor','Norman Smart')">Norman</button>
-        <button class="opt-btn" id="msub-rollease" onclick="crsPickMotorSub('rollease-motor','Rollease Automate')">Rollease Automate</button>
-        <button class="opt-btn" id="msub-lutron" onclick="crsPickMotorSub('lutron','Lutron')">Lutron</button>
-        <button class="opt-btn" id="msub-somfy" onclick="crsPickMotorSub('somfy','Somfy')">Somfy</button>
-        <button class="opt-btn" id="msub-other" onclick="crsPickMotorSub('other','Other / not sure')">Other / not sure</button>
+    <div class="sub-opts show" id="manual-opts">
+      <div class="sub-opts-label">Chain side <span style="font-weight:400;color:#888">— silver chain, no charge</span></div>
+      <div class="opt-row" id="crs-grp-chain" style="margin-bottom:0">
+        <button class="opt-btn" onclick="crsPickChain('left',this)">Left</button>
+        <button class="opt-btn sel" onclick="crsPickChain('right',this)">Right</button>
       </div>
-      <div class="step-note">Norman Smart: app, voice (Alexa / Google / HomeKit), rechargeable or hardwired. Rollease Automate: app &amp; remote, rechargeable or hardwired, offered through Norman. Lutron: Caseta / RadioRA integration — custom quote. Somfy: TaHoma app &amp; remote, wide smart home compatibility — custom quote. Other / not sure: specify brand in notes or we'll discuss during consultation.</div>
-      <!-- Norman / Rollease → redirect to Norman Soluna -->
-      <div id="motor-soluna-redirect" style="display:none;margin-top:14px;padding:14px 16px;background:#FFF8EC;border:1px solid #e8c96b;border-radius:10px">
-        <div style="font-size:13px;font-weight:700;color:#5a3a00;margin-bottom:6px">Continue on Norman Soluna</div>
-        <div style="font-size:12px;color:#5a3a00;line-height:1.7;margin-bottom:10px">Norman and Rollease Automate motors are available directly in the Norman Soluna configurator — with full Norman warranty and factory pricing.</div>
-        <a href="soluna-roller-shades.html" style="display:inline-block;font-size:13px;font-weight:600;color:#111110;background:var(--gold);padding:9px 18px;border-radius:8px;text-decoration:none;margin-right:10px">Go to Norman Soluna →</a>
-        <span style="font-size:11px;color:#888">or scroll down to submit a custom quote here</span>
+    </div>
+    <div class="step-note" id="cordless-note">Want cordless? That's our <a href="soluna-roller-shades.html" style="color:var(--gold)">Norman Soluna</a> line.</div>
+
+    <div class="sub-opts" id="motor-opts">
+      <div class="sub-opts-label">Motor brand</div>
+      <div class="opt-row" id="crs-grp-brand">
+        <button class="opt-btn" onclick="crsPickBrand('Somfy',this)">Somfy</button>
+        <button class="opt-btn" onclick="crsPickBrand('Automate by Rollease',this)">Automate by Rollease</button>
+        <button class="opt-btn" onclick="crsPickBrand('Lutron',this)">Lutron</button>
+      </div>
+      <div class="step-note" id="lutron-note" style="display:none;color:#6b5314">Lutron is quoted by phone &mdash; send your request and Justin will call you with a Lutron price.</div>
+      <div id="motor-priced-opts">
+        <div class="sub-opts-label" style="margin-top:12px">Power</div>
+        <div class="opt-row" id="crs-grp-power">
+          <button class="opt-btn sel" onclick="crsPickPower('battery',this)">Battery operated</button>
+          <button class="opt-btn" onclick="crsPickPower('hardwired',this)">Hardwired</button>
+        </div>
+        <div class="step-note">Battery: rechargeable, no electrician needed. Hardwired: runs on house power (needs an electrician).</div>
+        <div class="sub-opts-label" style="margin-top:12px">Accessories <span style="font-weight:400;color:#888">— for the whole order</span></div>
+        <div class="opt-row" id="crs-grp-remote" style="flex-wrap:wrap">
+          <button class="opt-btn sel" onclick="crsPickRemote('',this)">No remote</button>
+          <button class="opt-btn" onclick="crsPickRemote('single',this)">Single-channel remote</button>
+          <button class="opt-btn" onclick="crsPickRemote('multi',this)">5-channel remote</button>
+        </div>
+        <div class="crs-acc-grid">
+          <label>Remotes<input type="number" id="crs-remote-qty" min="1" max="20" value="1" oninput="crsUpdatePanel()"></label>
+          <label>Chargers<input type="number" id="crs-chargers" min="0" max="20" value="0" oninput="crsUpdatePanel()"></label>
+          <label>Hubs<input type="number" id="crs-hubs" min="0" max="10" value="0" oninput="crsUpdatePanel()"></label>
+          <label>Repeaters<input type="number" id="crs-repeaters" min="0" max="10" value="0" oninput="crsUpdatePanel()"></label>
+        </div>
+        <div class="step-note">A hub adds app and voice control (not needed for a remote). Chargers are for battery motors. Repeaters extend range on bigger homes. One of each can serve the whole house.</div>
       </div>
     </div>
   </div>
@@ -319,7 +307,7 @@
 <!-- STEP 6: DELIVERY -->
 <div class="step-block done" id="step-6">
   <div class="step-head" onclick="crsToggle('step-6')">
-    <div class="step-num">6</div>
+    <div class="step-num">5</div>
     <div class="step-title">Delivery</div>
     <div class="step-val" id="sv-6">Ship to me</div>
   </div>
@@ -329,7 +317,7 @@
 <!-- STEP 7: CONTACT & SUBMIT -->
 <div class="step-block" id="step-7">
   <div class="step-head" onclick="crsToggle('step-7')">
-    <div class="step-num">7</div>
+    <div class="step-num">6</div>
     <div class="step-title">Your details</div>
     <div class="step-val" id="sv-7"></div>
   </div>
@@ -370,7 +358,8 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 <script src="../js/shared.js"></script>
-<script src="../js/fabric-picker.js"></script>
+<script src="../js/pages/basic-roller-data.js"></script>
+<script src="../js/pages/basic-roller-engine.js"></script>
 <script src="../js/pages/custom-roller-shades.js"></script>
 <script>
 // Canonical final "Your details" contact + files step — identical on every product.

@@ -299,6 +299,8 @@ function selectProduct(productId, productName, isInstant) {
 function selectBrand(brand) {
   // Norman roller = Soluna, which is priced only on its own page (see solGoToSolunaPage).
   if (brand === 'norman' && currentProduct === 'roller') { solGoToSolunaPage(); return; }
+  // Basic Roller is priced only on custom-roller-shades.html (Basic Roller rule book, Sept 2026).
+  if (brand === 'pb' && currentProduct === 'roller') { solGoToPage('custom-roller-shades.html'); return; }
   currentBrand = brand;
 
   document.querySelectorAll('.brand-btn').forEach(b => b.classList.remove('sel'));
@@ -348,15 +350,7 @@ function rtSelect(type) {
     if (el) el.classList.toggle('sel', id === 'rt-' + type);
   });
   if (type === 'basic') {
-    selectBrand('pb');
-    setTimeout(function() {
-      var el = document.getElementById('brand-pb-content');
-      if (!el) return;
-      var nav = document.getElementById('site-nav');
-      var off = nav ? nav.offsetHeight + 16 : 90;
-      var top = el.getBoundingClientRect().top + window.scrollY - off;
-      window.scrollTo({ top: top, behavior: 'smooth' });
-    }, 80);
+    solGoToPage('custom-roller-shades.html');
   } else if (type === 'norman') {
     solGoToSolunaPage();
   }
@@ -365,12 +359,14 @@ function rtSelect(type) {
 // Norman Soluna roller shades are priced ONLY on soluna-roller-shades.html (Sept 2026 book,
 // js/pages/soluna-engine.js). The old inline rn- calculator below on this page was on May
 // prices — every route to it now goes to the Soluna page instead, carrying any size typed.
-function solGoToSolunaPage() {
+function solGoToSolunaPage() { solGoToPage('soluna-roller-shades.html'); }
+// Carry any size typed on this page over to the product page.
+function solGoToPage(page) {
   var p = [];
   var w = (document.getElementById('inp-width') || {}).value, h = (document.getElementById('inp-height') || {}).value;
   if (w) p.push('w=' + encodeURIComponent(w));
   if (h) p.push('h=' + encodeURIComponent(h));
-  window.location.href = 'soluna-roller-shades.html' + (p.length ? '?' + p.join('&') : '') + '#configure';
+  window.location.href = page + (p.length ? '?' + p.join('&') : '') + (page.indexOf('soluna') !== -1 ? '#configure' : '');
 }
 
 // ─── toggleMeasure ───────────────────────────────────────────

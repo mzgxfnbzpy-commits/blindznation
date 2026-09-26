@@ -1,95 +1,48 @@
-// Custom Roller Shades — configurator logic
+// Basic Roller Shades — configurator page (house line).
+//
+// Every price comes from BasicEngine.quote() (js/pages/basic-roller-engine.js), which reads
+// BASIC_DATA (js/pages/basic-roller-data.js), both built from the Basic Roller rule book.
+// This file only turns the form into an order for the engine and shows the answer.
+// Customer sees: retail → 25% off → your price, then shipping (never discounted).
+// Lutron is a referral: no price, no cart — the request goes to Justin for a call.
 
 var CRS = {
-  type: '', openness: '', color: '',
-  mount: 'inside',            // Inside mount is pre-selected (standard Step 1)
-  headrail: '', hwColor: '',
-  w: 0, h: 0,
-  fabric: '',
-  motor: '',
-  qty: 1
+  w: 0, h: 0, qty: 1,
+  mount: 'inside',             // rule book §10 defaults
+  blackout: false, openness: '', color: '',
+  top: 'open roll', fasciaColor: '', endCaps: false, roll: 'regular',
+  lift: 'manual', chainSide: 'right',
+  brand: '', power: 'battery', remote: ''
   // Delivery lives in window.pbDelivery ('ship' | 'install') — shared pbDeliveryStepHTML.
 };
-
-// ── PRICING TABLES ────────────────────────────────────────────
-// Source: Norman Price Group 1 Solar retail chart
-var _CRS_W = [24,30,36,42,48,54,60,66,72,78,84,90,96,108,120];
-var _CRS_H = [36,48,60,72,84,96,108,120,132,144];
-var _CRS_GRID = [
-  [240,258,278,296,314,331,362,382,406,450,474,507,533,577,628],
-  [259,282,302,325,350,372,412,439,468,519,545,587,614,671,723],
-  [281,302,326,357,390,421,467,497,535,586,618,666,692,745,795],
-  [297,325,359,397,430,468,522,558,595,650,677,721,749,809,870],
-  [318,354,394,434,474,513,573,614,645,697,745,776,809,874,941],
-  [336,383,428,471,518,563,618,656,690,745,797,831,870,941,1015],
-  [361,411,461,511,558,600,659,697,737,795,850,890,932,1007,1088],
-  [387,440,495,546,597,635,697,739,780,844,903,949,990,1078,1160],
-  [408,470,526,582,627,670,737,780,826,894,956,1002,1049,1141,1235],
-  [434,498,561,609,659,703,777,823,872,940,1010,1061,1111,1206,1309]
-];
-// Fascia surcharge by width bracket
-var _CRS_FASCIA_W = [24,30,36,42,48,54,60,66,72,78,84,90,96,108,120,132,144];
-var _CRS_FASCIA_P = [117,122,133,139,150,161,171,188,204,216,232,249,265,293,326,349,375];
-
-function _crsPriceLookup(w, h) {
-  // Round up to nearest bracket; use minimum bracket if below minimum
-  var wi = _CRS_W.length - 1, hi = _CRS_H.length - 1;
-  for (var i = 0; i < _CRS_W.length; i++) { if (w <= _CRS_W[i]) { wi = i; break; } }
-  for (var j = 0; j < _CRS_H.length; j++) { if (h <= _CRS_H[j]) { hi = j; break; } }
-  if (w > _CRS_W[_CRS_W.length-1] || h > _CRS_H[_CRS_H.length-1]) return null;
-  return _CRS_GRID[hi][wi];
-}
-
-function _crsFasciaLookup(w) {
-  for (var i = 0; i < _CRS_FASCIA_W.length; i++) {
-    if (w <= _CRS_FASCIA_W[i]) return _CRS_FASCIA_P[i];
-  }
-  return null;
-}
-
-function crsCalcPricing() {
-  if (!CRS.w || !CRS.h) return null;
-  var baseRetail = _crsPriceLookup(CRS.w, CRS.h);
-  if (baseRetail === null) return null;
-  var fasciaAdj = 0;
-  if (CRS.headrail === 'fascia') {
-    fasciaAdj = _crsFasciaLookup(CRS.w) || 0;
-  }
-  var retail = baseRetail + fasciaAdj;
-  if (CRS.type === 'blackout') retail = Math.round(retail * 1.20);
-  var discount = Math.round(retail * 0.35);
-  var yourPrice = retail - discount;
-  var isOversized = CRS.w >= 90;
-  var freight = isOversized
-    ? (80 + Math.max(0, CRS.qty - 1) * 50)
-    : (25 + Math.max(0, CRS.qty - 1) * 11);
-  var shadeTotal = yourPrice * CRS.qty;
-  return { retail: retail, discount: discount, yourPrice: yourPrice, fasciaAdj: fasciaAdj, freight: freight, shadeTotal: shadeTotal, grandTotal: shadeTotal + freight };
-}
-
-var _crsLoadTime = Date.now();
-var _crsDimTimer, _crsQtyTimer;
-
+var _crsDimTimer;
 function _crsEl(id) { return document.getElementById(id); }
-
-// ── STEP CONTROL ─────────────────────────────────────────────
-function crsToggle(id) {
-  var el = _crsEl(id);
-  if (!el) return;
-  el.classList.toggle('open');
-  el.classList.toggle('active');
+function _crsMoney(n) {
+  var cents = Math.round(n * 100) % 100 !== 0;
+  return '$' + n.toLocaleString('en-US', { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: 2 });
 }
+function _crsInt(id, min, max) {
+  var v = Math.round(parseFloat((_crsEl(id) || {}).value));
+  if (!(v >= min)) v = min;
+  return v > max ? max : v;
+}
+function _crsPill(groupId, btn) {
+  document.querySelectorAll('#' + groupId + ' .opt-btn').forEach(function (b) { b.classList.remove('sel'); });
+  if (btn) btn.classList.add('sel');
+}
+function _crsShow(id, on) { var el = _crsEl(id); if (el) el.style.display = on ? '' : 'none'; }
 
+// ── STEP CONTROL (accordion) ─────────────────────────────────
+function crsToggle(id) { var el = _crsEl(id); if (!el) return; el.classList.toggle('open'); el.classList.toggle('active'); }
 function crsOpen(id) {
   var el = _crsEl(id);
   if (!el || el.classList.contains('active')) return;
   el.classList.add('active');
-  setTimeout(function() {
+  setTimeout(function () {
     var navH = (_crsEl('site-nav') || {}).offsetHeight || 60;
     window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navH - 14, behavior: 'smooth' });
   }, 80);
 }
-
 function crsDone(stepId, val) {
   var el = _crsEl(stepId);
   if (!el) return;
@@ -98,503 +51,300 @@ function crsDone(stepId, val) {
   if (sv) sv.textContent = val || '';
 }
 
-// ── STEP 3: SHADE TYPE ───────────────────────────────────────
-function crsPickType(val, label) {
-  CRS.type = val;
-  CRS.color = '';
-  document.querySelectorAll('#crs-grp-type .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
-  var card = _crsEl('tc-' + val);
-  if (card) card.classList.add('sel');
-
-  var solarOpts = _crsEl('solar-opts');
-  var colorOpts = _crsEl('color-opts');
-  if (solarOpts) solarOpts.classList.toggle('show', val === 'solar');
-  // Show colors immediately for both Solar and Blackout
-  if (colorOpts) colorOpts.classList.toggle('show', val === 'solar' || val === 'blackout');
-
-  // Ensure swatches are rendered, then reset any prior color selection
-  crsRenderColors();
-  if (window.pbFabricPicker) pbFabricPicker.clearSelection('crs-fabric-picker');
-  document.querySelectorAll('#crs-fabric-picker button.sel').forEach(function(b) { b.classList.remove('sel'); });
-
-  if (val === 'solar') return; // wait for openness + color before advancing
-  // Blackout: wait for color pick before advancing
-}
-
-function crsPickOpenness(val, label) {
-  CRS.openness = val;
-  document.querySelectorAll('#crs-grp-open .opt-btn').forEach(function(b) { b.classList.remove('sel'); });
-  var btn = _crsEl('ob-' + val);
-  if (btn) btn.classList.add('sel');
-  // Colors are already visible for solar; keep them shown
-  var colorOpts = _crsEl('color-opts');
-  if (colorOpts) colorOpts.classList.add('show');
-  crsRenderColors();
-  // If a color was already chosen, the step is now complete → finish + advance.
-  if (CRS.color) { crsSelectColor(CRS.color); return; }
-  setTimeout(function() { if (colorOpts) colorOpts.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
-}
-
-// Expanded basic solids — same palette for Solar Screen & Blackout lines.
-// Basic Roller keeps a deliberately short core palette. Hexes match the shared
-// COLOR_HEX map in shades.js so the same colour looks identical on both surfaces.
-var CRS_BASIC_SOLIDS = [
-  {n:'White',   hex:'#FFFFFF'}, {n:'Off-White', hex:'#F3EEE6'}, {n:'Gray', hex:'#888888'},
-  {n:'Black',   hex:'#1C1C1C'}, {n:'Brown',     hex:'#885030'}
-];
-
-// Render the shared fabric picker into the color step (single type → no tabs here;
-// Solar vs Blackout is the type-card choice above, openness handled separately).
-// Renders once (idempotent); falls back to plain swatches if the shared
-// component ever fails to load, so colors are NEVER blank.
-function crsRenderColors() {
-  var host = document.getElementById('crs-fabric-picker');
-  if (!host) return;
-  if (host.children && host.children.length) return; // already rendered
-  if (window.pbFabricPicker) {
-    pbFabricPicker.render('crs-fabric-picker', {
-      hideTabs: true,
-      types: [{ key: 'solids', label: 'Colors' }],
-      collections: [{ type: 'solids', name: '', colors: CRS_BASIC_SOLIDS }],
-      onSelect: function(sel) { crsSelectColor(sel.name); }
-    });
-  } else {
-    // Fallback — plain swatch buttons (component unavailable)
-    var html = '<div style="display:flex;flex-wrap:wrap;gap:6px">';
-    CRS_BASIC_SOLIDS.forEach(function(c) {
-      html += '<button type="button" class="opt-btn" style="display:inline-flex;align-items:center;gap:7px;padding:5px 10px 5px 6px" ' +
-        'onclick="crsFallbackColor(this,\'' + c.n + '\')">' +
-        '<span style="width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.18);background:' + c.hex + '"></span>' +
-        c.n + '</button>';
-    });
-    host.innerHTML = html + '</div>';
-  }
-}
-
-function crsFallbackColor(btn, color) {
-  var host = document.getElementById('crs-fabric-picker');
-  if (host) host.querySelectorAll('button').forEach(function(b) { b.classList.remove('sel'); });
-  btn.classList.add('sel');
-  crsSelectColor(color);
-}
-
-function crsSelectColor(color) {
-  CRS.color = color;
-  crsUpdatePanel();
-  // Solar needs an openness % before the step is complete — nudge the openness picker.
-  if (CRS.type === 'solar' && !CRS.openness) {
-    var so = _crsEl('solar-opts');
-    if (so) setTimeout(function() { so.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 100);
-    return;
-  }
-  var label = CRS.type === 'solar'
-    ? 'Solar · ' + CRS.openness + '% · ' + color
-    : 'Blackout · ' + color;
-  crsDone('step-2', label);
-  setTimeout(function() { crsOpen('step-3'); }, 350);
-}
-
-// ── STEP 1: MOUNT ────────────────────────────────────────────
-function crsPickMount(val, label) {
+// ── STEP 1: SIZE, MOUNT, QTY ─────────────────────────────────
+function crsPickMount(val) {
   CRS.mount = val;
-  document.querySelectorAll('#crs-grp-mount .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
-  var card = _crsEl('mc-' + val);
-  if (card) card.classList.add('sel');
-
-  var noteIM = _crsEl('mount-note-im');
-  var noteOM = _crsEl('mount-note-om');
-  if (noteIM) noteIM.classList.toggle('show', val === 'inside');
-  if (noteOM) noteOM.classList.toggle('show', val === 'outside');
-
-  // Mount, dimensions & quantity all live in Step 1 — advancing is owned by crsDimChanged()
-  var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
-  var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
-  if (w && h) crsDimChanged();
+  _crsPill('crs-grp-mount', _crsEl('mc-' + val));
+  var im = _crsEl('mount-note-im'), om = _crsEl('mount-note-om');
+  if (im) im.classList.toggle('show', val === 'inside');
+  if (om) om.classList.toggle('show', val === 'outside');
+  if (CRS.w && CRS.h) crsDimChanged();
   crsUpdatePanel();
 }
-
-// ── STEP 4: HEADRAIL ─────────────────────────────────────────
-function crsPickHeadrail(val, label) {
-  CRS.headrail = val;
-  CRS.hwColor = '';
-  document.querySelectorAll('#crs-grp-headrail .opt-btn:not(.disabled)').forEach(function(c) { c.classList.remove('sel'); });
-  var card = _crsEl('hc-' + val);
-  if (card && !card.classList.contains('disabled')) card.classList.add('sel');
-  // Show hardware color picker; update label for fascia
-  var hwSection = _crsEl('hw-color-section');
-  var hwLabel = _crsEl('hw-color-label');
-  if (hwSection) hwSection.style.display = '';
-  if (hwLabel) hwLabel.textContent = val === 'fascia' ? 'Hardware & fascia color' : 'Hardware color';
-  document.querySelectorAll('#crs-grp-hw-color .opt-btn').forEach(function(b) { b.classList.remove('sel'); });
-  crsDone('step-3', label);
-  crsUpdatePanel();
-  setTimeout(function() { crsOpen('step-4'); }, 350);
-}
-
-function crsPickHwColor(btn, color) {
-  CRS.hwColor = color;
-  document.querySelectorAll('#crs-grp-hw-color .opt-btn').forEach(function(b) { b.classList.remove('sel'); });
-  btn.classList.add('sel');
-  crsUpdatePanel();
-}
-
-// ── STEP 2: DIMENSIONS ───────────────────────────────────────
 function crsDimChanged() {
   var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
   var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
-  var warnEl = _crsEl('dim-warn');
-  var infoEl = _crsEl('dim-info');
-
-  if (!w && !h) {
-    warnEl.classList.remove('show');
-    infoEl.classList.remove('show');
-    return;
-  }
-
+  var warn = _crsEl('dim-warn'), info = _crsEl('dim-info');
+  CRS.w = w > 0 ? w : 0; CRS.h = h > 0 ? h : 0;
   var errs = [];
-  if (w && (w < 12 || w > 144)) errs.push('Width must be 12–144"');
-  if (h && (h < 12 || h > 144)) errs.push('Height must be 12–144"');
-
-  if (errs.length) {
-    warnEl.textContent = errs.join(' · ');
-    warnEl.classList.add('show');
-    infoEl.classList.remove('show');
-    return;
+  if (w > 120) errs.push('Over 120″ wide — we\'ll quote this one by hand.');
+  if (h > 144) errs.push('Over 144″ tall — we\'ll quote this one by hand.');
+  if (w < 0 || h < 0) errs.push('Enter a positive size.');
+  if (warn) { warn.textContent = errs.join(' '); warn.classList.toggle('show', errs.length > 0); }
+  if (info) {
+    var msg = (CRS.mount === 'inside' && w > 0) ? 'Inside mount: we\'ll cut the width to ' + (Math.round((w - 0.25) * 1000) / 1000) + '″ for a proper fit.' : '';
+    info.textContent = msg; info.classList.toggle('show', !!msg);
   }
-
-  warnEl.classList.remove('show');
-
-  var infoLines = [];
-  if (CRS.mount === 'inside') {
-    var dedW = Math.round((w - 0.25) * 1000) / 1000;
-    infoLines.push('Inside mount: we\'ll cut width to ' + dedW + '" for proper fit.');
-  }
-  if (CRS.type === 'exterior') {
-    infoLines.push('Exterior: allow 2–4" overlap on each side for full coverage and wind resistance.');
-  }
-  if (infoLines.length) {
-    infoEl.textContent = infoLines.join(' ');
-    infoEl.classList.add('show');
-  } else {
-    infoEl.classList.remove('show');
-  }
-
-  if (w > 0 && h > 0) {
-    CRS.w = w; CRS.h = h;
-    var ml = CRS.mount === 'inside' ? 'Inside · ' : CRS.mount === 'outside' ? 'Outside · ' : '';
-    crsDone('step-1', ml + w + '" × ' + h + '"');
-    crsUpdatePanel();
+  if (CRS.w && CRS.h) {
+    crsDone('step-1', (CRS.mount === 'inside' ? 'Inside · ' : 'Outside · ') + CRS.w + '″ × ' + CRS.h + '″');
     clearTimeout(_crsDimTimer);
-    _crsDimTimer = setTimeout(function() { crsOpen('step-2'); }, 900);
+    _crsDimTimer = setTimeout(function () { crsOpen('step-2'); }, 900);
   }
-}
-
-// ── STEP 5: FABRIC ───────────────────────────────────────────
-function crsPickFabric(val, label) {
-  CRS.fabric = val;
-  document.querySelectorAll('#crs-grp-fabric .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
-  var card = _crsEl('fc-' + val);
-  if (card) card.classList.add('sel');
-  var note = _crsEl('cust-fabric-note');
-  if (note) note.classList.toggle('show', val === 'customer');
-  crsDone('step-4', label);
   crsUpdatePanel();
-  setTimeout(function() { crsOpen('step-5'); }, 350);
+}
+function crsAdjQty(d) { CRS.qty = Math.max(1, Math.min(20, CRS.qty + d)); var el = _crsEl('qty-num'); if (el) el.value = CRS.qty; crsUpdatePanel(); }
+function crsQtyInput() { CRS.qty = _crsInt('qty-num', 1, 20); crsUpdatePanel(); }
+
+// ── STEP 2: FABRIC ───────────────────────────────────────────
+function _crsRenderColors() {
+  var B = BASIC_DATA, list = CRS.blackout ? B.fabric.blackout.colors : B.fabric.solar.colors;
+  if (list.indexOf(CRS.color) === -1) CRS.color = '';
+  var sw = { 'White': '#f8f8f5', 'Off-White': '#f1ede2', 'Cream': '#ece2cc', 'Black': '#1c1c1c', 'Gray': '#9a9a96', 'Brown': '#6b4a33', 'Silver': 'linear-gradient(135deg,#dcdcdc,#a4a4a4)' };
+  var el = _crsEl('crs-grp-color');
+  if (el) el.innerHTML = list.map(function (c) {
+    return '<button class="opt-btn' + (c === CRS.color ? ' sel' : '') + '" onclick="crsPickColor(\'' + c + '\',this)"><span class="hw-sw" style="background:' + (sw[c] || '#ccc') + '"></span>' + c + '</button>';
+  }).join('');
+  var op = _crsEl('crs-grp-open');
+  if (op) op.innerHTML = B.fabric.solar.openness.map(function (o) {
+    return '<button class="opt-btn' + (o === CRS.openness ? ' sel' : '') + '" onclick="crsPickOpenness(\'' + o + '\',this)">' + o + '</button>';
+  }).join('');
+  var fc = _crsEl('crs-grp-fascia-color');
+  if (fc) fc.innerHTML = B.topTreatment.fascia.colors.map(function (c) {
+    return '<button class="opt-btn' + (c === CRS.fasciaColor ? ' sel' : '') + '" onclick="crsPickFasciaColor(\'' + c + '\',this)"><span class="hw-sw" style="background:' + (sw[c] || '#ccc') + '"></span>' + c + '</button>';
+  }).join('');
+}
+function _crsFabricLabel() {
+  if (CRS.blackout) return 'Blackout' + (CRS.color ? ' · ' + CRS.color : '');
+  return 'Solar Screen' + (CRS.openness ? ' ' + CRS.openness : '') + (CRS.color ? ' · ' + CRS.color : '');
+}
+function crsPickType(val) {
+  CRS.blackout = val === 'blackout';
+  _crsPill('crs-grp-type', _crsEl('tc-' + val));
+  var so = _crsEl('solar-opts'); if (so) so.classList.toggle('show', !CRS.blackout);
+  _crsRenderColors();
+  crsDone('step-2', _crsFabricLabel());
+  crsUpdatePanel();
+}
+function crsPickOpenness(o, btn) { CRS.openness = o; _crsPill('crs-grp-open', btn); crsDone('step-2', _crsFabricLabel()); crsUpdatePanel(); }
+function crsPickColor(c, btn) {
+  CRS.color = c; _crsPill('crs-grp-color', btn); crsDone('step-2', _crsFabricLabel()); crsUpdatePanel();
+  if (CRS.blackout || CRS.openness) setTimeout(function () { crsOpen('step-3'); }, 350);
 }
 
-// ── STEP 6: OPERATION ────────────────────────────────────────
-function crsPickMotor(val, label) {
-  CRS.motor = val;
-  // Clear top-level cards only
-  document.querySelectorAll('#crs-grp-motor .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
-  var card = _crsEl('motor-' + val);
-  if (card) card.classList.add('sel');
+// ── STEP 3: TOP OF THE SHADE ─────────────────────────────────
+function _crsTopLabel() {
+  var t = CRS.top === 'fascia' ? '4″ metal fascia' + (CRS.fasciaColor ? ' · ' + CRS.fasciaColor : '') + (CRS.endCaps ? ' · end caps' : '') : 'Open roll';
+  return t + (CRS.roll === 'reverse' ? ' · reverse roll' : '');
+}
+function crsPickHeadrail(val) {
+  CRS.top = val;
+  _crsPill('crs-grp-headrail', _crsEl(val === 'fascia' ? 'hc-fascia' : 'hc-open'));
+  var fo = _crsEl('fascia-opts'); if (fo) fo.classList.toggle('show', val === 'fascia');
+  if (val !== 'fascia') { CRS.endCaps = false; _crsPill('crs-grp-endcaps', document.querySelector('#crs-grp-endcaps .opt-btn')); }
+  crsDone('step-3', _crsTopLabel());
+  crsUpdatePanel();
+}
+function crsPickFasciaColor(c, btn) { CRS.fasciaColor = c; _crsPill('crs-grp-fascia-color', btn); crsDone('step-3', _crsTopLabel()); crsUpdatePanel(); }
+function crsPickEndCaps(on, btn) { CRS.endCaps = !!on; _crsPill('crs-grp-endcaps', btn); crsDone('step-3', _crsTopLabel()); crsUpdatePanel(); }
+function crsPickRoll(r, btn) { CRS.roll = r; _crsPill('crs-grp-roll', btn); crsDone('step-3', _crsTopLabel()); crsUpdatePanel(); }
 
-  // Show/hide sub-sections
-  var cordlessRedir = _crsEl('cordless-redirect');
-  var motorSub = _crsEl('motor-subopts');
-  var solunaRedir = _crsEl('motor-soluna-redirect');
-  if (cordlessRedir) cordlessRedir.style.display = val === 'cordless' ? 'block' : 'none';
-  if (motorSub) motorSub.style.display = val === 'motorized' ? 'block' : 'none';
-  if (solunaRedir) solunaRedir.style.display = 'none';
+// ── STEP 4: OPERATION ────────────────────────────────────────
+function _crsLiftLabel() {
+  if (CRS.lift !== 'motorized') return 'Manual chain · ' + CRS.chainSide;
+  if (CRS.brand === 'Lutron') return 'Motorized · Lutron (quoted by phone)';
+  return 'Motorized' + (CRS.brand ? ' · ' + CRS.brand : '') + ' · ' + (CRS.power === 'hardwired' ? 'hardwired' : 'battery');
+}
+function crsPickLift(val) {
+  CRS.lift = val;
+  _crsPill('crs-grp-motor', _crsEl('motor-' + val));
+  var mo = _crsEl('manual-opts'), mt = _crsEl('motor-opts');
+  if (mo) mo.classList.toggle('show', val === 'manual');
+  if (mt) mt.classList.toggle('show', val === 'motorized');
+  crsDone('step-4', _crsLiftLabel());
+  crsUpdatePanel();
+}
+function crsPickChain(side, btn) { CRS.chainSide = side; _crsPill('crs-grp-chain', btn); crsDone('step-4', _crsLiftLabel()); crsUpdatePanel(); }
+function crsPickBrand(b, btn) {
+  CRS.brand = b; _crsPill('crs-grp-brand', btn);
+  var lut = b === 'Lutron';
+  _crsShow('lutron-note', lut);
+  _crsShow('motor-priced-opts', !lut);
+  crsDone('step-4', _crsLiftLabel());
+  crsUpdatePanel();
+}
+function crsPickPower(p, btn) { CRS.power = p; _crsPill('crs-grp-power', btn); crsDone('step-4', _crsLiftLabel()); crsUpdatePanel(); }
+function crsPickRemote(r, btn) { CRS.remote = r; _crsPill('crs-grp-remote', btn); crsUpdatePanel(); }
 
-  // Clear sub-option selections when switching away from motorized
-  document.querySelectorAll('#motor-subopts .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
-
-  if (val !== 'motorized') {
-    crsDone('step-5', label);
-    crsUpdatePanel();
-    if (val === 'cord') {
-      setTimeout(function() { crsOpen('step-6'); }, 350);
-    }
-  } else {
-    crsUpdatePanel(); // show panel in pending state
+// ── The order the engine prices ──────────────────────────────
+function crsOrder() {
+  var motor = CRS.lift === 'motorized';
+  return {
+    width: CRS.w, height: CRS.h, qty: CRS.qty,
+    blackout: CRS.blackout, openness: CRS.blackout ? undefined : (CRS.openness || undefined), color: CRS.color || undefined,
+    topTreatment: CRS.top, fasciaColor: CRS.top === 'fascia' ? (CRS.fasciaColor || undefined) : undefined,
+    endCaps: CRS.top === 'fascia' && CRS.endCaps,
+    lift: CRS.lift, chainSide: motor ? undefined : CRS.chainSide,
+    brand: motor ? (CRS.brand || undefined) : undefined,
+    power: motor ? CRS.power : undefined,
+    remote: motor && CRS.remote ? CRS.remote : undefined,
+    remoteQty: motor && CRS.remote ? _crsInt('crs-remote-qty', 1, 20) : undefined,
+    chargers: motor ? _crsInt('crs-chargers', 0, 20) || undefined : undefined,
+    hubs: motor ? _crsInt('crs-hubs', 0, 10) || undefined : undefined,
+    repeaters: motor ? _crsInt('crs-repeaters', 0, 10) || undefined : undefined
+  };
+}
+// { q, need[], issue, lutron }
+function crsQuote() {
+  var need = [];
+  if (!(CRS.w > 0 && CRS.h > 0)) need.push('width and height');
+  if (!CRS.blackout && !CRS.openness) need.push('an openness');
+  if (!CRS.color) need.push('a fabric color');
+  if (CRS.top === 'fascia' && !CRS.fasciaColor) need.push('a fascia color');
+  if (CRS.lift === 'motorized' && !CRS.brand) need.push('a motor brand');
+  var res = { q: null, need: need, issue: '', lutron: CRS.lift === 'motorized' && CRS.brand === 'Lutron', manual: false };
+  if (!(CRS.w > 0 && CRS.h > 0) || res.lutron) return res;
+  var q = BasicEngine.quote(crsOrder());
+  if (q.errors) {
+    var e = q.errors[0];
+    res.manual = /^OFF_GRID/.test(e);
+    res.issue = res.manual ? 'Past our price chart (120″ wide × 144″ tall) — we\'ll price this one by hand.' : e.replace(/^[A-Z_]+:\s*/, '');
+    return res;
   }
+  res.q = q;
+  return res;
 }
 
-function crsPickMotorSub(val, label) {
-  CRS.motor = val;
-  document.querySelectorAll('#motor-subopts .opt-btn').forEach(function(c) { c.classList.remove('sel'); });
-  var idMap = { 'norman-motor': 'msub-norman', 'rollease-motor': 'msub-rollease', lutron: 'msub-lutron', somfy: 'msub-somfy', other: 'msub-other' };
-  var card = _crsEl(idMap[val]);
-  if (card) card.classList.add('sel');
-
-  var solunaRedir = _crsEl('motor-soluna-redirect');
-  var isNormanOrRollease = val === 'norman-motor' || val === 'rollease-motor';
-  if (solunaRedir) solunaRedir.style.display = isNormanOrRollease ? 'block' : 'none';
-
-  crsDone('step-5', 'Motorized — ' + label);
-  crsUpdatePanel();
-  if (!isNormanOrRollease) {
-    setTimeout(function() { crsOpen('step-6'); }, 350);
-  }
-}
-
-// ── STEP 1: QUANTITY (lives in the combined first step) ──────
-function crsAdjQty(d) {
-  CRS.qty = Math.max(1, Math.min(20, CRS.qty + d));
-  var el = _crsEl('qty-num');
-  if (el) el.value = CRS.qty;
-  crsUpdatePanel();
-}
-
-function crsQtyInput() {
-  var v = parseInt((_crsEl('qty-num') || {}).value) || 1;
-  CRS.qty = Math.max(1, Math.min(20, v));
-  crsUpdatePanel();
-}
-
-
-// ── PANEL SUMMARY ────────────────────────────────────────────
-function _qrow(label, val) {
-  return '<div class="summary-row"><span class="sr-key">' + label + '</span><span class="sr-val">' + val + '</span></div>';
-}
+// ── PANEL ────────────────────────────────────────────────────
+function _qrow(label, val) { return '<div class="summary-row"><span class="sr-key">' + label + '</span><span class="sr-val">' + val + '</span></div>'; }
 function _prow(label, val, isNeg) {
   return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:.5px solid rgba(255,255,255,.07)">' +
-    '<span style="color:var(--text-muted)">' + label + '</span>' +
-    '<span style="color:' + (isNeg ? '#f87171' : 'var(--cream)') + ';font-weight:500">' + val + '</span></div>';
+    '<span style="color:var(--text-muted)">' + label + '</span><span style="color:' + (isNeg ? '#f87171' : 'var(--cream)') + ';font-weight:500">' + val + '</span></div>';
 }
-
+function _crsAccessoryText() {
+  if (CRS.lift !== 'motorized' || CRS.brand === 'Lutron') return '';
+  var o = crsOrder(), p = [];
+  if (o.remote) p.push(o.remoteQty + ' × ' + (o.remote === 'multi' ? '5-channel remote' : 'single-channel remote'));
+  if (o.chargers) p.push(o.chargers + ' × charger');
+  if (o.hubs) p.push(o.hubs + ' × hub');
+  if (o.repeaters) p.push(o.repeaters + ' × repeater');
+  return p.join(', ');
+}
 function crsUpdatePanel() {
-  var rows = [];
-  var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
-  var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
-  // Standard summary rows — always Product · Size · Mount · Qty, then the key choices.
-  rows.push(['Product', 'Basic Roller Shades']);
-  rows.push(['Size', (w && h) ? w + '" W × ' + h + '" H' : '—']);
-  rows.push(['Mount', CRS.mount === 'inside' ? 'Inside mount' : CRS.mount === 'outside' ? 'Outside mount' : '—']);
-  rows.push(['Qty', CRS.qty + ' shade' + (CRS.qty === 1 ? '' : 's')]);
-  if (CRS.type) {
-    var tl = CRS.type === 'solar' ? 'Solar ' + (CRS.openness ? CRS.openness + '%' : 'Screen') : 'Blackout';
-    if (CRS.color) tl += ' · ' + CRS.color;
-    rows.push(['Type', tl]);
-  }
-  if (CRS.headrail) {
-    var hMap = { open: 'Open roll', fascia: 'Metal fascia' };
-    var hw = hMap[CRS.headrail] || CRS.headrail;
-    if (CRS.hwColor) hw += ' · ' + CRS.hwColor;
-    rows.push(['Headrail', hw]);
-  }
-  if (CRS.fabric) {
-    var fMap = { we: 'We supply', customer: 'Customer supplies', consult: 'Consult' };
-    rows.push(['Fabric', fMap[CRS.fabric] || CRS.fabric]);
-  }
-  if (CRS.motor) {
-    var mMap = { cord: 'Manual chain', cordless: 'Cordless → Norman Soluna', motorized: 'Motorized (selecting brand…)', 'norman-motor': 'Motorized — Norman Smart', 'rollease-motor': 'Motorized — Rollease Automate', lutron: 'Motorized — Lutron', somfy: 'Motorized — Somfy', other: 'Motorized — Other' };
-    rows.push(['Operation', mMap[CRS.motor] || CRS.motor]);
-  }
+  var rows = [
+    ['Product', 'Basic Roller Shades'],
+    ['Size', (CRS.w && CRS.h) ? CRS.w + '″ W × ' + CRS.h + '″ H' : '—'],
+    ['Mount', CRS.mount === 'inside' ? 'Inside mount' : 'Outside mount'],
+    ['Qty', CRS.qty + ' shade' + (CRS.qty === 1 ? '' : 's')],
+    ['Fabric', _crsFabricLabel()],
+    ['Top', _crsTopLabel()],
+    ['Operation', _crsLiftLabel()]
+  ];
+  var acc = _crsAccessoryText();
+  if (acc) rows.push(['Accessories', acc]);
   rows.push(['Delivery', typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me']);
+  var rowsEl = _crsEl('qp-rows');
+  if (rowsEl) rowsEl.innerHTML = rows.map(function (r) { return _qrow(r[0], r[1]); }).join('');
 
-  var pending = _crsEl('qp-pending');
-  var rowsEl  = _crsEl('qp-rows');
-  var divEl   = _crsEl('qp-div');
-  var noteEl  = _crsEl('qp-note');
-  var priceEl = _crsEl('qp-price');
-
-  if (rowsEl)  rowsEl.innerHTML = rows.map(function(r) { return _qrow(r[0], r[1]); }).join('');
-  if (!(w && h)) {
-    if (pending) pending.style.display = 'block';
-    if (divEl)   divEl.style.display = 'none';
-    if (noteEl)  noteEl.style.display = 'none';
-    if (priceEl) priceEl.style.display = 'none';
-    return;
-  }
-
-  if (pending) pending.style.display = 'none';
-  if (rowsEl)  rowsEl.innerHTML = rows.map(function(r) { return _qrow(r[0], r[1]); }).join('');
-  if (divEl)   divEl.style.display = '';
-  if (noteEl)  noteEl.style.display = '';
-
-  // Price breakdown
-  var isCustomQuote = CRS.motor === 'lutron' || CRS.motor === 'somfy' || CRS.motor === 'other';
-  var isCustomFabric = CRS.fabric === 'customer';
-  var isRedirect = CRS.motor === 'cordless' || CRS.motor === 'norman-motor' || CRS.motor === 'rollease-motor';
-  var isPending = CRS.motor === 'motorized';
-  if (isCustomFabric) {
-    if (priceEl) priceEl.style.display = 'none';
-    if (noteEl) {
-      noteEl.textContent = 'Customer-supplied fabric pricing is custom — submit your specs and Justin will send you a quote.';
-      noteEl.style.display = '';
-    }
-  } else if (isCustomQuote) {
-    if (priceEl) priceEl.style.display = 'none';
-    if (noteEl) {
-      noteEl.textContent = 'Motorized pricing is custom — fill out your specs and submit. Justin will send you a personalized quote.';
-      noteEl.style.display = '';
-    }
-  } else if (isRedirect || isPending) {
-    if (priceEl) priceEl.style.display = 'none';
-    if (noteEl) noteEl.style.display = 'none';
-  } else {
-    var p = (CRS.w && CRS.h) ? crsCalcPricing() : null;
-    if (p && priceEl) {
-      var pRowsEl = _crsEl('qp-price-rows');
-      if (pRowsEl) {
-        var html = _prow('Retail price' + (CRS.qty > 1 ? ' (per shade)' : ''), '$' + p.retail.toLocaleString(), false);
-        html += _prow('Blindznation discount (35%)', '−$' + p.discount.toLocaleString(), true);
-        html += _prow('Your price' + (CRS.qty > 1 ? ' × ' + CRS.qty : ''), '$' + p.shadeTotal.toLocaleString(), false);
-        html += _prow('Shipping', '$' + p.freight.toLocaleString(), false);
-        pRowsEl.innerHTML = html;
-      }
-      var totalEl = _crsEl('qp-total');
-      if (totalEl) totalEl.textContent = '$' + p.grandTotal.toLocaleString();
-      priceEl.style.display = '';
-      if (noteEl) noteEl.style.display = 'none';
-    } else if (priceEl) {
-      priceEl.style.display = 'none';
-      if (noteEl) noteEl.style.display = '';
-    }
-  }
+  var r = crsQuote();
+  var pending = _crsEl('qp-pending'), divEl = _crsEl('qp-div'), noteEl = _crsEl('qp-note'), priceEl = _crsEl('qp-price');
+  if (pending) pending.style.display = (CRS.w && CRS.h) ? 'none' : 'block';
+  if (divEl) divEl.style.display = (CRS.w && CRS.h) ? '' : 'none';
+  var note = '';
+  if (r.lutron) note = 'Lutron is quoted by phone — send your request and Justin will call you with a price.';
+  else if (r.issue) note = r.issue;
+  if (noteEl) { noteEl.textContent = note; noteEl.style.display = note ? '' : 'none'; }
+  if (!r.q) { if (priceEl) priceEl.style.display = 'none'; return; }
+  var q = r.q, html = '';
+  html += _prow('Retail', '$' + q.discountableRetail.toLocaleString(), false);
+  html += _prow('Discount (25% off)', '−' + _crsMoney(q.clientDiscount), true);
+  html += _prow('Your price', _crsMoney(q.clientSubtotal), false);
+  html += _prow('Shipping', _crsMoney(q.freight), false);
+  var pRows = _crsEl('qp-price-rows'); if (pRows) pRows.innerHTML = html;
+  var totalEl = _crsEl('qp-total'); if (totalEl) totalEl.textContent = _crsMoney(q.clientTotal);
+  if (priceEl) priceEl.style.display = '';
 }
 
-// ── SUBMIT ───────────────────────────────────────────────────
-function addCustomRollerToCart(){
-  if(!CRS.mount){ alert('Please select a mount type before adding to cart.'); return; }
-  if(!CRS.w||!CRS.h){ alert('Please enter valid dimensions before adding to cart.'); return; }
-
-  // Only carry a price into the cart when the estimate is actually on screen.
-  // Customer-supplied fabric and Lutron/Somfy motors hide it, and #qp-total then
-  // still holds the last priced configuration's figure.
-  var priceBox=document.getElementById('qp-price');
-  var totalEl=document.getElementById('qp-total');
-  var priceShown=priceBox&&priceBox.style.display!=='none';
-  var priceText=(priceShown&&totalEl)?totalEl.textContent.trim():'';
-  var price=priceText&&priceText!=='—'?parseFloat(priceText.replace(/[^0-9.]/g,''))||null:null;
-
-  var typeMap={lf:'Light Filtering',rd:'Blackout',bk:'Blackout',solar:'Solar Screening',exterior:'Exterior Roller'};
-  var hMap={open:'Open Roll (no valance)',fascia:'Metal Fascia'};
-  var mMap={cord:'Manual chain',cordless:'Cordless',motorized:'Motorized',lutron:'Motorized — Lutron',somfy:'Motorized — Somfy','norman-motor':'Motorized — Norman Smart'};
-  var fMap={we:'We supply fabric',customer:'Customer supplies fabric',consult:'Consult — TBD'};
-
-  var typeLabel=typeMap[CRS.type]||CRS.type||'—';
-  if(CRS.type==='solar'&&CRS.openness) typeLabel+=' · '+CRS.openness+'% openness';
-  if(CRS.color) typeLabel+=' · '+CRS.color;
-
-  var lines=[
-    {label:'Product',value:'Custom Roller Shades'},
-    {label:'Shade Type',value:typeLabel},
-    {label:'Mount',value:CRS.mount==='inside'?'Inside mount':'Outside mount'},
-    {label:'Headrail',value:(hMap[CRS.headrail]||CRS.headrail||'—')+(CRS.hwColor?' — '+CRS.hwColor:'')},
-    {label:'Width',value:(CRS.w||'—')+'"'},
-    {label:'Height',value:(CRS.h||'—')+'"'},
-    {label:'Fabric',value:fMap[CRS.fabric]||CRS.fabric||'—'},
-    {label:'Operation',value:mMap[CRS.motor]||CRS.motor||'—'},
-    {label:'Quantity',value:String(CRS.qty||1)}
+// Everything the customer chose, one row each — for the email and the cart.
+function crsLines(r) {
+  var o = crsOrder();
+  var L = [
+    { label: 'Product', value: 'Basic Roller Shades' },
+    { label: 'Size', value: (CRS.w || '—') + '″ W × ' + (CRS.h || '—') + '″ H' },
+    { label: 'Mount', value: CRS.mount === 'inside' ? 'Inside mount' : 'Outside mount' },
+    { label: 'Quantity', value: String(CRS.qty) },
+    { label: 'Fabric', value: CRS.blackout ? 'Blackout' : 'Solar Screen' + (CRS.openness ? ' ' + CRS.openness + ' openness' : '') },
+    { label: 'Fabric color', value: CRS.color || '—' },
+    { label: 'Top of shade', value: CRS.top === 'fascia' ? '4″ metal square fascia' : 'Open roll' },
+    { label: 'Roll', value: CRS.roll === 'reverse' ? 'Reverse roll' : 'Regular roll' }
   ];
-  var specs=lines.map(function(l){return l.label+': '+l.value;}).join(' | ');
-  pbAddToCart({product:'Custom Roller Shades',lines:lines,specs:specs,price:price,qty:CRS.qty||1});
+  if (CRS.top === 'fascia') { L.push({ label: 'Fascia color', value: CRS.fasciaColor || '—' }); L.push({ label: 'End caps', value: CRS.endCaps ? 'Yes' : 'No' }); }
+  if (CRS.lift === 'motorized') {
+    L.push({ label: 'Operation', value: 'Motorized' });
+    L.push({ label: 'Motor brand', value: CRS.brand || '—' });
+    if (CRS.brand !== 'Lutron') {
+      L.push({ label: 'Power', value: CRS.power === 'hardwired' ? 'Hardwired' : 'Battery operated' });
+      var acc = _crsAccessoryText(); L.push({ label: 'Accessories', value: acc || 'None' });
+    }
+  } else {
+    L.push({ label: 'Operation', value: 'Manual chain (silver), ' + CRS.chainSide + ' side' });
+  }
+  if (r && r.q) {
+    var q = r.q;
+    L.push({ label: '', value: 'PRICE' });
+    L.push({ label: 'Retail', value: '$' + q.discountableRetail.toLocaleString() });
+    L.push({ label: 'Discount 25%', value: '−' + _crsMoney(q.clientDiscount) });
+    L.push({ label: 'Your price', value: _crsMoney(q.clientSubtotal) });
+    L.push({ label: 'Shipping (' + q.freightTier + ')', value: _crsMoney(q.freight) });
+    L.push({ label: 'Total', value: _crsMoney(q.clientTotal) });
+  } else if (r && r.lutron) {
+    L.push({ label: 'Price', value: 'Lutron — call the customer to quote' });
+  } else if (r && r.issue) {
+    L.push({ label: 'Price', value: r.issue });
+  }
+  return L;
+}
+
+// ── CART + SUBMIT ────────────────────────────────────────────
+function addCustomRollerToCart() {
+  var r = crsQuote();
+  if (r.lutron) { alert('Lutron is quoted by phone — please use "Submit Order for Review" and Justin will call you.'); return; }
+  if (r.need.length) { alert('Please choose ' + r.need.join(', ') + ' first.'); return; }
+  if (r.issue && !r.manual) { alert(r.issue); return; }
+  var lines = crsLines(r);
+  // price = the whole order (all shades + shipping), so qty stays 1 — the cart multiplies price × qty.
+  pbAddToCart({ product: 'Basic Roller Shades', lines: lines, specs: lines.map(function (l) { return (l.label ? l.label + ': ' : '') + l.value; }).join(' | '),
+                price: r.q ? r.q.clientTotal : 0, qty: 1 });
   pbOpenCart();
 }
-
 function crsSubmit() {
-  var name  = ((_crsEl('cf-name')  || {}).value || '').trim();
+  var name = ((_crsEl('cf-name') || {}).value || '').trim();
   var email = ((_crsEl('cf-email') || {}).value || '').trim();
   var phone = ((_crsEl('cf-phone') || {}).value || '').trim();
   var notes = ((_crsEl('cf-notes') || {}).value || '').trim();
-  var hp    = ((_crsEl('q-hp')    || {}).value || '');
-
-  if (!name)              { alert('Please enter your name.'); return; }
-  if (!email) { alert('Please enter your email address.'); return; }
-
-  var typeMap = { lf: 'Light Filtering', rd: 'Blackout', bk: 'Blackout', solar: 'Solar Screening', exterior: 'Exterior Roller (outdoor)' };
-  var hMap    = { open: 'Open roll (no valance)', fascia: 'Metal fascia' };
-  var mMap    = { cord: 'Manual chain', cordless: 'Cordless (see Norman Soluna recommendation)', motorized: 'Motorized — brand not selected', 'norman-motor': 'Motorized — Norman Smart (see Norman Soluna)', 'rollease-motor': 'Motorized — Rollease Automate (see Norman Soluna)', lutron: 'Motorized — Lutron (custom quote)', somfy: 'Motorized — Somfy (custom quote)', other: 'Motorized — Other / not sure (specify in notes)' };
-  var fMap    = { we: 'We supply the fabric', customer: 'Customer supplies fabric (ships to shop — do NOT ship until confirmed)', consult: 'Consult — fabric TBD' };
-
-  var selections = [];
-  if (CRS.type) {
-    var tl = typeMap[CRS.type] || CRS.type;
-    if (CRS.type === 'solar' && CRS.openness) tl += ' · ' + CRS.openness + '% openness factor';
-    selections.push({ label: 'Shade type', value: tl });
-  }
-  if (CRS.mount)    selections.push({ label: 'Mount', value: CRS.mount === 'inside' ? 'Inside mount' : 'Outside mount' });
-  if (CRS.headrail) {
-    var hrLabel = (hMap[CRS.headrail] || CRS.headrail) + (CRS.hwColor ? ' — ' + CRS.hwColor : '');
-    selections.push({ label: 'Headrail', value: hrLabel });
-  }
-
-  var w = parseFloat((_crsEl('crs-inp-w') || {}).value) || 0;
-  var h = parseFloat((_crsEl('crs-inp-h') || {}).value) || 0;
-  if (w) selections.push({ label: 'Width', value: w + '"' + (CRS.mount === 'inside' ? ' (frame — we deduct ¼" for fit)' : '') });
-  if (h) selections.push({ label: 'Height', value: h + '"' });
-
-  if (CRS.fabric) selections.push({ label: 'Fabric', value: fMap[CRS.fabric] || CRS.fabric });
-  if (CRS.motor)  selections.push({ label: 'Operation', value: mMap[CRS.motor]  || CRS.motor  });
-  selections.push({ label: 'Quantity', value: CRS.qty + ' shade' + (CRS.qty === 1 ? '' : 's') });
-  selections.push({ label: 'Delivery', value: (typeof pbDeliveryLabel === 'function' ? pbDeliveryLabel() : 'Ship to me') });
-
-  var btn = _crsEl('submit-btn');
-  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
-
+  var hp = ((_crsEl('q-hp') || _crsEl('pb-hp') || {}).value || '');
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!_pbValidEmail(email)) { alert('Please enter a valid email address.'); return; }
   if (hp) return;   // honeypot filled — a bot
-  // Price lines go in the email too, not just the fallback.
-  var _p = crsCalcPricing();
-  if (_p) {
-    selections.push({ label: 'Retail (per shade)', value: '$' + _p.retail.toLocaleString() });
-    selections.push({ label: 'Discount', value: '-$' + _p.discount.toLocaleString() });
-    selections.push({ label: 'Your price (×' + CRS.qty + ')', value: '$' + _p.shadeTotal.toLocaleString() });
-    selections.push({ label: 'Shipping', value: '$' + _p.freight.toLocaleString() });
-  }
+  var r = crsQuote();
+  if (r.need.length && !r.lutron) { alert('Please choose ' + r.need.join(', ') + ' first.'); return; }
+  var btn = _crsEl('submit-btn') || document.querySelector('#pb-final-step [data-pb-require-contact]');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+  var lines = crsLines(r);
   // Shared sender (js/shared.js): _t, every option row, notes, attached files → justin@blindznation.com
-  pbSendOrder({ name: name, email: email, phone: phone, product: 'Basic Roller Shades', lines: selections, notes: notes,
-                estimate: _p ? '$' + _p.grandTotal.toLocaleString() + ' (estimate only)' : null })
-  .then(function() { return { ok: true }; })
-  .then(function(data) {
-    if (data.ok) {
-      var form = _crsEl('pb-final-step');
-      var sbox = _crsEl('success-box');
-      var sw   = _crsEl('submit-wrap');
+  pbSendOrder({ name: name, email: email, phone: phone, product: 'Basic Roller Shades' + (r.lutron ? ' (Lutron — call to quote)' : ''),
+                lines: lines, notes: notes, estimate: r.q ? _crsMoney(r.q.clientTotal) + ' (estimate only)' : null })
+    .then(function () {
+      var form = _crsEl('pb-final-step'), sbox = _crsEl('success-box'), sw = _crsEl('submit-wrap');
       if (form) form.style.display = 'none';
-      if (sw)   sw.style.display   = 'none';
+      if (sw) sw.style.display = 'none';
       if (sbox) sbox.style.display = 'block';
       crsDone('step-7', name);
-    } else {
-      if (btn) { btn.disabled = false; btn.textContent = 'Submit Order for Review'; }
-      alert(data.error || 'Something went wrong. Please call (609) 742-1720.');
-    }
-  })
-  .catch(function() {
-    if (btn) { btn.disabled = false; btn.textContent = 'Submit Order for Review'; }
-    // Mailto fallback
-    var lines = ['Basic Roller Shades Order'];
-    selections.forEach(function(s) { lines.push(s.label + ': ' + s.value); });
-    var p = crsCalcPricing();
-    if (p) {
-      lines.push('---');
-      lines.push('Retail (per shade): $' + p.retail.toLocaleString());
-      lines.push('Discount (35%): -$' + p.discount.toLocaleString());
-      lines.push('Your price (×' + CRS.qty + '): $' + p.shadeTotal.toLocaleString());
-      lines.push('Shipping: $' + p.freight.toLocaleString());
-      lines.push('Estimated total: $' + p.grandTotal.toLocaleString());
-    }
-    if (notes) lines.push('Notes: ' + notes);
-    lines.push('Name: ' + name);
-    if (email) lines.push('Email: ' + email);
-    if (phone) lines.push('Phone: ' + phone);
-    window.location.href = 'mailto:justin@blindznation.com?subject=' + encodeURIComponent('Blindznation — ' + 'Basic Roller Quote — ' + name) + '&body=' + encodeURIComponent('BLINDZNATION\n\n' + lines.join('\n'));
-  });
+    })
+    .catch(function () {
+      if (btn) { btn.disabled = false; btn.textContent = 'Submit Order for Review →'; }
+      _pbShowSendFailure(_pbMailtoFor('Basic Roller Shades', name, 'Name: ' + name + '\nEmail: ' + email + (phone ? '\nPhone: ' + phone : '') + '\n\n' +
+        lines.map(function (l) { return (l.label ? l.label + ': ' : '') + l.value; }).join('\n') + (notes ? '\n\nNotes: ' + notes : '')), btn);
+    });
 }
 
-// Init — render color swatches (Inside mount + Ship to me are pre-selected)
-crsRenderColors();
-crsUpdatePanel();
+// ── INIT ─────────────────────────────────────────────────────
+(function () {
+  if (!window.BasicEngine) return;
+  _crsRenderColors();
+  var p = new URLSearchParams(window.location.search);
+  var w = p.get('w'), h = p.get('h'), qty = p.get('qty');
+  if (w) { var we = _crsEl('crs-inp-w'); if (we) we.value = w; }
+  if (h) { var he = _crsEl('crs-inp-h'); if (he) he.value = h; }
+  if (qty) { var qe = _crsEl('qty-num'); if (qe) qe.value = qty; CRS.qty = _crsInt('qty-num', 1, 20); }
+  if (w || h) crsDimChanged(); else crsUpdatePanel();
+})();

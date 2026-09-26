@@ -1,0 +1,762 @@
+[
+ {
+  "id": "B01",
+  "desc": "Solar, open roll, manual — the baseline",
+  "input": {
+   "width": 48,
+   "height": 60
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "manual",
+   "motorEach": 0,
+   "perShadeSubtotal": 0,
+   "accessories": 0,
+   "lines": [],
+   "optionsSubtotal": 0,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 390,
+   "clientDiscount": 117,
+   "clientSubtotal": 273,
+   "clientTotal": 308,
+   "retailTotal": 425,
+   "cost": 181.25
+  }
+ },
+ {
+  "id": "B02",
+  "desc": "Fascia adds row 1 at the shade width",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "topTreatment": "fascia"
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "fascia",
+   "fascia": 150,
+   "lift": "manual",
+   "motorEach": 0,
+   "perShadeSubtotal": 150,
+   "accessories": 0,
+   "lines": [],
+   "optionsSubtotal": 150,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 540,
+   "clientDiscount": 162,
+   "clientSubtotal": 378,
+   "clientTotal": 413,
+   "retailTotal": 575,
+   "cost": 237.5
+  }
+ },
+ {
+  "id": "B03",
+  "desc": "Blackout is the same grid + 20%",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "blackout": true
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": true,
+   "shade": 468,
+   "shadeSubtotal": 468,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "manual",
+   "motorEach": 0,
+   "perShadeSubtotal": 0,
+   "accessories": 0,
+   "lines": [],
+   "optionsSubtotal": 0,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 468,
+   "clientDiscount": 140.4,
+   "clientSubtotal": 327.6,
+   "clientTotal": 362.6,
+   "retailTotal": 503,
+   "cost": 210.5
+  }
+ },
+ {
+  "id": "B04",
+  "desc": "Blackout with a fascia",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "blackout": true,
+   "topTreatment": "fascia"
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": true,
+   "shade": 468,
+   "shadeSubtotal": 468,
+   "topTreatment": "fascia",
+   "fascia": 150,
+   "lift": "manual",
+   "motorEach": 0,
+   "perShadeSubtotal": 150,
+   "accessories": 0,
+   "lines": [],
+   "optionsSubtotal": 150,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 618,
+   "clientDiscount": 185.4,
+   "clientSubtotal": 432.6,
+   "clientTotal": 467.6,
+   "retailTotal": 653,
+   "cost": 266.75
+  }
+ },
+ {
+  "id": "B05",
+  "desc": "Rounds up on both axes — 48.125 × 60.125 lands on 54 × 72",
+  "input": {
+   "width": 48.125,
+   "height": 60.125
+  },
+  "expect": {
+   "cell": "54×72",
+   "gridPrice": 468,
+   "blackout": false,
+   "shade": 468,
+   "shadeSubtotal": 468,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "manual",
+   "motorEach": 0,
+   "perShadeSubtotal": 0,
+   "accessories": 0,
+   "lines": [],
+   "optionsSubtotal": 0,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 468,
+   "clientDiscount": 140.4,
+   "clientSubtotal": 327.6,
+   "clientTotal": 362.6,
+   "retailTotal": 503,
+   "cost": 210.5
+  }
+ },
+ {
+  "id": "B06",
+  "desc": "Below the first column clamps up to 24\"",
+  "input": {
+   "width": 12,
+   "height": 36
+  },
+  "expect": {
+   "cell": "24×36",
+   "gridPrice": 240,
+   "blackout": false,
+   "shade": 240,
+   "shadeSubtotal": 240,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "manual",
+   "motorEach": 0,
+   "perShadeSubtotal": 0,
+   "accessories": 0,
+   "lines": [],
+   "optionsSubtotal": 0,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 240,
+   "clientDiscount": 72,
+   "clientSubtotal": 168,
+   "clientTotal": 203,
+   "retailTotal": 275,
+   "cost": 125
+  }
+ },
+ {
+  "id": "B07",
+  "desc": "Motorized defaults to battery",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "lift": "motorized"
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "motorized",
+   "motorEach": 450,
+   "perShadeSubtotal": 450,
+   "accessories": 0,
+   "lines": [
+    "Battery operated $450 × 1"
+   ],
+   "optionsSubtotal": 450,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 840,
+   "clientDiscount": 252,
+   "clientSubtotal": 588,
+   "clientTotal": 623,
+   "retailTotal": 875,
+   "cost": 350
+  }
+ },
+ {
+  "id": "B08",
+  "desc": "Battery + single-channel remote",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "lift": "motorized",
+   "remote": "single"
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "motorized",
+   "motorEach": 450,
+   "perShadeSubtotal": 450,
+   "accessories": 100,
+   "lines": [
+    "Battery operated $450 × 1",
+    "1 × Single-channel remote $100"
+   ],
+   "optionsSubtotal": 550,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 940,
+   "clientDiscount": 282,
+   "clientSubtotal": 658,
+   "clientTotal": 693,
+   "retailTotal": 975,
+   "cost": 387.5
+  }
+ },
+ {
+  "id": "B09",
+  "desc": "Battery + 5-channel remote + one charger",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "lift": "motorized",
+   "remote": "multi",
+   "chargers": 1
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "motorized",
+   "motorEach": 450,
+   "perShadeSubtotal": 450,
+   "accessories": 175,
+   "lines": [
+    "Battery operated $450 × 1",
+    "1 × Multi-channel remote — 5 channels $125",
+    "1 × Charger $50"
+   ],
+   "optionsSubtotal": 625,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 1015,
+   "clientDiscount": 304.5,
+   "clientSubtotal": 710.5,
+   "clientTotal": 745.5,
+   "retailTotal": 1050,
+   "cost": 415.63
+  }
+ },
+ {
+  "id": "B10",
+  "desc": "Hardwired + 5-channel remote",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "lift": "motorized",
+   "power": "hardwired",
+   "remote": "multi"
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "motorized",
+   "motorEach": 550,
+   "perShadeSubtotal": 550,
+   "accessories": 125,
+   "lines": [
+    "Hardwired $550 × 1",
+    "1 × Multi-channel remote — 5 channels $125"
+   ],
+   "optionsSubtotal": 675,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 1065,
+   "clientDiscount": 319.5,
+   "clientSubtotal": 745.5,
+   "clientTotal": 780.5,
+   "retailTotal": 1100,
+   "cost": 434.38
+  }
+ },
+ {
+  "id": "B11",
+  "desc": "Somfy prices normally",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "lift": "motorized",
+   "brand": "Somfy"
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "motorized",
+   "motorEach": 450,
+   "perShadeSubtotal": 450,
+   "accessories": 0,
+   "lines": [
+    "Battery operated $450 × 1"
+   ],
+   "optionsSubtotal": 450,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 840,
+   "clientDiscount": 252,
+   "clientSubtotal": 588,
+   "clientTotal": 623,
+   "retailTotal": 875,
+   "cost": 350
+  }
+ },
+ {
+  "id": "B12",
+  "desc": "Automate by Rollease prices normally",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "lift": "motorized",
+   "brand": "Automate by Rollease"
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "motorized",
+   "motorEach": 450,
+   "perShadeSubtotal": 450,
+   "accessories": 0,
+   "lines": [
+    "Battery operated $450 × 1"
+   ],
+   "optionsSubtotal": 450,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 840,
+   "clientDiscount": 252,
+   "clientSubtotal": 588,
+   "clientTotal": 623,
+   "retailTotal": 875,
+   "cost": 350
+  }
+ },
+ {
+  "id": "B13",
+  "desc": "Lutron — take the request, do not price it",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "lift": "motorized",
+   "brand": "Lutron"
+  },
+  "expect": {
+   "errors": [
+    "REFERRAL: Lutron is not priced online — take the request and call the customer"
+   ]
+  }
+ },
+ {
+  "id": "B14",
+  "desc": "Freight tier 1 — three shades, widest 80\"",
+  "input": {
+   "width": 80,
+   "height": 60,
+   "qty": 3
+  },
+  "expect": {
+   "cell": "84×60",
+   "gridPrice": 618,
+   "blackout": false,
+   "shade": 618,
+   "shadeSubtotal": 1854,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "manual",
+   "motorEach": 0,
+   "perShadeSubtotal": 0,
+   "accessories": 0,
+   "lines": [],
+   "optionsSubtotal": 0,
+   "freightTier": "up to 80\" wide",
+   "freight": 65,
+   "discountableRetail": 1854,
+   "clientDiscount": 556.2,
+   "clientSubtotal": 1297.8,
+   "clientTotal": 1362.8,
+   "retailTotal": 1919,
+   "cost": 760.25
+  }
+ },
+ {
+  "id": "B15",
+  "desc": "Freight tier 2 — one shade at 81\" moves the order",
+  "input": {
+   "width": 81,
+   "height": 60,
+   "qty": 3,
+   "widestWidth": 81
+  },
+  "expect": {
+   "cell": "84×60",
+   "gridPrice": 618,
+   "blackout": false,
+   "shade": 618,
+   "shadeSubtotal": 1854,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "manual",
+   "motorEach": 0,
+   "perShadeSubtotal": 0,
+   "accessories": 0,
+   "lines": [],
+   "optionsSubtotal": 0,
+   "freightTier": "over 80\" up to 120\" wide",
+   "freight": 230,
+   "discountableRetail": 1854,
+   "clientDiscount": 556.2,
+   "clientSubtotal": 1297.8,
+   "clientTotal": 1527.8,
+   "retailTotal": 2084,
+   "cost": 925.25
+  }
+ },
+ {
+  "id": "B16",
+  "desc": "Freight tier 3 — widest shade over 120\"",
+  "input": {
+   "width": 120,
+   "height": 60,
+   "qty": 3,
+   "widestWidth": 121
+  },
+  "expect": {
+   "cell": "120×60",
+   "gridPrice": 795,
+   "blackout": false,
+   "shade": 795,
+   "shadeSubtotal": 2385,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "manual",
+   "motorEach": 0,
+   "perShadeSubtotal": 0,
+   "accessories": 0,
+   "lines": [],
+   "optionsSubtotal": 0,
+   "freightTier": "over 120\" wide",
+   "freight": 330,
+   "discountableRetail": 2385,
+   "clientDiscount": 715.5,
+   "clientSubtotal": 1669.5,
+   "clientTotal": 1999.5,
+   "retailTotal": 2715,
+   "cost": 1224.38
+  }
+ },
+ {
+  "id": "B17",
+  "desc": "Qty 4, blackout, fascia, motorized — a full order",
+  "input": {
+   "width": 60,
+   "height": 72,
+   "qty": 4,
+   "blackout": true,
+   "topTreatment": "fascia",
+   "lift": "motorized",
+   "remote": "multi",
+   "chargers": 2
+  },
+  "expect": {
+   "cell": "60×72",
+   "gridPrice": 522,
+   "blackout": true,
+   "shade": 626,
+   "shadeSubtotal": 2504,
+   "topTreatment": "fascia",
+   "fascia": 171,
+   "lift": "motorized",
+   "motorEach": 450,
+   "perShadeSubtotal": 2484,
+   "accessories": 225,
+   "lines": [
+    "Battery operated $450 × 4",
+    "1 × Multi-channel remote — 5 channels $125",
+    "2 × Charger $50"
+   ],
+   "optionsSubtotal": 2709,
+   "freightTier": "up to 80\" wide",
+   "freight": 80,
+   "discountableRetail": 5213,
+   "clientDiscount": 1563.9,
+   "clientSubtotal": 3649.1,
+   "clientTotal": 3729.1,
+   "retailTotal": 5293,
+   "cost": 2034.88
+  }
+ },
+ {
+  "id": "B18",
+  "desc": "INVALID — off the grid past 120\" wide",
+  "input": {
+   "width": 126,
+   "height": 60
+  },
+  "expect": {
+   "errors": [
+    "OFF_GRID: the chart runs 24\"–120\" wide and 36\"–144\" high"
+   ]
+  }
+ },
+ {
+  "id": "B19",
+  "desc": "INVALID — blackout in a solar-only colour",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "blackout": true,
+   "color": "Silver"
+  },
+  "expect": {
+   "errors": [
+    "NOT_OFFERED: blackout does not come in Silver"
+   ]
+  }
+ },
+ {
+  "id": "B20",
+  "desc": "INVALID — end caps with no fascia",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "endCaps": true
+  },
+  "expect": {
+   "errors": [
+    "NOT_OFFERED: end caps need a fascia"
+   ]
+  }
+ },
+ {
+  "id": "B21",
+  "desc": "INVALID — a remote on a manual shade",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "remote": "single"
+  },
+  "expect": {
+   "errors": [
+    "NOT_OFFERED: remotes, chargers, hubs and repeaters are motorized only"
+   ]
+  }
+ },
+ {
+  "id": "B22",
+  "desc": "INVALID — an openness we do not stock",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "openness": "7%"
+  },
+  "expect": {
+   "errors": [
+    "NOT_OFFERED: openness 7%"
+   ]
+  }
+ },
+ {
+  "id": "B23",
+  "desc": "Battery + 5-channel remote + a hub",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "lift": "motorized",
+   "remote": "multi",
+   "hubs": 1
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "motorized",
+   "motorEach": 450,
+   "perShadeSubtotal": 450,
+   "accessories": 525,
+   "lines": [
+    "Battery operated $450 × 1",
+    "1 × Multi-channel remote — 5 channels $125",
+    "1 × Hub $400"
+   ],
+   "optionsSubtotal": 975,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 1365,
+   "clientDiscount": 409.5,
+   "clientSubtotal": 955.5,
+   "clientTotal": 990.5,
+   "retailTotal": 1400,
+   "cost": 546.88
+  }
+ },
+ {
+  "id": "B24",
+  "desc": "Battery + a hub + two repeaters",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "lift": "motorized",
+   "remote": "multi",
+   "hubs": 1,
+   "repeaters": 2
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 390,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "motorized",
+   "motorEach": 450,
+   "perShadeSubtotal": 450,
+   "accessories": 725,
+   "lines": [
+    "Battery operated $450 × 1",
+    "1 × Multi-channel remote — 5 channels $125",
+    "1 × Hub $400",
+    "2 × Repeater $100"
+   ],
+   "optionsSubtotal": 1175,
+   "freightTier": "up to 80\" wide",
+   "freight": 35,
+   "discountableRetail": 1565,
+   "clientDiscount": 469.5,
+   "clientSubtotal": 1095.5,
+   "clientTotal": 1130.5,
+   "retailTotal": 1600,
+   "cost": 621.88
+  }
+ },
+ {
+  "id": "B25",
+  "desc": "Four motorized shades share one hub and one remote",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "qty": 4,
+   "lift": "motorized",
+   "remote": "multi",
+   "hubs": 1
+  },
+  "expect": {
+   "cell": "48×60",
+   "gridPrice": 390,
+   "blackout": false,
+   "shade": 390,
+   "shadeSubtotal": 1560,
+   "topTreatment": "open roll",
+   "fascia": 0,
+   "lift": "motorized",
+   "motorEach": 450,
+   "perShadeSubtotal": 1800,
+   "accessories": 525,
+   "lines": [
+    "Battery operated $450 × 4",
+    "1 × Multi-channel remote — 5 channels $125",
+    "1 × Hub $400"
+   ],
+   "optionsSubtotal": 2325,
+   "freightTier": "up to 80\" wide",
+   "freight": 80,
+   "discountableRetail": 3885,
+   "clientDiscount": 1165.5,
+   "clientSubtotal": 2719.5,
+   "clientTotal": 2799.5,
+   "retailTotal": 3965,
+   "cost": 1536.88
+  }
+ },
+ {
+  "id": "B26",
+  "desc": "INVALID — a hub on a manual shade",
+  "input": {
+   "width": 48,
+   "height": 60,
+   "hubs": 1
+  },
+  "expect": {
+   "errors": [
+    "NOT_OFFERED: remotes, chargers, hubs and repeaters are motorized only"
+   ]
+  }
+ }
+]
