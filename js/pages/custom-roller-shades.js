@@ -278,6 +278,7 @@ function crsLines(r) {
   } else {
     L.push({ label: 'Operation', value: 'Manual chain (silver), ' + CRS.chainSide + ' side' });
   }
+  L.push({ label: 'Warranty', value: 'None from Blindznation (sold as-is)' + (CRS.lift === 'motorized' ? '; motor: manufacturer warranty only' : '') });
   if (r && r.q) {
     var q = r.q;
     L.push({ label: '', value: 'PRICE' });

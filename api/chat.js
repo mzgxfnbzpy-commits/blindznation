@@ -33,6 +33,7 @@ BUSINESS:
 - Phone: (609) 742-1720 — 24/7 call or text
 - Email: justin@blindznation.com
 - Based in Midvale, UT 84047
+- BASIC ROLLER SHADES (house line) have NO Blindznation warranty — sold as-is. Motors are covered only by the manufacturer (Somfy or Automate by Rollease). Chains, fabric rubbing/fraying and installation problems (e.g. mounted out of level) are not covered. Never promise a warranty on Basic Roller Shades.
 - MOBILE SERVICE, BY APPOINTMENT ONLY. There is NO showroom and no walk-in location — never tell a customer to visit a store or showroom. All samples are brought to the customer at a free in-home consultation.
 - Service area: Salt Lake City, Utah and the surrounding area (based in Midvale). Out-of-state by request. We do NOT serve Philadelphia / Pennsylvania / New Jersey.
 

@@ -43,6 +43,7 @@
 /* Openness sub-options */
 .sub-opts{margin-top:12px;padding:12px;background:#f9f9f7;border-radius:8px;display:none}
 .sub-opts.show{display:block}
+.crs-warranty{font-size:12px;color:#5a3a00;background:#FFF8EC;border:1px solid #e8c96b;border-radius:8px;padding:10px 13px;line-height:1.6;margin-bottom:14px}
 .crs-acc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin-top:10px}
 .crs-acc-grid label{font-size:11px;font-weight:600;color:#555;display:flex;flex-direction:column;gap:4px}
 .crs-acc-grid input{width:100%;padding:7px 9px;border:1px solid #ddd;border-radius:7px;font-size:13px;font-family:inherit}
@@ -278,6 +279,7 @@
         <button class="opt-btn" onclick="crsPickBrand('Automate by Rollease',this)">Automate by Rollease</button>
         <button class="opt-btn" onclick="crsPickBrand('Lutron',this)">Lutron</button>
       </div>
+      <div class="step-note" style="color:#6b5314">Motor warranty is provided by the motor manufacturer (Somfy or Automate by Rollease), not by Blindznation.</div>
       <div class="step-note" id="lutron-note" style="display:none;color:#6b5314">Lutron is quoted by phone &mdash; send your request and Justin will call you with a Lutron price.</div>
       <div id="motor-priced-opts">
         <div class="sub-opts-label" style="margin-top:12px">Power</div>
@@ -322,6 +324,7 @@
     <div class="step-val" id="sv-7"></div>
   </div>
   <div class="step-body">
+    <div class="crs-warranty"><strong>Warranty:</strong> Basic Roller Shades are sold <strong>as-is, with no Blindznation warranty</strong>. Motors carry the manufacturer&rsquo;s warranty only (Somfy or Automate by Rollease). Not covered: chains (a wear part that can break), fabric rubbing, fraying or edge wear, and anything caused by installation, such as a shade mounted out of level. We will remake a shade that arrives damaged or not built to your approved specs if reported within 7 days. <a href="terms-of-agreement.html" target="_blank" style="color:var(--gold)">Terms, Section 13</a>.</div>
     <!-- Canonical final contact + files step (shared.js pbContactStepHTML) -->
     <div id="pb-final-step"></div>
     <div class="success-box" id="success-box">
