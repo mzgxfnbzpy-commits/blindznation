@@ -120,6 +120,16 @@
 .dim-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
 .motor-sub{display:none;margin-top:10px;padding:12px;background:var(--gold-mid);border-radius:8px;border:1px solid #E8DCC8}
 .motor-sub.show{display:block}
+.sol-sub{margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px}
+.sol-sub-label{font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:12px 0 6px}
+.sol-sub > .sol-sub-label:first-child{margin-top:0}
+.sol-fab-box{margin-top:12px;border:1px solid #e8e4de;border-radius:8px;overflow:hidden}
+.sol-fab-head{background:#f5f2ed;padding:7px 12px;font-size:10px;font-weight:600;color:#666;letter-spacing:.8px;text-transform:uppercase}
+.sol-fab-inner{padding:10px 12px;max-height:300px;overflow-y:auto}
+.sol-fab-coll{font-size:10px;font-weight:600;color:#777;text-transform:uppercase;letter-spacing:.8px;margin:10px 0 4px}
+.sol-fab-coll:first-child{margin-top:0}
+.sol-fab-coll em{color:#b26a1d;font-style:normal;font-weight:400;text-transform:none;letter-spacing:0;margin-left:5px}
+.sol-fab-inner .opt-btn{font-size:11px;padding:3px 9px}
 .hw-sw{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:7px;vertical-align:-2px;border:1px solid rgba(0,0,0,.18);box-shadow:inset 0 1px 2px rgba(255,255,255,.3)}
 .qty-btns{display:flex;align-items:center}
 .qty-btn{width:32px;height:32px;border:1px solid #ddd;background:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--font)}
@@ -234,7 +244,7 @@
     <span class="vcard v-active">
       <span class="v-active-check">✓</span>
       <div class="vcard-img"><img src="../images/thumbnails/CUSTOM LARGE ROLLER SHADES.JPEG" alt="Premier Norman Roller Shades"><span class="vcard-badge" style="background:#C9A96E;color:#111110">Norman</span></div>
-      <div class="vcard-body"><div class="vcard-name">Premier Norman Roller Shades</div><div class="vcard-desc">Premium collection — 7 price groups, cassette &amp; fascia headrail options.</div></div>
+      <div class="vcard-body"><div class="vcard-name">Premier Norman Roller Shades</div><div class="vcard-desc">Premium collection — 75 fabric collections, fascia, valance, cassette &amp; side-channel options.</div></div>
     </span>
     <a class="vcard" href="wallace-natural-roller-shades.html">
       <div class="vcard-img"><img src="../images/thumbnails/roller-shade-bedroom.JPEG" alt="Woven Wood Roller"><span class="vcard-badge" style="background:#7CB87C;color:#0F3010">Natural</span></div>
@@ -337,7 +347,7 @@
         </div>
         <div class="op-name">SmartRelease™</div>
         <span class="op-tag op-tag-pro">Quick-release cord loop</span>
-        <p class="op-desc">Norman's patent-pending innovation. Releases the shade from a raised position with a gentle pull — no lifting required. Raceway included. Ideal for high or hard-to-reach windows.</p>
+        <p class="op-desc">Norman's patent-pending innovation. Releases the shade from a raised position with a gentle pull — no lifting required. Ideal for high or hard-to-reach windows.</p>
         <ul class="op-specs">
           <li>Max width <span>118″</span></li>
           <li>Max height <span>144″</span></li>
@@ -538,12 +548,12 @@
       <div class="upgrade-card">
         <div class="upgrade-icon">⬜</div>
         <div class="upgrade-name">Cassette Headrail</div>
-        <div class="upgrade-desc">Encloses the roller tube in a neat square or round cassette. Plain or fabric-wrapped to match your shade. Standard on most orders.</div>
+        <div class="upgrade-desc">Encloses the roller tube in a neat cassette — metal or fabric-wrapped to match your shade. Single shades only.</div>
       </div>
       <div class="upgrade-card">
         <div class="upgrade-icon">🪟</div>
         <div class="upgrade-name">Fascia / Valance</div>
-        <div class="upgrade-desc">Norman Soluna fascia options: Square Fascia (metal), Curved Fascia with Fabric wrap, or Fabric Valance. Conceals the headrail for a clean, finished look.</div>
+        <div class="upgrade-desc">Curved or square, metal or fabric-wrapped, 3½″ to 8″ (the 6″ and 8″ are square, fabric-wrapped). Or a Modern Wood Valance in paint or stain. Conceals the roll for a clean, finished look.</div>
       </div>
       <div class="upgrade-card">
         <div class="upgrade-icon">🔲</div>
@@ -562,8 +572,8 @@
       </div>
       <div class="upgrade-card">
         <div class="upgrade-icon">🔗</div>
-        <div class="upgrade-name">2 or 3 Shades on 1 Headrail</div>
-        <div class="upgrade-desc">Multiple shades sharing one mounting point on a wide window. Ideal for bay windows or wide openings where a seam in the fabric is acceptable.</div>
+        <div class="upgrade-name">Coupled Shades</div>
+        <div class="upgrade-desc">Two to four shades linked side by side on a wide window, operated together. Ideal for bay windows or wide openings where a seam in the fabric is acceptable.</div>
       </div>
     </div>
   </div>
@@ -593,7 +603,7 @@
         <tbody>
           <tr>
             <td><strong>PrecisionLift™ Cordless</strong></td>
-            <td>12″</td><td>118″</td><td>12″</td><td>144″</td>
+            <td>9½″</td><td>118″</td><td>12″</td><td>144″*</td>
             <td>Yes</td><td>No</td>
           </tr>
           <tr>
@@ -603,16 +613,17 @@
           </tr>
           <tr>
             <td><strong>Continuous Loop</strong></td>
-            <td>12″</td><td>118″</td><td>12″</td><td>144″</td>
+            <td>8″</td><td>118″</td><td>12″</td><td>144″</td>
             <td>No (chain)</td><td>No</td>
           </tr>
           <tr>
             <td><strong>Motorized</strong></td>
-            <td>12″</td><td>144″</td><td>12″</td><td>144″</td>
+            <td>12″</td><td>118″</td><td>12″</td><td>144″</td>
             <td>Yes</td><td>Yes</td>
           </tr>
         </tbody>
       </table>
+        <div class="tooltip-note" style="margin-top:8px">* Cordless length depends on width: up to 20″ wide → 72″ long · up to 24″ wide → 96″ long · wider → 144″ long.</div>
     </div>
 
     <p class="size-note">⚠️ Cordless systems have size maximums due to spring tension limits. Larger windows should use continuous loop or motorized. &bull; Blackout fabric with side channels may add 1″ to minimum width requirement. &bull; Specialty shapes are quoted individually.</p>
@@ -644,8 +655,8 @@
               <div class="form-row">
                 <div class="form-group">
                   <label>Width</label>
-                  <input type="number" id="inp-width" min="12" max="144" step="0.125" placeholder="36" oninput="updateSummary()">
-                  <div class="dim-unit">inches &mdash; 12″ min · 118″ max (manual) · 144″ max (motorized)</div>
+                  <input type="number" id="inp-width" min="12" max="118" step="0.125" placeholder="36" oninput="updateSummary()">
+                  <div class="dim-unit">inches &mdash; 118″ max per shade</div>
                 </div>
                 <div class="form-group">
                   <label>Height</label>
@@ -659,8 +670,24 @@
             <!-- Mount type -->
             <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Mount type</div>
             <div class="opt-row" id="grp-mount" style="margin-bottom:14px">
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-mount');updateSummary()">Inside mount</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-mount');updateSummary()">Outside mount</button>
+              <button class="opt-btn sel" data-mount="IM" onclick="selOpt(this,'grp-mount');updateSummary()">Inside mount</button>
+              <button class="opt-btn" data-mount="SIM" onclick="selOpt(this,'grp-mount');updateSummary()">Semi-inside mount</button>
+              <button class="opt-btn" data-mount="OM" onclick="selOpt(this,'grp-mount');updateSummary()">Outside mount</button>
+            </div>
+
+            <!-- Door shade -->
+            <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">Is this shade going on a door?</div>
+            <div class="opt-row" id="grp-door" style="margin-bottom:6px">
+              <button class="opt-btn sel" onclick="selOpt(this,'grp-door');solSyncDoor();updateSummary()">No</button>
+              <button class="opt-btn" onclick="selOpt(this,'grp-door');solSyncDoor();updateSummary()">Yes — door shade</button>
+            </div>
+            <div id="sol-door-wrap" style="display:none;margin-bottom:14px;padding:10px 12px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:8px">
+              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Magnetic hold down</div>
+              <div class="opt-row" id="grp-mag">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-mag');updateSummary()">Yes — hold the shade against the door</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-mag');updateSummary()">No hold down</button>
+              </div>
+              <div id="sol-door-note" style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">Keeps the bottom of the shade from swinging when the door opens and closes.</div>
             </div>
 
             <!-- Quantity -->
@@ -678,7 +705,7 @@
             <div id="coupled-wrap" style="display:none;margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
               <div style="font-size:12px;font-weight:600;color:#333;margin-bottom:6px">Coupled Shades configuration</div>
               <div id="coupled-op-warn" style="display:none;font-size:11px;color:#c0392b;background:#fdf0ee;border:1px solid #f1c0bb;border-radius:6px;padding:7px 10px;margin-bottom:8px">⚠ PrecisionLift™ Cordless and SmartRelease™ are not available for coupled shades. Please select Manual with chain or Motorized.</div>
-              <div style="font-size:11px;color:#666;margin-bottom:10px;line-height:1.5">Shades are linked side by side on a shared headrail, ordered left to right. Requires Manual with chain or Motorized lift system.</div>
+              <div style="font-size:11px;color:#666;margin-bottom:10px;line-height:1.5">Shades are linked side by side and ordered left to right. Each shade has its own mounting rail. Requires Manual with chain or Motorized lift system. Not available on a Dual Shade.</div>
               <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Are the shades the same size?</div>
               <div class="opt-row" id="grp-coupled-type" style="margin-bottom:10px">
                 <button class="opt-btn sel" onclick="selOpt(this,'grp-coupled-type');solShowCoupledSame();updateSummary()">Same size</button>
@@ -693,7 +720,7 @@
                   <button class="opt-btn" onclick="selOpt(this,'grp-coupled-count');solSetCoupledCount(3);updateSummary()">3 shades</button>
                   <button class="opt-btn" onclick="selOpt(this,'grp-coupled-count');solSetCoupledCount(4);updateSummary()">4 shades</button>
                 </div>
-                <div style="font-size:10px;color:#888;margin-top:6px">Same size as the dimensions entered above. Total price = (price × count) + coupled surcharge.</div>
+                <div style="font-size:10px;color:#888;margin-top:6px">Each shade is the size entered above.</div>
               </div>
 
               <!-- Different sizes: enter dims per shade -->
@@ -710,7 +737,7 @@
           </div>
 
           <!-- Step 2: Shade type — chosen before fabric, because Dual Shade replaces the
-               single fabric picker with separate front/back pickers. -->
+               single fabric picker with a blackout layer + a light layer. -->
           <div class="step-block">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
               <div class="step-num">2</div>
@@ -720,43 +747,46 @@
               <button class="opt-btn sel" onclick="solPickShadeType('standard',this)">Standard</button>
               <button class="opt-btn" onclick="solPickShadeType('dual',this)">Dual Shade</button>
             </div>
-            <!-- Dual shade fabric pickers -->
-            <div id="dual-shade-fabrics" style="display:none;margin-top:12px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
-              <div style="margin-bottom:12px">
-                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Front shade — daytime</div>
-                <div class="opt-row" id="grp-dual-front" style="flex-wrap:wrap">
-                  <button class="opt-btn sel" onclick="selOpt(this,'grp-dual-front');updateSummary()">Light Filtering</button>
-                  <button class="opt-btn" onclick="selOpt(this,'grp-dual-front');updateSummary()">Solar Screen</button>
-                  <button class="opt-btn" onclick="selOpt(this,'grp-dual-front');updateSummary()">Sheer / Naturals</button>
-                </div>
-              </div>
-              <div>
-                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Back shade — night</div>
-                <div class="opt-row" id="grp-dual-back">
-                  <button class="opt-btn sel" onclick="selOpt(this,'grp-dual-back');updateSummary()">Blackout</button>
-                </div>
-              </div>
-              <div style="font-size:10px;color:#888;margin-top:8px;line-height:1.5">Cassette headrail is required for dual shade — auto-selected in Step 5 below.</div>
-            </div>
+            <div id="sol-dual-note" class="tooltip-note" style="display:none">Two shades on one bracket: one <strong>blackout</strong> layer and one light layer (light filtering, sheer, solar screen or natural woven). You choose which one faces the room. A Dual Shade always comes with the square 8″ fabric-wrapped valance.</div>
           </div>
 
-          <!-- Step 3: Fabric type -->
+          <!-- Step 3: Fabric -->
           <div class="step-block">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
               <div class="step-num">3</div>
-              <div class="step-title" style="margin-bottom:0">Fabric type</div>
+              <div class="step-title" style="margin-bottom:0" id="sol-fabric-title">Fabric</div>
             </div>
-            <div class="opt-row" id="grp-light">
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('solar');updateSummary()">Solar Screen</button>
-              <button class="opt-btn sel" onclick="selOpt(this,'grp-light');showFabricColls('lf');updateSummary()">Light Filtering Designer</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('sheer');updateSummary()">Sheer &amp; Naturals</button>
-              <button class="opt-btn" onclick="selOpt(this,'grp-light');showFabricColls('rd');updateSummary()">Blackout</button>
+
+            <!-- Standard shade: one fabric -->
+            <div id="sol-single-fabric">
+              <div class="opt-row" id="grp-light" style="flex-wrap:wrap">
+                <button class="opt-btn" data-cat="solar" onclick="solPickCategory('main',this)">Solar Screen</button>
+                <button class="opt-btn sel" data-cat="lf" onclick="solPickCategory('main',this)">Light Filtering</button>
+                <button class="opt-btn" data-cat="sheer" onclick="solPickCategory('main',this)">Sheer</button>
+                <button class="opt-btn" data-cat="natural" onclick="solPickCategory('main',this)">Natural Woven</button>
+                <button class="opt-btn" data-cat="rd" onclick="solPickCategory('main',this)">Blackout</button>
+              </div>
+              <div class="tooltip-note">Blackout fabric blocks light through the material — pair it with Full Blackout Side Channels in Step 5 to get as close to dark as we can. Solar Screen includes residential and commercial NA-series fabrics.</div>
+              <div class="sol-fab-box"><div class="sol-fab-head">Collection &amp; color</div><div class="sol-fab-inner" id="sol-fab-main"></div></div>
             </div>
-            <div class="tooltip-note">Blackout fabric blocks light through the material — pair it with the Full Blackout Side Channels cassette to get as close to dark as we can. Solar Screen includes residential and commercial NA-series fabrics.</div>
-            <!-- Fabric collection picker — populated dynamically by showFabricColls() -->
-            <div id="fabric-coll-wrap" style="display:none;margin-top:12px;border:1px solid #e8e4de;border-radius:8px;overflow:hidden">
-              <div style="background:#f5f2ed;padding:7px 12px;font-size:10px;font-weight:600;color:#666;letter-spacing:.8px;text-transform:uppercase">Fabric Collection &amp; Color <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">(optional — select or skip)</span></div>
-              <div id="fabric-coll-inner" style="padding:10px 12px;max-height:280px;overflow-y:auto"></div>
+
+            <!-- Dual shade: blackout layer + light layer -->
+            <div id="sol-dual-fabric" style="display:none">
+              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px">Blackout layer</div>
+              <div class="sol-fab-box" style="margin-top:0"><div class="sol-fab-head">Blackout collection &amp; color</div><div class="sol-fab-inner" id="sol-fab-bo"></div></div>
+              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:14px 0 6px">Light layer</div>
+              <div class="opt-row" id="grp-lite-cat" style="flex-wrap:wrap">
+                <button class="opt-btn sel" data-cat="lf" onclick="solPickCategory('lite',this)">Light Filtering</button>
+                <button class="opt-btn" data-cat="solar" onclick="solPickCategory('lite',this)">Solar Screen</button>
+                <button class="opt-btn" data-cat="sheer" onclick="solPickCategory('lite',this)">Sheer</button>
+                <button class="opt-btn" data-cat="natural" onclick="solPickCategory('lite',this)">Natural Woven</button>
+              </div>
+              <div class="sol-fab-box"><div class="sol-fab-head">Light-layer collection &amp; color</div><div class="sol-fab-inner" id="sol-fab-lite"></div></div>
+              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin:14px 0 6px">Which layer faces the room?</div>
+              <div class="opt-row" id="grp-dual-front">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-dual-front');updateSummary()">Light layer in front</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-dual-front');updateSummary()">Blackout in front</button>
+              </div>
             </div>
           </div>
 
@@ -778,83 +808,145 @@
             <div class="motor-sub" id="motor-sub">
               <!-- Shared Norman motor UI (rendered by normanMotorSection in shared.js) -->
               <div id="sol-motor-config"></div>
-              <div class="tooltip-note" style="margin-top:8px">Norman Smart estimate: $482/shade. Supports Alexa, Google Home, Apple HomeKit via the Norman Smart Hub. Exact power source and accessories confirmed at measurement visit.</div>
+              <div class="tooltip-note" style="margin-top:8px">Supports Alexa, Google Home, Apple HomeKit via the Norman Smart Hub. Exact power source and accessories confirmed at measurement visit.</div>
             </div>
           </div>
 
-          <!-- Step 5: Options -->
+          <!-- Step 5: Top of the shade -->
           <div class="step-block">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
               <div class="step-num">5</div>
-              <div class="step-title" style="margin-bottom:0">Headrail &amp; add-ons <span style="font-weight:400;color:#888">(optional)</span></div>
+              <div class="step-title" style="margin-bottom:0">Top of the shade</div>
             </div>
-            <div class="opt-row" id="grp-addons" style="flex-wrap:wrap">
-              <button class="opt-btn" id="sol-addon-openroll" onclick="solPickAddon('openroll',this)">Open roll</button>
-              <button class="opt-btn" id="sol-addon-cassette" onclick="solPickAddon('cassette',this)">Cassette headrail</button>
-              <button class="opt-btn" id="sol-addon-fascia" onclick="solPickAddon('fascia',this)">Fascia / valance</button>
-              <button class="opt-btn" id="sol-addon-lightguard" onclick="solPickAddon('lightguard',this)">Full Blackout Side Channels</button>
+            <div class="opt-row" id="grp-top" style="flex-wrap:wrap">
+              <button class="opt-btn sel" data-top="race" onclick="solPickTop('race',this)">Mounting rail only</button>
+              <button class="opt-btn" data-top="fascia" onclick="solPickTop('fascia',this)">Fascia / valance</button>
+              <button class="opt-btn" data-top="wood" onclick="solPickTop('wood',this)">Wood valance</button>
+              <button class="opt-btn" data-top="cassette" onclick="solPickTop('cassette',this)">Cassette</button>
+              <button class="opt-btn" data-top="lg360" onclick="solPickTop('lg360',this)">Full Blackout Side Channels</button>
+              <button class="opt-btn" data-top="none" onclick="solPickTop('none',this)">Open roll</button>
             </div>
-            <div class="tooltip-note">Headrail options are mutually exclusive — select one or none. Full Blackout Side Channels require a Blackout fabric.</div>
+            <div class="tooltip-note" id="sol-top-note">Choose one. Mounting rail only is the standard: a clean rail the shade hangs from, with the roll visible.</div>
 
-            <!-- Open roll → Premium hardware color picker -->
-            <div id="sol-hw-subopts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
-              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Premium hardware color</div>
-              <div class="opt-row" id="grp-hw-color" style="flex-wrap:wrap">
-                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#e3c279,#b8902f)"></span>Brass</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#a06f3e,#5e3f23)"></span>Bronze</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#4a4a4a,#161616)"></span>Brushed Black</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#dcdcdc,#a4a4a4)"></span>Matte Silver</button>
-                <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:#f8f8f5"></span>White</button>
+            <!-- Fascia / valance: curved or square, metal or fabric-wrapped, and a size -->
+            <div id="sol-top-fascia" class="sol-sub" style="display:none">
+              <div class="sol-sub-label">Shape</div>
+              <div class="opt-row" id="grp-fascia-shape">
+                <button class="opt-btn sel" data-v="curved" onclick="selOpt(this,'grp-fascia-shape');solSyncFascia();updateSummary()">Curved</button>
+                <button class="opt-btn" data-v="square" onclick="selOpt(this,'grp-fascia-shape');solSyncFascia();updateSummary()">Square</button>
               </div>
-              <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">Premium hardware (brackets, clutches, chains &amp; hem bars) in a preset matching finish. Open roll single shades only — no valance or raceway. Inside mount side-mount bracket not available with premium hardware.</div>
-            </div>
-
-            <!-- Fascia sub-options (shown when Fascia / valance selected) -->
-            <div id="sol-fascia-subopts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
-              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Fascia / valance style</div>
-              <div class="opt-row" id="grp-fascia-style" style="flex-wrap:wrap">
-                <button class="opt-btn" onclick="solPickFascia('metal',this)">Flat Metal Fascia</button>
-                <button class="opt-btn" onclick="solPickFascia('fabric',this)">Flat Fabric Wrapped Fascia</button>
-                <button class="opt-btn" onclick="solPickFascia('fabric',this)">Curved Fabric Wrapped Fascia</button>
+              <div class="sol-sub-label">Finish</div>
+              <div class="opt-row" id="grp-fascia-mat">
+                <button class="opt-btn sel" data-v="metal" onclick="selOpt(this,'grp-fascia-mat');solSyncFascia();updateSummary()">Metal</button>
+                <button class="opt-btn" data-v="fabric" onclick="selOpt(this,'grp-fascia-mat');solSyncFascia();updateSummary()">Fabric-wrapped</button>
               </div>
-              <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">Flat Metal Fascia: slim aluminum cover in a painted metal finish. Flat Fabric Wrapped Fascia: flat aluminum base wrapped in your shade fabric. Curved Fabric Wrapped Fascia: curved aluminum base wrapped in shade fabric. Style confirmed at order.</div>
-              <!-- Metal fascia colour — Norman metal-fascia palette (not the open-roll premium finishes) -->
-              <div id="sol-fascia-color-wrap" style="display:none;margin-top:12px;padding-top:10px;border-top:1px solid #e8e8e4">
-                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Metal fascia color</div>
+              <div class="sol-sub-label">Size</div>
+              <div class="opt-row" id="grp-fascia-size">
+                <button class="opt-btn" data-v="3.5" onclick="selOpt(this,'grp-fascia-size');updateSummary()">3½″</button>
+                <button class="opt-btn sel" data-v="4.5" onclick="selOpt(this,'grp-fascia-size');updateSummary()">4½″</button>
+                <button class="opt-btn" data-v="6" onclick="selOpt(this,'grp-fascia-size');updateSummary()">6″</button>
+                <button class="opt-btn" data-v="8" onclick="selOpt(this,'grp-fascia-size');updateSummary()">8″</button>
+              </div>
+              <div id="sol-fascia-size-note" style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">Curved comes in 3½″ and 4½″. The 6″ and 8″ are square and fabric-wrapped only.</div>
+              <div id="sol-fascia-metal-wrap">
+                <div class="sol-sub-label">Metal color</div>
                 <div id="sol-fascia-color-slot"></div>
               </div>
+              <div id="sol-fascia-fabric-wrap" style="display:none">
+                <div class="sol-sub-label">Wrap fabric</div>
+                <div class="opt-row" id="grp-fascia-fabric">
+                  <button class="opt-btn sel" onclick="selOpt(this,'grp-fascia-fabric');updateSummary()">Same as my shade</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-fascia-fabric');updateSummary()">A different fabric (I'll say which in the notes)</button>
+                </div>
+              </div>
+              <div class="sol-sub-label">End cap color <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">— no charge</span></div>
+              <div class="opt-row" id="grp-endcaps" style="flex-wrap:wrap"></div>
+              <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">The caps that finish each end of the fascia. If you're not sure, choose “Match my shade”.</div>
             </div>
 
-            <!-- LightGuard 360 sub-options (shown when LightGuard 360 selected) -->
-            <div id="sol-lg-subopts" style="display:none;margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
-              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Full Blackout Side Channels cassette</div>
-              <div class="opt-row" id="grp-lg-cassette-mat" style="flex-wrap:wrap">
-                <button class="opt-btn sel" onclick="solPickLgCassette('fabric',this)">Fabric wrapped</button>
-                <button class="opt-btn" onclick="solPickLgCassette('metal',this)">Metal</button>
-              </div>
-              <div id="sol-lg-cassette-color-wrap" style="display:none;margin-top:10px">
-                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Metal cassette color</div>
-                <div id="sol-lg-cassette-color-slot"></div>
-              </div>
-              <div style="margin-top:12px;padding-top:10px;border-top:1px solid #e8e8e4">
-                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Side rail color <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">(always metal)</span></div>
-                <div id="sol-lg-rail-color-slot"></div>
-              </div>
-              <div style="font-size:10px;color:#888;margin-top:8px;line-height:1.5">Full Blackout Side Channels require a Blackout fabric. The cassette may be fabric wrapped (matches your shade fabric) or metal. <strong>Side rails are always metal</strong> and are picked separately. Housing color is selected manually — fabric color coordination does not apply. Standard hardware is black.</div>
+            <!-- Modern Wood Valance: 4½″, paint or stain, mitered returns -->
+            <div id="sol-top-wood" class="sol-sub" style="display:none">
+              <div class="sol-sub-label">Wood valance finish <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">— 4½″, mitered returns</span></div>
+              <div class="opt-row" id="grp-wood-finish" style="flex-wrap:wrap"></div>
             </div>
 
-            <!-- Hem bar — applies to LightGuard 360 and standard shades alike -->
-            <div id="sol-hembar-wrap" style="margin-top:10px;padding:12px 14px;background:#fafaf8;border:1px solid #e8e8e4;border-radius:9px">
-              <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Hem bar</div>
+            <!-- Cassette: metal premium colour or fabric-wrapped -->
+            <div id="sol-top-cassette" class="sol-sub" style="display:none">
+              <div class="sol-sub-label">Cassette cover</div>
+              <div class="opt-row" id="grp-cassette-mat">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-cassette-mat');solSyncCovers();updateSummary()">Fabric-wrapped</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-cassette-mat');solSyncCovers();updateSummary()">Metal</button>
+              </div>
+              <div id="sol-cassette-color-wrap" style="display:none">
+                <div class="sol-sub-label">Metal color</div>
+                <div class="opt-row" id="grp-cassette-color" style="flex-wrap:wrap"></div>
+              </div>
+              <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">A cassette encloses the roll. Single shades only.</div>
+            </div>
+
+            <!-- LightGuard 360 (Full Blackout Side Channels) -->
+            <div id="sol-top-lg360" class="sol-sub" style="display:none">
+              <div class="sol-sub-label">Housing &amp; headrail</div>
+              <div class="opt-row" id="grp-lg-cassette-mat">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-lg-cassette-mat');solSyncCovers();updateSummary()">Fabric-wrapped</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-lg-cassette-mat');solSyncCovers();updateSummary()">Metal</button>
+              </div>
+              <div id="sol-lg-cassette-color-wrap" style="display:none">
+                <div class="sol-sub-label">Housing metal color</div>
+                <div class="opt-row" id="grp-lg-cassette-color" style="flex-wrap:wrap"></div>
+              </div>
+              <div class="sol-sub-label">Side channel color <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">(always metal)</span></div>
+              <div class="opt-row" id="grp-lg-rail-color" style="flex-wrap:wrap"></div>
+              <div style="font-size:10px;color:#888;margin-top:8px;line-height:1.5">Channels down both sides seal the light gaps. Pair with a Blackout fabric. Single shades only. On a door it must be outside mount, with no hold down.</div>
+            </div>
+
+            <!-- Open roll: premium hardware is the one upgrade it takes -->
+            <div id="sol-top-none" class="sol-sub" style="display:none">
+              <div class="sol-sub-label">Premium hardware</div>
+              <div class="opt-row" id="grp-premium">
+                <button class="opt-btn sel" onclick="selOpt(this,'grp-premium');solSyncPremium();updateSummary()">Standard hardware</button>
+                <button class="opt-btn" onclick="selOpt(this,'grp-premium');solSyncPremium();updateSummary()">Premium hardware</button>
+              </div>
+              <div id="sol-hw-subopts" style="display:none">
+                <div class="sol-sub-label">Premium hardware finish</div>
+                <div class="opt-row" id="grp-hw-color" style="flex-wrap:wrap">
+                  <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#e3c279,#b8902f)"></span>Brass</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#a06f3e,#5e3f23)"></span>Bronze</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#4a4a4a,#161616)"></span>Brushed Black</button>
+                  <button class="opt-btn" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:linear-gradient(135deg,#dcdcdc,#a4a4a4)"></span>Matte Silver</button>
+                  <button class="opt-btn sel" onclick="selOpt(this,'grp-hw-color');updateSummary()"><span class="hw-sw" style="background:#f8f8f5"></span>White</button>
+                </div>
+              </div>
+              <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">Open roll: nothing covers the roll and there's no mounting rail. Premium hardware (brackets, clutch &amp; chain, hem bar) in a matching finish is available on single open-roll shades only.</div>
+            </div>
+
+            <!-- Hem bar — every shade gets the premium hem bar -->
+            <div id="sol-hembar-wrap" class="sol-sub">
+              <div class="sol-sub-label" style="margin-top:0">Hem bar <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">— premium hem bar included on every shade</span></div>
               <div class="opt-row" id="grp-hembar-mat" style="flex-wrap:wrap">
                 <button class="opt-btn sel" onclick="solPickHemBar('fabric',this)">Fabric wrapped</button>
                 <button class="opt-btn" onclick="solPickHemBar('metal',this)">Metal</button>
               </div>
-              <div id="sol-hembar-color-wrap" style="display:none;margin-top:10px">
-                <div style="font-size:11px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px">Metal hem bar color</div>
+              <div id="sol-hembar-color-wrap" style="display:none">
+                <div class="sol-sub-label">Metal hem bar color</div>
                 <div id="sol-hembar-color-slot"></div>
               </div>
-              <div id="sol-hembar-note" style="font-size:10px;color:#888;margin-top:8px;line-height:1.5">Fabric wrapped: front matches your shade fabric, back matches the standard hardware color. Metal: painted hem bar in the color you pick above.</div>
+            </div>
+
+            <!-- Extras -->
+            <div class="sol-sub-label" style="margin-top:14px">Extras <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">(optional)</span></div>
+            <div class="opt-row" id="grp-extras" style="flex-wrap:wrap">
+              <button class="opt-btn" data-add="fibpole" onclick="this.classList.toggle('sel');updateSummary()">Additional operating pole</button>
+              <button class="opt-btn" data-add="poleatt" onclick="this.classList.toggle('sel');updateSummary()">Pole attachment only</button>
+            </div>
+            <div id="sol-shim-wrap">
+              <div class="sol-sub-label">Shims <span style="font-weight:400;color:#aaa;text-transform:none;letter-spacing:0">— spacers to clear window trim or a handle, up to 3</span></div>
+              <div class="opt-row" id="grp-shims">
+                <button class="opt-btn sel" data-v="0" onclick="selOpt(this,'grp-shims');updateSummary()">None</button>
+                <button class="opt-btn" data-v="1" onclick="selOpt(this,'grp-shims');updateSummary()">1</button>
+                <button class="opt-btn" data-v="2" onclick="selOpt(this,'grp-shims');updateSummary()">2</button>
+                <button class="opt-btn" data-v="3" onclick="selOpt(this,'grp-shims');updateSummary()">3</button>
+              </div>
             </div>
           </div>
 
@@ -883,8 +975,7 @@
         <div class="summary-card" id="summary-card">
           <div class="summary-head">Your configuration</div>
           <div class="summary-row"><span class="sr-key">Product</span><span class="sr-val">Norman Soluna Roller</span></div>
-          <div class="summary-row"><span class="sr-key">Light control</span><span class="sr-val" id="s-light">Light Filtering</span></div>
-          <div class="summary-row" id="s-fabric-row" style="display:none"><span class="sr-key">Fabric</span><span class="sr-val" id="s-fabric">—</span></div>
+          <div class="summary-row"><span class="sr-key">Fabric</span><span class="sr-val" id="s-light">—</span></div>
           <div class="summary-row"><span class="sr-key">Operation</span><span class="sr-val" id="s-op">Manual with chain</span></div>
           <div class="summary-row" id="s-motor-row" style="display:none"><span class="sr-key">Motor</span><span class="sr-val" id="s-motor-brand">—</span></div>
           <div class="summary-row"><span class="sr-key">Mount</span><span class="sr-val" id="s-mount">Inside mount</span></div>
@@ -892,12 +983,18 @@
           <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="s-size">—</span></div>
           <div class="summary-row"><span class="sr-key">Qty</span><span class="sr-val" id="s-qty">1</span></div>
           <div class="summary-row" id="s-coupled-row" style="display:none"><span class="sr-key">Coupled</span><span class="sr-val" id="s-coupled">—</span></div>
-          <div class="summary-row"><span class="sr-key">Add-ons</span><span class="sr-val" id="s-addons">None</span></div>
-          <div class="summary-row" id="s-price-row" style="display:none;border-top:1px solid #e8e4de;margin-top:6px;padding-top:8px">
-            <span class="sr-key" style="font-weight:600;color:#111">Est. retail</span>
-            <span class="sr-val" id="s-price" style="font-weight:700;font-size:15px;color:#111">—</span>
+          <div class="summary-row"><span class="sr-key">Top of shade</span><span class="sr-val" id="s-top">Mounting rail only</span></div>
+          <div class="summary-row"><span class="sr-key">Options</span><span class="sr-val" id="s-addons">—</span></div>
+          <div id="s-issue" style="display:none;margin-top:8px;font-size:12px;line-height:1.5;color:#a3321f;background:#fdf0ee;border:1px solid #f1c0bb;border-radius:6px;padding:8px 10px"></div>
+          <div id="s-price-block" style="display:none;border-top:1px solid #e8e4de;margin-top:8px;padding-top:8px">
+            <div class="summary-row"><span class="sr-key">Retail</span><span class="sr-val" id="s-retail" style="text-decoration:line-through;color:#888">—</span></div>
+            <div class="summary-row"><span class="sr-key">Norman discount</span><span class="sr-val" id="s-disc">25% off</span></div>
+            <div class="summary-row"><span class="sr-key" style="font-weight:600;color:#111">Your price</span><span class="sr-val" id="s-your" style="font-weight:700;color:#111">—</span></div>
+            <div class="summary-row" id="s-motor-price-row" style="display:none"><span class="sr-key">Motorization</span><span class="sr-val" id="s-motor-price">—</span></div>
+            <div class="summary-row"><span class="sr-key">Shipping</span><span class="sr-val" id="s-ship">—</span></div>
+            <div class="summary-row" style="border-top:1px solid #e8e4de;margin-top:4px;padding-top:6px"><span class="sr-key" style="font-weight:700;color:#111">Total</span><span class="sr-val" id="s-total" style="font-weight:700;font-size:16px;color:#111">—</span></div>
           </div>
-          <div class="summary-note">Norman retail base prices — select a fabric in Step 2 for an instant estimate. SmartRelease™ adds $86. Final price confirmed at quote.</div>
+          <div class="summary-note" id="s-note">Pick a fabric in Step 3 for an instant price. Norman suggested retail, 25% off. Shipping is never discounted. Final price confirmed at quote.</div>
         </div>
 
       </div>
@@ -973,6 +1070,8 @@
 <footer class="site-footer" id="site-footer"></footer>
 
 <script src="../js/shared.js"></script>
+<script src="../js/pages/soluna-data.js"></script>
+<script src="../js/pages/soluna-engine.js"></script>
 <script src="../js/pages/soluna-roller-shades.js"></script>
 <script>
 // Step 7 "Your details" — rendered from the shared helper. Default ids (cf-*,
@@ -991,8 +1090,8 @@ document.getElementById('soluna-final-step').innerHTML = pbContactStepHTML({
   pbCtx.prefill('inp-height', 'h',   function() { if (typeof updateSummary === 'function') updateSummary(); });
   pbCtx.prefill('inp-qty',    'qty', null);
 })();
-// Render the default fabric collection (Light Filtering Designer is pre-selected) so swatches show on load.
-if (typeof showFabricColls === 'function') showFabricColls('lf');
+// Build the fabric pickers, colour rows and first estimate once the form is on the page.
+if (typeof solInit === 'function') solInit();
 </script>
 </body>
 </html>

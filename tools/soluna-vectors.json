@@ -1,0 +1,4630 @@
+[
+ {
+  "id": "V01",
+  "desc": "Single shade, exact break, raceway default",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 36,
+   "height": 60,
+   "header": "race"
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 346,
+     "price": 346
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "36x60",
+   "shadeSubtotal": 346,
+   "header": "",
+   "raceway": 67,
+   "racewayLabel": "Raceway (row 4) @ 36\" × 1",
+   "racewayEach": 67,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 83,
+   "freight": 25,
+   "retailTotal": 454,
+   "discountableRetail": 429,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 128.7,
+   "clientSubtotal": 300.3,
+   "clientTotal": 325.3,
+   "cost": 185.88,
+   "grossMargin": 139.43
+  }
+ },
+ {
+  "id": "V02",
+  "desc": "Rounds up both axes, no twin so +20%",
+  "input": {
+   "shades": [
+    {
+     "collection": "Clarissa",
+     "blackout": true
+    }
+   ],
+   "width": 36.125,
+   "height": 41.125,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "errors": [
+    "NO_BLACKOUT_PRODUCT: no room-darkening version of any light filtering"
+   ]
+  }
+ },
+ {
+  "id": "V03",
+  "desc": "Same-group twin — RD is level with LF, so +20%",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 36,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 1,
+     "gridPrice": 346,
+     "price": 415.2
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "36x60",
+   "shadeSubtotal": 415.2,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 431.2,
+   "discountableRetail": 431.2,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 129.36,
+   "clientSubtotal": 301.84,
+   "clientTotal": 301.84,
+   "cost": 161.7,
+   "grossMargin": 140.14
+  }
+ },
+ {
+  "id": "V04",
+  "desc": "Group-jump twin takes no uplift",
+  "input": {
+   "shades": [
+    {
+     "collection": "Leah",
+     "blackout": true
+    }
+   ],
+   "width": 36,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Leah",
+     "blackout": true,
+     "rule": "TWIN",
+     "group": 2,
+     "gridPrice": 384,
+     "price": 384
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "36x60",
+   "shadeSubtotal": 384,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 400,
+   "discountableRetail": 400,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 120,
+   "clientSubtotal": 280,
+   "clientTotal": 280,
+   "cost": 150,
+   "grossMargin": 130
+  }
+ },
+ {
+  "id": "V05",
+  "desc": "Renamed twin Kendra to Garden — same group, so +20%",
+  "input": {
+   "shades": [
+    {
+     "collection": "Kendra",
+     "blackout": true
+    }
+   ],
+   "width": 36,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Kendra",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 3,
+     "gridPrice": 449,
+     "price": 538.8
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "36x60",
+   "shadeSubtotal": 538.8,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 554.8,
+   "discountableRetail": 554.8,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 166.44,
+   "clientSubtotal": 388.36,
+   "clientTotal": 388.36,
+   "cost": 208.05,
+   "grossMargin": 180.31
+  }
+ },
+ {
+  "id": "V06",
+  "desc": "RD ordered directly matches the twin route exactly",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie RD",
+     "blackout": false
+    }
+   ],
+   "width": 36,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie RD",
+     "blackout": false,
+     "rule": "RD_SAME_GROUP_UPLIFT_20",
+     "group": 1,
+     "gridPrice": 346,
+     "price": 415.2
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "36x60",
+   "shadeSubtotal": 415.2,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 431.2,
+   "discountableRetail": 431.2,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 129.36,
+   "clientSubtotal": 301.84,
+   "clientTotal": 301.84,
+   "cost": 161.7,
+   "grossMargin": 140.14
+  }
+ },
+ {
+  "id": "V07",
+  "desc": "Blackout-only line, no LF counterpart, own group",
+  "input": {
+   "shades": [
+    {
+     "collection": "Jamaica",
+     "blackout": false
+    }
+   ],
+   "width": 36,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Jamaica",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 2,
+     "gridPrice": 384,
+     "price": 384
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "36x60",
+   "shadeSubtotal": 384,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 400,
+   "discountableRetail": 400,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 120,
+   "clientSubtotal": 280,
+   "clientTotal": 280,
+   "cost": 150,
+   "grossMargin": 130
+  }
+ },
+ {
+  "id": "V08",
+  "desc": "Solar screen, group 1",
+  "input": {
+   "shades": [
+    {
+     "collection": "Flow 7%",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 72,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Flow 7%",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 430,
+     "price": 430
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x72",
+   "shadeSubtotal": 430,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 446,
+   "discountableRetail": 446,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 133.8,
+   "clientSubtotal": 312.2,
+   "clientTotal": 312.2,
+   "cost": 167.25,
+   "grossMargin": 144.95
+  }
+ },
+ {
+  "id": "V09",
+  "desc": "Cara — group from the fabric list",
+  "input": {
+   "shades": [
+    {
+     "collection": "Cara",
+     "blackout": false
+    }
+   ],
+   "width": 36,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Cara",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 346,
+     "price": 346
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "36x60",
+   "shadeSubtotal": 346,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 362,
+   "discountableRetail": 362,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 108.6,
+   "clientSubtotal": 253.4,
+   "clientTotal": 253.4,
+   "cost": 135.75,
+   "grossMargin": 117.65
+  }
+ },
+ {
+  "id": "V10",
+  "desc": "Row 1 metal fascia — raceway line PLUS the fascia",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia_metal",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Curved metal fascia 4½\" (row 1) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 239,
+   "freight": 0,
+   "retailTotal": 653,
+   "discountableRetail": 653,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 195.9,
+   "clientSubtotal": 457.1,
+   "clientTotal": 457.1,
+   "cost": 244.88,
+   "grossMargin": 212.23
+  }
+ },
+ {
+  "id": "V11",
+  "desc": "Row 1 wood valance, same price",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "wood",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Modern Wood Valance 4½\" (row 1) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": null,
+   "material": "wood",
+   "size": 4.5,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 239,
+   "freight": 0,
+   "retailTotal": 653,
+   "discountableRetail": 653,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 195.9,
+   "clientSubtotal": 457.1,
+   "clientTotal": 457.1,
+   "cost": 244.88,
+   "grossMargin": 212.23
+  }
+ },
+ {
+  "id": "V12",
+  "desc": "Row 2 — square fabric-wrapped valance 4½\"",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Square fabric-wrapped fascia 4½\" (row 2) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 260,
+   "freight": 0,
+   "retailTotal": 674,
+   "discountableRetail": 674,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 202.2,
+   "clientSubtotal": 471.8,
+   "clientTotal": 471.8,
+   "cost": 252.75,
+   "grossMargin": 219.05
+  }
+ },
+ {
+  "id": "V13",
+  "desc": "Row 3 — square fabric-wrapped valance 8\"",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 333,
+   "freight": 0,
+   "retailTotal": 747,
+   "discountableRetail": 747,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 224.1,
+   "clientSubtotal": 522.9,
+   "clientTotal": 522.9,
+   "cost": 280.13,
+   "grossMargin": 242.78
+  }
+ },
+ {
+  "id": "V14",
+  "desc": "Row 3 cassette — hem bar still charged",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "cassette",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Cassette system (row 3) @ 48\"",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 260,
+   "freight": 0,
+   "retailTotal": 674,
+   "discountableRetail": 674,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 202.2,
+   "clientSubtotal": 471.8,
+   "clientTotal": 471.8,
+   "cost": 252.75,
+   "grossMargin": 219.05
+  }
+ },
+ {
+  "id": "V15",
+  "desc": "Raceway only — the raceway line alone, no fascia on top",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "race",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 89,
+   "freight": 0,
+   "retailTotal": 503,
+   "discountableRetail": 503,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 150.9,
+   "clientSubtotal": 352.1,
+   "clientTotal": 352.1,
+   "cost": 188.63,
+   "grossMargin": 163.48
+  }
+ },
+ {
+  "id": "V16",
+  "desc": "LightGuard 360 flat $375 — hem bar still charged",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "lg360",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "LightGuard 360",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 391,
+   "freight": 0,
+   "retailTotal": 805,
+   "discountableRetail": 805,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 241.5,
+   "clientSubtotal": 563.5,
+   "clientTotal": 563.5,
+   "cost": 301.88,
+   "grossMargin": 261.63
+  }
+ },
+ {
+  "id": "V17",
+  "desc": "DUAL — light filtering front, blackout back, same-group pair takes the 20%",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 496.8
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 910.8,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 0,
+   "retailTotal": 1332.8,
+   "discountableRetail": 1332.8,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 399.84,
+   "clientSubtotal": 932.96,
+   "clientTotal": 932.96,
+   "cost": 499.8,
+   "grossMargin": 433.16
+  }
+ },
+ {
+  "id": "V18",
+  "desc": "DUAL across two collections in different groups",
+  "input": {
+   "shades": [
+    {
+     "collection": "Flow 7%",
+     "blackout": false
+    },
+    {
+     "collection": "Remy",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Flow 7%",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 390,
+     "price": 390
+    },
+    {
+     "collection": "Remy",
+     "blackout": true,
+     "rule": "TWIN",
+     "group": 3,
+     "gridPrice": 545,
+     "price": 545
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 935,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 0,
+   "retailTotal": 1357,
+   "discountableRetail": 1357,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 407.1,
+   "clientSubtotal": 949.9,
+   "clientTotal": 949.9,
+   "cost": 508.88,
+   "grossMargin": 441.03
+  }
+ },
+ {
+  "id": "V19",
+  "desc": "COUPLED 3 shades — surcharge twice",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia_metal",
+   "coupledCount": 3,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 3,
+   "dual": false,
+   "coupledCount": 3,
+   "cell": "48x60",
+   "shadeSubtotal": 1242,
+   "header": "Curved metal fascia 4½\" (row 1) @ 48\"",
+   "raceway": 219,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 3",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 651,
+   "freight": 0,
+   "retailTotal": 1893,
+   "discountableRetail": 1893,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 567.9,
+   "clientSubtotal": 1325.1,
+   "clientTotal": 1325.1,
+   "cost": 709.88,
+   "grossMargin": 615.23
+  }
+ },
+ {
+  "id": "V20",
+  "desc": "COUPLED 4 shades — surcharge three times",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia_metal",
+   "coupledCount": 4,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 4,
+   "dual": false,
+   "coupledCount": 4,
+   "cell": "48x60",
+   "shadeSubtotal": 1656,
+   "header": "Curved metal fascia 4½\" (row 1) @ 48\"",
+   "raceway": 292,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 4",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 857,
+   "freight": 0,
+   "retailTotal": 2513,
+   "discountableRetail": 2513,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 753.9,
+   "clientSubtotal": 1759.1,
+   "clientTotal": 1759.1,
+   "cost": 942.38,
+   "grossMargin": 816.73
+  }
+ },
+ {
+  "id": "V21",
+  "desc": "Common valance 168in — row 1 at 144 + 2ft",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 96,
+   "height": 84,
+   "header": "fascia_metal",
+   "valanceWidth": 168,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 841,
+     "price": 841
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "96x84",
+   "shadeSubtotal": 841,
+   "header": "Curved metal fascia 4½\" (row 1) @ 144\" + 2 ft",
+   "raceway": 133,
+   "racewayLabel": "Raceway (row 4) @ 96\" × 1",
+   "racewayEach": 133,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 2,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 580,
+   "freight": 0,
+   "retailTotal": 1421,
+   "discountableRetail": 1421,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 426.3,
+   "clientSubtotal": 994.7,
+   "clientTotal": 994.7,
+   "cost": 532.88,
+   "grossMargin": 461.83
+  }
+ },
+ {
+  "id": "V22",
+  "desc": "Raceway prices off the shade width, so a 132\" valance never hits the 120\" raceway ceiling",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "race",
+   "valanceWidth": 132,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 89,
+   "freight": 0,
+   "retailTotal": 503,
+   "discountableRetail": 503,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 150.9,
+   "clientSubtotal": 352.1,
+   "clientTotal": 352.1,
+   "cost": 188.63,
+   "grossMargin": 163.48
+  }
+ },
+ {
+  "id": "V23",
+  "desc": "Premium hem bar auto-adds; magnets do NOT",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "race",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 89,
+   "freight": 0,
+   "retailTotal": 503,
+   "discountableRetail": 503,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 150.9,
+   "clientSubtotal": 352.1,
+   "clientTotal": 352.1,
+   "cost": 188.63,
+   "grossMargin": 163.48
+  }
+ },
+ {
+  "id": "V24",
+  "desc": "Door shade adds the magnetic hold down",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "race",
+   "door": true,
+   "freight": false
+  },
+  "expect": {
+   "door": true,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar",
+    "Magnetic hold down (door shade)"
+   ],
+   "optionsSubtotal": 117,
+   "freight": 0,
+   "retailTotal": 531,
+   "discountableRetail": 531,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 159.3,
+   "clientSubtotal": 371.7,
+   "clientTotal": 371.7,
+   "cost": 199.13,
+   "grossMargin": 172.58
+  }
+ },
+ {
+  "id": "V25",
+  "desc": "Door dual carries magnets on both shades",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8",
+   "door": true,
+   "freight": false
+  },
+  "expect": {
+   "door": true,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 496.8
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 910.8,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar",
+    "Magnetic hold down (door shade)"
+   ],
+   "optionsSubtotal": 478,
+   "freight": 0,
+   "retailTotal": 1388.8,
+   "discountableRetail": 1388.8,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 416.64,
+   "clientSubtotal": 972.16,
+   "clientTotal": 972.16,
+   "cost": 520.8,
+   "grossMargin": 451.36
+  }
+ },
+ {
+  "id": "V26",
+  "desc": "Pole attachment $40 plus fiberglass pole $28 = $68",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "race",
+   "addons": {
+    "poleatt": 1,
+    "fibpole": 1
+   },
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 157,
+   "freight": 0,
+   "retailTotal": 571,
+   "discountableRetail": 571,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 171.3,
+   "clientSubtotal": 399.7,
+   "clientTotal": 399.7,
+   "cost": 214.13,
+   "grossMargin": 185.58
+  }
+ },
+ {
+  "id": "V27",
+  "desc": "Below first column clamps to 24in",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 12,
+   "height": 36,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 254,
+     "price": 254
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "24x36",
+   "shadeSubtotal": 254,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 270,
+   "discountableRetail": 270,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 81,
+   "clientSubtotal": 189,
+   "clientTotal": 189,
+   "cost": 101.25,
+   "grossMargin": 87.75
+  }
+ },
+ {
+  "id": "V28",
+  "desc": "Off grid past 120in",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 130,
+   "height": 60,
+   "header": "none"
+  },
+  "expect": {
+   "errors": [
+    "OFF_GRID: grids stop at 120\" wide and 144\" high",
+    "OVER_MAX_WIDTH: 118\" is the single-shade maximum",
+    "OVER_FABRIC_WIDTH: Callie runs 118\""
+   ]
+  }
+ },
+ {
+  "id": "V29",
+  "desc": "Cordless length limit at the 24in column",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 24,
+   "height": 120,
+   "header": "none"
+  },
+  "expect": {
+   "errors": [
+    "CORDLESS_LIMIT: 24\" wide cordless maxes at 96\" long"
+   ]
+  }
+ },
+ {
+  "id": "V30",
+  "desc": "INVALID — dual with a metal fascia",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia_metal"
+  },
+  "expect": {
+   "errors": [
+    "INVALID_COMBO: a dual shade always takes the square 8\" fabric-wrapped valance"
+   ]
+  }
+ },
+ {
+  "id": "V31",
+  "desc": "INVALID — LG360 with a magnetic hold down",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "lg360",
+   "addons": {
+    "mag": 1
+   }
+  },
+  "expect": {
+   "errors": [
+    "INVALID_COMBO: Magnetic hold down not available with LightGuard 360"
+   ]
+  }
+ },
+ {
+  "id": "V32",
+  "desc": "Door shade on LightGuard 360, outside mount — fine, no magnets",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "lg360",
+   "door": true,
+   "mount": "OM",
+   "freight": false
+  },
+  "expect": {
+   "door": true,
+   "mount": "OM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "LightGuard 360",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 391,
+   "freight": 0,
+   "retailTotal": 805,
+   "discountableRetail": 805,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 241.5,
+   "clientSubtotal": 563.5,
+   "clientTotal": 563.5,
+   "cost": 301.88,
+   "grossMargin": 261.63
+  }
+ },
+ {
+  "id": "V33",
+  "desc": "Blackout on a natural woven is not a product — refused",
+  "input": {
+   "shades": [
+    {
+     "collection": "Bali",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "errors": [
+    "NO_BLACKOUT_PRODUCT: no room-darkening version of any natural woven"
+   ]
+  }
+ },
+ {
+  "id": "V34",
+  "desc": "Full order — qty 2 duals, 8in valance, 90in+ freight",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 96,
+   "height": 84,
+   "qty": 2,
+   "header": "fab8"
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 841,
+     "price": 841
+    },
+    {
+     "collection": "Callie",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 1,
+     "gridPrice": 841,
+     "price": 1009.2
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "96x84",
+   "shadeSubtotal": 3700.4,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 96\"",
+   "raceway": 133,
+   "racewayLabel": "Raceway (row 4) @ 96\" × 1",
+   "racewayEach": 133,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 1338,
+   "freight": 230,
+   "retailTotal": 5268.4,
+   "discountableRetail": 5038.4,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 1511.52,
+   "clientSubtotal": 3526.88,
+   "clientTotal": 3756.88,
+   "cost": 2119.4,
+   "grossMargin": 1637.48
+  }
+ },
+ {
+  "id": "V35",
+  "desc": "DUAL sheer front + blackout back across collections",
+  "input": {
+   "shades": [
+    {
+     "collection": "Dazzle",
+     "blackout": false
+    },
+    {
+     "collection": "Remy",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Dazzle",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 2,
+     "gridPrice": 462,
+     "price": 462
+    },
+    {
+     "collection": "Remy",
+     "blackout": true,
+     "rule": "TWIN",
+     "group": 3,
+     "gridPrice": 545,
+     "price": 545
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 1007,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 0,
+   "retailTotal": 1429,
+   "discountableRetail": 1429,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 428.7,
+   "clientSubtotal": 1000.3,
+   "clientTotal": 1000.3,
+   "cost": 535.88,
+   "grossMargin": 464.43
+  }
+ },
+ {
+  "id": "V36",
+  "desc": "DUAL with a room-darkening collection picked directly as the back",
+  "input": {
+   "shades": [
+    {
+     "collection": "Brook",
+     "blackout": false
+    },
+    {
+     "collection": "Jamaica",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Brook",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Jamaica",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 2,
+     "gridPrice": 462,
+     "price": 462
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 876,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 0,
+   "retailTotal": 1298,
+   "discountableRetail": 1298,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 389.4,
+   "clientSubtotal": 908.6,
+   "clientTotal": 908.6,
+   "cost": 486.75,
+   "grossMargin": 421.85
+  }
+ },
+ {
+  "id": "V37",
+  "desc": "INVALID DUAL — two light filtering layers",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Brook",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8"
+  },
+  "expect": {
+   "errors": [
+    "INVALID_DUAL: a dual needs one blackout layer — neither layer is a blackout"
+   ]
+  }
+ },
+ {
+  "id": "V38",
+  "desc": "INVALID DUAL — two blackout layers",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": true
+    },
+    {
+     "collection": "Jamaica",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8"
+  },
+  "expect": {
+   "errors": [
+    "INVALID_DUAL: a dual never has two blackout layers"
+   ]
+  }
+ },
+ {
+  "id": "V39",
+  "desc": "DUAL solar screen + blackout",
+  "input": {
+   "shades": [
+    {
+     "collection": "Flow 7%",
+     "blackout": false
+    },
+    {
+     "collection": "Jamaica",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Flow 7%",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 390,
+     "price": 390
+    },
+    {
+     "collection": "Jamaica",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 2,
+     "gridPrice": 462,
+     "price": 462
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 852,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 0,
+   "retailTotal": 1274,
+   "discountableRetail": 1274,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 382.2,
+   "clientSubtotal": 891.8,
+   "clientTotal": 891.8,
+   "cost": 477.75,
+   "grossMargin": 414.05
+  }
+ },
+ {
+  "id": "V40",
+  "desc": "DUAL natural woven + blackout",
+  "input": {
+   "shades": [
+    {
+     "collection": "Bali",
+     "blackout": false
+    },
+    {
+     "collection": "Lola BO",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Bali",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 2,
+     "gridPrice": 462,
+     "price": 462
+    },
+    {
+     "collection": "Lola BO",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 3,
+     "gridPrice": 545,
+     "price": 545
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 1007,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 0,
+   "retailTotal": 1429,
+   "discountableRetail": 1429,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 428.7,
+   "clientSubtotal": 1000.3,
+   "clientTotal": 1000.3,
+   "cost": 535.88,
+   "grossMargin": 464.43
+  }
+ },
+ {
+  "id": "V41",
+  "desc": "DUAL blackout in FRONT, light filtering back",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": true
+    },
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 496.8
+    },
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 910.8,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 0,
+   "retailTotal": 1332.8,
+   "discountableRetail": 1332.8,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 399.84,
+   "clientSubtotal": 932.96,
+   "clientTotal": 932.96,
+   "cost": 499.8,
+   "grossMargin": 433.16
+  }
+ },
+ {
+  "id": "V42",
+  "desc": "INVALID DUAL — two blackouts",
+  "input": {
+   "shades": [
+    {
+     "collection": "Jamaica",
+     "blackout": false
+    },
+    {
+     "collection": "Fiji",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8"
+  },
+  "expect": {
+   "errors": [
+    "INVALID_DUAL: a dual never has two blackout layers"
+   ]
+  }
+ },
+ {
+  "id": "V43",
+  "desc": "INVALID DUAL — no blackout layer",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Brook",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fab8"
+  },
+  "expect": {
+   "errors": [
+    "INVALID_DUAL: a dual needs one blackout layer — neither layer is a blackout"
+   ]
+  }
+ },
+ {
+  "id": "V44",
+  "desc": "INVALID — cassette is a single-shade system, never a dual",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "cassette"
+  },
+  "expect": {
+   "errors": [
+    "INVALID_COMBO: Cassette system is a single-shade system — never a dual",
+    "INVALID_COMBO: Cassette system is single-shade only"
+   ]
+  }
+ },
+ {
+  "id": "V45",
+  "desc": "INVALID — LightGuard 360 is a single-shade system, never a dual",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "lg360"
+  },
+  "expect": {
+   "errors": [
+    "INVALID_COMBO: LightGuard 360 is a single-shade system — never a dual",
+    "INVALID_COMBO: LightGuard 360 is single-shade only"
+   ]
+  }
+ },
+ {
+  "id": "V46",
+  "desc": "INVALID — door + LG360 ordered inside mount",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "lg360",
+   "door": true,
+   "mount": "IM"
+  },
+  "expect": {
+   "errors": [
+    "MOUNT_REQUIRED: a door shade with LightGuard 360 must be ordered outside mount"
+   ]
+  }
+ },
+ {
+  "id": "V47",
+  "desc": "Premium hardware $89 on an open roll — the $16 hem bar is STILL charged",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "addons": {
+    "pole": 1
+   },
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": {
+    "amount": 89,
+    "finish": "White",
+    "hemBarStillCharged": true
+   },
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 105,
+   "freight": 0,
+   "retailTotal": 519,
+   "discountableRetail": 519,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 155.7,
+   "clientSubtotal": 363.3,
+   "clientTotal": 363.3,
+   "cost": 194.63,
+   "grossMargin": 168.68
+  }
+ },
+ {
+  "id": "V48",
+  "desc": "INVALID — premium hardware with a raceway",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "race",
+   "addons": {
+    "pole": 1
+   }
+  },
+  "expect": {
+   "errors": [
+    "INVALID_COMBO: premium hardware is for open-roll shades only — no fascia, valance or raceway"
+   ]
+  }
+ },
+ {
+  "id": "V49",
+  "desc": "INVALID — premium hardware with a fascia",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia_metal",
+   "addons": {
+    "pole": 1
+   }
+  },
+  "expect": {
+   "errors": [
+    "INVALID_COMBO: premium hardware is for open-roll shades only — no fascia, valance or raceway"
+   ]
+  }
+ },
+ {
+  "id": "V50",
+  "desc": "Curved metal fascia 4½\" written out in full — same as the alias",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Curved metal fascia 4½\" (row 1) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 239,
+   "freight": 0,
+   "retailTotal": 653,
+   "discountableRetail": 653,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 195.9,
+   "clientSubtotal": 457.1,
+   "clientTotal": 457.1,
+   "cost": 244.88,
+   "grossMargin": 212.23
+  }
+ },
+ {
+  "id": "V51",
+  "desc": "Square metal fascia — shape never moves a metal price",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "square",
+   "material": "metal",
+   "size": 4.5,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Square metal fascia 4½\" (row 1) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 239,
+   "freight": 0,
+   "retailTotal": 653,
+   "discountableRetail": 653,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 195.9,
+   "clientSubtotal": 457.1,
+   "clientTotal": 457.1,
+   "cost": 244.88,
+   "grossMargin": 212.23
+  }
+ },
+ {
+  "id": "V52",
+  "desc": "Square fabric-wrapped 6\" — row 2, and square is the only shape that has it",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "square",
+   "material": "fabric",
+   "size": 6,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Square fabric-wrapped fascia 6\" (row 2) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 6,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 260,
+   "freight": 0,
+   "retailTotal": 674,
+   "discountableRetail": 674,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 202.2,
+   "clientSubtotal": 471.8,
+   "clientTotal": 471.8,
+   "cost": 252.75,
+   "grossMargin": 219.05
+  }
+ },
+ {
+  "id": "V53",
+  "desc": "Curved fabric-wrapped 8\" — refused, the 8\" is square only",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "curved",
+   "material": "fabric",
+   "size": 8,
+   "freight": false
+  },
+  "expect": {
+   "errors": [
+    "SIZE_NOT_AVAILABLE: a curved fabric-wrapped fascia comes in 3½\" and 4½\" — not 8\""
+   ]
+  }
+ },
+ {
+  "id": "V54",
+  "desc": "INVALID — metal fascia at 6\" (metal stops at 4½\")",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "curved",
+   "material": "metal",
+   "size": 6
+  },
+  "expect": {
+   "errors": [
+    "SIZE_NOT_AVAILABLE: a curved metal fascia comes in 3½\" and 4½\" — not 6\""
+   ]
+  }
+ },
+ {
+  "id": "V55",
+  "desc": "Single defaults — fascia with nothing else given is curved metal 4½\"",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Curved metal fascia 4½\" (row 1) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 239,
+   "freight": 0,
+   "retailTotal": 653,
+   "discountableRetail": 653,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 195.9,
+   "clientSubtotal": 457.1,
+   "clientTotal": 457.1,
+   "cost": 244.88,
+   "grossMargin": 212.23
+  }
+ },
+ {
+  "id": "V56",
+  "desc": "Dual defaults — fascia with nothing else given is square fabric-wrapped 8\"",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 496.8
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 910.8,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 0,
+   "retailTotal": 1332.8,
+   "discountableRetail": 1332.8,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 399.84,
+   "clientSubtotal": 932.96,
+   "clientTotal": 932.96,
+   "cost": 499.8,
+   "grossMargin": 433.16
+  }
+ },
+ {
+  "id": "V57",
+  "desc": "INVALID — dual asked for 4½\"",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "material": "fabric",
+   "size": 4.5
+  },
+  "expect": {
+   "errors": [
+    "INVALID_COMBO: a dual shade always takes the square 8\" fabric-wrapped valance"
+   ]
+  }
+ },
+ {
+  "id": "V58",
+  "desc": "End caps — offered on a fascia, color overridden, no charge",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "square",
+   "material": "fabric",
+   "size": 4.5,
+   "endCapColor": "Chocolate",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Square fabric-wrapped fascia 4½\" (row 2) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": true,
+    "color": "Chocolate",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 260,
+   "freight": 0,
+   "retailTotal": 674,
+   "discountableRetail": 674,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 202.2,
+   "clientSubtotal": 471.8,
+   "clientTotal": 471.8,
+   "cost": 252.75,
+   "grossMargin": 219.05
+  }
+ },
+ {
+  "id": "V59",
+  "desc": "INVALID — end caps asked for on a cassette",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "cassette",
+   "endCapColor": "Black"
+  },
+  "expect": {
+   "errors": [
+    "NOT_OFFERED: Cassette system takes no end caps"
+   ]
+  }
+ },
+ {
+  "id": "V60",
+  "desc": "Custom 200\" square fabric-wrapped 8\" common valance — row 3 + $28/ft",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 96,
+   "height": 84,
+   "header": "fascia",
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "valanceWidth": 200,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 841,
+     "price": 841
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "96x84",
+   "shadeSubtotal": 841,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 144\" + 5 ft",
+   "raceway": 133,
+   "racewayLabel": "Raceway (row 4) @ 96\" × 1",
+   "racewayEach": 133,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 5,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 901,
+   "freight": 0,
+   "retailTotal": 1742,
+   "discountableRetail": 1742,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 522.6,
+   "clientSubtotal": 1219.4,
+   "clientTotal": 1219.4,
+   "cost": 653.25,
+   "grossMargin": 566.15
+  }
+ },
+ {
+  "id": "V61",
+  "desc": "Metal fascia at 3½\" — row 1, same price as 4½\"",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "curved",
+   "material": "metal",
+   "size": 3.5
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Curved metal fascia 3½\" (row 1) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 3.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 239,
+   "freight": 25,
+   "retailTotal": 678,
+   "discountableRetail": 653,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 195.9,
+   "clientSubtotal": 457.1,
+   "clientTotal": 482.1,
+   "cost": 269.88,
+   "grossMargin": 212.23
+  }
+ },
+ {
+  "id": "V62",
+  "desc": "INVALID — curved fabric-wrapped at 6\"",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "curved",
+   "material": "fabric",
+   "size": 6
+  },
+  "expect": {
+   "errors": [
+    "SIZE_NOT_AVAILABLE: a curved fabric-wrapped fascia comes in 3½\" and 4½\" — not 6\""
+   ]
+  }
+ },
+ {
+  "id": "V63",
+  "desc": "Square fabric-wrapped 8\" on a single — row 3",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 333,
+   "freight": 0,
+   "retailTotal": 747,
+   "discountableRetail": 747,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 224.1,
+   "clientSubtotal": 522.9,
+   "clientTotal": 522.9,
+   "cost": 280.13,
+   "grossMargin": 242.78
+  }
+ },
+ {
+  "id": "V64",
+  "desc": "Freight — exactly 90\" wide takes the wide table ($80 + $50)",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 90,
+   "height": 84,
+   "qty": 3,
+   "header": "race"
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 806,
+     "price": 806
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "90x84",
+   "shadeSubtotal": 2418,
+   "header": "",
+   "raceway": 122,
+   "racewayLabel": "Raceway (row 4) @ 90\" × 1",
+   "racewayEach": 122,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 414,
+   "freight": 180,
+   "retailTotal": 3012,
+   "discountableRetail": 2832,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 849.6,
+   "clientSubtotal": 1982.4,
+   "clientTotal": 2162.4,
+   "cost": 1242,
+   "grossMargin": 920.4
+  }
+ },
+ {
+  "id": "V65",
+  "desc": "Freight — 89.875\" stays on the standard table ($25 + $11)",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 89.875,
+   "height": 84,
+   "qty": 3,
+   "header": "race"
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 806,
+     "price": 806
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "90x84",
+   "shadeSubtotal": 2418,
+   "header": "",
+   "raceway": 122,
+   "racewayLabel": "Raceway (row 4) @ 90\" × 1",
+   "racewayEach": 122,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 414,
+   "freight": 47,
+   "retailTotal": 2879,
+   "discountableRetail": 2832,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 849.6,
+   "clientSubtotal": 1982.4,
+   "clientTotal": 2029.4,
+   "cost": 1109,
+   "grossMargin": 920.4
+  }
+ },
+ {
+  "id": "V66",
+  "desc": "Freight — a dual counts as 2 shades, not 1",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia"
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 496.8
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 910.8,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 36,
+   "retailTotal": 1368.8,
+   "discountableRetail": 1332.8,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 399.84,
+   "clientSubtotal": 932.96,
+   "clientTotal": 968.96,
+   "cost": 535.8,
+   "grossMargin": 433.16
+  }
+ },
+ {
+  "id": "V67",
+  "desc": "Raceway is charged on top of a fascia, not instead of it",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Curved metal fascia 4½\" (row 1) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 239,
+   "freight": 0,
+   "retailTotal": 653,
+   "discountableRetail": 653,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 195.9,
+   "clientSubtotal": 457.1,
+   "clientTotal": 457.1,
+   "cost": 244.88,
+   "grossMargin": 212.23
+  }
+ },
+ {
+  "id": "V68",
+  "desc": "No raceway line on a cassette — integrated housing replaces it",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "cassette",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Cassette system (row 3) @ 48\"",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 260,
+   "freight": 0,
+   "retailTotal": 674,
+   "discountableRetail": 674,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 202.2,
+   "clientSubtotal": 471.8,
+   "clientTotal": 471.8,
+   "cost": 252.75,
+   "grossMargin": 219.05
+  }
+ },
+ {
+  "id": "V69",
+  "desc": "No raceway line on LightGuard 360",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "lg360",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "LightGuard 360",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 391,
+   "freight": 0,
+   "retailTotal": 805,
+   "discountableRetail": 805,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 241.5,
+   "clientSubtotal": 563.5,
+   "clientTotal": 563.5,
+   "cost": 301.88,
+   "grossMargin": 261.63
+  }
+ },
+ {
+  "id": "V70",
+  "desc": "No raceway line on an open roll",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 430,
+   "discountableRetail": 430,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 129,
+   "clientSubtotal": 301,
+   "clientTotal": 301,
+   "cost": 161.25,
+   "grossMargin": 139.75
+  }
+ },
+ {
+  "id": "V71",
+  "desc": "Dual — one raceway for the pair, not two",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 496.8
+    }
+   ],
+   "shadeCount": 2,
+   "dual": true,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 910.8,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 422,
+   "freight": 0,
+   "retailTotal": 1332.8,
+   "discountableRetail": 1332.8,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 399.84,
+   "clientSubtotal": 932.96,
+   "clientTotal": 932.96,
+   "cost": 499.8,
+   "grossMargin": 433.16
+  }
+ },
+ {
+  "id": "V72",
+  "desc": "Coupled × 3 — three raceways, one per assembly",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": false
+    },
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "coupledCount": 3,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    },
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 3,
+   "dual": false,
+   "coupledCount": 3,
+   "cell": "48x60",
+   "shadeSubtotal": 1242,
+   "header": "Curved metal fascia 4½\" (row 1) @ 48\"",
+   "raceway": 219,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 3",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 651,
+   "freight": 0,
+   "retailTotal": 1893,
+   "discountableRetail": 1893,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 567.9,
+   "clientSubtotal": 1325.1,
+   "clientTotal": 1325.1,
+   "cost": 709.88,
+   "grossMargin": 615.23
+  }
+ },
+ {
+  "id": "V73",
+  "desc": "Raceway prices off the SHADE width, the fascia off the valance width",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 96,
+   "height": 84,
+   "header": "fascia",
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "valanceWidth": 200,
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 841,
+     "price": 841
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "96x84",
+   "shadeSubtotal": 841,
+   "header": "Square fabric-wrapped fascia 8\" (row 3) @ 144\" + 5 ft",
+   "raceway": 133,
+   "racewayLabel": "Raceway (row 4) @ 96\" × 1",
+   "racewayEach": 133,
+   "premiumHardware": null,
+   "shape": "square",
+   "material": "fabric",
+   "size": 8,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 5,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 901,
+   "freight": 0,
+   "retailTotal": 1742,
+   "discountableRetail": 1742,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 522.6,
+   "clientSubtotal": 1219.4,
+   "clientTotal": 1219.4,
+   "cost": 653.25,
+   "grossMargin": 566.15
+  }
+ },
+ {
+  "id": "V74",
+  "desc": "Premium hardware finish carried on the order",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "addons": {
+    "pole": 1
+   },
+   "hardwareFinish": "Bronze",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": {
+    "amount": 89,
+    "finish": "Bronze",
+    "hemBarStillCharged": true
+   },
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 105,
+   "freight": 0,
+   "retailTotal": 519,
+   "discountableRetail": 519,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 155.7,
+   "clientSubtotal": 363.3,
+   "clientTotal": 363.3,
+   "cost": 194.63,
+   "grossMargin": 168.68
+  }
+ },
+ {
+  "id": "V75",
+  "desc": "INVALID — a finish Norman does not make",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "addons": {
+    "pole": 1
+   },
+   "hardwareFinish": "Gold"
+  },
+  "expect": {
+   "errors": [
+    "NOT_OFFERED: premium hardware comes in Brass, Bronze, Brushed Black, Matte Silver, White"
+   ]
+  }
+ },
+ {
+  "id": "V76",
+  "desc": "INVALID — a hardware finish with no premium hardware",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "hardwareFinish": "Bronze"
+  },
+  "expect": {
+   "errors": [
+    "NOT_OFFERED: a hardware finish only applies when premium hardware is selected"
+   ]
+  }
+ },
+ {
+  "id": "V77",
+  "desc": "Client ladder — retail, less 30%, plus undiscounted shipping",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "fascia",
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 414,
+     "price": 414
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 414,
+   "header": "Curved metal fascia 4½\" (row 1) @ 48\"",
+   "raceway": 73,
+   "racewayLabel": "Raceway (row 4) @ 48\" × 1",
+   "racewayEach": 73,
+   "premiumHardware": null,
+   "shape": "curved",
+   "material": "metal",
+   "size": 4.5,
+   "endCaps": {
+    "offered": true,
+    "ask": true,
+    "asked": false,
+    "color": "match the shade",
+    "charge": 0
+   },
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 239,
+   "freight": 25,
+   "retailTotal": 678,
+   "discountableRetail": 653,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 195.9,
+   "clientSubtotal": 457.1,
+   "clientTotal": 482.1,
+   "cost": 269.88,
+   "grossMargin": 212.23
+  }
+ },
+ {
+  "id": "V78",
+  "desc": "Shipping is never discounted — 90\" wide, 3 shades, $180 freight untouched",
+  "input": {
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false
+    }
+   ],
+   "width": 90,
+   "height": 84,
+   "qty": 3,
+   "header": "race"
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Callie",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 1,
+     "gridPrice": 806,
+     "price": 806
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "90x84",
+   "shadeSubtotal": 2418,
+   "header": "",
+   "raceway": 122,
+   "racewayLabel": "Raceway (row 4) @ 90\" × 1",
+   "racewayEach": 122,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 414,
+   "freight": 180,
+   "retailTotal": 3012,
+   "discountableRetail": 2832,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 849.6,
+   "clientSubtotal": 1982.4,
+   "clientTotal": 2162.4,
+   "cost": 1242,
+   "grossMargin": 920.4
+  }
+ },
+ {
+  "id": "V79",
+  "desc": "Francis RD keeps the +20% though its LF twin is delisted",
+  "input": {
+   "shades": [
+    {
+     "collection": "Francis RD",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Francis RD",
+     "blackout": false,
+     "rule": "RD_SAME_GROUP_UPLIFT_20",
+     "group": 2,
+     "gridPrice": 462,
+     "price": 554.4
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 554.4,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 570.4,
+   "discountableRetail": 570.4,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 171.12,
+   "clientSubtotal": 399.28,
+   "clientTotal": 399.28,
+   "cost": 213.9,
+   "grossMargin": 185.38
+  }
+ },
+ {
+  "id": "V80",
+  "desc": "Amelia RD keeps the +20% though its LF twin is delisted",
+  "input": {
+   "shades": [
+    {
+     "collection": "Amelia RD",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Amelia RD",
+     "blackout": false,
+     "rule": "RD_SAME_GROUP_UPLIFT_20",
+     "group": 2,
+     "gridPrice": 462,
+     "price": 554.4
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 554.4,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 570.4,
+   "discountableRetail": 570.4,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 171.12,
+   "clientSubtotal": 399.28,
+   "clientTotal": 399.28,
+   "cost": 213.9,
+   "grossMargin": 185.38
+  }
+ },
+ {
+  "id": "V81",
+  "desc": "Kendra to Garden — same group, +20%",
+  "input": {
+   "shades": [
+    {
+     "collection": "Kendra",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Kendra",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 3,
+     "gridPrice": 545,
+     "price": 654
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 654,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 670,
+   "discountableRetail": 670,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 201,
+   "clientSubtotal": 469,
+   "clientTotal": 469,
+   "cost": 251.25,
+   "grossMargin": 217.75
+  }
+ },
+ {
+  "id": "V82",
+  "desc": "Amelia RD takes the +20% (LF was level)",
+  "input": {
+   "shades": [
+    {
+     "collection": "Amelia RD",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Amelia RD",
+     "blackout": false,
+     "rule": "RD_SAME_GROUP_UPLIFT_20",
+     "group": 2,
+     "gridPrice": 462,
+     "price": 554.4
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 554.4,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 570.4,
+   "discountableRetail": 570.4,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 171.12,
+   "clientSubtotal": 399.28,
+   "clientTotal": 399.28,
+   "cost": 213.9,
+   "grossMargin": 185.38
+  }
+ },
+ {
+  "id": "V83",
+  "desc": "Leah RD does NOT — Norman already moved it up a group",
+  "input": {
+   "shades": [
+    {
+     "collection": "Leah RD",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Leah RD",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 2,
+     "gridPrice": 462,
+     "price": 462
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 462,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 478,
+   "discountableRetail": 478,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 143.4,
+   "clientSubtotal": 334.6,
+   "clientTotal": 334.6,
+   "cost": 179.25,
+   "grossMargin": 155.35
+  }
+ },
+ {
+  "id": "V84",
+  "desc": "Lola BO takes no uplift — Norman moved it 2→3",
+  "input": {
+   "shades": [
+    {
+     "collection": "Lola BO",
+     "blackout": false
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Lola BO",
+     "blackout": false,
+     "rule": "AS_LISTED",
+     "group": 3,
+     "gridPrice": 545,
+     "price": 545
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 545,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 561,
+   "discountableRetail": 561,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 168.3,
+   "clientSubtotal": 392.7,
+   "clientTotal": 392.7,
+   "cost": 210.38,
+   "grossMargin": 182.33
+  }
+ },
+ {
+  "id": "V85",
+  "desc": "Breeze blackout via the twin equals Breeze RD ordered directly",
+  "input": {
+   "shades": [
+    {
+     "collection": "Breeze",
+     "blackout": true
+    }
+   ],
+   "width": 48,
+   "height": 60,
+   "header": "none",
+   "freight": false
+  },
+  "expect": {
+   "door": false,
+   "mount": "IM",
+   "shades": [
+    {
+     "collection": "Breeze",
+     "blackout": true,
+     "rule": "TWIN_SAME_GROUP_UPLIFT_20",
+     "group": 3,
+     "gridPrice": 545,
+     "price": 654
+    }
+   ],
+   "shadeCount": 1,
+   "dual": false,
+   "coupledCount": 0,
+   "cell": "48x60",
+   "shadeSubtotal": 654,
+   "header": "",
+   "raceway": 0,
+   "racewayLabel": "",
+   "racewayEach": 0,
+   "premiumHardware": null,
+   "shape": null,
+   "material": null,
+   "size": null,
+   "endCaps": null,
+   "extraFeet": 0,
+   "autoAdded": [
+    "Premium hem bar"
+   ],
+   "optionsSubtotal": 16,
+   "freight": 0,
+   "retailTotal": 670,
+   "discountableRetail": 670,
+   "clientDiscountPct": 0.3,
+   "clientDiscount": 201,
+   "clientSubtotal": 469,
+   "clientTotal": 469,
+   "cost": 251.25,
+   "grossMargin": 217.75
+  }
+ }
+]
