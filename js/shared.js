@@ -129,7 +129,7 @@ function _injectHead(isHome) {
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
         "opens": "08:00", "closes": "21:00"
       },
-      "hasMap": "https://maps.google.com/?q=Midvale+UT+84047",
+
       "makesOffer": [
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Roller Shade Fabrication and Installation"}},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cellular Honeycomb Shade Installation"}},
